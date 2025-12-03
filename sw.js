@@ -1,12 +1,12 @@
 /**
  * Tests Hub - Service Worker
- * Version: 2.0.0
+ * Version: 2.0.1
  * Features: Offline support, Background sync, Push notifications, Periodic sync
  */
 
-const CACHE_NAME = 'tests-hub-v2.0.0';
-const STATIC_CACHE_NAME = 'tests-hub-static-v2.0.0';
-const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.0.0';
+const CACHE_NAME = 'tests-hub-v2.0.1';
+const STATIC_CACHE_NAME = 'tests-hub-static-v2.0.1';
+const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.0.1';
 
 // Files to cache on install (app shell)
 const STATIC_ASSETS = [
@@ -32,7 +32,7 @@ const MAX_AGE_MS = MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
 const SYNC_QUEUE_NAME = 'sync-queue';
 
 // Push notification icon
-const NOTIFICATION_ICON = '/assets/icons/icon-96×96.png';
+const NOTIFICATION_ICON = '/assets/icons/icon-96x96.png';
 
 /**
  * Install event - cache static assets
