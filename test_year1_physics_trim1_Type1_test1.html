@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Physics Test N°1 - 1st Trimester</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2E8B57">
+    <meta name="description" content="Physics test for 1st year secondary school - 1st Trimester">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Physics Test">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f9f0 0%, #d0e8d0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.dark-theme {
+            background: linear-gradient(135deg, #1a2a1a 0%, #0f1a0f 100%);
+            color: #e6e6e6;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #1e5631, #2E8B57, #3CB371);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .dark-theme .Tests-Hub-language-dropdown {
+            background: #2c3e50;
+        }
+        
+        .dark-theme .Tests-Hub-language-option {
+            color: #e6e6e6;
+        }
+        
+        .dark-theme .Tests-Hub-language-option:hover {
+            background: #34495e;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .test-header {
+            text-align: center;
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-theme .test-header {
+            background: linear-gradient(to right, #1e5631, #2E8B57);
+        }
+        
+        .test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .dark-theme .test-section {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .test-section h2 {
+            color: #2E8B57;
+            border-bottom: 2px solid #3CB371;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .test-section h2 {
+            color: #4CAF50;
+        }
+        
+        .test-section h3 {
+            color: #3CB371;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .test-section h3 {
+            color: #66BB6A;
+        }
+        
+        .instructions {
+            background: #f0f7f0;
+            padding: 1rem;
+            border-left: 4px solid #2E8B57;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .dark-theme .instructions {
+            background: #1e3a1e;
+            border-left-color: #4CAF50;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #2E8B57;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .dark-theme th {
+            background: #1e5631;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .dark-theme tr:nth-child(even) {
+            background: #34495e;
+        }
+        
+        .dark-theme td {
+            border-color: #4a5f7a;
+        }
+        
+        .answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .large-textarea {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .dark-theme .answer-textarea,
+        .dark-theme .table-textarea,
+        .dark-theme .large-textarea {
+            border-color: #666;
+            background-color: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            color: #2E8B57;
+        }
+        
+        .dark-theme .question-number {
+            color: #4CAF50;
+        }
+        
+        .true-false {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .true-false input {
+            margin-right: 10px;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .dark-theme .image-container {
+            background: #34495e;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .image-caption {
+            color: #bdc3c7;
+        }
+        
+        /* Correction Section */
+        .correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .correction-section {
+            background: #f0f7f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #27ae60;
+            transition: background 0.3s ease;
+        }
+        
+        .dark-theme .correction-section {
+            background: #1e3a1e;
+            border-left-color: #4CAF50;
+        }
+        
+        .correction-section h3 {
+            color: #27ae60;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .dark-theme .correction-section h3 {
+            color: #4CAF50;
+        }
+        
+        .formula {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .dark-theme .formula {
+            background: #2c3e50;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #1e5631, #2E8B57, #3CB371);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #ffd166;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .developer-name {
+            font-weight: 600;
+            color: #ffd166;
+        }
+        
+        .version-number {
+            font-weight: 600;
+            color: #ffd166;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #ffd166;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .answer-textarea,
+            .table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .large-textarea {
+                min-height: 50px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.physicsTest.title">Physics Test N°1</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.physicsTest.subtitle">1st Year Secondary - 1st Trimester</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="test_year1_physics_trim1.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.physicsTest.back">Back to Physics Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">English</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="test-header">
+            <h1 data-i18n="TestsHub.physicsTest.school">Lycée Sidi El Hani</h1>
+            <p data-i18n="TestsHub.physicsTest.testInfo">Devoir Contrôle N°1 de Sciences Physiques - 2011/2012</p>
+            <p data-i18n="TestsHub.physicsTest.classInfo">Classe : 1ère AS - Mr Ben Abdeljelil Sami</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="test-section instructions">
+            <h3 data-i18n="TestsHub.physicsTest.instructions.title">Instructions générales</h3>
+            <ul>
+                <li data-i18n="TestsHub.physicsTest.instructions.item1">Le devoir comporte deux exercices de chimie et deux exercices de physique indépendants</li>
+                <li data-i18n="TestsHub.physicsTest.instructions.item2">L'utilisation de la calculatrice est permise</li>
+            </ul>
+        </div>
+        
+        <!-- Chemistry Section -->
+        <div class="test-section">
+            <h2 data-i18n="TestsHub.physicsTest.chemistryPart">Partie Chimie (8 points)</h2>
+            
+            <h3 data-i18n="TestsHub.physicsTest.exercise1">Exercice N°1 : (4 points)</h3>
+            <p data-i18n="TestsHub.physicsTest.completeTable">Compléter le tableau suivant :</p>
+            <p>On donne e = 1,6.10<sup>-19</sup> C</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th data-i18n="TestsHub.physicsTest.table.atom">Atome</th>
+                        <th data-i18n="TestsHub.physicsTest.table.oxygen">Oxygène</th>
+                        <th data-i18n="TestsHub.physicsTest.table.calcium">Calcium</th>
+                        <th data-i18n="TestsHub.physicsTest.table.chlorine">Chlore</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.symbol">Symbole de l'atome</td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.electrons">Nombre d'électrons de l'atome</td>
+                        <td>8</td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.ionSymbol">Symbole de l'ion</td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                        <td>Ca<sup>2+</sup></td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.ionCharge">Charge électrique de l'ion q</td>
+                        <td>-3,2.10<sup>-19</sup> C</td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                        <td>-1,6.10<sup>-19</sup> C</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.ionElectrons">Nombre d'électrons de l'ion</td>
+                        <td><textarea class="table-textarea"></textarea></td>
+                        <td>18</td>
+                        <td>18</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 data-i18n="TestsHub.physicsTest.exercise2">Exercice N°2 : (4 points)</h3>
+            <p data-i18n="TestsHub.physicsTest.trueFalse">Répondre par Vrai (V) ou Faux (F) aux propositions suivantes :</p>
+            
+            <div class="question">
+                <div class="true-false">
+                    <input type="radio" id="q1-v" name="q1">
+                    <label for="q1-v">V</label>
+                    <input type="radio" id="q1-f" name="q1">
+                    <label for="q1-f">F</label>
+                    <span style="margin-left: 15px;" data-i18n="TestsHub.physicsTest.question1">1) Un mélange homogène est formé par plusieurs constituants</span>
+                </div>
+                
+                <div class="true-false">
+                    <input type="radio" id="q2-v" name="q2">
+                    <label for="q2-v">V</label>
+                    <input type="radio" id="q2-f" name="q2">
+                    <label for="q2-f">F</label>
+                    <span style="margin-left: 15px;" data-i18n="TestsHub.physicsTest.question2">2) Un atome est une particule chargée</span>
+                </div>
+                
+                <div class="true-false">
+                    <input type="radio" id="q3-v" name="q3">
+                    <label for="q3-v">V</label>
+                    <input type="radio" id="q3-f" name="q3">
+                    <label for="q3-f">F</label>
+                    <span style="margin-left: 15px;" data-i18n="TestsHub.physicsTest.question3">3) Un alliage est un mélange de deux gaz</span>
+                </div>
+                
+                <div class="true-false">
+                    <input type="radio" id="q4-v" name="q4">
+                    <label for="q4-v">V</label>
+                    <input type="radio" id="q4-f" name="q4">
+                    <label for="q4-f">F</label>
+                    <span style="margin-left: 15px;" data-i18n="TestsHub.physicsTest.question4">4) Un corps pur organique ne contient pas de carbone</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Physics Section -->
+        <div class="test-section">
+            <h2 data-i18n="TestsHub.physicsTest.physicsPart">Partie Physique (12 points)</h2>
+            
+            <h3 data-i18n="TestsHub.physicsTest.exercise1">Exercice N°1 : (4 points)</h3>
+            
+            <div class="image-container">
+                <img src="assets/tests/physical/image-1.png" alt="Expériences d'électrisation">
+                <div class="image-caption" data-i18n="TestsHub.physicsTest.image1.caption">Expériences (a), (b) et (c) - Électrisation des boules</div>
+            </div>
+            
+            <div class="question">
+                <p><span class="question-number">1°</span> <span data-i18n="TestsHub.physicsTest.question5">Dans l'expérience (a) les deux boules sont-elles électrisées ? Justifier votre réponse.</span></p>
+                <textarea class="large-textarea"></textarea>
+            </div>
+            
+            <div class="question">
+                <p><span class="question-number">2°</span> <span data-i18n="TestsHub.physicsTest.question6">Comment peut-on électriser les deux boules B₁ et B₂ ?</span></p>
+                <textarea class="answer-textarea" style="width: 80%;"></textarea>
+            </div>
+            
+            <div class="question">
+                <p><span class="question-number">3°</span> <span data-i18n="TestsHub.physicsTest.question7">Compléter la figure de l'expérience (b) et dites s'il y a attraction (A) ou répulsion (R) ?</span></p>
+                <textarea class="answer-textarea" style="width: 80%;"></textarea>
+            </div>
+            
+            <div class="question">
+                <p><span class="question-number">4°</span> <span data-i18n="TestsHub.physicsTest.question8">Compléter la figure de l'expérience (c) et dites s'il y a attraction (A) ou répulsion (R) ?</span></p>
+                <textarea class="answer-textarea" style="width: 80%;"></textarea>
+            </div>
+            
+            <h3 data-i18n="TestsHub.physicsTest.exercise2">Exercice N°2 : (8 points)</h3>
+            <p data-i18n="TestsHub.physicsTest.circuitDescription">Soit le circuit électrique dont le schéma est le suivant :</p>
+            
+            <div class="image-container">
+                <img src="assets/tests/physical/image-2.png" alt="Circuit électrique">
+                <div class="image-caption" data-i18n="TestsHub.physicsTest.image2.caption">Schéma du circuit électrique</div>
+            </div>
+            
+            <div class="question">
+                <p><span class="question-number">1°</span> <span data-i18n="TestsHub.physicsTest.question9">Compléter le tableau suivant :</span></p>
+                
+                <table style="width: 70%;">
+                    <thead>
+                        <tr>
+                            <th data-i18n="TestsHub.physicsTest.table.switchOpen">Interrupteur ouvert</th>
+                            <th>K₁</th>
+                            <th>K₂</th>
+                            <th>K₃</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-i18n="TestsHub.physicsTest.table.lampOn">Lampe(s) allumée(s)</td>
+                            <td><textarea class="table-textarea"></textarea></td>
+                            <td><textarea class="table-textarea"></textarea></td>
+                            <td><textarea class="table-textarea"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="question">
+                <p><span class="question-number">2°</span></p>
+                <p data-i18n="TestsHub.physicsTest.question10a">a- Combien y-a-t'il de nœuds dans le circuit précédent ? <textarea class="answer-textarea"></textarea></p>
+                <p data-i18n="TestsHub.physicsTest.question10b">b- Quel est le rôle de l'ampèremètre ? <textarea class="answer-textarea" style="width: 60%;"></textarea></p>
+            </div>
+            
+            <div class="question">
+                <p><span class="question-number">3°</span> <span data-i18n="TestsHub.physicsTest.question11">Sachant que le courant principal est I = 1,6 A et que l'ampèremètre possède une échelle E = 100 divisions et que ses calibres sont : 10 A ; 5 A ; 2 A ; 0,5 A et 0,1 A</span></p>
+                <p>(Tous les interrupteurs sont fermés dans le circuit électrique précédent)</p>
+                
+                <p data-i18n="TestsHub.physicsTest.question11a">a- Quels sont les calibres qu'on peut utiliser ? <textarea class="answer-textarea" style="width: 60%;"></textarea></p>
+                <p data-i18n="TestsHub.physicsTest.question11b">b- Quel est le calibre le plus adéquat à utiliser ? <textarea class="answer-textarea" style="width: 60%;"></textarea></p>
+                <p data-i18n="TestsHub.physicsTest.question11c">c- Déduire la lecture L de l'ampèremètre : <textarea class="answer-textarea" style="width: 60%;"></textarea></p>
+                <p data-i18n="TestsHub.physicsTest.question11d">d- Sachant que l'intensité qui circule dans la diode est I₂ = 0,8 A. Calculer celle qui circule à travers la lampe L₃ :</p>
+                <textarea class="large-textarea"></textarea>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.physicsTest.showCorrection">Afficher la correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="correction-section hidden">
+            <h2 data-i18n="TestsHub.physicsTest.correctionTitle">Correction du devoir</h2>
+            
+            <h3 data-i18n="TestsHub.physicsTest.chemistryCorrection">Chimie - Exercice N°1 : Correction</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th data-i18n="TestsHub.physicsTest.table.atom">Atome</th>
+                        <th data-i18n="TestsHub.physicsTest.table.oxygen">Oxygène</th>
+                        <th data-i18n="TestsHub.physicsTest.table.calcium">Calcium</th>
+                        <th data-i18n="TestsHub.physicsTest.table.chlorine">Chlore</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.symbol">Symbole de l'atome</td>
+                        <td>O</td>
+                        <td>Ca</td>
+                        <td>Cl</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.electrons">Nombre d'électrons de l'atome</td>
+                        <td>8</td>
+                        <td>20</td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.ionSymbol">Symbole de l'ion</td>
+                        <td>O<sup>2-</sup></td>
+                        <td>Ca<sup>2+</sup></td>
+                        <td>Cl<sup>-</sup></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.ionCharge">Charge électrique de l'ion q</td>
+                        <td>-3,2.10<sup>-19</sup> C</td>
+                        <td>+3,2.10<sup>-19</sup> C</td>
+                        <td>-1,6.10<sup>-19</sup> C</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="TestsHub.physicsTest.table.ionElectrons">Nombre d'électrons de l'ion</td>
+                        <td>10</td>
+                        <td>18</td>
+                        <td>18</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 data-i18n="TestsHub.physicsTest.trueFalseCorrection">Chimie - Exercice N°2 : Correction</h3>
+            <div class="correction-section">
+                <p data-i18n="TestsHub.physicsTest.correction1">1) Un mélange homogène est formé par plusieurs constituants : <strong>Vrai (V)</strong></p>
+                <p data-i18n="TestsHub.physicsTest.correction2">2) Un atome est une particule chargée : <strong>Faux (F)</strong> - Un atome est électriquement neutre</p>
+                <p data-i18n="TestsHub.physicsTest.correction3">3) Un alliage est un mélange de deux gaz : <strong>Faux (F)</strong> - Un alliage est un mélange de métaux</p>
+                <p data-i18n="TestsHub.physicsTest.correction4">4) Un corps pur organique ne contient pas de carbone : <strong>Faux (F)</strong> - Un corps pur organique contient toujours du carbone</p>
+            </div>
+            
+            <h3 data-i18n="TestsHub.physicsTest.physicsCorrection1">Physique - Exercice N°1 : Correction</h3>
+            
+            <div class="image-container">
+                <img src="assets/tests/physical/image-3.png" alt="Expériences d'électrisation - Correction">
+                <div class="image-caption" data-i18n="TestsHub.physicsTest.image3.caption">Expériences (a), (b) et (c) avec les réponses</div>
+            </div>
+            
+            <div class="correction-section">
+                <p><span class="question-number">1°</span> <span data-i18n="TestsHub.physicsTest.correction5">Les boules ne sont pas électrisées car il n'y a aucune interaction (ni attraction ni répulsion).</span></p>
+                <p><span class="question-number">2°</span> <span data-i18n="TestsHub.physicsTest.correction6">On peut électriser les boules soit par frottement soit par contact.</span></p>
+                <p><span class="question-number">3°</span> <span data-i18n="TestsHub.physicsTest.correction7">Il y a répulsion (R).</span></p>
+                <p><span class="question-number">4°</span> <span data-i18n="TestsHub.physicsTest.correction8">Il y a attraction (A).</span></p>
+            </div>
+            
+            <h3 data-i18n="TestsHub.physicsTest.physicsCorrection2">Physique - Exercice N°2 : Correction</h3>
+            
+            <div class="image-container">
+                <img src="assets/tests/physical/image-4.png" alt="Circuit électrique - Correction">
+                <div class="image-caption" data-i18n="TestsHub.physicsTest.image4.caption">Circuit électrique avec les réponses</div>
+            </div>
+            
+            <div class="correction-section">
+                <p><span class="question-number">1°</span></p>
+                <table style="width: 70%;">
+                    <thead>
+                        <tr>
+                            <th data-i18n="TestsHub.physicsTest.table.switchOpen">Interrupteur ouvert</th>
+                            <th>K₁</th>
+                            <th>K₂</th>
+                            <th>K₃</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-i18n="TestsHub.physicsTest.table.lampOn">Lampe(s) allumée(s)</td>
+                            <td data-i18n="TestsHub.physicsTest.correction9a">Aucune</td>
+                            <td data-i18n="TestsHub.physicsTest.correction9b">L₁ et L₃</td>
+                            <td data-i18n="TestsHub.physicsTest.correction9c">L₁ et L₂</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><span class="question-number">2°</span></p>
+                <p data-i18n="TestsHub.physicsTest.correction10a">a- Il y a deux nœuds dans le circuit.</p>
+                <p data-i18n="TestsHub.physicsTest.correction10b">b- L'ampèremètre mesure l'intensité du courant I débité par le générateur.</p>
+                
+                <p><span class="question-number">3°</span></p>
+                <p data-i18n="TestsHub.physicsTest.correction11a">a- Les calibres qu'on peut utiliser sont : 10 A ; 5 A ; 2 A (car I ≤ C).</p>
+                <p data-i18n="TestsHub.physicsTest.correction11b">b- Le calibre le plus adéquat est C = 2 A.</p>
+                <p data-i18n="TestsHub.physicsTest.correction11c">c- Déduction de la lecture L de l'ampèremètre :</p>
+                <div class="formula">
+                    I = (L × C) / E ⇒ L = (I × E) / C<br>
+                    <span data-i18n="TestsHub.physicsTest.calculation">Application numérique : L = (1,6 A × 100) / 2 A = 80 divisions</span>
+                </div>
+                <p data-i18n="TestsHub.physicsTest.correction11d">d- D'après la loi des nœuds :</p>
+                <div class="formula">
+                    I = I₂ + I₃ ⇒ I₃ = I - I₂<br>
+                    <span data-i18n="TestsHub.physicsTest.calculation2">Application numérique : I₃ = 1,6 A - 0,8 A = 0,8 A</span>
+                </div>
+                <p data-i18n="TestsHub.physicsTest.finalAnswer">L'intensité qui circule à travers la lampe L₃ est de 0,8 A.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="version-number">v1.0.0</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for Physics Test page
+        let currentLanguage = 'fr'; // Default to French since test is in French
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            en: {
+                TestsHub: {
+                    physicsTest: {
+                        title: "Physics Test N°1",
+                        subtitle: "1st Year Secondary - 1st Trimester",
+                        school: "Lycée Sidi El Hani",
+                        testInfo: "Test Control N°1 of Physical Sciences - 2011/2012",
+                        classInfo: "Class: 1st AS - Mr Ben Abdeljelil Sami",
+                        back: "Back to Physics Tests",
+                        instructions: {
+                            title: "General Instructions",
+                            item1: "The test includes two chemistry exercises and two physics exercises",
+                            item2: "Calculator use is permitted"
+                        },
+                        chemistryPart: "Chemistry Part (8 points)",
+                        physicsPart: "Physics Part (12 points)",
+                        exercise1: "Exercise N°1: (4 points)",
+                        exercise2: "Exercise N°2: (4 points)",
+                        completeTable: "Complete the following table:",
+                        trueFalse: "Answer True (V) or False (F) to the following statements:",
+                        question1: "1) A homogeneous mixture is formed by several constituents",
+                        question2: "2) An atom is a charged particle",
+                        question3: "3) An alloy is a mixture of two gases",
+                        question4: "4) An organic pure substance does not contain carbon",
+                        image1: {
+                            caption: "Experiments (a), (b) and (c) - Electrification of balls"
+                        },
+                        question5: "In experiment (a) are both balls electrified? Justify your answer.",
+                        question6: "How can we electrify balls B₁ and B₂?",
+                        question7: "Complete the figure of experiment (b) and indicate if there is attraction (A) or repulsion (R)?",
+                        question8: "Complete the figure of experiment (c) and indicate if there is attraction (A) or repulsion (R)?",
+                        circuitDescription: "Consider the electrical circuit whose diagram is as follows:",
+                        image2: {
+                            caption: "Electrical circuit diagram"
+                        },
+                        question9: "Complete the following table:",
+                        question10a: "a- How many nodes are in the previous circuit?",
+                        question10b: "b- What is the role of the ammeter?",
+                        question11: "Knowing that the main current is I = 1.6 A and that the ammeter has a scale E = 100 divisions and its ranges are: 10 A; 5 A; 2 A; 0.5 A and 0.1 A",
+                        note: "(All switches are closed in the previous electrical circuit)",
+                        question11a: "a- Which ranges can we use?",
+                        question11b: "b- Which is the most appropriate range to use?",
+                        question11c: "c- Deduce the reading L of the ammeter:",
+                        question11d: "d- Knowing that the current flowing in the diode is I₂ = 0.8 A. Calculate that which flows through lamp L₃:",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        correctionTitle: "Test Correction",
+                        chemistryCorrection: "Chemistry - Exercise N°1: Correction",
+                        trueFalseCorrection: "Chemistry - Exercise N°2: Correction",
+                        physicsCorrection1: "Physics - Exercise N°1: Correction",
+                        physicsCorrection2: "Physics - Exercise N°2: Correction",
+                        correction1: "1) A homogeneous mixture is formed by several constituents: <strong>True (V)</strong>",
+                        correction2: "2) An atom is a charged particle: <strong>False (F)</strong> - An atom is electrically neutral",
+                        correction3: "3) An alloy is a mixture of two gases: <strong>False (F)</strong> - An alloy is a mixture of metals",
+                        correction4: "4) An organic pure substance does not contain carbon: <strong>False (F)</strong> - An organic pure substance always contains carbon",
+                        correction5: "The balls are not electrified because there is no interaction (neither attraction nor repulsion).",
+                        correction6: "We can electrify the balls either by friction or by contact.",
+                        correction7: "There is repulsion (R).",
+                        correction8: "There is attraction (A).",
+                        correction9a: "None",
+                        correction9b: "L₁ and L₃",
+                        correction9c: "L₁ and L₂",
+                        correction10a: "a- There are two nodes in the circuit.",
+                        correction10b: "b- The ammeter measures the intensity of current I supplied by the generator.",
+                        correction11a: "a- The ranges we can use are: 10 A; 5 A; 2 A (because I ≤ C).",
+                        correction11b: "b- The most appropriate range is C = 2 A.",
+                        correction11c: "c- Deduction of the reading L of the ammeter:",
+                        correction11d: "d- According to Kirchhoff's current law:",
+                        calculation: "Numerical application: L = (1.6 A × 100) / 2 A = 80 divisions",
+                        calculation2: "Numerical application: I₃ = 1.6 A - 0.8 A = 0.8 A",
+                        finalAnswer: "The current flowing through lamp L₃ is 0.8 A.",
+                        table: {
+                            atom: "Atom",
+                            oxygen: "Oxygen",
+                            calcium: "Calcium",
+                            chlorine: "Chlorine",
+                            symbol: "Atom symbol",
+                            electrons: "Number of electrons of the atom",
+                            ionSymbol: "Ion symbol",
+                            ionCharge: "Electrical charge of the ion q",
+                            ionElectrons: "Number of electrons of the ion",
+                            switchOpen: "Switch open",
+                            lampOn: "Lamp(s) on"
+                        },
+                        image3: {
+                            caption: "Experiments (a), (b) and (c) with answers"
+                        },
+                        image4: {
+                            caption: "Electrical circuit with answers"
+                        }
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    physicsTest: {
+                        title: "Devoir de Physique N°1",
+                        subtitle: "1ère Année Secondaire - 1er Trimestre",
+                        school: "Lycée Sidi El Hani",
+                        testInfo: "Devoir Contrôle N°1 de Sciences Physiques - 2011/2012",
+                        classInfo: "Classe : 1ère AS - Mr Ben Abdeljelil Sami",
+                        back: "Retour aux Tests de Physique",
+                        instructions: {
+                            title: "Instructions générales",
+                            item1: "Le devoir comporte deux exercices de chimie et deux exercices de physique indépendants",
+                            item2: "L'utilisation de la calculatrice est permise"
+                        },
+                        chemistryPart: "Partie Chimie (8 points)",
+                        physicsPart: "Partie Physique (12 points)",
+                        exercise1: "Exercice N°1 : (4 points)",
+                        exercise2: "Exercice N°2 : (4 points)",
+                        completeTable: "Compléter le tableau suivant :",
+                        trueFalse: "Répondre par Vrai (V) ou Faux (F) aux propositions suivantes :",
+                        question1: "1) Un mélange homogène est formé par plusieurs constituants",
+                        question2: "2) Un atome est une particule chargée",
+                        question3: "3) Un alliage est un mélange de deux gaz",
+                        question4: "4) Un corps pur organique ne contient pas de carbone",
+                        image1: {
+                            caption: "Expériences (a), (b) et (c) - Électrisation des boules"
+                        },
+                        question5: "Dans l'expérience (a) les deux boules sont-elles électrisées ? Justifier votre réponse.",
+                        question6: "Comment peut-on électriser les deux boules B₁ et B₂ ?",
+                        question7: "Compléter la figure de l'expérience (b) et dites s'il y a attraction (A) ou répulsion (R) ?",
+                        question8: "Compléter la figure de l'expérience (c) et dites s'il y a attraction (A) ou répulsion (R) ?",
+                        circuitDescription: "Soit le circuit électrique dont le schéma est le suivant :",
+                        image2: {
+                            caption: "Schéma du circuit électrique"
+                        },
+                        question9: "Compléter le tableau suivant :",
+                        question10a: "a- Combien y-a-t'il de nœuds dans le circuit précédent ?",
+                        question10b: "b- Quel est le rôle de l'ampèremètre ?",
+                        question11: "Sachant que le courant principal est I = 1,6 A et que l'ampèremètre possède une échelle E = 100 divisions et que ses calibres sont : 10 A ; 5 A ; 2 A ; 0,5 A et 0,1 A",
+                        note: "(Tous les interrupteurs sont fermés dans le circuit électrique précédent)",
+                        question11a: "a- Quels sont les calibres qu'on peut utiliser ?",
+                        question11b: "b- Quel est le calibre le plus adéquat à utiliser ?",
+                        question11c: "c- Déduire la lecture L de l'ampèremètre :",
+                        question11d: "d- Sachant que l'intensité qui circule dans la diode est I₂ = 0,8 A. Calculer celle qui circule à travers la lampe L₃ :",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        correctionTitle: "Correction du devoir",
+                        chemistryCorrection: "Chimie - Exercice N°1 : Correction",
+                        trueFalseCorrection: "Chimie - Exercice N°2 : Correction",
+                        physicsCorrection1: "Physique - Exercice N°1 : Correction",
+                        physicsCorrection2: "Physique - Exercice N°2 : Correction",
+                        correction1: "1) Un mélange homogène est formé par plusieurs constituants : <strong>Vrai (V)</strong>",
+                        correction2: "2) Un atome est une particule chargée : <strong>Faux (F)</strong> - Un atome est électriquement neutre",
+                        correction3: "3) Un alliage est un mélange de deux gaz : <strong>Faux (F)</strong> - Un alliage est un mélange de métaux",
+                        correction4: "4) Un corps pur organique ne contient pas de carbone : <strong>Faux (F)</strong> - Un corps pur organique contient toujours du carbone",
+                        correction5: "Les boules ne sont pas électrisées car il n'y a aucune interaction (ni attraction ni répulsion).",
+                        correction6: "On peut électriser les boules soit par frottement soit par contact.",
+                        correction7: "Il y a répulsion (R).",
+                        correction8: "Il y a attraction (A).",
+                        correction9a: "Aucune",
+                        correction9b: "L₁ et L₃",
+                        correction9c: "L₁ et L₂",
+                        correction10a: "a- Il y a deux nœuds dans le circuit.",
+                        correction10b: "b- L'ampèremètre mesure l'intensité du courant I débité par le générateur.",
+                        correction11a: "a- Les calibres qu'on peut utiliser sont : 10 A ; 5 A ; 2 A (car I ≤ C).",
+                        correction11b: "b- Le calibre le plus adéquat est C = 2 A.",
+                        correction11c: "c- Déduction de la lecture L de l'ampèremètre :",
+                        correction11d: "d- D'après la loi des nœuds :",
+                        calculation: "Application numérique : L = (1,6 A × 100) / 2 A = 80 divisions",
+                        calculation2: "Application numérique : I₃ = 1,6 A - 0,8 A = 0,8 A",
+                        finalAnswer: "L'intensité qui circule à travers la lampe L₃ est de 0,8 A.",
+                        table: {
+                            atom: "Atome",
+                            oxygen: "Oxygène",
+                            calcium: "Calcium",
+                            chlorine: "Chlore",
+                            symbol: "Symbole de l'atome",
+                            electrons: "Nombre d'électrons de l'atome",
+                            ionSymbol: "Symbole de l'ion",
+                            ionCharge: "Charge électrique de l'ion q",
+                            ionElectrons: "Nombre d'électrons de l'ion",
+                            switchOpen: "Interrupteur ouvert",
+                            lampOn: "Lampe(s) allumée(s)"
+                        },
+                        image3: {
+                            caption: "Expériences (a), (b) et (c) avec les réponses"
+                        },
+                        image4: {
+                            caption: "Circuit électrique avec les réponses"
+                        }
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    physicsTest: {
+                        title: "اختبار الفيزياء رقم 1",
+                        subtitle: "السنة الأولى ثانوي - الثلاثي الأول",
+                        school: "ثانوية سيدي الهاني",
+                        testInfo: "اختبار المراقبة رقم 1 في العلوم الفيزيائية - 2011/2012",
+                        classInfo: "القسم: أولى ثانوي - الأستاذ بن عبد الجليل سامي",
+                        back: "العودة لاختبارات الفيزياء",
+                        instructions: {
+                            title: "التعليمات العامة",
+                            item1: "يتضمن الاختبار تمرينين في الكيمياء وتمرينين في الفيزياء",
+                            item2: "يسمح باستخدام الآلة الحاسبة"
+                        },
+                        chemistryPart: "جزء الكيمياء (8 نقاط)",
+                        physicsPart: "جزء الفيزياء (12 نقطة)",
+                        exercise1: "التمرين رقم 1: (4 نقاط)",
+                        exercise2: "التمرين رقم 2: (4 نقاط)",
+                        completeTable: "أكمل الجدول التالي:",
+                        trueFalse: "أجب بصحيح (V) أو خطأ (F) للعبارات التالية:",
+                        question1: "1) المزيج المتجانس يتكون من عدة مكونات",
+                        question2: "2) الذرة عبارة عن جسيم مشحون",
+                        question3: "3) السبيكة هي مزيج من غازين",
+                        question4: "4) المادة العضوية النقية لا تحتوي على الكربون",
+                        image1: {
+                            caption: "التجارب (أ)، (ب) و (ج) - كهربة الكرات"
+                        },
+                        question5: "في التجربة (أ) هل الكرتان مشحونتان؟ علل إجابتك.",
+                        question6: "كيف يمكننا كهربة الكرتين B₁ و B₂؟",
+                        question7: "أكمل الشكل الخاص بالتجربة (ب) وقل هل هناك تجاذب (A) أو تنافر (R)؟",
+                        question8: "أكمل الشكل الخاص بالتجربة (ج) وقل هل هناك تجاذب (A) أو تنافر (R)؟",
+                        circuitDescription: "ليكن الدارة الكهربائية الذي يمثله الشكل التالي:",
+                        image2: {
+                            caption: "مخطط الدارة الكهربائية"
+                        },
+                        question9: "أكمل الجدول التالي:",
+                        question10a: "أ- كم عدد العقد في الدارة السابقة؟",
+                        question10b: "ب- ما دور الأمبيرمتر؟",
+                        question11: "علما أن التيار الرئيسي هو I = 1,6 أمبير وأن الأمبيرمتر يمتلك سلم E = 100 قسم وأن معايره هي: 10 أمبير؛ 5 أمبير؛ 2 أمبير؛ 0,5 أمبير و 0,1 أمبير",
+                        note: "(جميع المفاتيح مغلقة في الدارة الكهربائية السابقة)",
+                        question11a: "أ- ما هي المعايير التي يمكننا استخدامها؟",
+                        question11b: "ب- ما هو المعيار الأكثر ملائمة للاستخدام؟",
+                        question11c: "ج- استنتج قراءة L للأمبيرمتر:",
+                        question11d: "د- علما أن شدة التيار التي تمر في الصمام الثنائي هي I₂ = 0,8 أمبير. احسب تلك التي تمر عبر المصباح L₃:",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        correctionTitle: "تصحيح الاختبار",
+                        chemistryCorrection: "الكيمياء - التمرين رقم 1: التصحيح",
+                        trueFalseCorrection: "الكيمياء - التمرين رقم 2: التصحيح",
+                        physicsCorrection1: "الفيزياء - التمرين رقم 1: التصحيح",
+                        physicsCorrection2: "الفيزياء - التمرين رقم 2: التصحيح",
+                        correction1: "1) المزيج المتجانس يتكون من عدة مكونات: <strong>صحيح (V)</strong>",
+                        correction2: "2) الذرة عبارة عن جسيم مشحون: <strong>خطأ (F)</strong> - الذرة متعادلة كهربائيا",
+                        correction3: "3) السبيكة هي مزيج من غازين: <strong>خطأ (F)</strong> - السبيكة هي مزيج من معادن",
+                        correction4: "4) المادة العضوية النقية لا تحتوي على الكربون: <strong>خطأ (F)</strong> - المادة العضوية النقية تحتوي دائما على الكربون",
+                        correction5: "الكرات غير مشحونة لأنه لا يوجد أي تفاعل (لا تجاذب ولا تنافر).",
+                        correction6: "يمكننا كهربة الكرات إما بالدلك أو بالتماس.",
+                        correction7: "هناك تنافر (R).",
+                        correction8: "هناك تجاذب (A).",
+                        correction9a: "لا شيء",
+                        correction9b: "L₁ و L₃",
+                        correction9c: "L₁ و L₂",
+                        correction10a: "أ- هناك عقدتان في الدارة.",
+                        correction10b: "ب- يقيس الأمبيرمتر شدة التيار I المنبعث من المولد.",
+                        correction11a: "أ- المعايير التي يمكننا استخدامها هي: 10 أمبير؛ 5 أمبير؛ 2 أمبير (لأن I ≤ C).",
+                        correction11b: "ب- المعيار الأكثر ملائمة هو C = 2 أمبير.",
+                        correction11c: "ج- استنتاج قراءة L للأمبيرمتر:",
+                        correction11d: "د- وفقا لقانون العقد:",
+                        calculation: "التطبيق العددي: L = (1,6 أمبير × 100) / 2 أمبير = 80 قسم",
+                        calculation2: "التطبيق العددي: I₃ = 1,6 أمبير - 0,8 أمبير = 0,8 أمبير",
+                        finalAnswer: "شدة التيار التي تمر عبر المصباح L₃ هي 0,8 أمبير.",
+                        table: {
+                            atom: "الذرة",
+                            oxygen: "الأكسجين",
+                            calcium: "الكالسيوم",
+                            chlorine: "الكلور",
+                            symbol: "رمز الذرة",
+                            electrons: "عدد إلكترونات الذرة",
+                            ionSymbol: "رمز الأيون",
+                            ionCharge: "الشحنة الكهربائية للأيون q",
+                            ionElectrons: "عدد إلكترونات الأيون",
+                            switchOpen: "المفتاح مفتوح",
+                            lampOn: "المصباح(المصابيح) المضاءة"
+                        },
+                        image3: {
+                            caption: "التجارب (أ)، (ب) و (ج) مع الإجابات"
+                        },
+                        image4: {
+                            caption: "الدارة الكهربائية مع الإجابات"
+                        }
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    // Handle HTML content with tags
+                    if (translation.includes('<strong>')) {
+                        element.innerHTML = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('hidden')) {
+                        correctionSection.classList.remove('hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

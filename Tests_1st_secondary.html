@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tests Hub - 1st Year Secondary School</title>
+		
+		<!-- PWA Meta Tags -->
+		<meta name="theme-color" content="#FF5F6D">
+		<meta name="description" content="Educational tests for 1st year secondary school - All subjects">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="Tests Hub - 1st Secondary">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="application-name" content="Tests Hub">
+		
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+		
+		<!-- Manifest -->
+		<link rel="manifest" href="manifest.json">
+		
+		<style>
+			* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			
+			body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+			}
+			
+			body.dark-theme {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+			}
+			
+			/* Header */
+			.Tests-Hub-header-container {
+            background: linear-gradient(to right, #FF5F6D, #FFC371);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+			}
+			
+			.dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #8B0000, #B22222, #DC143C);
+			}
+			
+			.Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+			}
+			
+			.Tests-Hub-header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+			}
+			
+			.Tests-Hub-header-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+			}
+			
+			.Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-language-selector {
+            position: relative;
+			}
+			
+			.Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			.Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+			}
+			
+			.Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+			}
+			
+			.Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+			}
+			
+			.Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+			}
+			
+			.dark-theme .Tests-Hub-language-dropdown {
+            background: #2c3e50;
+			}
+			
+			.dark-theme .Tests-Hub-language-option {
+            color: #e6e6e6;
+			}
+			
+			.dark-theme .Tests-Hub-language-option:hover {
+            background: #34495e;
+			}
+			
+			.Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Back Button */
+			.Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+			}
+			
+			.Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Main Content */
+			.Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+			}
+			
+			.Tests-Hub-intro {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #FF5F6D;
+            transition: background 0.3s ease, color 0.3s ease;
+			}
+			
+			.dark-theme .Tests-Hub-intro {
+            background: #2c3e50;
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-intro h2 {
+            color: #FF5F6D;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+			}
+			
+			.dark-theme .Tests-Hub-intro h2 {
+            color: #FF7E5F;
+			}
+			
+			.Tests-Hub-intro p {
+            color: #34495e;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+			}
+			
+			.dark-theme .Tests-Hub-intro p {
+            color: #bdc3c7;
+			}
+			
+			/* Subject Cards */
+			.Tests-Hub-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+			}
+			
+			.Tests-Hub-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+			}
+			
+			.dark-theme .Tests-Hub-card {
+            background: #2c3e50;
+			}
+			
+			.Tests-Hub-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-card-header {
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            flex: 0 0 auto;
+			}
+			
+			.Tests-Hub-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+			}
+			
+			.Tests-Hub-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+			}
+			
+			.Tests-Hub-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+			}
+			
+			.Tests-Hub-card-description {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+			}
+			
+			.dark-theme .Tests-Hub-card-description {
+            color: #bdc3c7;
+			}
+			
+			.Tests-Hub-card-link {
+            display: inline-block;
+            text-align: center;
+            background: #f8f9fa;
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+			}
+			
+			.dark-theme .Tests-Hub-card-link {
+            background: #34495e;
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-card-link:hover {
+            background: #FF5F6D;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 95, 109, 0.3);
+			}
+			
+			/* Subject Card Colors */
+			.Tests-Hub-card-physics .Tests-Hub-card-header {
+            background: linear-gradient(to right, #FF5F6D, #FFC371);
+			}
+			
+			.Tests-Hub-card-math .Tests-Hub-card-header {
+            background: linear-gradient(to right, #36D1DC, #5B86E5);
+			}
+			
+			.Tests-Hub-card-french .Tests-Hub-card-header {
+            background: linear-gradient(to right, #3CA55C, #B5AC49);
+			}
+			
+			.Tests-Hub-card-arabic .Tests-Hub-card-header {
+            background: linear-gradient(to right, #6A11CB, #2575FC);
+			}
+			
+			.Tests-Hub-card-english .Tests-Hub-card-header {
+            background: linear-gradient(to right, #FF7E5F, #FEB47B);
+			}
+			
+			.Tests-Hub-card-history .Tests-Hub-card-header {
+            background: linear-gradient(to right, #7F00FF, #E100FF);
+			}
+			
+			.Tests-Hub-card-islamic .Tests-Hub-card-header {
+            background: linear-gradient(to right, #00b09b, #96c93d);
+			}
+			
+			.Tests-Hub-card-technology .Tests-Hub-card-header {
+            background: linear-gradient(to right, #FF9A9E, #FAD0C4);
+			}
+			
+			/* Test Modal */
+			.Tests-Hub-test-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+			}
+			
+			.Tests-Hub-test-modal.active {
+            display: flex;
+			}
+			
+			.Tests-Hub-test-modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+            position: relative;
+			}
+			
+			.dark-theme .Tests-Hub-test-modal-content {
+            background: #2c3e50;
+            color: #e6e6e6;
+			}
+			
+			@keyframes modalSlideIn {
+            from {
+			opacity: 0;
+			transform: translateY(-20px);
+            }
+            to {
+			opacity: 1;
+			transform: translateY(0);
+            }
+			}
+			
+			.Tests-Hub-test-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-test-modal-close:hover {
+            background: #f0f0f0;
+			}
+			
+			.dark-theme .Tests-Hub-test-modal-close {
+            color: #bdc3c7;
+			}
+			
+			.dark-theme .Tests-Hub-test-modal-close:hover {
+            background: #34495e;
+			}
+			
+			.Tests-Hub-test-modal-header {
+            margin-bottom: 1.5rem;
+            padding-right: 2rem;
+			}
+			
+			.Tests-Hub-test-modal-title {
+            color: #FF5F6D;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+			}
+			
+			.dark-theme .Tests-Hub-test-modal-title {
+            color: #FF7E5F;
+			}
+			
+			.Tests-Hub-test-modal-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+			}
+			
+			.dark-theme .Tests-Hub-test-modal-subtitle {
+            color: #bdc3c7;
+			}
+			
+			.Tests-Hub-test-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+			}
+			
+			.Tests-Hub-test-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+            border-left: 4px solid #FF5F6D;
+			}
+			
+			.Tests-Hub-test-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			
+			.dark-theme .Tests-Hub-test-item {
+            background: #34495e;
+            color: #e6e6e6;
+            border-left-color: #FF7E5F;
+			}
+			
+			.dark-theme .Tests-Hub-test-item:hover {
+            background: #3d566e;
+			}
+			
+			.Tests-Hub-test-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+			}
+			
+			.Tests-Hub-test-info {
+            flex: 1;
+			}
+			
+			.Tests-Hub-test-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+			}
+			
+			.Tests-Hub-test-details {
+            font-size: 0.8rem;
+            color: #666;
+			}
+			
+			.dark-theme .Tests-Hub-test-details {
+            color: #bdc3c7;
+			}
+			
+			.Tests-Hub-test-download {
+            font-size: 1.2rem;
+            color: #FF5F6D;
+			}
+			
+			/* Footer */
+			.Tests-Hub-footer-container {
+            background: linear-gradient(to right, #FF5F6D, #FFC371);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+			}
+			
+			.dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #8B0000, #B22222, #DC143C);
+			}
+			
+			.Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+			}
+			
+			.Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+			}
+			
+			.Tests-Hub-footer-column {
+            text-align: center;
+			}
+			
+			.Tests-Hub-footer-column h3 {
+            color: #ffd166;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+			}
+			
+			.Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+			}
+			
+			.developer-name {
+            font-weight: 600;
+            color: #ffd166;
+			}
+			
+			.version-number {
+            font-weight: 600;
+            color: #ffd166;
+			}
+			
+			/* Responsive */
+			@media (max-width: 768px) {
+            .Tests-Hub-cards-container {
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .Tests-Hub-header-content {
+			flex-direction: column;
+			text-align: center;
+			gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+			font-size: 1.8rem;
+            }
+            
+            .Tests-Hub-header-controls {
+			margin-top: 15px;
+			flex-wrap: wrap;
+			justify-content: center;
+            }
+            
+            .Tests-Hub-footer-columns {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			text-align: center;
+            }
+			}
+			
+			@media (max-width: 480px) {
+            .Tests-Hub-cards-container {
+			grid-template-columns: 1fr;
+            }
+            
+            .Tests-Hub-main-container {
+			padding: 0 1rem;
+            }
+			}
+			/* Footer Links Styles */
+			.Tests-Hub-footer-links-list {
+            list-style: none;
+			}
+			
+			.Tests-Hub-footer-link {
+            color: #ffd166;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Test Modals for each subject -->
+		<!-- Physics Modal -->
+		<div class="Tests-Hub-test-modal" id="physicsModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('physicsModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.physics.title">Physical Sciences</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_physics_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.physics.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_physics_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.physics.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_physics_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.physics.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Math Modal -->
+		<div class="Tests-Hub-test-modal" id="mathModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('mathModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.math.title">Mathematics</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_math_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.math.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_math_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.math.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_math_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.math.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- French Modal -->
+		<div class="Tests-Hub-test-modal" id="frenchModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('frenchModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.french.title">French Language</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_french_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.french.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_french_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.french.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_french_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.french.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Arabic Modal -->
+		<div class="Tests-Hub-test-modal" id="arabicModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('arabicModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.arabic.title">Arabic Language</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_arabic_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.arabic.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_arabic_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.arabic.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_arabic_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.arabic.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- English Modal -->
+		<div class="Tests-Hub-test-modal" id="englishModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('englishModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.english.title">English Language</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_english_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.english.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_english_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.english.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_english_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.english.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- History Modal -->
+		<div class="Tests-Hub-test-modal" id="historyModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('historyModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.history.title">History & Geography</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_history_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.history.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_history_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.history.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_history_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.history.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Islamic Modal -->
+		<div class="Tests-Hub-test-modal" id="islamicModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('islamicModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.islamic.title">Islamic Education</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_islamic_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.islamic.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_islamic_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.islamic.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_islamic_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.islamic.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Technology Modal -->
+		<div class="Tests-Hub-test-modal" id="technologyModal">
+			<div class="Tests-Hub-test-modal-content">
+				<button class="Tests-Hub-test-modal-close" onclick="closeModal('technologyModal')">&times;</button>
+				<div class="Tests-Hub-test-modal-header">
+					<h2 class="Tests-Hub-test-modal-title" data-i18n="TestsHub.firstSecondary.subjects.technology.title">Technology</h2>
+					<p class="Tests-Hub-test-modal-subtitle" data-i18n="TestsHub.firstSecondary.modal.subtitle">3 ثلاثيات متاحة</p>
+				</div>
+				<div class="Tests-Hub-test-list">
+					<a href="test_year1_technology_trim1.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📘</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.technology.trimesters.first">الثلاثي الأول</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الأول</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_technology_trim2.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📗</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.technology.trimesters.second">الثلاثي الثاني</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثاني</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+					<a href="test_year1_technology_trim3.html" class="Tests-Hub-test-item" target="_blank">
+						<div class="Tests-Hub-test-icon">📕</div>
+						<div class="Tests-Hub-test-info">
+							<div class="Tests-Hub-test-name" data-i18n="TestsHub.firstSecondary.subjects.technology.trimesters.third">الثلاثي الثالث</div>
+							<div class="Tests-Hub-test-details" data-i18n="TestsHub.firstSecondary.trimesters.details">أسئلة شاملة للثلاثي الثالث</div>
+						</div>
+						<div class="Tests-Hub-test-download">⬇️</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Header -->
+		<header class="Tests-Hub-header-container">
+			<div class="Tests-Hub-header-content">
+				<div class="Tests-Hub-header-left">
+					<img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+					<div>
+						<h1 class="Tests-Hub-header-title" data-i18n="TestsHub.firstSecondary.title">1st Year Secondary</h1>
+						<div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.firstSecondary.subtitle">Subject Tests Collection</div>
+					</div>
+				</div>
+				
+				<div class="Tests-Hub-header-controls">
+					<a href="index.html" class="Tests-Hub-back-button">
+						<span>←</span>
+						<span data-i18n="TestsHub.firstSecondary.back">Back to Levels</span>
+					</a>
+					
+					<div class="Tests-Hub-language-selector">
+						<button class="Tests-Hub-language-button">
+							<span>🌐</span>
+							<span data-i18n="TestsHub.language.current">English</span>
+							<span>▼</span>
+						</button>
+						<div class="Tests-Hub-language-dropdown">
+							<div class="Tests-Hub-language-option" data-language="en">
+								<span>🌐</span> English
+							</div>
+							<div class="Tests-Hub-language-option" data-language="fr">
+								<span>🌐</span> Français
+							</div>
+							<div class="Tests-Hub-language-option" data-language="ar">
+								<span>🌐</span> العربية
+							</div>
+						</div>
+					</div>
+					
+					<button class="Tests-Hub-theme-toggle" id="themeToggle">
+						<span id="themeIcon">🌙</span>
+						<span data-i18n="TestsHub.theme.toggle">Dark Mode</span>
+					</button>
+				</div>
+			</div>
+		</header>
+		
+		<!-- Main Content -->
+		<main class="Tests-Hub-main-container">
+			<div class="Tests-Hub-intro">
+				<h2 data-i18n="TestsHub.firstSecondary.intro.title">1st Year Secondary School Tests</h2>
+				<p data-i18n="TestsHub.firstSecondary.intro.description">Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum.</p>
+			</div>
+			
+			<div class="Tests-Hub-cards-container">
+				<!-- Physical Sciences Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-physics" onclick="openModal('physicsModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.physics.icon">🧪</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.physics.title">Physical Sciences</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.physics.description">Physics and Chemistry tests covering mechanics, electricity, chemistry basics, and laboratory experiments.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Mathematics Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-math" onclick="openModal('mathModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.math.icon">📐</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.math.title">Mathematics</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.math.description">Algebra, geometry, trigonometry, and functions tests with problem-solving exercises and proofs.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- French Language Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-french" onclick="openModal('frenchModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.french.icon">🇫🇷</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.french.title">French Language</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.french.description">Grammar, vocabulary, reading comprehension, and writing tests for French language proficiency.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Arabic Language Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-arabic" onclick="openModal('arabicModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.arabic.icon">AR</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.arabic.title">Arabic Language</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.arabic.description">Grammar, literature, poetry, and composition tests for Arabic language mastery.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- English Language Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-english" onclick="openModal('englishModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.english.icon">🇬🇧</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.english.title">English Language</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.english.description">Reading, writing, listening, and speaking tests for English language development.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- History & Geography Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-history" onclick="openModal('historyModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.history.icon">🗺️</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.history.title">History & Geography</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.history.description">Ancient civilizations, modern history, world geography, and map interpretation tests.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Islamic Education Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-islamic" onclick="openModal('islamicModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.islamic.icon">🕌</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.islamic.title">Islamic Education</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.islamic.description">Quranic studies, Islamic history, jurisprudence, and ethics tests.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Technology Card -->
+				<div class="Tests-Hub-card Tests-Hub-card-technology" onclick="openModal('technologyModal')">
+					<div class="Tests-Hub-card-header">
+						<div class="Tests-Hub-card-icon" data-i18n="TestsHub.firstSecondary.subjects.technology.icon">💻</div>
+						<h2 class="Tests-Hub-card-title" data-i18n="TestsHub.firstSecondary.subjects.technology.title">Technology</h2>
+					</div>
+					<div class="Tests-Hub-card-content">
+						<p class="Tests-Hub-card-description" data-i18n="TestsHub.firstSecondary.subjects.technology.description">Computer basics, programming fundamentals, and digital literacy tests.</p>
+						<div class="Tests-Hub-card-link" data-i18n="TestsHub.firstSecondary.subjects.viewTrimesters">
+							<span>عرض الثلاثيات</span> <span class="arrow">→</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		
+		<!-- Footer -->
+		<footer class="Tests-Hub-footer-container">
+			<div class="Tests-Hub-footer-content">
+				<div class="Tests-Hub-footer-columns">
+					<!-- Column 1: Developer -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+						<p class="developer-name">زياد الماجري</p>
+					</div>
+					
+					<!-- Column 2: Version -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+						<p class="version-number">v1.0.0</p>
+					</div>
+					
+					<!-- Column 3: Links -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+						<ul class="Tests-Hub-footer-links-list">
+							<li>
+								<a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+							</li>
+							<li>
+								<a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<script>
+			// Translation object for 1st Secondary page
+			let currentLanguage = 'en';
+			let isDarkTheme = false;
+			
+			const TestsHub_translations = {
+				en: {
+					TestsHub: {
+						firstSecondary: {
+							title: "1st Year Secondary",
+							subtitle: "Subject Tests Collection",
+							intro: {
+								title: "1st Year Secondary School Tests",
+								description: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
+							},
+							back: "Back to Levels",
+							modal: {
+								subtitle: "3 trimesters available"
+							},
+							trimesters: {
+								details: "Comprehensive questions for the trimester"
+							},
+							subjects: {
+								viewTrimesters: "View Trimesters",
+								physics: {
+									icon: "🧪",
+									title: "Physical Sciences",
+									description: "Physics and Chemistry tests covering mechanics, electricity, chemistry basics, and laboratory experiments.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								},
+								math: {
+									icon: "📐",
+									title: "Mathematics",
+									description: "Algebra, geometry, trigonometry, and functions tests with problem-solving exercises and proofs.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								},
+								french: {
+									icon: "🇫🇷",
+									title: "French Language",
+									description: "Grammar, vocabulary, reading comprehension, and writing tests for French language proficiency.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								},
+								arabic: {
+									icon: "AR",
+									title: "Arabic Language",
+									description: "Grammar, literature, poetry, and composition tests for Arabic language mastery.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								},
+								english: {
+									icon: "🇬🇧",
+									title: "English Language",
+									description: "Reading, writing, listening, and speaking tests for English language development.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								},
+								history: {
+									icon: "🗺️",
+									title: "History & Geography",
+									description: "Ancient civilizations, modern history, world geography, and map interpretation tests.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								},
+								islamic: {
+									icon: "🕌",
+									title: "Islamic Education",
+									description: "Quranic studies, Islamic history, jurisprudence, and ethics tests.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								},
+								technology: {
+									icon: "💻",
+									title: "Technology",
+									description: "Computer basics, programming fundamentals, and digital literacy tests.",
+									trimesters: {
+										first: "First Trimester",
+										second: "Second Trimester",
+										third: "Third Trimester"
+									}
+								}
+							}
+						},
+						language: {
+							current: "English"
+						},
+						theme: {
+							toggle: "Dark Mode"
+						},
+						footer: {
+							developer: "Developer",
+							version: "Version",
+							links: "Links",
+							terms: "Terms of Use",
+							privacy: "Privacy Policy"
+						}
+					}
+				},
+				fr: {
+					TestsHub: {
+						firstSecondary: {
+							title: "1ère Année Secondaire",
+							subtitle: "Collection de Tests par Matière",
+							intro: {
+								title: "Tests pour la 1ère Année Secondaire",
+								description: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
+							},
+							back: "Retour aux Niveaux",
+							modal: {
+								subtitle: "3 trimestres disponibles"
+							},
+							trimesters: {
+								details: "Questions complètes pour le trimestre"
+							},
+							subjects: {
+								viewTrimesters: "Voir les Trimestres",
+								physics: {
+									icon: "🧪",
+									title: "Sciences Physiques",
+									description: "Tests de physique et chimie couvrant la mécanique, l'électricité, les bases de la chimie et les expériences de laboratoire.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								},
+								math: {
+									icon: "📐",
+									title: "Mathématiques",
+									description: "Tests d'algèbre, géométrie, trigonométrie et fonctions avec exercices de résolution de problèmes et démonstrations.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								},
+								french: {
+									icon: "🇫🇷",
+									title: "Langue Française",
+									description: "Tests de grammaire, vocabulaire, compréhension écrite et expression écrite pour la maîtrise du français.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								},
+								arabic: {
+									icon: "AR",
+									title: "Langue Arabe",
+									description: "Tests de grammaire, littérature, poésie et composition pour la maîtrise de la langue arabe.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								},
+								english: {
+									icon: "🇬🇧",
+									title: "Langue Anglaise",
+									description: "Tests de lecture, écriture, écoute et expression orale pour le développement de l'anglais.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								},
+								history: {
+									icon: "🗺️",
+									title: "Histoire & Géographie",
+									description: "Tests sur les civilisations anciennes, l'histoire moderne, la géographie mondiale et l'interprétation des cartes.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								},
+								islamic: {
+									icon: "🕌",
+									title: "Éducation Islamique",
+									description: "Tests d'études coraniques, d'histoire islamique, de jurisprudence et d'éthique.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								},
+								technology: {
+									icon: "💻",
+									title: "Technologie",
+									description: "Tests sur les bases de l'informatique, les fondamentaux de la programmation et la culture numérique.",
+									trimesters: {
+										first: "Premier Trimestre",
+										second: "Deuxième Trimestre",
+										third: "Troisième Trimestre"
+									}
+								}
+							}
+						},
+						language: {
+							current: "Français"
+						},
+						theme: {
+							toggle: "Mode Sombre"
+						},
+						footer: {
+							developer: "Développeur",
+							version: "Version",
+							links: "Liens",
+							terms: "Conditions d'utilisation",
+							privacy: "Politique de confidentialité"
+						}
+					}
+				},
+				ar: {
+					TestsHub: {
+						firstSecondary: {
+							title: "السنة الأولى ثانوي",
+							subtitle: "مجموعة اختبارات المواد",
+							intro: {
+								title: "اختبارات السنة الأولى ثانوي",
+								description: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
+							},
+							back: "العودة للمستويات",
+							modal: {
+								subtitle: "3 ثلاثيات متاحة"
+							},
+							trimesters: {
+								details: "أسئلة شاملة للثلاثي"
+							},
+							subjects: {
+								viewTrimesters: "عرض الثلاثيات",
+								physics: {
+									icon: "🧪",
+									title: "العلوم الفيزيائية",
+									description: "اختبارات الفيزياء والكيمياء تغطي الميكانيكا، الكهرباء، أساسيات الكيمياء وتجارب المختبر.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								},
+								math: {
+									icon: "📐",
+									title: "الرياضيات",
+									description: "اختبارات الجبر، الهندسة، المثلثات والدوال مع تمارين حل المشكلات والبراهين.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								},
+								french: {
+									icon: "🇫🇷",
+									title: "اللغة الفرنسية",
+									description: "اختبارات القواعد، المفردات، الفهم القرائي والكتابة لإتقان اللغة الفرنسية.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								},
+								arabic: {
+									icon: "AR",
+									title: "اللغة العربية",
+									description: "اختبارات النحو، الأدب، الشعر والتعبير لإتقان اللغة العربية.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								},
+								english: {
+									icon: "🇬🇧",
+									title: "اللغة الإنجليزية",
+									description: "اختبارات القراءة، الكتابة، الاستماع والتحدث لتطوير اللغة الإنجليزية.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								},
+								history: {
+									icon: "🗺️",
+									title: "التاريخ والجغرافيا",
+									description: "اختبارات الحضارات القديمة، التاريخ الحديث، جغرافيا العالم وتفسير الخرائط.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								},
+								islamic: {
+									icon: "🕌",
+									title: "التربية الإسلامية",
+									description: "اختبارات الدراسات القرآنية، التاريخ الإسلامي، الفقه والأخلاق.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								},
+								technology: {
+									icon: "💻",
+									title: "التكنولوجيا",
+									description: "اختبارات أساسيات الحاسوب، أساسيات البرمجة والثقافة الرقمية.",
+									trimesters: {
+										first: "الثلاثي الأول",
+										second: "الثلاثي الثاني",
+										third: "الثلاثي الثالث"
+									}
+								}
+							}
+						},
+						language: {
+							current: "العربية"
+						},
+						theme: {
+							toggle: "الوضع المظلم"
+						},
+						footer: {
+							developer: "المطور",
+							version: "الإصدار",
+							links: "الروابط",
+							terms: "شروط الاستخدام",
+							privacy: "سياسة الخصوصية"
+						}
+					}
+				}
+			};
+			
+			// Function to update text content
+			function updateTextContent() {
+				const elements = document.querySelectorAll('[data-i18n]');
+				
+				elements.forEach(element => {
+					const key = element.getAttribute('data-i18n');
+					let translation = null;
+					
+					const keys = key.split('.');
+					let current = TestsHub_translations[currentLanguage];
+					
+					for (const k of keys) {
+						if (current && current[k] !== undefined) {
+							current = current[k];
+							} else {
+							current = null;
+							break;
+						}
+					}
+					
+					translation = current;
+					
+					if (translation && typeof translation === 'string') {
+						element.textContent = translation;
+					}
+				});
+				
+				updateThemeToggleText();
+			}
+			
+			// Function to update theme toggle text
+			function updateThemeToggleText() {
+				const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+				const themeIcon = document.getElementById('themeIcon');
+				
+				if (themeToggle) {
+					if (isDarkTheme) {
+						if (currentLanguage === 'fr') {
+							themeToggle.textContent = "Mode Clair";
+							} else if (currentLanguage === 'ar') {
+							themeToggle.textContent = "الوضع الفاتح";
+							} else {
+							themeToggle.textContent = "Light Mode";
+						}
+						} else {
+						themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+					}
+				}
+				
+				if (themeIcon) {
+					themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+				}
+			}
+			
+			// Function to toggle theme
+			function toggleTheme() {
+				isDarkTheme = !isDarkTheme;
+				const body = document.body;
+				
+				if (isDarkTheme) {
+					body.classList.add('dark-theme');
+					} else {
+					body.classList.remove('dark-theme');
+				}
+				
+				updateThemeToggleText();
+				localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+			}
+			
+			// Function to change language
+			function changeLanguage(lang) {
+				if (!TestsHub_translations[lang]) return;
+				
+				currentLanguage = lang;
+				updateTextContent();
+				
+				const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+				if (languageButton) {
+					languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+				}
+				
+				if (lang === 'ar') {
+					document.documentElement.dir = 'rtl';
+					document.documentElement.lang = 'ar';
+					} else {
+					document.documentElement.dir = 'ltr';
+					document.documentElement.lang = lang;
+				}
+				
+				localStorage.setItem('testsHubLanguage', lang);
+			}
+			
+			// Function to open modal
+			function openModal(modalId) {
+				const modal = document.getElementById(modalId);
+				if (modal) {
+					modal.classList.add('active');
+					document.body.style.overflow = 'hidden';
+				}
+			}
+			
+			// Function to close modal
+			function closeModal(modalId) {
+				const modal = document.getElementById(modalId);
+				if (modal) {
+					modal.classList.remove('active');
+					document.body.style.overflow = 'auto';
+				}
+			}
+			
+			// Initialize everything
+			document.addEventListener('DOMContentLoaded', function() {
+				// Load saved preferences
+				const savedTheme = localStorage.getItem('testsHubTheme');
+				if (savedTheme === 'dark') {
+					isDarkTheme = true;
+					document.body.classList.add('dark-theme');
+				}
+				
+				const savedLanguage = localStorage.getItem('testsHubLanguage');
+				if (savedLanguage && TestsHub_translations[savedLanguage]) {
+					currentLanguage = savedLanguage;
+				}
+				
+				if (currentLanguage === 'ar') {
+					document.documentElement.dir = 'rtl';
+					document.documentElement.lang = 'ar';
+				}
+				
+				updateTextContent();
+				
+				// Attach event listeners
+				const themeButton = document.getElementById('themeToggle');
+				if (themeButton) {
+					themeButton.addEventListener('click', toggleTheme);
+				}
+				
+				const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+				languageOptions.forEach(option => {
+					option.addEventListener('click', function() {
+						const lang = this.getAttribute('data-language');
+						changeLanguage(lang);
+					});
+				});
+				
+				// Close modal when clicking outside
+				const modals = document.querySelectorAll('.Tests-Hub-test-modal');
+				modals.forEach(modal => {
+					modal.addEventListener('click', function(e) {
+						if (e.target === this) {
+							const modalId = this.id;
+							closeModal(modalId);
+						}
+					});
+				});
+				
+				// Close modal with Escape key
+				document.addEventListener('keydown', function(e) {
+					if (e.key === 'Escape') {
+						modals.forEach(modal => {
+							if (modal.classList.contains('active')) {
+								closeModal(modal.id);
+							}
+						});
+					}
+				});
+				
+				// Add hover effects to cards
+				const subjectCards = document.querySelectorAll('.Tests-Hub-card');
+				subjectCards.forEach(card => {
+					card.addEventListener('mouseenter', function() {
+						const header = this.querySelector('.Tests-Hub-card-header');
+						if (header) {
+							header.style.transform = 'scale(1.02)';
+							header.style.transition = 'transform 0.3s ease';
+						}
+					});
+					
+					card.addEventListener('mouseleave', function() {
+						const header = this.querySelector('.Tests-Hub-card-header');
+						if (header) {
+							header.style.transform = 'scale(1)';
+						}
+					});
+				});
+				
+				// Register service worker for PWA
+				if ('serviceWorker' in navigator) {
+					navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+					})
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
