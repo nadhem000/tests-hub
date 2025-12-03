@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - School Levels</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="description" content="Comprehensive educational tests for elementary and secondary school levels">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152×152.png">
+    <link rel="apple-touch-icon" sizes="152×152" href="assets/icons/icon-152×152.png">
+    <link rel="apple-touch-icon" sizes="180×180" href="assets/icons/icon-192×192.png">
+    <link rel="apple-touch-icon" sizes="167×167" href="assets/icons/icon-192×192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+        }
+        
+        body.dark-theme {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .dark-theme .Tests-Hub-language-dropdown {
+            background: #2c3e50;
+        }
+        
+        .dark-theme .Tests-Hub-language-option {
+            color: #e6e6e6;
+        }
+        
+        .dark-theme .Tests-Hub-language-option:hover {
+            background: #34495e;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Install Button */
+        .Tests-Hub-install-button {
+            background: linear-gradient(135deg, #3CA55C, #B5AC49);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-install-button:hover {
+            background: linear-gradient(135deg, #349852, #A59C41);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-install-button.hidden {
+            display: none;
+        }
+        
+        /* Install Modal */
+        .Tests-Hub-install-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .Tests-Hub-install-modal.active {
+            display: flex;
+        }
+        
+        .Tests-Hub-install-modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-install-modal-content {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .Tests-Hub-install-modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #3CA55C;
+        }
+        
+        .Tests-Hub-install-modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+        
+        .Tests-Hub-install-modal-button {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-install-modal-button.primary {
+            background: #3CA55C;
+            color: white;
+        }
+        
+        .Tests-Hub-install-modal-button.primary:hover {
+            background: #349852;
+        }
+        
+        .Tests-Hub-install-modal-button.secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .dark-theme .Tests-Hub-install-modal-button.secondary {
+            background: #34495e;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-install-modal-button.secondary:hover {
+            background: #d0d0d0;
+        }
+        
+        .dark-theme .Tests-Hub-install-modal-button.secondary:hover {
+            background: #3d566e;
+        }
+        
+        /* PWA Status Badge */
+        .Tests-Hub-pwa-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: slideInUp 0.3s ease;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .Tests-Hub-pwa-status.online {
+            background: #3CA55C;
+        }
+        
+        .Tests-Hub-pwa-status.offline {
+            background: #e74c3c;
+        }
+        
+        .Tests-Hub-pwa-status.updating {
+            background: #f39c12;
+        }
+        
+        .Tests-Hub-pwa-status .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .Tests-Hub-pwa-status.online .status-dot {
+            background: #2ecc71;
+        }
+        
+        .Tests-Hub-pwa-status.offline .status-dot {
+            background: #e74c3c;
+        }
+        
+        .Tests-Hub-pwa-status.updating .status-dot {
+            background: #f39c12;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-intro {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border-left: 5px solid #3498db;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-intro {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-intro h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-intro h2 {
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-intro p {
+            color: #34495e;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-intro p {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dark-theme .Tests-Hub-card {
+            background: #2c3e50;
+        }
+        
+        .Tests-Hub-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-card-header {
+            padding: 1.8rem 1.5rem;
+            color: white;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+        
+        .Tests-Hub-card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-card-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .Tests-Hub-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .Tests-Hub-card-description {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-card-description {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-card-link {
+            display: inline-block;
+            text-align: center;
+            background: #f8f9fa;
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .dark-theme .Tests-Hub-card-link {
+            background: #34495e;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-card-link:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .Tests-Hub-card-link .arrow {
+            font-size: 0.9rem;
+        }
+        
+        /* Color coding for cards */
+        .Tests-Hub-card-7th .Tests-Hub-card-header {
+            background: linear-gradient(to right, #FF7E5F, #FEB47B);
+        }
+        
+        .Tests-Hub-card-8th .Tests-Hub-card-header {
+            background: linear-gradient(to right, #6A11CB, #2575FC);
+        }
+        
+        .Tests-Hub-card-9th .Tests-Hub-card-header {
+            background: linear-gradient(to right, #3CA55C, #B5AC49);
+        }
+        
+        .Tests-Hub-card-1st-secondary .Tests-Hub-card-header {
+            background: linear-gradient(to right, #FF5F6D, #FFC371);
+        }
+        
+        .Tests-Hub-card-2nd-secondary .Tests-Hub-card-header {
+            background: linear-gradient(to right, #36D1DC, #5B86E5);
+        }
+        
+        .Tests-Hub-card-3rd-secondary .Tests-Hub-card-header {
+            background: linear-gradient(to right, #7F00FF, #E100FF);
+        }
+        
+        .Tests-Hub-card-4th-secondary .Tests-Hub-card-header {
+            background: linear-gradient(to right, #FF9A9E, #FAD0C4);
+        }
+        
+        /* New Footer Styles - 3 Columns */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #ffd166;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #ffd166;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .developer-name {
+            font-weight: 600;
+            color: #ffd166;
+        }
+        
+        .version-number {
+            font-weight: 600;
+            color: #ffd166;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 2rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .Tests-Hub-pwa-status {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-install-button span {
+                display: none;
+            }
+            
+            .Tests-Hub-install-button {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Install Modal -->
+    <div class="Tests-Hub-install-modal" id="installModal">
+        <div class="Tests-Hub-install-modal-content">
+            <div class="Tests-Hub-install-modal-icon">📱</div>
+            <h2 data-i18n="TestsHub.install.modal.title">Install Tests Hub</h2>
+            <p data-i18n="TestsHub.install.modal.description">Install Tests Hub on your device for easy access and offline use. Get quick access to all educational tests anytime, anywhere!</p>
+            <div class="Tests-Hub-install-modal-buttons">
+                <button class="Tests-Hub-install-modal-button primary" id="installConfirm" data-i18n="TestsHub.install.modal.install">Install</button>
+                <button class="Tests-Hub-install-modal-button secondary" id="installCancel" data-i18n="TestsHub.install.modal.later">Maybe Later</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PWA Status Indicator -->
+    <div class="Tests-Hub-pwa-status" id="pwaStatus">
+        <span class="status-dot"></span>
+        <span id="statusText">Online</span>
+    </div>
+
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96×96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">Tests Hub</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">Your Portal to Educational Tests by School Level</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">English</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Dark Mode</span>
+                </button>
+                
+                <button class="Tests-Hub-install-button" id="installButton">
+                    <span>📱</span>
+                    <span data-i18n="TestsHub.install.button">Install App</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-intro">
+            <h2 data-i18n="TestsHub.intro.title">Welcome to Tests Hub</h2>
+            <p data-i18n="TestsHub.intro.description">Select your school level below to access tests, exams, and study materials tailored to your curriculum. Our comprehensive collection covers all subjects from elementary to secondary school levels.</p>
+        </div>
+        
+        <div class="Tests-Hub-cards-container">
+            <!-- Cards remain the same as before -->
+            <!-- 7th Year Elementary School Card -->
+            <div class="Tests-Hub-card Tests-Hub-card-7th">
+                <div class="Tests-Hub-card-header">
+                    <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.7th.icon">👦</div>
+                    <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.7th.title">7th Year</h2>
+                    <div class="Tests-Hub-card-subtitle" data-i18n="TestsHub.cards.7th.subtitle">Elementary School</div>
+                </div>
+                <div class="Tests-Hub-card-content">
+                    <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.7th.description">Access tests and learning materials for 7th year elementary school students. Covers foundational subjects including Mathematics, Science, and Languages.</p>
+                    <a href="Tests_7th.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.7th.link">
+                        <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 8th Year Elementary School Card -->
+            <div class="Tests-Hub-card Tests-Hub-card-8th">
+                <div class="Tests-Hub-card-header">
+                    <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.8th.icon">👨‍🎓</div>
+                    <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.8th.title">8th Year</h2>
+                    <div class="Tests-Hub-card-subtitle" data-i18n="TestsHub.cards.8th.subtitle">Elementary School</div>
+                </div>
+                <div class="Tests-Hub-card-content">
+                    <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.8th.description">Tests and study resources for 8th year elementary school. Builds on foundational knowledge with more advanced concepts in core subjects.</p>
+                    <a href="Tests_8th.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.8th.link">
+                        <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 9th Year Elementary School Card -->
+            <div class="Tests-Hub-card Tests-Hub-card-9th">
+                <div class="Tests-Hub-card-header">
+                    <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.9th.icon">👥</div>
+                    <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.9th.title">9th Year</h2>
+                    <div class="Tests-Hub-card-subtitle" data-i18n="TestsHub.cards.9th.subtitle">Elementary School</div>
+                </div>
+                <div class="Tests-Hub-card-content">
+                    <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.9th.description">Final year of elementary school. Comprehensive tests and exam preparation materials covering all subjects for graduation preparation.</p>
+                    <a href="Tests_9th.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.9th.link">
+                        <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 1st Year Secondary School Card -->
+            <div class="Tests-Hub-card Tests-Hub-card-1st-secondary">
+                <div class="Tests-Hub-card-header">
+                    <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.1stSecondary.icon">🚀</div>
+                    <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.1stSecondary.title">1st Year</h2>
+                    <div class="Tests-Hub-card-subtitle" data-i18n="TestsHub.cards.1stSecondary.subtitle">Secondary School</div>
+                </div>
+                <div class="Tests-Hub-card-content">
+                    <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.1stSecondary.description">Begin your secondary education with specialized tests. Includes introductory materials for advanced subjects and specialized tracks.</p>
+                    <a href="Tests_1st_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.1stSecondary.link">
+                        <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 2nd Year Secondary School Card -->
+            <div class="Tests-Hub-card Tests-Hub-card-2nd-secondary">
+                <div class="Tests-Hub-card-header">
+                    <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.2ndSecondary.icon">📈</div>
+                    <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.2ndSecondary.title">2nd Year</h2>
+                    <div class="Tests-Hub-card-subtitle" data-i18n="TestsHub.cards.2ndSecondary.subtitle">Secondary School</div>
+                </div>
+                <div class="Tests-Hub-card-content">
+                    <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.2ndSecondary.description">Deepen your knowledge with intermediate-level tests. Subjects become more specialized with focus on scientific and literary tracks.</p>
+                    <a href="Tests_2nd_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.2ndSecondary.link">
+                        <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 3rd Year Secondary School Card -->
+            <div class="Tests-Hub-card Tests-Hub-card-3rd-secondary">
+                <div class="Tests-Hub-card-header">
+                    <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.3rdSecondary.icon">🧪</div>
+                    <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.3rdSecondary.title">3rd Year</h2>
+                    <div class="Tests-Hub-card-subtitle" data-i18n="TestsHub.cards.3rdSecondary.subtitle">Secondary School</div>
+                </div>
+                <div class="Tests-Hub-card-content">
+                    <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.3rdSecondary.description">Advanced tests for specialized tracks. Includes baccalaureate preparation materials with comprehensive subject coverage.</p>
+                    <a href="Tests_3rd_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.3rdSecondary.link">
+                        <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 4th Year Secondary School Card -->
+            <div class="Tests-Hub-card Tests-Hub-card-4th-secondary">
+                <div class="Tests-Hub-card-header">
+                    <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.4thSecondary.icon">🏆</div>
+                    <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.4thSecondary.title">4th Year</h2>
+                    <div class="Tests-Hub-card-subtitle" data-i18n="TestsHub.cards.4thSecondary.subtitle">Secondary School</div>
+                </div>
+                <div class="Tests-Hub-card-content">
+                    <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.4thSecondary.description">Final year of secondary education. Comprehensive baccalaureate preparation with mock exams, past papers, and specialized study guides.</p>
+                    <a href="Tests_4th_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.4thSecondary.link">
+                        <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="version-number">v1.0.0</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Existing translation code remains the same...
+        let currentLanguage = 'en';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            en: {
+                TestsHub: {
+                    header: {
+                        icon: "🎓",
+                        title: "Tests Hub",
+                        subtitle: "Your Portal to Educational Tests by School Level"
+                    },
+                    intro: {
+                        title: "Welcome to Tests Hub",
+                        description: "Select your school level below to access tests, exams, and study materials tailored to your curriculum. Our comprehensive collection covers all subjects from elementary to secondary school levels."
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    },
+                    cards: {
+                        common: {
+                            browse: "Browse Tests"
+                        },
+                        "7th": {
+                            icon: "👦",
+                            title: "7th Year",
+                            subtitle: "Elementary School",
+                            description: "Access tests and learning materials for 7th year elementary school students. Covers foundational subjects including Mathematics, Science, and Languages.",
+                            link: "Browse Tests"
+                        },
+                        "8th": {
+                            icon: "👨‍🎓",
+                            title: "8th Year",
+                            subtitle: "Elementary School",
+                            description: "Tests and study resources for 8th year elementary school. Builds on foundational knowledge with more advanced concepts in core subjects.",
+                            link: "Browse Tests"
+                        },
+                        "9th": {
+                            icon: "👥",
+                            title: "9th Year",
+                            subtitle: "Elementary School",
+                            description: "Final year of elementary school. Comprehensive tests and exam preparation materials covering all subjects for graduation preparation.",
+                            link: "Browse Tests"
+                        },
+                        "1stSecondary": {
+                            icon: "🚀",
+                            title: "1st Year",
+                            subtitle: "Secondary School",
+                            description: "Begin your secondary education with specialized tests. Includes introductory materials for advanced subjects and specialized tracks.",
+                            link: "Browse Tests"
+                        },
+                        "2ndSecondary": {
+                            icon: "📈",
+                            title: "2nd Year",
+                            subtitle: "Secondary School",
+                            description: "Deepen your knowledge with intermediate-level tests. Subjects become more specialized with focus on scientific and literary tracks.",
+                            link: "Browse Tests"
+                        },
+                        "3rdSecondary": {
+                            icon: "🧪",
+                            title: "3rd Year",
+                            subtitle: "Secondary School",
+                            description: "Advanced tests for specialized tracks. Includes baccalaureate preparation materials with comprehensive subject coverage.",
+                            link: "Browse Tests"
+                        },
+                        "4thSecondary": {
+                            icon: "🏆",
+                            title: "4th Year",
+                            subtitle: "Secondary School",
+                            description: "Final year of secondary education. Comprehensive baccalaureate preparation with mock exams, past papers, and specialized study guides.",
+                            link: "Browse Tests"
+                        }
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    install: {
+                        button: "Install App",
+                        modal: {
+                            title: "Install Tests Hub",
+                            description: "Install Tests Hub on your device for easy access and offline use. Get quick access to all educational tests anytime, anywhere!",
+                            install: "Install",
+                            later: "Maybe Later"
+                        }
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    header: {
+                        icon: "🎓",
+                        title: "Centre de Tests",
+                        subtitle: "Votre Portail vers les Tests Éducatifs par Niveau Scolaire"
+                    },
+                    intro: {
+                        title: "Bienvenue au Centre de Tests",
+                        description: "Sélectionnez votre niveau scolaire ci-dessous pour accéder à des tests, examens et matériels d'étude adaptés à votre programme. Notre collection complète couvre toutes les matières du primaire au secondaire."
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    },
+                    cards: {
+                        common: {
+                            browse: "Parcourir les Tests"
+                        },
+                        "7th": {
+                            icon: "👦",
+                            title: "7ème Année",
+                            subtitle: "École Primaire",
+                            description: "Accédez aux tests et matériels d'apprentissage pour les élèves de 7ème année. Couvre les matières fondamentales incluant Mathématiques, Sciences et Langues.",
+                            link: "Parcourir les Tests"
+                        },
+                        "8th": {
+                            icon: "👨‍🎓",
+                            title: "8ème Année",
+                            subtitle: "École Primaire",
+                            description: "Tests et ressources d'étude pour la 8ème année. Développe les connaissances de base avec des concepts plus avancés dans les matières principales.",
+                            link: "Parcourir les Tests"
+                        },
+                        "9th": {
+                            icon: "👥",
+                            title: "9ème Année",
+                            subtitle: "École Primaire",
+                            description: "Dernière année de l'école primaire. Tests complets et matériels de préparation aux examens couvrant toutes les matières pour la préparation à l'obtention du diplôme.",
+                            link: "Parcourir les Tests"
+                        },
+                        "1stSecondary": {
+                            icon: "🚀",
+                            title: "1ère Année",
+                            subtitle: "École Secondaire",
+                            description: "Commencez votre éducation secondaire avec des tests spécialisés. Inclut des matériels d'introduction pour les matières avancées et les filières spécialisées.",
+                            link: "Parcourir les Tests"
+                        },
+                        "2ndSecondary": {
+                            icon: "📈",
+                            title: "2ème Année",
+                            subtitle: "École Secondaire",
+                            description: "Approfondissez vos connaissances avec des tests de niveau intermédiaire. Les matières deviennent plus spécialisées avec un accent sur les filières scientifiques et littéraires.",
+                            link: "Parcourir les Tests"
+                        },
+                        "3rdSecondary": {
+                            icon: "🧪",
+                            title: "3ème Année",
+                            subtitle: "École Secondaire",
+                            description: "Tests avancés pour les filières spécialisées. Inclut des matériels de préparation au baccalauréat avec une couverture complète des matières.",
+                            link: "Parcourir les Tests"
+                        },
+                        "4thSecondary": {
+                            icon: "🏆",
+                            title: "4ème Année",
+                            subtitle: "École Secondaire",
+                            description: "Dernière année de l'enseignement secondaire. Préparation complète au baccalauréat avec examens blancs, sujets précédents et guides d'étude spécialisés.",
+                            link: "Parcourir les Tests"
+                        }
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    install: {
+                        button: "Installer l'App",
+                        modal: {
+                            title: "Installer Tests Hub",
+                            description: "Installez Tests Hub sur votre appareil pour un accès facile et une utilisation hors ligne. Accédez rapidement à tous les tests éducatifs à tout moment et n'importe où !",
+                            install: "Installer",
+                            later: "Peut-être plus tard"
+                        }
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    header: {
+                        icon: "🎓",
+                        title: "مركز الاختبارات",
+                        subtitle: "بوابتك إلى الاختبارات التعليمية حسب المستوى المدرسي"
+                    },
+                    intro: {
+                        title: "مرحبًا بكم في مركز الاختبارات",
+                        description: "حدد مستواك الدراسي أدناه للوصول إلى الاختبارات والامتحانات ومواد الدراسة المصممة خصيصًا لمنهجك. تغطي مجموعتنا الشاملة جميع المواد من المدرسة الاساسية إلى الثانوية."
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    },
+                    cards: {
+                        common: {
+                            browse: "تصفح الاختبارات"
+                        },
+                        "7th": {
+                            icon: "👦",
+                            title: "السنة السابعة",
+                            subtitle: "المدرسة الاساسية",
+                            description: "الوصول إلى الاختبارات ومواد التعلم لطلاب السنة السابعة. يغطي المواد الأساسية بما في ذلك الرياضيات والعلوم واللغات.",
+                            link: "تصفح الاختبارات"
+                        },
+                        "8th": {
+                            icon: "👨‍🎓",
+                            title: "السنة الثامنة",
+                            subtitle: "المدرسة الاساسية",
+                            description: "اختبارات وموارد دراسة للسنة الثامنة. يبني على المعرفة الأساسية بمفاهيم أكثر تقدمًا في المواد الأساسية.",
+                            link: "تصفح الاختبارات"
+                        },
+                        "9th": {
+                            icon: "👥",
+                            title: "السنة التاسعة",
+                            subtitle: "المدرسة الاساسية",
+                            description: "السنة الأخيرة من المدرسة الاساسية. اختبارات شاملة ومواد تحضيرية للامتحانات تغطي جميع المواد للتحضير للتخرج.",
+                            link: "تصفح الاختبارات"
+                        },
+                        "1stSecondary": {
+                            icon: "🚀",
+                            title: "السنة الأولى",
+                            subtitle: "المدرسة الثانوية",
+                            description: "ابدأ تعليمك الثانوي باختبارات متخصصة. يتضمن مواد تمهيدية للمواد المتقدمة والمسارات المتخصصة.",
+                            link: "تصفح الاختبارات"
+                        },
+                        "2ndSecondary": {
+                            icon: "📈",
+                            title: "السنة الثانية",
+                            subtitle: "المدرسة الثانوية",
+                            description: "تعمق معرفتك باختبارات المستوى المتوسط. تصبح المواد أكثر تخصصًا مع التركيز على المسارات العلمية والأدبية.",
+                            link: "تصفح الاختبارات"
+                        },
+                        "3rdSecondary": {
+                            icon: "🧪",
+                            title: "السنة الثالثة",
+                            subtitle: "المدرسة الثانوية",
+                            description: "اختبارات متقدمة للمسارات المتخصصة. يتضمن مواد تحضيرية لامتحان البكالوريا مع تغطية شاملة للمواد.",
+                            link: "تصفح الاختبارات"
+                        },
+                        "4thSecondary": {
+                            icon: "🏆",
+                            title: "السنة الرابعة",
+                            subtitle: "المدرسة الثانوية",
+                            description: "السنة الأخيرة من التعليم الثانوي. تحضير شامل لامتحان البكالوريا مع امتحانات تجريبية وأوراق سابقة وأدلة دراسة متخصصة.",
+                            link: "تصفح الاختبارات"
+                        }
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    install: {
+                        button: "تثبيت التطبيق",
+                        modal: {
+                            title: "تثبيت مركز الاختبارات",
+                            description: "ثبِّت مركز الاختبارات على جهازك للوصول السهل والاستخدام دون اتصال. احصل على وصول سريع لجميع الاختبارات التعليمية في أي وقت وفي أي مكان!",
+                            install: "تثبيت",
+                            later: "ربما لاحقًا"
+                        }
+                    }
+                }
+            }
+        };
+
+        // PWA Variables
+        let deferredPrompt;
+        let isAppInstalled = false;
+        let isOnline = navigator.onLine;
+        let isServiceWorkerRegistered = false;
+
+        // Function to update text content (existing)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            });
+            
+            updateThemeToggleText();
+        }
+
+        // Function to update theme toggle text (existing)
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+
+        // Function to toggle theme (existing)
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        // PWA Functions
+        function updatePWAStatus() {
+            const statusElement = document.getElementById('pwaStatus');
+            const statusText = document.getElementById('statusText');
+            
+            if (!statusElement || !statusText) return;
+            
+            if (!isOnline) {
+                statusElement.className = 'Tests-Hub-pwa-status offline';
+                statusText.textContent = currentLanguage === 'ar' ? 'غير متصل' : 
+                                       currentLanguage === 'fr' ? 'Hors ligne' : 'Offline';
+            } else if (isServiceWorkerRegistered) {
+                statusElement.className = 'Tests-Hub-pwa-status online';
+                statusText.textContent = currentLanguage === 'ar' ? 'جاهز للعمل دون اتصال' :
+                                       currentLanguage === 'fr' ? 'Prêt hors ligne' : 'Ready offline';
+            } else {
+                statusElement.className = 'Tests-Hub-pwa-status';
+                statusText.textContent = currentLanguage === 'ar' ? 'متصل' :
+                                       currentLanguage === 'fr' ? 'En ligne' : 'Online';
+            }
+            
+            // Show status only when needed
+            if (isOnline && !isServiceWorkerRegistered) {
+                setTimeout(() => {
+                    statusElement.style.display = 'none';
+                }, 3000);
+            } else {
+                statusElement.style.display = 'flex';
+            }
+        }
+
+        function showInstallModal() {
+            const modal = document.getElementById('installModal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function hideInstallModal() {
+            const modal = document.getElementById('installModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        function updateInstallButton() {
+            const installButton = document.getElementById('installButton');
+            if (!installButton) return;
+            
+            if (isAppInstalled) {
+                installButton.classList.add('hidden');
+            } else {
+                installButton.classList.remove('hidden');
+            }
+        }
+
+        async function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js', {
+                        scope: '/'
+                    });
+                    
+                    isServiceWorkerRegistered = true;
+                    console.log('[PWA] Service Worker registered:', registration);
+                    
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        console.log('[PWA] New service worker found');
+                        
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('[PWA] New content available');
+                                showUpdateNotification();
+                            }
+                        });
+                    });
+                    
+                    return registration;
+                } catch (error) {
+                    console.error('[PWA] Service Worker registration failed:', error);
+                    isServiceWorkerRegistered = false;
+                }
+            }
+            return null;
+        }
+
+        function showUpdateNotification() {
+            if (confirm(currentLanguage === 'ar' ? 
+                'يوجد تحديث جديد متاح. هل تريد تحديث التطبيق الآن؟' :
+                currentLanguage === 'fr' ?
+                'Une nouvelle mise à jour est disponible. Voulez-vous mettre à jour maintenant ?' :
+                'A new update is available. Would you like to update now?')) {
+                
+                window.location.reload();
+            }
+        }
+
+        async function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                
+                const choiceResult = await deferredPrompt.userChoice;
+                
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('[PWA] User accepted installation');
+                    isAppInstalled = true;
+                    updateInstallButton();
+                    hideInstallModal();
+                } else {
+                    console.log('[PWA] User declined installation');
+                }
+                
+                deferredPrompt = null;
+            } else {
+                console.log('[PWA] Cannot install - no deferred prompt');
+            }
+        }
+
+        function checkAppInstalled() {
+            // Check if app is already installed
+            if (window.matchMedia('(display-mode: standalone)').matches ||
+                window.navigator.standalone ||
+                document.referrer.includes('android-app://')) {
+                isAppInstalled = true;
+                updateInstallButton();
+            }
+        }
+
+        function setupPeriodicSync() {
+            if ('periodicSync' in window && 'serviceWorker' in navigator) {
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.periodicSync.register('update-content', {
+                        minInterval: 24 * 60 * 60 * 1000 // 24 hours
+                    }).then(() => {
+                        console.log('[PWA] Periodic sync registered');
+                    }).catch(error => {
+                        console.error('[PWA] Periodic sync registration failed:', error);
+                    });
+                });
+            }
+        }
+
+        function setupBackgroundSync() {
+            if ('SyncManager' in window && 'serviceWorker' in navigator) {
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.sync.register('sync-queue').then(() => {
+                        console.log('[PWA] Background sync registered');
+                    }).catch(error => {
+                        console.error('[PWA] Background sync registration failed:', error);
+                    });
+                });
+            }
+        }
+
+        function requestNotificationPermission() {
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission().then(permission => {
+                    console.log('[PWA] Notification permission:', permission);
+                });
+            }
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences (existing)
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners (existing)
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // PWA Initialization
+            checkAppInstalled();
+            updateInstallButton();
+            updatePWAStatus();
+            
+            // Register Service Worker
+            registerServiceWorker().then(registration => {
+                if (registration) {
+                    setupPeriodicSync();
+                    setupBackgroundSync();
+                    requestNotificationPermission();
+                }
+            });
+            
+            // Install button click
+            const installButton = document.getElementById('installButton');
+            if (installButton) {
+                installButton.addEventListener('click', showInstallModal);
+            }
+            
+            // Install modal buttons
+            const installConfirm = document.getElementById('installConfirm');
+            const installCancel = document.getElementById('installCancel');
+            
+            if (installConfirm) {
+                installConfirm.addEventListener('click', installApp);
+            }
+            
+            if (installCancel) {
+                installCancel.addEventListener('click', hideInstallModal);
+            }
+            
+            // Network status
+            window.addEventListener('online', () => {
+                isOnline = true;
+                updatePWAStatus();
+            });
+            
+            window.addEventListener('offline', () => {
+                isOnline = false;
+                updatePWAStatus();
+            });
+            
+            // Before install prompt
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                updateInstallButton();
+                
+                // Auto-show install modal after 5 seconds
+                setTimeout(() => {
+                    if (!isAppInstalled && deferredPrompt) {
+                        showInstallModal();
+                    }
+                }, 5000);
+            });
+            
+            // App installed
+            window.addEventListener('appinstalled', () => {
+                console.log('[PWA] App installed');
+                isAppInstalled = true;
+                deferredPrompt = null;
+                updateInstallButton();
+                hideInstallModal();
+            });
+            
+            // Add card hover effects (existing)
+            const cards = document.querySelectorAll('.Tests-Hub-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const header = this.querySelector('.Tests-Hub-card-header');
+                    if (header) {
+                        header.style.transform = 'scale(1.02)';
+                        header.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const header = this.querySelector('.Tests-Hub-card-header');
+                    if (header) {
+                        header.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // Add click tracking (existing)
+            const links = document.querySelectorAll('.Tests-Hub-card-link');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    console.log(`Navigating to: ${this.getAttribute('href')}`);
+                });
+            });
+        });
+
+        // Existing function to change language
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+            updatePWAStatus(); // Update status text in new language
+            console.log(`Language changed to: ${lang}`);
+        }
+    </script>
+</body>
+</html>

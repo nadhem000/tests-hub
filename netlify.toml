@@ -1,0 +1,83 @@
+[build]
+  publish = "."
+  command = "echo 'No build required - static site'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {KeyPrefix = "/*", PathSegment = ""}
+
+# PWA configuration
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https:;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      font-src 'self' data:;
+      connect-src 'self';
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    """
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Single Page App (SPA) support
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# For PWA installability
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Content-Type = "application/manifest+json; charset=utf-8"
+
+# Language-specific routes (if needed in future)
+[[redirects]]
+  from = "/en/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/fr/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ar/*"
+  to = "/index.html"
+  status = 200
+
+# Netlify functions (if needed in future)
+[functions]
+  directory = "./netlify/functions/"
