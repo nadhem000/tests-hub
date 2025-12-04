@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - 1st Year Secondary French - 1st Trimester</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2196F3">
+    <meta name="description" content="French tests for 1st year secondary school - 1st Trimester">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - French T1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+        }
+        
+        body.dark-theme {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #2196F3, #21CBF3);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0D47A1, #1565C0, #1976D2);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .dark-theme .Tests-Hub-language-dropdown {
+            background: #2c3e50;
+        }
+        
+        .dark-theme .Tests-Hub-language-option {
+            color: #e6e6e6;
+        }
+        
+        .dark-theme .Tests-Hub-language-option:hover {
+            background: #34495e;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-intro {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #2196F3;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-intro {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-intro h2 {
+            color: #2196F3;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-intro h2 {
+            color: #21CBF3;
+        }
+        
+        .Tests-Hub-intro p {
+            color: #34495e;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-intro p {
+            color: #bdc3c7;
+        }
+        
+        /* Two Columns Layout */
+        .Tests-Hub-columns-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .Tests-Hub-column {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dark-theme .Tests-Hub-column {
+            background: #2c3e50;
+        }
+        
+        .Tests-Hub-column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-column-header {
+            padding: 1.8rem 1.5rem;
+            color: white;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+        
+        .Tests-Hub-column-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-column-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .Tests-Hub-column-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .Tests-Hub-tests-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex: 1;
+        }
+        
+        .Tests-Hub-test-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1.2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-test-link {
+            background: #34495e;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-test-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-test-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+        
+        .Tests-Hub-test-info {
+            flex: 1;
+        }
+        
+        .Tests-Hub-test-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+        
+        .Tests-Hub-test-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .dark-theme .Tests-Hub-test-description {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-test-arrow {
+            font-size: 1.2rem;
+            color: #2196F3;
+            transition: transform 0.3s ease;
+        }
+        
+        .Tests-Hub-test-link:hover .Tests-Hub-test-arrow {
+            transform: translateX(5px);
+        }
+        
+        /* Column Colors */
+        .Tests-Hub-column-monitoring .Tests-Hub-column-header {
+            background: linear-gradient(to right, #2196F3, #21CBF3);
+        }
+        
+        .Tests-Hub-column-monitoring .Tests-Hub-test-link:hover {
+            background: #e3f2fd;
+            border-left-color: #2196F3;
+        }
+        
+        .dark-theme .Tests-Hub-column-monitoring .Tests-Hub-test-link:hover {
+            background: #3d566e;
+            border-left-color: #21CBF3;
+        }
+        
+        .Tests-Hub-column-composition .Tests-Hub-column-header {
+            background: linear-gradient(to right, #FF9800, #FFB74D);
+        }
+        
+        .Tests-Hub-column-composition .Tests-Hub-test-link:hover {
+            background: #FFF3E0;
+            border-left-color: #FF9800;
+        }
+        
+        .dark-theme .Tests-Hub-column-composition .Tests-Hub-test-link:hover {
+            background: #3d566e;
+            border-left-color: #FFB74D;
+        }
+        
+        /* Subject Icon Colors */
+        .Tests-Hub-test-icon.french {
+            background: linear-gradient(135deg, #2196F3, #21CBF3);
+            color: white;
+        }
+        
+        .Tests-Hub-test-icon.composition {
+            background: linear-gradient(135deg, #FF9800, #FFB74D);
+            color: white;
+        }
+        
+        /* Info Box */
+        .Tests-Hub-info-box {
+            background: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-theme .Tests-Hub-info-box {
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%);
+        }
+        
+        .Tests-Hub-info-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #2196F3, #21CBF3);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0D47A1, #1565C0, #1976D2);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FFEB3B;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .developer-name {
+            font-weight: 600;
+            color: #FFEB3B;
+        }
+        
+        .version-number {
+            font-weight: 600;
+            color: #FFEB3B;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FFEB3B;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-columns-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.8rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-column-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .Tests-Hub-column-content {
+                padding: 1.5rem;
+            }
+            
+            .Tests-Hub-test-link {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.frenchTrim1.title">French - 1st Trimester</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.frenchTrim1.subtitle">1st Year Secondary School</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="Tests_1st_secondary.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.frenchTrim1.back">Back to Subjects</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">English</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-intro">
+            <h2 data-i18n="TestsHub.frenchTrim1.intro.title">French Tests - First Trimester</h2>
+        </div>
+        
+        <div class="Tests-Hub-info-box">
+            <h3>
+                <span>📚</span>
+                <span data-i18n="TestsHub.frenchTrim1.info.title">Available Test Types</span>
+            </h3>
+        </div>
+        
+        <div class="Tests-Hub-columns-container">
+            <!-- Column 1: فروض مراقبة (Supervised Tests) -->
+            <div class="Tests-Hub-column Tests-Hub-column-monitoring">
+                <div class="Tests-Hub-column-header">
+                    <div class="Tests-Hub-column-icon" data-i18n="TestsHub.frenchTrim1.monitoring.icon">📋</div>
+                    <h2 class="Tests-Hub-column-title" data-i18n="TestsHub.frenchTrim1.monitoring.title">فروض مراقبة</h2>
+                    <div class="Tests-Hub-column-subtitle" data-i18n="TestsHub.frenchTrim1.monitoring.subtitle">mid-trim test</div>
+                </div>
+                <div class="Tests-Hub-column-content">
+                    <div class="Tests-Hub-tests-list">
+                        <a href="test_year1_french_trim1_Type1_test1.html" class="Tests-Hub-test-link">
+                            <div class="Tests-Hub-test-icon french">1</div>
+                            <div class="Tests-Hub-test-info">
+                                <div class="Tests-Hub-test-name" data-i18n="TestsHub.frenchTrim1.tests.monitoring.test1.name">mid-trim test 1</div>
+                            </div>
+                            <div class="Tests-Hub-test-arrow">→</div>
+                        </a>
+                        
+                        <a href="test_year1_french_trim1_Type1_test2.html" class="Tests-Hub-test-link">
+                            <div class="Tests-Hub-test-icon french">2</div>
+                            <div class="Tests-Hub-test-info">
+                                <div class="Tests-Hub-test-name" data-i18n="TestsHub.frenchTrim1.tests.monitoring.test2.name">mid-trim test 2</div>
+                            </div>
+                            <div class="Tests-Hub-test-arrow">→</div>
+                        </a>
+                        
+                        <a href="test_year1_french_trim1_Type1_test3.html" class="Tests-Hub-test-link">
+                            <div class="Tests-Hub-test-icon french">3</div>
+                            <div class="Tests-Hub-test-info">
+                                <div class="Tests-Hub-test-name" data-i18n="TestsHub.frenchTrim1.tests.monitoring.test3.name">mid-trim test 3</div>
+                            </div>
+                            <div class="Tests-Hub-test-arrow">→</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 2: فروض تأليفية (Composition Tests) -->
+            <div class="Tests-Hub-column Tests-Hub-column-composition">
+                <div class="Tests-Hub-column-header">
+                    <div class="Tests-Hub-column-icon" data-i18n="TestsHub.frenchTrim1.composition.icon">✍️</div>
+                    <h2 class="Tests-Hub-column-title" data-i18n="TestsHub.frenchTrim1.composition.title">فروض تأليفية</h2>
+                    <div class="Tests-Hub-column-subtitle" data-i18n="TestsHub.frenchTrim1.composition.subtitle">final-trim test</div>
+                </div>
+                <div class="Tests-Hub-column-content">
+                    <div class="Tests-Hub-tests-list">
+                        <a href="test_year1_french_trim1_Type2_test1.html" class="Tests-Hub-test-link">
+                            <div class="Tests-Hub-test-icon composition">1</div>
+                            <div class="Tests-Hub-test-info">
+                                <div class="Tests-Hub-test-name" data-i18n="TestsHub.frenchTrim1.tests.composition.test1.name">final-trim test 1</div>
+                            </div>
+                            <div class="Tests-Hub-test-arrow">→</div>
+                        </a>
+                        
+                        <a href="test_year1_french_trim1_Type2_test2.html" class="Tests-Hub-test-link">
+                            <div class="Tests-Hub-test-icon composition">2</div>
+                            <div class="Tests-Hub-test-info">
+                                <div class="Tests-Hub-test-name" data-i18n="TestsHub.frenchTrim1.tests.composition.test2.name">final-trim test 2</div>
+                            </div>
+                            <div class="Tests-Hub-test-arrow">→</div>
+                        </a>
+                        
+                        <a href="test_year1_french_trim1_Type2_test3.html" class="Tests-Hub-test-link">
+                            <div class="Tests-Hub-test-icon composition">3</div>
+                            <div class="Tests-Hub-test-info">
+                                <div class="Tests-Hub-test-name" data-i18n="TestsHub.frenchTrim1.tests.composition.test3.name">final-trim test 3</div>
+                            </div>
+                            <div class="Tests-Hub-test-arrow">→</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="version-number">v1.0.0</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for French 1st Trimester page
+        let currentLanguage = 'en';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            en: {
+                TestsHub: {
+                    frenchTrim1: {
+                        title: "French - 1st Trimester",
+                        subtitle: "1st Year Secondary School",
+                        intro: {
+                            title: "French Tests - First Trimester"
+                        },
+                        back: "Back to Subjects",
+                        info: {
+                            title: "Available Test Types"
+                        },
+                        monitoring: {
+                            icon: "📋",
+                            title: "فروض مراقبة",
+                            subtitle: "mid-trim test"
+                        },
+                        composition: {
+                            icon: "✍️",
+                            title: "فروض تأليفية",
+                            subtitle: "final-trim test"
+                        },
+                        tests: {
+                            monitoring: {
+                                test1: {
+                                    name: "mid-trim test 1"
+                                },
+                                test2: {
+                                    name: "mid-trim test 2"
+                                },
+                                test3: {
+                                    name: "mid-trim test 3"
+                                }
+                            },
+                            composition: {
+                                test1: {
+                                    name: "final-trim test 1"
+                                },
+                                test2: {
+                                    name: "final-trim test 2"
+                                },
+                                test3: {
+                                    name: "final-trim test 3"
+                                }
+                            }
+                        }
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    frenchTrim1: {
+                        title: "Français - 1er Trimestre",
+                        subtitle: "1ère Année Secondaire",
+                        intro: {
+                            title: "Tests de Français - Premier Trimestre"
+                        },
+                        back: "Retour aux Matières",
+                        info: {
+                            title: "Types de Tests Disponibles"
+                        },
+                        monitoring: {
+                            icon: "📋",
+                            title: "فروض مراقبة",
+                            subtitle: "devoir de controle"
+                        },
+                        composition: {
+                            icon: "✍️",
+                            title: "فروض تأليفية",
+                            subtitle: "devoir de synthese"
+                        },
+                        tests: {
+                            monitoring: {
+                                test1: {
+                                    name: "devoir de controle 1"
+                                },
+                                test2: {
+                                    name: "devoir de controle 2"
+                                },
+                                test3: {
+                                    name: "devoir de controle 3"
+                                }
+                            },
+                            composition: {
+                                test1: {
+                                    name: "devoir de synthese 1"
+                                },
+                                test2: {
+                                    name: "devoir de synthese 2"
+                                },
+                                test3: {
+                                    name: "devoir de synthese 3"
+                                }
+                            }
+                        }
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    frenchTrim1: {
+                        title: "الفرنسية - الثلاثي الأول",
+                        subtitle: "السنة الأولى ثانوي",
+                        intro: {
+                            title: "اختبارات الفرنسية - الثلاثي الأول"
+                        },
+                        back: "العودة للمواد",
+                        info: {
+                            title: "أنواع الاختبارات المتاحة"
+                        },
+                        monitoring: {
+                            icon: "📋",
+                            title: "فروض مراقبة",
+                            subtitle: "اختبار منتصف الثلاثي"
+                        },
+                        composition: {
+                            icon: "✍️",
+                            title: "فروض تأليفية",
+                            subtitle: "اختبار نهاية الثلاثي"
+                        },
+                        tests: {
+                            monitoring: {
+                                test1: {
+                                    name: "اختبار منتصف الثلاثي 1"
+                                },
+                                test2: {
+                                    name: "اختبار منتصف الثلاثي 2"
+                                },
+                                test3: {
+                                    name: "اختبار منتصف الثلاثي 3"
+                                }
+                            },
+                            composition: {
+                                test1: {
+                                    name: "اختبار نهاية الثلاثي 1"
+                                },
+                                test2: {
+                                    name: "اختبار نهاية الثلاثي 2"
+                                },
+                                test3: {
+                                    name: "اختبار نهاية الثلاثي 3"
+                                }
+                            }
+                        }
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Add hover effects to columns
+            const columns = document.querySelectorAll('.Tests-Hub-column');
+            columns.forEach(column => {
+                column.addEventListener('mouseenter', function() {
+                    const header = this.querySelector('.Tests-Hub-column-header');
+                    if (header) {
+                        header.style.transform = 'scale(1.02)';
+                        header.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                column.addEventListener('mouseleave', function() {
+                    const header = this.querySelector('.Tests-Hub-column-header');
+                    if (header) {
+                        header.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // Add click tracking for test links
+            const testLinks = document.querySelectorAll('.Tests-Hub-test-link');
+            testLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    console.log(`Navigating to: ${this.getAttribute('href')}`);
+                });
+            });
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

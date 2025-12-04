@@ -1,12 +1,12 @@
 /**
  * Tests Hub - Service Worker
- * Version: 2.0.3
+ * Version: 2.0.5
  * Features: Offline support, Background sync, Push notifications, Periodic sync
  */
 
-const CACHE_NAME = 'tests-hub-v2.0.3';
-const STATIC_CACHE_NAME = 'tests-hub-static-v2.0.3';
-const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.0.3';
+const CACHE_NAME = 'tests-hub-v2.0.5';
+const STATIC_CACHE_NAME = 'tests-hub-static-v2.0.5';
+const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.0.5';
 
 // Files to cache on install (app shell)
 const STATIC_ASSETS = [

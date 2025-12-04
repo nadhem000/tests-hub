@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tests Hub - Synthesis Test N°1 - Physics-Chemistry</title>
+		
+		<!-- PWA Meta Tags -->
+		<meta name="theme-color" content="#1E3A8A">
+		<meta name="description" content="Synthesis Test N°1 for 1st year secondary school - Physics & Chemistry">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="Tests Hub - Synthesis Test">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="application-name" content="Tests Hub">
+		
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+		
+		<!-- Manifest -->
+		<link rel="manifest" href="manifest.json">
+		
+		<style>
+			* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			
+			body {
+            background: linear-gradient(135deg, #f0f5ff 0%, #e6f0ff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+			}
+			
+			body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0f1a3a 0%, #1a2b5a 100%);
+            color: #e6e6e6;
+			}
+			
+			/* Header */
+			.Tests-Hub-header-container {
+            background: linear-gradient(to right, #1E3A8A, #3B82F6);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0f1a3a, #1E3A8A, #3B82F6);
+			}
+			
+			.Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+			}
+			
+			.Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+			}
+			
+			.Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+			}
+			
+			.Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-language-selector {
+            position: relative;
+			}
+			
+			.Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			.Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+			}
+			
+			.Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+			}
+			
+			.Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+			}
+			
+			.Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1e293b;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #334155;
+			}
+			
+			.Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Back Button */
+			.Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+			}
+			
+			.Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Main Content */
+			.Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+			}
+			
+			/* Test Content Styling */
+			.Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #1E3A8A, #3B82F6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0f1a3a, #1E3A8A);
+			}
+			
+			.Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+			}
+			
+			.Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1e293b;
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-test-section h2 {
+            color: #1E3A8A;
+            border-bottom: 2px solid #3B82F6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #60A5FA;
+			}
+			
+			.Tests-Hub-test-section h3 {
+            color: #3B82F6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #93C5FD;
+			}
+			
+			.Tests-Hub-instructions {
+            background: #f0f5ff;
+            padding: 1rem;
+            border-left: 4px solid #1E3A8A;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0f1a3a;
+            border-left-color: #3B82F6;
+			}
+			
+			table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+			
+			th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+			}
+			
+			th {
+            background: #1E3A8A;
+            color: white;
+            font-weight: 600;
+			}
+			
+			.Tests-Hub-dark-theme th {
+            background: #0f1a3a;
+			}
+			
+			tr:nth-child(even) {
+            background: #f9f9f9;
+			}
+			
+			.Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #334155;
+			}
+			
+			.Tests-Hub-dark-theme td {
+            border-color: #475569;
+			}
+			
+			.Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+			}
+			
+			.Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+			}
+			
+			.Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+			.Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+			.Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #666;
+            background-color: #1e293b;
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+			}
+			
+			.Tests-Hub-question-number {
+            font-weight: bold;
+            color: #1E3A8A;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #60A5FA;
+			}
+			
+			.Tests-Hub-true-false {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+			}
+			
+			.Tests-Hub-true-false input {
+            margin-right: 10px;
+			}
+			
+			.Tests-Hub-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: #334155;
+			}
+			
+			.Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #bdc3c7;
+			}
+			
+			/* Correction Section */
+			.Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+			}
+			
+			.Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #1E3A8A, #3B82F6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-correction-section {
+            background: #f0f5ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #2563eb;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0f1a3a;
+            border-left-color: #3B82F6;
+			}
+			
+			.Tests-Hub-correction-section h3 {
+            color: #2563eb;
+            margin-top: 0;
+            margin-bottom: 1rem;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #60A5FA;
+			}
+			
+			.Tests-Hub-formula {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-formula {
+            background: #1e293b;
+			}
+			
+			.Tests-Hub-hidden {
+            display: none;
+			}
+			
+			/* Footer */
+			.Tests-Hub-footer-container {
+            background: linear-gradient(to right, #1E3A8A, #3B82F6);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0f1a3a, #1E3A8A, #3B82F6);
+			}
+			
+			.Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+			}
+			
+			.Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+			}
+			
+			.Tests-Hub-footer-column {
+            text-align: center;
+			}
+			
+			.Tests-Hub-footer-column h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+			}
+			
+			.Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+			}
+			
+			.Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FFD700;
+			}
+			
+			.Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FFD700;
+			}
+			
+			/* Footer Links Styles */
+			.Tests-Hub-footer-links-list {
+            list-style: none;
+			}
+			
+			.Tests-Hub-footer-link {
+            color: #FFD700;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+			}
+			
+			/* Responsive */
+			@media (max-width: 768px) {
+            .Tests-Hub-header-content {
+			flex-direction: column;
+			text-align: center;
+			gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+			font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+			margin-top: 15px;
+			flex-wrap: wrap;
+			justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+			padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			text-align: center;
+            }
+            
+            table {
+			font-size: 0.9rem;
+            }
+            
+            th, td {
+			padding: 8px 10px;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+			height: 25px;
+			font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+			min-height: 50px;
+			font-size: 12px;
+            }
+			}
+			
+			@media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+			font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+			padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+			padding: 1rem;
+            }
+			}
+			
+			/* Download Buttons Styles */
+			.Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(30, 58, 138, 0.1), rgba(59, 130, 246, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(15, 26, 58, 0.2), rgba(30, 58, 138, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+			}
+			
+			.Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+			}
+			
+			.Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+			}
+			
+			.Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: white;
+			}
+			
+			.Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+			}
+			
+			.Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+			}
+			
+			.Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #6d28d9, #7c3aed);
+			}
+			
+			.Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+			}
+			
+			/* Responsive styles for download buttons */
+			@media (max-width: 768px) {
+            .Tests-Hub-download-buttons {
+			flex-direction: column;
+			align-items: center;
+			gap: 15px;
+			padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+			width: 80%;
+			max-width: 250px;
+			height: 80px;
+			flex-direction: row;
+			justify-content: flex-start;
+			padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+			font-size: 1.8rem;
+			margin-bottom: 0;
+			margin-right: 15px;
+            }
+			}
+			
+			@media (max-width: 480px) {
+            .Tests-Hub-download-buttons {
+			gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+			height: 70px;
+			font-size: 1rem;
+			padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+			font-size: 1.5rem;
+			margin-right: 10px;
+            }
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Header -->
+		<header class="Tests-Hub-header-container">
+			<div class="Tests-Hub-header-content">
+				<div class="Tests-Hub-header-left">
+					<img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+					<div>
+						<h1 class="Tests-Hub-header-title" data-i18n="TestsHub.synthesisTest.title">Physics - 1st Trimester</h1>
+						<div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.synthesisTest.subtitle">1st Year Secondary School</div>
+					</div>
+				</div>
+				
+				<div class="Tests-Hub-header-controls">
+					<a href="test_year1_physics_trim1.html" class="Tests-Hub-back-button">
+						<span>←</span>
+						<span data-i18n="TestsHub.synthesisTest.back">Back to Tests</span>
+					</a>
+					
+					<div class="Tests-Hub-language-selector">
+						<button class="Tests-Hub-language-button">
+							<span>🌐</span>
+							<span data-i18n="TestsHub.language.current">English</span>
+							<span>▼</span>
+						</button>
+						<div class="Tests-Hub-language-dropdown">
+							<div class="Tests-Hub-language-option" data-language="en">
+								<span>🌐</span> English
+							</div>
+							<div class="Tests-Hub-language-option" data-language="fr">
+								<span>🌐</span> Français
+							</div>
+							<div class="Tests-Hub-language-option" data-language="ar">
+								<span>🌐</span> العربية
+							</div>
+						</div>
+					</div>
+					
+					<button class="Tests-Hub-theme-toggle" id="themeToggle">
+						<span id="themeIcon">🌙</span>
+						<span data-i18n="TestsHub.theme.toggle">Dark Mode</span>
+					</button>
+				</div>
+			</div>
+		</header>
+		
+		<!-- Main Content -->
+		<main class="Tests-Hub-main-container">
+			<!-- Test Header -->
+<div class="Tests-Hub-test-header">
+    <h1 data-i18n="TestsHub.synthesisTest.testTitle">Devoir de Synthèse N°1 de Sciences Physiques</h1>
+    <p data-i18n="TestsHub.synthesisTest.schoolYear">Lycée Lycée L . S . A . T Ksar Gafsa - 2010/2011</p>
+    <p data-i18n="TestsHub.synthesisTest.classTeacher">Classe : 1ère AS - prof.: Mr Ben Abdeljelil Sami</p>
+</div>
+			
+			<!-- Instructions -->
+			<div class="Tests-Hub-test-section Tests-Hub-instructions">
+				<h3 data-i18n="TestsHub.synthesisTest.instructions.title">Instructions générales</h3>
+				<ul>
+					<li data-i18n="TestsHub.synthesisTest.instructions.item1">Le sujet comporte deux exercices de physique et deux exercices de chimie</li>
+					<li data-i18n="TestsHub.synthesisTest.instructions.item2">Donner l'expression littérale avant d'accéder à l'application numérique</li>
+				</ul>
+			</div>
+			
+			<!-- Chemistry Section -->
+			<div class="Tests-Hub-test-section">
+				<h2 data-i18n="TestsHub.synthesisTest.chemistryPart">Chimie : (8 points)</h2>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.exercise1">Exercice N°1 : (4 points)</h3>
+				<p data-i18n="TestsHub.synthesisTest.given">On donne : e = 1,6.10<sup>-19</sup> C</p>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">1-</span> <span data-i18n="TestsHub.synthesisTest.question1">L'atome de potassium de symbole K possède 19 électrons. Calculer la valeur de la charge de son noyau.</span></p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">2-</span> <span data-i18n="TestsHub.synthesisTest.question2">L'atome de potassium perd un électron et se transforme en ion potassium.</span></p>
+					
+					<p data-i18n="TestsHub.synthesisTest.question2a">a- L'ion potassium est-il un anion ou cation ? Justifier.</p>
+					<textarea class="Tests-Hub-answer-textarea" style="width: 80%;"></textarea>
+					
+					<p data-i18n="TestsHub.synthesisTest.question2b">b- Donner le symbole de l'ion potassium.</p>
+					<textarea class="Tests-Hub-answer-textarea"></textarea>
+					
+					<p data-i18n="TestsHub.synthesisTest.question2c">c- Calculer la valeur de la charge de l'ion potassium.</p>
+					<textarea class="Tests-Hub-answer-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">3-</span></p>
+					<p data-i18n="TestsHub.synthesisTest.question3a">a- L'ion sulfate est formé d'un atome de soufre et 4 atomes d'oxygène. L'ensemble porte deux charges négatives. Écrire la formule de l'ion sulfate.</p>
+					<textarea class="Tests-Hub-answer-textarea"></textarea>
+					
+					<p data-i18n="TestsHub.synthesisTest.question3b">b- Sachant que la matière est électriquement neutre. Quelle est la formule statistique du corps pur composé obtenu par l'union de cet ion avec l'ion potassium ?</p>
+					<textarea class="Tests-Hub-answer-textarea"></textarea>
+				</div>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.exercise2">Exercice N°2 : (4 points)</h3>
+				<p data-i18n="TestsHub.synthesisTest.completeTable">Compléter le tableau suivant :</p>
+				
+				<table>
+					<thead>
+						<tr>
+							<th data-i18n="TestsHub.synthesisTest.table.constituents">Constituants de la molécule</th>
+							<th data-i18n="TestsHub.synthesisTest.table.formula">Formule chimique</th>
+							<th data-i18n="TestsHub.synthesisTest.table.atomicity">Atomicité</th>
+							<th data-i18n="TestsHub.synthesisTest.table.nature">Nature du corps (simple ou composé)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2 atomes d'hydrogène et 1 atome d'oxygène</td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+						</tr>
+						<tr>
+							<td>2 atomes de chlore</td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+						</tr>
+						<tr>
+							<td>1 atome carbone et 4 atomes d'hydrogène</td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+							<td><textarea class="Tests-Hub-table-textarea"></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<!-- Physics Section -->
+			<div class="Tests-Hub-test-section">
+				<h2 data-i18n="TestsHub.synthesisTest.physicsPart">Physique : (12 points)</h2>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.exercise1">Exercice N°1 : (6 points)</h3>
+				<p data-i18n="TestsHub.synthesisTest.circuitDescription">On considère le circuit électrique ci-contre :</p>
+				
+				<div class="Tests-Hub-image-container">
+					<img src="assets/tests/physical/image-5.png" alt="Circuit électrique">
+					<div class="Tests-Hub-image-caption" data-i18n="TestsHub.synthesisTest.image5.caption">Circuit électrique avec interrupteur K et deux lampes</div>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">1-</span> <span data-i18n="TestsHub.synthesisTest.question4">Quand l'interrupteur K est fermé les lampes s'allument.</span></p>
+					
+					<p data-i18n="TestsHub.synthesisTest.question4a">a- Identifier en justifiant, les deux pôles (+ et -) du générateur (sur le schéma).</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p data-i18n="TestsHub.synthesisTest.question4b">b- Donner les nœuds du circuit.</p>
+					<textarea class="Tests-Hub-answer-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">2-</span></p>
+					<p data-i18n="TestsHub.synthesisTest.question5a">a- Un ampèremètre placé en série avec le générateur dont le cadran comporte une échelle de 100 divisions, le calibre utilisé étant 0,3A, l'aiguille s'arrête devant la graduation 80. Calculer l'intensité du courant électrique mesuré par l'ampèremètre.</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p data-i18n="TestsHub.synthesisTest.question5b">b- Peut-on utiliser le calibre C = 0,1A ? Justifier.</p>
+					<textarea class="Tests-Hub-answer-textarea" style="width: 80%;"></textarea>
+					
+					<p data-i18n="TestsHub.synthesisTest.question5c">c- Calculer l'intensité du courant qui traverse la lampe L₁, sachant que l'intensité du courant qui traverse la lampe L₂ est I₂ = 0,1A. Indiquer la loi utilisée.</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.exercise2">Exercice N°2 : (6 points)</h3>
+				<p data-i18n="TestsHub.synthesisTest.circuitDescription2">On considère le circuit ci-contre où les trois lampes sont identiques de tension nominale 4V chacune.</p>
+				
+				<div class="Tests-Hub-image-container">
+					<img src="assets/tests/physical/image-6.png" alt="Circuit avec trois lampes">
+					<div class="Tests-Hub-image-caption" data-i18n="TestsHub.synthesisTest.image6.caption">Circuit avec trois lampes identiques</div>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">1-</span> <span data-i18n="TestsHub.synthesisTest.question6">Représenter par des flèches les tensions U<sub>AB</sub>, U<sub>AD</sub> et U<sub>DC</sub>.</span></p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">2-</span> <span data-i18n="TestsHub.synthesisTest.question7">On mesure la tension U<sub>AB</sub> aux bornes du générateur avec un voltmètre, On trouve U<sub>AB</sub> = 10V</span></p>
+					
+					<p data-i18n="TestsHub.synthesisTest.question7a">a- La tension aux bornes de la lampe L est U<sub>AD</sub> = 4V. En appliquant la loi des mailles, calculer la tension aux bornes de la lampe L₁, U<sub>DC</sub>.</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p data-i18n="TestsHub.synthesisTest.question7b">b- Déduire, en justifiant la réponse la tension aux bornes de la lampe L₂.</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">3-</span> <span data-i18n="TestsHub.synthesisTest.question8">Quelle(s) lampe(s) brille(nt) normalement ?</span></p>
+					<textarea class="Tests-Hub-answer-textarea" style="width: 80%;"></textarea>
+				</div>
+			</div>
+			
+			<!-- Correction Toggle -->
+			<div class="Tests-Hub-correction-toggle-container">
+				<button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.synthesisTest.showCorrection">Afficher la correction</button>
+			</div>
+			
+			<!-- Correction Section -->
+			<div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+				<h2 data-i18n="TestsHub.synthesisTest.correctionTitle">Correction du devoir</h2>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.chemistryCorrection">Chimie - Exercice N°1 : Correction</h3>
+				<div class="Tests-Hub-correction-section">
+					<p><span class="Tests-Hub-question-number">1-</span> <span data-i18n="TestsHub.synthesisTest.correction1">Charge du noyau : Q<sub>noyau</sub> = N.e avec N = nombre d'électrons = 19<br>
+					Q<sub>noyau</sub> = 19 × 1,6.10<sup>-19</sup> = 30,4.10<sup>-19</sup> C</span></p>
+					
+					<p><span class="Tests-Hub-question-number">2-</span></p>
+					<p data-i18n="TestsHub.synthesisTest.correction2a">a- L'ion potassium est un cation car l'atome a perdu un électron (charge positive).</p>
+					<p data-i18n="TestsHub.synthesisTest.correction2b">b- Symbole : K<sup>+</sup></p>
+					<p data-i18n="TestsHub.synthesisTest.correction2c">c- Charge de l'ion : Q<sub>ion</sub> = +n.e = +1 × 1,6.10<sup>-19</sup> = +1,6.10<sup>-19</sup> C</p>
+					
+					<p><span class="Tests-Hub-question-number">3-</span></p>
+					<p data-i18n="TestsHub.synthesisTest.correction3a">a- Formule de l'ion sulfate : SO<sub>4</sub><sup>2-</sup></p>
+					<p data-i18n="TestsHub.synthesisTest.correction3b">b- Formule statistique : K<sub>2</sub>SO<sub>4</sub> (sulfate de potassium)</p>
+				</div>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.chemistryCorrection2">Chimie - Exercice N°2 : Correction</h3>
+				<table>
+					<thead>
+						<tr>
+							<th data-i18n="TestsHub.synthesisTest.table.constituents">Constituants de la molécule</th>
+							<th data-i18n="TestsHub.synthesisTest.table.formula">Formule chimique</th>
+							<th data-i18n="TestsHub.synthesisTest.table.atomicity">Atomicité</th>
+							<th data-i18n="TestsHub.synthesisTest.table.nature">Nature du corps</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2 atomes d'hydrogène et 1 atome d'oxygène</td>
+							<td>H<sub>2</sub>O</td>
+							<td>3</td>
+							<td>Composé</td>
+						</tr>
+						<tr>
+							<td>2 atomes de chlore</td>
+							<td>Cl<sub>2</sub></td>
+							<td>2</td>
+							<td>Simple</td>
+						</tr>
+						<tr>
+							<td>1 atome carbone et 4 atomes d'hydrogène</td>
+							<td>CH<sub>4</sub></td>
+							<td>5</td>
+							<td>Composé</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.physicsCorrection1">Physique - Exercice N°1 : Correction</h3>
+				<div class="Tests-Hub-image-container">
+					<img src="assets/tests/physical/image-7.png" alt="Circuit électrique - Correction">
+					<div class="Tests-Hub-image-caption" data-i18n="TestsHub.synthesisTest.image7.caption">Circuit avec pôles identifiés et sens du courant</div>
+				</div>
+				
+				<div class="Tests-Hub-correction-section">
+					<p><span class="Tests-Hub-question-number">1-</span></p>
+					<p data-i18n="TestsHub.synthesisTest.correction4a">a- Le pôle + est à gauche (A), le pôle - à droite (B) car le courant conventionnel sort du pôle +.</p>
+					<p data-i18n="TestsHub.synthesisTest.correction4b">b- Nœuds du circuit : D et C.</p>
+					
+					<p><span class="Tests-Hub-question-number">2-</span></p>
+					<p data-i18n="TestsHub.synthesisTest.correction5a">a- I = (L × C) / E = (80 × 0,3) / 100 = 0,24 A</p>
+					<p data-i18n="TestsHub.synthesisTest.correction5b">b- Non, car I = 0,24 A > C = 0,1 A</p>
+					<p data-i18n="TestsHub.synthesisTest.correction5c">c- Loi des nœuds au nœud C : I = I₁ + I₂<br>
+					I₁ = I - I₂ = 0,24 - 0,1 = 0,14 A</p>
+				</div>
+				
+				<h3 data-i18n="TestsHub.synthesisTest.physicsCorrection2">Physique - Exercice N°2 : Correction</h3>
+				<div class="Tests-Hub-image-container">
+					<img src="assets/tests/physical/image-8.png" alt="Circuit avec trois lampes - Correction">
+					<div class="Tests-Hub-image-caption" data-i18n="TestsHub.synthesisTest.image8.caption">Circuit avec tensions indiquées</div>
+				</div>
+				
+				<div class="Tests-Hub-correction-section">
+					<p><span class="Tests-Hub-question-number">1-</span> <span data-i18n="TestsHub.synthesisTest.correction6">Les flèches des tensions sont orientées de + vers - pour chaque dipôle.</span></p>
+					
+					<p><span class="Tests-Hub-question-number">2-</span></p>
+					<p data-i18n="TestsHub.synthesisTest.correction7a">a- Loi des mailles : U<sub>AB</sub> = U<sub>AD</sub> + U<sub>DC</sub><br>
+					U<sub>DC</sub> = U<sub>AB</sub> - U<sub>AD</sub> = 10 - 4 = 6 V</p>
+					<p data-i18n="TestsHub.synthesisTest.correction7b">b- L₁ et L₂ sont en parallèle, donc U<sub>DC</sub> = tension aux bornes de L₂ = 6 V</p>
+					
+					<p><span class="Tests-Hub-question-number">3-</span> <span data-i18n="TestsHub.synthesisTest.correction8">Les lampes L₁ et L₂ brillent normalement (tension = 6V > 4V nominal), la lampe L (U<sub>AD</sub> = 4V) brille normalement.</span></p>
+				</div>
+			</div>
+			
+			<!-- Download Buttons -->
+			<div class="Tests-Hub-download-buttons">
+				<button class="Tests-Hub-download-button pdf" id="downloadPdf">
+					<span>📄</span>
+					<span data-i18n="TestsHub.synthesisTest.download.pdf">PDF</span>
+				</button>
+				<button class="Tests-Hub-download-button odt" id="downloadOdt">
+					<span>📝</span>
+					<span data-i18n="TestsHub.synthesisTest.download.odt">ODT</span>
+				</button>
+				<button class="Tests-Hub-download-button png" id="downloadPng">
+					<span>🖼️</span>
+					<span data-i18n="TestsHub.synthesisTest.download.png">PNG</span>
+				</button>
+			</div>
+		</main>
+		
+		<!-- Footer -->
+		<footer class="Tests-Hub-footer-container">
+			<div class="Tests-Hub-footer-content">
+				<div class="Tests-Hub-footer-columns">
+					<!-- Column 1: Developer -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+						<p class="Tests-Hub-developer-name">زياد الماجري</p>
+					</div>
+					
+					<!-- Column 2: Version -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+						<p class="Tests-Hub-version-number">v1.0.0</p>
+					</div>
+					
+					<!-- Column 3: Links -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+						<ul class="Tests-Hub-footer-links-list">
+							<li>
+								<a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+							</li>
+							<li>
+								<a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<script>
+			// Translation object for Synthesis Test page
+			let currentLanguage = 'fr'; // Default to French since test is in French
+			let isDarkTheme = false;
+			
+			const TestsHub_translations = {
+				en: {
+					TestsHub: {
+						synthesisTest: {
+							title: "Physics - 1st Trimester",
+							subtitle: "1st Year Secondary School",
+    testTitle: "Final-term Test N°1 in Physical Sciences",
+    schoolYear: "High School L . S . A . T Ksar Gafsa - 2010/2011", 
+    classTeacher: "Class: 1st AS - teacher: unknown",
+							back: "Back to Tests",
+							instructions: {
+								title: "General Instructions",
+								item1: "The test includes two physics exercises and two chemistry exercises",
+								item2: "Give the literal expression before numerical application"
+							},
+							chemistryPart: "Chemistry: (8 points)",
+							physicsPart: "Physics: (12 points)",
+							exercise1: "Exercise N°1",
+							exercise2: "Exercise N°2",
+							given: "Given: e = 1.6×10<sup>-19</sup> C",
+							question1: "The potassium atom with symbol K has 19 electrons. Calculate the charge of its nucleus.",
+							question2: "The potassium atom loses an electron and becomes a potassium ion.",
+							question2a: "a- Is the potassium ion an anion or cation? Justify.",
+							question2b: "b- Give the symbol of the potassium ion.",
+							question2c: "c- Calculate the charge of the potassium ion.",
+							question3a: "a- The sulfate ion consists of one sulfur atom and 4 oxygen atoms. The whole carries two negative charges. Write the formula of the sulfate ion.",
+							question3b: "b- Knowing that matter is electrically neutral. What is the statistical formula of the pure compound obtained by the union of this ion with the potassium ion?",
+							completeTable: "Complete the following table:",
+							circuitDescription: "Consider the electrical circuit opposite:",
+							question4: "When switch K is closed the lamps light up.",
+							question4a: "a- Identify and justify the two poles (+ and -) of the generator (on the diagram).",
+							question4b: "b- Give the nodes of the circuit.",
+							question5a: "a- An ammeter placed in series with the generator whose dial has a scale of 100 divisions, the range used being 0.3A, the needle stops at graduation 80. Calculate the current intensity measured by the ammeter.",
+							question5b: "b- Can we use the range C = 0.1A? Justify.",
+							question5c: "c- Calculate the current intensity through lamp L₁, knowing that the current intensity through lamp L₂ is I₂ = 0.1A. Indicate the law used.",
+							circuitDescription2: "Consider the circuit opposite where the three lamps are identical with a nominal voltage of 4V each.",
+							question6: "Represent with arrows the voltages U<sub>AB</sub>, U<sub>AD</sub> and U<sub>DC</sub>.",
+							question7: "We measure the voltage U<sub>AB</sub> across the generator with a voltmeter, We find U<sub>AB</sub> = 10V",
+							question7a: "a- The voltage across lamp L is U<sub>AD</sub> = 4V. Using Kirchhoff's voltage law, calculate the voltage across lamp L₁, U<sub>DC</sub>.",
+							question7b: "b- Deduce, justifying the answer, the voltage across lamp L₂.",
+							question8: "Which lamp(s) shine(s) normally?",
+							showCorrection: "Show Correction",
+							hideCorrection: "Hide Correction",
+							correctionTitle: "Test Correction",
+							chemistryCorrection: "Chemistry - Exercise N°1: Correction",
+							chemistryCorrection2: "Chemistry - Exercise N°2: Correction",
+							physicsCorrection1: "Physics - Exercise N°1: Correction",
+							physicsCorrection2: "Physics - Exercise N°2: Correction",
+							correction1: "Nuclear charge: Q<sub>nucleus</sub> = N.e with N = number of electrons = 19<br>Q<sub>nucleus</sub> = 19 × 1.6×10<sup>-19</sup> = 30.4×10<sup>-19</sup> C",
+							correction2a: "a- The potassium ion is a cation because the atom lost an electron (positive charge).",
+							correction2b: "b- Symbol: K<sup>+</sup>",
+							correction2c: "c- Ion charge: Q<sub>ion</sub> = +n.e = +1 × 1.6×10<sup>-19</sup> = +1.6×10<sup>-19</sup> C",
+							correction3a: "a- Sulfate ion formula: SO<sub>4</sub><sup>2-</sup>",
+							correction3b: "b- Statistical formula: K<sub>2</sub>SO<sub>4</sub> (potassium sulfate)",
+							correction4a: "a- The + pole is on the left (A), the - pole on the right (B) because conventional current flows from the + pole.",
+							correction4b: "b- Circuit nodes: D and C.",
+							correction5a: "a- I = (L × C) / E = (80 × 0.3) / 100 = 0.24 A",
+							correction5b: "b- No, because I = 0.24 A > C = 0.1 A",
+							correction5c: "c- Kirchhoff's current law at node C: I = I₁ + I₂<br>I₁ = I - I₂ = 0.24 - 0.1 = 0.14 A",
+							correction6: "The voltage arrows are oriented from + to - for each component.",
+							correction7a: "a- Kirchhoff's voltage law: U<sub>AB</sub> = U<sub>AD</sub> + U<sub>DC</sub><br>U<sub>DC</sub> = U<sub>AB</sub> - U<sub>AD</sub> = 10 - 4 = 6 V",
+							correction7b: "b- L₁ and L₂ are in parallel, so U<sub>DC</sub> = voltage across L₂ = 6 V",
+							correction8: "Lamps L₁ and L₂ shine normally (voltage = 6V > 4V nominal), lamp L (U<sub>AD</sub> = 4V) shines normally.",
+							table: {
+								constituents: "Molecule constituents",
+								formula: "Chemical formula",
+								atomicity: "Atomicity",
+								nature: "Nature (simple or compound)"
+							},
+							image5: {
+								caption: "Electrical circuit with switch K and two lamps"
+							},
+							image6: {
+								caption: "Circuit with three identical lamps"
+							},
+							image7: {
+								caption: "Circuit with identified poles and current direction"
+							},
+							image8: {
+								caption: "Circuit with indicated voltages"
+							},
+							download: {
+								pdf: "PDF",
+								odt: "ODT",
+								png: "PNG"
+							},
+							comingSoon: "Coming soon! This feature is under development."
+						},
+						language: {
+							current: "English"
+						},
+						theme: {
+							toggle: "Dark Mode"
+						},
+						footer: {
+							developer: "Developer",
+							version: "Version",
+							links: "Links",
+							terms: "Terms of Use",
+							privacy: "Privacy Policy"
+						}
+					}
+				},
+				fr: {
+					TestsHub: {
+						synthesisTest: {
+							title: "Physique - 1er Trimestre",
+							subtitle: "1ère Année Secondaire",
+    testTitle: "Devoir de Synthèse N°1 de Sciences Physiques",
+    schoolYear: "Lycée Lycée L . S . A . T Ksar Gafsa - 2010/2011",
+    classTeacher: "Classe : 1ère AS - prof.: inconnu/e",
+							back: "Retour aux Tests",
+							instructions: {
+								title: "Instructions générales",
+								item1: "Le sujet comporte deux exercices de physique et deux exercices de chimie",
+								item2: "Donner l'expression littérale avant d'accéder à l'application numérique"
+							},
+							chemistryPart: "Chimie : (8 points)",
+							physicsPart: "Physique : (12 points)",
+							exercise1: "Exercice N°1",
+							exercise2: "Exercice N°2",
+							given: "On donne : e = 1,6.10<sup>-19</sup> C",
+							question1: "L'atome de potassium de symbole K possède 19 électrons. Calculer la valeur de la charge de son noyau.",
+							question2: "L'atome de potassium perd un électron et se transforme en ion potassium.",
+							question2a: "a- L'ion potassium est-il un anion ou cation ? Justifier.",
+							question2b: "b- Donner le symbole de l'ion potassium.",
+							question2c: "c- Calculer la valeur de la charge de l'ion potassium.",
+							question3a: "a- L'ion sulfate est formé d'un atome de soufre et 4 atomes d'oxygène. L'ensemble porte deux charges négatives. Écrire la formule de l'ion sulfate.",
+							question3b: "b- Sachant que la matière est électriquement neutre. Quelle est la formule statistique du corps pur composé obtenu par l'union de cet ion avec l'ion potassium ?",
+							completeTable: "Compléter le tableau suivant :",
+							circuitDescription: "On considère le circuit électrique ci-contre :",
+							question4: "Quand l'interrupteur K est fermé les lampes s'allument.",
+							question4a: "a- Identifier en justifiant, les deux pôles (+ et -) du générateur (sur le schéma).",
+							question4b: "b- Donner les nœuds du circuit.",
+							question5a: "a- Un ampèremètre placé en série avec le générateur dont le cadran comporte une échelle de 100 divisions, le calibre utilisé étant 0,3A, l'aiguille s'arrête devant la graduation 80. Calculer l'intensité du courant électrique mesuré par l'ampèremètre.",
+							question5b: "b- Peut-on utiliser le calibre C = 0,1A ? Justifier.",
+							question5c: "c- Calculer l'intensité du courant qui traverse la lampe L₁, sachant que l'intensité du courant qui traverse la lampe L₂ est I₂ = 0,1A. Indiquer la loi utilisée.",
+							circuitDescription2: "On considère le circuit ci-contre où les trois lampes sont identiques de tension nominale 4V chacune.",
+							question6: "Représenter par des flèches les tensions U<sub>AB</sub>, U<sub>AD</sub> et U<sub>DC</sub>.",
+							question7: "On mesure la tension U<sub>AB</sub> aux bornes du générateur avec un voltmètre, On trouve U<sub>AB</sub> = 10V",
+							question7a: "a- La tension aux bornes de la lampe L est U<sub>AD</sub> = 4V. En appliquant la loi des mailles, calculer la tension aux bornes de la lampe L₁, U<sub>DC</sub>.",
+							question7b: "b- Déduire, en justifiant la réponse la tension aux bornes de la lampe L₂.",
+							question8: "Quelle(s) lampe(s) brille(nt) normalement ?",
+							showCorrection: "Afficher la correction",
+							hideCorrection: "Masquer la correction",
+							correctionTitle: "Correction du devoir",
+							chemistryCorrection: "Chimie - Exercice N°1 : Correction",
+							chemistryCorrection2: "Chimie - Exercice N°2 : Correction",
+							physicsCorrection1: "Physique - Exercice N°1 : Correction",
+							physicsCorrection2: "Physique - Exercice N°2 : Correction",
+							correction1: "Charge du noyau : Q<sub>noyau</sub> = N.e avec N = nombre d'électrons = 19<br>Q<sub>noyau</sub> = 19 × 1,6.10<sup>-19</sup> = 30,4.10<sup>-19</sup> C",
+							correction2a: "a- L'ion potassium est un cation car l'atome a perdu un électron (charge positive).",
+							correction2b: "b- Symbole : K<sup>+</sup>",
+							correction2c: "c- Charge de l'ion : Q<sub>ion</sub> = +n.e = +1 × 1,6.10<sup>-19</sup> = +1,6.10<sup>-19</sup> C",
+							correction3a: "a- Formule de l'ion sulfate : SO<sub>4</sub><sup>2-</sup>",
+							correction3b: "b- Formule statistique : K<sub>2</sub>SO<sub>4</sub> (sulfate de potassium)",
+							correction4a: "a- Le pôle + est à gauche (A), le pôle - à droite (B) car le courant conventionnel sort du pôle +.",
+							correction4b: "b- Nœuds du circuit : D et C.",
+							correction5a: "a- I = (L × C) / E = (80 × 0,3) / 100 = 0,24 A",
+							correction5b: "b- Non, car I = 0,24 A > C = 0,1 A",
+							correction5c: "c- Loi des nœuds au nœud C : I = I₁ + I₂<br>I₁ = I - I₂ = 0,24 - 0,1 = 0,14 A",
+							correction6: "Les flèches des tensions sont orientées de + vers - pour chaque dipôle.",
+							correction7a: "a- Loi des mailles : U<sub>AB</sub> = U<sub>AD</sub> + U<sub>DC</sub><br>U<sub>DC</sub> = U<sub>AB</sub> - U<sub>AD</sub> = 10 - 4 = 6 V",
+							correction7b: "b- L₁ et L₂ sont en parallèle, donc U<sub>DC</sub> = tension aux bornes de L₂ = 6 V",
+							correction8: "Les lampes L₁ et L₂ brillent normalement (tension = 6V > 4V nominal), la lampe L (U<sub>AD</sub> = 4V) brille normalement.",
+							table: {
+								constituents: "Constituants de la molécule",
+								formula: "Formule chimique",
+								atomicity: "Atomicité",
+								nature: "Nature du corps (simple ou composé)"
+							},
+							image5: {
+								caption: "Circuit électrique avec interrupteur K et deux lampes"
+							},
+							image6: {
+								caption: "Circuit avec trois lampes identiques"
+							},
+							image7: {
+								caption: "Circuit avec pôles identifiés et sens du courant"
+							},
+							image8: {
+								caption: "Circuit avec tensions indiquées"
+							},
+							download: {
+								pdf: "PDF",
+								odt: "ODT",
+								png: "PNG"
+							},
+							comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+						},
+						language: {
+							current: "Français"
+						},
+						theme: {
+							toggle: "Mode Sombre"
+						},
+						footer: {
+							developer: "Développeur",
+							version: "Version",
+							links: "Liens",
+							terms: "Conditions d'utilisation",
+							privacy: "Politique de confidentialité"
+						}
+					}
+				},
+				ar: {
+					TestsHub: {
+						synthesisTest: {
+							title: "الفيزياء - الثلاثي الأول",
+							subtitle: "السنة الأولى ثانوي",
+    testTitle: "اختبار تأليفي رقم 1 في العلوم الفيزيائية",
+    schoolYear: "ثانوية ل. س. أ. ت قصر قفصة - 2010/2011",
+    classTeacher: "القسم: أولى ثانوي - الأستاذ: غير معروف",
+							back: "العودة للاختبارات",
+							instructions: {
+								title: "التعليمات العامة",
+								item1: "يتضمن الموضوع تمرينين في الفيزياء وتمرينين في الكيمياء",
+								item2: "أعط التعبير الحرفي قبل التطبيق العددي"
+							},
+							chemistryPart: "الكيمياء: (8 نقاط)",
+							physicsPart: "الفيزياء: (12 نقطة)",
+							exercise1: "التمرين رقم 1",
+							exercise2: "التمرين رقم 2",
+							given: "المعطى: e = 1,6.10<sup>-19</sup> C",
+							question1: "ذرة البوتاسيوم ذات الرمز K تملك 19 إلكتروناً. احسب قيمة شحنة نواتها.",
+							question2: "تفقد ذرة البوتاسيوم إلكتروناً وتتحول إلى أيون بوتاسيوم.",
+							question2a: "أ- هل أيون البوتاسيوم أنيون أم كاتيون؟ علل.",
+							question2b: "ب- أعط رمز أيون البوتاسيوم.",
+							question2c: "ج- احسب قيمة شحنة أيون البوتاسيوم.",
+							question3a: "أ- أيون الكبريتات يتكون من ذرة كبريت و4 ذرات أكسجين. المجموعة تحمل شحنتين سالبتين. اكتب صيغة أيون الكبريتات.",
+							question3b: "ب- علماً أن المادة متعادلة كهربائياً. ما هي الصيغة الإحصائية للمادة النقية المركبة الناتجة عن اتحاد هذا الأيون مع أيون البوتاسيوم؟",
+							completeTable: "أكمل الجدول التالي:",
+							circuitDescription: "نعتبر الدارة الكهربائية المقابلة:",
+							question4: "عندما يكون المفتاح K مغلقاً تضيء المصابيح.",
+							question4a: "أ- حدد مبرراً القطبين (+ و -) للمولد (على الرسم).",
+							question4b: "ب- أعط عقد الدارة.",
+							question5a: "أ- أمبيرمتر موضوع على التسلسل مع المولد مدرج مقياسه يحتوي على 100 قسم، المعيار المستعمل هو 0,3A، تتوقف المؤشر أمام التدرج 80. احسب شدة التيار الكهربائي المقاسة بالأمبيرمتر.",
+							question5b: "ب- هل يمكن استعمال المعيار C = 0,1A؟ علل.",
+							question5c: "ج- احسب شدة التيار الذي يجتاز المصباح L₁، علماً أن شدة التيار الذي يجتاز المصباح L₂ هي I₂ = 0,1A. أشر إلى القانون المستعمل.",
+							circuitDescription2: "نعتبر الدارة المقابلة حيث المصابيح الثلاثة متطابقة ذات توتر اسمي 4V لكل منها.",
+							question6: "مثل بسهام التوترات U<sub>AB</sub>, U<sub>AD</sub> و U<sub>DC</sub>.",
+							question7: "نقيس التوتر U<sub>AB</sub> بين مربطي المولد بالفولطمتر، نجد U<sub>AB</sub> = 10V",
+							question7a: "أ- التوتر بين مربطي المصباح L هو U<sub>AD</sub> = 4V. بتطبيق قانون العقد، احسب التوتر بين مربطي المصباح L₁, U<sub>DC</sub>.",
+							question7b: "ب- استنتج مبرراً الإجابة التوتر بين مربطي المصباح L₂.",
+							question8: "أي مصباح(مصابيح) يضيء(تضيء) عادياً؟",
+							showCorrection: "عرض التصحيح",
+							hideCorrection: "إخفاء التصحيح",
+							correctionTitle: "تصحيح الاختبار",
+							chemistryCorrection: "الكيمياء - التمرين رقم 1: التصحيح",
+							chemistryCorrection2: "الكيمياء - التمرين رقم 2: التصحيح",
+							physicsCorrection1: "الفيزياء - التمرين رقم 1: التصحيح",
+							physicsCorrection2: "الفيزياء - التمرين رقم 2: التصحيح",
+							correction1: "شحنة النواة: Q<sub>noyau</sub> = N.e مع N = عدد الإلكترونات = 19<br>Q<sub>noyau</sub> = 19 × 1,6.10<sup>-19</sup> = 30,4.10<sup>-19</sup> C",
+							correction2a: "أ- أيون البوتاسيوم كاتيون لأن الذرة فقدت إلكتروناً (شحنة موجبة).",
+							correction2b: "ب- الرمز: K<sup>+</sup>",
+							correction2c: "ج- شحنة الأيون: Q<sub>ion</sub> = +n.e = +1 × 1,6.10<sup>-19</sup> = +1,6.10<sup>-19</sup> C",
+							correction3a: "أ- صيغة أيون الكبريتات: SO<sub>4</sub><sup>2-</sup>",
+							correction3b: "ب- الصيغة الإحصائية: K<sub>2</sub>SO<sub>4</sub> (كبريتات البوتاسيوم)",
+							correction4a: "أ- القطب + على اليسار (A)، القطب - على اليمين (B) لأن التيار الاصطلاحي يخرج من القطب +.",
+							correction4b: "ب- عقد الدارة: D و C.",
+							correction5a: "أ- I = (L × C) / E = (80 × 0,3) / 100 = 0,24 A",
+							correction5b: "ب- لا، لأن I = 0,24 A > C = 0,1 A",
+							correction5c: "ج- قانون العقد عند العقدة C: I = I₁ + I₂<br>I₁ = I - I₂ = 0,24 - 0,1 = 0,14 A",
+							correction6: "أسهم التوترات موجهة من + إلى - لكل ثنائي قطب.",
+							correction7a: "أ- قانون العقد: U<sub>AB</sub> = U<sub>AD</sub> + U<sub>DC</sub><br>U<sub>DC</sub> = U<sub>AB</sub> - U<sub>AD</sub> = 10 - 4 = 6 V",
+							correction7b: "ب- L₁ و L₂ على التوازي، إذن U<sub>DC</sub> = التوتر بين مربطي L₂ = 6 V",
+							correction8: "المصابيح L₁ و L₂ تضيء عادياً (التوتر = 6V > 4V الاسمي)، المصباح L (U<sub>AD</sub> = 4V) يضيء عادياً.",
+							table: {
+								constituents: "مكونات الجزيئة",
+								formula: "الصيغة الكيميائية",
+								atomicity: "الذرية",
+								nature: "طبيعة الجسم (بسيط أو مركب)"
+							},
+							image5: {
+								caption: "دارة كهربائية مع مفتاح K ومصباحين"
+							},
+							image6: {
+								caption: "دارة بثلاثة مصابيح متطابقة"
+							},
+							image7: {
+								caption: "دارة مع أقطاب محددة واتجاه التيار"
+							},
+							image8: {
+								caption: "دارة مع توترات محددة"
+							},
+							download: {
+								pdf: "PDF",
+								odt: "ODT",
+								png: "PNG"
+							},
+							comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+						},
+						language: {
+							current: "العربية"
+						},
+						theme: {
+							toggle: "الوضع المظلم"
+						},
+						footer: {
+							developer: "المطور",
+							version: "الإصدار",
+							links: "الروابط",
+							terms: "شروط الاستخدام",
+							privacy: "سياسة الخصوصية"
+						}
+					}
+				}
+			};
+			
+			// Function to update text content
+			function updateTextContent() {
+				const elements = document.querySelectorAll('[data-i18n]');
+				
+				elements.forEach(element => {
+					const key = element.getAttribute('data-i18n');
+					let translation = null;
+					
+					const keys = key.split('.');
+					let current = TestsHub_translations[currentLanguage];
+					
+					for (const k of keys) {
+						if (current && current[k] !== undefined) {
+							current = current[k];
+							} else {
+							current = null;
+							break;
+						}
+					}
+					
+					translation = current;
+					
+					if (translation && typeof translation === 'string') {
+						// Handle HTML content with tags
+						if (translation.includes('<sub>') || translation.includes('<sup>') || translation.includes('<br>')) {
+							element.innerHTML = translation;
+							} else {
+							element.textContent = translation;
+						}
+					}
+				});
+				
+				updateThemeToggleText();
+				updateCorrectionButtonText();
+			}
+			
+			// Function to update theme toggle text
+			function updateThemeToggleText() {
+				const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+				const themeIcon = document.getElementById('themeIcon');
+				
+				if (themeToggle) {
+					if (isDarkTheme) {
+						if (currentLanguage === 'fr') {
+							themeToggle.textContent = "Mode Clair";
+							} else if (currentLanguage === 'ar') {
+							themeToggle.textContent = "الوضع الفاتح";
+							} else {
+							themeToggle.textContent = "Light Mode";
+						}
+						} else {
+						themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+					}
+				}
+				
+				if (themeIcon) {
+					themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+				}
+			}
+			
+			// Function to update correction button text
+			function updateCorrectionButtonText() {
+				const correctionButton = document.getElementById('toggleCorrection');
+				const correctionSection = document.getElementById('correction');
+				
+				if (correctionButton) {
+					if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+						correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection;
+						} else {
+						correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+					}
+				}
+			}
+			
+			// Function to toggle theme
+			function toggleTheme() {
+				isDarkTheme = !isDarkTheme;
+				const body = document.body;
+				
+				if (isDarkTheme) {
+					body.classList.add('Tests-Hub-dark-theme');
+					} else {
+					body.classList.remove('Tests-Hub-dark-theme');
+				}
+				
+				updateThemeToggleText();
+				localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+			}
+			
+			// Function to change language
+			function changeLanguage(lang) {
+				if (!TestsHub_translations[lang]) return;
+				
+				currentLanguage = lang;
+				updateTextContent();
+				
+				const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+				if (languageButton) {
+					languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+				}
+				
+				if (lang === 'ar') {
+					document.documentElement.dir = 'rtl';
+					document.documentElement.lang = 'ar';
+					} else {
+					document.documentElement.dir = 'ltr';
+					document.documentElement.lang = lang;
+				}
+				
+				localStorage.setItem('testsHubLanguage', lang);
+			}
+			
+			// Download functions
+			function downloadAsPDF() {
+				const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+				alert(comingSoonMsg);
+			}
+			
+			function downloadAsODT() {
+				const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+				alert(comingSoonMsg);
+			}
+			
+			function downloadAsPNG() {
+				const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+				alert(comingSoonMsg);
+			}
+			
+			// Initialize everything
+			document.addEventListener('DOMContentLoaded', function() {
+				// Load saved preferences
+				const savedTheme = localStorage.getItem('testsHubTheme');
+				if (savedTheme === 'dark') {
+					isDarkTheme = true;
+					document.body.classList.add('Tests-Hub-dark-theme');
+				}
+				
+				const savedLanguage = localStorage.getItem('testsHubLanguage');
+				if (savedLanguage && TestsHub_translations[savedLanguage]) {
+					currentLanguage = savedLanguage;
+				}
+				
+				if (currentLanguage === 'ar') {
+					document.documentElement.dir = 'rtl';
+					document.documentElement.lang = 'ar';
+				}
+				
+				updateTextContent();
+				
+				// Attach event listeners
+				const themeButton = document.getElementById('themeToggle');
+				if (themeButton) {
+					themeButton.addEventListener('click', toggleTheme);
+				}
+				
+				const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+				languageOptions.forEach(option => {
+					option.addEventListener('click', function() {
+						const lang = this.getAttribute('data-language');
+						changeLanguage(lang);
+					});
+				});
+				
+				// Download buttons event listeners
+				const pdfButton = document.getElementById('downloadPdf');
+				if (pdfButton) {
+					pdfButton.addEventListener('click', downloadAsPDF);
+				}
+				
+				const odtButton = document.getElementById('downloadOdt');
+				if (odtButton) {
+					odtButton.addEventListener('click', downloadAsODT);
+				}
+				
+				const pngButton = document.getElementById('downloadPng');
+				if (pngButton) {
+					pngButton.addEventListener('click', downloadAsPNG);
+				}
+				
+				// Correction toggle functionality
+				const correctionButton = document.getElementById('toggleCorrection');
+				if (correctionButton) {
+					correctionButton.addEventListener('click', function() {
+						const correctionSection = document.getElementById('correction');
+						if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+							correctionSection.classList.remove('Tests-Hub-hidden');
+							correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+							} else {
+							correctionSection.classList.add('Tests-Hub-hidden');
+							correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection;
+						}
+					});
+				}
+				
+				// Register service worker for PWA
+				if ('serviceWorker' in navigator) {
+					navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+					})
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
