@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Devoir de Synthèse N°1 - Français</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#DB2777">
+    <meta name="description" content="Devoir de Synthèse N°1 pour 1ère AS - Français">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Synthèse">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1f0a1a 0%, #2d0d24 100%);
+            color: #f0f0f0;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #DB2777, #EC4899);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #1f0a1a, #DB2777, #EC4899);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2d0d24;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3c112e;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #DB2777, #EC4899);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #1f0a1a, #DB2777);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #2d0d24;
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #DB2777;
+            border-bottom: 2px solid #EC4899;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #f472b6;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #EC4899;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #f9a8d4;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #fdf2f8;
+            padding: 1rem;
+            border-left: 4px solid #DB2777;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1f0a1a;
+            border-left-color: #EC4899;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #DB2777;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #1f0a1a;
+        }
+        
+        tr:nth-child(even) {
+            background: #fdf2f8;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #3c112e;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #4a1838;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #666;
+            background-color: #2d0d24;
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #DB2777;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #f472b6;
+        }
+        
+        .Tests-Hub-true-false {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .Tests-Hub-true-false input {
+            margin-right: 10px;
+        }
+        
+        .Tests-Hub-text-container {
+            background: #f9f9f9;
+            border-left: 4px solid #DB2777;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-container {
+            background: #3c112e;
+            border-left-color: #EC4899;
+        }
+        
+        .Tests-Hub-lexique {
+            background: #fdf2f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-lexique {
+            background: #1f0a1a;
+        }
+        
+        .Tests-Hub-lexique h4 {
+            color: #DB2777;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-lexique h4 {
+            color: #f472b6;
+        }
+        
+        .Tests-Hub-lexique p {
+            margin: 0.3rem 0;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #DB2777, #EC4899);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #fdf2f8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #DB2777;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #1f0a1a;
+            border-left-color: #EC4899;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #DB2777;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #f472b6;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(219, 39, 119, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #DB2777;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(244, 114, 182, 0.1);
+            border-left-color: #f472b6;
+        }
+        
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #ccc;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #DB2777, #EC4899);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #1f0a1a, #DB2777, #EC4899);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+                min-height: 100px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+        }
+        
+        /* Download Buttons Styles */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(219, 39, 119, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(31, 10, 26, 0.2), rgba(219, 39, 119, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+        }
+        
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive styles for download buttons */
+        @media (max-width: 768px) {
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+        }
+        
+        /* Force test content to be LTR (left-to-right) */
+        .Tests-Hub-main-container,
+        .Tests-Hub-test-section,
+        .Tests-Hub-text-container,
+        .Tests-Hub-lexique,
+        .Tests-Hub-correction-section,
+        .Tests-Hub-question,
+        .Tests-Hub-answer-textarea,
+        .Tests-Hub-table-textarea,
+        .Tests-Hub-large-textarea,
+        table {
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.synthesisTest.title">Français - Devoir de Synthèse</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.synthesisTest.subtitle">1ère Année Secondaire</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.synthesisTest.back">Retour aux Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">Français</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1>Devoir de Synthèse N°1 de Français</h1>
+            <p>Lycée Eiffabi</p>
+            <p>Classe : 1ère AS - Professeur : Mr Nasri</p>
+            <p>Durée : 2h</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>Instructions générales</h3>
+            <ul>
+                <li>Le sujet comporte trois parties : Compréhension, Langue et Essai</li>
+                <li>La qualité de l'expression écrite et la clarté des réponses seront prises en compte</li>
+                <li>Relisez attentivement vos réponses avant de rendre votre copie</li>
+            </ul>
+        </div>
+        
+        <!-- Texte -->
+        <div class="Tests-Hub-test-section">
+            <h2>Texte : A Paris (Illusions perdues, H. Balzac)</h2>
+            
+            <div class="Tests-Hub-text-container">
+                <p>Pendant sa première promenade à travers les rues de Paris, Lucien, comme tous les nouveaux venus, s'occupait beaucoup plus de choses que de personnes.</p>
+                <p>A Paris, ce qui attirait l'attention, le luxe des boutiques, la hauteur des maisons. Dans les immeubles neufs, de l'autre côté, des fenêtres pareilles à des yeux éteints, les gens vivaient à peine, cachés par l'écran de leurs postes de télévisions. Ils ne voient pas la lumière… Dans les cellules de leurs appartements fermés, les adultes ne savent pas ce qui se passe dehors, ils ne veulent pas le savoir. Comment pourraient-ils le savoir et ils sont prisonniers du plâtre et de la pierre ; le ciment a envahi leurs cœurs, a handicapé leurs esprits.</p>
+                <p>Surpris à cette foule, à ce mode de vie froid auquel il était étranger, cet homme d'imagination éprouva une immense diminution de lui-même : il n'y a pas de place pour le rêve, il sent une perte totale de sa valeur…</p>
+                <p>Être quelque chose dans son village et n'être rien à Paris ! Lucien tombe dans une espèce d'anéantissement : pour un jeune poète comme lui, Paris allait être un affreux désert. Malgré la rapidité, le tournoiement parisien, c'était le vide au fond de lui. Lucien maudissait le hasard qui l'avait conduit à Paris !</p>
+            </div>
+            
+            <div class="Tests-Hub-lexique">
+                <h4>Lexique :</h4>
+                <p><strong>1-anéantissement</strong> : destruction, écrasement.</p>
+                <p><strong>2-affreux</strong> : terrible, horrible.</p>
+                <p><strong>3-tournoiement</strong> : action de tourner rapidement sur soi-même.</p>
+                <p><strong>4-maudissait</strong> : condamner, haïr.</p>
+            </div>
+        </div>
+        
+        <!-- Partie I : Compréhension -->
+        <div class="Tests-Hub-test-section">
+            <h2>I- Compréhension</h2>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> Explique le rapport entre la première et la dernière phrase du texte ?</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre réponse ici..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> Relève les indices qui montrent que Lucien n'est pas un homme ordinaire.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre réponse ici..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3-</span> Quels sont les procédés d'écriture mis en relief pour montrer la vie médiocre et la situation critique des parisiens dans leur ville ?</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre réponse ici..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4-</span> Explique davantage la phrase du texte : « Être quelque chose dans son village et n'être rien à Paris. »</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre réponse ici..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Partie II : Langue -->
+        <div class="Tests-Hub-test-section">
+            <h2>II- Langue</h2>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> Transforme les phrases suivantes en phrases complexes :</p>
+                <p>a) Dès son arrivée à la ville, la vie parisienne exerce sur lui une sorte d'attraction.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre phrase complexe ici..."></textarea>
+                <p>b) Après son départ de Paris, l'imagination de Lucien devient de plus en plus fertile.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre phrase complexe ici..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> Trouve les noms des verbes suivants :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Verbe</th>
+                            <th>Nom correspondant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Diminuer</td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Nom..."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Imaginer</td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Nom..."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Savoir</td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Nom..."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Anéantir</td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Nom..."></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3-</span> Emploie le verbe d'état adéquat :</p>
+                <p>Paris ……………………………… la destination des touristes malgré l'émergence des nouvelles Villes célèbres. Elle …………………… la ville des lumières. Pour ses visiteurs, elle …………………… un lieu de rêve, pour ces habitants, elle …………………… une simple prison.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Complétez avec les verbes d'état..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4-</span> Remplace les mots soulignés par des adjectifs :</p>
+                <p>Paris du jour diffère de Paris de nuit.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre phrase avec adjectifs..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">5-</span> Conjugue convenablement les verbes entre parenthèses :</p>
+                <p>Au XXème siècle, le narrateur …………………… (trouver) la ville de Paris différente de celle que les voyageurs …………………… (découvrir) auparavant.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Phrase conjuguée..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Partie III : Essai -->
+        <div class="Tests-Hub-test-section">
+            <h2>III- Essai</h2>
+            
+            <div class="Tests-Hub-question">
+                <p>Tu as eu la chance de visiter Tunis pour la première fois. Tu as été obligé de passer quelques jours. Tu t'es trouvé émerveillé de l'architecture de la ville et du mode de vie de tunisois et déçu de la froideur et du manque d'affection de ces habitants.</p>
+                <p>Décris la ville et exprime ces sentiments opposés.</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height: 200px;" placeholder="Votre essai ici... (200-250 mots)"></textarea>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>Correction du devoir</h2>
+            
+            <h3>Partie I : Compréhension - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1-</span> <strong>Correction :</strong> La première phrase montre Lucien comme un nouvel arrivant à Paris qui observe davantage les choses que les personnes. La dernière phrase exprime son regret d'être venu à Paris. Le rapport est une évolution : de l'observation initiale au regret final, montrant la déception de Lucien face à Paris.</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> La première et dernière phrase d'un texte créent souvent un effet de boucle. Ici, on passe de la curiosité initiale au regret final, ce qui renforce le sentiment d'échec de Lucien à Paris.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2-</span> <strong>Correction :</strong> Les indices montrant que Lucien n'est pas un homme ordinaire sont : "homme d'imagination", "jeune poète", "il sent une perte totale de sa valeur", "il n'y a pas de place pour le rêve". Ces expressions montrent qu'il est sensible, créatif et qu'il a une vision particulière du monde, différente des Parisiens qu'il décrit comme prisonniers de leur routine.</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Pour repérer qu'un personnage n'est pas ordinaire, cherchez les mots qui indiquent une sensibilité particulière, une profession artistique, ou des sentiments intenses. Ici, "poète" et "imagination" sont des mots-clés.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3-</span> <strong>Correction :</strong> Les procédés d'écriture utilisés sont :<br>
+                1. <strong>La métaphore</strong> : "fenêtres pareilles à des yeux éteints" (comparaison des fenêtres à des yeux sans vie).<br>
+                2. <strong>L'hyperbole</strong> : "le ciment a envahi leurs cœurs" (exagération pour montrer la dureté des Parisiens).<br>
+                3. <strong>L'antithèse</strong> : "Être quelque chose dans son village et n'être rien à Paris" (opposition entre deux situations).<br>
+                4. <strong>L'énumération</strong> : "prisonniers du plâtre et de la pierre ; le ciment a envahi leurs cœurs, a handicapé leurs esprits" (accumulation pour renforcer l'idée).<br>
+                5. <strong>La personnification</strong> : "le ciment a envahi leurs cœurs" (donner une action humaine à un matériau).</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Les procédés d'écriture sont des techniques que les auteurs utilisent pour rendre leur texte plus expressif. Apprenez à reconnaître les plus courants : comparaison, métaphore, hyperbole, antithèse, énumération.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4-</span> <strong>Correction :</strong> Cette phrase exprime le contraste entre la vie de province et la vie parisienne. Dans son village, Lucien était reconnu, important (quelque chose). À Paris, immense et impersonnelle, il devient anonyme, insignifiant (rien). Cette antithèse montre le sentiment d'écrasement et de perte d'identité que peut provoquer la grande ville sur un provincial.</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Une antithèse est une figure de style qui oppose deux termes ou deux idées. Ici, "quelque chose" s'oppose à "rien". Cette opposition renforce l'idée du choc entre la vie provinciale et la vie parisienne.</p>
+            </div>
+            
+            <h3>Partie II : Langue - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1-</span> <strong>Correction :</strong><br>
+                a) <strong>Phrase complexe :</strong> "Dès qu'il est arrivé à la ville, la vie parisienne exerce sur lui une sorte d'attraction." (transformation en subordonnée temporelle).<br>
+                b) <strong>Phrase complexe :</strong> "Après qu'il est parti de Paris, l'imagination de Lucien devient de plus en plus fertile." (transformation en subordonnée temporelle).</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Une phrase complexe contient au moins deux verbes conjugués. Pour transformer une phrase simple en phrase complexe, on peut ajouter une subordonnée (introduite par que, quand, si, etc.).</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2-</span> <strong>Correction :</strong><br>
+                <strong>Diminuer</strong> → diminution<br>
+                <strong>Imaginer</strong> → imagination<br>
+                <strong>Savoir</strong> → savoir (le mot reste le même) / connaissance<br>
+                <strong>Anéantir</strong> → anéantissement</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Pour trouver le nom correspondant à un verbe, cherchez souvent la terminaison : -tion, -ment, -age, -ure. Par exemple : diminuer → diminution (terminaison -tion).</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3-</span> <strong>Correction :</strong><br>
+                Paris <strong>reste</strong> la destination des touristes malgré l'émergence des nouvelles Villes célèbres. Elle <strong>est</strong> la ville des lumières. Pour ses visiteurs, elle <strong>reste</strong> un lieu de rêve, pour ces habitants, elle <strong>est</strong> une simple prison.</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Les verbes d'état (être, paraître, sembler, devenir, rester, avoir l'air, passer pour...) expriment un état, une qualité, une manière d'être. Ils sont suivis d'un attribut du sujet. "Être" est le verbe d'état le plus courant.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4-</span> <strong>Correction :</strong><br>
+                Paris <strong>diurne</strong> diffère de Paris <strong>nocturne</strong>.<br>
+                Ou : Le Paris <strong>du jour</strong> diffère du Paris <strong>de la nuit</strong>. (Dans ce cas, "du jour" et "de la nuit" sont des compléments du nom, pas des adjectifs).<br>
+                <strong>Meilleure réponse avec adjectifs :</strong> Paris <strong>diurne</strong> diffère de Paris <strong>nocturne</strong>.</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Un adjectif qualificatif s'accorde en genre et en nombre avec le nom qu'il qualifie. "Diurne" et "nocturne" sont des adjectifs qui correspondent à "du jour" et "de la nuit".</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">5-</span> <strong>Correction :</strong><br>
+                Au XXème siècle, le narrateur <strong>trouvait</strong> la ville de Paris différente de celle que les voyageurs <strong>découvraient</strong> auparavant.<br>
+                <strong>Explication :</strong> L'imparfait est utilisé pour décrire une situation dans le passé, une habitude, ou une action en cours dans le passé.</p>
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> L'imparfait (terminaisons : -ais, -ais, -ait, -ions, -iez, -aient) est utilisé pour décrire dans le passé. Ici, on décrit comment le narrateur voyait Paris au XXème siècle.</p>
+            </div>
+            
+            <h3>Partie III : Essai - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>Correction modèle :</strong><br>
+                Ma première visite à Tunis fut une expérience contrastée qui m'a laissé des impressions mêlées. Dès mon arrivée, j'ai été immédiatement frappé par la beauté architecturale de la ville. La Médina, avec ses ruelles étroites et ses maisons blanches aux portes bleues, m'a semblé tout droit sortie d'un conte des Mille et Une Nuits. Les coupoles des mosquées et les minarets qui se dressaient vers le ciel créaient une silhouette envoûtante, surtout au coucher du soleil.</p>
+                
+                <p>J'ai également été séduit par le mode de vie des Tunisiens, apparent dans les cafés où les hommes jouent aux dominos en sirotant du thé à la menthe, ou dans les souks animés où les marchands proposent leurs produits avec une énergie communicative. La convivialité semblait régner dans ces espaces publics où les rires et les conversations créaient une atmosphère chaleureuse.</p>
+                
+                <p>Pourtant, cette première impression favorable a été tempérée par une certaine déception. En fréquentant davantage la ville, j'ai remarqué une froideur surprenante chez certains habitants. Dans les transactions quotidiennes, au marché ou dans les transports, les interactions semblaient souvent mécaniques, dépourvues de cette chaleur humaine que j'avais imaginée. Le manque d'affection apparent, cette réserve parfois interprétée comme de l'indifférence, contrastait fortement avec l'accueil traditionnellement chaleureux qu'on attribue aux sociétés méditerranéennes.</p>
+                
+                <p>Ce paradoxe entre la beauté architecturale et la froideur relationnelle a caractérisé mon séjour à Tunis. La ville m'est apparue comme un joyau architectural dont la splendeur contrastait avec la réserve de certains de ses habitants, créant une expérience à la fois envoûtante et déconcertante.</p>
+                
+                <p class="Tests-Hub-correction-note"><strong>Note :</strong> Un bon essai doit avoir : 1) Une introduction qui présente le sujet, 2) Un développement organisé en paragraphes (un par idée principale), 3) Une conclusion qui fait le bilan. Utilisez des connecteurs logiques (pourtant, cependant, en revanche) pour articuler vos idées.</p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span>PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span>ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span>PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.0.6</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for Synthesis Test page
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            fr: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "Français - Devoir de Synthèse",
+                        subtitle: "1ère Année Secondaire",
+                        back: "Retour aux Tests",
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "French - Synthesis Test",
+                        subtitle: "1st Year Secondary School",
+                        back: "Back to Tests",
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "الفرنسية - اختبار تأليفي",
+                        subtitle: "السنة الأولى ثانوي",
+                        back: "العودة للاختبارات",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content (only for header and footer)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language (only affects header and footer)
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            // Set RTL only for header and footer, not for test content
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = "Masquer la correction";
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = "Afficher la correction";
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

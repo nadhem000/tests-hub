@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Technology Test N°1 - 1st Trimester</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0EA5E9">
+    <meta name="description" content="Technology test for 1st year secondary school - 1st Trimester">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Technology Test">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+            color: #e6e6e6;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0EA5E9, #38BDF8);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0369a1, #0EA5E9, #38BDF8);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #0c4a6e;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #075985;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #0EA5E9, #38BDF8);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0369a1, #0EA5E9);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #0c4a6e;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #0EA5E9;
+            border-bottom: 2px solid #38BDF8;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #38BDF8;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #38BDF8;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #7DD3FC;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #f0f9ff;
+            padding: 1rem;
+            border-left: 4px solid #0EA5E9;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0369a1;
+            border-left-color: #38BDF8;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #0EA5E9;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #0369a1;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #075985;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #0c4a6e;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #666;
+            background-color: #0c4a6e;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #0EA5E9;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #38BDF8;
+        }
+        
+        .Tests-Hub-true-false {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .Tests-Hub-true-false input {
+            margin-right: 10px;
+        }
+        
+        .Tests-Hub-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: #075985;
+        }
+        
+        .Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #bdc3c7;
+        }
+        
+        /* Dropdown styling */
+        .Tests-Hub-dropdown {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            margin: 0 3px;
+            vertical-align: middle;
+            background-color: white;
+            color: #333;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-dropdown {
+            border-color: #666;
+            background-color: #0c4a6e;
+            color: #e6e6e6;
+        }
+        
+        /* Exercise styling */
+        .Tests-Hub-exercise {
+            margin: 1.5rem 0;
+        }
+        
+        .Tests-Hub-exercise p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #0EA5E9, #38BDF8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #f0f9ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #0284c7;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0369a1;
+            border-left-color: #0EA5E9;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #0284c7;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #0EA5E9;
+        }
+        
+        .Tests-Hub-formula {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-formula {
+            background: #0c4a6e;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0EA5E9, #38BDF8);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0369a1, #0EA5E9, #38BDF8);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #F97316;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #F97316;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F97316;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #F97316;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+                min-height: 50px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-dropdown {
+                min-width: 100px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-dropdown {
+                min-width: 80px;
+                font-size: 11px;
+                padding: 3px;
+            }
+        }
+        
+        /* Download Buttons Styles */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(14, 165, 233, 0.1), rgba(56, 189, 248, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(3, 105, 161, 0.2), rgba(14, 165, 233, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+        }
+        
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        }
+        
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive styles for download buttons */
+        @media (max-width: 768px) {
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.technologyTest.title">التكنولوجيا - الثلاثي الأول</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.technologyTest.subtitle">التاسعة أساسي</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.technologyTest.back">العودة لاختبارات التكنولوجيا</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1 data-i18n="TestsHub.technologyTest.testTitle">اختبار المراقبة رقم 1 في التكنولوجيا</h1>
+            <p data-i18n="TestsHub.technologyTest.schoolYear">المدرسة الإعدادية بالمنار - 2013/2014</p>
+            <p data-i18n="TestsHub.technologyTest.classTeacher">الصف: التاسعة أساسي - الأستاذ: أحمد بن بلقاسم</p>
+        </div>
+        
+        <!-- Introduction -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3 data-i18n="TestsHub.technologyTest.introduction.title">مقدمة</h3>
+            <p data-i18n="TestsHub.technologyTest.introduction.text1">
+                مازالت الرسالة في عصرنا الحالي عنصرا مهما للتواصل على الرغم من شيوع استعمال الهاتف الفاكس البريد الالكتروني الإرسال المرئي...... غير أنه يتعثر في بعض الأحيان استقبال الرسالة في الوقت المناسب بسبب تلفها أو نسيان التردد على علبة الرسائل و يصبح الأمر أكثر تعقيداً إذا كانت الرسالة ذات أهمية الشيء الذي أدى إلى بروز حاجة ملحة للكشف عن حضور أي خطاب بمجرد وصوله.
+            </p>
+            <p data-i18n="TestsHub.technologyTest.introduction.text2">
+                أثناء مرحلة دراسة امكانية الانجاز، أرادت مؤسسة صناعية مختصة في الأجهزة الالكترونية تحرير كراس الشروط الوظيفي: استنتجها المبتكر الجديد "كاشف حضور الرسائل" والذي يمكن مستعمله من الكشف عن حضور أي خطاب بمجرد وصوله.
+            </p>
+        </div>
+        
+        <!-- Exercise 1 -->
+        <div class="Tests-Hub-test-section">
+            <h2 data-i18n="TestsHub.technologyTest.exercise1.title">التمرين 1: كراس الشروط الوظيفي (5 نقاط)</h2>
+            
+            <div class="Tests-Hub-exercise">
+                <p data-i18n="TestsHub.technologyTest.exercise1.productLabel">المنتج:</p>
+                <p>
+                    <select class="Tests-Hub-dropdown" id="product">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="كاشف حضور الرسائل">كاشف حضور الرسائل</option>
+                        <option value="جهاز الإنذار">جهاز الإنذار</option>
+                        <option value="مستقبل الإشارة">مستقبل الإشارة</option>
+                        <option value="حساس الباب">حساس الباب</option>
+                    </select>
+                    <span data-i18n="TestsHub.technologyTest.exercise1.points">(2.5 نقاط)</span>
+                </p>
+                
+                <p data-i18n="TestsHub.technologyTest.exercise1.paragraph1.label">1. يندرج هذا</p>
+                <p>
+                    <select class="Tests-Hub-dropdown" id="p1_1">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="المشروع">المشروع</option>
+                        <option value="المنتج">المنتج</option>
+                        <option value="الجهاز">الجهاز</option>
+                        <option value="النظام">النظام</option>
+                    </select>
+                    في إطار
+                    <select class="Tests-Hub-dropdown" id="p1_2">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="تصنيع">تصنيع</option>
+                        <option value="تطوير">تطوير</option>
+                        <option value="بحث">بحث</option>
+                        <option value="تركيب">تركيب</option>
+                    </select>
+                    المنتج
+                    <select class="Tests-Hub-dropdown" id="p1_3">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="الجديد">الجديد</option>
+                        <option value="المبتكر">المبتكر</option>
+                        <option value="المطوّر">المطوّر</option>
+                        <option value="المعدّل">المعدّل</option>
+                    </select>
+                    حتى يلبي حاجة
+                    <select class="Tests-Hub-dropdown" id="p1_4">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="المستعمل">المستعمل</option>
+                        <option value="المستهلك">المستهلك</option>
+                        <option value="الزبون">الزبون</option>
+                        <option value="المستخدم">المستخدم</option>
+                    </select>
+                    فيمكنه من
+                    <select class="Tests-Hub-dropdown" id="p1_5">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="الكشف">الكشف</option>
+                        <option value="التحسس">التحسس</option>
+                        <option value="المراقبة">المراقبة</option>
+                        <option value="الرصد">الرصد</option>
+                    </select>
+                    عن حضور أي خطاب بمجرد وصوله.
+                </p>
+                
+                <p data-i18n="TestsHub.technologyTest.exercise1.paragraph2.label">2.</p>
+                <p>
+                    <select class="Tests-Hub-dropdown" id="p2_1">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="العرض">العرض</option>
+                        <option value="الطلب">الطلب</option>
+                        <option value="المنافسة">المنافسة</option>
+                        <option value="السوق">السوق</option>
+                    </select>
+                    -: من خلال
+                    <select class="Tests-Hub-dropdown" id="p2_2">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="البحث">البحث</option>
+                        <option value="الدراسة">الدراسة</option>
+                        <option value="التحليل">التحليل</option>
+                        <option value="الاستقصاء">الاستقصاء</option>
+                    </select>
+                    الميداني الذي أجرته
+                    <select class="Tests-Hub-dropdown" id="p2_3">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="المؤسسة الصناعية">المؤسسة الصناعية</option>
+                        <option value="الشركة المصنعة">الشركة المصنعة</option>
+                        <option value="المعمل الإلكتروني">المعمل الإلكتروني</option>
+                        <option value="مركز الأبحاث">مركز الأبحاث</option>
+                    </select>
+                    تبيّن أن المنتجات المماثلة غير متوفّرة في
+                    <select class="Tests-Hub-dropdown" id="p2_4">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="الأسواق">الأسواق</option>
+                        <option value="المتاجر">المتاجر</option>
+                        <option value="المحلات">المحلات</option>
+                        <option value="المراكز">المراكز</option>
+                    </select>
+                    الداخلية وإن وجدت في الأسواق
+                    <select class="Tests-Hub-dropdown" id="p2_5">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="الخارجية">الخارجية</option>
+                        <option value="الأجنبية">الأجنبية</option>
+                        <option value="العالمية">العالمية</option>
+                        <option value="الدولية">الدولية</option>
+                    </select>
+                    فهي باهظة.
+                </p>
+                
+                <p data-i18n="TestsHub.technologyTest.exercise1.paragraph3.label">3. يصنع</p>
+                <p>
+                    <select class="Tests-Hub-dropdown" id="p3_1">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="كاشف حضور الرسائل">كاشف حضور الرسائل</option>
+                        <option value="كاشف البريد">كاشف البريد</option>
+                        <option value="نظام الإنذار">نظام الإنذار</option>
+                        <option value="جهاز الاستشعار">جهاز الاستشعار</option>
+                    </select>
+                    ويركّب في
+                    <select class="Tests-Hub-dropdown" id="p3_2">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="المؤسسة الصناعية المختصّة">المؤسسة الصناعية المختصّة</option>
+                        <option value="الورشة الإلكترونية">الورشة الإلكترونية</option>
+                        <option value="معمل التجميع">معمل التجميع</option>
+                        <option value="مركز التصنيع">مركز التصنيع</option>
+                    </select>
+                    مع الحرص على
+                    <select class="Tests-Hub-dropdown" id="p3_3">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="الضغط">الضغط</option>
+                        <option value="التحكم">التحكم</option>
+                        <option value="التقليل">التقليل</option>
+                        <option value="الحد">الحد</option>
+                    </select>
+                    على التكلفة و
+                    <select class="Tests-Hub-dropdown" id="p3_4">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="تحسين">تحسين</option>
+                        <option value="تطوير">تطوير</option>
+                        <option value="رفع">رفع</option>
+                        <option value="ضمان">ضمان</option>
+                    </select>
+                    الجودة والتسليم في الآجال
+                    <select class="Tests-Hub-dropdown" id="p3_5">
+                        <option value="" disabled selected>اختر الإجابة</option>
+                        <option value="المحددة">المحددة</option>
+                        <option value="المقررة">المقررة</option>
+                        <option value="المتعاقد عليها">المتعاقد عليها</option>
+                        <option value="المتفق عليها">المتفق عليها</option>
+                    </select>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.technologyTest.showCorrection">عرض التصحيح</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2 data-i18n="TestsHub.technologyTest.correctionTitle">تصحيح الاختبار</h2>
+            
+            <div class="Tests-Hub-test-section">
+                <h3 data-i18n="TestsHub.technologyTest.correction.exercise1.title">تصحيح التمرين 1: كراس الشروط الوظيفي</h3>
+                
+                <div class="Tests-Hub-exercise">
+                    <p><strong data-i18n="TestsHub.technologyTest.correction.exercise1.productLabel">المنتج:</strong> <strong>كاشف حضور الرسائل</strong> (2.5 نقاط)</p>
+                    
+                    <p data-i18n="TestsHub.technologyTest.correction.exercise1.paragraph1">
+                        1. يندرج هذا <strong>المشروع</strong> في إطار <strong>تصنيع</strong> المنتج <strong>الجديد</strong> حتى يلبي حاجة <strong>المستعمل</strong> فيمكنه من <strong>الكشف</strong> عن حضور أي خطاب بمجرد وصوله.
+                    </p>
+                    
+                    <p data-i18n="TestsHub.technologyTest.correction.exercise1.paragraph2">
+                        2. <strong>العرض</strong> -: من خلال <strong>البحث</strong> الميداني الذي أجرته <strong>المؤسسة الصناعية</strong> تبيّن أن المنتجات المماثلة غير متوفّرة في <strong>الأسواق</strong> الداخلية وإن وجدت في الأسواق <strong>الخارجية</strong> فهي باهظة.
+                    </p>
+                    
+                    <p data-i18n="TestsHub.technologyTest.correction.exercise1.paragraph3">
+                        3. يصنع <strong>كاشف حضور الرسائل</strong> ويركّب في <strong>المؤسسة الصناعية المختصّة</strong> مع الحرص على <strong>الضغط</strong> على التكلفة و <strong>تحسين</strong> الجودة والتسليم في الآجال <strong>المحددة</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.technologyTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.technologyTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.technologyTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for Technology Test page
+        let currentLanguage = 'ar'; // Default to Arabic since test is in Arabic
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            en: {
+                TestsHub: {
+                    technologyTest: {
+                        title: "Technology - 1st Trimester",
+                        subtitle: "9th Grade",
+                        back: "Back to Technology Tests",
+                        testTitle: "Test Control N°1 of Technology",
+                        schoolYear: "Al-Manar Preparatory School - 2013/2014",
+                        classTeacher: "Class: 9th Grade - Teacher: Ahmed Ben Belqassem",
+                        introduction: {
+                            title: "Introduction",
+                            text1: "The message remains an important element of communication in our time despite the widespread use of telephone, fax, email, video transmission... However, sometimes receiving the message in a timely manner is hindered due to its damage or forgetting to check the mailbox, and the matter becomes more complicated if the message is important, which led to an urgent need to detect the presence of any mail as soon as it arrives.",
+                            text2: "During the feasibility study phase, an industrial company specialized in electronic devices wanted to prepare the functional specifications booklet: the new innovator 'message presence detector' which allows its user to detect the presence of any mail as soon as it arrives."
+                        },
+                        exercise1: {
+                            title: "Exercise 1: Functional Specifications Booklet (5 points)",
+                            productLabel: "Product:",
+                            points: "(2.5 points)",
+                            paragraph1: {
+                                label: "1. This"
+                            },
+                            paragraph2: {
+                                label: "2."
+                            },
+                            paragraph3: {
+                                label: "3. Manufacture"
+                            }
+                        },
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        correctionTitle: "Test Correction",
+                        correction: {
+                            exercise1: {
+                                title: "Correction of Exercise 1: Functional Specifications Booklet",
+                                productLabel: "Product:",
+                                paragraph1: "1. This <strong>project</strong> falls within the framework of <strong>manufacturing</strong> the <strong>new</strong> product to meet the needs of the <strong>user</strong> enabling him to <strong>detect</strong> the presence of any mail as soon as it arrives.",
+                                paragraph2: "2. <strong>Offer</strong> -: Through the <strong>field research</strong> conducted by the <strong>industrial company</strong>, it was found that similar products are not available in the <strong>domestic</strong> markets and if found in <strong>foreign</strong> markets, they are expensive.",
+                                paragraph3: "3. The <strong>message presence detector</strong> is manufactured and assembled in the <strong>specialized industrial company</strong> with care to <strong>reduce</strong> costs and <strong>improve</strong> quality and delivery within the <strong>specified</strong> deadlines."
+                            }
+                        },
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    technologyTest: {
+                        title: "Technologie - 1er Trimestre",
+                        subtitle: "9ème année",
+                        back: "Retour aux Tests de Technologie",
+                        testTitle: "Devoir Contrôle N°1 de Technologie",
+                        schoolYear: "École préparatoire Al-Manar - 2013/2014",
+                        classTeacher: "Classe : 9ème année - Professeur : Ahmed Ben Belqassem",
+                        introduction: {
+                            title: "Introduction",
+                            text1: "Le message reste un élément important de communication à notre époque malgré l'utilisation généralisée du téléphone, du fax, du courrier électronique, de la transmission vidéo... Cependant, il arrive parfois que la réception du message en temps opportun soit entravée en raison de sa détérioration ou de l'oubli de vérifier la boîte aux lettres, et la chose devient plus compliquée si le message est important, ce qui a conduit à un besoin urgent de détecter la présence de tout courrier dès son arrivée.",
+                            text2: "Lors de la phase d'étude de faisabilité, une entreprise industrielle spécialisée dans les appareils électroniques a voulu préparer le cahier des charges fonctionnel : le nouvel innovateur 'détecteur de présence de messages' qui permet à son utilisateur de détecter la présence de tout courrier dès son arrivée."
+                        },
+                        exercise1: {
+                            title: "Exercice 1 : Cahier des charges fonctionnel (5 points)",
+                            productLabel: "Produit :",
+                            points: "(2,5 points)",
+                            paragraph1: {
+                                label: "1. Ce"
+                            },
+                            paragraph2: {
+                                label: "2."
+                            },
+                            paragraph3: {
+                                label: "3. Fabrique"
+                            }
+                        },
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        correctionTitle: "Correction du test",
+                        correction: {
+                            exercise1: {
+                                title: "Correction de l'exercice 1 : Cahier des charges fonctionnel",
+                                productLabel: "Produit :",
+                                paragraph1: "1. Ce <strong>projet</strong> s'inscrit dans le cadre de la <strong>fabrication</strong> du produit <strong>nouveau</strong> pour répondre aux besoins de l'<strong>utilisateur</strong> en lui permettant de <strong>détecter</strong> la présence de tout courrier dès son arrivée.",
+                                paragraph2: "2. <strong>Offre</strong> - : Grâce à la <strong>recherche sur le terrain</strong> menée par l'<strong>entreprise industrielle</strong>, il a été constaté que les produits similaires ne sont pas disponibles sur les marchés <strong>intérieurs</strong> et si on les trouve sur les marchés <strong>extérieurs</strong>, ils sont coûteux.",
+                                paragraph3: "3. Le <strong>détecteur de présence de messages</strong> est fabriqué et assemblé dans l'<strong>entreprise industrielle spécialisée</strong> en veillant à <strong>réduire</strong> les coûts et à <strong>améliorer</strong> la qualité et la livraison dans les délais <strong>prévus</strong>."
+                            }
+                        },
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    technologyTest: {
+                        title: "التكنولوجيا - الثلاثي الأول",
+                        subtitle: "التاسعة أساسي",
+                        back: "العودة لاختبارات التكنولوجيا",
+                        testTitle: "اختبار المراقبة رقم 1 في التكنولوجيا",
+                        schoolYear: "المدرسة الإعدادية بالمنار - 2013/2014",
+                        classTeacher: "الصف: التاسعة أساسي - الأستاذ: أحمد بن بلقاسم",
+                        introduction: {
+                            title: "مقدمة",
+                            text1: "مازالت الرسالة في عصرنا الحالي عنصرا مهما للتواصل على الرغم من شيوع استعمال الهاتف الفاكس البريد الالكتروني الإرسال المرئي...... غير أنه يتعثر في بعض الأحيان استقبال الرسالة في الوقت المناسب بسبب تلفها أو نسيان التردد على علبة الرسائل و يصبح الأمر أكثر تعقيداً إذا كانت الرسالة ذات أهمية الشيء الذي أدى إلى بروز حاجة ملحة للكشف عن حضور أي خطاب بمجرد وصوله.",
+                            text2: "أثناء مرحلة دراسة امكانية الانجاز، أرادت مؤسسة صناعية مختصة في الأجهزة الالكترونية تحرير كراس الشروط الوظيفي: استنتجها المبتكر الجديد 'كاشف حضور الرسائل' والذي يمكن مستعمله من الكشف عن حضور أي خطاب بمجرد وصوله."
+                        },
+                        exercise1: {
+                            title: "التمرين 1: كراس الشروط الوظيفي (5 نقاط)",
+                            productLabel: "المنتج:",
+                            points: "(2.5 نقاط)",
+                            paragraph1: {
+                                label: "1. يندرج هذا"
+                            },
+                            paragraph2: {
+                                label: "2."
+                            },
+                            paragraph3: {
+                                label: "3. يصنع"
+                            }
+                        },
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        correctionTitle: "تصحيح الاختبار",
+                        correction: {
+                            exercise1: {
+                                title: "تصحيح التمرين 1: كراس الشروط الوظيفي",
+                                productLabel: "المنتج:",
+                                paragraph1: "1. يندرج هذا <strong>المشروع</strong> في إطار <strong>تصنيع</strong> المنتج <strong>الجديد</strong> حتى يلبي حاجة <strong>المستعمل</strong> فيمكنه من <strong>الكشف</strong> عن حضور أي خطاب بمجرد وصوله.",
+                                paragraph2: "2. <strong>العرض</strong> -: من خلال <strong>البحث</strong> الميداني الذي أجرته <strong>المؤسسة الصناعية</strong> تبيّن أن المنتجات المماثلة غير متوفّرة في <strong>الأسواق</strong> الداخلية وإن وجدت في الأسواق <strong>الخارجية</strong> فهي باهظة.",
+                                paragraph3: "3. يصنع <strong>كاشف حضور الرسائل</strong> ويركّب في <strong>المؤسسة الصناعية المختصّة</strong> مع الحرص على <strong>الضغط</strong> على التكلفة و <strong>تحسين</strong> الجودة والتسليم في الآجال <strong>المحددة</strong>."
+                            }
+                        },
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    // Handle HTML content with tags
+                    if (translation.includes('<strong>')) {
+                        element.innerHTML = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.technologyTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.technologyTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.technologyTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.technologyTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.technologyTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.technologyTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.technologyTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered:', registration);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

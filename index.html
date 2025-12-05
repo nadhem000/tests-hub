@@ -249,55 +249,6 @@
             }
         }
         
-        .Tests-Hub-install-modal-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            color: #3CA55C;
-        }
-        
-        .Tests-Hub-install-modal-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 1.5rem;
-        }
-        
-        .Tests-Hub-install-modal-button {
-            flex: 1;
-            padding: 0.8rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .Tests-Hub-install-modal-button.primary {
-            background: #3CA55C;
-            color: white;
-        }
-        
-        .Tests-Hub-install-modal-button.primary:hover {
-            background: #349852;
-        }
-        
-        .Tests-Hub-install-modal-button.secondary {
-            background: #e0e0e0;
-            color: #333;
-        }
-        
-        .dark-theme .Tests-Hub-install-modal-button.secondary {
-            background: #34495e;
-            color: #e6e6e6;
-        }
-        
-        .Tests-Hub-install-modal-button.secondary:hover {
-            background: #d0d0d0;
-        }
-        
-        .dark-theme .Tests-Hub-install-modal-button.secondary:hover {
-            background: #3d566e;
-        }
-        
         /* PWA Status Badge */
         .Tests-Hub-pwa-status {
             position: fixed;
@@ -325,43 +276,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-        
-        .Tests-Hub-pwa-status.online {
-            background: #3CA55C;
-        }
-        
-        .Tests-Hub-pwa-status.offline {
-            background: #e74c3c;
-        }
-        
-        .Tests-Hub-pwa-status.updating {
-            background: #f39c12;
-        }
-        
-        .Tests-Hub-pwa-status .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        
-        .Tests-Hub-pwa-status.online .status-dot {
-            background: #2ecc71;
-        }
-        
-        .Tests-Hub-pwa-status.offline .status-dot {
-            background: #e74c3c;
-        }
-        
-        .Tests-Hub-pwa-status.updating .status-dot {
-            background: #f39c12;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
         
         /* Main Content */
@@ -426,6 +340,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
         
         .dark-theme .Tests-Hub-card {
@@ -512,7 +427,7 @@
             font-size: 0.9rem;
         }
         
-        /* Color coding for cards */
+        /* Color coding for year cards */
         .Tests-Hub-card-7th .Tests-Hub-card-header {
             background: linear-gradient(to right, #FF7E5F, #FEB47B);
         }
@@ -541,7 +456,677 @@
             background: linear-gradient(to right, #FF9A9E, #FAD0C4);
         }
         
-        /* New Footer Styles - 3 Columns */
+        /* MODAL STYLES (Subjects Modal) */
+        .Tests-Hub-subjects-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        
+        .Tests-Hub-subjects-modal.active {
+            display: flex;
+        }
+        
+        .Tests-Hub-subjects-modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 1200px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-theme .Tests-Hub-subjects-modal-content {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-subjects-modal-header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .dark-theme .Tests-Hub-subjects-modal-header {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        }
+        
+        .Tests-Hub-subjects-modal-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-subjects-modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-subjects-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-subjects-modal-body {
+            padding: 2rem;
+        }
+        
+        .Tests-Hub-subjects-modal-intro {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid #3498db;
+        }
+        
+        .dark-theme .Tests-Hub-subjects-modal-intro {
+            background: #34495e;
+        }
+        
+        .Tests-Hub-subjects-modal-intro h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark-theme .Tests-Hub-subjects-modal-intro h3 {
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        /* Subject Cards in Modal */
+        .Tests-Hub-subject-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .dark-theme .Tests-Hub-subject-card {
+            background: #2c3e50;
+        }
+        
+        .Tests-Hub-subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-subject-card-header {
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+        
+        .Tests-Hub-subject-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-subject-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .Tests-Hub-subject-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .Tests-Hub-subject-card-description {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-subject-card-description {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-subject-card-link {
+            display: inline-block;
+            text-align: center;
+            background: #f8f9fa;
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .dark-theme .Tests-Hub-subject-card-link {
+            background: #34495e;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-subject-card-link:hover {
+            background: #FF5F6D;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 95, 109, 0.3);
+        }
+        
+        /* Trimesters Modal */
+        .Tests-Hub-trimesters-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+            padding: 1rem;
+        }
+        
+        .Tests-Hub-trimesters-modal.active {
+            display: flex;
+        }
+        
+        .Tests-Hub-trimesters-modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-modal-content {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-trimesters-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-trimesters-modal-close:hover {
+            background: #f0f0f0;
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-modal-close {
+            color: #bdc3c7;
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-modal-close:hover {
+            background: #34495e;
+        }
+        
+        .Tests-Hub-trimesters-modal-header {
+            margin-bottom: 1.5rem;
+            padding-right: 2rem;
+        }
+        
+        .Tests-Hub-trimesters-modal-title {
+            color: #FF5F6D;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-modal-title {
+            color: #FF7E5F;
+        }
+        
+        .Tests-Hub-trimesters-modal-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-modal-subtitle {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-trimesters-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .Tests-Hub-trimesters-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+            border-left: 4px solid #FF5F6D;
+            cursor: pointer;
+        }
+        
+        .Tests-Hub-trimesters-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-item {
+            background: #34495e;
+            color: #e6e6e6;
+            border-left-color: #FF7E5F;
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-item:hover {
+            background: #3d566e;
+        }
+        
+        .Tests-Hub-trimesters-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .Tests-Hub-trimesters-info {
+            flex: 1;
+        }
+        
+        .Tests-Hub-trimesters-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        
+        .Tests-Hub-trimesters-details {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .dark-theme .Tests-Hub-trimesters-details {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-trimesters-download {
+            font-size: 1.2rem;
+            color: #FF5F6D;
+        }
+        
+        /* Tests Modal */
+        .Tests-Hub-tests-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1200;
+            padding: 1rem;
+        }
+        
+        .Tests-Hub-tests-modal.active {
+            display: flex;
+        }
+        
+        .Tests-Hub-tests-modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-theme .Tests-Hub-tests-modal-content {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-tests-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-tests-modal-close:hover {
+            background: #f0f0f0;
+        }
+        
+        .dark-theme .Tests-Hub-tests-modal-close {
+            color: #bdc3c7;
+        }
+        
+        .dark-theme .Tests-Hub-tests-modal-close:hover {
+            background: #34495e;
+        }
+        
+        .Tests-Hub-tests-modal-header {
+            margin-bottom: 1.5rem;
+            padding-right: 2rem;
+        }
+        
+        .Tests-Hub-tests-modal-title {
+            color: #FF5F6D;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark-theme .Tests-Hub-tests-modal-title {
+            color: #FF7E5F;
+        }
+        
+        .Tests-Hub-tests-modal-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .dark-theme .Tests-Hub-tests-modal-subtitle {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-tests-modal-body {
+            /* The body will contain the tests columns */
+        }
+        
+        .Tests-Hub-tests-columns-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-tests-column {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dark-theme .Tests-Hub-tests-column {
+            background: #2c3e50;
+        }
+        
+        .Tests-Hub-tests-column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-tests-column-header {
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+        
+        .Tests-Hub-tests-column-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-tests-column-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-tests-column-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .Tests-Hub-tests-column-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .Tests-Hub-tests-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .Tests-Hub-test-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-test-link {
+            background: #34495e;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-test-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-test-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .Tests-Hub-test-icon.physics {
+            background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+        }
+        
+        .Tests-Hub-test-icon.composition {
+            background: linear-gradient(135deg, #8a2387, #f27121);
+        }
+        
+        .Tests-Hub-test-info {
+            flex: 1;
+        }
+        
+        .Tests-Hub-test-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .Tests-Hub-test-arrow {
+            font-size: 1.2rem;
+            color: #3a7bd5;
+            transition: transform 0.3s ease;
+        }
+        
+        .Tests-Hub-test-link:hover .Tests-Hub-test-arrow {
+            transform: translateX(5px);
+        }
+        
+        .Tests-Hub-tests-column-monitoring .Tests-Hub-tests-column-header {
+            background: linear-gradient(to right, #3a7bd5, #00d2ff);
+        }
+        
+        .Tests-Hub-tests-column-monitoring .Tests-Hub-test-link:hover {
+            background: #e8f4ff;
+            border-left-color: #3a7bd5;
+        }
+        
+        .dark-theme .Tests-Hub-tests-column-monitoring .Tests-Hub-test-link:hover {
+            background: #3d566e;
+            border-left-color: #00d2ff;
+        }
+        
+        .Tests-Hub-tests-column-composition .Tests-Hub-tests-column-header {
+            background: linear-gradient(to right, #8a2387, #f27121);
+        }
+        
+        .Tests-Hub-tests-column-composition .Tests-Hub-test-link:hover {
+            background: #fff0e6;
+            border-left-color: #f27121;
+        }
+        
+        .dark-theme .Tests-Hub-tests-column-composition .Tests-Hub-test-link:hover {
+            background: #3d566e;
+            border-left-color: #f27121;
+        }
+        
+        /* Coming Soon Modal */
+        .Tests-Hub-comingsoon-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1200;
+            padding: 1rem;
+        }
+        
+        .Tests-Hub-comingsoon-modal.active {
+            display: flex;
+        }
+        
+        .Tests-Hub-comingsoon-modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        .dark-theme .Tests-Hub-comingsoon-modal-content {
+            background: #2c3e50;
+            color: #e6e6e6;
+        }
+        
+        .Tests-Hub-comingsoon-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .Tests-Hub-comingsoon-title {
+            color: #FF5F6D;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dark-theme .Tests-Hub-comingsoon-title {
+            color: #FF7E5F;
+        }
+        
+        .Tests-Hub-comingsoon-message {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dark-theme .Tests-Hub-comingsoon-message {
+            color: #bdc3c7;
+        }
+        
+        .Tests-Hub-comingsoon-button {
+            background: #3a7bd5;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-comingsoon-button:hover {
+            background: #2a6bc4;
+        }
+        
+        /* Footer */
         .Tests-Hub-footer-container {
             background: linear-gradient(to right, #2c3e50, #4a6491);
             color: white;
@@ -642,6 +1227,14 @@
                 left: 10px;
                 justify-content: center;
             }
+            
+            .Tests-Hub-subjects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .Tests-Hub-tests-columns-container {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -660,6 +1253,10 @@
             .Tests-Hub-install-button {
                 padding: 0.5rem;
             }
+            
+            .Tests-Hub-subjects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -677,10 +1274,47 @@
         </div>
     </div>
 
-    <!-- PWA Status Indicator -->
-    <div class="Tests-Hub-pwa-status" id="pwaStatus">
-        <span class="status-dot"></span>
-        <span id="statusText">Online</span>
+    <!-- Year Subjects Modal -->
+    <div class="Tests-Hub-subjects-modal" id="subjectsModal">
+        <div class="Tests-Hub-subjects-modal-content">
+            <div class="Tests-Hub-subjects-modal-header">
+                <h2 class="Tests-Hub-subjects-modal-title" id="subjectsModalTitle"></h2>
+                <button class="Tests-Hub-subjects-modal-close" onclick="closeModal('subjectsModal')">&times;</button>
+            </div>
+            <div class="Tests-Hub-subjects-modal-body">
+                <div class="Tests-Hub-subjects-modal-intro">
+                    <h3 id="subjectsModalIntroTitle"></h3>
+                    <p id="subjectsModalIntroDescription"></p>
+                </div>
+                <div class="Tests-Hub-subjects-grid" id="subjectsGrid">
+                    <!-- Subject cards will be inserted here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trimesters Modal -->
+    <div class="Tests-Hub-trimesters-modal" id="trimestersModal">
+        <div class="Tests-Hub-trimesters-modal-content">
+            <button class="Tests-Hub-trimesters-modal-close" onclick="closeModal('trimestersModal')">&times;</button>
+            <div class="Tests-Hub-trimesters-modal-header">
+                <h2 class="Tests-Hub-trimesters-modal-title" id="trimestersModalTitle"></h2>
+                <p class="Tests-Hub-trimesters-modal-subtitle" data-i18n="TestsHub.modal.trimesters.subtitle">3 trimesters available</p>
+            </div>
+            <div class="Tests-Hub-trimesters-list" id="trimestersList">
+                <!-- Trimester items will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tests Modal -->
+    <div class="Tests-Hub-tests-modal" id="testsModal">
+        <!-- This modal will be filled dynamically by JavaScript -->
+    </div>
+
+    <!-- Coming Soon Modal -->
+    <div class="Tests-Hub-comingsoon-modal" id="comingSoonModal">
+        <!-- This modal will be filled dynamically by JavaScript -->
     </div>
 
     <!-- Header -->
@@ -735,9 +1369,8 @@
         </div>
         
         <div class="Tests-Hub-cards-container">
-            <!-- Cards remain the same as before -->
             <!-- 7th Year Elementary School Card -->
-            <div class="Tests-Hub-card Tests-Hub-card-7th">
+            <div class="Tests-Hub-card Tests-Hub-card-7th" onclick="openYearSubjects('7th')">
                 <div class="Tests-Hub-card-header">
                     <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.7th.icon">👦</div>
                     <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.7th.title">7th Year</h2>
@@ -745,14 +1378,14 @@
                 </div>
                 <div class="Tests-Hub-card-content">
                     <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.7th.description">Access tests and learning materials for 7th year elementary school students. Covers foundational subjects including Mathematics, Science, and Languages.</p>
-                    <a href="Tests_7th.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.7th.link">
+                    <div class="Tests-Hub-card-link">
                         <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
-                    </a>
+                    </div>
                 </div>
             </div>
             
             <!-- 8th Year Elementary School Card -->
-            <div class="Tests-Hub-card Tests-Hub-card-8th">
+            <div class="Tests-Hub-card Tests-Hub-card-8th" onclick="openYearSubjects('8th')">
                 <div class="Tests-Hub-card-header">
                     <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.8th.icon">👨‍🎓</div>
                     <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.8th.title">8th Year</h2>
@@ -760,14 +1393,14 @@
                 </div>
                 <div class="Tests-Hub-card-content">
                     <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.8th.description">Tests and study resources for 8th year elementary school. Builds on foundational knowledge with more advanced concepts in core subjects.</p>
-                    <a href="Tests_8th.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.8th.link">
+                    <div class="Tests-Hub-card-link">
                         <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
-                    </a>
+                    </div>
                 </div>
             </div>
             
             <!-- 9th Year Elementary School Card -->
-            <div class="Tests-Hub-card Tests-Hub-card-9th">
+            <div class="Tests-Hub-card Tests-Hub-card-9th" onclick="openYearSubjects('9th')">
                 <div class="Tests-Hub-card-header">
                     <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.9th.icon">👥</div>
                     <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.9th.title">9th Year</h2>
@@ -775,14 +1408,14 @@
                 </div>
                 <div class="Tests-Hub-card-content">
                     <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.9th.description">Final year of elementary school. Comprehensive tests and exam preparation materials covering all subjects for graduation preparation.</p>
-                    <a href="Tests_9th.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.9th.link">
+                    <div class="Tests-Hub-card-link">
                         <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
-                    </a>
+                    </div>
                 </div>
             </div>
             
             <!-- 1st Year Secondary School Card -->
-            <div class="Tests-Hub-card Tests-Hub-card-1st-secondary">
+            <div class="Tests-Hub-card Tests-Hub-card-1st-secondary" onclick="openYearSubjects('1st-secondary')">
                 <div class="Tests-Hub-card-header">
                     <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.1stSecondary.icon">🚀</div>
                     <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.1stSecondary.title">1st Year</h2>
@@ -790,14 +1423,14 @@
                 </div>
                 <div class="Tests-Hub-card-content">
                     <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.1stSecondary.description">Begin your secondary education with specialized tests. Includes introductory materials for advanced subjects and specialized tracks.</p>
-                    <a href="Tests_1st_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.1stSecondary.link">
+                    <div class="Tests-Hub-card-link">
                         <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
-                    </a>
+                    </div>
                 </div>
             </div>
             
             <!-- 2nd Year Secondary School Card -->
-            <div class="Tests-Hub-card Tests-Hub-card-2nd-secondary">
+            <div class="Tests-Hub-card Tests-Hub-card-2nd-secondary" onclick="openYearSubjects('2nd-secondary')">
                 <div class="Tests-Hub-card-header">
                     <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.2ndSecondary.icon">📈</div>
                     <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.2ndSecondary.title">2nd Year</h2>
@@ -805,14 +1438,14 @@
                 </div>
                 <div class="Tests-Hub-card-content">
                     <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.2ndSecondary.description">Deepen your knowledge with intermediate-level tests. Subjects become more specialized with focus on scientific and literary tracks.</p>
-                    <a href="Tests_2nd_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.2ndSecondary.link">
+                    <div class="Tests-Hub-card-link">
                         <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
-                    </a>
+                    </div>
                 </div>
             </div>
             
             <!-- 3rd Year Secondary School Card -->
-            <div class="Tests-Hub-card Tests-Hub-card-3rd-secondary">
+            <div class="Tests-Hub-card Tests-Hub-card-3rd-secondary" onclick="openYearSubjects('3rd-secondary')">
                 <div class="Tests-Hub-card-header">
                     <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.3rdSecondary.icon">🧪</div>
                     <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.3rdSecondary.title">3rd Year</h2>
@@ -820,14 +1453,14 @@
                 </div>
                 <div class="Tests-Hub-card-content">
                     <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.3rdSecondary.description">Advanced tests for specialized tracks. Includes baccalaureate preparation materials with comprehensive subject coverage.</p>
-                    <a href="Tests_3rd_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.3rdSecondary.link">
+                    <div class="Tests-Hub-card-link">
                         <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
-                    </a>
+                    </div>
                 </div>
             </div>
             
             <!-- 4th Year Secondary School Card -->
-            <div class="Tests-Hub-card Tests-Hub-card-4th-secondary">
+            <div class="Tests-Hub-card Tests-Hub-card-4th-secondary" onclick="openYearSubjects('4th-secondary')">
                 <div class="Tests-Hub-card-header">
                     <div class="Tests-Hub-card-icon" data-i18n="TestsHub.cards.4thSecondary.icon">🏆</div>
                     <h2 class="Tests-Hub-card-title" data-i18n="TestsHub.cards.4thSecondary.title">4th Year</h2>
@@ -835,9 +1468,9 @@
                 </div>
                 <div class="Tests-Hub-card-content">
                     <p class="Tests-Hub-card-description" data-i18n="TestsHub.cards.4thSecondary.description">Final year of secondary education. Comprehensive baccalaureate preparation with mock exams, past papers, and specialized study guides.</p>
-                    <a href="Tests_4th_secondary.html" class="Tests-Hub-card-link" data-i18n="TestsHub.cards.4thSecondary.link">
+                    <div class="Tests-Hub-card-link">
                         <span data-i18n="TestsHub.cards.common.browse">Browse Tests</span> <span class="arrow">→</span>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -876,9 +1509,227 @@
     </footer>
 
     <script>
-        // Existing translation code remains the same...
+        // Available tests configuration
+        const availableTests = {
+            '7th': {
+                physics: { trim1: {}, trim2: {}, trim3: {} },
+                math: { trim1: {}, trim2: {}, trim3: {} },
+                french: { trim1: {}, trim2: {}, trim3: {} },
+                arabic: { trim1: {}, trim2: {}, trim3: {} },
+                english: { trim1: {}, trim2: {}, trim3: {} },
+                history: { trim1: {}, trim2: {}, trim3: {} },
+                islamic: { trim1: {}, trim2: {}, trim3: {} },
+                technology: { trim1: {}, trim2: {}, trim3: {} }
+            },
+            '8th': {
+                physics: { trim1: {}, trim2: {}, trim3: {} },
+                math: { trim1: {}, trim2: {}, trim3: {} },
+                french: { trim1: {}, trim2: {}, trim3: {} },
+                arabic: { trim1: {}, trim2: {}, trim3: {} },
+                english: { trim1: {}, trim2: {}, trim3: {} },
+                history: { trim1: {}, trim2: {}, trim3: {} },
+                islamic: { trim1: {}, trim2: {}, trim3: {} },
+                technology: { trim1: {}, trim2: {}, trim3: {} }
+            },
+            '9th': {
+                physics: { trim1: {}, trim2: {}, trim3: {} },
+                math: { trim1: {}, trim2: {}, trim3: {} },
+                french: { trim1: {}, trim2: {}, trim3: {} },
+                arabic: { trim1: {}, trim2: {}, trim3: {} },
+                english: { trim1: {}, trim2: {}, trim3: {} },
+                history: { trim1: {}, trim2: {}, trim3: {} },
+                islamic: { trim1: {}, trim2: {}, trim3: {} },
+                technology: { trim1: {}, trim2: {}, trim3: {} }
+            },
+            '1st-secondary': {
+                physics: {
+                    trim1: {
+                        type1: 3,  // 3 mid-term tests
+                        type2: 3   // 3 final-term test
+                    },
+                    trim2: {},    // No tests available yet
+                    trim3: {}     // No tests available yet
+                },
+                math: {
+					trim1: {
+						type2: 3   // 3 final-term test
+					},
+					trim2: {},    // No tests available yet
+                    trim3: {}     // No tests available yet
+                },
+                french: {
+					trim1: {
+						type2: 3   // 3 final-term test
+					},
+					trim2: {},    // No tests available yet
+                    trim3: {}     // No tests available yet
+                },
+                arabic: {
+					trim1: {
+						type2: 3   // 3 final-term test
+					},
+					trim2: {},    // No tests available yet
+                    trim3: {}     // No tests available yet
+                },
+                english: {
+					trim1: {
+						type2: 3   // 3 final-term test
+					},
+					trim2: {},    // No tests available yet
+                    trim3: {}     // No tests available yet
+                },
+                history: { trim1: {}, trim2: {}, trim3: {} },
+                islamic: { trim1: {}, trim2: {}, trim3: {} },
+                technology: { trim1: {}, trim2: {}, trim3: {} }
+            },
+            '2nd-secondary': {
+                physics: { trim1: {}, trim2: {}, trim3: {} },
+                math: { trim1: {}, trim2: {}, trim3: {} },
+                french: { trim1: {}, trim2: {}, trim3: {} },
+                arabic: { trim1: {}, trim2: {}, trim3: {} },
+                english: { trim1: {}, trim2: {}, trim3: {} },
+                history: { trim1: {}, trim2: {}, trim3: {} },
+                islamic: { trim1: {}, trim2: {}, trim3: {} },
+                technology: { trim1: {}, trim2: {}, trim3: {} }
+            },
+            '3rd-secondary': {
+                physics: { trim1: {}, trim2: {}, trim3: {} },
+                math: { trim1: {}, trim2: {}, trim3: {} },
+                french: { trim1: {}, trim2: {}, trim3: {} },
+                arabic: { trim1: {}, trim2: {}, trim3: {} },
+                english: { trim1: {}, trim2: {}, trim3: {} },
+                history: { trim1: {}, trim2: {}, trim3: {} },
+                islamic: { trim1: {}, trim2: {}, trim3: {} },
+                technology: { trim1: {}, trim2: {}, trim3: {} }
+            },
+            '4th-secondary': {
+                physics: { trim1: {}, trim2: {}, trim3: {} },
+                math: { trim1: {}, trim2: {}, trim3: {} },
+                french: { trim1: {}, trim2: {}, trim3: {} },
+                arabic: { trim1: {}, trim2: {}, trim3: {} },
+                english: { trim1: {}, trim2: {}, trim3: {} },
+                history: { trim1: {}, trim2: {}, trim3: {} },
+                islamic: { trim1: {}, trim2: {}, trim3: {} },
+                technology: { trim1: {}, trim2: {}, trim3: {} }
+            }
+        };
+
+        // Helper function to get available tests for a specific year, subject, and trimester
+        function getAvailableTests(year, subject, trimester) {
+            if (availableTests[year] && 
+                availableTests[year][subject] && 
+                availableTests[year][subject][trimester]) {
+                return availableTests[year][subject][trimester];
+            }
+            return {};
+        }
+
+        // Helper function to check if tests are available
+        function hasTests(year, subject, trimester) {
+            const tests = getAvailableTests(year, subject, trimester);
+            return Object.keys(tests).length > 0 && (tests.type1 > 0 || tests.type2 > 0);
+        }
+
+        // Helper to get year number for URL generation
+        function getYearNumber(yearKey) {
+            const yearMap = {
+                '7th': '7',
+                '8th': '8',
+                '9th': '9',
+                '1st-secondary': '1',
+                '2nd-secondary': '2',
+                '3rd-secondary': '3',
+                '4th-secondary': '4'
+            };
+            return yearMap[yearKey] || '1';
+        }
+
+        // Helper to get trimester number
+        function getTrimesterNumber(trimesterKey) {
+            const trimMap = {
+                'first': '1',
+                'second': '2',
+                'third': '3'
+            };
+            return trimMap[trimesterKey] || '1';
+        }
+
+        // Main application variables
         let currentLanguage = 'en';
         let isDarkTheme = false;
+        let currentYear = null;
+        let currentSubject = null;
+
+        // Year color gradients
+        const yearColors = {
+            '7th': 'linear-gradient(to right, #FF7E5F, #FEB47B)',
+            '8th': 'linear-gradient(to right, #6A11CB, #2575FC)',
+            '9th': 'linear-gradient(to right, #3CA55C, #B5AC49)',
+            '1st-secondary': 'linear-gradient(to right, #FF5F6D, #FFC371)',
+            '2nd-secondary': 'linear-gradient(to right, #36D1DC, #5B86E5)',
+            '3rd-secondary': 'linear-gradient(to right, #7F00FF, #E100FF)',
+            '4th-secondary': 'linear-gradient(to right, #FF9A9E, #FAD0C4)'
+        };
+
+        // Subjects data - same for all years
+        const subjectsData = [
+            {
+                key: 'physics',
+                icon: '🧪',
+                titleKey: 'TestsHub.subjects.physics.title',
+                descriptionKey: 'TestsHub.subjects.physics.description',
+                trimesters: ['first', 'second', 'third']
+            },
+            {
+                key: 'math',
+                icon: '📐',
+                titleKey: 'TestsHub.subjects.math.title',
+                descriptionKey: 'TestsHub.subjects.math.description',
+                trimesters: ['first', 'second', 'third']
+            },
+            {
+                key: 'french',
+                icon: '🇫🇷',
+                titleKey: 'TestsHub.subjects.french.title',
+                descriptionKey: 'TestsHub.subjects.french.description',
+                trimesters: ['first', 'second', 'third']
+            },
+            {
+                key: 'arabic',
+                icon: 'AR',
+                titleKey: 'TestsHub.subjects.arabic.title',
+                descriptionKey: 'TestsHub.subjects.arabic.description',
+                trimesters: ['first', 'second', 'third']
+            },
+            {
+                key: 'english',
+                icon: '🇬🇧',
+                titleKey: 'TestsHub.subjects.english.title',
+                descriptionKey: 'TestsHub.subjects.english.description',
+                trimesters: ['first', 'second', 'third']
+            },
+            {
+                key: 'history',
+                icon: '🗺️',
+                titleKey: 'TestsHub.subjects.history.title',
+                descriptionKey: 'TestsHub.subjects.history.description',
+                trimesters: ['first', 'second', 'third']
+            },
+            {
+                key: 'islamic',
+                icon: '🕌',
+                titleKey: 'TestsHub.subjects.islamic.title',
+                descriptionKey: 'TestsHub.subjects.islamic.description',
+                trimesters: ['first', 'second', 'third']
+            },
+            {
+                key: 'technology',
+                icon: '💻',
+                titleKey: 'TestsHub.subjects.technology.title',
+                descriptionKey: 'TestsHub.subjects.technology.description',
+                trimesters: ['first', 'second', 'third']
+            }
+        ];
 
         const TestsHub_translations = {
             en: {
@@ -908,50 +1759,107 @@
                             title: "7th Year",
                             subtitle: "Elementary School",
                             description: "Access tests and learning materials for 7th year elementary school students. Covers foundational subjects including Mathematics, Science, and Languages.",
-                            link: "Browse Tests"
+                            introTitle: "7th Year Elementary School Tests",
+                            introDescription: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
                         },
                         "8th": {
                             icon: "👨‍🎓",
                             title: "8th Year",
                             subtitle: "Elementary School",
                             description: "Tests and study resources for 8th year elementary school. Builds on foundational knowledge with more advanced concepts in core subjects.",
-                            link: "Browse Tests"
+                            introTitle: "8th Year Elementary School Tests",
+                            introDescription: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
                         },
                         "9th": {
                             icon: "👥",
                             title: "9th Year",
                             subtitle: "Elementary School",
                             description: "Final year of elementary school. Comprehensive tests and exam preparation materials covering all subjects for graduation preparation.",
-                            link: "Browse Tests"
+                            introTitle: "9th Year Elementary School Tests",
+                            introDescription: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
                         },
                         "1stSecondary": {
                             icon: "🚀",
                             title: "1st Year",
                             subtitle: "Secondary School",
                             description: "Begin your secondary education with specialized tests. Includes introductory materials for advanced subjects and specialized tracks.",
-                            link: "Browse Tests"
+                            introTitle: "1st Year Secondary School Tests",
+                            introDescription: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
                         },
                         "2ndSecondary": {
                             icon: "📈",
                             title: "2nd Year",
                             subtitle: "Secondary School",
                             description: "Deepen your knowledge with intermediate-level tests. Subjects become more specialized with focus on scientific and literary tracks.",
-                            link: "Browse Tests"
+                            introTitle: "2nd Year Secondary School Tests",
+                            introDescription: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
                         },
                         "3rdSecondary": {
                             icon: "🧪",
                             title: "3rd Year",
                             subtitle: "Secondary School",
                             description: "Advanced tests for specialized tracks. Includes baccalaureate preparation materials with comprehensive subject coverage.",
-                            link: "Browse Tests"
+                            introTitle: "3rd Year Secondary School Tests",
+                            introDescription: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
                         },
                         "4thSecondary": {
                             icon: "🏆",
                             title: "4th Year",
                             subtitle: "Secondary School",
                             description: "Final year of secondary education. Comprehensive baccalaureate preparation with mock exams, past papers, and specialized study guides.",
-                            link: "Browse Tests"
+                            introTitle: "4th Year Secondary School Tests",
+                            introDescription: "Select a subject below to access comprehensive tests and exam preparation materials. Each subject contains tests for the three trimesters covering the entire curriculum."
                         }
+                    },
+                    subjects: {
+                        viewTrimesters: "View Trimesters",
+                        physics: {
+                            icon: "🧪",
+                            title: "Physical Sciences",
+                            description: "Physics and Chemistry tests covering mechanics, electricity, chemistry basics, and laboratory experiments."
+                        },
+                        math: {
+                            icon: "📐",
+                            title: "Mathematics",
+                            description: "Algebra, geometry, trigonometry, and functions tests with problem-solving exercises and proofs."
+                        },
+                        french: {
+                            icon: "🇫🇷",
+                            title: "French Language",
+                            description: "Grammar, vocabulary, reading comprehension, and writing tests for French language proficiency."
+                        },
+                        arabic: {
+                            icon: "AR",
+                            title: "Arabic Language",
+                            description: "Grammar, literature, poetry, and composition tests for Arabic language mastery."
+                        },
+                        english: {
+                            icon: "🇬🇧",
+                            title: "English Language",
+                            description: "Reading, writing, listening, and speaking tests for English language development."
+                        },
+                        history: {
+                            icon: "🗺️",
+                            title: "History & Geography",
+                            description: "Ancient civilizations, modern history, world geography, and map interpretation tests."
+                        },
+                        islamic: {
+                            icon: "🕌",
+                            title: "Islamic Education",
+                            description: "Quranic studies, Islamic history, jurisprudence, and ethics tests."
+                        },
+                        technology: {
+                            icon: "💻",
+                            title: "Technology",
+                            description: "Computer basics, programming fundamentals, and digital literacy tests."
+                        }
+                    },
+                    trimesters: {
+                        first: "First Trimester",
+                        second: "Second Trimester",
+                        third: "Third Trimester",
+                        details: "Comprehensive questions for the trimester",
+                        subtitle: "3 trimesters available"
                     },
                     language: {
                         current: "English"
@@ -966,6 +1874,18 @@
                             description: "Install Tests Hub on your device for easy access and offline use. Get quick access to all educational tests anytime, anywhere!",
                             install: "Install",
                             later: "Maybe Later"
+                        }
+                    },
+                    modal: {
+                        trimesters: {
+                            subtitle: "3 trimesters available"
+                        },
+                        tests: {
+                            subtitle: "Available Tests"
+                        },
+                        comingsoon: {
+                            message: "Tests for this trimester are coming soon! Check back later.",
+                            ok: "OK"
                         }
                     }
                 }
@@ -997,50 +1917,107 @@
                             title: "7ème Année",
                             subtitle: "École Primaire",
                             description: "Accédez aux tests et matériels d'apprentissage pour les élèves de 7ème année. Couvre les matières fondamentales incluant Mathématiques, Sciences et Langues.",
-                            link: "Parcourir les Tests"
+                            introTitle: "Tests pour la 7ème Année Primaire",
+                            introDescription: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
                         },
                         "8th": {
                             icon: "👨‍🎓",
                             title: "8ème Année",
                             subtitle: "École Primaire",
                             description: "Tests et ressources d'étude pour la 8ème année. Développe les connaissances de base avec des concepts plus avancés dans les matières principales.",
-                            link: "Parcourir les Tests"
+                            introTitle: "Tests pour la 8ème Année Primaire",
+                            introDescription: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
                         },
                         "9th": {
                             icon: "👥",
                             title: "9ème Année",
                             subtitle: "École Primaire",
                             description: "Dernière année de l'école primaire. Tests complets et matériels de préparation aux examens couvrant toutes les matières pour la préparation à l'obtention du diplôme.",
-                            link: "Parcourir les Tests"
+                            introTitle: "Tests pour la 9ème Année Primaire",
+                            introDescription: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
                         },
                         "1stSecondary": {
                             icon: "🚀",
                             title: "1ère Année",
                             subtitle: "École Secondaire",
                             description: "Commencez votre éducation secondaire avec des tests spécialisés. Inclut des matériels d'introduction pour les matières avancées et les filières spécialisées.",
-                            link: "Parcourir les Tests"
+                            introTitle: "Tests pour la 1ère Année Secondaire",
+                            introDescription: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
                         },
                         "2ndSecondary": {
                             icon: "📈",
                             title: "2ème Année",
                             subtitle: "École Secondaire",
                             description: "Approfondissez vos connaissances avec des tests de niveau intermédiaire. Les matières deviennent plus spécialisées avec un accent sur les filières scientifiques et littéraires.",
-                            link: "Parcourir les Tests"
+                            introTitle: "Tests pour la 2ème Année Secondaire",
+                            introDescription: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
                         },
                         "3rdSecondary": {
                             icon: "🧪",
                             title: "3ème Année",
                             subtitle: "École Secondaire",
                             description: "Tests avancés pour les filières spécialisées. Inclut des matériels de préparation au baccalauréat avec une couverture complète des matières.",
-                            link: "Parcourir les Tests"
+                            introTitle: "Tests pour la 3ème Année Secondaire",
+                            introDescription: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
                         },
                         "4thSecondary": {
                             icon: "🏆",
                             title: "4ème Année",
                             subtitle: "École Secondaire",
                             description: "Dernière année de l'enseignement secondaire. Préparation complète au baccalauréat avec examens blancs, sujets précédents et guides d'étude spécialisés.",
-                            link: "Parcourir les Tests"
+                            introTitle: "Tests pour la 4ème Année Secondaire",
+                            introDescription: "Sélectionnez une matière ci-dessous pour accéder à des tests complets et du matériel de préparation aux examens. Chaque matière contient des tests pour les trois trimestres couvrant l'ensemble du programme."
                         }
+                    },
+                    subjects: {
+                        viewTrimesters: "Voir les Trimestres",
+                        physics: {
+                            icon: "🧪",
+                            title: "Sciences Physiques",
+                            description: "Tests de physique et chimie couvrant la mécanique, l'électricité, les bases de la chimie et les expériences de laboratoire."
+                        },
+                        math: {
+                            icon: "📐",
+                            title: "Mathématiques",
+                            description: "Tests d'algèbre, géométrie, trigonométrie et fonctions avec exercices de résolution de problèmes et démonstrations."
+                        },
+                        french: {
+                            icon: "🇫🇷",
+                            title: "Langue Française",
+                            description: "Tests de grammaire, vocabulaire, compréhension écrite et expression écrite pour la maîtrise du français."
+                        },
+                        arabic: {
+                            icon: "AR",
+                            title: "Langue Arabe",
+                            description: "Tests de grammaire, littérature, poésie et composition pour la maîtrise de la langue arabe."
+                        },
+                        english: {
+                            icon: "🇬🇧",
+                            title: "Langue Anglaise",
+                            description: "Tests de lecture, écriture, écoute et expression orale pour le développement de l'anglais."
+                        },
+                        history: {
+                            icon: "🗺️",
+                            title: "Histoire & Géographie",
+                            description: "Tests sur les civilisations anciennes, l'histoire moderne, la géographie mondiale et l'interprétation des cartes."
+                        },
+                        islamic: {
+                            icon: "🕌",
+                            title: "Éducation Islamique",
+                            description: "Tests d'études coraniques, d'histoire islamique, de jurisprudence et d'éthique."
+                        },
+                        technology: {
+                            icon: "💻",
+                            title: "Technologie",
+                            description: "Tests sur les bases de l'informatique, les fondamentaux de la programmation et la culture numérique."
+                        }
+                    },
+                    trimesters: {
+                        first: "Premier Trimestre",
+                        second: "Deuxième Trimestre",
+                        third: "Troisième Trimestre",
+                        details: "Questions complètes pour le trimestre",
+                        subtitle: "3 trimestres disponibles"
                     },
                     language: {
                         current: "Français"
@@ -1055,6 +2032,18 @@
                             description: "Installez Tests Hub sur votre appareil pour un accès facile et une utilisation hors ligne. Accédez rapidement à tous les tests éducatifs à tout moment et n'importe où !",
                             install: "Installer",
                             later: "Peut-être plus tard"
+                        }
+                    },
+                    modal: {
+                        trimesters: {
+                            subtitle: "3 trimestres disponibles"
+                        },
+                        tests: {
+                            subtitle: "Tests Disponibles"
+                        },
+                        comingsoon: {
+                            message: "Les tests pour ce trimestre arrivent bientôt ! Revenez plus tard.",
+                            ok: "OK"
                         }
                     }
                 }
@@ -1086,50 +2075,107 @@
                             title: "السنة السابعة",
                             subtitle: "المدرسة الاساسية",
                             description: "الوصول إلى الاختبارات ومواد التعلم لطلاب السنة السابعة. يغطي المواد الأساسية بما في ذلك الرياضيات والعلوم واللغات.",
-                            link: "تصفح الاختبارات"
+                            introTitle: "اختبارات السنة السابعة ابتدائي",
+                            introDescription: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
                         },
                         "8th": {
                             icon: "👨‍🎓",
                             title: "السنة الثامنة",
                             subtitle: "المدرسة الاساسية",
                             description: "اختبارات وموارد دراسة للسنة الثامنة. يبني على المعرفة الأساسية بمفاهيم أكثر تقدمًا في المواد الأساسية.",
-                            link: "تصفح الاختبارات"
+                            introTitle: "اختبارات السنة الثامنة ابتدائي",
+                            introDescription: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
                         },
                         "9th": {
                             icon: "👥",
                             title: "السنة التاسعة",
                             subtitle: "المدرسة الاساسية",
                             description: "السنة الأخيرة من المدرسة الاساسية. اختبارات شاملة ومواد تحضيرية للامتحانات تغطي جميع المواد للتحضير للتخرج.",
-                            link: "تصفح الاختبارات"
+                            introTitle: "اختبارات السنة التاسعة ابتدائي",
+                            introDescription: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
                         },
                         "1stSecondary": {
                             icon: "🚀",
                             title: "السنة الأولى",
                             subtitle: "المدرسة الثانوية",
                             description: "ابدأ تعليمك الثانوي باختبارات متخصصة. يتضمن مواد تمهيدية للمواد المتقدمة والمسارات المتخصصة.",
-                            link: "تصفح الاختبارات"
+                            introTitle: "اختبارات السنة الأولى ثانوي",
+                            introDescription: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
                         },
                         "2ndSecondary": {
                             icon: "📈",
                             title: "السنة الثانية",
                             subtitle: "المدرسة الثانوية",
                             description: "تعمق معرفتك باختبارات المستوى المتوسط. تصبح المواد أكثر تخصصًا مع التركيز على المسارات العلمية والأدبية.",
-                            link: "تصفح الاختبارات"
+                            introTitle: "اختبارات السنة الثانية ثانوي",
+                            introDescription: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
                         },
                         "3rdSecondary": {
                             icon: "🧪",
                             title: "السنة الثالثة",
                             subtitle: "المدرسة الثانوية",
                             description: "اختبارات متقدمة للمسارات المتخصصة. يتضمن مواد تحضيرية لامتحان البكالوريا مع تغطية شاملة للمواد.",
-                            link: "تصفح الاختبارات"
+                            introTitle: "اختبارات السنة الثالثة ثانوي",
+                            introDescription: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
                         },
                         "4thSecondary": {
                             icon: "🏆",
                             title: "السنة الرابعة",
                             subtitle: "المدرسة الثانوية",
                             description: "السنة الأخيرة من التعليم الثانوي. تحضير شامل لامتحان البكالوريا مع امتحانات تجريبية وأوراق سابقة وأدلة دراسة متخصصة.",
-                            link: "تصفح الاختبارات"
+                            introTitle: "اختبارات السنة الرابعة ثانوي",
+                            introDescription: "حدد مادة أدناه للوصول إلى اختبارات شاملة ومواد تحضيرية للامتحانات. كل مادة تحتوي على اختبارات للثلاثة ثلاثيات تغطي المنهج بأكمله."
                         }
+                    },
+                    subjects: {
+                        viewTrimesters: "عرض الثلاثيات",
+                        physics: {
+                            icon: "🧪",
+                            title: "العلوم الفيزيائية",
+                            description: "اختبارات الفيزياء والكيمياء تغطي الميكانيكا، الكهرباء، أساسيات الكيمياء وتجارب المختبر."
+                        },
+                        math: {
+                            icon: "📐",
+                            title: "الرياضيات",
+                            description: "اختبارات الجبر، الهندسة، المثلثات والدوال مع تمارين حل المشكلات والبراهين."
+                        },
+                        french: {
+                            icon: "🇫🇷",
+                            title: "اللغة الفرنسية",
+                            description: "اختبارات القواعد، المفردات، الفهم القرائي والكتابة لإتقان اللغة الفرنسية."
+                        },
+                        arabic: {
+                            icon: "AR",
+                            title: "اللغة العربية",
+                            description: "اختبارات النحو، الأدب، الشعر والتعبير لإتقان اللغة العربية."
+                        },
+                        english: {
+                            icon: "🇬🇧",
+                            title: "اللغة الإنجليزية",
+                            description: "اختبارات القراءة، الكتابة، الاستماع والتحدث لتطوير اللغة الإنجليزية."
+                        },
+                        history: {
+                            icon: "🗺️",
+                            title: "التاريخ والجغرافيا",
+                            description: "اختبارات الحضارات القديمة، التاريخ الحديث، جغرافيا العالم وتفسير الخرائط."
+                        },
+                        islamic: {
+                            icon: "🕌",
+                            title: "التربية الإسلامية",
+                            description: "اختبارات الدراسات القرآنية، التاريخ الإسلامي، الفقه والأخلاق."
+                        },
+                        technology: {
+                            icon: "💻",
+                            title: "التكنولوجيا",
+                            description: "اختبارات أساسيات الحاسوب، أساسيات البرمجة والثقافة الرقمية."
+                        }
+                    },
+                    trimesters: {
+                        first: "الثلاثي الأول",
+                        second: "الثلاثي الثاني",
+                        third: "الثلاثي الثالث",
+                        details: "أسئلة شاملة للثلاثي",
+                        subtitle: "3 ثلاثيات متاحة"
                     },
                     language: {
                         current: "العربية"
@@ -1145,18 +2191,24 @@
                             install: "تثبيت",
                             later: "ربما لاحقًا"
                         }
+                    },
+                    modal: {
+                        trimesters: {
+                            subtitle: "3 ثلاثيات متاحة"
+                        },
+                        tests: {
+                            subtitle: "الاختبارات المتاحة"
+                        },
+                        comingsoon: {
+                            message: "الاختبارات لهذا الثلاثي قريبًا! تفحص لاحقًا.",
+                            ok: "موافق"
+                        }
                     }
                 }
             }
         };
 
-        // PWA Variables
-        let deferredPrompt;
-        let isAppInstalled = false;
-        let isOnline = navigator.onLine;
-        let isServiceWorkerRegistered = false;
-
-        // Function to update text content (existing)
+        // Function to update text content
         function updateTextContent() {
             const elements = document.querySelectorAll('[data-i18n]');
             
@@ -1179,18 +2231,14 @@
                 translation = current;
                 
                 if (translation && typeof translation === 'string') {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translation;
-                    } else {
-                        element.textContent = translation;
-                    }
+                    element.textContent = translation;
                 }
             });
             
             updateThemeToggleText();
         }
 
-        // Function to update theme toggle text (existing)
+        // Function to update theme toggle text
         function updateThemeToggleText() {
             const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
             const themeIcon = document.getElementById('themeIcon');
@@ -1214,7 +2262,7 @@
             }
         }
 
-        // Function to toggle theme (existing)
+        // Function to toggle theme
         function toggleTheme() {
             isDarkTheme = !isDarkTheme;
             const body = document.body;
@@ -1229,300 +2277,7 @@
             localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
         }
 
-        // PWA Functions
-        function updatePWAStatus() {
-            const statusElement = document.getElementById('pwaStatus');
-            const statusText = document.getElementById('statusText');
-            
-            if (!statusElement || !statusText) return;
-            
-            if (!isOnline) {
-                statusElement.className = 'Tests-Hub-pwa-status offline';
-                statusText.textContent = currentLanguage === 'ar' ? 'غير متصل' : 
-                                       currentLanguage === 'fr' ? 'Hors ligne' : 'Offline';
-            } else if (isServiceWorkerRegistered) {
-                statusElement.className = 'Tests-Hub-pwa-status online';
-                statusText.textContent = currentLanguage === 'ar' ? 'جاهز للعمل دون اتصال' :
-                                       currentLanguage === 'fr' ? 'Prêt hors ligne' : 'Ready offline';
-            } else {
-                statusElement.className = 'Tests-Hub-pwa-status';
-                statusText.textContent = currentLanguage === 'ar' ? 'متصل' :
-                                       currentLanguage === 'fr' ? 'En ligne' : 'Online';
-            }
-            
-            // Show status only when needed
-            if (isOnline && !isServiceWorkerRegistered) {
-                setTimeout(() => {
-                    statusElement.style.display = 'none';
-                }, 3000);
-            } else {
-                statusElement.style.display = 'flex';
-            }
-        }
-
-        function showInstallModal() {
-            const modal = document.getElementById('installModal');
-            if (modal) {
-                modal.classList.add('active');
-            }
-        }
-
-        function hideInstallModal() {
-            const modal = document.getElementById('installModal');
-            if (modal) {
-                modal.classList.remove('active');
-            }
-        }
-
-        function updateInstallButton() {
-            const installButton = document.getElementById('installButton');
-            if (!installButton) return;
-            
-            if (isAppInstalled) {
-                installButton.classList.add('hidden');
-            } else {
-                installButton.classList.remove('hidden');
-            }
-        }
-
-        async function registerServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                try {
-                    const registration = await navigator.serviceWorker.register('/sw.js', {
-                        scope: '/'
-                    });
-                    
-                    isServiceWorkerRegistered = true;
-                    console.log('[PWA] Service Worker registered:', registration);
-                    
-                    // Check for updates
-                    registration.addEventListener('updatefound', () => {
-                        const newWorker = registration.installing;
-                        console.log('[PWA] New service worker found');
-                        
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                console.log('[PWA] New content available');
-                                showUpdateNotification();
-                            }
-                        });
-                    });
-                    
-                    return registration;
-                } catch (error) {
-                    console.error('[PWA] Service Worker registration failed:', error);
-                    isServiceWorkerRegistered = false;
-                }
-            }
-            return null;
-        }
-
-        function showUpdateNotification() {
-            if (confirm(currentLanguage === 'ar' ? 
-                'يوجد تحديث جديد متاح. هل تريد تحديث التطبيق الآن؟' :
-                currentLanguage === 'fr' ?
-                'Une nouvelle mise à jour est disponible. Voulez-vous mettre à jour maintenant ?' :
-                'A new update is available. Would you like to update now?')) {
-                
-                window.location.reload();
-            }
-        }
-
-        async function installApp() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                
-                const choiceResult = await deferredPrompt.userChoice;
-                
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('[PWA] User accepted installation');
-                    isAppInstalled = true;
-                    updateInstallButton();
-                    hideInstallModal();
-                } else {
-                    console.log('[PWA] User declined installation');
-                }
-                
-                deferredPrompt = null;
-            } else {
-                console.log('[PWA] Cannot install - no deferred prompt');
-            }
-        }
-
-        function checkAppInstalled() {
-            // Check if app is already installed
-            if (window.matchMedia('(display-mode: standalone)').matches ||
-                window.navigator.standalone ||
-                document.referrer.includes('android-app://')) {
-                isAppInstalled = true;
-                updateInstallButton();
-            }
-        }
-
-        function setupPeriodicSync() {
-            if ('periodicSync' in window && 'serviceWorker' in navigator) {
-                navigator.serviceWorker.ready.then(registration => {
-                    registration.periodicSync.register('update-content', {
-                        minInterval: 24 * 60 * 60 * 1000 // 24 hours
-                    }).then(() => {
-                        console.log('[PWA] Periodic sync registered');
-                    }).catch(error => {
-                        console.error('[PWA] Periodic sync registration failed:', error);
-                    });
-                });
-            }
-        }
-
-        function setupBackgroundSync() {
-            if ('SyncManager' in window && 'serviceWorker' in navigator) {
-                navigator.serviceWorker.ready.then(registration => {
-                    registration.sync.register('sync-queue').then(() => {
-                        console.log('[PWA] Background sync registered');
-                    }).catch(error => {
-                        console.error('[PWA] Background sync registration failed:', error);
-                    });
-                });
-            }
-        }
-
-        function requestNotificationPermission() {
-            if ('Notification' in window && Notification.permission === 'default') {
-                Notification.requestPermission().then(permission => {
-                    console.log('[PWA] Notification permission:', permission);
-                });
-            }
-        }
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load saved preferences (existing)
-            const savedTheme = localStorage.getItem('testsHubTheme');
-            if (savedTheme === 'dark') {
-                isDarkTheme = true;
-                document.body.classList.add('dark-theme');
-            }
-            
-            const savedLanguage = localStorage.getItem('testsHubLanguage');
-            if (savedLanguage && TestsHub_translations[savedLanguage]) {
-                currentLanguage = savedLanguage;
-            }
-            
-            if (currentLanguage === 'ar') {
-                document.documentElement.dir = 'rtl';
-                document.documentElement.lang = 'ar';
-            }
-            
-            updateTextContent();
-            
-            // Attach event listeners (existing)
-            const themeButton = document.getElementById('themeToggle');
-            if (themeButton) {
-                themeButton.addEventListener('click', toggleTheme);
-            }
-            
-            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
-            languageOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-language');
-                    changeLanguage(lang);
-                });
-            });
-            
-            // PWA Initialization
-            checkAppInstalled();
-            updateInstallButton();
-            updatePWAStatus();
-            
-            // Register Service Worker
-            registerServiceWorker().then(registration => {
-                if (registration) {
-                    setupPeriodicSync();
-                    setupBackgroundSync();
-                    requestNotificationPermission();
-                }
-            });
-            
-            // Install button click
-            const installButton = document.getElementById('installButton');
-            if (installButton) {
-                installButton.addEventListener('click', showInstallModal);
-            }
-            
-            // Install modal buttons
-            const installConfirm = document.getElementById('installConfirm');
-            const installCancel = document.getElementById('installCancel');
-            
-            if (installConfirm) {
-                installConfirm.addEventListener('click', installApp);
-            }
-            
-            if (installCancel) {
-                installCancel.addEventListener('click', hideInstallModal);
-            }
-            
-            // Network status
-            window.addEventListener('online', () => {
-                isOnline = true;
-                updatePWAStatus();
-            });
-            
-            window.addEventListener('offline', () => {
-                isOnline = false;
-                updatePWAStatus();
-            });
-            
-            // Before install prompt
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                updateInstallButton();
-                
-                // Auto-show install modal after 5 seconds
-                setTimeout(() => {
-                    if (!isAppInstalled && deferredPrompt) {
-                        showInstallModal();
-                    }
-                }, 5000);
-            });
-            
-            // App installed
-            window.addEventListener('appinstalled', () => {
-                console.log('[PWA] App installed');
-                isAppInstalled = true;
-                deferredPrompt = null;
-                updateInstallButton();
-                hideInstallModal();
-            });
-            
-            // Add card hover effects (existing)
-            const cards = document.querySelectorAll('.Tests-Hub-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    const header = this.querySelector('.Tests-Hub-card-header');
-                    if (header) {
-                        header.style.transform = 'scale(1.02)';
-                        header.style.transition = 'transform 0.3s ease';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    const header = this.querySelector('.Tests-Hub-card-header');
-                    if (header) {
-                        header.style.transform = 'scale(1)';
-                    }
-                });
-            });
-            
-            // Add click tracking (existing)
-            const links = document.querySelectorAll('.Tests-Hub-card-link');
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    console.log(`Navigating to: ${this.getAttribute('href')}`);
-                });
-            });
-        });
-
-        // Existing function to change language
+        // Function to change language
         function changeLanguage(lang) {
             if (!TestsHub_translations[lang]) return;
             
@@ -1543,9 +2298,379 @@
             }
             
             localStorage.setItem('testsHubLanguage', lang);
-            updatePWAStatus(); // Update status text in new language
-            console.log(`Language changed to: ${lang}`);
         }
+
+        // Function to open year subjects modal
+        function openYearSubjects(year) {
+            currentYear = year;
+            
+            // Get year data
+            const yearKey = year === '1st-secondary' ? '1stSecondary' : 
+                          year === '2nd-secondary' ? '2ndSecondary' :
+                          year === '3rd-secondary' ? '3rdSecondary' :
+                          year === '4th-secondary' ? '4thSecondary' : year;
+            
+            const yearData = TestsHub_translations[currentLanguage].TestsHub.cards[yearKey];
+            
+            // Set modal title
+            document.getElementById('subjectsModalTitle').textContent = 
+                `${yearData.title} - ${yearData.subtitle}`;
+            
+            // Set modal intro
+            document.getElementById('subjectsModalIntroTitle').textContent = yearData.introTitle;
+            document.getElementById('subjectsModalIntroDescription').textContent = yearData.introDescription;
+            
+            // Clear subjects grid
+            const subjectsGrid = document.getElementById('subjectsGrid');
+            subjectsGrid.innerHTML = '';
+            
+            // Add subject cards
+            subjectsData.forEach(subject => {
+                const subjectCard = document.createElement('div');
+                subjectCard.className = 'Tests-Hub-subject-card';
+                subjectCard.onclick = () => openTrimestersModal(subject.key, subject.titleKey);
+                
+                // Get subject translations
+                const subjectTitle = getTranslation(subject.titleKey);
+                const subjectDescription = getTranslation(subject.descriptionKey);
+                
+                subjectCard.innerHTML = `
+                    <div class="Tests-Hub-subject-card-header" style="background: ${yearColors[year]};">
+                        <div class="Tests-Hub-subject-card-icon">${subject.icon}</div>
+                        <h2 class="Tests-Hub-subject-card-title">${subjectTitle}</h2>
+                    </div>
+                    <div class="Tests-Hub-subject-card-content">
+                        <p class="Tests-Hub-subject-card-description">${subjectDescription}</p>
+                        <div class="Tests-Hub-subject-card-link">
+                            <span data-i18n="TestsHub.subjects.viewTrimesters">View Trimesters</span> <span class="arrow">→</span>
+                        </div>
+                    </div>
+                `;
+                
+                subjectsGrid.appendChild(subjectCard);
+            });
+            
+            // Update translations for newly added elements
+            updateTextContent();
+            
+            // Open modal
+            openModal('subjectsModal');
+        }
+
+        // Function to open trimesters modal
+        function openTrimestersModal(subjectKey, subjectTitleKey) {
+            currentSubject = subjectKey;
+            
+            // Get year data
+            const yearKey = currentYear === '1st-secondary' ? '1stSecondary' : 
+                          currentYear === '2nd-secondary' ? '2ndSecondary' :
+                          currentYear === '3rd-secondary' ? '3rdSecondary' :
+                          currentYear === '4th-secondary' ? '4thSecondary' : currentYear;
+            
+            const yearData = TestsHub_translations[currentLanguage].TestsHub.cards[yearKey];
+            const subjectTitle = getTranslation(subjectTitleKey);
+            
+            // Set modal title
+            document.getElementById('trimestersModalTitle').textContent = 
+                `${yearData.title} - ${subjectTitle}`;
+            
+            // Clear trimesters list
+            const trimestersList = document.getElementById('trimestersList');
+            trimestersList.innerHTML = '';
+            
+            // Add trimester items
+            const trimesters = ['first', 'second', 'third'];
+            
+            trimesters.forEach((trimester, index) => {
+                const trimesterItem = document.createElement('div');
+                trimesterItem.className = 'Tests-Hub-trimesters-item';
+                trimesterItem.style.cursor = 'pointer';
+                
+                // Get trimester translations
+                const trimesterName = TestsHub_translations[currentLanguage].TestsHub.trimesters[trimester];
+                const trimesterDetails = TestsHub_translations[currentLanguage].TestsHub.trimesters.details;
+                
+                // Choose icon based on trimester
+                const trimesterIcon = index === 0 ? '📘' : index === 1 ? '📗' : '📕';
+                
+                trimesterItem.innerHTML = `
+                    <div class="Tests-Hub-trimesters-icon">${trimesterIcon}</div>
+                    <div class="Tests-Hub-trimesters-info">
+                        <div class="Tests-Hub-trimesters-name">${trimesterName}</div>
+                        <div class="Tests-Hub-trimesters-details">${trimesterDetails}</div>
+                    </div>
+                    <div class="Tests-Hub-trimesters-download">⬇️</div>
+                `;
+                
+                // Add click event
+                trimesterItem.addEventListener('click', () => {
+                    closeModal('trimestersModal');
+                    setTimeout(() => {
+                        navigateToTests(currentYear, subjectKey, trimester);
+                    }, 300);
+                });
+                
+                trimestersList.appendChild(trimesterItem);
+            });
+            
+            // Update translations
+            updateTextContent();
+            
+            // Open modal
+            openModal('trimestersModal');
+        }
+
+        // Function to generate test page dynamically or show coming soon
+        function navigateToTests(year, subject, trimester) {
+            const trimKey = trimester === 'first' ? 'trim1' : 
+                           trimester === 'second' ? 'trim2' : 'trim3';
+            
+            if (hasTests(year, subject, trimKey)) {
+                // Tests are available - generate dynamic modal
+                showTestsModal(year, subject, trimester, trimKey);
+            } else {
+                // No tests available - show coming soon message
+                showComingSoonModal(year, subject, trimester);
+            }
+        }
+
+        // Function to show dynamic tests modal
+        function showTestsModal(year, subject, trimester, trimKey) {
+            const testsData = getAvailableTests(year, subject, trimKey);
+            const yearNum = getYearNumber(year);
+            const trimNum = getTrimesterNumber(trimester);
+            
+            // Get year and subject translations
+            const yearKey = year === '1st-secondary' ? '1stSecondary' : 
+                           year === '2nd-secondary' ? '2ndSecondary' :
+                           year === '3rd-secondary' ? '3rdSecondary' :
+                           year === '4th-secondary' ? '4thSecondary' : year;
+            
+            const yearData = TestsHub_translations[currentLanguage].TestsHub.cards[yearKey];
+            const subjectData = TestsHub_translations[currentLanguage].TestsHub.subjects[subject];
+            const trimesterName = TestsHub_translations[currentLanguage].TestsHub.trimesters[trimester];
+            
+            // Create modal content
+            const modalHTML = `
+                <div class="Tests-Hub-tests-modal-content">
+                    <button class="Tests-Hub-tests-modal-close" onclick="closeModal('testsModal')">&times;</button>
+                    <div class="Tests-Hub-tests-modal-header">
+                        <h2 class="Tests-Hub-tests-modal-title">
+                            ${yearData.title} - ${subjectData.title} - ${trimesterName}
+                        </h2>
+                        <p class="Tests-Hub-tests-modal-subtitle" data-i18n="TestsHub.modal.tests.subtitle">Available Tests</p>
+                    </div>
+                    <div class="Tests-Hub-tests-modal-body">
+                        <div class="Tests-Hub-tests-columns-container">
+                            ${testsData.type1 > 0 ? `
+                            <div class="Tests-Hub-tests-column Tests-Hub-tests-column-monitoring">
+                                <div class="Tests-Hub-tests-column-header">
+                                    <div class="Tests-Hub-tests-column-icon">📋</div>
+                                    <h2 class="Tests-Hub-tests-column-title" data-i18n="TestsHub.physicsTrim1.monitoring.title">فروض مراقبة</h2>
+                                    <div class="Tests-Hub-tests-column-subtitle" data-i18n="TestsHub.physicsTrim1.monitoring.subtitle">mid-trim test</div>
+                                </div>
+                                <div class="Tests-Hub-tests-column-content">
+                                    <div class="Tests-Hub-tests-list">
+                                        ${Array.from({length: testsData.type1}, (_, i) => {
+                                            const testNumber = i + 1;
+                                            const testNameKey = `TestsHub.physicsTrim1.tests.monitoring.test${testNumber}.name`;
+                                            const testName = getTranslation(testNameKey);
+                                            return `
+                                            <a href="test_year${yearNum}_${subject}_trim${trimNum}_Type1_test${testNumber}.html" class="Tests-Hub-test-link">
+                                                <div class="Tests-Hub-test-icon ${subject}">${testNumber}</div>
+                                                <div class="Tests-Hub-test-info">
+                                                    <div class="Tests-Hub-test-name">${testName}</div>
+                                                </div>
+                                                <div class="Tests-Hub-test-arrow">→</div>
+                                            </a>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            ` : ''}
+                            
+                            ${testsData.type2 > 0 ? `
+                            <div class="Tests-Hub-tests-column Tests-Hub-tests-column-composition">
+                                <div class="Tests-Hub-tests-column-header">
+                                    <div class="Tests-Hub-tests-column-icon">✍️</div>
+                                    <h2 class="Tests-Hub-tests-column-title" data-i18n="TestsHub.physicsTrim1.composition.title">فروض تأليفية</h2>
+                                    <div class="Tests-Hub-tests-column-subtitle" data-i18n="TestsHub.physicsTrim1.composition.subtitle">final-trim test</div>
+                                </div>
+                                <div class="Tests-Hub-tests-column-content">
+                                    <div class="Tests-Hub-tests-list">
+                                        ${Array.from({length: testsData.type2}, (_, i) => {
+                                            const testNumber = i + 1;
+                                            const testNameKey = `TestsHub.physicsTrim1.tests.composition.test${testNumber}.name`;
+                                            const testName = getTranslation(testNameKey);
+                                            return `
+                                            <a href="test_year${yearNum}_${subject}_trim${trimNum}_Type2_test${testNumber}.html" class="Tests-Hub-test-link">
+                                                <div class="Tests-Hub-test-icon composition">${testNumber}</div>
+                                                <div class="Tests-Hub-test-info">
+                                                    <div class="Tests-Hub-test-name">${testName}</div>
+                                                </div>
+                                                <div class="Tests-Hub-test-arrow">→</div>
+                                            </a>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Update modal
+            const modal = document.getElementById('testsModal');
+            modal.innerHTML = modalHTML;
+            
+            // Open modal
+            openModal('testsModal');
+            
+            // Update translations
+            updateTextContent();
+        }
+
+        // Function to show coming soon modal
+        function showComingSoonModal(year, subject, trimester) {
+            const yearKey = year === '1st-secondary' ? '1stSecondary' : 
+                           year === '2nd-secondary' ? '2ndSecondary' :
+                           year === '3rd-secondary' ? '3rdSecondary' :
+                           year === '4th-secondary' ? '4thSecondary' : year;
+            
+            const yearData = TestsHub_translations[currentLanguage].TestsHub.cards[yearKey];
+            const subjectData = TestsHub_translations[currentLanguage].TestsHub.subjects[subject];
+            const trimesterName = TestsHub_translations[currentLanguage].TestsHub.trimesters[trimester];
+            
+            const modalHTML = `
+                <div class="Tests-Hub-comingsoon-modal-content">
+                    <div class="Tests-Hub-comingsoon-icon">⏳</div>
+                    <h2 class="Tests-Hub-comingsoon-title">${yearData.title} - ${subjectData.title} - ${trimesterName}</h2>
+                    <p class="Tests-Hub-comingsoon-message" data-i18n="TestsHub.modal.comingsoon.message">Tests for this trimester are coming soon! Check back later.</p>
+                    <button class="Tests-Hub-comingsoon-button" onclick="closeModal('comingSoonModal')" data-i18n="TestsHub.modal.comingsoon.ok">OK</button>
+                </div>
+            `;
+            
+            const modal = document.getElementById('comingSoonModal');
+            modal.innerHTML = modalHTML;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            updateTextContent();
+        }
+
+        // Function to get translation by key
+        function getTranslation(key) {
+            const keys = key.split('.');
+            let current = TestsHub_translations[currentLanguage];
+            
+            for (const k of keys) {
+                if (current && current[k] !== undefined) {
+                    current = current[k];
+                } else {
+                    return '';
+                }
+            }
+            
+            return current || '';
+        }
+
+        // Function to open modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Function to close modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Close modal when clicking outside
+            const modals = document.querySelectorAll('.Tests-Hub-subjects-modal, .Tests-Hub-trimesters-modal, .Tests-Hub-install-modal, .Tests-Hub-tests-modal, .Tests-Hub-comingsoon-modal');
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal(this.id);
+                    }
+                });
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    modals.forEach(modal => {
+                        if (modal.classList.contains('active')) {
+                            closeModal(modal.id);
+                        }
+                    });
+                }
+            });
+            
+            // Add hover effects to cards
+            const yearCards = document.querySelectorAll('.Tests-Hub-card');
+            yearCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const header = this.querySelector('.Tests-Hub-card-header');
+                    if (header) {
+                        header.style.transform = 'scale(1.02)';
+                        header.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const header = this.querySelector('.Tests-Hub-card-header');
+                    if (header) {
+                        header.style.transform = 'scale(1)';
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

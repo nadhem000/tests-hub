@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tests Hub - Devoir de Synthèse N°1 - Mathématiques</title>
+		
+		<!-- PWA Meta Tags -->
+		<meta name="theme-color" content="#7C3AED">
+		<meta name="description" content="Devoir de Synthèse N°1 pour 1ère AS - Mathématiques">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Synthèse">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="application-name" content="Tests Hub">
+		
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+		
+		<!-- Manifest -->
+		<link rel="manifest" href="manifest.json">
+		
+		<style>
+			* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			
+			body {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+			}
+			
+			body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e0b3a 0%, #2d1b69 100%);
+            color: #e6e6e6;
+			}
+			
+			/* Header */
+			.Tests-Hub-header-container {
+            background: linear-gradient(to right, #7C3AED, #8B5CF6);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #1e0b3a, #7C3AED, #8B5CF6);
+			}
+			
+			.Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+			}
+			
+			.Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+			}
+			
+			.Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+			}
+			
+			.Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+			}
+			
+			.Tests-Hub-language-selector {
+            position: relative;
+			}
+			
+			.Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			.Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+			}
+			
+			.Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+			}
+			
+			.Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+			}
+			
+			.Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2d1b69;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3d2b79;
+			}
+			
+			.Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Back Button */
+			.Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+			}
+			
+			.Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Main Content */
+			.Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+			}
+			
+			/* Test Content Styling */
+			.Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #7C3AED, #8B5CF6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #1e0b3a, #7C3AED);
+			}
+			
+			.Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+			}
+			
+			.Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #2d1b69;
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-test-section h2 {
+            color: #7C3AED;
+            border-bottom: 2px solid #8B5CF6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #a78bfa;
+			}
+			
+			.Tests-Hub-test-section h3 {
+            color: #8B5CF6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #c4b5fd;
+			}
+			
+			.Tests-Hub-instructions {
+            background: #faf5ff;
+            padding: 1rem;
+            border-left: 4px solid #7C3AED;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1e0b3a;
+            border-left-color: #8B5CF6;
+			}
+			
+			table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+			
+			th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+			}
+			
+			th {
+            background: #7C3AED;
+            color: white;
+            font-weight: 600;
+			}
+			
+			.Tests-Hub-dark-theme th {
+            background: #1e0b3a;
+			}
+			
+			tr:nth-child(even) {
+            background: #f9f9f9;
+			}
+			
+			.Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #3d2b79;
+			}
+			
+			.Tests-Hub-dark-theme td {
+            border-color: #4d3b89;
+			}
+			
+			.Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+			}
+			
+			.Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+			}
+			
+			.Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+			.Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+			.Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #666;
+            background-color: #2d1b69;
+            color: #e6e6e6;
+			}
+			
+			.Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+			}
+			
+			.Tests-Hub-question-number {
+            font-weight: bold;
+            color: #7C3AED;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #a78bfa;
+			}
+			
+			.Tests-Hub-true-false {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+			}
+			
+			.Tests-Hub-true-false input {
+            margin-right: 10px;
+			}
+			
+			.Tests-Hub-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: #3d2b79;
+			}
+			
+			.Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #bdc3c7;
+			}
+			
+			/* Correction Section */
+			.Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+			}
+			
+			.Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #7C3AED, #8B5CF6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-correction-section {
+            background: #faf5ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #6d28d9;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #1e0b3a;
+            border-left-color: #8B5CF6;
+			}
+			
+			.Tests-Hub-correction-section h3 {
+            color: #6d28d9;
+            margin-top: 0;
+            margin-bottom: 1rem;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #a78bfa;
+			}
+			
+			/* Style spécifique pour les formules mathématiques */
+			.Tests-Hub-math-formula {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+            overflow-x: auto;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-math-formula {
+            background: #2d1b69;
+			}
+			
+			.Tests-Hub-math-formula .frac {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 0.2em;
+			}
+			
+			.Tests-Hub-math-formula .frac > span {
+            display: block;
+            padding: 0.1em;
+			}
+			
+			.Tests-Hub-math-formula .frac span.bottom {
+            border-top: thin solid black;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-math-formula .frac span.bottom {
+            border-top-color: #e6e6e6;
+			}
+			
+			.Tests-Hub-math-formula .sqrt {
+            position: relative;
+            display: inline-block;
+			}
+			
+			.Tests-Hub-math-formula .sqrt:before {
+            content: "√";
+            position: absolute;
+            left: -0.5em;
+            top: -0.2em;
+            font-size: 1.2em;
+			}
+			
+			.Tests-Hub-math-formula .sqrt > span {
+            border-top: thin solid black;
+            padding-left: 0.5em;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-math-formula .sqrt > span {
+            border-top-color: #e6e6e6;
+			}
+			
+			.Tests-Hub-math-expr {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            margin: 5px 0;
+			}
+			
+			.Tests-Hub-hidden {
+            display: none;
+			}
+			
+			/* Footer */
+			.Tests-Hub-footer-container {
+            background: linear-gradient(to right, #7C3AED, #8B5CF6);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #1e0b3a, #7C3AED, #8B5CF6);
+			}
+			
+			.Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+			}
+			
+			.Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+			}
+			
+			.Tests-Hub-footer-column {
+            text-align: center;
+			}
+			
+			.Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+			}
+			
+			.Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+			}
+			
+			.Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+			}
+			
+			.Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+			}
+			
+			/* Footer Links Styles */
+			.Tests-Hub-footer-links-list {
+            list-style: none;
+			}
+			
+			.Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+			}
+			
+			/* Responsive */
+			@media (max-width: 768px) {
+            .Tests-Hub-header-content {
+			flex-direction: column;
+			text-align: center;
+			gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+			font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+			margin-top: 15px;
+			flex-wrap: wrap;
+			justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+			padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			text-align: center;
+            }
+            
+            table {
+			font-size: 0.9rem;
+            }
+            
+            th, td {
+			padding: 8px 10px;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+			height: 25px;
+			font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+			min-height: 50px;
+			font-size: 12px;
+            }
+			}
+			
+			@media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+			font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+			padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+			padding: 1rem;
+            }
+			}
+			
+			/* Download Buttons Styles */
+			.Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(124, 58, 237, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(30, 11, 58, 0.2), rgba(124, 58, 237, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+			}
+			
+			.Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+			}
+			
+			.Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+			}
+			
+			.Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+			}
+			
+			.Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+			}
+			
+			.Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+			}
+			
+			.Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+			}
+			
+			.Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+			}
+			
+			/* Responsive styles for download buttons */
+			@media (max-width: 768px) {
+            .Tests-Hub-download-buttons {
+			flex-direction: column;
+			align-items: center;
+			gap: 15px;
+			padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+			width: 80%;
+			max-width: 250px;
+			height: 80px;
+			flex-direction: row;
+			justify-content: flex-start;
+			padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+			font-size: 1.8rem;
+			margin-bottom: 0;
+			margin-right: 15px;
+            }
+			}
+			
+			@media (max-width: 480px) {
+            .Tests-Hub-download-buttons {
+			gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+			height: 70px;
+			font-size: 1rem;
+			padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+			font-size: 1.5rem;
+			margin-right: 10px;
+            }
+			}
+		</style>
+<link rel="stylesheet" href="katex/katex.min.css">
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/contrib/auto-render.min.js"></script>
+	</head>
+	<body>
+		<!-- Header -->
+		<header class="Tests-Hub-header-container">
+			<div class="Tests-Hub-header-content">
+				<div class="Tests-Hub-header-left">
+					<img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+					<div>
+						<h1 class="Tests-Hub-header-title" data-i18n="TestsHub.synthesisTest.title">Mathématiques - Devoir de Synthèse</h1>
+						<div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.synthesisTest.subtitle">1ère Année Secondaire</div>
+					</div>
+				</div>
+				
+				<div class="Tests-Hub-header-controls">
+					<a href="index.html" class="Tests-Hub-back-button">
+						<span>←</span>
+						<span data-i18n="TestsHub.synthesisTest.back">Retour aux Tests</span>
+					</a>
+					
+					<div class="Tests-Hub-language-selector">
+						<button class="Tests-Hub-language-button">
+							<span>🌐</span>
+							<span data-i18n="TestsHub.language.current">Français</span>
+							<span>▼</span>
+						</button>
+						<div class="Tests-Hub-language-dropdown">
+							<div class="Tests-Hub-language-option" data-language="fr">
+								<span>🌐</span> Français
+							</div>
+							<div class="Tests-Hub-language-option" data-language="en">
+								<span>🌐</span> English
+							</div>
+							<div class="Tests-Hub-language-option" data-language="ar">
+								<span>🌐</span> العربية
+							</div>
+						</div>
+					</div>
+					
+					<button class="Tests-Hub-theme-toggle" id="themeToggle">
+						<span id="themeIcon">🌙</span>
+						<span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+					</button>
+				</div>
+			</div>
+		</header>
+		
+		<!-- Main Content -->
+		<main class="Tests-Hub-main-container">
+			<!-- Test Header -->
+			<div class="Tests-Hub-test-header">
+				<h1>Devoir de Synthèse N°1 de Mathématiques</h1>
+				<p>Lycée Pilote Kebili - 2023/2024</p>
+				<p>Classe : 1ère S<sub>tel2</sub> - Professeur : Mr Chaabane Mounir</p>
+				<p>Durée : 1h30</p>
+			</div>
+			
+			<!-- Instructions -->
+			<div class="Tests-Hub-test-section Tests-Hub-instructions">
+				<h3>Instructions générales</h3>
+				<ul>
+					<li>Le sujet comporte trois exercices indépendants</li>
+					<li>La qualité de la rédaction et la clarté des raisonnements seront prises en compte</li>
+					<li>Toute réponse doit être justifiée</li>
+				</ul>
+			</div>
+			
+			<!-- Exercice n°1 -->
+			<div class="Tests-Hub-test-section">
+				<h2>Exercice n°1 (4,25 Points)</h2>
+				<p>Les questions 1, 2, 3 et 4 sont indépendantes</p>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">1°)</span></p>
+					<p>
+						a) Vérifier que pour tous réels distincts a et b :
+						<span class="Tests-Hub-math-expr">\[\frac{1}{ab} = \frac{1}{b-a} \left( \frac{1}{a} - \frac{1}{b} \right)\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p>
+						b) En déduire le réel x tel que :
+						<span class="Tests-Hub-math-expr">\[\frac{1}{3} + \frac{1}{15} + \frac{1}{35} + \frac{1}{63} + \frac{1}{99} + \frac{1}{143} + \frac{1}{195} = \frac{28}{x}\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p>
+						<span class="Tests-Hub-question-number">2°)</span>
+						On donne le réel :
+						<span class="Tests-Hub-math-expr">\[\frac{1}{A} = \frac{\sqrt{3} + 2\sqrt{5} + \sqrt{7}}{\sqrt{15} + \sqrt{35} + \sqrt{21} + 5}\]</span>
+					</p>
+					<p>
+						Montrer que
+						<span class="Tests-Hub-math-expr">\[A = \frac{\sqrt{3} + \sqrt{7}}{2}\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p>
+						<span class="Tests-Hub-question-number">3°)</span>
+						Soit x et y deux réels tels que :
+					</p>
+					<div class="Tests-Hub-math-formula">
+						\[\begin{cases} x - y = 8 \\ x \cdot y = 65 \end{cases}\]
+					</div>
+					<p>
+						Déterminer
+						<span class="Tests-Hub-math-expr">\[x^3 - y^3\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">4°)</span> Dans la figure ci-contre MNP un triangle, et R, S, A et B quatre points tels que :</p>
+					<ul>
+						<li>R et B deux points du [MN]</li>
+						<li>A et S deux points du [MP]</li>
+						<li>(PR) // (BS) et (AR) // (NS)</li>
+					</ul>
+					
+					<div class="Tests-Hub-image-container">
+						<img src="assets/tests/maths/image-2.png" alt="Figure géométrique - Triangle MNP">
+						<div class="Tests-Hub-image-caption">Figure géométrique - Triangle MNP avec points R, S, A, B</div>
+					</div>
+					
+					<p>Montrer que les droites (AB) et (PN) sont parallèles.</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+			</div>
+			
+			<!-- Exercice n°2 -->
+			<div class="Tests-Hub-test-section">
+				<h2>Exercice n°2 (8,75 Points)</h2>
+				<p>Les parties I et II sont indépendantes</p>
+				
+				<h3>Partie I</h3>
+				<p>
+					Soit x et y deux réels strictement positifs tels que
+					<span class="Tests-Hub-math-expr">\[x + y = 1\]</span>
+				</p>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">1°)</span></p>
+					<p>
+						a) Développer
+						<span class="Tests-Hub-math-expr">\[2 \left( x - \frac{1}{2} \right)^2\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p>
+						b) Montrer que
+						<span class="Tests-Hub-math-expr">\[x^2 + y^2 \geq \frac{1}{2}\]</span>
+						et
+						<span class="Tests-Hub-math-expr">\[x \cdot y \leq \frac{1}{4}\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p>
+						c) En déduire que
+						<span class="Tests-Hub-math-expr">\[\left( x + \frac{1}{x} \right)^2 + \left( y + \frac{1}{y} \right)^2 \geq \frac{25}{2}\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p>
+						<span class="Tests-Hub-question-number">2°)</span>
+						Montrer que
+						<span class="Tests-Hub-math-expr">\[\left( \frac{x}{x+y} + \frac{y}{x} + 1 \right)^2 + \left( \frac{y}{x+y} + \frac{x}{y} + 1 \right)^2 \geq \frac{25}{2}\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<h3>Partie II</h3>
+				<p>
+					On donne
+					<span class="Tests-Hub-math-expr">\[A = x^3 - 6x^2 + 12x - 35\]</span>
+					et
+					<span class="Tests-Hub-math-expr">\[B = x^3 - 125 - 3x(x-5)\],</span>
+					où x est un réel.
+				</p>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">1°)</span></p>
+					<p>
+						a) Montrer que
+						<span class="Tests-Hub-math-expr">\[A = (x-2)^3 - 27\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p>b) Factoriser, alors, A.</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p>
+						<span class="Tests-Hub-question-number">2°)</span>
+						Factoriser B.
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">3°)</span></p>
+					<p>
+						a) Montrer que
+						<span class="Tests-Hub-math-expr">\[A - B = -3(x-5)(x+6)\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p>
+						b) Comparer alors A et B sachant que
+						<span class="Tests-Hub-math-expr">\[x \in [-6,5]\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+			</div>
+			
+			<!-- Exercice n°3 -->
+			<div class="Tests-Hub-test-section">
+				<h2>Exercice n°3 (7 Points)</h2>
+				
+				<div class="Tests-Hub-image-container">
+					<img src="assets/tests/maths/image-1.png" alt="Figure géométrique - Triangle ABC">
+					<div class="Tests-Hub-image-caption">Figure géométrique - Triangle ABC avec points I, M, J</div>
+				</div>
+				
+				<p>Dans la figure ci-dessus ABC un triangle :</p>
+				<ul>
+					<li>I le projeté orthogonal de C sur [AB]</li>
+					<li>La parallèle à (AC) issue de I coupe [BC] en M</li>
+					<li>La parallèle à (AB) issue de M coupe [AC] en J</li>
+				</ul>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">1°)</span></p>
+					<p>
+						a) Montrer que
+						<span class="Tests-Hub-math-expr">\[\frac{AI}{AB} = \frac{CM}{CB}\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p>
+						b) Montrer que
+						<span class="Tests-Hub-math-expr">\[\frac{AI}{AB} + \frac{AJ}{AC} = 1\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">2°)</span> Le cercle de diamètre [BJ] recoupe [AB] en H et [AC] en D.</p>
+					<p>
+						a) Montrer que
+						<span class="Tests-Hub-math-expr">\[\frac{AH}{AI} = \frac{AJ}{AC}\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+					
+					<p>
+						b) En déduire que
+						<span class="Tests-Hub-math-expr">\[AH \times AB = IA \times IB\]</span>
+					</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+				
+				<div class="Tests-Hub-question">
+					<p><span class="Tests-Hub-question-number">3°)</span> Les droites (BD) et (CI) se coupent en E. La droite (AE) coupe [BC] en K et soit P le point de [CK] tel que <span class="Tests-Hub-math-expr">\[\frac{CP}{CK} = \frac{CM}{CB}\]</span></p>
+					<p>Montrer que P est le projeté orthogonal de J sur (BC).</p>
+					<textarea class="Tests-Hub-large-textarea"></textarea>
+				</div>
+			</div>
+			
+			<!-- Correction Toggle -->
+			<div class="Tests-Hub-correction-toggle-container">
+				<button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+			</div>
+			
+			<!-- Correction Section -->
+			<div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+				<h2>Correction du devoir</h2>
+				
+				<h3>Exercice n°1 - Correction</h3>
+				<div class="Tests-Hub-correction-section">
+					<p><span class="Tests-Hub-question-number">1°)</span></p>
+					<p>a) Pour a ≠ b :</p>
+					<div class="Tests-Hub-math-formula">
+						\[\frac{1}{b-a} \left( \frac{1}{a} - \frac{1}{b} \right) = \frac{1}{b-a} \cdot \frac{b-a}{ab} = \frac{1}{ab}\]
+					</div>
+					
+					<p>b) En utilisant la décomposition :</p>
+					<div class="Tests-Hub-math-formula">
+						\[\frac{1}{3} = \frac{1}{1 \times 3}, \frac{1}{15} = \frac{1}{3 \times 5}, \frac{1}{35} = \frac{1}{5 \times 7}, \text{etc.}\]
+						On obtient une somme télescopique :
+						\[S = \frac{1}{2} \left(1 - \frac{1}{15}\right) = \frac{7}{15}\]
+						Donc x = 60
+					</div>
+					
+					<p><span class="Tests-Hub-question-number">2°)</span></p>
+					<div class="Tests-Hub-math-formula">
+						\[\frac{1}{A} = \frac{\sqrt{3} + 2\sqrt{5} + \sqrt{7}}{\sqrt{15} + \sqrt{35} + \sqrt{21} + 5}
+						= \frac{(\sqrt{3} + \sqrt{7})(\sqrt{5} + \sqrt{5})}{(\sqrt{3} + \sqrt{7})(\sqrt{5} + \sqrt{5})} = \frac{2}{\sqrt{3} + \sqrt{7}}\]
+						Donc \(A = \frac{\sqrt{3} + \sqrt{7}}{2}\)
+					</div>
+					
+					<p><span class="Tests-Hub-question-number">3°)</span></p>
+					<div class="Tests-Hub-math-formula">
+						\[x^3 - y^3 = (x-y)(x^2 + xy + y^2) = (x-y)[(x-y)^2 + 3xy]\]
+						= 8 × (64 + 195) = 8 × 259 = 2072
+					</div>
+					
+					<p><span class="Tests-Hub-question-number">4°)</span></p>
+					<div class="Tests-Hub-math-formula">
+						D'après le théorème de Thalès :
+						\[\frac{MR}{MN} = \frac{MS}{MP} \text{ et } \frac{MA}{MP} = \frac{MR}{MN}\]
+						Donc \(\frac{MA}{MP} = \frac{MS}{MP}\) donc MA = MS
+						Ainsi (AB) // (PN) par réciproque du théorème de Thalès.
+					</div>
+				</div>
+				
+				<h3>Exercice n°2 - Correction</h3>
+				<div class="Tests-Hub-correction-section">
+					<p><span class="Tests-Hub-question-number">Partie I</span></p>
+					<p>1°) a) \(2 \left( x - \frac{1}{2} \right)^2 = 2\left(x^2 - x + \frac{1}{4}\right) = 2x^2 - 2x + \frac{1}{2}\)</p>
+					
+					<p>b) \(x^2 + y^2 = (x+y)^2 - 2xy = 1 - 2xy \geq 1 - 2 \times \frac{1}{4} = \frac{1}{2}\)</p>
+					<p>\(xy \leq \left(\frac{x+y}{2}\right)^2 = \frac{1}{4}\) (inégalité arithmético-géométrique)</p>
+					
+					<p>c) \(\left(x + \frac{1}{x}\right)^2 + \left(y + \frac{1}{y}\right)^2 \geq \frac{25}{2}\)</p>
+					
+					<p>2°) En remplaçant x+y=1, on obtient le même résultat.</p>
+					
+					<p><span class="Tests-Hub-question-number">Partie II</span></p>
+					<p>1°) a) \((x-2)^3 - 27 = (x-2)^3 - 3^3 = x^3 - 6x^2 + 12x - 8 - 27 = x^3 - 6x^2 + 12x - 35 = A\)</p>
+					
+					<p>b) \(A = (x-2)^3 - 27 = (x-2-3)[(x-2)^2 + 3(x-2) + 9] = (x-5)(x^2 - x + 7)\)</p>
+					
+					<p>2°) \(B = x^3 - 125 - 3x(x-5) = (x-5)(x^2 + 5x + 25) - 3x(x-5) = (x-5)(x^2 + 2x + 25)\)</p>
+					
+					<p>3°) a) \(A - B = (x-5)(x^2 - x + 7) - (x-5)(x^2 + 2x + 25) = (x-5)(-3x - 18) = -3(x-5)(x+6)\)</p>
+					
+					<p>b) Pour x ∈ [-6,5] :<br>
+					- Si x ∈ [-6,5], alors (x-5) ≤ 0 et (x+6) ≥ 0, donc A - B ≥ 0 ⇒ A ≥ B<br>
+					- Si x = -6 ou x = 5, alors A = B</p>
+				</div>
+				
+				<h3>Exercice n°3 - Correction</h3>
+				<div class="Tests-Hub-correction-section">
+					<p><span class="Tests-Hub-question-number">1°)</span></p>
+					<p>a) D'après le théorème de Thalès dans le triangle ABC avec (IM) // (AC) :</p>
+					<div class="Tests-Hub-math-formula">
+						\[\frac{BI}{BA} = \frac{BM}{BC} = \frac{IM}{AC}\]
+						Or I est le projeté orthogonal de C sur (AB), donc AI = AB - IB
+						\[\frac{AI}{AB} = \frac{CM}{CB}\]
+					</div>
+					
+					<p>b) D'après le théorème de Thalès dans le triangle ABC avec (MJ) // (AB) :</p>
+					<div class="Tests-Hub-math-formula">
+						\[\frac{CM}{CB} = \frac{CJ}{CA}\]
+						Donc \(\frac{AI}{AB} = \frac{CJ}{CA}\)
+						Or AJ = AC - CJ, donc \(\frac{AJ}{AC} = 1 - \frac{CJ}{AC} = 1 - \frac{AI}{AB}\)
+						Ainsi \(\frac{AI}{AB} + \frac{AJ}{AC} = 1\)
+					</div>
+					
+					<p><span class="Tests-Hub-question-number">2°)</span></p>
+					<p>a) Les points B, H, D, J sont cocycliques (cercle de diamètre [BJ]).</p>
+					<div class="Tests-Hub-math-formula">
+						Les triangles AHI et AJC sont semblables donc :
+						\[\frac{AH}{AI} = \frac{AJ}{AC}\]
+					</div>
+					
+					<p>b) D'après la question précédente et la puissance du point A par rapport au cercle :</p>
+					<div class="Tests-Hub-math-formula">
+						\[AH \times AB = AI \times AJ = IA \times IB\]
+					</div>
+					
+					<p><span class="Tests-Hub-question-number">3°)</span></p>
+					<p>En utilisant les propriétés des triangles semblables et le théorème de Thalès :</p>
+					<div class="Tests-Hub-math-formula">
+						On montre que (JP) est perpendiculaire à (BC) en P, donc P est le projeté orthogonal de J sur (BC).
+					</div>
+				</div>
+			</div>
+			
+			<!-- Download Buttons -->
+			<div class="Tests-Hub-download-buttons">
+				<button class="Tests-Hub-download-button pdf" id="downloadPdf">
+					<span>📄</span>
+					<span>PDF</span>
+				</button>
+				<button class="Tests-Hub-download-button odt" id="downloadOdt">
+					<span>📝</span>
+					<span>ODT</span>
+				</button>
+				<button class="Tests-Hub-download-button png" id="downloadPng">
+					<span>🖼️</span>
+					<span>PNG</span>
+				</button>
+			</div>
+		</main>
+		
+		<!-- Footer -->
+		<footer class="Tests-Hub-footer-container">
+			<div class="Tests-Hub-footer-content">
+				<div class="Tests-Hub-footer-columns">
+					<!-- Column 1: Developer -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+						<p class="Tests-Hub-developer-name">زياد الماجري</p>
+					</div>
+					
+					<!-- Column 2: Version -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+						<p class="Tests-Hub-version-number">v2.0.6</p>
+					</div>
+					
+					<!-- Column 3: Links -->
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+						<ul class="Tests-Hub-footer-links-list">
+							<li>
+								<a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+							</li>
+							<li>
+								<a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<script>
+			// Translation object for Synthesis Test page
+			let currentLanguage = 'fr';
+			let isDarkTheme = false;
+			
+			const TestsHub_translations = {
+				fr: {
+					TestsHub: {
+						synthesisTest: {
+							title: "Mathématiques - Devoir de Synthèse",
+							subtitle: "1ère Année Secondaire",
+							back: "Retour aux Tests",
+							comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+						},
+						language: {
+							current: "Français"
+						},
+						theme: {
+							toggle: "Mode Sombre"
+						},
+						footer: {
+							developer: "المطور",
+							version: "الإصدار",
+							links: "الروابط",
+							terms: "شروط الاستخدام",
+							privacy: "سياسة الخصوصية"
+						}
+					}
+				},
+				en: {
+					TestsHub: {
+						synthesisTest: {
+							title: "Mathematics - Synthesis Test",
+							subtitle: "1st Year Secondary School",
+							back: "Back to Tests",
+							comingSoon: "Coming soon! This feature is under development."
+						},
+						language: {
+							current: "English"
+						},
+						theme: {
+							toggle: "Dark Mode"
+						},
+						footer: {
+							developer: "المطور",
+							version: "الإصدار",
+							links: "الروابط",
+							terms: "شروط الاستخدام",
+							privacy: "سياسة الخصوصية"
+						}
+					}
+				},
+				ar: {
+					TestsHub: {
+						synthesisTest: {
+							title: "الرياضيات - اختبار تأليفي",
+							subtitle: "السنة الأولى ثانوي",
+							back: "العودة للاختبارات",
+							comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+						},
+						language: {
+							current: "العربية"
+						},
+						theme: {
+							toggle: "الوضع المظلم"
+						},
+						footer: {
+							developer: "المطور",
+							version: "الإصدار",
+							links: "الروابط",
+							terms: "شروط الاستخدام",
+							privacy: "سياسة الخصوصية"
+						}
+					}
+				}
+			};
+			
+			// Function to update text content (only for header and footer)
+			function updateTextContent() {
+				const elements = document.querySelectorAll('[data-i18n]');
+				
+				elements.forEach(element => {
+					const key = element.getAttribute('data-i18n');
+					let translation = null;
+					
+					const keys = key.split('.');
+					let current = TestsHub_translations[currentLanguage];
+					
+					for (const k of keys) {
+						if (current && current[k] !== undefined) {
+							current = current[k];
+						} else {
+							current = null;
+							break;
+						}
+					}
+					
+					translation = current;
+					
+					if (translation && typeof translation === 'string') {
+						element.textContent = translation;
+					}
+				});
+				
+				updateThemeToggleText();
+				updateCorrectionButtonText();
+			}
+			
+			// Function to update theme toggle text
+			function updateThemeToggleText() {
+				const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+				const themeIcon = document.getElementById('themeIcon');
+				
+				if (themeToggle) {
+					if (isDarkTheme) {
+						if (currentLanguage === 'fr') {
+							themeToggle.textContent = "Mode Clair";
+							} else if (currentLanguage === 'ar') {
+							themeToggle.textContent = "الوضع الفاتح";
+							} else {
+							themeToggle.textContent = "Light Mode";
+						}
+						} else {
+						themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+					}
+				}
+				
+				if (themeIcon) {
+					themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+				}
+			}
+			
+			// Function to update correction button text
+			function updateCorrectionButtonText() {
+				const correctionButton = document.getElementById('toggleCorrection');
+				const correctionSection = document.getElementById('correction');
+				
+				if (correctionButton) {
+					if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+						correctionButton.textContent = "Afficher la correction";
+						} else {
+						correctionButton.textContent = "Masquer la correction";
+					}
+				}
+			}
+			
+			// Function to toggle theme
+			function toggleTheme() {
+				isDarkTheme = !isDarkTheme;
+				const body = document.body;
+				
+				if (isDarkTheme) {
+					body.classList.add('Tests-Hub-dark-theme');
+					} else {
+					body.classList.remove('Tests-Hub-dark-theme');
+				}
+				
+				updateThemeToggleText();
+				localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+			}
+			
+			// Function to change language
+			function changeLanguage(lang) {
+				if (!TestsHub_translations[lang]) return;
+				
+				currentLanguage = lang;
+				updateTextContent();
+				
+				const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+				if (languageButton) {
+					languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+				}
+				
+				if (lang === 'ar') {
+					document.documentElement.dir = 'rtl';
+					document.documentElement.lang = 'ar';
+					} else {
+					document.documentElement.dir = 'ltr';
+					document.documentElement.lang = lang;
+				}
+				
+				localStorage.setItem('testsHubLanguage', lang);
+			}
+			
+			// Download functions
+			function downloadAsPDF() {
+				const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+				alert(comingSoonMsg);
+			}
+			
+			function downloadAsODT() {
+				const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+				alert(comingSoonMsg);
+			}
+			
+			function downloadAsPNG() {
+				const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+				alert(comingSoonMsg);
+			}
+			
+			// Initialize everything
+			document.addEventListener('DOMContentLoaded', function() {
+				// Load saved preferences
+				const savedTheme = localStorage.getItem('testsHubTheme');
+				if (savedTheme === 'dark') {
+					isDarkTheme = true;
+					document.body.classList.add('Tests-Hub-dark-theme');
+				}
+				
+				const savedLanguage = localStorage.getItem('testsHubLanguage');
+				if (savedLanguage && TestsHub_translations[savedLanguage]) {
+					currentLanguage = savedLanguage;
+				}
+				
+				if (currentLanguage === 'ar') {
+					document.documentElement.dir = 'rtl';
+					document.documentElement.lang = 'ar';
+				}
+				
+				// Render math formulas
+				renderMathInElement(document.body, {
+					delimiters: [
+						{left: "$$", right: "$$", display: true},
+						{left: "$", right: "$", display: false},
+						{left: "\\(", right: "\\)", display: false},
+						{left: "\\[", right: "\\]", display: true}
+					],
+					ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
+					ignoredClasses: ["no-math"]
+				});
+				
+				updateTextContent();
+				
+				// Attach event listeners
+				const themeButton = document.getElementById('themeToggle');
+				if (themeButton) {
+					themeButton.addEventListener('click', toggleTheme);
+				}
+				
+				const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+				languageOptions.forEach(option => {
+					option.addEventListener('click', function() {
+						const lang = this.getAttribute('data-language');
+						changeLanguage(lang);
+					});
+				});
+				
+				// Download buttons event listeners
+				const pdfButton = document.getElementById('downloadPdf');
+				if (pdfButton) {
+					pdfButton.addEventListener('click', downloadAsPDF);
+				}
+				
+				const odtButton = document.getElementById('downloadOdt');
+				if (odtButton) {
+					odtButton.addEventListener('click', downloadAsODT);
+				}
+				
+				const pngButton = document.getElementById('downloadPng');
+				if (pngButton) {
+					pngButton.addEventListener('click', downloadAsPNG);
+				}
+				
+				// Correction toggle functionality
+				const correctionButton = document.getElementById('toggleCorrection');
+				if (correctionButton) {
+					correctionButton.addEventListener('click', function() {
+						const correctionSection = document.getElementById('correction');
+						if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+							correctionSection.classList.remove('Tests-Hub-hidden');
+							correctionButton.textContent = "Masquer la correction";
+							
+							// Re-render math in correction section when it becomes visible
+							renderMathInElement(correctionSection, {
+								delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false},
+									{left: "\\(", right: "\\)", display: false},
+									{left: "\\[", right: "\\]", display: true}
+								],
+								ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
+								ignoredClasses: ["no-math"]
+							});
+						} else {
+							correctionSection.classList.add('Tests-Hub-hidden');
+							correctionButton.textContent = "Afficher la correction";
+						}
+					});
+				}
+				
+				// Register service worker for PWA
+				if ('serviceWorker' in navigator) {
+					navigator.serviceWorker.register('/sw.js')
+					.then(registration => {
+						console.log('Service Worker registered:', registration);
+					})
+					.catch(error => {
+						console.log('Service Worker registration failed:', error);
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
