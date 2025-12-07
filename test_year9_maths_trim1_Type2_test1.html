@@ -24,9 +24,9 @@
     <link rel="manifest" href="manifest.json">
     
     <!-- KaTeX pour les formules mathématiques -->
-    <link rel="stylesheet" href="/katex/katex.min.css">
-    <script defer src="/katex/katex.min.js"></script>
-    <script defer src="/katex/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
     
     <style>
         * {
@@ -378,43 +378,51 @@
             color: #5eead4;
         }
         
-        /* Style pour les formules mathématiques */
+        /* Style pour les formules mathématiques - AUGMENTÉ */
         .Tests-Hub-math-formula {
             font-family: 'Times New Roman', Times, serif;
             background: #f8fafc;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
             text-align: center;
             transition: background 0.3s ease;
             overflow-x: auto;
+            border: 2px solid #e2e8f0;
         }
         
         .Tests-Hub-dark-theme .Tests-Hub-math-formula {
             background: #1e293b;
+            border-color: #334155;
         }
         
         .Tests-Hub-math-expr {
             font-family: 'Times New Roman', Times, serif;
             font-style: italic;
-            margin: 5px 0;
+            margin: 8px 0;
+            font-size: 1.1em;
         }
         
         .katex {
-            font-size: 1.1em !important;
+            font-size: 1.4em !important; /* Augmenté */
+        }
+        
+        .katex-display {
+            font-size: 1.5em !important; /* Augmenté pour les formules en display */
         }
         
         .Tests-Hub-math-formula .katex-display {
-            margin: 0.5em 0;
+            margin: 1em 0;
+            padding: 10px 0;
         }
         
-        /* Image container */
+        /* Image container - AUGMENTÉ */
         .Tests-Hub-image-container {
             text-align: center;
-            margin: 1.5rem 0;
-            padding: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
             background: #f8fafc;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: background 0.3s ease;
         }
         
@@ -425,16 +433,16 @@
         .Tests-Hub-image-container img {
             max-width: 100%;
             height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
         
         .Tests-Hub-image-caption {
             font-style: italic;
             color: #666;
-            margin-top: 10px;
-            font-size: 0.9em;
+            margin-top: 15px;
+            font-size: 1em;
             transition: color 0.3s ease;
         }
         
@@ -442,7 +450,7 @@
             color: #99f6e4;
         }
         
-        /* Correction Section */
+        /* Correction Section - AMÉLIORÉ */
         .Tests-Hub-correction-toggle-container {
             text-align: center;
             margin: 2rem 0;
@@ -450,13 +458,13 @@
         
         .Tests-Hub-toggle-button {
             display: inline-block;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 2rem;
             background: linear-gradient(to left, #0d9488, #14b8a6);
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -470,7 +478,7 @@
         .Tests-Hub-correction-section {
             background: #f0fdfa;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 2rem;
             margin-top: 1.5rem;
             border-right: 4px solid #0d9488;
             transition: background 0.3s ease;
@@ -481,39 +489,59 @@
             border-right-color: #14b8a6;
         }
         
-        .Tests-Hub-correction-section h3 {
+        .Tests-Hub-correction-section h2 {
             color: #0d9488;
             margin-top: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h2 {
+            color: #5eead4;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #0d9488;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #14b8a6;
+            font-size: 1.4rem;
         }
         
         .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
             color: #5eead4;
+            border-bottom-color: #5eead4;
         }
         
         .Tests-Hub-correction-answer {
-            background: rgba(13, 148, 136, 0.05);
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
+            background: rgba(13, 148, 136, 0.08);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
             border-right: 3px solid #0d9488;
             transition: background 0.3s ease;
         }
         
         .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
-            background: rgba(94, 234, 212, 0.1);
+            background: rgba(94, 234, 212, 0.12);
             border-right-color: #5eead4;
         }
         
         .Tests-Hub-correction-note {
             font-style: italic;
             color: #666;
-            margin: 0.5rem 0;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
             transition: color 0.3s ease;
         }
         
         .Tests-Hub-dark-theme .Tests-Hub-correction-note {
             color: #99f6e4;
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .Tests-Hub-hidden {
@@ -733,6 +761,15 @@
                 margin-bottom: 0;
                 margin-right: 15px;
             }
+            
+            /* Responsive adjustments for larger formulas */
+            .katex {
+                font-size: 1.2em !important;
+            }
+            
+            .katex-display {
+                font-size: 1.3em !important;
+            }
         }
         
         @media (max-width: 480px) {
@@ -761,6 +798,10 @@
             .Tests-Hub-download-button span:first-child {
                 font-size: 1.5rem;
                 margin-right: 10px;
+            }
+            
+            .Tests-Hub-correction-answer {
+                padding: 1rem;
             }
         }
         
@@ -861,46 +902,93 @@
             height: 18px;
         }
         
-        /* Canvas Styling */
+        /* Canvas Styling - NOUVELLE COULEUR DE FOND */
         .Tests-Hub-canvas-container {
             text-align: center;
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background: #f8fafc;
-            border-radius: 8px;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #e0f7fa !important; /* Nouvelle couleur: bleu clair */
+            border-radius: 12px;
             transition: background 0.3s ease;
+            border: 2px solid #4dd0e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .Tests-Hub-dark-theme .Tests-Hub-canvas-container {
-            background: #14b8a6;
+            background: #004d40 !important; /* Nouvelle couleur: vert foncé */
+            border-color: #00796b;
         }
         
         .Tests-Hub-geometry-canvas {
             width: 100%;
-            max-width: 800px;
+            max-width: 1000px; /* Augmenté */
             height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            border: 3px solid #0d9488; /* Épaisseur augmentée */
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             background: white;
             margin: 0 auto;
         }
         
         .Tests-Hub-dark-theme .Tests-Hub-geometry-canvas {
             border-color: #14b8a6;
-            background: #0f766e;
+            background: #f0fdfa; /* Fond clair même en mode sombre pour mieux voir */
         }
         
         .Tests-Hub-image-caption {
             font-style: italic;
             color: #666;
-            margin-top: 10px;
-            font-size: 0.9em;
+            margin-top: 15px;
+            font-size: 1em;
             transition: color 0.3s ease;
         }
         
         .Tests-Hub-dark-theme .Tests-Hub-image-caption {
             color: #99f6e4;
+        }
+        
+        /* Nouvelle classe pour les étapes détaillées */
+        .Tests-Hub-step-by-step {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-step-by-step {
+            background: rgba(59, 130, 246, 0.15);
+            border-left-color: #60a5fa;
+        }
+        
+        .Tests-Hub-step-title {
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-step-title {
+            color: #93c5fd;
+        }
+        
+        .Tests-Hub-step-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.9em;
+            margin-right: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-step-number {
+            background: #60a5fa;
         }
     </style>
 </head>
@@ -979,7 +1067,9 @@
             
             <div class="Tests-Hub-question">
                 <p><span class="Tests-Hub-question-number">1-</span> ليكن \( (I, J) \) و \( (O, I) \) معيّنا في المستوي والنقطتين \( A(2 + \sqrt{5} ; 1) \) و \( B(-\sqrt{5}; -1) \) متناظرتان بالنسبة لـ \( J \)</p>
-                <p>\[B = \frac{(0,00025)^2 \times 100^4}{\sqrt{2} \times \sqrt{5}} = 1\]</p>
+                <div class="Tests-Hub-math-formula">
+                    <p>\[B = \frac{(0,00025)^2 \times 100^4}{\sqrt{2} \times \sqrt{5}} = 1\]</p>
+                </div>
                 <div class="Tests-Hub-true-false">
                     <label><input type="radio" name="q1"> صواب</label>
                     <label><input type="radio" name="q1"> خطأ</label>
@@ -1005,8 +1095,8 @@
                 <p><span class="Tests-Hub-question-number">1-</span> لنعتبر العددين الحقيقيين \( a \) و \( b \) بحيث:</p>
                 
                 <div class="Tests-Hub-math-formula">
-                    <p>\( a = \sqrt{27} - \sqrt{\frac{3}{5}} \times (\sqrt{5} - \sqrt{15}) - (\sqrt{3} + 1) \)</p>
-                    <p>\( b = \sqrt{9} + 2 \times (\sqrt{3} - \sqrt{16}) + (2 - \sqrt{3}) \times (\sqrt{3} + 5) \)</p>
+                    <p>\[a = \sqrt{27} - \sqrt{\frac{3}{5}} \times (\sqrt{5} - \sqrt{15}) - (\sqrt{3} + 1)\]</p>
+                    <p>\[b = \sqrt{9} + 2 \times (\sqrt{3} - \sqrt{16}) + (2 - \sqrt{3}) \times (\sqrt{3} + 5)\]</p>
                 </div>
                 
                 <p>أ) بين أن \( a = \sqrt{3} + 2 \)</p>
@@ -1026,7 +1116,7 @@
                 
                 <p>ب) اختصر كتابة \( E \) إلى أقصى حد ممكن ثم أحسبها حيث:</p>
                 <div class="Tests-Hub-math-formula">
-                    <p>\( E = \frac{a^{-3} \times b}{a^{-2} \times (2b)^2} \)</p>
+                    <p>\[E = \frac{a^{-3} \times b}{a^{-2} \times (2b)^2}\]</p>
                 </div>
                 <textarea class="Tests-Hub-large-textarea" placeholder="اكتب الحل هنا..."></textarea>
             </div>
@@ -1040,7 +1130,7 @@
                 <p><span class="Tests-Hub-question-number">1-</span> لنكن العبارة \( B \) حيث:</p>
                 
                 <div class="Tests-Hub-math-formula">
-                    <p>\( B = \frac{1}{2} x + \frac{1}{2} (10 - 2x) + \frac{5}{3} (3x - 4) \)</p>
+                    <p>\[B = \frac{1}{2} x + \frac{1}{2} (10 - 2x) + \frac{5}{3} (3x - 4)\]</p>
                 </div>
                 
                 <p>أ) فكك \( B \) إلى جداء عوامل واستنتج أن \( B = (x - 5)^2 \)</p>
@@ -1058,10 +1148,11 @@
         <div class="Tests-Hub-test-section">
             <h2>التمرين الرابع (5 نقاط)</h2>
             
+            <!-- CANVAS avec nouvelle couleur de fond -->
             <div class="Tests-Hub-canvas-container">
-            <canvas id="geometryDiagram1" class="Tests-Hub-geometry-canvas" width="800" height="400"></canvas>
-            <div class="Tests-Hub-image-caption">الشكل الهندسي: مثلث ABC مع النقاط المساعدة</div>
-        </div>
+                <canvas id="geometryDiagram1" class="Tests-Hub-geometry-canvas" width="1000" height="500"></canvas>
+                <div class="Tests-Hub-image-caption">الشكل الهندسي: مثلث ABC مع النقاط المساعدة</div>
+            </div>
             
             <div class="Tests-Hub-question">
                 <p>أرسم مثلث \( ABC \) حيث \( CB = 12 \text{ cm} \) و \( AC = 9 \text{ cm} \)، \( AB = 6 \text{ cm} \)</p>
@@ -1098,7 +1189,7 @@
             <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.synthesisTest.showCorrection">عرض التصحيح</button>
         </div>
         
-        <!-- Correction Section -->
+        <!-- Correction Section - AMÉLIORÉ -->
         <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
             <h2>تصحيح الاختبار</h2>
             
@@ -1106,122 +1197,418 @@
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">1-</span> <strong>التصحيح:</strong> خطأ ✗</p>
-                <p><strong>التبرير:</strong> لنحسب قيمة \( B \):</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( B = \frac{(0,00025)^2 \times 100^4}{\sqrt{2} \times \sqrt{5}} \)</p>
-                    <p>\( 0,00025 = 2.5 \times 10^{-4} = \frac{1}{4000} \)</p>
-                    <p>\( (0,00025)^2 = \frac{1}{4000^2} = \frac{1}{16 \times 10^6} \)</p>
-                    <p>\( 100^4 = 10^8 \)</p>
-                    <p>\( B = \frac{\frac{1}{16 \times 10^6} \times 10^8}{\sqrt{10}} = \frac{100}{16\sqrt{10}} \neq 1 \)</p>
+                <p><strong>التبرير:</strong> لنحسب قيمة \( B \) خطوة بخطوة:</p>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">1</span>
+                        تحويل الأعداد العشرية إلى كسور
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( 0,00025 = 2.5 \times 10^{-4} = \frac{1}{4000} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">2</span>
+                        حساب \( (0,00025)^2 \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( (0,00025)^2 = \left(\frac{1}{4000}\right)^2 = \frac{1}{4000^2} = \frac{1}{16 \times 10^6} = \frac{1}{16,000,000} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">3</span>
+                        حساب \( 100^4 \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( 100^4 = (10^2)^4 = 10^8 = 100,000,000 \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">4</span>
+                        حساب البسط
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( (0,00025)^2 \times 100^4 = \frac{1}{16,000,000} \times 100,000,000 = \frac{100,000,000}{16,000,000} = \frac{100}{16} = \frac{25}{4} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">5</span>
+                        حساب المقام
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( \sqrt{2} \times \sqrt{5} = \sqrt{2 \times 5} = \sqrt{10} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">6</span>
+                        حساب القيمة النهائية
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( B = \frac{\frac{25}{4}}{\sqrt{10}} = \frac{25}{4\sqrt{10}} \)</p>
+                        <p>بضرب البسط والمقام في \( \sqrt{10} \):</p>
+                        <p>\( B = \frac{25}{4\sqrt{10}} \times \frac{\sqrt{10}}{\sqrt{10}} = \frac{25\sqrt{10}}{4 \times 10} = \frac{25\sqrt{10}}{40} = \frac{5\sqrt{10}}{8} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-correction-note">
+                    <strong>ملاحظة:</strong> بما أن \( \frac{5\sqrt{10}}{8} \neq 1 \)، فإن العبارة خاطئة. القيمة الصحيحة هي \( \frac{5\sqrt{10}}{8} \).
                 </div>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">2-</span> <strong>التصحيح:</strong> خطأ ✗</p>
-                <p><strong>التبرير:</strong> إذا كان \( M \in [AB] \) و \( AM = \frac{3}{5} MB \) فإن \( AB = AM + MB = \frac{3}{5}MB + MB = \frac{8}{5}MB \)</p>
-                <p>وبالتالي \( MB = \frac{5}{8}AB \) و \( AM = \frac{3}{8}AB \) وليس \( \frac{2}{5}AB \)</p>
+                <p><strong>التبرير:</strong> لنفترض أن \( M \in [AB] \) و \( AM = \frac{3}{5} MB \).</p>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">1</span>
+                        التعبير عن AB بدلالة MB
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( AB = AM + MB = \frac{3}{5}MB + MB = \frac{3}{5}MB + \frac{5}{5}MB = \frac{8}{5}MB \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">2</span>
+                        إيجاد MB بدلالة AB
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( MB = \frac{5}{8}AB \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">3</span>
+                        إيجاد AM بدلالة AB
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( AM = \frac{3}{5} \times MB = \frac{3}{5} \times \frac{5}{8}AB = \frac{3}{8}AB \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-correction-note">
+                    <strong>ملاحظة:</strong> إذن \( AM = \frac{3}{8}AB \) وليس \( \frac{2}{5}AB \). لذلك العبارة خاطئة.
+                </div>
             </div>
             
             <h3>التمرين الثاني - التصحيح</h3>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">1-</span> <strong>التصحيح:</strong></p>
-                <p>أ) \( a = \sqrt{27} - \sqrt{\frac{3}{5}} \times (\sqrt{5} - \sqrt{15}) - (\sqrt{3} + 1) \)</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( = 3\sqrt{3} - \sqrt{\frac{3}{5}} \times \sqrt{5} + \sqrt{\frac{3}{5}} \times \sqrt{15} - \sqrt{3} - 1 \)</p>
-                    <p>\( = 3\sqrt{3} - \sqrt{3} + \sqrt{\frac{3}{5} \times 15} - \sqrt{3} - 1 \)</p>
-                    <p>\( = 3\sqrt{3} - \sqrt{3} + \sqrt{9} - \sqrt{3} - 1 \)</p>
-                    <p>\( = 3\sqrt{3} - \sqrt{3} - \sqrt{3} + 3 - 1 \)</p>
-                    <p>\( = \sqrt{3} + 2 \)</p>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">أ</span>
+                        حساب \( a \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( a = \sqrt{27} - \sqrt{\frac{3}{5}} \times (\sqrt{5} - \sqrt{15}) - (\sqrt{3} + 1) \)</p>
+                        <p>الخطوة 1: تبسيط \( \sqrt{27} = \sqrt{9 \times 3} = 3\sqrt{3} \)</p>
+                        <p>الخطوة 2: توزيع \( \sqrt{\frac{3}{5}} \)</p>
+                        <p>\( \sqrt{\frac{3}{5}} \times \sqrt{5} = \sqrt{\frac{3}{5} \times 5} = \sqrt{3} \)</p>
+                        <p>\( \sqrt{\frac{3}{5}} \times \sqrt{15} = \sqrt{\frac{3}{5} \times 15} = \sqrt{9} = 3 \)</p>
+                        <p>الخطوة 3: التعويض في العبارة</p>
+                        <p>\( a = 3\sqrt{3} - (\sqrt{3} - 3) - \sqrt{3} - 1 \)</p>
+                        <p>\( a = 3\sqrt{3} - \sqrt{3} + 3 - \sqrt{3} - 1 \)</p>
+                        <p>\( a = (3\sqrt{3} - \sqrt{3} - \sqrt{3}) + (3 - 1) \)</p>
+                        <p>\( a = \sqrt{3} + 2 \)</p>
+                    </div>
                 </div>
                 
-                <p>ب) \( b = \sqrt{9} + 2 \times (\sqrt{3} - \sqrt{16}) + (2 - \sqrt{3}) \times (\sqrt{3} + 5) \)</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( = 3 + 2\sqrt{3} - 8 + (2\sqrt{3} + 10 - 3 - 5\sqrt{3}) \)</p>
-                    <p>\( = -5 + 2\sqrt{3} - 3\sqrt{3} + 7 \)</p>
-                    <p>\( = 2 - \sqrt{3} \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">ب</span>
+                        حساب \( b \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( b = \sqrt{9} + 2 \times (\sqrt{3} - \sqrt{16}) + (2 - \sqrt{3}) \times (\sqrt{3} + 5) \)</p>
+                        <p>الخطوة 1: تبسيط القيم المعروفة \( \sqrt{9} = 3 \), \( \sqrt{16} = 4 \)</p>
+                        <p>الخطوة 2: فك القوس الأول \( 2 \times (\sqrt{3} - 4) = 2\sqrt{3} - 8 \)</p>
+                        <p>الخطوة 3: فك الضرب الأخير باستخدام توزيع الضرب على الجمع</p>
+                        <p>\( (2 - \sqrt{3}) \times (\sqrt{3} + 5) = 2\sqrt{3} + 10 - 3 - 5\sqrt{3} \)</p>
+                        <p>\( = (2\sqrt{3} - 5\sqrt{3}) + (10 - 3) = -3\sqrt{3} + 7 \)</p>
+                        <p>الخطوة 4: جمع كل الحدود</p>
+                        <p>\( b = 3 + (2\sqrt{3} - 8) + (-3\sqrt{3} + 7) \)</p>
+                        <p>\( b = 3 + 2\sqrt{3} - 8 - 3\sqrt{3} + 7 \)</p>
+                        <p>\( b = (3 - 8 + 7) + (2\sqrt{3} - 3\sqrt{3}) \)</p>
+                        <p>\( b = 2 - \sqrt{3} \)</p>
+                    </div>
                 </div>
                 
-                <p>ج) \( a \times b = (\sqrt{3} + 2)(2 - \sqrt{3}) = 2\sqrt{3} - 3 + 4 - 2\sqrt{3} = 1 \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">ج</span>
+                        إثبات أن \( a \times b = 1 \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( a \times b = (\sqrt{3} + 2)(2 - \sqrt{3}) \)</p>
+                        <p>استخدام خاصية توزيع الضرب على الجمع:</p>
+                        <p>\( = \sqrt{3} \times 2 + \sqrt{3} \times (-\sqrt{3}) + 2 \times 2 + 2 \times (-\sqrt{3}) \)</p>
+                        <p>\( = 2\sqrt{3} - 3 + 4 - 2\sqrt{3} \)</p>
+                        <p>\( = (2\sqrt{3} - 2\sqrt{3}) + (-3 + 4) \)</p>
+                        <p>\( = 0 + 1 = 1 \)</p>
+                    </div>
+                </div>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">2-</span> <strong>التصحيح:</strong></p>
-                <p>أ) \( F = a^{-1} + b^{-1} = \frac{1}{a} + \frac{1}{b} = \frac{b + a}{ab} = \frac{(\sqrt{3} + 2) + (2 - \sqrt{3})}{1} = 4 \)</p>
                 
-                <p>ب) \( E = \frac{a^{-3} \times b}{a^{-2} \times (2b)^2} = \frac{b}{a^3} \times \frac{a^2}{4b^2} = \frac{1}{4ab} = \frac{1}{4 \times 1} = \frac{1}{4} \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">أ</span>
+                        حساب \( F = a^{-1} + b^{-1} \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( a^{-1} = \frac{1}{a} = \frac{1}{\sqrt{3} + 2} \)</p>
+                        <p>\( b^{-1} = \frac{1}{b} = \frac{1}{2 - \sqrt{3}} \)</p>
+                        <p>\( F = \frac{1}{\sqrt{3} + 2} + \frac{1}{2 - \sqrt{3}} \)</p>
+                        <p>بما أن \( a \times b = 1 \)، فإن \( b = \frac{1}{a} \)</p>
+                        <p>لذلك \( \frac{1}{b} = a \)</p>
+                        <p>إذن \( F = \frac{1}{a} + a = \frac{1 + a^2}{a} \)</p>
+                        <p>لكن هناك طريقة أبسط: بما أن \( a \times b = 1 \)</p>
+                        <p>\( F = \frac{1}{a} + \frac{1}{b} = \frac{b + a}{ab} = \frac{a + b}{1} = a + b \)</p>
+                        <p>\( a + b = (\sqrt{3} + 2) + (2 - \sqrt{3}) = 4 \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">ب</span>
+                        تبسيط \( E \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( E = \frac{a^{-3} \times b}{a^{-2} \times (2b)^2} \)</p>
+                        <p>استخدام خواص القوى:</p>
+                        <p>\( a^{-3} = \frac{1}{a^3} \), \( a^{-2} = \frac{1}{a^2} \)</p>
+                        <p>\( E = \frac{\frac{1}{a^3} \times b}{\frac{1}{a^2} \times 4b^2} = \frac{b}{a^3} \times \frac{a^2}{4b^2} \)</p>
+                        <p>\( = \frac{a^2 \times b}{a^3 \times 4b^2} = \frac{1}{a \times 4b} = \frac{1}{4ab} \)</p>
+                        <p>بما أن \( ab = 1 \)</p>
+                        <p>\( E = \frac{1}{4 \times 1} = \frac{1}{4} \)</p>
+                    </div>
+                </div>
             </div>
             
             <h3>التمرين الثالث - التصحيح</h3>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">1-</span> <strong>التصحيح:</strong></p>
-                <p>أ) \( B = \frac{1}{2} x + \frac{1}{2} (10 - 2x) + \frac{5}{3} (3x - 4) \)</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( = \frac{1}{2}x + 5 - x + 5x - \frac{20}{3} \)</p>
-                    <p>\( = (\frac{1}{2}x - x + 5x) + (5 - \frac{20}{3}) \)</p>
-                    <p>\( = \frac{9}{2}x + \frac{15 - 20}{3} \)</p>
-                    <p>\( = \frac{9}{2}x - \frac{5}{3} \)</p>
-                    <p>لكن \( (x - 5)^2 = x^2 - 10x + 25 \)</p>
-                    <p>يبدو أن هناك خطأ في نص التمرين. لنفترض أن \( B = \frac{1}{2}x + \frac{1}{2}(10 - 2x) + \frac{5}{3}(3x - 4) = x - 5 \)</p>
-                    <p>ثم \( (x - 5)^2 = x^2 - 10x + 25 \)</p>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">أ</span>
+                        تبسيط \( B \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( B = \frac{1}{2} x + \frac{1}{2} (10 - 2x) + \frac{5}{3} (3x - 4) \)</p>
+                        <p>الخطوة 1: فك الأقواس</p>
+                        <p>\( = \frac{1}{2}x + 5 - x + 5x - \frac{20}{3} \)</p>
+                        <p>الخطوة 2: جمع الحدود المتشابهة</p>
+                        <p>\( = (\frac{1}{2}x - x + 5x) + (5 - \frac{20}{3}) \)</p>
+                        <p>\( = (\frac{1}{2}x + 4x) + (\frac{15}{3} - \frac{20}{3}) \)</p>
+                        <p>\( = \frac{9}{2}x - \frac{5}{3} \)</p>
+                    </div>
+                    <div class="Tests-Hub-correction-note">
+                        <strong>ملاحظة:</strong> يبدو أن هناك خطأ في نص التمرين. النتيجة \( \frac{9}{2}x - \frac{5}{3} \) لا تساوي \( (x-5)^2 \). ربما المقصود تعبير مختلف.
+                    </div>
                 </div>
                 
-                <p>ب) عندما \( x = \frac{\sqrt{2}}{2} \):</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( B = \frac{\sqrt{2}}{2} - 5 \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">ب</span>
+                        حساب \( B \) عندما \( x = \frac{\sqrt{2}}{2} \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( B = \frac{9}{2} \times \frac{\sqrt{2}}{2} - \frac{5}{3} \)</p>
+                        <p>\( = \frac{9\sqrt{2}}{4} - \frac{5}{3} \)</p>
+                        <p>\( = \frac{27\sqrt{2} - 20}{12} \)</p>
+                    </div>
                 </div>
                 
-                <p>ج) \( \sqrt{B} = 3 \) يعني \( B = 9 \)</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( x - 5 = 9 \)</p>
-                    <p>\( x = 14 \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">ج</span>
+                        إيجاد \( x \) عندما \( \sqrt{B} = 3 \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( \sqrt{B} = 3 \) يعني \( B = 9 \)</p>
+                        <p>\( \frac{9}{2}x - \frac{5}{3} = 9 \)</p>
+                        <p>\( \frac{9}{2}x = 9 + \frac{5}{3} = \frac{27}{3} + \frac{5}{3} = \frac{32}{3} \)</p>
+                        <p>\( x = \frac{32}{3} \times \frac{2}{9} = \frac{64}{27} \)</p>
+                    </div>
                 </div>
             </div>
             
             <h3>التمرين الرابع - التصحيح</h3>
             
+            <!-- CANVAS avec nouvelle couleur de fond -->
             <div class="Tests-Hub-canvas-container">
-            <canvas id="geometryDiagram2" class="Tests-Hub-geometry-canvas" width="800" height="400"></canvas>
-            <div class="Tests-Hub-image-caption">الشكل الهندسي مع الحلول</div>
-        </div>
+                <canvas id="geometryDiagram2" class="Tests-Hub-geometry-canvas" width="1000" height="500"></canvas>
+                <div class="Tests-Hub-image-caption">الشكل الهندسي مع الحلول المفصلة</div>
+            </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">1-</span> <strong>التصحيح:</strong></p>
-                <p>باستخدام نظرية طاليس: \( \frac{AM}{AB} = \frac{AN}{AC} = \frac{MN}{BC} \)</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( \frac{2}{6} = \frac{AN}{9} \) → \( AN = \frac{2 \times 9}{6} = 3 \text{ cm} \)</p>
-                    <p>\( \frac{2}{6} = \frac{MN}{12} \) → \( MN = \frac{2 \times 12}{6} = 4 \text{ cm} \)</p>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">1</span>
+                        استخدام نظرية طاليس
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>بما أن \( MN \parallel BC \) (حسب التعريف)</p>
+                        <p>فإن \( \frac{AM}{AB} = \frac{AN}{AC} = \frac{MN}{BC} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">2</span>
+                        حساب \( AN \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( \frac{AM}{AB} = \frac{AN}{AC} \)</p>
+                        <p>\( \frac{2}{6} = \frac{AN}{9} \)</p>
+                        <p>\( AN = \frac{2 \times 9}{6} = 3 \text{ cm} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">3</span>
+                        حساب \( MN \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( \frac{AM}{AB} = \frac{MN}{BC} \)</p>
+                        <p>\( \frac{2}{6} = \frac{MN}{12} \)</p>
+                        <p>\( MN = \frac{2 \times 12}{6} = 4 \text{ cm} \)</p>
+                    </div>
                 </div>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">2-</span> <strong>التصحيح:</strong></p>
-                <p>\( O \) نقطة تقاطع \( MC \) و \( BN \)</p>
-                <p>باستخدام خواص تقاطع المستقيمات في المثلث، \( \bigodot B \) هو قياس الزاوية \( B \) في المثلث \( BOC \)</p>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">1</span>
+                        تحديد النقطة \( O \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( O \) هي نقطة تقاطع المستقيم \( MC \) مع المستقيم \( BN \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">2</span>
+                        تفسير \( \bigodot B \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( \bigodot B \) في السياق الهندسي يمثل قياس الزاوية \( B \) في المثلث \( BOC \)</p>
+                        <p>باستخدام خواص المثلثات المتشابهة، يمكن حسابها لكن تحتاج إلى معطيات إضافية</p>
+                    </div>
+                </div>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">3-</span> <strong>التصحيح:</strong></p>
-                <p>أ) في المثلث \( BCN \)، \( OF \parallel BC \) (بالتعريف)</p>
-                <p>باستخدام نظرية طاليس: \( \frac{OF}{BC} = \frac{NF}{NC} \)</p>
                 
-                <p>ب) في المثلث \( BCM \)، \( OE \parallel BC \) (بالتعريف)</p>
-                <p>باستخدام نظرية طاليس: \( \frac{OE}{BC} = \frac{ME}{MB} \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">أ</span>
+                        إثبات \( \frac{OF}{BC} = \frac{NF}{NC} \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>في المثلث \( BCN \):</p>
+                        <p>بما أن \( OF \parallel BC \) (حسب التعريف)</p>
+                        <p>فإن باستخدام نظرية طاليس في المثلث \( BCN \) مع القاطع \( OF \):</p>
+                        <p>\( \frac{OF}{BC} = \frac{NF}{NC} \)</p>
+                    </div>
+                </div>
                 
-                <p>ج) من أ) و ب) وتماثل الموقف، \( \frac{NF}{NC} = \frac{ME}{MB} \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">ب</span>
+                        إثبات \( \frac{OE}{BC} = \frac{ME}{MB} \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>في المثلث \( BCM \):</p>
+                        <p>بما أن \( OE \parallel BC \) (حسب التعريف)</p>
+                        <p>فإن باستخدام نظرية طاليس في المثلث \( BCM \) مع القاطع \( OE \):</p>
+                        <p>\( \frac{OE}{BC} = \frac{ME}{MB} \)</p>
+                    </div>
+                </div>
                 
-                <p>د) إذا \( \frac{NF}{NC} = \frac{ME}{MB} \) و \( NF = NC - CF \), \( ME = MB - EB \)</p>
-                <p>باستخدام التناسب، نستنتج أن \( O \) منتصف \( EF \)</p>
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">ج</span>
+                        إثبات \( \frac{NF}{NC} = \frac{ME}{MB} \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>من أ) و ب) نعلم أن:</p>
+                        <p>\( \frac{OF}{BC} = \frac{NF}{NC} \) و \( \frac{OE}{BC} = \frac{ME}{MB} \)</p>
+                        <p>لكن في هذا السياق الهندسي، يمكن إثبات أن \( OF = OE \)</p>
+                        <p>لذلك \( \frac{NF}{NC} = \frac{ME}{MB} \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">د</span>
+                        استنتاج أن \( O \) منتصف \( [EF] \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>إذا كانت \( \frac{NF}{NC} = \frac{ME}{MB} \)</p>
+                        <p>وبما أن \( NF = NC - CF \) و \( ME = MB - EB \)</p>
+                        <p>فإن النسب متساوية مما يعني أن \( E \) و \( F \) متناظرتان بالنسبة لـ \( O \)</p>
+                        <p>لذلك \( O \) منتصف \( [EF] \)</p>
+                    </div>
+                </div>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">4-</span> <strong>التصحيح:</strong></p>
-                <p>\( I \) منتصف \( [BM] \) و \( J \) منتصف \( [CN] \)</p>
-                <p>\( II \) يبدو خطأ مطبعي، ربما المقصود \( IJ \)</p>
-                <p>باستخدام خواص خط المنتصف في المثلث، \( IJ \) يوازي \( BC \) وطوله نصف \( BC \)</p>
-                <div class="Tests-Hub-math-formula">
-                    <p>\( IJ = \frac{1}{2} BC = \frac{1}{2} \times 12 = 6 \text{ cm} \)</p>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">1</span>
+                        تصحيح الخطأ المطبعي
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>\( II \) يبدو خطأ مطبعي، المقصود على الأرجح \( IJ \)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-step-by-step">
+                    <div class="Tests-Hub-step-title">
+                        <span class="Tests-Hub-step-number">2</span>
+                        حساب \( IJ \)
+                    </div>
+                    <div class="Tests-Hub-math-formula">
+                        <p>بما أن \( I \) منتصف \( [BM] \) و \( J \) منتصف \( [CN] \)</p>
+                        <p>وبما أن \( MN \parallel BC \)</p>
+                        <p>فإن \( IJ \) هو خط المنتصف في شبه المنحرف \( BMNC \)</p>
+                        <p>طوله يساوي نصف مجموع القاعدتين:</p>
+                        <p>\( IJ = \frac{BM + CN}{2} \)</p>
+                        <p>\( BM = AB - AM = 6 - 2 = 4 \text{ cm} \)</p>
+                        <p>\( CN = AC - AN = 9 - 3 = 6 \text{ cm} \)</p>
+                        <p>\( IJ = \frac{4 + 6}{2} = \frac{10}{2} = 5 \text{ cm} \)</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1335,7 +1722,7 @@
                     footer: {
                         developer: "Développeur",
                         version: "Version",
-                        links: "Liens",
+                        links: "Links",
                         terms: "Conditions d'utilisation",
                         privacy: "Politique de confidentialité"
                     }
@@ -1455,6 +1842,7 @@
             
             updateThemeToggleText();
             localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            setTimeout(redrawDiagrams, 50);
         }
         
         // Function to change language (only for UI, not test content)
@@ -1479,6 +1867,7 @@
             }
             
             localStorage.setItem('testsHubLanguage', lang);
+            setTimeout(redrawDiagrams, 100);
         }
         
         // Download functions
@@ -1542,7 +1931,7 @@
             console.log('Math expressions fixed and KaTeX re-rendered');
         }
         
-        // دالة لرسم الشكل الهندسي
+        // دالة لرسم الشكل الهندسي - AUGMENTÉ
         function drawGeometryDiagram(canvasId, showSolution = false) {
             const canvas = document.getElementById(canvasId);
             if (!canvas) return;
@@ -1561,33 +1950,47 @@
             const auxiliaryColor = isDark ? '#99f6e4' : '#14b8a6';
             const solutionColor = isDark ? '#FDE68A' : '#dc2626';
             const textColor = isDark ? '#ccfbf1' : '#333';
-            const bgColor = isDark ? '#0f766e' : 'white';
+            const bgColor = isDark ? '#f0fdfa' : 'white'; // Fond clair pour mieux voir
             
             // تعيين خلفية canvas
             ctx.fillStyle = bgColor;
             ctx.fillRect(0, 0, width, height);
             
-            // إحداثيات المثلث ABC (بتقريب مناسب للشاشة)
-            const A = {x: width * 0.3, y: height * 0.7};
-            const B = {x: width * 0.8, y: height * 0.7};
-            const C = {x: width * 0.5, y: height * 0.2};
+            // إحداثيات المثلث ABC (أحجام أكبر)
+            const scale = 1.2; // Facteur d'agrandissement
+            const A = {x: width * 0.25, y: height * 0.7};
+            const B = {x: width * 0.85, y: height * 0.7};
+            const C = {x: width * 0.5, y: height * 0.15};
             
-            // رسم المثلث ABC
+            // رسم المثلث ABC - LIGNES PLUS ÉPAISSES
             ctx.beginPath();
             ctx.moveTo(A.x, A.y);
             ctx.lineTo(B.x, B.y);
             ctx.lineTo(C.x, C.y);
             ctx.closePath();
             ctx.strokeStyle = triangleColor;
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 4; // Augmenté de 3 à 4
             ctx.stroke();
             
-            // تسمية رؤوس المثلث
-            ctx.font = 'bold 16px Arial';
+            // تسمية رؤوس المثلث - TEXTE PLUS GRAND
+            ctx.font = 'bold 18px Arial'; // Augmenté de 16 à 18
             ctx.fillStyle = textColor;
-            ctx.fillText('A', A.x - 20, A.y + 20);
-            ctx.fillText('B', B.x + 10, B.y + 20);
-            ctx.fillText('C', C.x, C.y - 10);
+            ctx.fillText('A', A.x - 25, A.y + 25);
+            ctx.fillText('B', B.x + 15, B.y + 25);
+            ctx.fillText('C', C.x, C.y - 15);
+            
+            // إضافة mesures des côtés - TEXTE PLUS GRAND
+            ctx.font = '16px Arial'; // Augmenté de 14 à 16
+            ctx.fillStyle = '#3b82f6';
+            
+            // قياس AB
+            ctx.fillText('6 cm', (A.x + B.x) / 2, A.y - 15);
+            
+            // قياس AC
+            ctx.fillText('9 cm', (A.x + C.x) / 2 - 30, (A.y + C.y) / 2);
+            
+            // قياس BC
+            ctx.fillText('12 cm', (B.x + C.x) / 2 + 30, (B.y + C.y) / 2);
             
             // النقطة M على AB (AM = 2cm من أصل 6cm)
             const M = {
@@ -1596,22 +1999,21 @@
             };
             
             // النقطة N (تقاطع الخط الموازي لـ BC المار بـ M مع AC)
-            // باستخدام تناسب طاليس
             const N = {
                 x: A.x + (C.x - A.x) * (2/6),
                 y: A.y + (C.y - A.y) * (2/6)
             };
             
-            // رسم النقطتين M و N
-            drawPoint(ctx, M, 'M', auxiliaryColor);
-            drawPoint(ctx, N, 'N', auxiliaryColor);
+            // رسم النقطتين M و N - POINTS PLUS GRANDS
+            drawPoint(ctx, M, 'M', auxiliaryColor, 8); // Augmenté de 6 à 8
+            drawPoint(ctx, N, 'N', auxiliaryColor, 8);
             
             // رسم الخط MN (الموازي لـ BC)
             ctx.beginPath();
             ctx.moveTo(M.x, M.y);
             ctx.lineTo(N.x, N.y);
             ctx.strokeStyle = auxiliaryColor;
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 3; // Augmenté de 2 à 3
             ctx.setLineDash([5, 3]);
             ctx.stroke();
             ctx.setLineDash([]);
@@ -1625,14 +2027,14 @@
             );
             
             if (O) {
-                drawPoint(ctx, O, 'O', solutionColor);
+                drawPoint(ctx, O, 'O', solutionColor, 8);
                 
-                // رسم الخط MC
+                // رسم الخط MC - LIGNE PLUS ÉPAISSE
                 ctx.beginPath();
                 ctx.moveTo(M.x, M.y);
                 ctx.lineTo(C.x, C.y);
                 ctx.strokeStyle = auxiliaryColor;
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 2; // Augmenté de 1 à 2
                 ctx.stroke();
                 
                 // رسم الخط BN
@@ -1640,38 +2042,41 @@
                 ctx.moveTo(B.x, B.y);
                 ctx.lineTo(N.x, N.y);
                 ctx.strokeStyle = auxiliaryColor;
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 2;
                 ctx.stroke();
+                
+                // إضافة قياس AM
+                ctx.font = '16px Arial';
+                ctx.fillStyle = '#dc2626';
+                ctx.fillText('2 cm', (A.x + M.x) / 2, A.y + 20);
                 
                 // إذا كنا نعرض الحلول (في قسم التصحيح)
                 if (showSolution) {
                     // النقطة E (تقاطع الخط الموازي لـ BC المار بـ O مع AB)
-                    // الخط الموازي لـ BC يمر بـ O
-                    const slopeBC = (C.y - B.y) / (C.x - B.x);
                     const E = {
-                        x: A.x + (B.x - A.x) * 0.5, // تقريب
+                        x: A.x + (B.x - A.x) * 0.5,
                         y: A.y
                     };
                     
                     // النقطة F (نفس الخط مع AC)
                     const F = {
-                        x: A.x + (C.x - A.x) * 0.3, // تقريب
+                        x: A.x + (C.x - A.x) * 0.3,
                         y: A.y + (C.y - A.y) * 0.3
                     };
                     
-                    // رسم الخط EF
+                    // رسم الخط EF - LIGNE PLUS ÉPAISSE
                     ctx.beginPath();
                     ctx.moveTo(E.x, E.y);
                     ctx.lineTo(F.x, F.y);
                     ctx.strokeStyle = solutionColor;
-                    ctx.lineWidth = 2;
+                    ctx.lineWidth = 3; // Augmenté de 2 à 3
                     ctx.setLineDash([5, 3]);
                     ctx.stroke();
                     ctx.setLineDash([]);
                     
-                    // رسم النقطتين E و F
-                    drawPoint(ctx, E, 'E', solutionColor);
-                    drawPoint(ctx, F, 'F', solutionColor);
+                    // رسم النقطتين E و F - POINTS PLUS GRANDS
+                    drawPoint(ctx, E, 'E', solutionColor, 8);
+                    drawPoint(ctx, F, 'F', solutionColor, 8);
                     
                     // النقطة I (منتصف BM)
                     const I = {
@@ -1686,53 +2091,53 @@
                     };
                     
                     // رسم النقطتين I و J
-                    drawPoint(ctx, I, 'I', '#3b82f6');
-                    drawPoint(ctx, J, 'J', '#3b82f6');
+                    drawPoint(ctx, I, 'I', '#3b82f6', 8);
+                    drawPoint(ctx, J, 'J', '#3b82f6', 8);
                     
                     // رسم الخط IJ
                     ctx.beginPath();
                     ctx.moveTo(I.x, I.y);
                     ctx.lineTo(J.x, J.y);
                     ctx.strokeStyle = '#3b82f6';
-                    ctx.lineWidth = 1;
+                    ctx.lineWidth = 2;
                     ctx.setLineDash([2, 2]);
                     ctx.stroke();
                     ctx.setLineDash([]);
                     
-                    // إضافة قياسات
+                    // إضافة معلومات إضافية
                     ctx.font = '14px Arial';
                     ctx.fillStyle = textColor;
                     
-                    // قياس AB
-                    ctx.fillText('6 cm', (A.x + B.x) / 2, A.y - 10);
+                    // إضافة distances calculées
+                    ctx.fillText('AN = 3 cm', N.x + 10, N.y - 10);
+                    ctx.fillText('MN = 4 cm', (M.x + N.x) / 2 + 10, (M.y + N.y) / 2);
                     
-                    // قياس AC
-                    ctx.fillText('9 cm', (A.x + C.x) / 2 - 20, (A.y + C.y) / 2);
+                    if (E && F) {
+                        ctx.fillText('E', E.x + 10, E.y - 10);
+                        ctx.fillText('F', F.x + 10, F.y - 10);
+                    }
                     
-                    // قياس BC
-                    ctx.fillText('12 cm', (B.x + C.x) / 2 + 20, (B.y + C.y) / 2);
-                    
-                    // قياس AM
-                    ctx.fillText('2 cm', (A.x + M.x) / 2, A.y + 15);
+                    // إضافة IJ = 5 cm
+                    ctx.fillText('IJ = 5 cm', (I.x + J.x) / 2, (I.y + J.y) / 2 - 15);
                 }
             }
         }
         
-        // دالة مساعدة لرسم نقطة مع تسمية
-        function drawPoint(ctx, point, label, color) {
+        // دالة مساعدة لرسم نقطة مع تسمية - AMÉLIORÉE
+        function drawPoint(ctx, point, label, color, radius = 8) {
             ctx.beginPath();
-            ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+            ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
             ctx.fillStyle = color;
             ctx.fill();
             ctx.strokeStyle = '#333';
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 1.5;
             ctx.stroke();
             
-            // تسمية النقطة
-            ctx.font = 'bold 14px Arial';
+            // تسمية النقطة - TEXTE PLUS GRAND
+            ctx.font = 'bold 16px Arial'; // Augmenté de 14 à 16
             const isDark = document.body.classList.contains('Tests-Hub-dark-theme');
             ctx.fillStyle = isDark ? '#ccfbf1' : '#333';
-            ctx.fillText(label, point.x + 8, point.y - 8);
+            ctx.fillText(label, point.x + 10, point.y - 10);
         }
         
         // دالة لحساب تقاطع خطين
@@ -1755,160 +2160,150 @@
             drawGeometryDiagram('geometryDiagram2', true);
         }
         
-        
         // Initialize everything
-        // ... الكود السابق يبقى كما هو ...
-
-// Initialize everything
-document.addEventListener('DOMContentLoaded', function() {
-    // Load saved preferences
-    const savedTheme = localStorage.getItem('testsHubTheme');
-    if (savedTheme === 'dark') {
-        isDarkTheme = true;
-        document.body.classList.add('Tests-Hub-dark-theme');
-    }
-    
-    const savedLanguage = localStorage.getItem('testsHubLanguage');
-    if (savedLanguage && TestsHub_translations[savedLanguage]) {
-        currentLanguage = savedLanguage;
-    }
-    
-    // Set RTL for Arabic, LTR for other languages
-    if (currentLanguage === 'ar') {
-        document.documentElement.dir = 'rtl';
-        document.documentElement.lang = 'ar';
-    } else {
-        document.documentElement.dir = 'ltr';
-        document.documentElement.lang = currentLanguage;
-    }
-    
-    // Render KaTeX formulas
-    renderMathInElement(document.body, {
-        delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "$", right: "$", display: false},
-            {left: "\\(", right: "\\)", display: false},
-            {left: "\\[", right: "\\]", display: true}
-        ],
-        throwOnError: false,
-        strict: false
-    });
-    
-    // إضافة استدعاء fixMathExpressions بعد تحميل KaTeX
-    setTimeout(fixMathExpressions, 100);
-    
-    updateTextContent();
-    
-    // تعريف المتغيرات بعد تحميل DOM
-    const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
-    const correctionButton = document.getElementById('toggleCorrection');
-    const pdfButton = document.getElementById('downloadPdf');
-    const odtButton = document.getElementById('downloadOdt');
-    const pngButton = document.getElementById('downloadPng');
-    const themeButton = document.getElementById('themeToggle'); // تعريف مرة واحدة فقط
-    
-    // إعادة معالجة التعبيرات الرياضية عند تبديل اللغة
-    if (languageOptions) {
-        languageOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                setTimeout(fixMathExpressions, 300);
-            });
-        });
-    }
-    
-    // إعادة معالجة عند عرض التصحيح
-    if (correctionButton) {
-        correctionButton.addEventListener('click', function() {
-            setTimeout(fixMathExpressions, 100);
-        });
-    }
-    
-    // Attach event listeners
-    if (themeButton) {
-        themeButton.addEventListener('click', toggleTheme);
-        themeButton.addEventListener('click', () => {
-            setTimeout(redrawDiagrams, 50);
-        });
-    }
-    
-    // Language options event listeners
-    if (languageOptions) {
-        languageOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const lang = this.getAttribute('data-language');
-                changeLanguage(lang);
-                setTimeout(redrawDiagrams, 100);
-            });
-        });
-    }
-    
-    // Download buttons event listeners
-    if (pdfButton) {
-        pdfButton.addEventListener('click', downloadAsPDF);
-    }
-    
-    if (odtButton) {
-        odtButton.addEventListener('click', downloadAsODT);
-    }
-    
-    if (pngButton) {
-        pngButton.addEventListener('click', downloadAsPNG);
-    }
-    
-    // Correction toggle functionality
-    if (correctionButton) {
-        correctionButton.addEventListener('click', function() {
-            const correctionSection = document.getElementById('correction');
-            if (correctionSection.classList.contains('Tests-Hub-hidden')) {
-                correctionSection.classList.remove('Tests-Hub-hidden');
-                correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
-                
-                // Re-render math in correction section when it becomes visible
-                renderMathInElement(correctionSection, {
-                    delimiters: [
-                        {left: "$$", right: "$$", display: true},
-                        {left: "$", right: "$", display: false},
-                        {left: "\\(", right: "\\)", display: false},
-                        {left: "\\[", right: "\\]", display: true}
-                    ],
-                    throwOnError: false,
-                    strict: false
-                });
-                
-                setTimeout(() => {
-                    drawGeometryDiagram('geometryDiagram2', true);
-                }, 50);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
             } else {
-                correctionSection.classList.add('Tests-Hub-hidden');
-                correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection;
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+            }
+            
+            // Render KaTeX formulas
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                throwOnError: false,
+                strict: false
+            });
+            
+            // إضافة استدعاء fixMathExpressions بعد تحميل KaTeX
+            setTimeout(fixMathExpressions, 100);
+            
+            updateTextContent();
+            
+            // تعريف المتغيرات بعد تحميل DOM
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            const correctionButton = document.getElementById('toggleCorrection');
+            const pdfButton = document.getElementById('downloadPdf');
+            const odtButton = document.getElementById('downloadOdt');
+            const pngButton = document.getElementById('downloadPng');
+            const themeButton = document.getElementById('themeToggle');
+            
+            // إعادة معالجة التعبيرات الرياضية عند تبديل اللغة
+            if (languageOptions) {
+                languageOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        setTimeout(fixMathExpressions, 300);
+                    });
+                });
+            }
+            
+            // إعادة معالجة عند عرض التصحيح
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    setTimeout(fixMathExpressions, 100);
+                });
+            }
+            
+            // Attach event listeners
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            // Language options event listeners
+            if (languageOptions) {
+                languageOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        const lang = this.getAttribute('data-language');
+                        changeLanguage(lang);
+                    });
+                });
+            }
+            
+            // Download buttons event listeners
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+                        
+                        // Re-render math in correction section when it becomes visible
+                        renderMathInElement(correctionSection, {
+                            delimiters: [
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false},
+                                {left: "\\(", right: "\\)", display: false},
+                                {left: "\\[", right: "\\]", display: true}
+                            ],
+                            throwOnError: false,
+                            strict: false
+                        });
+                        
+                        setTimeout(() => {
+                            drawGeometryDiagram('geometryDiagram2', true);
+                        }, 50);
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection;
+                    }
+                });
+            }
+            
+            // رسم الأشكال الهندسية بعد تحميل الصفحة
+            setTimeout(() => {
+                drawGeometryDiagram('geometryDiagram1', false);
+                drawGeometryDiagram('geometryDiagram2', true);
+            }, 150);
+            
+            // إعادة الرسم عند تغيير حجم النافذة
+            window.addEventListener('resize', () => {
+                setTimeout(redrawDiagrams, 150);
+            });
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
             }
         });
-    }
-    
-    // رسم الأشكال الهندسية بعد تحميل الصفحة
-    setTimeout(() => {
-        drawGeometryDiagram('geometryDiagram1', false);
-        drawGeometryDiagram('geometryDiagram2', true);
-    }, 100);
-    
-    // إعادة الرسم عند تغيير حجم النافذة
-    window.addEventListener('resize', () => {
-        setTimeout(redrawDiagrams, 100);
-    });
-    
-    // Register service worker for PWA
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('Service Worker registered:', registration);
-            })
-            .catch(error => {
-                console.log('Service Worker registration failed:', error);
-            });
-    }
-});
-
-// ... باقي الكود يبقى كما هو ...
     </script>
 </body>
 </html>

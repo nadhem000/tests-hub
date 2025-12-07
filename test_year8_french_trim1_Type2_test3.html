@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Devoir de Synthèse N°1 - Français 8ème (2013-2014)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#10B981">
+    <meta name="description" content="Devoir de Synthèse N°1 pour la 8ème année - Français (2013-2014)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Test de Français">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+            color: #f0f0f0;
+        }
+        
+        /* ===== TYPOGRAPHY CLASSES ===== */
+        .Tests-Hub-title-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-primary {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-secondary {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: inherit;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #34D399;
+        }
+        
+        .Tests-Hub-heading-tertiary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-section {
+            color: #10B981;
+            border-bottom: 2px solid #34D399;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-section {
+            color: #6EE7B7;
+        }
+        
+        .Tests-Hub-heading-subsection {
+            color: #34D399;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-subsection {
+            color: #A7F3D0;
+        }
+        
+        .Tests-Hub-heading-question {
+            color: #10B981;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-question {
+            color: #6EE7B7;
+        }
+        
+        .Tests-Hub-paragraph {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .Tests-Hub-paragraph-indent {
+            text-indent: 1.5rem;
+        }
+        
+        .Tests-Hub-text-italic {
+            font-style: italic;
+        }
+        
+        .Tests-Hub-text-bold {
+            font-weight: 700;
+            color: #10B981;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-bold {
+            color: #6EE7B7;
+        }
+        
+        .Tests-Hub-text-highlight {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-highlight {
+            background: rgba(110, 231, 183, 0.2);
+        }
+        
+        .Tests-Hub-text-label {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-label {
+            background: #34D399;
+        }
+        
+        .Tests-Hub-text-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-note {
+            color: #ccc;
+        }
+        
+        .Tests-Hub-text-explanation {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0.75rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid #10B981;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-explanation {
+            color: #ddd;
+            border-left-color: #6EE7B7;
+        }
+        
+        .Tests-Hub-text-correction {
+            color: #059669;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-correction {
+            color: #10B981;
+        }
+        
+        .Tests-Hub-text-warning {
+            color: #d97706;
+            font-weight: 600;
+            background: rgba(217, 119, 6, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 4px solid #d97706;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-warning {
+            color: #fbbf24;
+            background: rgba(217, 119, 6, 0.2);
+            border-left-color: #fbbf24;
+        }
+        
+        .Tests-Hub-text-success {
+            color: #059669;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-text-error {
+            color: #dc2626;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-error {
+            color: #f87171;
+        }
+        
+        /* ===== LAYOUT CLASSES ===== */
+        .Tests-Hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .Tests-Hub-content-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-flex-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-flex-col {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .Tests-Hub-grid-cols-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        /* ===== COMPONENT CLASSES ===== */
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #10B981, #34D399);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #064e3b, #10B981, #34D399);
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Buttons */
+        .Tests-Hub-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+        
+        .Tests-Hub-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-button-primary {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #10B981, #34D399);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .Tests-Hub-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-button-download {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-button-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Language Selector */
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #047857;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #064e3b;
+        }
+        
+        /* Test Content */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #10B981, #34D399);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #064e3b, #10B981);
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #047857;
+            color: #f0f0f0;
+        }
+        
+        /* Instructions */
+        .Tests-Hub-instructions-container {
+            background: #ecfdf5;
+            padding: 1rem;
+            border-left: 4px solid #10B981;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions-container {
+            background: #064e3b;
+            border-left-color: #34D399;
+        }
+        
+        /* Text Passage */
+        .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            border-left: 4px solid #10B981;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #047857 0%, #064e3b 100%);
+            border-left-color: #34D399;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-text-passage {
+            line-height: 1.6;
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding: 1.5rem;
+        }
+        
+        .Tests-Hub-text-passage::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(16, 185, 129, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .Tests-Hub-text-passage::after {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(16, 185, 129, 0.1);
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-passage::before,
+        .Tests-Hub-dark-theme .Tests-Hub-text-passage::after {
+            color: rgba(110, 231, 183, 0.1);
+        }
+        
+        /* Questions */
+        .Tests-Hub-question-container {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #10B981;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #6EE7B7;
+        }
+        
+        /* Answer Inputs */
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input,
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea {
+            border-color: #666;
+            background-color: #047857;
+            color: #f0f0f0;
+        }
+        
+        /* Multiple Choice */
+        .Tests-Hub-multiple-choice-container {
+            margin: 10px 0;
+        }
+        
+        .Tests-Hub-choice-option {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        
+        .Tests-Hub-choice-option input {
+            margin-right: 10px;
+        }
+        
+        /* Correction */
+        .Tests-Hub-correction-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #ecfdf5;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #10B981;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #064e3b;
+            border-left-color: #34D399;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(16, 185, 129, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #10B981;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(110, 231, 183, 0.1);
+            border-left-color: #6EE7B7;
+        }
+        
+        /* Download Section */
+        .Tests-Hub-download-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-section {
+            background: linear-gradient(to right, rgba(6, 78, 59, 0.2), rgba(16, 185, 129, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #10B981, #34D399);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #064e3b, #10B981, #34D399);
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-heading {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Links */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Developer Info */
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        /* Download Button Colors */
+        .Tests-Hub-download-pdf {
+            background: linear-gradient(135deg, #10B981, #34D399);
+            color: white;
+        }
+        
+        .Tests-Hub-download-pdf:hover {
+            background: linear-gradient(135deg, #059669, #10B981);
+        }
+        
+        .Tests-Hub-download-odt {
+            background: linear-gradient(135deg, #3B82F6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-odt:hover {
+            background: linear-gradient(135deg, #2563eb, #3B82F6);
+        }
+        
+        .Tests-Hub-download-png {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-png:hover {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+        
+        /* Utility Classes */
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        .Tests-Hub-text-center {
+            text-align: center;
+        }
+        
+        .Tests-Hub-text-right {
+            text-align: right;
+        }
+        
+        .Tests-Hub-mb-1 {
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-mb-2 {
+            margin-bottom: 2rem;
+        }
+        
+        .Tests-Hub-mt-1 {
+            margin-top: 1rem;
+        }
+        
+        .Tests-Hub-mt-2 {
+            margin-top: 2rem;
+        }
+        
+        .Tests-Hub-ml-1 {
+            margin-left: 1rem;
+        }
+        
+        .Tests-Hub-pl-1 {
+            padding-left: 1rem;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #10B981;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #064e3b;
+        }
+        
+        tr:nth-child(even) {
+            background: #ecfdf5;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #047857;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #047857;
+        }
+        
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-title-main {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-content-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-grid-cols-3 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .Tests-Hub-answer-input {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-answer-textarea {
+                min-height: 100px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-download-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-button-download {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-heading-primary {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-section {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-button-download {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content Tests-Hub-container Tests-Hub-flex-row">
+            <div class="Tests-Hub-flex-row">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-title-main" data-i18n="TestsHub.frenchTest.title">Français - Devoir de Synthèse</h1>
+                    <div class="Tests-Hub-subtitle" data-i18n="TestsHub.frenchTest.subtitle">8ème Année (2013-2014)</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.frenchTest.back">Retour aux Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">Français</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-content-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1 class="Tests-Hub-heading-primary">Devoir de Synthèse N°1 - Français</h1>
+            <p>Professeur: Mr Chihaoui</p>
+            <p>Année scolaire: 2013-2014</p>
+            <p>Durée: 2 heures</p>
+            <p>Note: /20 points</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions-container">
+            <h3 class="Tests-Hub-heading-subsection">Instructions Générales</h3>
+            <ul>
+                <li>Lisez attentivement le texte et les questions avant de répondre</li>
+                <li>Répondez aux questions dans l'ordre</li>
+                <li>La qualité de l'expression écrite sera prise en compte</li>
+                <li>Écrivez lisiblement et soignez la présentation</li>
+                <li>Les réponses doivent être rédigées en phrases complètes</li>
+            </ul>
+        </div>
+        
+        <!-- Texte -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">Texte: Mon copain Brice</h2>
+
+            <div class="Tests-Hub-text-container">
+                <div class="Tests-Hub-text-passage">
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">L'an dernier à l'école, j'ai eu un copain formidable. Un copain unique au monde. Il était orphelin, mon copain. Il paraît qu'on l'a trouvé au sommet d'une colline couverte de neige alors qu'il était bébé. Personne n'a su qui étaient ses vrais parents.</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">Il s'appelait Brice, parce qu'il a été trouvé le 13 novembre, le jour de la Saint Brice. Son nom de famille, c'était Bosard, parce que les vieilles personnes qui l'ont adopté s'appelaient Bosard, Brice Bosard. À l'école, les autres ne l'aimaient pas. Ils l'avaient surnommé « Brosse Bizarre », à cause de ses cheveux qui brillaient dans la lumière. Ils disaient : « Hé ! Brosse Bizarre ! Eteins la lumière. Tu nous éblouis ! »</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">C'est vrai qu'ils étaient plutôt biz... euh, étranges, les cheveux de Brice. Je n'avais jamais vu des cheveux comme ça. Ils étaient aussi brillants que le papier d'aluminium qui entoure les tablettes de chocolat. On aurait dit des fils d'or qui lui faisaient comme un casque sur la tête. Tout le monde se moquait de lui, surtout les grands : Yannick, Jean-Raoul et leur bande. Moi, je ne les trouvais pas rigolos, ses cheveux. Je les trouvais même jolis. Pas plus ridicules, en tout cas, que la ficelle blondasse qui poussait sur le crâne de Jean-Raoul.</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">Il est arrivé en cours d'année, Brice. Dans la classe, j'ai été le seul qui n'a pas ri quand il est entré pour la première fois. C'est sûrement pour ça qu'il s'est assis dans le fond, juste à côté de moi. C'est un voisin tranquille.</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">Le plus souvent, il regardait par la fenêtre les oiseaux qui volaient au-dessus des toits. Pourtant, il avait toujours les meilleures notes, des A, des 10. C'est incroyable comme il était intelligent.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Partie I: Compréhension -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">I- Compréhension (6 points)</h2>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">1-</span> Pourquoi mon nouveau copain s'appelle-t-il Brice ? Justifie par une phrase du texte. (2 points)</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">2-</span> a) Qui obtient les meilleures notes de la classe ? (0.5 point)<br>
+                b) Qui se permet de se moquer de lui ? (0.5 point)</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">3-</span> Comment Brice est-il surnommé ? Pourquoi ? (2 points)</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">4-</span> Comment le narrateur trouve-t-il son nouveau copain ? (1 point)</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Partie II: Langue -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">II- Langue (7 points)</h2>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">A-</span> Vocabulaire (1 point): Barre l'intrus : <strong>intelligent ; tranquille ; antipathique ; aimable.</strong></p>
+                <textarea class="Tests-Hub-answer-input" placeholder="L'intrus est..." style="width: 100%; height: 30px;"></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">B-</span> Syntaxe (4 points)</p>
+                <p><strong>1-</strong> Lis la phrase et remplis le tableau (2 points):</p>
+                <p><em>« Ils étaient aussi brillants que le papier d'aluminium qui entoure les tablettes de chocolat. On aurait dit des fils d'or qui lui faisaient comme un casque sur la tête. »</em></p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>G.N étendu par un adj.</th>
+                            <th>G.N étendu par complément du nom</th>
+                            <th>G.N étendu par une relative</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 100%; height: 30px;"></textarea></td>
+                            <td><textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 100%; height: 30px;"></textarea></td>
+                            <td><textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 100%; height: 30px;"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p class="Tests-Hub-mt-1"><strong>2-</strong> Remplace les G.N soulignés par les pronoms personnels qui conviennent. (2 points)</p>
+                <p>Le narrateur semble aimer son copain Brice.</p>
+                <textarea class="Tests-Hub-answer-input" placeholder="Phrase avec pronoms..." style="width: 100%; height: 30px;"></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">C-</span> Conjugaison et orthographe (2 points)</p>
+                <p>Réécris la phrase suivante au passé composé. Attention à l'accord du participe passé.</p>
+                <p><em>La narratrice établit de bonnes relations avec tous ses camarades de classe. Elle les aime tous.</em></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Phrases réécrites au passé composé..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Partie III: Production Écrite -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">III- Essai (6 points)</h2>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">Sujet:</span> Un de tes camarades de classe est faible en français, alors tu as décidé de l'aider. Raconte.</p>
+                <p class="Tests-Hub-text-note">(Rédaction d'une quinzaine de lignes)</p>
+                <textarea class="Tests-Hub-answer-textarea" style="min-height: 250px;" placeholder="Rédigez votre essai ici... (Minimum 15 lignes)"></textarea>
+            </div>
+        </div>
+        
+        <!-- Grille d'évaluation -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">Grille d'évaluation - Production Écrite</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Critères d'évaluation</th>
+                        <th>Points</th>
+                        <th>Observations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Respect de la consigne (aide à un camarade)</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Structure du récit et cohérence</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Correction syntaxique et orthographique</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>/6 points</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-container">
+            <button class="Tests-Hub-button-primary" id="toggleCorrection">Afficher la Correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2 class="Tests-Hub-heading-section">Correction du Devoir</h2>
+            
+            <h3 class="Tests-Hub-heading-subsection">I- Compréhension - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1-</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Réponse attendue:</p>
+                <p>Mon nouveau copain s'appelle Brice parce qu'il a été trouvé le 13 novembre, le jour de la Saint Brice.</p>
+                <p class="Tests-Hub-text-correction">Justification:</p>
+                <p><em>« Il s'appelait Brice, parce qu'il a été trouvé le 13 novembre, le jour de la Saint Brice. »</em></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                Le texte explique clairement l'origine du prénom Brice : l'enfant a été découvert le jour de la Saint Brice (13 novembre). Dans la tradition chrétienne, il était courant de donner comme prénom le nom du saint dont on célèbre la fête le jour où un enfant était trouvé ou baptisé. Cette pratique était particulièrement répandue pour les enfants trouvés ou orphelins dont on ne connaissait pas les origines.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2-</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Réponses attendues:</p>
+                <p>a) C'est Brice qui obtient les meilleures notes de la classe.<br>
+                b) Tout le monde se moque de lui, surtout les grands : Yannick, Jean-Raoul et leur bande.</p>
+                <p class="Tests-Hub-text-correction">Justifications:</p>
+                <p>a) <em>« Pourtant, il avait toujours les meilleures notes, des A, des 10. C'est incroyable comme il était intelligent. »</em><br>
+                b) <em>« Tout le monde se moquait de lui, surtout les grands : Yannick, Jean-Raoul et leur bande. »</em></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                a) Le texte précise que Brice a "toujours les meilleures notes" (des A, des 10/10). Cette information est importante car elle montre le contraste entre son apparence (cheveux bizarres) et ses capacités intellectuelles.<br>
+                b) La moquerie est collective ("tout le monde"), mais elle est menée par les grands de l'école qui forment une bande. Cela reflète souvent la dynamique scolaire où les plus âgés ou les plus populaires dominent socialement.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3-</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Réponse attendue:</p>
+                <p>Brice est surnommé « Brosse Bizarre » à cause de ses cheveux qui brillent étrangement dans la lumière.</p>
+                <p class="Tests-Hub-text-correction">Justification:</p>
+                <p><em>« Ils l'avaient surnommé "Brosse Bizarre", à cause de ses cheveux qui brillaient dans la lumière. »</em></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                Le surnom "Brosse Bizarre" est un jeu de mots :<br>
+                1. "Brosse" fait référence à l'aspect de ses cheveux (raides, brillants, qui pourraient ressembler aux poils d'une brosse).<br>
+                2. "Bizarre" qualifie l'aspect inhabituel et étrange de ses cheveux.<br>
+                3. Le texte précise que ce surnom est directement lié à la luminosité particulière de ses cheveux ("brillaient dans la lumière").<br>
+                Ce surnom illustre la cruauté des enfants qui réduisent Brice à son apparence physique jugée étrange.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4-</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Réponse attendue:</p>
+                <p>Le narrateur trouve son nouveau copain formidable, unique, tranquille et intelligent.</p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                Le narrateur porte un regard positif et bienveillant sur Brice :<br>
+                1. <strong>Formidable et unique :</strong> « j'ai eu un copain formidable. Un copain unique au monde »<br>
+                2. <strong>Tranquille :</strong> « C'est un voisin tranquille »<br>
+                3. <strong>Intelligent :</strong> « C'est incroyable comme il était intelligent »<br>
+                4. <strong>Joli :</strong> Le narrateur trouve même ses cheveux jolis, contrairement aux autres.<br><br>
+                Le narrateur est le seul à ne pas se moquer de Brice à son arrivée, ce qui montre son ouverture d'esprit et sa capacité à voir au-delà des apparences.
+                </p>
+            </div>
+            
+            <h3 class="Tests-Hub-heading-subsection">II- Langue - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">A-</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">L'intrus est : <strong class="Tests-Hub-text-success">antipathique</strong> ✓</p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                - <strong>intelligent</strong> : qualité intellectuelle (positif)<br>
+                - <strong>tranquille</strong> : qualité de caractère (positif)<br>
+                - <strong>aimable</strong> : qualité relationnelle (positif)<br>
+                - <strong>antipathique</strong> : défaut relationnel (négatif)<br><br>
+                Tous les mots sauf "antipathique" décrivent des qualités positives. "Antipathique" est le seul terme à connotation négative dans la liste.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">B-</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                
+                <p class="Tests-Hub-text-correction">1- Tableau complété :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>G.N étendu par un adj.</th>
+                            <th>G.N étendu par complément du nom</th>
+                            <th>G.N étendu par une relative</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>papier d'aluminium</td>
+                            <td>fils d'or</td>
+                            <td>le papier d'aluminium qui entoure les tablettes de chocolat</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>des fils d'or qui lui faisaient comme un casque</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p class="Tests-Hub-text-explanation">
+                <strong>Analyse détaillée:</strong><br>
+                1. <strong>« papier d'aluminium »</strong> : G.N étendu par l'adjectif "d'aluminium" (complément du nom qui fonctionne comme un adjectif).<br>
+                2. <strong>« fils d'or »</strong> : G.N étendu par le complément du nom "d'or".<br>
+                3. <strong>« le papier d'aluminium qui entoure les tablettes de chocolat »</strong> : G.N étendu par la proposition relative "qui entoure les tablettes de chocolat".<br>
+                4. <strong>« des fils d'or qui lui faisaient comme un casque »</strong> : G.N étendu par la proposition relative "qui lui faisaient comme un casque".<br><br>
+                <strong>Rappel:</strong> Un Groupe Nominal (G.N) peut être enrichi (étendu) par :<br>
+                - Un adjectif qualificatif (ex: un grand arbre)<br>
+                - Un complément du nom (ex: la porte de la maison)<br>
+                - Une proposition relative (ex: l'arbre qui est dans le jardin)
+                </p>
+                
+                <p class="Tests-Hub-text-correction">2- Phrase avec pronoms :</p>
+                <p><strong class="Tests-Hub-text-success">Il semble l'aimer.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                - <strong>« Le narrateur »</strong> devient <strong>« Il »</strong> (pronom personnel sujet, 3e personne du singulier)<br>
+                - <strong>« son copain Brice »</strong> devient <strong>« l' »</strong> (pronom personnel COD, 3e personne du singulier)<br><br>
+                <strong>Règle:</strong> Quand on remplace un G.N par un pronom personnel, il faut :<br>
+                1. Identifier sa fonction dans la phrase (sujet, COD, COI, etc.)<br>
+                2. Choisir le pronom correspondant à cette fonction<br>
+                3. Respecter l'accord en genre et en nombre
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">C-</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Phrases réécrites au passé composé :</p>
+                <p><strong class="Tests-Hub-text-success">La narratrice a établi de bonnes relations avec tous ses camarades de classe. Elle les a aimés tous.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                1. <strong>« établit »</strong> (présent) → <strong>« a établi »</strong> (passé composé)<br>
+                - Verbe "établir" (1er groupe) au passé composé : auxiliaire "avoir" + participe passé "établi"<br>
+                - Pas d'accord du participe passé car le COD ("de bonnes relations") est placé après le verbe<br><br>
+                
+                2. <strong>« aime »</strong> (présent) → <strong>« a aimé »</strong> (passé composé)<br>
+                - Verbe "aimer" (1er groupe) au passé composé : auxiliaire "avoir" + participe passé "aimé"<br>
+                - Accord du participe passé : <strong>« aimés »</strong> (masculin pluriel)<br>
+                - Le COD "les" (remplaçant "ses camarades") est placé avant le verbe, donc le participe passé s'accorde avec ce COD<br><br>
+                
+                <strong>Règle de l'accord du participe passé avec "avoir" :</strong><br>
+                Le participe passé s'accorde avec le COD quand celui-ci est placé avant le verbe. Exemple :<br>
+                - « Elle a aimé ses camarades. » (COD après → pas d'accord)<br>
+                - « Elle les a aimés. » (COD "les" avant → accord avec "les" = masculin pluriel → "aimés")
+                </p>
+            </div>
+            
+            <h3 class="Tests-Hub-heading-subsection">III- Essai - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">Critères d'évaluation détaillés:</span></p>
+                
+                <div class="Tests-Hub-mb-2">
+                    <p class="Tests-Hub-text-correction">1. Respect de la consigne (2 points):</p>
+                    <ul class="Tests-Hub-pl-1">
+                        <li>Identification d'un camarade faible en français</li>
+                        <li>Décision d'aider ce camarade</li>
+                        <li>Description des actions d'aide concrètes</li>
+                        <li>Résultats ou conséquences de cette aide</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-mb-2">
+                    <p class="Tests-Hub-text-correction">2. Structure du récit et cohérence (2 points):</p>
+                    <ul class="Tests-Hub-pl-1">
+                        <li>Introduction présentant la situation</li>
+                        <li>Développement décrivant les actions d'aide</li>
+                        <li>Conclusion évoquant les résultats ou sentiments</li>
+                        <li>Enchaînement logique des événements</li>
+                        <li>Respect de la longueur demandée (environ 15 lignes)</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-mb-2">
+                    <p class="Tests-Hub-text-correction">3. Correction syntaxique et orthographique (2 points):</p>
+                    <ul class="Tests-Hub-pl-1">
+                        <li>Phrases correctement construites et ponctuées</li>
+                        <li>Accords corrects (verbes, noms, adjectifs)</li>
+                        <li>Orthographe lexicale et grammaticale maîtrisée</li>
+                        <li>Utilisation correcte des temps du récit</li>
+                    </ul>
+                </div>
+                
+                <p class="Tests-Hub-text-correction">Exemple de production attendue :</p>
+                
+                <div class="Tests-Hub-text-passage Tests-Hub-mt-1">
+                    <p>L'année dernière, j'ai remarqué que mon camarade Karim avait des difficultés en français. Il était souvent perdu pendant les cours et ses notes étaient basses. Un jour, après un contrôle où il avait eu 6/20, j'ai décidé de lui proposer mon aide.</p>
+                    
+                    <p>Karim est timide et fier, alors j'ai abordé le sujet avec délicatesse. « Je vois que tu as du mal avec les accords des participes passés, lui ai-je dit. Si tu veux, on pourrait réviser ensemble après l'école. » Il a d'abord hésité, puis a finalement accepté.</p>
+                    
+                    <p>Nous avons commencé par des séances de deux heures chaque mardi et jeudi. La première fois, j'ai découvert que Karim mélangeait souvent les terminaisons des verbes. Il confondait l'imparfait et le passé simple. Je lui ai préparé des tableaux de conjugaison colorés pour l'aider à mémoriser.</p>
+                    
+                    <p>Pour la compréhension de texte, nous lisions ensemble des histoires courtes. Je lui posais des questions pour vérifier qu'il avait bien compris. Parfois, nous jouions à « professeur-élève » : il expliquait le texte comme s'il était le maître, ce qui l'aidait à structurer sa pensée.</p>
+                    
+                    <p>Les progrès ont été lents au début. Karim se décourageait facilement. « Je n'y arriverai jamais », disait-il souvent. Je lui rappelais ses améliorations : ses dictées comportaient de moins en moins de fautes, et il participait davantage en classe.</p>
+                    
+                    <p>Au bout de trois mois, Karim a obtenu 14/20 à un contrôle de grammaire. Son sourire valait toutes les récompenses. Même le professeur a remarqué ses progrès et l'a félicité devant toute la classe.</p>
+                    
+                    <p>Aider Karim m'a appris beaucoup. J'ai compris que la patience et l'encouragement sont plus efficaces que la critique. Aujourd'hui, Karim aide à son tour d'autres élèves en difficulté. Cette expérience m'a montré que l'entraide transforme non seulement les résultats scolaires, mais aussi les relations entre camarades.</p>
+                </div>
+                
+                <p class="Tests-Hub-text-explanation Tests-Hub-mt-1">
+                <strong>Points forts de cet exemple :</strong><br>
+                1. <strong>Respect de la consigne :</strong> Récit complet d'une aide apportée à un camarade faible en français<br>
+                2. <strong>Actions concrètes :</strong> Séances de révision, tableaux de conjugaison, exercices de compréhension, jeux de rôle<br>
+                3. <strong>Évolution du récit :</strong> Problème → proposition d'aide → actions → difficultés → progrès → résultats<br>
+                4. <strong>Dimension humaine :</strong> Description des sentiments (timidité, découragement, fierté)<br>
+                5. <strong>Vocabulaire adapté :</strong> « accords des participes passés », « tableaux de conjugaison », « compréhension de texte »<br>
+                6. <strong>Longueur appropriée :</strong> Environ 15-20 lignes<br>
+                7. <strong>Leçon morale :</strong> L'expérience d'aide est présentée comme enrichissante pour les deux parties
+                </p>
+                
+                <p class="Tests-Hub-text-warning Tests-Hub-mt-1">
+                <strong>Remarque importante :</strong> Cette correction est indicative. Les productions peuvent varier (différentes situations, différentes méthodes d'aide) tout en respectant les consignes. L'essentiel est la cohérence du récit, la description précise des actions d'aide et la qualité de l'expression.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-section">
+            <button class="Tests-Hub-button-download Tests-Hub-download-pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.frenchTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.frenchTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.frenchTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content Tests-Hub-container">
+            <div class="Tests-Hub-grid-cols-3">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.developer">Développeur</h3>
+                    <p class="Tests-Hub-developer-name">Ziad El Majri</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.version">Version</h3>
+                    <p class="Tests-Hub-version-number">v2.1.3</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.links">Liens</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Conditions d'utilisation</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Politique de confidentialité</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for French Test page
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            fr: {
+                TestsHub: {
+                    frenchTest: {
+                        title: "Français - Devoir de Synthèse",
+                        subtitle: "8ème Année (2013-2014)",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la Correction",
+                        hideCorrection: "Masquer la Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    frenchTest: {
+                        title: "French - End of Term Test",
+                        subtitle: "8th Grade (2013-2014)",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    frenchTest: {
+                        title: "الفرنسية - فرض تأليفي",
+                        subtitle: "السنة الثامنة (2013-2014)",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content (only for UI elements)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('#themeToggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language (only for UI, not test content)
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                document.body.classList.add('rtl-text');
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+                document.body.classList.remove('rtl-text');
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.frenchTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.frenchTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.frenchTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                document.body.classList.add('rtl-text');
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+                document.body.classList.remove('rtl-text');
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

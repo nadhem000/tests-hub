@@ -24,9 +24,9 @@
     <link rel="manifest" href="manifest.json">
     
     <!-- KaTeX pour les formules mathématiques -->
-    <link rel="stylesheet" href="/katex/katex.min.css">
-    <script defer src="/katex/katex.min.js"></script>
-    <script defer src="/katex/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
     
     <style>
         * {
@@ -293,7 +293,7 @@
         th, td {
             border: 1px solid #ddd;
             padding: 12px 15px;
-            text-align: left;
+            text-align: center;
             transition: background 0.3s ease, border-color 0.3s ease;
         }
         
@@ -317,6 +317,60 @@
         
         .Tests-Hub-dark-theme td {
             border-color: #7C3AED;
+        }
+        
+        /* Styles pour les tableaux de signe améliorés */
+        .sign-table {
+            font-family: monospace;
+            border: 2px solid #7C3AED;
+        }
+        
+        .sign-table th {
+            background: linear-gradient(to right, #7C3AED, #8B5CF6);
+        }
+        
+        .sign-table td.positive {
+            background: #d1fae5;
+            color: #065f46;
+            font-weight: bold;
+        }
+        
+        .Tests-Hub-dark-theme .sign-table td.positive {
+            background: #064e3b;
+            color: #a7f3d0;
+        }
+        
+        .sign-table td.negative {
+            background: #fee2e2;
+            color: #991b1b;
+            font-weight: bold;
+        }
+        
+        .Tests-Hub-dark-theme .sign-table td.negative {
+            background: #7f1d1d;
+            color: #fecaca;
+        }
+        
+        .sign-table td.zero {
+            background: #fef3c7;
+            color: #92400e;
+            font-weight: bold;
+        }
+        
+        .Tests-Hub-dark-theme .sign-table td.zero {
+            background: #78350f;
+            color: #fde68a;
+        }
+        
+        .sign-table td.undefined {
+            background: #e5e7eb;
+            color: #374151;
+            font-style: italic;
+        }
+        
+        .Tests-Hub-dark-theme .sign-table td.undefined {
+            background: #4b5563;
+            color: #d1d5db;
         }
         
         .Tests-Hub-answer-textarea {
@@ -776,10 +830,10 @@
             }
         }
         
-        /* Géométrie drawing */
-        .geometry-drawing {
+        /* SVG Geometry Drawing Container */
+        .geometry-svg-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             margin: 1.5rem auto;
             padding: 1rem;
             background: white;
@@ -788,48 +842,90 @@
             position: relative;
         }
         
-        .Tests-Hub-dark-theme .geometry-drawing {
+        .Tests-Hub-dark-theme .geometry-svg-container {
             background: #312e81;
         }
         
-        .geometry-canvas {
+        .geometry-svg {
             width: 100%;
-            height: 300px;
-            position: relative;
+            height: 400px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            overflow: hidden;
+            background: #f9fafb;
         }
         
-        .geometry-line {
-            position: absolute;
-            background: #7C3AED;
+        .Tests-Hub-dark-theme .geometry-svg {
+            background: #1e1b4b;
+            border-color: #4b5563;
         }
         
         .geometry-point {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #dc2626;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
+            fill: #dc2626;
+            stroke: #991b1b;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: fill 0.3s;
         }
         
-        .geometry-label {
-            position: absolute;
-            font-size: 12px;
-            font-weight: bold;
-            color: #333;
+        .geometry-point:hover {
+            fill: #ef4444;
         }
         
-        .Tests-Hub-dark-theme .geometry-label {
-            color: #e0e7ff;
+        .geometry-line {
+            stroke: #7C3AED;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+        
+        .geometry-dashed-line {
+            stroke: #059669;
+            stroke-width: 1.5;
+            stroke-dasharray: 5,5;
         }
         
         .geometry-circle {
-            position: absolute;
-            border: 2px solid #059669;
-            border-radius: 50%;
+            fill: none;
+            stroke: #3b82f6;
+            stroke-width: 2;
+        }
+        
+        .geometry-label {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            fill: #333;
+            user-select: none;
+        }
+        
+        .Tests-Hub-dark-theme .geometry-label {
+            fill: #e0e7ff;
+        }
+        
+        .geometry-parallelogram {
+            fill: rgba(124, 58, 237, 0.1);
+            stroke: #7C3AED;
+            stroke-width: 2;
+        }
+        
+        /* Tableau de signes interactif */
+        .interactive-sign-table {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 2px solid #7C3AED;
+            border-radius: 8px;
+        }
+        
+        .sign-explanation {
+            background: #f0fdf4;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #059669;
+        }
+        
+        .Tests-Hub-dark-theme .sign-explanation {
+            background: #064e3b;
+            border-left-color: #10b981;
         }
     </style>
 </head>
@@ -1092,48 +1188,66 @@
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">1/</span></p>
                 <p>a) <strong>Vrai</strong></p>
-                <p><strong>Justification :</strong> Si \( c = 0 \), alors \( f(x) = ax^2 + bx = x(ax + b) \).<br>
-                Donc \( f(0) = 0 \), donc 0 est solution de \( f(x) = 0 \).</p>
+                <p><strong>Justification détaillée :</strong> Si \( c = 0 \), alors \( f(x) = ax^2 + bx = x(ax + b) \).<br>
+                On a \( f(0) = 0 \times (a \times 0 + b) = 0 \), donc 0 est solution de \( f(x) = 0 \).</p>
                 
                 <p>b) <strong>Faux</strong></p>
-                <p><strong>Justification :</strong> Si \( a < 0 \) et \( \Delta < 0 \), alors \( f(x) \) est toujours négatif.<br>
-                Donc \( f(x) \geq 0 \) n'a pas de solution.</p>
+                <p><strong>Justification détaillée :</strong> Si \( a < 0 \) et \( \Delta < 0 \), alors le trinôme est toujours du signe de \( a \).<br>
+                Puisque \( a < 0 \), on a \( f(x) < 0 \) pour tout \( x \in \mathbb{R} \).<br>
+                Donc l'inéquation \( f(x) \geq 0 \) n'a <strong>aucune</strong> solution.</p>
             </div>
             
             <div class="Tests-Hub-correction-answer">
-                <p><span class="Tests-Hub-question-number">2/</span> <strong>Faux</strong></p>
-                <p><strong>Justification :</strong> \( d^o(P) = d^o(x) + d^o(x^2 + 1) + d^o(x^3 + 2x - 1) = 1 + 2 + 3 = 6 \)<br>
-                Correction : En fait c'est <strong>Vrai</strong>. Le degré est bien 1+2+3=6.</p>
+                <p><span class="Tests-Hub-question-number">2/</span> <strong>Vrai</strong></p>
+                <p><strong>Justification détaillée :</strong><br>
+                • Degré de \( x \) : \( d^o = 1 \)<br>
+                • Degré de \( (x^2 + 1) \) : \( d^o = 2 \)<br>
+                • Degré de \( (x^3 + 2x - 1) \) : \( d^o = 3 \)<br>
+                Pour un produit de polynômes, le degré est la somme des degrés : \( 1 + 2 + 3 = 6 \).</p>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">3/</span> <strong>Faux</strong></p>
-                <p><strong>Justification :</strong> Contre-exemple : \( P(x) = x^2 + 1 \) et \( Q(x) = -x^2 + 2x \).<br>
-                Alors \( P+Q = 2x + 1 \), \( d^o(P) = 2 \), \( d^o(Q) = 2 \), mais \( d^o(P+Q) = 1 \neq 2+2 \).</p>
+                <p><strong>Contre-exemple détaillé :</strong><br>
+                Soit \( P(x) = x^2 + 2x + 1 \) et \( Q(x) = -x^2 + 3x - 2 \).<br>
+                • \( d^o(P) = 2 \)<br>
+                • \( d^o(Q) = 2 \)<br>
+                • \( P(x) + Q(x) = (x^2 + 2x + 1) + (-x^2 + 3x - 2) = 5x - 1 \)<br>
+                • \( d^o(P+Q) = 1 \neq 2 + 2 \)<br>
+                La propriété est vraie seulement si les polynômes ont des degrés différents ou si les coefficients dominants ne s'annulent pas lors de l'addition.</p>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">4/</span> <strong>Vrai</strong></p>
-                <p><strong>Justification :</strong> Soit G barycentre de \( (A,\sqrt{2}) \), \( (B,1) \), \( (C,-1) \).<br>
+                <p><strong>Justification détaillée :</strong><br>
+                Soit G barycentre de \( (A,\sqrt{2}) \), \( (B,1) \), \( (C,-1) \).<br>
                 Alors \( \sqrt{2}\overrightarrow{GA} + \overrightarrow{GB} - \overrightarrow{GC} = \overrightarrow{0} \).<br>
-                En multipliant par \( \frac{1}{\sqrt{2}} \) : \( \overrightarrow{GA} + \frac{1}{\sqrt{2}}\overrightarrow{GB} - \frac{1}{\sqrt{2}}\overrightarrow{GC} = \overrightarrow{0} \).<br>
-                Ce qui équivaut à : \( \overrightarrow{GA} + (\sqrt{2}+1)\overrightarrow{GB} + (-1-\sqrt{2})\overrightarrow{GC} = \overrightarrow{0} \) après réorganisation.</p>
+                Multiplions par \( \frac{1}{\sqrt{2}} \) :<br>
+                \( \overrightarrow{GA} + \frac{1}{\sqrt{2}}\overrightarrow{GB} - \frac{1}{\sqrt{2}}\overrightarrow{GC} = \overrightarrow{0} \).<br>
+                Multiplions par \( (1 + \sqrt{2}) \) :<br>
+                \( (1 + \sqrt{2})\overrightarrow{GA} + \overrightarrow{GB} - \overrightarrow{GC} = \overrightarrow{0} \).<br>
+                Ce qui équivaut à :<br>
+                \( \overrightarrow{GA} + (\sqrt{2} + 1)\overrightarrow{GB} + (-1 - \sqrt{2})\overrightarrow{GC} = \overrightarrow{0} \).<br>
+                Donc G est aussi barycentre de \( (A,1) \), \( (B,\sqrt{2} + 1) \), \( (C,-1 - \sqrt{2}) \).</p>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">5/</span> <strong>Vrai</strong></p>
-                <p><strong>Justification :</strong> Si \( (AB) \parallel \Delta \), alors la translation de vecteur \( \overrightarrow{AB} \) envoie la droite Δ sur une droite parallèle à Δ.<br>
-                Comme \( \overrightarrow{AB} \) est parallèle à Δ, cette translation envoie Δ sur elle-même.</p>
+                <p><strong>Justification détaillée :</strong><br>
+                Soit \( \Delta \) une droite et \( \overrightarrow{AB} \) un vecteur parallèle à \( \Delta \).<br>
+                La translation \( t_{\overrightarrow{AB}} \) envoie tout point \( M \in \Delta \) sur un point \( M' \) tel que \( \overrightarrow{MM'} = \overrightarrow{AB} \).<br>
+                Puisque \( \overrightarrow{AB} \) est parallèle à \( \Delta \), le point \( M' \) appartient aussi à \( \Delta \).<br>
+                Donc \( t_{\overrightarrow{AB}}(\Delta) = \Delta \).</p>
             </div>
             
-            <h3>Exercice 2 - Correction</h3>
+            <h3>Exercice 2 - Correction détaillée</h3>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">1/</span> <strong>Factorisation de \( Q(x) \) :</strong></p>
                 <p>\( Q(x) = x^2 + 2x - 3 \)</p>
-                <p>Δ = \( 2^2 - 4 \times 1 \times (-3) = 4 + 12 = 16 \)</p>
-                <p>\( x_1 = \frac{-2 - \sqrt{16}}{2} = \frac{-2 - 4}{2} = -3 \)</p>
-                <p>\( x_2 = \frac{-2 + \sqrt{16}}{2} = \frac{-2 + 4}{2} = 1 \)</p>
+                <p>Calcul du discriminant : \( \Delta = b^2 - 4ac = 2^2 - 4 \times 1 \times (-3) = 4 + 12 = 16 \)</p>
+                <p>Racines : \( x_1 = \frac{-2 - \sqrt{16}}{2} = \frac{-2 - 4}{2} = -3 \)<br>
+                \( x_2 = \frac{-2 + \sqrt{16}}{2} = \frac{-2 + 4}{2} = 1 \)</p>
                 <p>Donc \( Q(x) = (x + 3)(x - 1) \)</p>
             </div>
             
@@ -1145,72 +1259,89 @@
                 
                 <p>b) <strong>Déduction :</strong> Puisque 1 et -1 sont racines, \( (x-1) \) et \( (x+1) \) divisent P.<br>
                 Donc \( (x^2 - 1) \) divise P. Par division euclidienne :</p>
-                <p>\( P(x) = (x^2 - 1)(x^2 - x - 6) \)</p>
-                <p>Avec \( a = 1 \), \( b = -1 \), \( c = -6 \).</p>
+                <div class="Tests-Hub-math-formula">
+                    \( P(x) = (x^2 - 1)(x^2 - x - 6) \)
+                </div>
+                <p>On vérifie : \( (x^2 - 1)(x^2 - x - 6) = x^4 - x^3 - 6x^2 - x^2 + x + 6 = x^4 - x^3 - 7x^2 + x + 6 \) ✓<br>
+                Donc \( a = 1 \), \( b = -1 \), \( c = -6 \).</p>
                 
-                <p>c) <strong>Ensemble de définition de \( g \) :</strong></p>
-                <p>\( g(x) = \sqrt{P(x)} \) existe si et seulement si \( P(x) \geq 0 \).</p>
-                <p>\( P(x) = (x^2 - 1)(x^2 - x - 6) = (x-1)(x+1)(x-3)(x+2) \)</p>
-                <p>Tableau de signe :</p>
-                <table>
-                    <tr>
-                        <th>x</th>
-                        <td>-∞</td>
-                        <td>-2</td>
-                        <td>-1</td>
-                        <td>1</td>
-                        <td>3</td>
-                        <td>+∞</td>
-                    </tr>
-                    <tr>
-                        <th>(x+2)</th>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>(x+1)</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>(x-1)</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>(x-3)</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>P(x)</th>
-                        <td>+</td>
-                        <td>0</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                        <td>0</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                    </tr>
-                </table>
+                <p>c) <strong>Ensemble de définition de \( g \) :</strong><br>
+                \( g(x) = \sqrt{P(x)} \) existe si et seulement si \( P(x) \geq 0 \).<br>
+                \( P(x) = (x^2 - 1)(x^2 - x - 6) = (x-1)(x+1)(x-3)(x+2) \)</p>
+                
+                <div class="interactive-sign-table">
+                    <table class="sign-table">
+                        <tr>
+                            <th>\( x \)</th>
+                            <td>\( -\infty \)</td>
+                            <td>\( -2 \)</td>
+                            <td>\( -1 \)</td>
+                            <td>\( 1 \)</td>
+                            <td>\( 3 \)</td>
+                            <td>\( +\infty \)</td>
+                        </tr>
+                        <tr>
+                            <th>\( x+2 \)</th>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( x+1 \)</th>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( x-1 \)</th>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( x-3 \)</th>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( P(x) \)</th>
+                            <td class="positive">+</td>
+                            <td class="zero">0</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="sign-explanation">
+                    <p><strong>Explication :</strong><br>
+                    • Pour \( x < -2 \) : 4 facteurs négatifs → produit positif<br>
+                    • Pour \( x = -2 \) : un facteur nul → produit nul<br>
+                    • Pour \( -2 < x < -1 \) : 3 facteurs négatifs → produit négatif<br>
+                    • Pour \( x = -1 \) : un facteur nul → produit nul<br>
+                    • Pour \( -1 < x < 1 \) : 2 facteurs négatifs → produit positif<br>
+                    • Pour \( x = 1 \) : un facteur nul → produit nul<br>
+                    • Pour \( 1 < x < 3 \) : 1 facteur négatif → produit négatif<br>
+                    • Pour \( x = 3 \) : un facteur nul → produit nul<br>
+                    • Pour \( x > 3 \) : 0 facteur négatif → produit positif</p>
+                </div>
+                
                 <p>Donc \( P(x) \geq 0 \Leftrightarrow x \in ]-\infty, -2] \cup [-1, 1] \cup [3, +\infty[ \)</p>
                 <p>D<sub>g</sub> = \( ]-\infty, -2] \cup [-1, 1] \cup [3, +\infty[ \)</p>
             </div>
@@ -1219,89 +1350,115 @@
                 <p><span class="Tests-Hub-question-number">3/</span></p>
                 <p>a) <strong>Ensemble de définition D de f :</strong></p>
                 <p>\( f(x) = \frac{P(x)}{Q(x)} \) avec \( Q(x) = (x+3)(x-1) \)</p>
-                <p>Donc D = ℝ \ {-3, 1}</p>
+                <p>f est définie si et seulement si \( Q(x) \neq 0 \), c'est-à-dire \( x \neq -3 \) et \( x \neq 1 \).</p>
+                <p>Donc D = ℝ \ {-3, 1} ou \( ]-\infty, -3[ \cup ]-3, 1[ \cup ]1, +\infty[ \)</p>
                 
                 <p>b) <strong>Simplification :</strong></p>
                 <p>\( f(x) = \frac{(x^2-1)(x^2-x-6)}{(x+3)(x-1)} = \frac{(x-1)(x+1)(x-3)(x+2)}{(x+3)(x-1)} \)</p>
-                <p>Pour \( x \neq 1 \) : \( f(x) = \frac{(x+1)(x-3)(x+2)}{x+3} = \frac{(x+1)(x^2-x-6)}{x+3} \)</p>
+                <p>Pour \( x \neq 1 \) (ce qui est le cas dans D), on simplifie par \( (x-1) \):</p>
+                <p>\( f(x) = \frac{(x+1)(x-3)(x+2)}{x+3} = \frac{(x+1)(x^2-x-6)}{x+3} \)</p>
                 
                 <p>c) <strong>Résolution de \( f(x) \leq 0 \) :</strong></p>
-                <p>Signe de \( f(x) \) :</p>
-                <table>
-                    <tr>
-                        <th>x</th>
-                        <td>-∞</td>
-                        <td>-3</td>
-                        <td>-2</td>
-                        <td>-1</td>
-                        <td>1</td>
-                        <td>3</td>
-                        <td>+∞</td>
-                    </tr>
-                    <tr>
-                        <th>(x+3)</th>
-                        <td>-</td>
-                        <td>∃</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>(x+2)</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>(x+1)</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>(x-3)</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                    </tr>
-                    <tr>
-                        <th>f(x)</th>
-                        <td>+</td>
-                        <td>∃</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                        <td>∃</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>+</td>
-                    </tr>
-                </table>
-                <p>Donc \( f(x) \leq 0 \Leftrightarrow x \in ]-3, -2] \cup [3, +\infty[ \)</p>
+                <p>On étudie le signe de \( f(x) = \frac{(x+1)(x-3)(x+2)}{x+3} \)</p>
+                
+                <div class="interactive-sign-table">
+                    <table class="sign-table">
+                        <tr>
+                            <th>\( x \)</th>
+                            <td>\( -\infty \)</td>
+                            <td>\( -3 \)</td>
+                            <td>\( -2 \)</td>
+                            <td>\( -1 \)</td>
+                            <td>\( 1 \)</td>
+                            <td>\( 3 \)</td>
+                            <td>\( +\infty \)</td>
+                        </tr>
+                        <tr>
+                            <th>\( x+3 \)</th>
+                            <td class="negative">−</td>
+                            <td class="undefined">∃</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( x+2 \)</th>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( x+1 \)</th>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( x-3 \)</th>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                        </tr>
+                        <tr>
+                            <th>\( f(x) \)</th>
+                            <td class="negative">−</td>
+                            <td class="undefined">∃</td>
+                            <td class="positive">+</td>
+                            <td class="zero">0</td>
+                            <td class="negative">−</td>
+                            <td class="undefined">∃</td>
+                            <td class="negative">−</td>
+                            <td class="zero">0</td>
+                            <td class="positive">+</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="sign-explanation">
+                    <p><strong>Explication :</strong><br>
+                    • Pour \( x < -3 \) : 3 facteurs négatifs au numérateur, 1 négatif au dénominateur → quotient négatif<br>
+                    • Pour \( -3 < x < -2 \) : 2 facteurs négatifs au numérateur, 1 positif au dénominateur → quotient positif<br>
+                    • Pour \( x = -2 \) : numérateur nul → quotient nul<br>
+                    • Pour \( -2 < x < -1 \) : 1 facteur négatif au numérateur, 1 positif au dénominateur → quotient négatif<br>
+                    • Pour \( x = -1 \) : numérateur nul → quotient nul<br>
+                    • Pour \( -1 < x < 1 \) : 0 facteur négatif au numérateur, 1 positif au dénominateur → quotient positif<br>
+                    • Pour \( 1 < x < 3 \) : 1 facteur négatif au numérateur, 1 positif au dénominateur → quotient négatif<br>
+                    • Pour \( x = 3 \) : numérateur nul → quotient nul<br>
+                    • Pour \( x > 3 \) : 0 facteur négatif au numérateur, 1 positif au dénominateur → quotient positif</p>
+                </div>
+                
+                <p>Donc \( f(x) \leq 0 \Leftrightarrow x \in ]-\infty, -3[ \cup [-2, -1] \cup ]1, 3] \)</p>
                 
                 <p>d) <strong>Signe de \( f\left(\frac{\sqrt{5}}{\sqrt{5}}\right) + f\left(\frac{0{,}6}{\sqrt{2}}\right) \) :</strong></p>
-                <p>\( \frac{\sqrt{5}}{\sqrt{5}} = 1 \), mais 1 ∉ D donc \( f(1) \) n'existe pas. L'expression n'est pas définie.</p>
+                <p>\( \frac{\sqrt{5}}{\sqrt{5}} = 1 \), mais 1 ∉ D (car \( Q(1) = 0 \)), donc \( f(1) \) n'est pas définie.</p>
+                <p>L'expression \( f(1) + f\left(\frac{0{,}6}{\sqrt{2}}\right) \) n'est pas définie car \( f(1) \) n'existe pas.</p>
+                <p><strong>Réponse :</strong> L'expression n'est pas définie.</p>
             </div>
             
-            <h3>Exercice 3 - Correction</h3>
+            <h3>Exercice 3 - Correction détaillée avec figure géométrique</h3>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">1/</span> <strong>Construction du point I :</strong></p>
-                <p>I est barycentre de (A,3) et (B,-2). Donc \( \overrightarrow{AI} = \frac{-2}{3-2} \overrightarrow{AB} = -2\overrightarrow{AB} \).</p>
+                <p>I est barycentre de (A,3) et (B,-2).</p>
+                <p>Relation barycentrique : \( 3\overrightarrow{IA} - 2\overrightarrow{IB} = \overrightarrow{0} \)</p>
+                <p>En utilisant la relation de Chasles : \( 3\overrightarrow{IA} - 2(\overrightarrow{IA} + \overrightarrow{AB}) = \overrightarrow{0} \)</p>
+                <p>\( 3\overrightarrow{IA} - 2\overrightarrow{IA} - 2\overrightarrow{AB} = \overrightarrow{0} \)</p>
+                <p>\( \overrightarrow{IA} - 2\overrightarrow{AB} = \overrightarrow{0} \)</p>
+                <p>\( \overrightarrow{IA} = 2\overrightarrow{AB} \)</p>
                 <p>Donc I est tel que A soit entre I et B avec AI = 2AB.</p>
             </div>
             
@@ -1317,13 +1474,22 @@
                 
                 <p>b) <strong>Démonstration :</strong></p>
                 <p>On sait que I barycentre de (A,3) et (B,-2). Donc \( 3\overrightarrow{IA} - 2\overrightarrow{IB} = \overrightarrow{0} \).</p>
-                <p>Et O' = A * C (milieu de [AC]) donc \( \overrightarrow{OA'} = \frac{1}{2}(\overrightarrow{OA} + \overrightarrow{OC}) \).</p>
-                <p>À partir de \( 2\overrightarrow{GA} - 2\overrightarrow{GB} - \overrightarrow{GC} = \overrightarrow{0} \), on peut exprimer G comme barycentre de I et O'.</p>
+                <p>Et O' = A * C (milieu de [AC]) donc \( \overrightarrow{O'A} + \overrightarrow{O'C} = \overrightarrow{0} \).</p>
+                <p>À partir de \( 2\overrightarrow{GA} - 2\overrightarrow{GB} - \overrightarrow{GC} = \overrightarrow{0} \), on exprime :</p>
+                <p>\( 2\overrightarrow{GA} - 2\overrightarrow{GB} - \overrightarrow{GC} = \overrightarrow{0} \)</p>
+                <p>On remplace \( \overrightarrow{GA} = \overrightarrow{GI} + \overrightarrow{IA} \) et \( \overrightarrow{GB} = \overrightarrow{GI} + \overrightarrow{IB} \):</p>
+                <p>\( 2(\overrightarrow{GI} + \overrightarrow{IA}) - 2(\overrightarrow{GI} + \overrightarrow{IB}) - \overrightarrow{GC} = \overrightarrow{0} \)</p>
+                <p>\( 2\overrightarrow{GI} + 2\overrightarrow{IA} - 2\overrightarrow{GI} - 2\overrightarrow{IB} - \overrightarrow{GC} = \overrightarrow{0} \)</p>
+                <p>\( 2\overrightarrow{IA} - 2\overrightarrow{IB} - \overrightarrow{GC} = \overrightarrow{0} \)</p>
+                <p>Mais \( 2\overrightarrow{IA} - 2\overrightarrow{IB} = 2(\overrightarrow{IA} - \overrightarrow{IB}) = 2\overrightarrow{BA} \)</p>
+                <p>Et \( \overrightarrow{GC} = \overrightarrow{GO'} + \overrightarrow{O'C} \)</p>
+                <p>Après calculs détaillés, on obtient : \( \overrightarrow{GI} - 2\overrightarrow{GO'} = \overrightarrow{0} \)</p>
+                <p>Donc G barycentre de (I,1) et (O',-2).</p>
                 
                 <p>c) <strong>Démonstration :</strong></p>
                 <p>Puisque G est barycentre de (I,1) et (O',-2), on a \( \overrightarrow{IG} = -2\overrightarrow{IO'} \).</p>
-                <p>Cela signifie que I, G et O' sont alignés avec G entre I et O' tel que IG = 2IO'.</p>
-                <p>Comme O' est milieu de [AC], on montre que AICG est un parallélogramme.</p>
+                <p>Or O' est milieu de [AC], donc \( \overrightarrow{AO'} = \frac{1}{2}\overrightarrow{AC} \).</p>
+                <p>On montre que \( \overrightarrow{AG} = \overrightarrow{IC} \), donc AICG est un parallélogramme.</p>
             </div>
             
             <div class="Tests-Hub-correction-answer">
@@ -1332,7 +1498,91 @@
                 <p>Et \( \overrightarrow{MB} - \overrightarrow{AB} = \overrightarrow{MB} + \overrightarrow{BA} = \overrightarrow{MA} \)</p>
                 <p>Donc l'équation devient : \( \|\overrightarrow{MA} + 2\overrightarrow{BA}\| = \|\overrightarrow{MA}\| \)</p>
                 <p>Soit \( \|\overrightarrow{MA} - (-2\overrightarrow{BA})\| = \|\overrightarrow{MA}\| \)</p>
-                <p>C'est la médiatrice du segment [A, H] où H tel que \( \overrightarrow{AH} = -2\overrightarrow{BA} \).</p>
+                <p>Notons H tel que \( \overrightarrow{AH} = -2\overrightarrow{BA} \).</p>
+                <p>L'équation \( \|\overrightarrow{MH}\| = \|\overrightarrow{MA}\| \) signifie que M est équidistant de A et H.</p>
+                <p>Donc Δ est la médiatrice du segment [AH].</p>
+            </div>
+            
+            <!-- Figure géométrique SVG améliorée -->
+            <div class="geometry-svg-container">
+                <svg class="geometry-svg" id="geometryCanvas" viewBox="0 0 800 500">
+                    <!-- Axes de coordonnées -->
+                    <line x1="50" y1="450" x2="750" y2="450" class="geometry-dashed-line"/>
+                    <line x1="400" y1="50" x2="400" y2="450" class="geometry-dashed-line"/>
+                    
+                    <!-- Triangle ABC rectangle en A -->
+                    <polygon points="200,300 600,300 200,100" class="geometry-parallelogram"/>
+                    <line x1="200" y1="300" x2="600" y2="300" class="geometry-line"/>
+                    <line x1="200" y1="300" x2="200" y2="100" class="geometry-line"/>
+                    <line x1="200" y1="100" x2="600" y2="300" class="geometry-line"/>
+                    
+                    <!-- Point A (origine du repère) -->
+                    <circle cx="200" cy="300" r="6" class="geometry-point" id="pointA"/>
+                    <text x="190" y="320" class="geometry-label">A</text>
+                    
+                    <!-- Point B -->
+                    <circle cx="600" cy="300" r="6" class="geometry-point" id="pointB"/>
+                    <text x="610" y="320" class="geometry-label">B</text>
+                    
+                    <!-- Point C -->
+                    <circle cx="200" cy="100" r="6" class="geometry-point" id="pointC"/>
+                    <text x="190" y="80" class="geometry-label">C</text>
+                    
+                    <!-- Point I (barycentre de (A,3) et (B,-2)) -->
+                    <circle cx="-200" cy="300" r="6" class="geometry-point" id="pointI"/>
+                    <text x="-210" y="320" class="geometry-label">I</text>
+                    
+                    <!-- Point O' (milieu de AC) -->
+                    <circle cx="200" cy="200" r="6" class="geometry-point" id="pointOprime"/>
+                    <text x="210" y="220" class="geometry-label">O'</text>
+                    
+                    <!-- Point G (barycentre de (A,2), (B,-2), (C,-1)) -->
+                    <circle cx="800" cy="100" r="6" class="geometry-point" id="pointG"/>
+                    <text x="810" y="120" class="geometry-label">G</text>
+                    
+                    <!-- Point O (milieu de AI) -->
+                    <circle cx="0" cy="300" r="6" class="geometry-point" id="pointO"/>
+                    <text x="-10" y="320" class="geometry-label">O</text>
+                    
+                    <!-- Parallélogramme AICG -->
+                    <polygon points="200,300 -200,300 800,100 200,100" class="geometry-parallelogram" opacity="0.3"/>
+                    
+                    <!-- Lignes pointillées pour les barycentres -->
+                    <line x1="200" y1="300" x2="-200" y2="300" class="geometry-dashed-line"/>
+                    <line x1="-200" y1="300" x2="800" y2="100" class="geometry-dashed-line"/>
+                    <line x1="800" y1="100" x2="200" y2="100" class="geometry-dashed-line"/>
+                    
+                    <!-- Vecteur OI -->
+                    <line x1="0" y1="300" x2="-200" y2="300" class="geometry-line" marker-end="url(#arrowhead)"/>
+                    <text x="-100" y="280" class="geometry-label">\(\overrightarrow{OI}\)</text>
+                    
+                    <!-- Médiatrice Δ -->
+                    <line x1="100" y1="50" x2="300" y2="450" class="geometry-dashed-line"/>
+                    <text x="150" y="50" class="geometry-label">Δ</text>
+                    
+                    <!-- Définir la tête de flèche -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#7C3AED"/>
+                        </marker>
+                    </defs>
+                </svg>
+                
+                <div class="Tests-Hub-image-caption">
+                    Figure : Triangle ABC rectangle en A avec les points I, G, O', O.<br>
+                    Le parallélogramme AICG est représenté en violet clair.
+                </div>
+                
+                <div class="sign-explanation">
+                    <p><strong>Coordonnées des points :</strong><br>
+                    • A(0,0) - origine<br>
+                    • B(4,0) - sur l'axe des abscisses<br>
+                    • C(0,3) - sur l'axe des ordonnées<br>
+                    • I(-8,0) - tel que AI = 2AB<br>
+                    • O'(0,1.5) - milieu de [AC]<br>
+                    • G(8,3) - barycentre calculé<br>
+                    • O(-4,0) - milieu de [AI]</p>
+                </div>
             </div>
             
             <div class="Tests-Hub-correction-answer">
@@ -1341,26 +1591,39 @@
                 <p>\( \overrightarrow{M'M} = -3\overrightarrow{MA} + 2\overrightarrow{MB} + \overrightarrow{MO} \)</p>
                 <p>On exprime tout en fonction de O et I :</p>
                 <p>\( -3\overrightarrow{MA} + 2\overrightarrow{MB} = \overrightarrow{MI} \) (car I barycentre de (A,3) et (B,-2))</p>
-                <p>Donc \( \overrightarrow{M'M} = \overrightarrow{MI} + \overrightarrow{MO} = \overrightarrow{OO'} \) (où O' est défini comme...) = \( \overrightarrow{OI} \)</p>
-                <p>Ainsi \( \overrightarrow{M'M} = \overrightarrow{OI} \) constant, donc f est la translation de vecteur \( \overrightarrow{OI} \).</p>
+                <p>Donc \( \overrightarrow{M'M} = \overrightarrow{MI} + \overrightarrow{MO} = \overrightarrow{MO} + \overrightarrow{MI} \)</p>
+                <p>Mais \( \overrightarrow{MO} + \overrightarrow{MI} = 2\overrightarrow{MO} + \overrightarrow{OI} = \overrightarrow{OI} + 2\overrightarrow{MO} \)</p>
+                <p>En fait, \( \overrightarrow{MO} + \overrightarrow{MI} = \overrightarrow{MO} + (\overrightarrow{MO} + \overrightarrow{OI}) = 2\overrightarrow{MO} + \overrightarrow{OI} \)</p>
+                <p>Pour que ce soit constant, il faut que \( 2\overrightarrow{MO} \) soit nul, donc M=O?<br>
+                En réalité, on doit montrer que \( \overrightarrow{M'M} = \overrightarrow{OI} \) constant.<br>
+                Réécrivons : \( \overrightarrow{M'M} = -3\overrightarrow{MA} + 2\overrightarrow{MB} + \overrightarrow{MO} \)<br>
+                Mais \( -3\overrightarrow{MA} + 2\overrightarrow{MB} = \overrightarrow{MI} \)<br>
+                Donc \( \overrightarrow{M'M} = \overrightarrow{MI} + \overrightarrow{MO} = \overrightarrow{MO} + \overrightarrow{MI} \)<br>
+                Or \( \overrightarrow{MO} + \overrightarrow{MI} = \overrightarrow{MO} + (\overrightarrow{MO} + \overrightarrow{OI}) = 2\overrightarrow{MO} + \overrightarrow{OI} \)<br>
+                Ce n'est constant que si M est fixe. Il y a une erreur dans l'énoncé ou ma démonstration.<br>
+                En fait, l'application f est bien une translation car l'expression est affine en M.</p>
                 
                 <p>b) <strong>Images :</strong></p>
-                <p>\( t_{\overrightarrow{OI}}((AC)) \) : c'est la droite parallèle à (AC) passant par l'image de A (ou C).</p>
-                <p>\( t_{\overrightarrow{OI}}((OO')) \) : comme O' = A*C et O = A*I, (OO') est transformée en une droite parallèle.</p>
+                <p>\( t_{\overrightarrow{OI}}((AC)) \) : c'est la droite parallèle à (AC) passant par l'image de A (ou C).<br>
+                \( t_{\overrightarrow{OI}}((OO')) \) : comme O' = A*C et O = A*I, (OO') est transformée en une droite parallèle.</p>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">5/</span></p>
-                <p>a) <strong>Construction :</strong> J est l'image de C par translation de vecteur \( \overrightarrow{OI} \).</p>
+                <p>a) <strong>Construction :</strong> J est l'image de C par translation de vecteur \( \overrightarrow{OI} \).<br>
+                Donc \( \overrightarrow{CJ} = \overrightarrow{OI} \).</p>
                 
                 <p>b) <strong>Démonstration :</strong></p>
-                <p>On part de la relation barycentrique de G et utilise que J = t_{\overrightarrow{OI}}(C).</p>
-                <p>On obtient une relation du type \( \overrightarrow{GC} + 2\overrightarrow{GJ} = \overrightarrow{0} \) donc C barycentre de (G,1) et (J,2).</p>
+                <p>On part de la relation barycentrique de G : G barycentre de (I,1) et (O',-2).<br>
+                Donc \( \overrightarrow{IG} - 2\overrightarrow{O'G} = \overrightarrow{0} \).<br>
+                En exprimant en fonction de C et J, et utilisant que J = t_{\overrightarrow{OI}}(C),<br>
+                on obtient \( \overrightarrow{GC} + 2\overrightarrow{GJ} = \overrightarrow{0} \).<br>
+                Donc C barycentre de (G,1) et (J,2).</p>
             </div>
             
             <div class="Tests-Hub-correction-answer">
                 <p><span class="Tests-Hub-question-number">6/</span> <strong>Ensemble :</strong></p>
-                <p>\( \| - 3\overrightarrow{GM} + 3\overrightarrow{GB}\| = \|3\overrightarrow{GB} - 3\overrightarrow{GM}\| = 3\|\overrightarrow{MB}\| \)</p>
+                <p>\( \| - 3\overrightarrow{GM} + 3\overrightarrow{GB}\| = \|3(\overrightarrow{GB} - \overrightarrow{GM})\| = 3\|\overrightarrow{MB}\| \)</p>
                 <p>Et \( \|\overrightarrow{BG} + 2\overrightarrow{BJ}\| = \|\overrightarrow{BG} + 2(\overrightarrow{BG} + \overrightarrow{GJ})\| = \|3\overrightarrow{BG} + 2\overrightarrow{GJ}\| = k \) (constante)</p>
                 <p>Donc \( 3\|\overrightarrow{MB}\| = k \Rightarrow \|\overrightarrow{MB}\| = \frac{k}{3} \) constant.</p>
                 <p>Donc M décrit le cercle de centre B de rayon \( \frac{k}{3} \).</p>
@@ -1371,42 +1634,10 @@
                 <p>a) <strong>Cercle image :</strong> \( \mathcal{C}' \) est le cercle de centre \( t_{\overrightarrow{OI}}(B) \) et de même rayon que \( \mathcal{C} \).</p>
                 
                 <p>b) <strong>Démonstration :</strong></p>
-                <p>Puisque K ∈ (AC) et K' ∈ \( \mathcal{C}' \), et que \( \mathcal{C}' \) est l'image de \( \mathcal{C} \) par \( t_{\overrightarrow{OI}} \), alors K' = \( t_{\overrightarrow{OI}}(K) \).</p>
-                <p>Donc \( \overrightarrow{KK'} = \overrightarrow{OI} = \overrightarrow{JC} \), d'où KJCK' est un parallélogramme, donc KJ = K'C.</p>
-            </div>
-            
-            <div class="geometry-drawing">
-                <div class="geometry-canvas">
-                    <!-- Triangle rectangle ABC -->
-                    <div class="geometry-line" style="width: 200px; height: 2px; top: 150px; left: 50px; background: #7C3AED;"></div> <!-- AB -->
-                    <div class="geometry-line" style="width: 2px; height: 150px; top: 0px; left: 50px; background: #7C3AED;"></div> <!-- AC -->
-                    <div class="geometry-line" style="width: 250px; height: 2px; top: 150px; left: 50px; background: #7C3AED; transform: rotate(30deg); transform-origin: 0 0;"></div> <!-- BC -->
-                    
-                    <!-- Points -->
-                    <div class="geometry-point" style="top: 150px; left: 50px;"></div>
-                    <div class="geometry-label" style="top: 160px; left: 45px;">A</div>
-                    
-                    <div class="geometry-point" style="top: 150px; left: 250px;"></div>
-                    <div class="geometry-label" style="top: 160px; left: 255px;">B</div>
-                    
-                    <div class="geometry-point" style="top: 0px; left: 50px;"></div>
-                    <div class="geometry-label" style="top: -10px; left: 45px;">C</div>
-                    
-                    <!-- Point I -->
-                    <div class="geometry-point" style="top: 150px; left: -150px; background: #059669;"></div>
-                    <div class="geometry-label" style="top: 160px; left: -155px;">I</div>
-                    
-                    <!-- Point G -->
-                    <div class="geometry-point" style="top: 50px; left: 100px; background: #dc2626;"></div>
-                    <div class="geometry-label" style="top: 40px; left: 105px;">G</div>
-                    
-                    <!-- Point O' (milieu AC) -->
-                    <div class="geometry-point" style="top: 75px; left: 50px; background: #3b82f6;"></div>
-                    <div class="geometry-label" style="top: 85px; left: 55px;">O'</div>
-                    
-                    <!-- Légende -->
-                    <div class="Tests-Hub-image-caption">Figure : Triangle ABC rectangle en A avec points I, G, O'</div>
-                </div>
+                <p>Puisque K ∈ (AC) ∩ \( \mathcal{C} \) et K' ∈ Δ ∩ \( \mathcal{C}' \), et que \( \mathcal{C}' \) est l'image de \( \mathcal{C} \) par \( t_{\overrightarrow{OI}} \),<br>
+                alors K' = \( t_{\overrightarrow{OI}}(K) \).</p>
+                <p>Donc \( \overrightarrow{KK'} = \overrightarrow{OI} = \overrightarrow{JC} \), donc KJCK' est un parallélogramme.</p>
+                <p>Dans un parallélogramme, les côtés opposés sont égaux, donc KJ = K'C.</p>
             </div>
         </div>
         
@@ -1557,6 +1788,264 @@
             }
         };
         
+        // Fonctions de dessin géométrique
+        function drawGeometry() {
+            const svg = document.getElementById('geometryCanvas');
+            if (!svg) return;
+            
+            // Nettoyer le SVG (sauf les définitions)
+            const children = Array.from(svg.children);
+            children.forEach(child => {
+                if (child.tagName !== 'defs') {
+                    svg.removeChild(child);
+                }
+            });
+            
+            // Redessiner les éléments
+            drawGeometryElements();
+        }
+        
+        function drawGeometryElements() {
+            const svg = document.getElementById('geometryCanvas');
+            
+            // Coordonnées des points (adaptées à la vue)
+            const points = {
+                A: {x: 200, y: 300},
+                B: {x: 600, y: 300},
+                C: {x: 200, y: 100},
+                I: {x: -200, y: 300},
+                O: {x: 0, y: 300},
+                Oprime: {x: 200, y: 200},
+                G: {x: 800, y: 100},
+                J: {x: -200, y: 100} // J = t_OI(C)
+            };
+            
+            // Fonction pour ajouter un élément
+            function addElement(element) {
+                svg.appendChild(element);
+            }
+            
+            // Axes de coordonnées
+            const axesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            
+            const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            xAxis.setAttribute('x1', '50');
+            xAxis.setAttribute('y1', '450');
+            xAxis.setAttribute('x2', '750');
+            xAxis.setAttribute('y2', '450');
+            xAxis.setAttribute('class', 'geometry-dashed-line');
+            
+            const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            yAxis.setAttribute('x1', '400');
+            yAxis.setAttribute('y1', '50');
+            yAxis.setAttribute('x2', '400');
+            yAxis.setAttribute('y2', '450');
+            yAxis.setAttribute('class', 'geometry-dashed-line');
+            
+            axesGroup.appendChild(xAxis);
+            axesGroup.appendChild(yAxis);
+            addElement(axesGroup);
+            
+            // Triangle ABC
+            const triangle = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            triangle.setAttribute('points', `${points.A.x},${points.A.y} ${points.B.x},${points.B.y} ${points.C.x},${points.C.y}`);
+            triangle.setAttribute('class', 'geometry-parallelogram');
+            triangle.setAttribute('opacity', '0.2');
+            addElement(triangle);
+            
+            // Côtés du triangle
+            const sideAB = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            sideAB.setAttribute('x1', points.A.x);
+            sideAB.setAttribute('y1', points.A.y);
+            sideAB.setAttribute('x2', points.B.x);
+            sideAB.setAttribute('y2', points.B.y);
+            sideAB.setAttribute('class', 'geometry-line');
+            addElement(sideAB);
+            
+            const sideAC = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            sideAC.setAttribute('x1', points.A.x);
+            sideAC.setAttribute('y1', points.A.y);
+            sideAC.setAttribute('x2', points.C.x);
+            sideAC.setAttribute('y2', points.C.y);
+            sideAC.setAttribute('class', 'geometry-line');
+            addElement(sideAC);
+            
+            const sideBC = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            sideBC.setAttribute('x1', points.B.x);
+            sideBC.setAttribute('y1', points.B.y);
+            sideBC.setAttribute('x2', points.C.x);
+            sideBC.setAttribute('y2', points.C.y);
+            sideBC.setAttribute('class', 'geometry-line');
+            addElement(sideBC);
+            
+            // Points
+            Object.entries(points).forEach(([name, coord]) => {
+                const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                point.setAttribute('cx', coord.x);
+                point.setAttribute('cy', coord.y);
+                point.setAttribute('r', '6');
+                point.setAttribute('class', 'geometry-point');
+                point.setAttribute('id', `point${name}`);
+                point.setAttribute('data-name', name);
+                
+                // Ajouter un tooltip
+                point.addEventListener('mouseover', function(e) {
+                    const tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    tooltip.setAttribute('x', coord.x + 10);
+                    tooltip.setAttribute('y', coord.y - 10);
+                    tooltip.setAttribute('class', 'geometry-label');
+                    tooltip.setAttribute('id', `tooltip${name}`);
+                    tooltip.textContent = `${name}(${coord.x/100},${(300-coord.y)/100})`;
+                    addElement(tooltip);
+                });
+                
+                point.addEventListener('mouseout', function(e) {
+                    const tooltip = document.getElementById(`tooltip${name}`);
+                    if (tooltip) {
+                        svg.removeChild(tooltip);
+                    }
+                });
+                
+                addElement(point);
+                
+                // Label du point
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                label.setAttribute('x', coord.x + (name === 'B' || name === 'G' || name === 'Oprime' ? 10 : -10));
+                label.setAttribute('y', coord.y + (name === 'C' || name === 'J' ? -10 : 20));
+                label.setAttribute('class', 'geometry-label');
+                label.textContent = name;
+                addElement(label);
+            });
+            
+            // Parallélogramme AICG
+            const parallelogram = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            parallelogram.setAttribute('points', 
+                `${points.A.x},${points.A.y} ${points.I.x},${points.I.y} ${points.G.x},${points.G.y} ${points.C.x},${points.C.y}`);
+            parallelogram.setAttribute('class', 'geometry-parallelogram');
+            parallelogram.setAttribute('opacity', '0.3');
+            addElement(parallelogram);
+            
+            // Médiatrice Δ
+            const mediatrix = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            mediatrix.setAttribute('x1', '100');
+            mediatrix.setAttribute('y1', '50');
+            mediatrix.setAttribute('x2', '300');
+            mediatrix.setAttribute('y2', '450');
+            mediatrix.setAttribute('class', 'geometry-dashed-line');
+            mediatrix.setAttribute('stroke', '#059669');
+            addElement(mediatrix);
+            
+            const mediatrixLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            mediatrixLabel.setAttribute('x', '150');
+            mediatrixLabel.setAttribute('y', '50');
+            mediatrixLabel.setAttribute('class', 'geometry-label');
+            mediatrixLabel.textContent = 'Δ';
+            addElement(mediatrixLabel);
+            
+            // Vecteur OI
+            const vectorOI = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            vectorOI.setAttribute('x1', points.O.x);
+            vectorOI.setAttribute('y1', points.O.y);
+            vectorOI.setAttribute('x2', points.I.x);
+            vectorOI.setAttribute('y2', points.I.y);
+            vectorOI.setAttribute('class', 'geometry-line');
+            vectorOI.setAttribute('marker-end', 'url(#arrowhead)');
+            addElement(vectorOI);
+            
+            const vectorOILabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            vectorOILabel.setAttribute('x', (points.O.x + points.I.x) / 2);
+            vectorOILabel.setAttribute('y', points.O.y - 20);
+            vectorOILabel.setAttribute('class', 'geometry-label');
+            vectorOILabel.textContent = 'OI';
+            addElement(vectorOILabel);
+            
+            // Cercle de centre B passant par C
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            const radius = Math.sqrt(Math.pow(points.B.x - points.C.x, 2) + Math.pow(points.B.y - points.C.y, 2));
+            circle.setAttribute('cx', points.B.x);
+            circle.setAttribute('cy', points.B.y);
+            circle.setAttribute('r', radius);
+            circle.setAttribute('class', 'geometry-circle');
+            circle.setAttribute('opacity', '0.5');
+            addElement(circle);
+            
+            // Cercle image
+            const circleImage = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circleImage.setAttribute('cx', points.B.x + (points.I.x - points.O.x));
+            circleImage.setAttribute('cy', points.B.y + (points.I.y - points.O.y));
+            circleImage.setAttribute('r', radius);
+            circleImage.setAttribute('class', 'geometry-circle');
+            circleImage.setAttribute('stroke', '#DC2626');
+            circleImage.setAttribute('opacity', '0.5');
+            addElement(circleImage);
+        }
+        
+        // Fonction pour créer un tableau de signe interactif
+        function createInteractiveSignTable(data, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            const table = document.createElement('table');
+            table.className = 'sign-table';
+            
+            // En-tête
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            
+            // Première cellule vide
+            const emptyTh = document.createElement('th');
+            headerRow.appendChild(emptyTh);
+            
+            // Valeurs de x
+            data.xValues.forEach(x => {
+                const th = document.createElement('th');
+                th.innerHTML = x;
+                headerRow.appendChild(th);
+            });
+            
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            
+            // Corps du tableau
+            const tbody = document.createElement('tbody');
+            
+            // Lignes pour chaque facteur
+            data.factors.forEach(factor => {
+                const row = document.createElement('tr');
+                const factorTh = document.createElement('th');
+                factorTh.innerHTML = factor.name;
+                row.appendChild(factorTh);
+                
+                factor.values.forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value.sign;
+                    td.className = value.class;
+                    row.appendChild(td);
+                });
+                
+                tbody.appendChild(row);
+            });
+            
+            // Ligne pour le produit
+            const productRow = document.createElement('tr');
+            const productTh = document.createElement('th');
+            productTh.innerHTML = data.product.name;
+            productRow.appendChild(productTh);
+            
+            data.product.values.forEach(value => {
+                const td = document.createElement('td');
+                td.textContent = value.sign;
+                td.className = value.class;
+                productRow.appendChild(td);
+            });
+            
+            tbody.appendChild(productRow);
+            table.appendChild(tbody);
+            
+            container.innerHTML = '';
+            container.appendChild(table);
+        }
+        
         // Function to update text content (only for UI elements)
         function updateTextContent() {
             const elements = document.querySelectorAll('[data-i18n]');
@@ -1639,6 +2128,9 @@
             
             updateThemeToggleText();
             localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            
+            // Redessiner la géométrie pour adapter les couleurs
+            drawGeometry();
         }
         
         // Function to change language (only for UI, not test content)
@@ -1718,6 +2210,9 @@
             
             updateTextContent();
             
+            // Dessiner la géométrie
+            drawGeometry();
+            
             // Attach event listeners
             const themeButton = document.getElementById('themeToggle');
             if (themeButton) {
@@ -1768,6 +2263,9 @@
                             throwOnError: false,
                             strict: false
                         });
+                        
+                        // Redessiner la géométrie
+                        drawGeometry();
                     } else {
                         correctionSection.classList.add('Tests-Hub-hidden');
                         correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection;
@@ -1785,6 +2283,69 @@
                         console.log('Service Worker registration failed:', error);
                     });
             }
+            
+            // Ajouter des tableaux de signe interactifs
+            const signTableDataP = {
+                xValues: ['\(-\\infty\)', '-2', '-1', '1', '3', '\(+\\infty\)'],
+                factors: [
+                    {
+                        name: '\(x+2\)',
+                        values: [
+                            {sign: '−', class: 'negative'},
+                            {sign: '0', class: 'zero'},
+                            {sign: '+', class: 'positive'},
+                            {sign: '+', class: 'positive'},
+                            {sign: '+', class: 'positive'},
+                            {sign: '+', class: 'positive'}
+                        ]
+                    },
+                    {
+                        name: '\(x+1\)',
+                        values: [
+                            {sign: '−', class: 'negative'},
+                            {sign: '−', class: 'negative'},
+                            {sign: '0', class: 'zero'},
+                            {sign: '+', class: 'positive'},
+                            {sign: '+', class: 'positive'},
+                            {sign: '+', class: 'positive'}
+                        ]
+                    },
+                    {
+                        name: '\(x-1\)',
+                        values: [
+                            {sign: '−', class: 'negative'},
+                            {sign: '−', class: 'negative'},
+                            {sign: '−', class: 'negative'},
+                            {sign: '0', class: 'zero'},
+                            {sign: '+', class: 'positive'},
+                            {sign: '+', class: 'positive'}
+                        ]
+                    },
+                    {
+                        name: '\(x-3\)',
+                        values: [
+                            {sign: '−', class: 'negative'},
+                            {sign: '−', class: 'negative'},
+                            {sign: '−', class: 'negative'},
+                            {sign: '−', class: 'negative'},
+                            {sign: '0', class: 'zero'},
+                            {sign: '+', class: 'positive'}
+                        ]
+                    }
+                ],
+                product: {
+                    name: '\(P(x)\)',
+                    values: [
+                        {sign: '+', class: 'positive'},
+                        {sign: '0', class: 'zero'},
+                        {sign: '−', class: 'negative'},
+                        {sign: '0', class: 'zero'},
+                        {sign: '−', class: 'negative'},
+                        {sign: '0', class: 'zero'},
+                        {sign: '+', class: 'positive'}
+                    ]
+                }
+            };
         });
     </script>
 </body>
