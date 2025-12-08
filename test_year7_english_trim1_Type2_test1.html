@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Full Term Test N°1 - English (2019-2020)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#8B5CF6">
+    <meta name="description" content="Full Term Test N°1 for 7th Form - English (2019-2020)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - English Test">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0f0a1a 0%, #1a0f2d 100%);
+            color: #f0f0f0;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #8B5CF6, #7C3AED);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0f0a1a, #8B5CF6, #7C3AED);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1a0f2d;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2d1f45;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #8B5CF6, #7C3AED);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0f0a1a, #8B5CF6);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1a0f2d;
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #8B5CF6;
+            border-bottom: 2px solid #7C3AED;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #7C3AED;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #8b5cf6;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #faf5ff;
+            padding: 1rem;
+            border-left: 4px solid #8B5CF6;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0f0a1a;
+            border-left-color: #7C3AED;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #8B5CF6;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #0f0a1a;
+        }
+        
+        tr:nth-child(even) {
+            background: #faf5ff;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #2d1f45;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #3d2f55;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #666;
+            background-color: #1a0f2d;
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #8B5CF6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-left: 4px solid #8B5CF6;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #1a0f2d 0%, #0f0a1a 100%);
+            border-left-color: #7C3AED;
+        }
+        
+        .Tests-Hub-lexique {
+            background: #faf5ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-lexique {
+            background: #0f0a1a;
+        }
+        
+        .Tests-Hub-lexique h4 {
+            color: #8B5CF6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-lexique h4 {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-lexique p {
+            margin: 0.3rem 0;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #8B5CF6, #7C3AED);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #faf5ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #8B5CF6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0f0a1a;
+            border-left-color: #7C3AED;
+        }
+        
+        .Tests-Hub-correction-section h2 {
+            color: #8B5CF6;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h2 {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #7C3AED;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #8b5cf6;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(139, 92, 246, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #8B5CF6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(167, 139, 250, 0.1);
+            border-left-color: #a78bfa;
+        }
+        
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #ccc;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #8B5CF6, #7C3AED);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0f0a1a, #8B5CF6, #7C3AED);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+                min-height: 100px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+        }
+        
+        /* Download Buttons Styles */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(15, 10, 26, 0.2), rgba(139, 92, 246, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+        }
+        
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive styles for download buttons */
+        @media (max-width: 768px) {
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+        }
+        
+        /* Multiple choice styling */
+        .Tests-Hub-multiple-choice {
+            margin: 10px 0;
+        }
+        
+        .Tests-Hub-multiple-choice label {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        
+        .Tests-Hub-multiple-choice input {
+            margin-right: 10px;
+        }
+        
+        /* Fill in blanks styling */
+        .Tests-Hub-fill-blanks {
+            line-height: 1.8;
+            font-size: 16px;
+            margin: 1rem 0;
+        }
+        
+        .Tests-Hub-fill-blank {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 2px dashed #8B5CF6;
+            margin: 0 5px;
+            text-align: center;
+            vertical-align: middle;
+            height: 30px;
+            line-height: 30px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-fill-blank {
+            border-bottom-color: #a78bfa;
+        }
+        
+        /* Match columns styling */
+        .Tests-Hub-matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .Tests-Hub-matching-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-matching-table td {
+            border-color: #3d2f55;
+        }
+        
+        .Tests-Hub-match-select {
+            width: 100%;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #aaa;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-match-select {
+            background-color: #1a0f2d;
+            color: #f0f0f0;
+            border-color: #666;
+        }
+        
+        /* Writing section styling */
+        .Tests-Hub-writing-prompt {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #8B5CF6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-writing-prompt {
+            background: linear-gradient(135deg, #1a0f2d 0%, #0f0a1a 100%);
+            border-left-color: #7C3AED;
+        }
+        
+        .Tests-Hub-writing-prompt h4 {
+            color: #7C3AED;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-writing-prompt h4 {
+            color: #8b5cf6;
+        }
+        
+        /* Mark distribution */
+        .Tests-Hub-mark-distribution {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-mark-distribution {
+            background: rgba(167, 139, 250, 0.1);
+        }
+        
+        .Tests-Hub-mark-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .Tests-Hub-mark-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B5CF6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-mark-value {
+            color: #a78bfa;
+        }
+        
+        /* Decorative elements */
+        .Tests-Hub-decorative-line {
+            height: 4px;
+            background: linear-gradient(to right, #8B5CF6, #7C3AED, #8B5CF6);
+            border-radius: 2px;
+            margin: 1.5rem 0;
+        }
+        
+        .Tests-Hub-tip-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-tip-box {
+            background: linear-gradient(135deg, #1e293b 0%, #1e1b4b 100%);
+            border-left-color: #60a5fa;
+        }
+        
+        .Tests-Hub-tip-box h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-tip-box h4 {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.englishTest.title">English - Full Term Test</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.englishTest.subtitle">7th Form Pioneer Prep School</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.englishTest.back">Back to Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">English</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1>Full Term Test N°1 - English</h1>
+            <p>Kairouan Pioneer Prep School - 2019/2020</p>
+            <p>Class: 7th Form - Teacher: Mr. Sahbi Abdelafou</p>
+            <p>Duration: 1 hour</p>
+            <p>Date: December 5th, 2019</p>
+        </div>
+        
+        <!-- Mark Distribution -->
+        <div class="Tests-Hub-mark-distribution">
+            <div class="Tests-Hub-mark-item">
+                <div class="Tests-Hub-mark-value">15</div>
+                <div>Language</div>
+            </div>
+            <div class="Tests-Hub-mark-item">
+                <div class="Tests-Hub-mark-value">5</div>
+                <div>Writing</div>
+            </div>
+            <div class="Tests-Hub-mark-item">
+                <div class="Tests-Hub-mark-value">20</div>
+                <div>Total</div>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>General Instructions</h3>
+            <ul>
+                <li>The test consists of two parts: Language and Writing</li>
+                <li>Write your answers clearly in the spaces provided</li>
+                <li>Pay attention to spelling and grammar</li>
+                <li>Read all questions carefully before answering</li>
+                <li>Manage your time wisely (45 minutes for Language, 15 minutes for Writing)</li>
+            </ul>
+        </div>
+        
+        <!-- Part I: Language -->
+        <div class="Tests-Hub-test-section">
+            <h2>I- LANGUAGE (15 marks)</h2>
+            
+            <!-- Exercise 1 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1/</span> Put the verbs or words between brackets in the right tense or form (3 marks)</p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p class="Tests-Hub-fill-blanks">
+                        Today is Saturday. My family and I <span class="Tests-Hub-fill-blank"></span> (relax) at home. 
+                        My father usually <span class="Tests-Hub-fill-blank"></span> (wash) his car on weekdays, but he is reading a book about cars now. 
+                        My mother usually bakes cookies on weekdays, but she <span class="Tests-Hub-fill-blank"></span> (not / bake) at the moment. 
+                        She is watching a cooking show on TV. My older sister usually does <span class="Tests-Hub-fill-blank"></span> (she) homework, 
+                        but she is painting some pictures right now. My little brother is a <span class="Tests-Hub-fill-blank"></span> (help) boy. 
+                        He usually helps my father wash the cars, but he is playing with his toys today. And me? I usually clean the yard, 
+                        but I <span class="Tests-Hub-fill-blank"></span> (tell) you about my family now. What about you?
+                    </p>
+                </div>
+                
+                <textarea class="Tests-Hub-large-textarea" placeholder="Write your answers here... (6 blanks total)"></textarea>
+            </div>
+            
+            <!-- Exercise 2 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2/</span> Circle the right option (0.5 × 6 = 3 marks)</p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p class="Tests-Hub-fill-blanks">
+                        Sophie is 11 years old and she lives in Brighton, England. She usually gets up 
+                        <select class="Tests-Hub-match-select" style="display: inline-block; width: auto;">
+                            <option value="">Select</option>
+                            <option value="in">in</option>
+                            <option value="on">on</option>
+                            <option value="at">at</option>
+                        </select> quarter to eight. She has a shower, gets dressed and 
+                        <select class="Tests-Hub-match-select" style="display: inline-block; width: auto;">
+                            <option value="">Select</option>
+                            <option value="then">then</option>
+                            <option value="after">after</option>
+                            <option value="before">before</option>
+                        </select> she brushes her teeth. After that, she goes downstairs and has breakfast. 
+                        For breakfast, she usually has milk, toast and orange juice. Then, she goes to the bus stop to catch the bus. 
+                        Classes start at half past eight and 
+                        <select class="Tests-Hub-match-select" style="display: inline-block; width: auto;">
+                            <option value="">Select</option>
+                            <option value="begin">begin</option>
+                            <option value="finish">finish</option>
+                            <option value="over">over</option>
+                        </select> at half past four. She usually has lunch at the school canteen at about 12 o'clock. 
+                        Her best friends, Amy and Sophie, always sit next to her at lunch. After school, she returns home and does her homework. 
+                        She is an 
+                        <select class="Tests-Hub-match-select" style="display: inline-block; width: auto;">
+                            <option value="">Select</option>
+                            <option value="sociable">sociable</option>
+                            <option value="lazy">lazy</option>
+                            <option value="active">active</option>
+                        </select> and a very hard-working pupil and she 
+                        <select class="Tests-Hub-match-select" style="display: inline-block; width: auto;">
+                            <option value="">Select</option>
+                            <option value="never">never</option>
+                            <option value="usually">usually</option>
+                            <option value="always">always</option>
+                        </select> misses a school task. At half past seven, it's time 
+                        <select class="Tests-Hub-match-select" style="display: inline-block; width: auto;">
+                            <option value="">Select</option>
+                            <option value="to">to</option>
+                            <option value="for">for</option>
+                            <option value="of">of</option>
+                        </select> dinner. Then she usually reads a book and chats with her parents for a while. Sophie is a happy little girl!
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Exercise 3 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3/</span> Fill in the blanks with six words from the box below (0.5 × 6 = 3 marks)</p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p><strong>Word Box:</strong> together - with – same – twice – often – After – chat – help</p>
+                    
+                    <p class="Tests-Hub-fill-blanks">
+                        Lyn and Ann are best friends. They are in the <span class="Tests-Hub-fill-blank"></span> (1) class at school and they sit next to each other. 
+                        They like to <span class="Tests-Hub-fill-blank"></span> (2) each other with the school work. At lunch time, they play <span class="Tests-Hub-fill-blank"></span> (3) in the yard.
+                        <span class="Tests-Hub-fill-blank"></span> (4) school, Lyn and Ann <span class="Tests-Hub-fill-blank"></span> (5) phone one another. 
+                        When they are on holiday, Lyn goes to Ann's house and sometimes Ann goes to Lyn's house too. 
+                        The two girls like to play <span class="Tests-Hub-fill-blank"></span> (6) dolls. They like to wash them, change their clothes, 
+                        rock them to sleep and take them out for walks.
+                    </p>
+                </div>
+                
+                <textarea class="Tests-Hub-large-textarea" placeholder="Write the six words in order..."></textarea>
+            </div>
+            
+            <!-- Exercise 4 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4/</span> Match the sentence parts in column (A) with their appropriate parts in column (B). Be careful! There is an extra part in column (B) (0.5 x 6 = 3 marks)</p>
+                
+                <table class="Tests-Hub-matching-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Column (A)</th>
+                            <th style="width: 60%;">Column (B)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1/ I am Monica and …..</td>
+                            <td>
+                                <select class="Tests-Hub-match-select">
+                                    <option value="">Select match</option>
+                                    <option value="a">a- love this town.</option>
+                                    <option value="b">b- to concerts and many other places with live music.</option>
+                                    <option value="c">c- I'm 19 years old.</option>
+                                    <option value="d">d- a cinema which I visit on Saturday evening with my friends.</option>
+                                    <option value="e">e- the capital of England, London.</option>
+                                    <option value="f">f- visits London.</option>
+                                    <option value="g">g- listening to music,</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2/ I live in……</td>
+                            <td>
+                                <select class="Tests-Hub-match-select">
+                                    <option value="">Select match</option>
+                                    <option value="a">a- love this town.</option>
+                                    <option value="b">b- to concerts and many other places with live music.</option>
+                                    <option value="c">c- I'm 19 years old.</option>
+                                    <option value="d">d- a cinema which I visit on Saturday evening with my friends.</option>
+                                    <option value="e">e- the capital of England, London.</option>
+                                    <option value="f">f- visits London.</option>
+                                    <option value="g">g- listening to music,</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3/ and I …..</td>
+                            <td>
+                                <select class="Tests-Hub-match-select">
+                                    <option value="">Select match</option>
+                                    <option value="a">a- love this town.</option>
+                                    <option value="b">b- to concerts and many other places with live music.</option>
+                                    <option value="c">c- I'm 19 years old.</option>
+                                    <option value="d">d- a cinema which I visit on Saturday evening with my friends.</option>
+                                    <option value="e">e- the capital of England, London.</option>
+                                    <option value="f">f- visits London.</option>
+                                    <option value="g">g- listening to music,</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4/ I like …..</td>
+                            <td>
+                                <select class="Tests-Hub-match-select">
+                                    <option value="">Select match</option>
+                                    <option value="a">a- love this town.</option>
+                                    <option value="b">b- to concerts and many other places with live music.</option>
+                                    <option value="c">c- I'm 19 years old.</option>
+                                    <option value="d">d- a cinema which I visit on Saturday evening with my friends.</option>
+                                    <option value="e">e- the capital of England, London.</option>
+                                    <option value="f">f- visits London.</option>
+                                    <option value="g">g- listening to music,</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5/ So I often go……</td>
+                            <td>
+                                <select class="Tests-Hub-match-select">
+                                    <option value="">Select match</option>
+                                    <option value="a">a- love this town.</option>
+                                    <option value="b">b- to concerts and many other places with live music.</option>
+                                    <option value="c">c- I'm 19 years old.</option>
+                                    <option value="d">d- a cinema which I visit on Saturday evening with my friends.</option>
+                                    <option value="e">e- the capital of England, London.</option>
+                                    <option value="f">f- visits London.</option>
+                                    <option value="g">g- listening to music,</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6/ Next to my house, there is….</td>
+                            <td>
+                                <select class="Tests-Hub-match-select">
+                                    <option value="">Select match</option>
+                                    <option value="a">a- love this town.</option>
+                                    <option value="b">b- to concerts and many other places with live music.</option>
+                                    <option value="c">c- I'm 19 years old.</option>
+                                    <option value="d">d- a cinema which I visit on Saturday evening with my friends.</option>
+                                    <option value="e">e- the capital of England, London.</option>
+                                    <option value="f">f- visits London.</option>
+                                    <option value="g">g- listening to music,</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Exercise 5 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">5/</span> Complete the following dialogue with utterances from the box below. Be careful! There is an extra utterance (0.5 x 6 = 3 marks)</p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p><strong>Utterances Box:</strong> a- How long are you planning to stay? b- Is this your first visit to America? c- Where are you coming from? d- You are welcome. e- Can I see your passport, please? f- Where are you staying? g- Why are you visiting the United States?</p>
+                    
+                    <p class="Tests-Hub-fill-blanks">
+                        <strong>Customs officer:</strong> <span class="Tests-Hub-fill-blank"></span> (1)?<br>
+                        <strong>Peter:</strong> Sure. Here it is.<br>
+                        <strong>Customs officer:</strong> <span class="Tests-Hub-fill-blank"></span> (2)?<br>
+                        <strong>Peter:</strong> I am coming from Kelowna, Canada.<br>
+                        <strong>Customs officer:</strong> <span class="Tests-Hub-fill-blank"></span> (3)?<br>
+                        <strong>Peter:</strong> I'm here to attend my best friend's wedding party in New York. Here is his invitation letter.<br>
+                        <strong>Customs officer:</strong> <span class="Tests-Hub-fill-blank"></span> (4)?<br>
+                        <strong>Peter:</strong> One week.<br>
+                        <strong>Customs officer:</strong> <span class="Tests-Hub-fill-blank"></span> (5)?<br>
+                        <strong>Peter:</strong> In a hotel. This is the address.<br>
+                        <strong>Customs officer:</strong> <span class="Tests-Hub-fill-blank"></span> (6)?<br>
+                        <strong>Peter:</strong> Yes, it is.<br>
+                        <strong>Customs officer:</strong> Have you got anything to declare?<br>
+                        <strong>Peter:</strong> No, I have nothing to declare.<br>
+                        <strong>Customs officer:</strong> Have a nice stay.<br>
+                        <strong>Peter:</strong> Thank you.
+                    </p>
+                </div>
+                
+                <textarea class="Tests-Hub-large-textarea" placeholder="Write the letters in order (a, b, c, etc.)..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Part II: Writing -->
+        <div class="Tests-Hub-test-section">
+            <h2>II- WRITING (5 marks)</h2>
+            
+            <div class="Tests-Hub-writing-prompt">
+                <h4>Writing Task:</h4>
+                <p>Aly Soltane receives a postcard of Norwich from his English pen friend, Peter Johnson. He writes him a letter to thank him for the postcard, to appreciate the wonderful places in Norwich, to tell him about his hometown Jerba and to invite him.</p>
+                <p>Write Aly's letter to Peter.</p>
+                
+                <div class="Tests-Hub-text-container" style="margin-top: 1rem;">
+                    <p>12, Houmt souk, Jerba - Tunisia<br>
+                    December, 5th, 2019</p>
+                    <p>Dear Peter,</p>
+                    <textarea class="Tests-Hub-large-textarea" style="min-height: 200px; margin-top: 1rem;" placeholder="Write your letter here..."></textarea>
+                    <p style="margin-top: 1rem;">Yours,<br>
+                    Aly</p>
+                </div>
+                
+                <div class="Tests-Hub-tip-box">
+                    <h4>Writing Tips:</h4>
+                    <ul>
+                        <li>Start with thanking Peter for the postcard</li>
+                        <li>Mention what you like about Norwich from the postcard</li>
+                        <li>Describe your hometown Jerba (location, climate, attractions)</li>
+                        <li>Invite Peter to visit you in Tunisia</li>
+                        <li>Use friendly and enthusiastic language</li>
+                        <li>Check your spelling and grammar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">Show Correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>Test Correction</h2>
+            
+            <h3>Part I: Language - Correction</h3>
+            
+            <!-- Exercise 1 Correction -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1/</span> <strong>Correction:</strong></p>
+                <p><strong>Answers:</strong> 1. are relaxing, 2. washes, 3. is not baking, 4. her, 5. helpful, 6. am telling</p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p><strong>Full corrected text:</strong><br>
+                    Today is Saturday. My family and I <strong>are relaxing</strong> at home. My father usually <strong>washes</strong> his car on weekdays, but he is reading a book about cars now. My mother usually bakes cookies on weekdays, but she <strong>is not baking</strong> at the moment. She is watching a cooking show on TV. My older sister usually does <strong>her</strong> homework, but she is painting some pictures right now. My little brother is a <strong>helpful</strong> boy. He usually helps my father wash the cars, but he is playing with his toys today. And me? I usually clean the yard, but I <strong>am telling</strong> you about my family now. What about you?</p>
+                </div>
+                
+                <p class="Tests-Hub-correction-note"><strong>Detailed Explanation:</strong><br>
+                1. <strong>"are relaxing"</strong> - Present continuous tense because it's happening now (Saturday).<br>
+                2. <strong>"washes"</strong> - Present simple for habitual actions with "usually".<br>
+                3. <strong>"is not baking"</strong> - Present continuous negative for actions happening now.<br>
+                4. <strong>"her"</strong> - Possessive adjective for "sister" (feminine).<br>
+                5. <strong>"helpful"</strong> - Adjective form of "help" to describe the brother.<br>
+                6. <strong>"am telling"</strong> - Present continuous for action happening now.</p>
+            </div>
+            
+            <!-- Exercise 2 Correction -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2/</span> <strong>Correction:</strong></p>
+                <p><strong>Answers:</strong> 1. at, 2. then, 3. finish, 4. active, 5. never, 6. for</p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p><strong>Full corrected text:</strong><br>
+                    Sophie is 11 years old and she lives in Brighton, England. She usually gets up <strong>at</strong> quarter to eight. She has a shower, gets dressed and <strong>then</strong> she brushes her teeth. After that, she goes downstairs and has breakfast. For breakfast, she usually has milk, toast and orange juice. Then, she goes to the bus stop to catch the bus. Classes start at half past eight and <strong>finish</strong> at half past four. She usually has lunch at the school canteen at about 12 o'clock. Her best friends, Amy and Sophie, always sit next to her at lunch. After school, she returns home and does her homework. She is an <strong>active</strong> and a very hard-working pupil and she <strong>never</strong> misses a school task. At half past seven, it's time <strong>for</strong> dinner. Then she usually reads a book and chats with her parents for a while. Sophie is a happy little girl!</p>
+                </div>
+                
+                <p class="Tests-Hub-correction-note"><strong>Detailed Explanation:</strong><br>
+                1. <strong>"at"</strong> - We use "at" for specific times (at quarter to eight).<br>
+                2. <strong>"then"</strong> - Shows sequence of actions (first shower, then brush teeth).<br>
+                3. <strong>"finish"</strong> - Logical opposite of "start" for school schedule.<br>
+                4. <strong>"active"</strong> - Positive adjective that matches "hard-working".<br>
+                5. <strong>"never"</strong> - Negative adverb that fits with being a good student.<br>
+                6. <strong>"for"</strong> - Correct preposition with "it's time for dinner".</p>
+            </div>
+            
+            <!-- Exercise 3 Correction -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3/</span> <strong>Correction:</strong></p>
+                <p><strong>Answers:</strong> 1. same, 2. help, 3. together, 4. After, 5. often, 6. with</p>
+                
+                <div class="Tests-Hub-correction-note"><strong>Detailed Explanation:</strong><br>
+                1. <strong>"same"</strong> - They are in the identical class.<br>
+                2. <strong>"help"</strong> - They assist each other with school work.<br>
+                3. <strong>"together"</strong> - They play in each other's company.<br>
+                4. <strong>"After"</strong> - Time conjunction indicating following school.<br>
+                5. <strong>"often"</strong> - Adverb of frequency meaning frequently.<br>
+                6. <strong>"with"</strong> - Preposition used with "play with dolls".<br>
+                <strong>Unused words:</strong> twice, chat</p>
+            </div>
+            
+            <!-- Exercise 4 Correction -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4/</span> <strong>Correction:</strong></p>
+                <p><strong>Answers:</strong> 1-c, 2-e, 3-a, 4-g, 5-b, 6-d</p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p><strong>Complete paragraph:</strong><br>
+                    I am Monica and <strong>I'm 19 years old</strong>. I live in <strong>the capital of England, London</strong> and I <strong>love this town</strong>. I like <strong>listening to music</strong>. So I often go <strong>to concerts and many other places with live music</strong>. Next to my house, there is <strong>a cinema which I visit on Saturday evening with my friends</strong>.</p>
+                </div>
+                
+                <p class="Tests-Hub-correction-note"><strong>Detailed Explanation:</strong><br>
+                <strong>1-c:</strong> "I am Monica and I'm 19 years old" - Complete introduction with age.<br>
+                <strong>2-e:</strong> "I live in the capital of England, London" - Specific location.<br>
+                <strong>3-a:</strong> "and I love this town" - Expresses feeling about where she lives.<br>
+                <strong>4-g:</strong> "I like listening to music" - Hobby introduction.<br>
+                <strong>5-b:</strong> "So I often go to concerts..." - Logical result of liking music.<br>
+                <strong>6-d:</strong> "Next to my house, there is a cinema..." - Describes neighborhood.<br>
+                <strong>Extra part:</strong> f- visits London (doesn't fit any sentence logically)</p>
+            </div>
+            
+            <!-- Exercise 5 Correction -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">5/</span> <strong>Correction:</strong></p>
+                <p><strong>Answers:</strong> 1-e, 2-c, 3-g, 4-a, 5-f, 6-b</p>
+                
+                <div class="Tests-Hub-correction-note"><strong>Detailed Explanation:</strong><br>
+                This is a logical sequence for customs/immigration questioning:<br>
+                <strong>1-e:</strong> First request is always for identification/passport.<br>
+                <strong>2-c:</strong> Then ask about origin/point of departure.<br>
+                <strong>3-g:</strong> Next, purpose of visit is standard question.<br>
+                <strong>4-a:</strong> Duration of stay follows logically.<br>
+                <strong>5-f:</strong> Accommodation details are important for visitors.<br>
+                <strong>6-b:</strong> Finally, whether it's a first visit is common.<br>
+                <strong>Extra utterance:</strong> d- You are welcome (response to thanks, not a question)</p>
+            </div>
+            
+            <h3>Part II: Writing - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>Sample Answer (5 marks):</strong></p>
+                
+                <div class="Tests-Hub-text-container">
+                    <p>12, Houmt souk, Jerba - Tunisia<br>
+                    December, 5th, 2019</p>
+                    
+                    <p>Dear Peter,</p>
+                    
+                    <p>Thank you so much for the beautiful postcard of Norwich! I was very happy to receive it. The picture shows a wonderful city with ancient buildings and a lovely river. Norwich looks like a perfect place to visit with its cathedral and castle. I can see why you're proud of your city.</p>
+                    
+                    <p>I live in Jerba, which is an island in southern Tunisia. The weather here is usually warm and sunny, even in December! We have beautiful beaches with white sand and clear blue water. The most famous places in Jerba are Djerba Explore (with crocodiles), the Guellala Museum (about pottery), and the ancient synagogue called Ghriba.</p>
+                    
+                    <p>I would like to invite you to visit me in Jerba. You could come during the summer holidays when the weather is perfect for swimming. We could visit all the interesting places together, and you could try our delicious Tunisian food like couscous and brik.</p>
+                    
+                    <p>Please write back soon and tell me if you can come. I would be very happy to show you my beautiful island.</p>
+                    
+                    <p>Best wishes,<br>
+                    Your friend,<br>
+                    Aly</p>
+                </div>
+                
+                <p class="Tests-Hub-correction-note"><strong>Marking Criteria:</strong><br>
+                ✓ <strong>Content (2 marks):</strong> All required elements included: thanks for postcard, comments on Norwich, description of Jerba, invitation.<br>
+                ✓ <strong>Language (2 marks):</strong> Good vocabulary, correct tenses, appropriate adjectives, logical paragraph organization.<br>
+                ✓ <strong>Mechanics (1 mark):</strong> Correct format (address, date, greeting, closing), proper punctuation, good spelling.<br>
+                <br>
+                <strong>Tips for improvement:</strong><br>
+                1. Use more descriptive adjectives (ancient, lovely, beautiful, delicious)<br>
+                2. Include specific details about both places<br>
+                3. Maintain friendly tone throughout<br>
+                4. End with clear invitation and request for reply</p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.englishTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.englishTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.englishTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">Developer</h3>
+                    <p class="Tests-Hub-developer-name">Ziad El Majri</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">Version</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">Links</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Terms of Use</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for English Test page
+        let currentLanguage = 'en';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            en: {
+                TestsHub: {
+                    englishTest: {
+                        title: "English - Full Term Test",
+                        subtitle: "7th Form Pioneer Prep School",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    englishTest: {
+                        title: "Anglais - Devoir de Synthèse",
+                        subtitle: "7ème Année Collège Pilote",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    englishTest: {
+                        title: "الإنجليزية - اختبار تأليفي",
+                        subtitle: "السنة السابعة المدرسة النموذجية",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content (only for UI elements)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language (only for UI, not test content)
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.englishTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.englishTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.englishTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
