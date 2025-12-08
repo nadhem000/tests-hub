@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Devoir de Synthèse N°1 - Français 3ème Scientifiques (2009-2010)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#8B5CF6">
+    <meta name="description" content="Devoir de Synthèse N°1 pour 3ème Scientifiques - Français (2009-2010) - Lycée Abou Alkacem Echèbbi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Test de Français">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #4C1D95 0%, #5B21B6 100%);
+            color: #f0f0f0;
+        }
+        
+        /* ===== TYPOGRAPHY CLASSES ===== */
+        .Tests-Hub-title-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-primary {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-secondary {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: inherit;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #A78BFA;
+        }
+        
+        .Tests-Hub-heading-tertiary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-section {
+            color: #7C3AED;
+            border-bottom: 2px solid #8B5CF6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-section {
+            color: #A78BFA;
+        }
+        
+        .Tests-Hub-heading-subsection {
+            color: #8B5CF6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-subsection {
+            color: #C4B5FD;
+        }
+        
+        .Tests-Hub-heading-question {
+            color: #7C3AED;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-question {
+            color: #A78BFA;
+        }
+        
+        .Tests-Hub-paragraph {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .Tests-Hub-paragraph-indent {
+            text-indent: 1.5rem;
+        }
+        
+        .Tests-Hub-text-italic {
+            font-style: italic;
+        }
+        
+        .Tests-Hub-text-bold {
+            font-weight: 700;
+            color: #7C3AED;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-bold {
+            color: #A78BFA;
+        }
+        
+        .Tests-Hub-text-highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-highlight {
+            background: rgba(167, 139, 250, 0.2);
+        }
+        
+        .Tests-Hub-text-label {
+            display: inline-block;
+            background: #8B5CF6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-label {
+            background: #A78BFA;
+        }
+        
+        .Tests-Hub-text-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-note {
+            color: #ccc;
+        }
+        
+        .Tests-Hub-text-explanation {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0.75rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid #8B5CF6;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-explanation {
+            color: #ddd;
+            border-left-color: #A78BFA;
+        }
+        
+        .Tests-Hub-text-correction {
+            color: #7C3AED;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-correction {
+            color: #A78BFA;
+        }
+        
+        .Tests-Hub-text-warning {
+            color: #DC2626;
+            font-weight: 600;
+            background: rgba(220, 38, 38, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 4px solid #DC2626;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-warning {
+            color: #F87171;
+            background: rgba(220, 38, 38, 0.2);
+            border-left-color: #F87171;
+        }
+        
+        .Tests-Hub-text-success {
+            color: #059669;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-text-error {
+            color: #DC2626;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-error {
+            color: #F87171;
+        }
+        
+        /* ===== LAYOUT CLASSES ===== */
+        .Tests-Hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .Tests-Hub-content-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-flex-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-flex-col {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .Tests-Hub-grid-cols-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        /* ===== COMPONENT CLASSES ===== */
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #8B5CF6, #A78BFA);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #4C1D95, #8B5CF6, #A78BFA);
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Buttons */
+        .Tests-Hub-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+        
+        .Tests-Hub-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-button-primary {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #8B5CF6, #A78BFA);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .Tests-Hub-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-button-download {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-button-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Language Selector */
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #5B21B6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #4C1D95;
+        }
+        
+        /* Test Content */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #8B5CF6, #A78BFA);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #4C1D95, #8B5CF6);
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #5B21B6;
+            color: #f0f0f0;
+        }
+        
+        /* Instructions */
+        .Tests-Hub-instructions-container {
+            background: #FAF5FF;
+            padding: 1rem;
+            border-left: 4px solid #8B5CF6;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions-container {
+            background: #4C1D95;
+            border-left-color: #A78BFA;
+        }
+        
+        /* Text Passage */
+        .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            border-left: 4px solid #8B5CF6;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #5B21B6 0%, #4C1D95 100%);
+            border-left-color: #A78BFA;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-text-passage {
+            line-height: 1.6;
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding: 1.5rem;
+        }
+        
+        .Tests-Hub-text-passage::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(139, 92, 246, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .Tests-Hub-text-passage::after {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(139, 92, 246, 0.1);
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-passage::before,
+        .Tests-Hub-dark-theme .Tests-Hub-text-passage::after {
+            color: rgba(167, 139, 250, 0.1);
+        }
+        
+        /* Questions */
+        .Tests-Hub-question-container {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #8B5CF6;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #A78BFA;
+        }
+        
+        /* Answer Inputs */
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input,
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea {
+            border-color: #666;
+            background-color: #5B21B6;
+            color: #f0f0f0;
+        }
+        
+        /* Multiple Choice */
+        .Tests-Hub-multiple-choice-container {
+            margin: 10px 0;
+        }
+        
+        .Tests-Hub-choice-option {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        
+        .Tests-Hub-choice-option input {
+            margin-right: 10px;
+        }
+        
+        /* Correction */
+        .Tests-Hub-correction-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #FAF5FF;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #8B5CF6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #4C1D95;
+            border-left-color: #A78BFA;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(139, 92, 246, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #8B5CF6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(167, 139, 250, 0.1);
+            border-left-color: #A78BFA;
+        }
+        
+        /* Download Section */
+        .Tests-Hub-download-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-section {
+            background: linear-gradient(to right, rgba(76, 29, 149, 0.2), rgba(139, 92, 246, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #8B5CF6, #A78BFA);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #4C1D95, #8B5CF6, #A78BFA);
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-heading {
+            color: #EDE9FE;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Links */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #EDE9FE;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Developer Info */
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #EDE9FE;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #EDE9FE;
+        }
+        
+        /* Download Button Colors */
+        .Tests-Hub-download-pdf {
+            background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+            color: white;
+        }
+        
+        .Tests-Hub-download-pdf:hover {
+            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+        }
+        
+        .Tests-Hub-download-odt {
+            background: linear-gradient(135deg, #059669, #10B981);
+            color: white;
+        }
+        
+        .Tests-Hub-download-odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        
+        .Tests-Hub-download-png {
+            background: linear-gradient(135deg, #3B82F6, #60A5FA);
+            color: white;
+        }
+        
+        .Tests-Hub-download-png:hover {
+            background: linear-gradient(135deg, #2563EB, #3B82F6);
+        }
+        
+        /* Utility Classes */
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        .Tests-Hub-text-center {
+            text-align: center;
+        }
+        
+        .Tests-Hub-text-right {
+            text-align: right;
+        }
+        
+        .Tests-Hub-mb-1 {
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-mb-2 {
+            margin-bottom: 2rem;
+        }
+        
+        .Tests-Hub-mt-1 {
+            margin-top: 1rem;
+        }
+        
+        .Tests-Hub-mt-2 {
+            margin-top: 2rem;
+        }
+        
+        .Tests-Hub-ml-1 {
+            margin-left: 1rem;
+        }
+        
+        .Tests-Hub-pl-1 {
+            padding-left: 1rem;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #8B5CF6;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #4C1D95;
+        }
+        
+        tr:nth-child(even) {
+            background: #FAF5FF;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #5B21B6;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #5B21B6;
+        }
+        
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-title-main {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-content-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-grid-cols-3 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .Tests-Hub-answer-input {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-answer-textarea {
+                min-height: 100px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-download-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-button-download {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-heading-primary {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-section {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-button-download {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content Tests-Hub-container Tests-Hub-flex-row">
+            <div class="Tests-Hub-flex-row">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-title-main" data-i18n="TestsHub.frenchTest.title">Français - Devoir de Synthèse</h1>
+                    <div class="Tests-Hub-subtitle" data-i18n="TestsHub.frenchTest.subtitle">3ème Scientifiques (2009-2010) - Lycée Abou Alkacem Echèbbi</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.frenchTest.back">Retour aux Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">Français</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-content-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1 class="Tests-Hub-heading-primary">Devoir de Synthèse N°1 - Français</h1>
+            <p>Établissement: Lycée Abou Alkacem Echèbbi Kalâa Kébira</p>
+            <p>Niveau: 3ème année sections scientifiques</p>
+            <p>Professeur: Mme Saïda AZZOUZ</p>
+            <p>Année scolaire: 2009-2010</p>
+            <p>Note: /20 points</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions-container">
+            <h3 class="Tests-Hub-heading-subsection">Instructions Générales</h3>
+            <ul>
+                <li>Lisez attentivement le texte et les questions avant de répondre</li>
+                <li>Répondez aux questions dans l'ordre</li>
+                <li>La qualité de l'expression écrite sera prise en compte</li>
+                <li>Écrivez lisiblement et soignez la présentation</li>
+                <li>Les réponses doivent être rédigées en phrases complètes</li>
+            </ul>
+        </div>
+        
+        <!-- Texte -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">Texte: Le mythe d'hier à aujourd'hui</h2>
+
+            <div class="Tests-Hub-text-container">
+                <div class="Tests-Hub-text-passage">
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">Un mythe est un récit qui raconte l'origine de l'univers, la création de l'homme, son voyage dans l'au-delà après la mort. Rempli de symboles expressifs et puissamment émotifs, le mythe traditionnel avait presque toujours une signification religieuse ou spirituelle. En raison du progrès scientifique et du déclin de la pensée religieuse, bien des gens pensent que les mythes ont disparu à notre époque. Rien n'est plus faux ! Les mythes ont changé de forme, mais sont aussi présents qu'autrefois. Nous pouvons même dire que les mythes sont un besoin fondamental de l'être humain. Ils jouent de grands rôles dans notre vie sociale et dans notre psychisme individuel. En plus des mythes religieux et politiques, on compte de nombreux mythes véhiculés par les médias de communication modernes, dans la publicité, le cinéma, la musique populaire et la télévision.</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">Les chercheurs ont étudié ces mythes contemporains véhiculés par des personnages comme James Bond, la poupée Barbie, la voiture sport et les motos Harley Davidson. Chacun de ces mythes est une composition de récits, de symboles et d'émotions associés à un moi idéal. Comme Hercule (personnage de la mythologie grecque, dont les douze travaux évoquent le combat et la puissance de l'homme), Superman redresse les torts et combat les méchants. Comme la belle Hélène de Troie, les tops modèles de la mode font soupirer les cœurs d'envie et de désir !</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">Par ailleurs, toute la publicité tire son efficacité du mythe selon lequel en consommant plus, je serai plus heureux. Elle est elle-même un véhicule inventif de mythologie contemporaine. Certaines marchandises deviennent de véritables objets de culte : les marques de commerce des vêtements s'étalent en devanture – (Benetton, toutes couleurs unies)-, la BMW est "plus qu'une voiture", la boisson gazeuse COCA-COLA rend la vie plus belle et l'ordinateur Macintosh va créer une "vie meilleure". Les slogans publicitaires tiennent lieu de pensée. La publicité vend du rêve.</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-paragraph-indent">Ainsi, nous voyons que les mythes contemporains sont plutôt des représentations collectives que des récits fabuleux en tant que tels. Ces représentations interviennent souvent dans la vie sociale et dans la vie de chaque personne.</p>
+                    
+                    <p class="Tests-Hub-paragraph Tests-Hub-text-italic Tests-Hub-text-right">Par Raymond-Robert Tremblay</p>
+                </div>
+                
+                <div class="Tests-Hub-lexique">
+                    <h4 class="Tests-Hub-heading-subsection">Lexique:</h4>
+                    <p><strong class="Tests-Hub-text-bold">Déclin:</strong> diminution, affaiblissement</p>
+                    <p><strong class="Tests-Hub-text-bold">Mythologie contemporaine:</strong> ensemble des mythes modernes</p>
+                    <p><strong class="Tests-Hub-text-bold">Culte:</strong> vénération, adoration</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Partie I: Compréhension -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">A- Compréhension (6 points)</h2>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">1.</span> L'auteur donne deux raisons qui expliqueraient la disparition des mythes anciens. Lesquelles ? (2 points)</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">2.</span> À travers les différents exemples qui illustrent l'argumentation de l'auteur, dégagez la fonction du mythe contemporain. (2 points)</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">3.</span> Dans le troisième paragraphe, l'auteur évoque une analogie entre des figures mythiques. Quel procédé emploie-t-il ? (2 points)</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Partie II: Langue -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">B- Langue (4 points)</h2>
+            
+            <h3 class="Tests-Hub-heading-subsection">1. Grammaire (2 points)</h3>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">☞</span> Mettez les verbes à l'infinitif aux modes et aux temps qui conviennent :</p>
+                <p>• Si les mythes (disparaître) <textarea class="Tests-Hub-answer-input" placeholder="Conjuguez le verbe..." style="width: 200px;"></textarea>, nous n'aurions pas vu les stars actuelles. (1 point)</p>
+                <p>• Si j'étais une célébrité, je (combattre) <textarea class="Tests-Hub-answer-input" placeholder="Conjuguez le verbe..." style="width: 200px;"></textarea> pour mettre fin à toutes les guerres. (1 point)</p>
+            </div>
+            
+            <h3 class="Tests-Hub-heading-subsection">2. Vocabulaire (2 points)</h3>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">a.</span> Trouvez l'adjectif de chaque mot :</p>
+                <p>Légende = <textarea class="Tests-Hub-answer-input" placeholder="Adjectif..." style="width: 150px;"></textarea></p>
+                <p>Planète = <textarea class="Tests-Hub-answer-input" placeholder="Adjectif..." style="width: 150px;"></textarea></p>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">b.</span> Complétez cette phrase par un nom propre tiré du texte :</p>
+                <p>Lors du défilé de mode, j'ai aperçu une mannequin extrêmement belle comme <textarea class="Tests-Hub-answer-input" placeholder="Nom propre..." style="width: 150px;"></textarea>.</p>
+            </div>
+        </div>
+        
+        <!-- Partie III: Essai -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">C- Essai (10 points)</h2>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">Sujet:</span> Les stars du sport, de la chanson et du cinéma sont les mythes de la société moderne. On reproche aux jeunes de les adorer, et de les imiter aveuglément. Que pensez-vous de cette attitude ? Est-il acceptable d'être attiré par les célébrités à ce point ?</p>
+                <p>Développez votre point de vue en vous appuyant sur des exemples tirés de votre expérience et de vos lectures.</p>
+                <textarea class="Tests-Hub-answer-textarea" style="min-height: 300px;" placeholder="Rédigez votre essai ici..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Grille d'évaluation -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">Grille d'évaluation</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Critères d'évaluation</th>
+                        <th>Points</th>
+                        <th>Observations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A. Compréhension (6 points)</strong></td>
+                        <td>/6 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Question 1 - Deux raisons de la disparition</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Question 2 - Fonction du mythe contemporain</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Question 3 - Procédé d'analogie</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>B. Langue (4 points)</strong></td>
+                        <td>/4 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Grammaire - Conjugaison des verbes</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Vocabulaire - Adjectifs et nom propre</td>
+                        <td>/2 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>C. Essai (10 points)</strong></td>
+                        <td>/10 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Pertinence des arguments et exemples</td>
+                        <td>/4 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Structure et cohérence du texte</td>
+                        <td>/3 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Correction de la langue</td>
+                        <td>/3 points</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>/20 points</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-container">
+            <button class="Tests-Hub-button-primary" id="toggleCorrection">Afficher la Correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2 class="Tests-Hub-heading-section">Correction du Devoir</h2>
+            
+            <h3 class="Tests-Hub-heading-subsection">A- Compréhension - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Réponse attendue:</p>
+                <p>Les deux raisons données par l'auteur qui expliqueraient la disparition des mythes anciens sont :</p>
+                <ol>
+                    <li>Le progrès scientifique</li>
+                    <li>Le déclin de la pensée religieuse</li>
+                </ol>
+                
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                Dans le premier paragraphe, l'auteur mentionne explicitement : "En raison du progrès scientifique et du déclin de la pensée religieuse, bien des gens pensent que les mythes ont disparu à notre époque." Ces deux éléments sont présentés comme les raisons pour lesquelles certaines personnes croient que les mythes ont disparu. Cependant, l'auteur conteste cette idée juste après en affirmant : "Rien n'est plus faux !"
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Réponse attendue:</p>
+                <p>La fonction du mythe contemporain, à travers les exemples donnés, est de :</p>
+                <ul>
+                    <li>Représenter un "moi idéal" (modèles de perfection, de puissance, de beauté)</li>
+                    <li>Vendre des produits et des rêves (publicité)</li>
+                    <li>Créer des représentations collectives partagées par la société</li>
+                    <li>Satisfaire un besoin fondamental de l'être humain</li>
+                </ul>
+                
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                L'auteur développe plusieurs fonctions des mythes contemporains :<br><br>
+                
+                <strong>1. Fonction identificatoire :</strong> Les mythes modernes (James Bond, Superman, tops modèles) représentent des idéaux auxquels les individus aspirent. Comme l'écrit l'auteur : "Chacun de ces mythes est une composition de récits, de symboles et d'émotions associés à un moi idéal."<br><br>
+                
+                <strong>2. Fonction commerciale :</strong> La publicité utilise les mythes pour vendre. L'exemple de COCA-COLA qui "rend la vie plus belle" ou de Macintosh qui "va créer une vie meilleure" montre comment les mythes sont instrumentalisés à des fins mercantiles.<br><br>
+                
+                <strong>3. Fonction sociale :</strong> Les mythes créent des représentations collectives partagées. Ils "interviennent souvent dans la vie sociale et dans la vie de chaque personne."<br><br>
+                
+                <strong>4. Fonction psychologique :</strong> Les mythes répondent à "un besoin fondamental de l'être humain" et "jouent de grands rôles dans notre psychisme individuel."
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p class="Tests-Hub-text-correction">Réponse attendue:</p>
+                <p>L'auteur emploie le procédé de la <strong>comparaison</strong> ou de l'<strong>analogie</strong>.</p>
+                
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                Dans le deuxième paragraphe, l'auteur établit explicitement des comparaisons entre des figures mythiques anciennes et contemporaines :<br><br>
+                
+                <strong>"Comme Hercule [...] Superman redresse les torts et combat les méchants."</strong><br>
+                Ici, "comme" est l'outil de comparaison qui permet d'établir un parallèle entre Hercule (mythologie grecque) et Superman (mythe contemporain). Les deux personnages partagent des caractéristiques similaires : la force, le combat pour la justice.<br><br>
+                
+                <strong>"Comme la belle Hélène de Troie, les tops modèles de la mode font soupirer les cœurs d'envie et de désir !"</strong><br>
+                Là encore, "comme" introduit une analogie entre Hélène de Troie (figure mythique de la beauté) et les tops modèles contemporains. Les deux incarnent un idéal de beauté qui provoque l'admiration et le désir.<br><br>
+                
+                Ce procédé permet à l'auteur de montrer la continuité entre les mythes anciens et modernes : les mêmes archétypes se retrouvent à travers les époques, simplement habillés de formes différentes.
+                </p>
+            </div>
+            
+            <h3 class="Tests-Hub-heading-subsection">B- Langue - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1. Grammaire</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                
+                <p class="Tests-Hub-text-correction">Conjugaison correcte :</p>
+                <p>• Si les mythes <strong class="Tests-Hub-text-success">avaient disparu</strong>, nous n'aurions pas vu les stars actuelles.</p>
+                <p>• Si j'étais une célébrité, je <strong class="Tests-Hub-text-success">combattrais</strong> pour mettre fin à toutes les guerres.</p>
+                
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                
+                <strong>Première phrase :</strong><br>
+                Il s'agit d'une phrase hypothétique exprimant une condition irréelle dans le passé. La structure est :<br>
+                <strong>Si + plus-que-parfait, conditionnel passé</strong><br>
+                - "avaient disparu" : plus-que-parfait de l'indicatif (auxiliaire "avoir" à l'imparfait + participe passé "disparu")<br>
+                - "n'aurions pas vu" : conditionnel passé (auxiliaire "avoir" au conditionnel présent + participe passé "vu")<br><br>
+                
+                <strong>Deuxième phrase :</strong><br>
+                Il s'agit d'une phrase hypothétique exprimant une condition irréelle dans le présent. La structure est :<br>
+                <strong>Si + imparfait, conditionnel présent</strong><br>
+                - "étais" : imparfait de l'indicatif<br>
+                - "combattrais" : conditionnel présent du verbe "combattre"<br><br>
+                
+                Ces structures conditionnelles permettent d'exprimer des hypothèses non réalisées (contraires à la réalité).
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2. Vocabulaire</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                
+                <p class="Tests-Hub-text-correction">a. Adjectifs correspondants :</p>
+                <p>Légende = <strong class="Tests-Hub-text-success">légendaire</strong></p>
+                <p>Planète = <strong class="Tests-Hub-text-success">planétaire</strong></p>
+                
+                <p class="Tests-Hub-text-correction">b. Nom propre tiré du texte :</p>
+                <p>Lors du défilé de mode, j'ai aperçu une mannequin extrêmement belle comme <strong class="Tests-Hub-text-success">Hélène de Troie</strong>.</p>
+                
+                <p class="Tests-Hub-text-explanation">
+                <strong>Explication détaillée:</strong><br>
+                
+                <strong>a. Formation des adjectifs :</strong><br>
+                - <strong>Légendaire</strong> : formé à partir de "légende" avec le suffixe "-aire" qui indique la relation, l'appartenance. "Légendaire" signifie "qui appartient à la légende, qui a le caractère d'une légende."<br>
+                - <strong>Planétaire</strong> : formé à partir de "planète" avec le suffixe "-aire". "Planétaire" signifie "qui concerne une planète, qui a une dimension mondiale (au sens figuré)."<br><br>
+                
+                <strong>b. Référence mythologique :</strong><br>
+                Dans le texte, l'auteur écrit : "Comme la belle Hélène de Troie, les tops modèles de la mode font soupirer les cœurs d'envie et de désir !" Hélène de Troie est une figure mythologique grecque, réputée pour être la plus belle femme du monde. Sa beauté fut à l'origine de la guerre de Troie. La comparaison avec une mannequin est donc tout à fait pertinente.
+                </p>
+            </div>
+            
+            <h3 class="Tests-Hub-heading-subsection">C- Essai - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">Critères d'évaluation détaillés:</span></p>
+                
+                <div class="Tests-Hub-mb-2">
+                    <p class="Tests-Hub-text-correction">1. Pertinence des arguments et exemples (4 points):</p>
+                    <ul class="Tests-Hub-pl-1">
+                        <li>Prise de position claire par rapport à la question</li>
+                        <li>Arguments développés et étayés (psychologiques, sociaux, culturels)</li>
+                        <li>Exemples précis de stars et de comportements d'imitation</li>
+                        <li>Référence au texte de Raymond-Robert Tremblay (facultatif mais valorisé)</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-mb-2">
+                    <p class="Tests-Hub-text-correction">2. Structure et cohérence du texte (3 points):</p>
+                    <ul class="Tests-Hub-pl-1">
+                        <li>Introduction qui pose la problématique</li>
+                        <li>Développement organisé en paragraphes</li>
+                        <li>Transition entre les idées</li>
+                        <li>Conclusion qui synthétise la position</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-mb-2">
+                    <p class="Tests-Hub-text-correction">3. Correction de la langue (3 points):</p>
+                    <ul class="Tests-Hub-pl-1">
+                        <li>Syntaxe correcte et variée</li>
+                        <li>Vocabulaire précis et adapté</li>
+                        <li>Orthographe et conjugaison maîtrisées</li>
+                        <li>Ponctuation appropriée</li>
+                    </ul>
+                </div>
+                
+                <p class="Tests-Hub-text-correction">Exemple de production attendue:</p>
+                
+                <div class="Tests-Hub-text-passage Tests-Hub-mt-1">
+                    <p>Les stars contemporaines remplissent effectivement une fonction mythique dans notre société, comme l'explique Raymond-Robert Tremblay dans son texte. Si l'admiration pour ces célébrités est naturelle et peut même être positive, l'adoration aveugle et l'imitation systématique posent problème et méritent d'être nuancées.</p>
+                    
+                    <p>D'une part, il est compréhensible que les jeunes soient attirés par les stars. Ces dernières incarnent souvent des idéaux de réussite, de beauté ou de talent. Prenons l'exemple de sportifs comme Kylian Mbappé ou de chanteurs comme Beyoncé : ils représentent l'excellence dans leur domaine et peuvent servir de modèles d'inspiration. Leur parcours, fait de travail et de persévérance, montre que le succès est accessible à ceux qui s'en donnent les moyens. Dans ce sens, admirer une star peut être motivant et pousser à se dépasser.</p>
+                    
+                    <p>D'autre part, l'adoration excessive devient problématique quand elle conduit à une imitation aveugle. Certains jeunes adoptent non seulement le style vestimentaire de leurs idoles, mais aussi leurs opinions, leurs comportements, voire leurs excès. On a vu des adolescents se ruiner pour acheter des produits dérivés, ou pire, imiter des conduites à risque sous l'influence de stars qui glorifient la drogue ou la violence. Cette imitation relève d'un manque d'esprit critique et peut avoir des conséquences graves.</p>
+                    
+                    <p>De plus, comme le souligne l'auteur, les stars sont souvent instrumentalisées par la publicité pour vendre des produits. Les jeunes, influençables, deviennent alors des consommateurs passifs, croyant que posséder la même paire de baskets que leur basketteur préféré les rapprochera de lui. Cette marchandisation du mythe détourne l'admiration de son objet véritable (le talent) pour la réduire à une logique commerciale.</p>
+                    
+                    <p>Enfin, il faut distinguer l'admiration saine de l'idolâtrie. La première reconnaît les qualités d'une personne tout en gardant sa propre identité. La seconde implique une soumission, une perte de soi. Les éducateurs et les parents ont un rôle à jouer pour aider les jeunes à développer un regard critique : apprécier le talent d'un artiste sans nécessairement vouloir lui ressembler en tout point, distinguer la personne publique de la personne privée, comprendre que les stars ont aussi leurs faiblesses et que leur image est souvent travaillée par des professionnels de la communication.</p>
+                    
+                    <p>En conclusion, être attiré par les célébrités est acceptable et même normal dans une société médiatique comme la nôtre. Cependant, cette attirance doit rester mesurée et réfléchie. Les stars peuvent être des sources d'inspiration, mais elles ne doivent pas devenir des modèles absolus au point d'effacer notre propre personnalité. Comme pour tout mythe, il faut savoir garder une distance critique pour en apprécier les aspects positifs sans tomber dans les excès.</p>
+                </div>
+                
+                <p class="Tests-Hub-text-explanation Tests-Hub-mt-1">
+                <strong>Analyse de l'exemple:</strong><br>
+                1. <strong>Structure :</strong> Introduction nuancée → 4 paragraphes développant différents aspects → Conclusion équilibrée<br>
+                2. <strong>Arguments :</strong> Inspiration positive, dangers de l'imitation, instrumentalisation commerciale, distinction admiration/idolâtrie<br>
+                3. <strong>Exemples :</strong> Mbappé, Beyoncé, produits dérivés, comportements à risque<br>
+                4. <strong>Référence au texte :</strong> Mention explicite de Raymond-Robert Tremblay et reprise de l'idée de mythe contemporain<br>
+                5. <strong>Position nuancée :</strong> Reconnaissance des aspects positifs et négatifs<br>
+                6. <strong>Longueur :</strong> Environ 25 lignes, développement complet<br><br>
+                
+                <strong>Autres pistes possibles :</strong><br>
+                - Rôle des réseaux sociaux dans l'idolâtrie des stars<br>
+                - Comparaison avec d'autres formes de mythes (politiques, religieux)<br>
+                - Exemples historiques d'idolâtrie excessive (beatlemania, etc.)<br>
+                - Importance de l'éducation aux médias
+                </p>
+                
+                <p class="Tests-Hub-text-warning Tests-Hub-mt-1">
+                <strong>Remarque importante :</strong> Cette correction est indicative. Les productions des élèves peuvent varier tant qu'elles répondent à la problématique avec des arguments construits et des exemples pertinents. L'essentiel est la cohérence du raisonnement et la qualité de l'expression.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-section">
+            <button class="Tests-Hub-button-download Tests-Hub-download-pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.frenchTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.frenchTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.frenchTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content Tests-Hub-container">
+            <div class="Tests-Hub-grid-cols-3">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.developer">Développeur</h3>
+                    <p class="Tests-Hub-developer-name">Ziad El Majri</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.version">Version</h3>
+                    <p class="Tests-Hub-version-number">v2.1.0</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.links">Liens</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Conditions d'utilisation</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Politique de confidentialité</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for French Test page
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            fr: {
+                TestsHub: {
+                    frenchTest: {
+                        title: "Français - Devoir de Synthèse",
+                        subtitle: "3ème Scientifiques (2009-2010) - Lycée Abou Alkacem Echèbbi",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la Correction",
+                        hideCorrection: "Masquer la Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    frenchTest: {
+                        title: "French - End of Term Test",
+                        subtitle: "3rd Scientific (2009-2010) - Abou Alkacem Echèbbi High School",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    frenchTest: {
+                        title: "الفرنسية - فرض تأليفي",
+                        subtitle: "الثالثة علوم (2009-2010) - ثانوية أبو القاسم الشابي",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content (only for UI elements)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('#themeToggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language (only for UI, not test content)
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                document.body.classList.add('rtl-text');
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+                document.body.classList.remove('rtl-text');
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.frenchTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.frenchTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.frenchTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                document.body.classList.add('rtl-text');
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+                document.body.classList.remove('rtl-text');
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.frenchTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
