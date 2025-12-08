@@ -4,9 +4,9 @@
  * Features: Offline support, Background sync, Push notifications, Periodic sync
  */
 
-const CACHE_NAME = 'tests-hub-v2.1.4';
-const STATIC_CACHE_NAME = 'tests-hub-static-v2.1.4';
-const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.1.4';
+const CACHE_NAME = 'tests-hub-v2.1.5';
+const STATIC_CACHE_NAME = 'tests-hub-static-v2.1.5';
+const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.1.5';
 
 // Files to cache on install (app shell)
 const STATIC_ASSETS = [
