@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Achievement Test 2 - English 9th Grade (2023-2024)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#10B981">
+    <meta name="description" content="Achievement Test 2 for 9th Grade - English (2023-2024) - Mr Bechir Fraoua">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - English Test 2">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* ===== GREEN COLOR THEME ===== */
+        :root {
+            --primary-green: #10B981;
+            --primary-green-dark: #059669;
+            --primary-green-light: #34D399;
+            --secondary-green: #047857;
+            --accent-green: #A7F3D0;
+            --light-green-bg: #ECFDF5;
+            --dark-green-bg: #064E3B;
+            --text-dark: #1F2937;
+            --text-light: #ECFDF5;
+        }
+        
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #064E3B 0%, #047857 100%);
+            color: var(--text-light);
+        }
+        
+        /* ===== TYPOGRAPHY CLASSES ===== */
+        .Tests-Hub-title-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-primary {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-secondary {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: inherit;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-green);
+        }
+        
+        .Tests-Hub-heading-tertiary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-section {
+            color: var(--secondary-green);
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-section {
+            color: var(--accent-green);
+        }
+        
+        .Tests-Hub-heading-subsection {
+            color: var(--primary-green);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-subsection {
+            color: var(--accent-green);
+        }
+        
+        .Tests-Hub-heading-question {
+            color: var(--secondary-green);
+            font-weight: 700;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-question {
+            color: var(--accent-green);
+        }
+        
+        .Tests-Hub-paragraph {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .Tests-Hub-paragraph-indent {
+            text-indent: 1.5rem;
+        }
+        
+        .Tests-Hub-text-italic {
+            font-style: italic;
+        }
+        
+        .Tests-Hub-text-bold {
+            font-weight: 700;
+            color: var(--secondary-green);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-bold {
+            color: var(--accent-green);
+        }
+        
+        .Tests-Hub-text-highlight {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-highlight {
+            background: rgba(167, 243, 208, 0.2);
+        }
+        
+        .Tests-Hub-text-label {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-label {
+            background: var(--primary-green-dark);
+        }
+        
+        .Tests-Hub-text-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-note {
+            color: #ccc;
+        }
+        
+        .Tests-Hub-text-explanation {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0.75rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--primary-green);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-explanation {
+            color: #ddd;
+            border-left-color: var(--accent-green);
+        }
+        
+        .Tests-Hub-text-correction {
+            color: var(--secondary-green);
+            font-weight: 600;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-correction {
+            color: var(--accent-green);
+        }
+        
+        .Tests-Hub-text-warning {
+            color: #D97706;
+            font-weight: 600;
+            background: rgba(217, 119, 6, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 4px solid #D97706;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-warning {
+            color: #FBBF24;
+            background: rgba(217, 119, 6, 0.2);
+            border-left-color: #FBBF24;
+        }
+        
+        .Tests-Hub-text-success {
+            color: var(--secondary-green);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-text-error {
+            color: #DC2626;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-error {
+            color: #F87171;
+        }
+        
+        /* ===== LAYOUT CLASSES ===== */
+        .Tests-Hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .Tests-Hub-content-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-flex-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-flex-col {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .Tests-Hub-grid-cols-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        /* ===== COMPONENT CLASSES ===== */
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, var(--primary-green), var(--primary-green-light));
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, var(--dark-green-bg), var(--secondary-green), var(--primary-green));
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Buttons */
+        .Tests-Hub-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+        
+        .Tests-Hub-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-button-primary {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, var(--primary-green), var(--primary-green-light));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .Tests-Hub-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-button-download {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-button-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Language Selector */
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: var(--dark-green-bg);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: var(--text-light);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: var(--secondary-green);
+        }
+        
+        /* Test Content */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, var(--primary-green), var(--primary-green-light));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, var(--dark-green-bg), var(--secondary-green));
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: var(--dark-green-bg);
+            color: var(--text-light);
+        }
+        
+        /* Instructions */
+        .Tests-Hub-instructions-container {
+            background: var(--light-green-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--primary-green);
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions-container {
+            background: var(--secondary-green);
+            border-left-color: var(--accent-green);
+        }
+        
+        /* Text Passage */
+        .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            border-left: 4px solid var(--primary-green);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-container {
+            background: linear-gradient(135deg, var(--dark-green-bg) 0%, var(--secondary-green) 100%);
+            border-left-color: var(--accent-green);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-text-passage {
+            line-height: 1.6;
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding: 1.5rem;
+        }
+        
+        .Tests-Hub-text-passage::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(16, 185, 129, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .Tests-Hub-text-passage::after {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(16, 185, 129, 0.1);
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-passage::before,
+        .Tests-Hub-dark-theme .Tests-Hub-text-passage::after {
+            color: rgba(167, 243, 208, 0.1);
+        }
+        
+        /* Questions */
+        .Tests-Hub-question-container {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: var(--primary-green);
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: var(--accent-green);
+        }
+        
+        /* Answer Inputs */
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input,
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea {
+            border-color: #666;
+            background-color: var(--dark-green-bg);
+            color: var(--text-light);
+        }
+        
+        /* Multiple Choice */
+        .Tests-Hub-multiple-choice-container {
+            margin: 10px 0;
+        }
+        
+        .Tests-Hub-choice-option {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        
+        .Tests-Hub-choice-option input {
+            margin-right: 10px;
+        }
+        
+        /* Correction */
+        .Tests-Hub-correction-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-correction-section {
+            background: var(--light-green-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--primary-green);
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: var(--secondary-green);
+            border-left-color: var(--accent-green);
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(16, 185, 129, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--primary-green);
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(167, 243, 208, 0.1);
+            border-left-color: var(--accent-green);
+        }
+        
+        /* Download Section */
+        .Tests-Hub-download-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-section {
+            background: linear-gradient(to right, rgba(6, 78, 59, 0.2), rgba(16, 185, 129, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, var(--primary-green), var(--primary-green-light));
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, var(--dark-green-bg), var(--secondary-green), var(--primary-green));
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-heading {
+            color: #ECFDF5;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Links */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #ECFDF5;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Developer Info */
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #ECFDF5;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #ECFDF5;
+        }
+        
+        /* Download Button Colors */
+        .Tests-Hub-download-pdf {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
+            color: white;
+        }
+        
+        .Tests-Hub-download-pdf:hover {
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+        }
+        
+        .Tests-Hub-download-odt {
+            background: linear-gradient(135deg, #F59E0B, #FBBF24);
+            color: white;
+        }
+        
+        .Tests-Hub-download-odt:hover {
+            background: linear-gradient(135deg, #D97706, #F59E0B);
+        }
+        
+        .Tests-Hub-download-png {
+            background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+            color: white;
+        }
+        
+        .Tests-Hub-download-png:hover {
+            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+        }
+        
+        /* Student Info Form */
+        .Tests-Hub-student-info {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-student-info {
+            background: var(--dark-green-bg);
+        }
+        
+        .Tests-Hub-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .Tests-Hub-info-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .Tests-Hub-info-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: var(--secondary-green);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-info-label {
+            color: var(--accent-green);
+        }
+        
+        .Tests-Hub-info-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .Tests-Hub-info-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-info-input {
+            background: var(--secondary-green);
+            border-color: var(--dark-green-bg);
+            color: var(--text-light);
+        }
+        
+        /* Utility Classes */
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        .Tests-Hub-text-center {
+            text-align: center;
+        }
+        
+        .Tests-Hub-text-right {
+            text-align: right;
+        }
+        
+        .Tests-Hub-mb-1 {
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-mb-2 {
+            margin-bottom: 2rem;
+        }
+        
+        .Tests-Hub-mt-1 {
+            margin-top: 1rem;
+        }
+        
+        .Tests-Hub-mt-2 {
+            margin-top: 2rem;
+        }
+        
+        .Tests-Hub-ml-1 {
+            margin-left: 1rem;
+        }
+        
+        .Tests-Hub-pl-1 {
+            padding-left: 1rem;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: var(--primary-green);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: var(--dark-green-bg);
+        }
+        
+        tr:nth-child(even) {
+            background: var(--light-green-bg);
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: var(--dark-green-bg);
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: var(--dark-green-bg);
+        }
+        
+        /* Magazine Article Styling */
+        .Tests-Hub-magazine-article {
+            background: white;
+            border: 2px solid var(--primary-green);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            min-height: 300px;
+        }
+        
+        .Tests-Hub-magazine-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-green);
+        }
+        
+        .Tests-Hub-magazine-author {
+            text-align: right;
+            font-style: italic;
+            margin-top: 1.5rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-magazine-article {
+            background: var(--dark-green-bg);
+            border-color: var(--accent-green);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-magazine-title {
+            color: var(--accent-green);
+        }
+        
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-title-main {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-content-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-grid-cols-3 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .Tests-Hub-answer-input {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-answer-textarea {
+                min-height: 100px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-download-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-button-download {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+            
+            .Tests-Hub-info-row {
+                flex-direction: column;
+            }
+            
+            .Tests-Hub-info-item {
+                min-width: 100%;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-heading-primary {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-section {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-button-download {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content Tests-Hub-container Tests-Hub-flex-row">
+            <div class="Tests-Hub-flex-row">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-title-main" data-i18n="TestsHub.englishTest.title">English - Achievement Test 2</h1>
+                    <div class="Tests-Hub-subtitle" data-i18n="TestsHub.englishTest.subtitle">9th Grade (2023-2024) - Mergrine Pioneer Middle School</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.englishTest.back">Back to Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">English</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-content-container">
+        <!-- Student Information -->
+        <div class="Tests-Hub-student-info">
+            <div class="Tests-Hub-info-row">
+                <div class="Tests-Hub-info-item">
+                    <label class="Tests-Hub-info-label" for="firstName">First Name</label>
+                    <input type="text" id="firstName" class="Tests-Hub-info-input" placeholder="Enter your first name">
+                </div>
+                <div class="Tests-Hub-info-item">
+                    <label class="Tests-Hub-info-label" for="lastName">Last Name</label>
+                    <input type="text" id="lastName" class="Tests-Hub-info-input" placeholder="Enter your last name">
+                </div>
+            </div>
+            <div class="Tests-Hub-info-row">
+                <div class="Tests-Hub-info-item">
+                    <label class="Tests-Hub-info-label" for="class">Class</label>
+                    <input type="text" id="class" class="Tests-Hub-info-input" placeholder="e.g., 9 B 3 or 9 B 4">
+                </div>
+                <div class="Tests-Hub-info-item">
+                    <label class="Tests-Hub-info-label" for="date">Date</label>
+                    <input type="text" id="date" class="Tests-Hub-info-input" value="December 16, 2023" readonly>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1 class="Tests-Hub-heading-primary">Achievement Test 2 - English</h1>
+            <p>Teacher: Mr. Bechir Fraoua</p>
+            <p>School: Mergrine Pioneer Middle School</p>
+            <p>School Year: 2023-2024</p>
+            <p>Weight: 2 - Duration: 60 minutes</p>
+            <p>Mark: /20 points</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions-container">
+            <h3 class="Tests-Hub-heading-subsection">General Instructions</h3>
+            <ul>
+                <li>Read the text and questions carefully before answering</li>
+                <li>Answer the questions in order</li>
+                <li>The quality of written expression will be taken into account</li>
+                <li>Write legibly and take care of presentation</li>
+                <li>Answers must be written in complete sentences</li>
+            </ul>
+        </div>
+        
+        <!-- Part I: Reading Comprehension -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">I. Reading Comprehension (6 Marks)</h2>
+            
+            <!-- The Text -->
+            <div class="Tests-Hub-text-container">
+                <div class="Tests-Hub-text-passage">
+                    <p><strong>THE READING PASSAGE:</strong></p>
+                    
+                    <p><strong>1.</strong> Good morning respected principal, esteemed colleagues, beloved students, and our dear parents. Today, as we come together to celebrate Teachers' Day, I am both humbled and elated to have the opportunity to share my thoughts with you.</p>
+                    
+                    <p><strong>2.</strong> Being a teacher is not just a profession; it is a lifelong journey of discovery. Each day, when I step into this sacred space of learning, it is not just to lecture but to listen; and I must confess, every day, in some small way, I too learn from each one of you. Yet, teaching is not a solo endeavour. It's a partnership. A partnership with parents, who are the child's first educators. A partnership with students, who bring their unique perspectives to our classrooms. And a partnership with fellow educators, who enrich our profession with their wisdom and experience.</p>
+                    
+                    <p><strong>3.</strong> To our students, I say this - always remember that education is not just about grades or degrees, but about developing a love for learning and understanding the world around you. Embrace challenges, cherish failures, for they are the stepping stones to success.</p>
+                    
+                    <p><strong>4.</strong> In conclusion, let's remind ourselves of the immense power and responsibility we hold as educators. Let's pledge to always strive for excellence, to be kind, to be understanding, and above all, to be lifelong learners. Here's to the spirit of teaching and learning! Happy Teachers' Day! Thank you.</p>
+                    
+                    <p style="text-align: center; font-style: italic; margin-top: 1rem;">EDUCATION IS FROM WOMB TO TOMB by Steve Stanley</p>
+                    <p style="text-align: center;">RIP</p>
+                </div>
+            </div>
+            
+            <!-- Comprehension Questions -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">1.</span> <strong>Tick (✓) the right option (1 mark):</strong></p>
+                <p>The speaker is:</p>
+                <div class="Tests-Hub-multiple-choice-container">
+                    <div class="Tests-Hub-choice-option">
+                        <input type="radio" name="q1" id="q1a">
+                        <label for="q1a">a. Worried about his colleagues</label>
+                    </div>
+                    <div class="Tests-Hub-choice-option">
+                        <input type="radio" name="q1" id="q1b">
+                        <label for="q1b">b. Angry with his colleagues</label>
+                    </div>
+                    <div class="Tests-Hub-choice-option">
+                        <input type="radio" name="q1" id="q1c">
+                        <label for="q1c">c. Proud of his colleagues</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">2.</span> <strong>Fill in the blank with the appropriate information from the reading passage (1 mark):</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Speech's occasion</th>
+                            <th>Speaker / Addresser</th>
+                            <th>Audience / Addressees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><textarea class="Tests-Hub-answer-input" placeholder="Occasion..." style="width: 100%;"></textarea></td>
+                            <td>A teacher</td>
+                            <td>respected principal, esteemed colleagues, beloved students, and our dear parents.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">3.</span> <strong>Answer the question below with a detail from the reading passage (1 mark):</strong></p>
+                <p>Who else other than teachers can make students learn?</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Your answer..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">4.</span> <strong>Find in paragraph 2 a noun meaning (1 mark):</strong></p>
+                <p>The quality of having experience, knowledge, and good judgement = <textarea class="Tests-Hub-answer-input" placeholder="Word..." style="width: 200px;"></textarea></p>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">5.</span> <strong>Correct the idea below with a detail from the reading passage (1 mark):</strong></p>
+                <p>The speaker thinks that good marks and graduation are the only reason behind attending schools.</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Your correction..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">6.</span> <strong>Give a personal and justified answer to the question below (1 mark):</strong></p>
+                <p>Do you think that a teacher can learn from each one of his students as the speaker does?</p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="Your opinion and justification..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Part II: Language -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">II. Language (8 Marks)</h2>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">1.</span> <strong>Circle the right alternative (3 marks):</strong></p>
+                <div class="Tests-Hub-text-passage">
+                    <p>Bullying in schools is a worldwide problem that can have negative consequences for the general school climate and for the right of students to learn in a 
+                    <select class="Tests-Hub-answer-input" style="width: 120px;">
+                        <option value="">Select</option>
+                        <option value="stressful">stressful</option>
+                        <option value="safe">safe</option>
+                        <option value="insecure">insecure</option>
+                    </select> environment without fear. Victims tend to be socially isolated but close to their parents and may have parents who can be described as 
+                    <select class="Tests-Hub-answer-input" style="width: 120px;">
+                        <option value="">Select</option>
+                        <option value="severe">severe</option>
+                        <option value="overprotective">overprotective</option>
+                        <option value="conservative">conservative</option>
+                    </select>.</p>
+                    
+                    <p>The major defining physical characteristic of victims is that they tend to be physically 
+                    <select class="Tests-Hub-answer-input" style="width: 120px;">
+                        <option value="">Select</option>
+                        <option value="weak">weak</option>
+                        <option value="weaker">weaker</option>
+                        <option value="the weakest">the weakest</option>
+                    </select> than their peers. Victims were at least partially responsible 
+                    <select class="Tests-Hub-answer-input" style="width: 120px;">
+                        <option value="">Select</option>
+                        <option value="for">for</option>
+                        <option value="of">of</option>
+                        <option value="in">in</option>
+                    </select> bringing the bullying on themselves. Although most parents are curious and try to oversee every aspect of their children's lives, Jenny Bradley who is a bully's victim finds that 
+                    <select class="Tests-Hub-answer-input" style="width: 120px;">
+                        <option value="">Select</option>
+                        <option value="her">her</option>
+                        <option value="hers">hers</option>
+                        <option value="herself">herself</option>
+                    </select> are often unaware of the bullying problem and talk about it with her only to a limited extent. Students feel that if bullies' targets tell trusted adults, it 
+                    <select class="Tests-Hub-answer-input" style="width: 120px;">
+                        <option value="">Select</option>
+                        <option value="only brought">only brought</option>
+                        <option value="only brings">only brings</option>
+                        <option value="will only bring">will only bring</option>
+                    </select> more harassment from bullies.</p>
+                    
+                    <p>These students report that teachers seldom or never talk to their classes about bullying and school and personnel may view bullying as a harmless right of passage that is best ignored.</p>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">2.</span> <strong>Fill in the blanks with 5 words from the list below. There are 2 extra ones (2.5 marks):</strong></p>
+                <p><em>pursue - save up - ignore - get on - upset - spoilt - contribute to</em></p>
+                <div class="Tests-Hub-text-passage">
+                    <p>As an only child, I was and am still very attached to both my parents. I suppose I was a bit <textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 120px;"></textarea> as they gave me a lot of attention. My dad would buy me anything I asked for within reason. After university, I wanted to <textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 120px;"></textarea> for a place of my own.</p>
+                    
+                    <p>So, it made sense to move back in with my parents and <textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 120px;"></textarea> my university studies in my native town. My parents are retired and are glad of a bit of company.</p>
+                    
+                    <p>I <textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 120px;"></textarea> the household in different ways. I'll do the weekly shopping and pay the utility bills. It can be frustrating not to be able to throw parties, and your siblings might still <textarea class="Tests-Hub-answer-input" placeholder="..." style="width: 120px;"></textarea> your nerves but mum and dad are on really good terms with all my friends, so they're fine with them coming over. To cut a long story short, for those who can't afford to go it alone, moving home is often the best thing.</p>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">3.</span> <strong>Supply the right tense or form of the bracketed words (2.5 marks):</strong></p>
+                <div class="Tests-Hub-text-passage">
+                    <p>As a young child I loved reading and learning, and by the third grade I was placed in accelerated classes. But when I started to struggle with Math, my teachers and parents who were teachers <textarea class="Tests-Hub-answer-input" placeholder="(they)..." style="width: 100px;"></textarea> were mystified. I was one of the "smart kids," and everything else came <textarea class="Tests-Hub-answer-input" placeholder="(easy)..." style="width: 100px;"></textarea> to me. So, my parents <textarea class="Tests-Hub-answer-input" placeholder="(keep)..." style="width: 100px;"></textarea> me in the accelerated classes, not offered tutoring or testing, and just expected to struggle through. Doing Math homework brought me to tears nearly every night.</p>
+                    
+                    <p>I became deeply <textarea class="Tests-Hub-answer-input" placeholder="(shame)..." style="width: 100px;"></textarea> of how hard Math was for me, and I worked hard to hide my failing grades. When I was an <textarea class="Tests-Hub-answer-input" placeholder="(eight grade)..." style="width: 100px;"></textarea>, I skipped most of Math classes despite wanting to be a biological anthropologist and developed test anxiety in the middle of my AP statistics test. I wish I'd had just one person tell me that help was available rather than pushing me to stay in advanced classes that made me feel like a fraud.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Part III: Writing -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">III. Writing (6 Marks)</h2>
+            
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">Topic:</span></p>
+                <p>Having noticed that most of your schoolmates don't help with the household chores, you felt disappointed about their attitude towards family roles and decided to write a 10-line article for your school magazine to raise their awareness about the importance of split responsibilities while listing its wonderful benefits.</p>
+                
+                <div class="Tests-Hub-magazine-article">
+                    <div class="Tests-Hub-magazine-title">SCHOOL MAGAZINE ARTICLE</div>
+                    <textarea class="Tests-Hub-answer-textarea" style="min-height: 300px; border: none; background: transparent; font-size: 16px;" placeholder="Write your 10-line article here..."></textarea>
+                    <div class="Tests-Hub-magazine-author">Written by: A Concerned Student</div>
+                </div>
+                
+                <!-- Evaluation Grid -->
+                <div class="Tests-Hub-mt-2">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Evaluation Criteria</th>
+                                <th>Points</th>
+                                <th>Observations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Adherence to task and content adequacy</strong></td>
+                                <td>/2.5 points</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lexical appropriacy and grammar accuracy</strong></td>
+                                <td>/2.5 points</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mechanical accuracy (punctuation, capitalization, spelling)</strong></td>
+                                <td>/1 point</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Writing</strong></td>
+                                <td><strong>/6 points</strong></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-container">
+            <button class="Tests-Hub-button-primary" id="toggleCorrection">Show Correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2 class="Tests-Hub-heading-section">Test Correction</h2>
+            
+            <h3 class="Tests-Hub-heading-subsection">I. Reading Comprehension - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p><strong class="Tests-Hub-text-success">c. Proud of his colleagues</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                Throughout the speech, the speaker expresses admiration and respect for his colleagues, referring to them as "esteemed colleagues" in the opening address. The overall tone of the speech is positive, appreciative, and collaborative rather than negative. The speaker emphasizes partnership and the value that fellow educators bring, indicating pride in their profession and colleagues.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Speech's occasion</th>
+                            <th>Speaker / Addresser</th>
+                            <th>Audience / Addressees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong class="Tests-Hub-text-success">Teachers' Day celebration</strong></td>
+                            <td>A teacher</td>
+                            <td>respected principal, esteemed colleagues, beloved students, and our dear parents.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                The first sentence of the reading passage explicitly states: "Today, as we come together to celebrate Teachers' Day..." This clearly indicates that the occasion is the celebration of Teachers' Day. The speaker identifies as a teacher ("Being a teacher...") and addresses multiple groups including the principal, colleagues, students, and parents.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p><strong class="Tests-Hub-text-success">Parents can also make students learn.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                In paragraph 2, the speaker states: "A partnership with parents, who are the child's first educators." This indicates that parents play a crucial role in education and can make students learn. The speaker views education as a collaborative effort involving multiple stakeholders, with parents being identified as the primary educators in a child's early development.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p>The quality of having experience, knowledge, and good judgement = <strong class="Tests-Hub-text-success">wisdom</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                In paragraph 2, the text reads: "And a partnership with fellow educators, who enrich our profession with their wisdom and experience." The word "wisdom" directly corresponds to the definition provided - the quality of having experience, knowledge, and good judgement. Wisdom is accumulated knowledge combined with the ability to make sound judgments based on that knowledge.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">5.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p><strong class="Tests-Hub-text-success">No, the speaker thinks education is not just about grades or degrees, but about developing a love for learning and understanding the world around you.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                Paragraph 3 explicitly states: "To our students, I say this - always remember that education is not just about grades or degrees, but about developing a love for learning and understanding the world around you." This directly contradicts the statement that good marks and graduation are the only reason for attending school. The speaker emphasizes the broader purpose of education beyond mere academic achievement.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">6.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p><strong class="Tests-Hub-text-success">Sample answer: Yes, I believe a teacher can learn from each student. Every student brings unique perspectives, experiences, and questions to the classroom. When teachers listen to students, they gain new insights about how different minds work, what teaching methods are effective, and how to better connect with diverse learners. This mutual learning makes education a two-way process rather than just knowledge transmission.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Evaluation Criteria:</strong><br>
+                • <strong>Clear position</strong> (0.25 point): States whether you agree or disagree<br>
+                • <strong>Justification</strong> (0.5 point): Provides reasoning for your position<br>
+                • <strong>Reference to text</strong> (0.25 point): Connects to the speaker's statement about learning from students<br>
+                • <strong>Personal insight</strong>: Adds your own perspective on the teacher-student relationship<br><br>
+                <strong>Note:</strong> This is a personal opinion question, so answers may vary. The sample above provides a reasoned argument with specific examples of what teachers can learn from students. It references the speaker's statement in paragraph 2: "every day, in some small way, I too learn from each one of you."
+                </p>
+            </div>
+            
+            <h3 class="Tests-Hub-heading-subsection">II. Language - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p><strong class="Tests-Hub-text-success">1. safe</strong> (students need a secure environment to learn effectively)<br>
+                <strong class="Tests-Hub-text-success">2. overprotective</strong> (describes parents who are excessively protective)<br>
+                <strong class="Tests-Hub-text-success">3. weaker</strong> (comparative form comparing victims to their peers)<br>
+                <strong class="Tests-Hub-text-success">4. for</strong> (preposition "responsible for" is the correct collocation)<br>
+                <strong class="Tests-Hub-text-success">5. her</strong> (possessive adjective modifying "parents" - her parents)<br>
+                <strong class="Tests-Hub-text-success">6. will only bring</strong> (future simple tense for a likely consequence)</p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                1. "safe" is the appropriate word because students need a secure, fear-free environment for optimal learning.<br>
+                2. "overprotective" describes parents who are excessively protective, which can contribute to their child's vulnerability.<br>
+                3. "weaker" is the comparative adjective needed when comparing victims to their peers.<br>
+                4. "for" is the correct preposition that follows "responsible" (responsible for something).<br>
+                5. "her" is the possessive adjective needed before "parents" (her parents).<br>
+                6. "will only bring" uses future simple tense to describe a likely consequence of telling adults about bullying.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p><strong class="Tests-Hub-text-success">1. spoilt</strong> (past participle meaning given too much attention)<br>
+                <strong class="Tests-Hub-text-success">2. save up</strong> (phrasal verb meaning to accumulate money)<br>
+                <strong class="Tests-Hub-text-success">3. pursue</strong> (verb meaning to continue or follow a course of study)<br>
+                <strong class="Tests-Hub-text-success">4. contribute to</strong> (verb phrase meaning to help or add to)<br>
+                <strong class="Tests-Hub-text-success">5. get on</strong> (phrasal verb meaning to irritate or annoy)</p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                1. "spoilt" means having been given too much attention or indulgence as a child.<br>
+                2. "save up" means to accumulate money over time for a specific purpose (buying a place).<br>
+                3. "pursue" means to follow or continue with something, in this case university studies.<br>
+                4. "contribute to" means to help or add something to a joint effort (the household).<br>
+                5. "get on" in this context means to irritate or annoy someone (get on your nerves).<br><br>
+                <strong>Extra words:</strong> "ignore" and "upset" are not used in this passage.
+                </p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3.</span> <strong class="Tests-Hub-text-bold">Correction:</strong></p>
+                <p><strong class="Tests-Hub-text-success">1. themselves</strong> (reflexive pronoun referring back to "teachers and parents")<br>
+                <strong class="Tests-Hub-text-success">2. easily</strong> (adverb form modifying the verb "came")<br>
+                <strong class="Tests-Hub-text-success">3. kept</strong> (past simple tense for completed action in the past)<br>
+                <strong class="Tests-Hub-text-success">4. ashamed</strong> (adjective form meaning feeling shame or guilt)<br>
+                <strong class="Tests-Hub-text-success">5. eighth-grader</strong> (compound noun meaning a student in eighth grade)</p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Detailed Explanation:</strong><br>
+                1. "themselves" is a reflexive pronoun that refers back to the subject "my teachers and parents."<br>
+                2. "easily" is the adverb form needed to describe how everything else came to the speaker.<br>
+                3. "kept" is the past simple form of "keep," used for actions completed in the past.<br>
+                4. "ashamed" is the adjective form meaning feeling shame or embarrassment about something.<br>
+                5. "eighth-grader" is the correct compound noun for a student in the eighth grade (hyphenated form).
+                </p>
+            </div>
+            
+            <h3 class="Tests-Hub-heading-subsection">III. Writing - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">Sample Magazine Article:</span></p>
+                <div class="Tests-Hub-magazine-article" style="background: #f9f9f9;">
+                    <div class="Tests-Hub-magazine-title">SCHOOL MAGAZINE ARTICLE</div>
+                    <div style="padding: 1rem; line-height: 1.6; font-size: 16px;">
+                        <p><strong>The Power of Shared Responsibilities: Why Household Chores Matter</strong></p>
+                        
+                        <p>Have you ever noticed how empty the sink remains after you've finished eating? Or how the trash seems to magically take itself out? It's time we address a growing concern in our school community: too many students are neglecting their household responsibilities.</p>
+                        
+                        <p>As teenagers, we often focus on schoolwork, extracurricular activities, and social lives, forgetting that our homes require care too. But sharing household chores isn't just about keeping a clean house—it's about developing essential life skills and strengthening family bonds.</p>
+                        
+                        <p>Here are the wonderful benefits of split responsibilities:</p>
+                        
+                        <p>1. <strong>Life Skills Development:</strong> Learning to cook, clean, and manage a household prepares us for independent living in the future.</p>
+                        
+                        <p>2. <strong>Time Management:</strong> Balancing chores with schoolwork teaches us to prioritize and manage our time effectively.</p>
+                        
+                        <p>3. <strong>Family Unity:</strong> When everyone contributes, it creates a sense of teamwork and shared purpose within the family.</p>
+                        
+                        <p>4. <strong>Reduced Stress:</strong> Distributing tasks lightens the load for everyone, creating a more peaceful home environment.</p>
+                        
+                        <p>5. <strong>Personal Responsibility:</strong> Completing chores regularly builds discipline and a strong work ethic.</p>
+                        
+                        <p>Let's make a change starting today. Talk to your family about creating a fair chore schedule. Remember, a home where everyone contributes is a home where everyone thrives!</p>
+                    </div>
+                    <div class="Tests-Hub-magazine-author">Written by: A Concerned Student</div>
+                </div>
+                <p class="Tests-Hub-text-explanation">
+                <strong>Evaluation Criteria:</strong><br>
+                • <strong>Adherence to task and content adequacy</strong> (2.5 points): The article follows all instructions - addresses schoolmates about household chores, expresses disappointment about current attitudes, raises awareness about split responsibilities, lists benefits (5 specific benefits), maintains appropriate magazine article format with title and byline, and is approximately 10 lines long.<br>
+                • <strong>Lexical appropriacy and grammar accuracy</strong> (2.5 points): Uses appropriate vocabulary (household chores, responsibilities, life skills, etc.), demonstrates good command of sentence structures, maintains correct grammar throughout, and uses persuasive language appropriate for a magazine article.<br>
+                • <strong>Mechanical accuracy</strong> (1 point): Proper punctuation, capitalization, spelling, and appropriate paragraphing are used consistently. The article maintains a formal yet engaging tone suitable for a school magazine.<br><br>
+                <strong>Key Elements of a Good Response:</strong><br>
+                1. Appropriate magazine article format with title and byline<br>
+                2. Clear expression of disappointment about current attitudes<br>
+                3. Persuasive argument for shared household responsibilities<br>
+                4. Organized list of benefits (at least 3-5)<br>
+                5. Call to action or concluding message<br>
+                6. Appropriate length (approximately 10 lines)<br>
+                7. Formal but engaging tone suitable for peers<br>
+                8. Focus on both practical and emotional benefits of shared chores
+                </p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-section">
+            <button class="Tests-Hub-button-download Tests-Hub-download-pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.englishTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.englishTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.englishTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content Tests-Hub-container">
+            <div class="Tests-Hub-grid-cols-3">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.developer">Developer</h3>
+                    <p class="Tests-Hub-developer-name">Ziad El Majri</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.version">Version</h3>
+                    <p class="Tests-Hub-version-number">v2.3.1</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.links">Links</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Terms of Use</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for English Test page
+        let currentLanguage = 'en';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            en: {
+                TestsHub: {
+                    englishTest: {
+                        title: "English - Achievement Test 2",
+                        subtitle: "9th Grade (2023-2024) - Mergrine Pioneer Middle School",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    englishTest: {
+                        title: "Anglais - Test d'Acquisition 2",
+                        subtitle: "9ème année (2023-2024) - Collège Pilote Mergrine",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la Correction",
+                        hideCorrection: "Masquer la Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    englishTest: {
+                        title: "الإنجليزية - اختبار تحصيلي 2",
+                        subtitle: "السنة التاسعة (2023-2024) - الثانوية الإعدادية النموذجية مرغرين",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content (only for UI elements)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('#themeToggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language (only for UI, not test content)
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                document.body.classList.add('rtl-text');
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+                document.body.classList.remove('rtl-text');
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.englishTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.englishTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.englishTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                document.body.classList.add('rtl-text');
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+                document.body.classList.remove('rtl-text');
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.englishTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
