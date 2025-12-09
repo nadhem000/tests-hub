@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Devoir de Synthèse N°1 - Mathématiques (2ème Sciences)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3B82F6">
+    <meta name="description" content="Devoir de Synthèse N°1 pour 2ème Sciences - Mathématiques (2014-2015)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Synthèse">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- KaTeX pour les formules mathématiques -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: #dbeafe;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #2563eb, #3B82F6);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #1e3a8a, #2563eb, #3B82F6);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1e40af;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #dbeafe;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #1d4ed8;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #2563eb, #3B82F6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #1e3a8a, #2563eb);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1e40af;
+            color: #dbeafe;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #2563eb;
+            border-bottom: 2px solid #3B82F6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #60a5fa;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #3B82F6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #93c5fd;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #eff6ff;
+            padding: 1rem;
+            border-left: 4px solid #2563eb;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1e3a8a;
+            border-left-color: #3B82F6;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #2563eb;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #1e3a8a;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #1d4ed8;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #2563eb;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #666;
+            background-color: #1e40af;
+            color: #dbeafe;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #60a5fa;
+        }
+        
+        /* Style pour les formules mathématiques */
+        .Tests-Hub-math-formula {
+            font-family: 'Times New Roman', Times, serif;
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+            overflow-x: auto;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-math-formula {
+            background: #1e3a8a;
+        }
+        
+        .Tests-Hub-math-expr {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            margin: 5px 0;
+        }
+        
+        .katex {
+            font-size: 1.1em !important;
+        }
+        
+        .Tests-Hub-math-formula .katex-display {
+            margin: 0.5em 0;
+        }
+        
+        /* Image container */
+        .Tests-Hub-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f0f9ff;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: #1d4ed8;
+        }
+        
+        .Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #93c5fd;
+        }
+        
+        /* Vrai/Faux et QCM */
+        .Tests-Hub-true-false {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            gap: 10px;
+        }
+        
+        .Tests-Hub-true-false input {
+            margin-right: 5px;
+        }
+        
+        .Tests-Hub-mcq-options {
+            margin: 10px 0 20px 20px;
+        }
+        
+        .Tests-Hub-mcq-option {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .Tests-Hub-mcq-option input {
+            margin-right: 10px;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #2563eb, #3B82F6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #eff6ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #2563eb;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #1e3a8a;
+            border-left-color: #3B82F6;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #2563eb;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #60a5fa;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #2563eb;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(96, 165, 250, 0.1);
+            border-left-color: #60a5fa;
+        }
+        
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #93c5fd;
+        }
+        
+        /* Figures géométriques */
+        .Tests-Hub-geometric-figure {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-geometric-figure {
+            background: #1e3a8a;
+        }
+        
+        .Tests-Hub-figure-canvas {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 0 auto;
+            position: relative;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-figure-canvas {
+            border-color: #4b5563;
+            background: #0f172a;
+        }
+        
+        .Tests-Hub-figure-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #2563eb;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-figure-point {
+            background: #60a5fa;
+        }
+        
+        .Tests-Hub-figure-label {
+            position: absolute;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-figure-label {
+            color: #60a5fa;
+        }
+        
+        .Tests-Hub-figure-line {
+            position: absolute;
+            background: #2563eb;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-figure-line {
+            background: #60a5fa;
+        }
+        
+        .Tests-Hub-figure-circle {
+            position: absolute;
+            border: 2px solid #2563eb;
+            border-radius: 50%;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-figure-circle {
+            border-color: #60a5fa;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #2563eb, #3B82F6);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #1e3a8a, #2563eb, #3B82F6);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Download Buttons Styles */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(30, 58, 138, 0.2), rgba(37, 99, 235, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+        }
+        
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+        
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+                min-height: 70px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+            
+            .Tests-Hub-figure-canvas {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+            
+            .Tests-Hub-figure-canvas {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.synthesisTest.title">Mathématiques - Devoir de Synthèse</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.synthesisTest.subtitle">2ème Année Sciences</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.synthesisTest.back">Retour aux Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">Français</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1>Devoir de Synthèse N°1 de Mathématiques</h1>
+            <p>Lycée pilote - 2ème Sciences (2014-2015)</p>
+            <p>Professeur: Mr Chaabane Mounir | Tél: 96687966</p>
+            <p>Source: WWW.DEVOIR@T.NET © 2014</p>
+            <p>Durée: 2 heures</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>Instructions générales</h3>
+            <ul>
+                <li>Le sujet comporte quatre exercices indépendants</li>
+                <li>La qualité de la rédaction et la clarté des raisonnements seront prises en compte</li>
+                <li>Toute réponse doit être justifiée</li>
+                <li>Les calculatrices ne sont pas autorisées</li>
+            </ul>
+        </div>
+        
+        <!-- Exercice 1 -->
+        <div class="Tests-Hub-test-section">
+            <h2>Exercice n°1 (5 points)</h2>
+            <p>Trouver la seule bonne réponse</p>
+            <p>On donne dans un repère orthonormé les points A(1, -2) ; B(3, 2) et le vecteur \(\overrightarrow{CD} \binom{1}{2}\)</p>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> Les composantes du vecteur \(\overrightarrow{AB}\) sont :</p>
+                <div class="Tests-Hub-mcq-options">
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q1" value="a"> a/ \(\binom{2}{4}\)
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q1" value="b"> b/ \(\binom{4}{-2}\)
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q1" value="c"> c/ \(\binom{2}{0}\)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> La distance AB est égale à :</p>
+                <div class="Tests-Hub-mcq-options">
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q2" value="a"> a/ \(2\sqrt{10}\)
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q2" value="b"> b/ \(2\sqrt{5}\)
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q2" value="c"> c/ 10
+                    </div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3-</span> Le déterminant de \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) est :</p>
+                <div class="Tests-Hub-mcq-options">
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q3" value="a"> a/ 0
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q3" value="b"> b/ 8
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q3" value="c"> c/ -8
+                    </div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4-</span> Les droites (AB) et (CD) sont :</p>
+                <div class="Tests-Hub-mcq-options">
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q4" value="a"> a/ sont parallèles
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q4" value="b"> b/ perpendiculaires
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q4" value="c"> c/ sécantes
+                    </div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">5-</span> Si \(t_{\overrightarrow{AB}}(B) = E\) alors les coordonnées de E sont :</p>
+                <div class="Tests-Hub-mcq-options">
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q5" value="a"> a/ (5, 6)
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q5" value="b"> b/ (3, 2)
+                    </div>
+                    <div class="Tests-Hub-mcq-option">
+                        <input type="radio" name="q5" value="c"> c/ (6, 5)
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercice 2 -->
+        <div class="Tests-Hub-test-section">
+            <h2>Exercice n°2 (10 points)</h2>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> Résoudre dans \(\mathbb{R}\) :</p>
+                <p>a/ \(x^{2} + 8x + 15 \geq 0\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre réponse..."></textarea>
+                
+                <p>b/ \(\sqrt{x^2 + 8x + 15} = 2x + 6\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre réponse..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> Soit \(f(x) = x^3 + 7x^2 + 7x - 15\)</p>
+                <p>a/ Vérifier que \(f(x) = (x-1)(x^2 + 8x + 15)\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Vérification..."></textarea>
+                
+                <p>b/ Résoudre \(f(x) < 0\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Résolution..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3-</span></p>
+                <p>a/ Développer \((x^2-1)(x-a)\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Développement..."></textarea>
+                
+                <p>b/ Factoriser alors \(g(x) = x^3 - 3x^2 - x + 3\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Factorisation..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4-</span> Soit \(h(x) = \frac{g(x)}{f(x)}\)</p>
+                <p>a/ Trouver le domaine de définition \(D_h\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Domaine de définition..."></textarea>
+                
+                <p>b/ Montrer que \(h(x) = \frac{x^2 - 2x - 3}{x^2 + 8x + 15}\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Démonstration..."></textarea>
+                
+                <p>c/ Résoudre \(h(x) \geq 0\)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Résolution..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Exercice 3 -->
+        <div class="Tests-Hub-test-section">
+            <h2>Exercice n°3 (4 points)</h2>
+            <p>Soit (C) et (C') deux cercles isométriques de centres respectivement O et O' sécants en A et B.</p>
+            <p>Δ la droite parallèle à (OO') passant par A qui coupe le cercle (C) en E et le cercle (C') en F.</p>
+            
+            <div class="Tests-Hub-geometric-figure">
+                <div class="Tests-Hub-figure-canvas" id="figure1">
+                    <!-- La figure sera dessinée avec JavaScript -->
+                </div>
+                <div class="Tests-Hub-image-caption">Figure 1: Cercles isométriques (C) et (C')</div>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> Soit t: la translation de vecteur \(\overrightarrow{OO'}\)</p>
+                <p>a/ Montrer que t(C) = C'</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Démonstration..."></textarea>
+                
+                <p>b/ Trouver t(Δ)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Réponse..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span></p>
+                <p>a/ Montrer que t(A) = F et t(E) = A</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Démonstration..."></textarea>
+                
+                <p>b/ En déduire que A est milieu de [EF]</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Déduction..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Exercice 4 -->
+        <div class="Tests-Hub-test-section">
+            <h2>Exercice n°4 (4 points)</h2>
+            <p>Soit ABC un triangle tel que AB = 4, AC = 5 et BC = 6.</p>
+            <p>On désigne par I milieu de [AB] et J milieu de [BC]. H est le barycentre des points pondérés (A, 2) et (C, 1).</p>
+            
+            <div class="Tests-Hub-geometric-figure">
+                <div class="Tests-Hub-figure-canvas" id="figure2">
+                    <!-- La figure sera dessinée avec JavaScript -->
+                </div>
+                <div class="Tests-Hub-image-caption">Figure 2: Triangle ABC avec points I, J, H et K</div>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> Construire H</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Description de la construction..."></textarea>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> Soit K le point défini par \(2\overrightarrow{KA} + 3\overrightarrow{KB} + \overrightarrow{KC} = \overrightarrow{0}\)</p>
+                <p>a/ Montrer que K est le milieu de [HB]</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Démonstration..."></textarea>
+                
+                <p>b/ Montrer que K est le barycentre des points pondérés (I, 2) et (J, 1)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Démonstration..."></textarea>
+                
+                <p>c/ En déduire une construction simple de K</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Description de la construction..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.synthesisTest.showCorrection">Afficher la correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>Correction du devoir</h2>
+            
+            <h3>Exercice 1 - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1-</span> <strong>a/ \(\binom{2}{4}\)</strong></p>
+                <p><strong>Justification :</strong> \(\overrightarrow{AB} = \binom{x_B - x_A}{y_B - y_A} = \binom{3-1}{2-(-2)} = \binom{2}{4}\)</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2-</span> <strong>b/ \(2\sqrt{5}\)</strong></p>
+                <p><strong>Justification :</strong> \(AB = \sqrt{(3-1)^2 + (2-(-2))^2} = \sqrt{2^2 + 4^2} = \sqrt{4 + 16} = \sqrt{20} = 2\sqrt{5}\)</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3-</span> <strong>a/ 0</strong></p>
+                <p><strong>Justification :</strong> \(\det(\overrightarrow{AB}, \overrightarrow{CD}) = \begin{vmatrix} 2 & 1 \\ 4 & 2 \end{vmatrix} = (2 \times 2) - (4 \times 1) = 4 - 4 = 0\)</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4-</span> <strong>a/ sont parallèles</strong></p>
+                <p><strong>Justification :</strong> Deux vecteurs sont colinéaires (donc les droites sont parallèles) si leur déterminant est nul. Comme le déterminant calculé est 0, les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont colinéaires.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">5-</span> <strong>a/ (5, 6)</strong></p>
+                <p><strong>Justification :</strong> La translation \(t_{\overrightarrow{AB}}\) appliquée à B donne E tel que \(\overrightarrow{BE} = \overrightarrow{AB}\). Donc \(E = B + \overrightarrow{AB} = (3, 2) + (2, 4) = (5, 6)\)</p>
+            </div>
+            
+            <h3>Exercice 2 - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1-</span> <strong>Correction :</strong></p>
+                <p>a/ \(x^2 + 8x + 15 \geq 0\)</p>
+                <p>\(\Delta = 64 - 60 = 4\), racines : \(x_1 = \frac{-8-2}{2} = -5\), \(x_2 = \frac{-8+2}{2} = -3\)</p>
+                <p>Le trinôme est positif à l'extérieur des racines : \(S = ]-\infty, -5] \cup [-3, +\infty[\)</p>
+                <p>b/ \(\sqrt{x^2 + 8x + 15} = 2x + 6\)</p>
+                <p>Conditions : \(2x + 6 \geq 0 \Rightarrow x \geq -3\)</p>
+                <p>Équation : \(x^2 + 8x + 15 = (2x + 6)^2 = 4x^2 + 24x + 36\)</p>
+                <p>\(0 = 3x^2 + 16x + 21\)</p>
+                <p>\(\Delta = 256 - 252 = 4\), \(x_1 = \frac{-16-2}{6} = -3\), \(x_2 = \frac{-16+2}{6} = -\frac{7}{3}\)</p>
+                <p>Seule \(x = -3\) vérifie \(x \geq -3\) : \(S = \{-3\}\)</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2-</span> <strong>Correction :</strong></p>
+                <p>a/ \((x-1)(x^2 + 8x + 15) = x^3 + 8x^2 + 15x - x^2 - 8x - 15 = x^3 + 7x^2 + 7x - 15 = f(x)\)</p>
+                <p>b/ \(f(x) = (x-1)(x+3)(x+5)\)</p>
+                <p>Tableau de signes :</p>
+                <ul>
+                    <li>Sur \(]-\infty, -5[\) : (−)(−)(−) = −</li>
+                    <li>Sur \(]-5, -3[\) : (−)(−)(+) = +</li>
+                    <li>Sur \(]-3, 1[\) : (−)(+)(+) = −</li>
+                    <li>Sur \(]1, +\infty[\) : (+)(+)(+) = +</li>
+                </ul>
+                <p>Donc \(f(x) < 0 \Leftrightarrow x \in ]-\infty, -5[ \cup ]-3, 1[\)</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3-</span> <strong>Correction :</strong></p>
+                <p>a/ \((x^2-1)(x-a) = x^3 - ax^2 - x + a\)</p>
+                <p>b/ \(g(1) = 1 - 3 - 1 + 3 = 0\), donc 1 est racine.</p>
+                <p>Division euclidienne : \(g(x) = (x-1)(x^2 - 2x - 3)\)</p>
+                <p>Factorisation : \(x^2 - 2x - 3 = (x+1)(x-3)\)</p>
+                <p>Donc \(g(x) = (x-1)(x+1)(x-3)\)</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4-</span> <strong>Correction :</strong></p>
+                <p>a/ \(D_h = \{x \in \mathbb{R} \mid f(x) \neq 0\}\)</p>
+                <p>\(f(x) = 0 \Leftrightarrow x = 1, x = -3, x = -5\)</p>
+                <p>Donc \(D_h = \mathbb{R} \setminus \{-5, -3, 1\}\)</p>
+                <p>b/ \(h(x) = \frac{g(x)}{f(x)} = \frac{(x-1)(x+1)(x-3)}{(x-1)(x+3)(x+5)} = \frac{(x+1)(x-3)}{(x+3)(x+5)} = \frac{x^2 - 2x - 3}{x^2 + 8x + 15}\)</p>
+                <p>c/ Étude du signe sur \(D_h\) :</p>
+                <ul>
+                    <li>Sur \(]-\infty, -5[\) : (+)/(+) = +</li>
+                    <li>Sur \(]-5, -3[\) : (+)/(−) = −</li>
+                    <li>Sur \(]-3, -1[\) : (+)/(+) = +</li>
+                    <li>Sur \(]-1, 1[\) : (−)/(+) = −</li>
+                    <li>Sur \(]1, 3[\) : (−)/(+) = −</li>
+                    <li>Sur \(]3, +\infty[\) : (+)/(+) = +</li>
+                </ul>
+                <p>Donc \(h(x) \geq 0 \Leftrightarrow x \in ]-\infty, -5[ \cup ]-3, -1] \cup [3, +\infty[\)</p>
+            </div>
+            
+            <h3>Exercice 3 - Correction avec figure</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1-</span> <strong>Correction :</strong></p>
+                <p>a/ Puisque les cercles sont isométriques (même rayon) et que t est la translation de vecteur \(\overrightarrow{OO'}\), l'image d'un cercle de centre O et de rayon R par t est le cercle de centre O' et de même rayon R. Donc t(C) = C'.</p>
+                <p>b/ t(Δ) : Puisque Δ est parallèle à (OO'), et que t est une translation de vecteur \(\overrightarrow{OO'}\), l'image de Δ par t est une droite parallèle à Δ et donc à (OO').</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2-</span> <strong>Correction :</strong></p>
+                <p>a/ • t(A) appartient à t(Δ) et à t(C) = C'.<br>
+                • F est l'intersection de Δ avec C'. Donc t(A) = F.<br>
+                • t(E) appartient à t(C) ∩ t(Δ) = C' ∩ t(Δ).<br>
+                • A ∈ C' ∩ Δ, donc t(E) = A.</p>
+                <p>b/ La translation t envoie E sur A et A sur F.<br>
+                Donc \(\overrightarrow{AE} = \overrightarrow{FA}\), ce qui signifie que A est le milieu de [EF].</p>
+            </div>
+            
+            <div class="Tests-Hub-geometric-figure">
+                <div class="Tests-Hub-figure-canvas" id="correctionFigure1">
+                    <!-- Figure des cercles sera dessinée ici -->
+                </div>
+                <div class="Tests-Hub-image-caption">Figure de correction: Cercles isométriques (C) et (C') avec translation</div>
+            </div>
+            
+            <h3>Exercice 4 - Correction avec figure</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1-</span> <strong>Construction de H :</strong></p>
+                <p>H est le barycentre de {(A, 2), (C, 1)}.</p>
+                <p>Relation : \(2\overrightarrow{HA} + \overrightarrow{HC} = \overrightarrow{0}\)</p>
+                <p>Donc \(\overrightarrow{AH} = \frac{1}{3}\overrightarrow{AC}\)</p>
+                <p>H est sur [AC] tel que AH = AC/3 = 5/3</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2-</span> <strong>Correction :</strong></p>
+                <p>a/ De \(2\overrightarrow{KA} + 3\overrightarrow{KB} + \overrightarrow{KC} = \overrightarrow{0}\) et \(2\overrightarrow{HA} + \overrightarrow{HC} = \overrightarrow{0}\),<br>
+                on démontre que \(3\overrightarrow{KB} = 3\overrightarrow{KH}\), donc \(\overrightarrow{KB} = \overrightarrow{KH}\).<br>
+                Ainsi K est le milieu de [HB].</p>
+                
+                <p>b/ I milieu de [AB] : \(\overrightarrow{IA} + \overrightarrow{IB} = \overrightarrow{0}\)<br>
+                J milieu de [BC] : \(\overrightarrow{JB} + \overrightarrow{JC} = \overrightarrow{0}\)<br>
+                On montre que \(2\overrightarrow{KI} + \overrightarrow{KJ} = \overrightarrow{0}\), donc K barycentre de {(I, 2), (J, 1)}.</p>
+                
+                <p>c/ Construction simple : Placer K sur [IJ] tel que \(\overrightarrow{IK} = \frac{1}{3}\overrightarrow{IJ}\)</p>
+            </div>
+            
+            <div class="Tests-Hub-geometric-figure">
+                <div class="Tests-Hub-figure-canvas" id="correctionFigure2">
+                    <!-- Figure du triangle sera dessinée ici -->
+                </div>
+                <div class="Tests-Hub-image-caption">Figure de correction: Triangle ABC avec points I, J, H, K</div>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.synthesisTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.synthesisTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.synthesisTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.0.8</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for Synthesis Test page
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            fr: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "Mathématiques - Devoir de Synthèse",
+                        subtitle: "2ème Année Sciences",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "Mathematics - Synthesis Test",
+                        subtitle: "2nd Year Sciences",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "الرياضيات - اختبار تأليفي",
+                        subtitle: "السنة الثانية علوم",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content (only for UI elements)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            drawGeometricFigures();
+        }
+        
+        // Function to change language (only for UI, not test content)
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Function to draw geometric figures
+        function drawGeometricFigures() {
+            // Figure 1: Two intersecting circles
+            const figure1 = document.getElementById('figure1');
+            const correctionFigure1 = document.getElementById('correctionFigure1');
+            
+            [figure1, correctionFigure1].forEach(canvasContainer => {
+                if (!canvasContainer) return;
+                
+                canvasContainer.innerHTML = '';
+                const width = canvasContainer.clientWidth;
+                const height = canvasContainer.clientHeight;
+                
+                // Create canvas for drawing
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                canvasContainer.appendChild(canvas);
+                
+                const ctx = canvas.getContext('2d');
+                
+                // Set colors based on theme
+                const circleColor = isDarkTheme ? '#60a5fa' : '#2563eb';
+                const pointColor = isDarkTheme ? '#93c5fd' : '#3B82F6';
+                const lineColor = isDarkTheme ? '#10b981' : '#059669';
+                const textColor = isDarkTheme ? '#dbeafe' : '#1e3a8a';
+                
+                // Draw two intersecting circles
+                const center1 = {x: width * 0.35, y: height * 0.5};
+                const center2 = {x: width * 0.65, y: height * 0.5};
+                const radius = height * 0.3;
+                
+                // Draw circles
+                ctx.strokeStyle = circleColor;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(center1.x, center1.y, radius, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.fillText('(C)', center1.x - radius/2, center1.y - radius - 10);
+                
+                ctx.beginPath();
+                ctx.arc(center2.x, center2.y, radius, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.fillText("(C')", center2.x + radius/2, center2.y - radius - 10);
+                
+                // Calculate intersection points
+                const d = Math.sqrt(Math.pow(center2.x - center1.x, 2) + Math.pow(center2.y - center1.y, 2));
+                const a = (Math.pow(radius, 2) - Math.pow(radius, 2) + Math.pow(d, 2)) / (2 * d);
+                const h = Math.sqrt(Math.pow(radius, 2) - Math.pow(a, 2));
+                
+                const intersection1 = {
+                    x: center1.x + a * (center2.x - center1.x) / d - h * (center2.y - center1.y) / d,
+                    y: center1.y + a * (center2.y - center1.y) / d + h * (center2.x - center1.x) / d
+                };
+                
+                const intersection2 = {
+                    x: center1.x + a * (center2.x - center1.x) / d + h * (center2.y - center1.y) / d,
+                    y: center1.y + a * (center2.y - center1.y) / d - h * (center2.x - center1.x) / d
+                };
+                
+                // Draw points
+                ctx.fillStyle = pointColor;
+                
+                // Centers
+                ctx.beginPath();
+                ctx.arc(center1.x, center1.y, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(center2.x, center2.y, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Intersection points
+                ctx.fillStyle = '#ef4444';
+                ctx.beginPath();
+                ctx.arc(intersection1.x, intersection1.y, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(intersection2.x, intersection2.y, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw line Δ (parallel to OO') through A
+                ctx.strokeStyle = lineColor;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(intersection1.x - radius * 0.8, intersection1.y);
+                ctx.lineTo(intersection1.x + radius * 0.8, intersection1.y);
+                ctx.stroke();
+                
+                // Draw points E and F on circles along line Δ
+                const pointE = {
+                    x: intersection1.x - radius * 0.7,
+                    y: intersection1.y
+                };
+                
+                const pointF = {
+                    x: intersection1.x + radius * 0.7,
+                    y: intersection1.y
+                };
+                
+                ctx.fillStyle = '#8b5cf6';
+                ctx.beginPath();
+                ctx.arc(pointE.x, pointE.y, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(pointF.x, pointF.y, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw labels
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText('O', center1.x - 15, center1.y - 10);
+                ctx.fillText("O'", center2.x + 10, center2.y - 10);
+                ctx.fillText('A', intersection1.x + 10, intersection1.y - 10);
+                ctx.fillText('B', intersection2.x + 10, intersection2.y + 15);
+                ctx.fillText('E', pointE.x - 15, pointE.y - 10);
+                ctx.fillText('F', pointF.x + 10, pointF.y - 10);
+                ctx.fillText('Δ', intersection1.x + radius * 0.9, intersection1.y - 10);
+                
+                // Draw line OO'
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([5, 3]);
+                ctx.beginPath();
+                ctx.moveTo(center1.x, center1.y);
+                ctx.lineTo(center2.x, center2.y);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+            
+            // Figure 2: Triangle with points
+            const figure2 = document.getElementById('figure2');
+            const correctionFigure2 = document.getElementById('correctionFigure2');
+            
+            [figure2, correctionFigure2].forEach(canvasContainer => {
+                if (!canvasContainer) return;
+                
+                canvasContainer.innerHTML = '';
+                const width = canvasContainer.clientWidth;
+                const height = canvasContainer.clientHeight;
+                
+                // Create canvas for drawing
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                canvasContainer.appendChild(canvas);
+                
+                const ctx = canvas.getContext('2d');
+                
+                // Set colors based on theme
+                const lineColor = isDarkTheme ? '#60a5fa' : '#2563eb';
+                const pointColor = isDarkTheme ? '#93c5fd' : '#3B82F6';
+                const specialPointColor = '#f59e0b';
+                const textColor = isDarkTheme ? '#dbeafe' : '#1e3a8a';
+                
+                // Draw triangle ABC (scaled to fit)
+                const scale = Math.min(width, height) / 8;
+                const pointA = {x: width * 0.3, y: height * 0.7};
+                const pointB = {x: width * 0.7, y: height * 0.7};
+                const pointC = {x: width * 0.5, y: height * 0.3};
+                
+                // Draw triangle
+                ctx.strokeStyle = lineColor;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(pointA.x, pointA.y);
+                ctx.lineTo(pointB.x, pointB.y);
+                ctx.lineTo(pointC.x, pointC.y);
+                ctx.closePath();
+                ctx.stroke();
+                
+                // Calculate midpoints
+                const pointI = {
+                    x: (pointA.x + pointB.x) / 2,
+                    y: (pointA.y + pointB.y) / 2
+                };
+                
+                const pointJ = {
+                    x: (pointB.x + pointC.x) / 2,
+                    y: (pointB.y + pointC.y) / 2
+                };
+                
+                // Calculate H (barycenter of A,2 and C,1)
+                const pointH = {
+                    x: (2 * pointA.x + 1 * pointC.x) / 3,
+                    y: (2 * pointA.y + 1 * pointC.y) / 3
+                };
+                
+                // Calculate K (midpoint of HB)
+                const pointK = {
+                    x: (pointH.x + pointB.x) / 2,
+                    y: (pointH.y + pointB.y) / 2
+                };
+                
+                // Draw points
+                ctx.fillStyle = pointColor;
+                [pointA, pointB, pointC].forEach(point => {
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                // Draw special points
+                ctx.fillStyle = specialPointColor;
+                [pointI, pointJ, pointH, pointK].forEach(point => {
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                // Draw segment HB
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(pointH.x, pointH.y);
+                ctx.lineTo(pointB.x, pointB.y);
+                ctx.stroke();
+                
+                // Draw segment IJ
+                ctx.strokeStyle = '#8b5cf6';
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(pointI.x, pointI.y);
+                ctx.lineTo(pointJ.x, pointJ.y);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                
+                // Mark K on IJ
+                ctx.fillStyle = '#dc2626';
+                ctx.beginPath();
+                ctx.arc(pointK.x, pointK.y, 6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw labels
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText('A', pointA.x - 15, pointA.y + 5);
+                ctx.fillText('B', pointB.x + 10, pointB.y + 5);
+                ctx.fillText('C', pointC.x, pointC.y - 15);
+                ctx.fillText('I', pointI.x, pointI.y + 15);
+                ctx.fillText('J', pointJ.x + 10, pointJ.y);
+                ctx.fillText('H', pointH.x - 15, pointH.y - 10);
+                ctx.fillText('K', pointK.x + 10, pointK.y - 10);
+                
+                // Add side lengths
+                ctx.font = 'italic 12px Arial';
+                ctx.fillText('AB = 4', (pointA.x + pointB.x)/2, (pointA.y + pointB.y)/2 + 15);
+                ctx.fillText('AC = 5', (pointA.x + pointC.x)/2 - 20, (pointA.y + pointC.y)/2);
+                ctx.fillText('BC = 6', (pointB.x + pointC.x)/2 + 10, (pointB.y + pointC.y)/2);
+            });
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+            }
+            
+            // Render KaTeX formulas
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                throwOnError: false,
+                strict: false
+            });
+            
+            updateTextContent();
+            
+            // Draw geometric figures
+            drawGeometricFigures();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+                        
+                        // Re-render math in correction section when it becomes visible
+                        renderMathInElement(correctionSection, {
+                            delimiters: [
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false},
+                                {left: "\\(", right: "\\)", display: false},
+                                {left: "\\[", right: "\\]", display: true}
+                            ],
+                            throwOnError: false,
+                            strict: false
+                        });
+                        
+                        // Redraw figures for correction
+                        drawGeometricFigures();
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+            
+            // Redraw figures on window resize
+            window.addEventListener('resize', function() {
+                setTimeout(drawGeometricFigures, 100);
+            });
+        });
+    </script>
+</body>
+</html>
