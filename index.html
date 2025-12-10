@@ -1095,6 +1095,28 @@
 .Tests-Hub-subject-card[data-subject="philosophy"] .Tests-Hub-subject-card-header {
   background: linear-gradient(to right, #8e2de2, #4a00e0) !important;
 }
+
+.Tests-Hub-subject-card[data-subject="physics"] .Tests-Hub-subject-card-header {
+    background: linear-gradient(to right, #3a7bd5, #00d2ff) !important;
+}
+.Tests-Hub-subject-card[data-subject="maths"] .Tests-Hub-subject-card-header {
+    background: linear-gradient(to right, #FF512F, #F09819) !important;
+}
+.Tests-Hub-subject-card[data-subject="french"] .Tests-Hub-subject-card-header {
+    background: linear-gradient(to right, #0052D4, #4364F7, #6FB1FC) !important;
+}
+.Tests-Hub-subject-card[data-subject="arabic"] .Tests-Hub-subject-card-header {
+    background: linear-gradient(to right, #8B0000, #B22222) !important;
+}
+.Tests-Hub-subject-card[data-subject="english"] .Tests-Hub-subject-card-header {
+    background: linear-gradient(to right, #1D2671, #C33764) !important;
+}
+.Tests-Hub-subject-card[data-subject="islamic"] .Tests-Hub-subject-card-header {
+    background: linear-gradient(to right, #009900, #32CD32) !important;
+}
+.Tests-Hub-subject-card[data-subject="technology"] .Tests-Hub-subject-card-header {
+    background: linear-gradient(to right, #8E2DE2, #4A00E0) !important;
+}
 		</style>
 	</head>
 	<body>
@@ -1571,7 +1593,7 @@ informatics: { trim1: {}, trim2: {}, trim3: {} }
 					technology: { trim1: {}, trim2: {}, trim3: {} },
 					naturalSciences: {
 						trim1: {
-							type2: 1   // 4 final-term test
+							type2: 2   // 4 final-term test
 						},
 						trim2: {},    // No tests available yet
 						trim3: {}     // No tests available yet
@@ -1594,8 +1616,7 @@ informatics: { trim1: {}, trim2: {}, trim3: {} }
 					maths: { trim1: {}, trim2: {}, trim3: {} },
 					french: {
 						trim1: {
-							type1: 1,  // 1 mid-term tests
-							type2: 3   // 3 final-term test
+							type2: 6   // 3 final-term test
 						},
 						trim2: {},    // No tests available yet
 						trim3: {}     // No tests available yet
@@ -2488,50 +2509,68 @@ philosophy: {
 				localStorage.setItem('testsHubLanguage', lang);
 			}
 			// Function to open year subjects modal
-			function openYearSubjects(year) {
-				currentYear = year;
-				// Get year data
-				const yearKey = year === '1st-secondary' ? '1stSecondary' : 
-				year === '2nd-secondary' ? '2ndSecondary' :
-				year === '3rd-secondary' ? '3rdSecondary' :
-				year === '4th-secondary' ? '4thSecondary' : year;
-				const yearData = TestsHub_translations[currentLanguage].TestsHub.cards[yearKey];
-				// Set modal title
-				document.getElementById('subjectsModalTitle').textContent = 
-				`${yearData.title} - ${yearData.subtitle}`;
-				// Set modal intro
-				document.getElementById('subjectsModalIntroTitle').textContent = yearData.introTitle;
-				document.getElementById('subjectsModalIntroDescription').textContent = yearData.introDescription;
-				// Clear subjects grid
-				const subjectsGrid = document.getElementById('subjectsGrid');
-				subjectsGrid.innerHTML = '';
-				// Add subject cards
-				subjectsData.forEach(subject => {
-					const subjectCard = document.createElement('div');
-					subjectCard.className = 'Tests-Hub-subject-card';
-					subjectCard.onclick = () => openTrimestersModal(subject.key, subject.titleKey);
-					// Get subject translations
-					const subjectTitle = getTranslation(subject.titleKey);
-					const subjectDescription = getTranslation(subject.descriptionKey);
-					subjectCard.innerHTML = `
-					<div class="Tests-Hub-subject-card-header" style="background: ${yearColors[year]};">
-					<div class="Tests-Hub-subject-card-icon">${subject.icon}</div>
-					<h2 class="Tests-Hub-subject-card-title">${subjectTitle}</h2>
-					</div>
-					<div class="Tests-Hub-subject-card-content">
-					<p class="Tests-Hub-subject-card-description">${subjectDescription}</p>
-					<div class="Tests-Hub-subject-card-link">
-					<span data-i18n="TestsHub.subjects.viewTrimesters">View Trimesters</span> <span class="arrow">→</span>
-					</div>
-					</div>
-					`;
-					subjectsGrid.appendChild(subjectCard);
-				});
-				// Update translations for newly added elements
-				updateTextContent();
-				// Open modal
-				openModal('subjectsModal');
-			}
+			// Function to open year subjects modal
+function openYearSubjects(year) {
+    currentYear = year;
+    // Get year data
+    const yearKey = year === '1st-secondary' ? '1stSecondary' : 
+    year === '2nd-secondary' ? '2ndSecondary' :
+    year === '3rd-secondary' ? '3rdSecondary' :
+    year === '4th-secondary' ? '4thSecondary' : year;
+    const yearData = TestsHub_translations[currentLanguage].TestsHub.cards[yearKey];
+    
+    // Set modal title
+    document.getElementById('subjectsModalTitle').textContent = 
+    `${yearData.title} - ${yearData.subtitle}`;
+    
+    // Set modal intro
+    document.getElementById('subjectsModalIntroTitle').textContent = yearData.introTitle;
+    document.getElementById('subjectsModalIntroDescription').textContent = yearData.introDescription;
+    
+    // Clear subjects grid
+    const subjectsGrid = document.getElementById('subjectsGrid');
+    subjectsGrid.innerHTML = '';
+    
+    // Filter subjects based on year
+    let filteredSubjects = subjectsData;
+    
+    // Philosophy is only available for 3rd and 4th secondary
+    if (year !== '3rd-secondary' && year !== '4th-secondary') {
+        filteredSubjects = subjectsData.filter(subject => subject.key !== 'philosophy');
+    }
+    
+    // Add subject cards
+    filteredSubjects.forEach(subject => {
+        const subjectCard = document.createElement('div');
+        subjectCard.className = 'Tests-Hub-subject-card';
+        subjectCard.setAttribute('data-subject', subject.key);
+        subjectCard.onclick = () => openTrimestersModal(subject.key, subject.titleKey);
+        
+        // Get subject translations
+        const subjectTitle = getTranslation(subject.titleKey);
+        const subjectDescription = getTranslation(subject.descriptionKey);
+        
+        subjectCard.innerHTML = `
+        <div class="Tests-Hub-subject-card-header">
+            <div class="Tests-Hub-subject-card-icon">${subject.icon}</div>
+            <h2 class="Tests-Hub-subject-card-title">${subjectTitle}</h2>
+        </div>
+        <div class="Tests-Hub-subject-card-content">
+            <p class="Tests-Hub-subject-card-description">${subjectDescription}</p>
+            <div class="Tests-Hub-subject-card-link">
+                <span data-i18n="TestsHub.subjects.viewTrimesters">View Trimesters</span> <span class="arrow">→</span>
+            </div>
+        </div>
+        `;
+        subjectsGrid.appendChild(subjectCard);
+    });
+    
+    // Update translations for newly added elements
+    updateTextContent();
+    
+    // Open modal
+    openModal('subjectsModal');
+}
 			// Function to open trimesters modal
 			function openTrimestersModal(subjectKey, subjectTitleKey) {
 				currentSubject = subjectKey;
