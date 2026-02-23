@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 2 (7ème) - Type 3 (معدل)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#ea580c">
+    <meta name="description" content="فرض تأليفي عدد 2 للسنة السابعة أساسي - رياضيات (الأستاذ: فوزي الغربي)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض تأليفي">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <style>
+        /* نفس الأنماط الأصلية مع الحفاظ على كل شيء */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #7c2d12 0%, #9a3412 100%);
+            color: #fef3c7;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #ea580c, #f97316);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #7c2d12, #ea580c, #f97316);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #9a3412;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #fef3c7;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #ea580c;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #ea580c, #f97316);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #7c2d12, #ea580c);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #9a3412;
+            color: #fef3c7;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #ea580c;
+            border-bottom: 2px solid #f97316;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #fdba74;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #f97316;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #fed7aa;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #fff7ed;
+            padding: 1rem;
+            border-right: 4px solid #ea580c;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #7c2d12;
+            border-right-color: #f97316;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: right;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #ea580c;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #7c2d12;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #ea580c;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #92400e;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #92400e;
+            background-color: #9a3412;
+            color: #fef3c7;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-right: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #ea580c;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #fdba74;
+        }
+        
+        /* Style pour les formules mathématiques */
+        .Tests-Hub-math-formula {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+            overflow-x: auto;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-math-formula {
+            background: #1c1917;
+        }
+        
+        /* جميع التعبيرات الرياضية يجب أن تكون LTR */
+        .math-expression, 
+        .katex, 
+        .katex *,
+        [dir="ltr"] {
+            direction: ltr !important;
+            text-align: left !important;
+            unicode-bidi: embed !important;
+        }
+        
+        .katex {
+            font-size: 1.1em !important;
+        }
+        
+        /* Canvas container for diagram */
+        .Tests-Hub-diagram-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .Tests-Hub-diagram-canvas {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-canvas {
+            border-color: #92400e;
+            background: #1c1917;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #ea580c, #f97316);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #fff7ed;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #ea580c;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #7c2d12;
+            border-right-color: #f97316;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #ea580c;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #fdba74;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(234, 88, 12, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #ea580c;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(253, 186, 116, 0.1);
+            border-right-color: #fdba74;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #ea580c, #f97316);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #7c2d12, #ea580c, #f97316);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+        }
+        
+        /* Download Buttons */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(234, 88, 12, 0.1), rgba(249, 115, 22, 0.1));
+            border-radius: 12px;
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* حقول الإدخال: LTR للأرقام */
+        .Tests-Hub-large-textarea,
+        .Tests-Hub-table-textarea,
+        .Tests-Hub-answer-textarea {
+            direction: ltr !important;
+            text-align: left !important;
+            unicode-bidi: embed !important;
+            font-family: 'Courier New', monospace !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title">الرياضيات - فرض تأليفي عدد 2</h1>
+                    <div class="Tests-Hub-header-subtitle">السابعة أساسي - النموذجية ضفاف البحيرة</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>→</span>
+                    <span>العودة للاختبارات</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span>العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span>الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض تأليفي عدد 2 في الرياضيات</h1>
+            <p>السنة الدراسية: 2024-2025</p>
+            <p>القسم: السابعة أساسي</p>
+            <p>الأستاذ: Mr Faouzi El Gharbi</p>
+            <p>الإعدادية: النموذجية ضفاف البحيرة</p>
+            <p>المدة: 60 دقيقة</p>
+        </div>
+        
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات عامة</h3>
+            <ul>
+                <li>يحتوي الموضوع على 5 تمارين</li>
+                <li>جودة التحرير ووضوح المنطق سوف يؤخذان بعين الاعتبار</li>
+                <li>يجب تبرير كل الإجابات</li>
+                <li>غير مسموح باستعمال الآلة الحاسبة</li>
+            </ul>
+        </div>
+        
+        <!-- ==================== التمرين 1 (4 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 1 (4 نقاط)</h2>
+            <p><strong>ضع علامة (✓) أمام العبارة الصحيحة وعلامة (✗) أمام الخاطئة:</strong></p>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> العدد \(\frac{91}{26}\) هو عدد كسري عشري.</p>
+                <label><input type="radio" name="q1_1" value="true"> صواب</label>
+                <label style="margin-right:15px;"><input type="radio" name="q1_1" value="false"> خطأ</label>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> المربع هو مستطيل أضلاعه متقايسة.</p>
+                <label><input type="radio" name="q1_2" value="true"> صواب</label>
+                <label style="margin-right:15px;"><input type="radio" name="q1_2" value="false"> خطأ</label>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3)</span> كل رباعي محدب قطراه متعامدان هو معين.</p>
+                <label><input type="radio" name="q1_3" value="true"> صواب</label>
+                <label style="margin-right:15px;"><input type="radio" name="q1_3" value="false"> خطأ</label>
+            </div>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4)</span> كل عدد كسري يمكن كتابته في صيغة مجموع لعدد صحيح مخالف للصفر وعدد كسري أصغر من 1.</p>
+                <label><input type="radio" name="q1_4" value="true"> صواب</label>
+                <label style="margin-right:15px;"><input type="radio" name="q1_4" value="false"> خطأ</label>
+            </div>
+        </div>
+        
+        <!-- ==================== التمرين 2 (2 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 2 (2 نقاط)</h2>
+            <p>قضى سامي ثلث يومه في الدراسة وربعه في النوم وسدسه في الراحة. ما هو العدد الكسري الذي يمثل الوقت الذي بقي له للعب إذا علمت أنه يقضي ساعة يوميا في التنظيف؟</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="أكتب الإجابة هنا..."></textarea>
+        </div>
+        
+        <!-- ==================== التمرين 3 (6 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 3 (6 نقاط)</h2>
+            
+            <p><strong>1. احسب بأيسر طريقة:</strong></p>
+            <p>\(3,5 + \frac{7}{3} + \frac{21}{28} + \frac{4}{6} + 3,25 + 0,1 + \frac{55}{22} =\) <input type="text" class="Tests-Hub-answer-textarea" style="width:200px;"></p>
+            <p>\(\left(\frac{5}{3} - 0,75 + \frac{1}{4}\right) - \left(\frac{1}{6} + 0,25 - \frac{3}{4}\right) =\) <input type="text" class="Tests-Hub-answer-textarea" style="width:200px;"></p>
+            
+            <p><strong>2. احسب بطريقتين مختلفتين:</strong></p>
+            <p>\(\frac{7}{5} - \left(\frac{13}{15} - \frac{1}{3}\right) =\) <input type="text" class="Tests-Hub-answer-textarea" style="width:150px;"> (الطريقة الأولى)</p>
+            <p><input type="text" class="Tests-Hub-answer-textarea" style="width:150px;"> (الطريقة الثانية)</p>
+            
+            <p><strong>3. إملأ الفراغ بالعدد الكسري المناسب في كل حالة:</strong></p>
+            <p>أ) \(\frac{11}{5} + \left( \frac{...}{...} + \frac{7}{3} \right) = \frac{51}{10}\) : <input type="text" class="Tests-Hub-answer-textarea" style="width:80px;"></p>
+            <p>ب) \(\frac{5}{6} + \frac{...}{...} = \frac{13}{8}\) : <input type="text" class="Tests-Hub-answer-textarea" style="width:80px;"></p>
+            
+            <p><strong>4. أكتب في صيغة مجموع لعدد صحيح وعدد كسري أصغر من 1 ثم استنتج ترتيبا تصاعديا للأعداد الكسرية التالية:</strong></p>
+            <p>\(\frac{55}{17}\) ; \(\frac{61}{19}\) ; \(\frac{49}{15}\)</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="اكتب الصيغة ثم الترتيب..."></textarea>
+            
+            <p><strong>5. استخرج الأعداد العشرية من بين الأعداد الكسرية التالية واكتبها على شكل \(\frac{a}{10^n}\) حيث \(a\) و \(n\) عددان طبيعيان:</strong></p>
+            <p>\(\frac{63}{36}\) : <input type="text" class="Tests-Hub-answer-textarea" placeholder="عشري؟" style="width:80px;">  ,  \(\frac{a}{10^n} =\) <input type="text" class="Tests-Hub-answer-textarea" style="width:120px;"></p>
+            <p>\(\frac{122}{11}\) : <input type="text" class="Tests-Hub-answer-textarea" placeholder="عشري؟" style="width:80px;">  ,  \(\frac{a}{10^n} =\) <input type="text" class="Tests-Hub-answer-textarea" style="width:120px;"></p>
+        </div>
+        
+        <!-- ==================== التمرين 4 (3 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 4 (3 نقاط)</h2>
+            <p>جدول إحصائي يهتم بأعداد قسم 7 أساسي في مادة العربية:</p>
+            <table>
+                <tr><th>العدد المتحصل عليه</th><th>14</th><th>13</th><th>12</th><th>11</th><th>10</th><th>9</th><th>8</th><th>7</th><th>6</th></tr>
+                <tr><td>عدد التلاميذ</td><td>1</td><td>8</td><td>4</td><td>7</td><td>2</td><td>2</td><td>3</td><td>3</td><td>2</td></tr>
+            </table>
+            
+            <!-- رسم بياني للبيانات -->
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exercise4Canvas" class="Tests-Hub-diagram-canvas" width="500" height="250" style="width:100%; height:auto;"></canvas>
+            </div>
+            
+            <p><strong>1. حدد منوال ومدى هذه السلسلة.</strong></p>
+            <p>المنوال: <input type="text" class="Tests-Hub-answer-textarea" style="width:80px;">  المدى: <input type="text" class="Tests-Hub-answer-textarea" style="width:80px;"></p>
+            
+            <p><strong>2. احسب احتمال أن يكون التلميذ قد تحصل على عدد أقل من 10.</strong></p>
+            <input type="text" class="Tests-Hub-answer-textarea" style="width:150px;">
+            
+            <p><strong>3. احسب احتمال أن يكون العدد قابلا للقسمة على 3 و5 في آن واحد.</strong></p>
+            <input type="text" class="Tests-Hub-answer-textarea" style="width:150px;">
+        </div>
+        
+        <!-- ==================== التمرين 5 (5 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 5 (5 نقاط)</h2>
+            
+            <p>نعتبر مستطيلاً \(ABCD\) طوله \(BC = 6\,\text{cm}\) وعرضه \(AB = 4\,\text{cm}\).</p>
+            <p>ليكن \(IJ\) محور تناظر للمستطيل حيث يقطع \([BC]\) في \(I\) ويقطع \([AD]\) في \(J\).</p>
+            
+            <!-- رسم الفرض: يظهر المستطيل و I و J فقط -->
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exercise5Canvas" class="Tests-Hub-diagram-canvas" width="600" height="400" style="width:100%; height:auto;"></canvas>
+                <p style="font-size:0.9rem; color:#666;">الشكل المقابل (أعد رسمه على ورقتك وأكمل الأسئلة)</p>
+            </div>
+            
+            <p><strong>1. بين أن \(ABIJ\) مستطيل.</strong></p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="الإجابة..."></textarea>
+            
+            <p><strong>2. بين أن \(AID\) مثلث متقايس الضلعين (متساوي الساقين) قمته الرئيسية \(I\).</strong></p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="الإجابة..."></textarea>
+            
+            <p><strong>3. النقطة \(E\) هي منتصف \([ID]\) و \(G\) هي نقطة تقاطع \([AE]\) و \([DI]\). ماذا تمثل \(G\) في المثلث \(AID\)؟</strong></p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="الإجابة..."></textarea>
+            
+            <p><strong>4. إذا علمت أن \(ID = 5\,\text{cm}\)، تحقق أن \(F\) هي نقطة من \((AI)\) بحيث \(D, G, F\) مستقيمية. (أي: أرسم الشكل وتحقق أن المستقيم \((DG)\) يقطع \((AI)\) في نقطة \(F\)).</strong></p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="الإجابة..."></textarea>
+            
+            <p><strong>5. احسب \(BF\) معللاً جوابك.</strong></p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="الإجابة..."></textarea>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">عرض التصحيح</button>
+        </div>
+        
+        <!-- ==================== Correction Section ==================== -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>تصحيح الفرض</h2>
+            
+            <h3>التمرين 1</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1)</strong> صواب (لأن \(\frac{91}{26} = \frac{7}{2} = 3.5\) عدد عشري).</p>
+                <p><strong>2)</strong> صواب (المربع هو حالة خاصة من المستطيل).</p>
+                <p><strong>3)</strong> خطأ (مثال: شكل طائرة ورقية محدب له قطران متعامدان وليس معيناً).</p>
+                <p><strong>4)</strong> خطأ (مثل \(\frac{1}{2}\) لا يمكن كتابته كمجموع عدد صحيح غير صفري وكسر أصغر من 1).</p>
+            </div>
+            
+            <h3>التمرين 2</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p>الوقت المستغرق في الدراسة والنوم والراحة: \(\frac{1}{3}+\frac{1}{4}+\frac{1}{6} = \frac{4+3+2}{12} = \frac{9}{12} = \frac{3}{4}\) من اليوم. ساعة التنظيف = \(\frac{1}{24}\) من اليوم. إذن المجموع = \(\frac{3}{4} + \frac{1}{24} = \frac{18}{24} + \frac{1}{24} = \frac{19}{24}\). الباقي = \(1 - \frac{19}{24} = \frac{5}{24}\).</p>
+            </div>
+            
+            <h3>التمرين 3</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1.</strong> \(3,5 = \frac{7}{2}\)، \(3,25 = \frac{13}{4}\)، \(0,1 = \frac{1}{10}\)، \(\frac{21}{28} = \frac{3}{4}\)، \(\frac{4}{6} = \frac{2}{3}\)، \(\frac{55}{22} = \frac{5}{2}\). الجمع: \(\frac{7}{2}+\frac{5}{2}=6\)، \(\frac{7}{3}+\frac{2}{3}=3\)، \(\frac{3}{4}+\frac{13}{4}=4\)، ثم \(6+3+4+\frac{1}{10}=13+\frac{1}{10}=\frac{131}{10}=13,1\).</p>
+                <p>\(( \frac{5}{3} - \frac{3}{4} + \frac{1}{4} ) = \frac{5}{3} - \frac{1}{2} = \frac{10}{6} - \frac{3}{6} = \frac{7}{6}\). \(( \frac{1}{6} + \frac{1}{4} - \frac{3}{4}) = \frac{1}{6} - \frac{1}{2} = \frac{1}{6} - \frac{3}{6} = -\frac{2}{6} = -\frac{1}{3}\). الحاصل = \(\frac{7}{6} - (-\frac{1}{3}) = \frac{7}{6} + \frac{1}{3} = \frac{7}{6} + \frac{2}{6} = \frac{9}{6} = \frac{3}{2}\).</p>
+                <p><strong>2.</strong> الطريقة الأولى: \(\frac{7}{5} - (\frac{13}{15} - \frac{1}{3}) = \frac{7}{5} - (\frac{13}{15} - \frac{5}{15}) = \frac{7}{5} - \frac{8}{15} = \frac{21}{15} - \frac{8}{15} = \frac{13}{15}\). الطريقة الثانية: \(\frac{7}{5} - \frac{13}{15} + \frac{1}{3} = \frac{21}{15} - \frac{13}{15} + \frac{5}{15} = \frac{13}{15}\).</p>
+                <p><strong>3.</strong> أ) الكسر = \(\frac{51}{10} - \frac{11}{5} - \frac{7}{3} = \frac{51}{10} - \frac{22}{10} - \frac{7}{3} = \frac{29}{10} - \frac{7}{3} = \frac{87-70}{30} = \frac{17}{30}\). ب) الكسر = \(\frac{13}{8} - \frac{5}{6} = \frac{39-20}{24} = \frac{19}{24}\).</p>
+                <p><strong>4.</strong> \(\frac{55}{17} = 3 + \frac{4}{17}\)، \(\frac{61}{19} = 3 + \frac{4}{19}\)، \(\frac{49}{15} = 3 + \frac{4}{15}\). بما أن \(\frac{4}{19} < \frac{4}{17} < \frac{4}{15}\)، فالترتيب التصاعدي: \(\frac{61}{19} < \frac{55}{17} < \frac{49}{15}\).</p>
+                <p><strong>5.</strong> \(\frac{63}{36} = \frac{7}{4} = 1,75\) عدد عشري، يكتب \(\frac{175}{10^2}\). \(\frac{122}{11}\) غير عشري (مقامه 11).</p>
+            </div>
+            
+            <h3>التمرين 4</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p>مجموع التلاميذ: \(1+8+4+7+2+2+3+3+2 = 32\).</p>
+                <p><strong>1.</strong> المنوال = \(13\) (أكثر تكرار). المدى = \(14 - 6 = 8\).</p>
+                <p><strong>2.</strong> عدد التلاميذ الذين تحصلوا على أقل من 10: \(2+3+3+2 = 10\)، إذن الاحتمال = \(\frac{10}{32} = \frac{5}{16}\).</p>
+                <p><strong>3.</strong> الأعداد القابلة للقسمة على 3 و5 معاً (أي على 15) لا توجد ضمن القائمة، فالاحتمال = \(0\).</p>
+            </div>
+            <!-- رسم بياني للتوزيع في التصحيح -->
+            <div class="Tests-Hub-diagram-container">
+                <h4>رسم بياني للتوزيع</h4>
+                <canvas id="correctionExercise4Canvas" class="Tests-Hub-diagram-canvas" width="500" height="250" style="width:100%; height:auto;"></canvas>
+            </div>
+            <h3>التمرين 5 (5 نقاط)</h3>
+<div class="Tests-Hub-correction-answer" style="line-height:1.8;">
+    
+    <p style="font-weight:bold; color:#ea580c; margin-top:0;">1.  بيان أن \(ABIJ\) مستطيل</p>
+    <ul style="margin-right:20px; list-style-type:circle;">
+        <li>بما أن \(IJ\) محور تناظر للمستطيل \(ABCD\)، فإنه يوازي \(AB\) ويمر بمنتصفي \([BC]\) و \([AD]\).</li>
+        <li>إذن \(I\) منتصف \([BC]\) و \(J\) منتصف \([AD]\).</li>
+        <li>في المستطيل \(ABCD\)، \(AB \perp BC\)، ولأن \(I \in BC\) نستنتج أن \(AB \perp BI\).</li>
+        <li>\(IJ \parallel AB\) (من خاصية محور التناظر) إذن \(IJ \perp BC\) في النقطة \(I\).</li>
+        <li>الرباعي \(ABIJ\) فيه ثلاث زوايا قائمة (عند \(A\)، \(B\)، \(I\))، وبالتالي هو مستطيل.</li>
+    </ul>
+
+    <p style="font-weight:bold; color:#ea580c; margin-top:1.5rem;">2.  بيان أن \(AID\) متساوي الساقين رأسه \(I\)</p>
+    <ul style="margin-right:20px; list-style-type:circle;">
+        <li>\(I\) منتصف \([BC]\) و \(J\) منتصف \([AD]\)، وفي المستطيل \(ABCD\):
+            \[
+            AB = CD = 4\,\text{cm},\quad AD = BC = 6\,\text{cm}.
+            \]
+        </li>
+        <li>المثلثان \(ABI\) و \(DCI\) قائمان على الترتيب في \(B\) و \(C\) (لأن \(ABCD\) مستطيل).</li>
+        <li>لدينا:
+            \[
+            BI = IC = \frac{BC}{2} = 3\,\text{cm},\quad AB = CD = 4\,\text{cm}.
+            \]
+        </li>
+        <li>المثلثان \(ABI\) و \(DCI\) متقايسان (حالة قائمة – ضلعا القائمة متقايسان: \(AB = CD\) و \(BI = IC\)).</li>
+        <li>من التقايس نستنتج \(AI = ID\)، إذن المثلث \(AID\) متساوي الساقين في \(I\).</li>
+    </ul>
+
+    <p style="font-weight:bold; color:#ea580c; margin-top:1.5rem;">3.  تمثيل \(G\) (نقطة تقاطع \(AE\) و \(DI\))</p>
+    <ul style="margin-right:20px; list-style-type:circle;">
+        <li>\(E\) منتصف \([ID]\)، إذن \(AE\) هو متوسط في المثلث \(AID\).</li>
+        <li>\(G\) هي نقطة تقاطع \(AE\) مع \(DI\) – أي تقاطع متوسطين (\(AE\) و \(DI\) يحمل متوسطاً ثانياً).</li>
+        <li>وبالتالي \(G\) هو مركز ثقل المثلث \(AID\).</li>
+    </ul>
+
+    <p style="font-weight:bold; color:#ea580c; margin-top:1.5rem;">4.  تعيين النقطة \(F\) (تقاطع \(DG\) مع \(AI\))</p>
+    <ul style="margin-right:20px; list-style-type:circle;">
+        <li>بما أن \(G\) مركز ثقل المثلث \(AID\)، فإن المستقيم \(DG\) هو المتوسط الثالث للمثلث.</li>
+        <li>المتوسط \(DG\) يقطع الضلع \(AI\) في منتصفه تماماً.</li>
+        <li>إذن النقطة \(F\) (حيث \(DG \cap AI\)) هي منتصف \([AI]\).</li>
+    </ul>
+
+    <p style="font-weight:bold; color:#ea580c; margin-top:1.5rem;">5.  حساب \(BF\) (باستعمال التناظر والتوازي والتعامد فقط)</p>
+    <ul style="margin-right:20px; list-style-type:circle;">
+        <li>من السؤال 1 نعلم أن \(ABIJ\) مستطيل، إذن:
+            \[
+            AB = 4\,\text{cm},\quad BI = 3\,\text{cm},\quad AI = 5\,\text{cm}\;(\text{معطى}).
+            \]
+        </li>
+        <li>في المستطيل، القطران متقايسان وينصف أحدهما الآخر:
+            \[
+            AI = BJ = 5\,\text{cm},\quad \text{ونقطة تقاطعهما }O \text{ هي منتصف كل قطر}.
+            \]
+        </li>
+        <li>من السؤال 4، \(F\) هي منتصف \([AI]\)، وبالتالي \(F\) تطابق نقطة تقاطع الأقطار \(O\) (لأن منتصف \(AI\) هو نفسه منتصف \(BJ\) في المستطيل).</li>
+        <li>إذن \(F\) هي أيضاً منتصف \([BJ]\)، ومنه:
+            \[
+            BF = \frac{1}{2}\,BJ = \frac{1}{2}\times 5 = 2{,}5\,\text{cm}.
+            \]
+        </li>
+        <li>(يمكن أيضاً استعمال خاصية المتوسط في المثلث القائم \(ABI\): \(F\) منتصف الوتر \(AI\)، إذن \(BF = \frac{AI}{2}=2{,}5\,\text{cm}\).)</li>
+    </ul>
+
+    <!-- الرسم التوضيحي (يبقى كما هو) -->
+    <div class="Tests-Hub-diagram-container" style="margin-top:1.5rem;">
+        <canvas id="correctionExercise5Canvas" class="Tests-Hub-diagram-canvas" width="600" height="400" style="width:100%; height:auto;"></canvas>
+    </div>
+</div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3>المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3>الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.0.7</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3>الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+        
+        // ترجمة مبسطة (نفس الهيكل ولكن نكتفي بالعربية)
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    synthesisTest: {
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        comingSoon: "قريبًا!"
+                    },
+                    theme: { toggle: "الوضع المظلم" }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    synthesisTest: {
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    theme: { toggle: "Mode Sombre" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    synthesisTest: {
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    theme: { toggle: "Dark Mode" }
+                }
+            }
+        };
+        
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let current = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (current) current = current[k]; });
+                if (typeof current === 'string') el.textContent = current;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeToggle) themeToggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع الفاتح' : currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+        
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+        }
+        
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            redrawAllDiagrams();
+        }
+        
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // دوال التنزيل (تجريبية)
+        function downloadAsPDF() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon"); }
+        function downloadAsODT() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon"); }
+        function downloadAsPNG() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon"); }
+        
+        // -------------------- دوال الرسم البياني للتمرين 4 --------------------
+        function drawBarChart(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width = canvas.clientWidth || 500;
+            const h = canvas.height = 250;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            const grades = [14,13,12,11,10,9,8,7,6];
+            const freqs = [1,8,4,7,2,2,3,3,2];
+            
+            const barWidth = (w - 100) / grades.length;
+            const maxFreq = Math.max(...freqs);
+            const scale = (h - 60) / maxFreq;
+            
+            const strokeColor = isDarkTheme ? '#fdba74' : '#333';
+            const textColor = isDarkTheme ? '#fef3c7' : '#000';
+            const barColor = isDarkTheme ? '#f97316' : '#ea580c';
+            
+            // رسم المحاور
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(40, h-30);
+            ctx.lineTo(w-20, h-30);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(40, h-30);
+            ctx.lineTo(40, 20);
+            ctx.stroke();
+            
+            // رسم الأشرطة
+            for (let i = 0; i < grades.length; i++) {
+                let x = 50 + i * (barWidth + 5);
+                let barHeight = freqs[i] * scale;
+                ctx.fillStyle = barColor;
+                ctx.fillRect(x, h-30 - barHeight, barWidth, barHeight);
+                
+                // كتابة القيمة أعلى الشريط
+                ctx.fillStyle = textColor;
+                ctx.font = '12px Arial';
+                ctx.fillText(freqs[i], x + barWidth/2 - 5, h-35 - barHeight);
+                
+                // كتابة العدد تحت الشريط
+                ctx.fillText(grades[i], x + barWidth/2 - 5, h-10);
+            }
+            
+            // عنوان
+            ctx.fillStyle = textColor;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('توزيع الأعداد', w/2-50, 30);
+        }
+        
+        // -------------------- رسم التمرين 5 (للفرض: يظهر فقط ABCD و I و J) --------------------
+        function drawExercise5Student(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width = canvas.clientWidth || 600;
+            const h = canvas.height = 400;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // مقياس الرسم: 1 سم = 35 بكسل (لإعطاء مساحة كافية)
+            const scale = 35;
+            // نريد أن يظهر المستطيل في وسط اللوحة تقريباً
+            const startX = (w - 6 * scale) / 2; // 6 سم عرض المستطيل
+            const startY = (h + 4 * scale) / 2; // نبدأ من الأسفل
+            
+            const A = { x: startX, y: startY };
+            const B = { x: startX + 4 * scale, y: startY };
+            const C = { x: startX + 4 * scale, y: startY - 6 * scale };
+            const D = { x: startX, y: startY - 6 * scale };
+            
+            // I منتصف BC
+            const I = { x: B.x, y: B.y - 3 * scale };
+            // J منتصف AD
+            const J = { x: A.x, y: A.y - 3 * scale };
+            
+            // الألوان حسب الثيم
+            const strokeColor = isDarkTheme ? '#fef3c7' : '#333';
+            const fillColor = isDarkTheme ? '#fdba74' : '#000';
+            const lineColor = isDarkTheme ? '#f97316' : '#ea580c';
+            
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 2;
+            
+            // رسم المستطيل ABCD
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // رسم IJ (محور التناظر) بخط منقط
+            ctx.strokeStyle = strokeColor;
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(I.x, I.y);
+            ctx.lineTo(J.x, J.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // رسم النقاط A, B, C, D, I, J
+            ctx.fillStyle = fillColor;
+            const drawPoint = (p, label) => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, 2*Math.PI);
+                ctx.fill();
+                ctx.fillStyle = fillColor;
+                ctx.font = '12px Arial';
+                ctx.fillText(label, p.x + 5, p.y - 5);
+            };
+            drawPoint(A, 'A');
+            drawPoint(B, 'B');
+            drawPoint(C, 'C');
+            drawPoint(D, 'D');
+            drawPoint(I, 'I');
+            drawPoint(J, 'J');
+        }
+        
+        // -------------------- رسم التمرين 5 (للتصحيح: يظهر كل العناصر) --------------------
+        function drawExercise5Correction(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width = canvas.clientWidth || 600;
+            const h = canvas.height = 400;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            const scale = 35;
+            const startX = (w - 6 * scale) / 2;
+            const startY = (h + 4 * scale) / 2;
+            
+            const A = { x: startX, y: startY };
+            const B = { x: startX + 4 * scale, y: startY };
+            const C = { x: startX + 4 * scale, y: startY - 6 * scale };
+            const D = { x: startX, y: startY - 6 * scale };
+            
+            const I = { x: B.x, y: B.y - 3 * scale };
+            const J = { x: A.x, y: A.y - 3 * scale };
+            
+            // E منتصف ID
+            const E = { x: (I.x + D.x) / 2, y: (I.y + D.y) / 2 };
+            
+            // G مركز ثقل المثلث AID (على AE بحيث AG = 2/3 AE)
+            const G = { x: A.x + (2/3)*(E.x - A.x), y: A.y + (2/3)*(E.y - A.y) };
+            
+            // F منتصف AI
+            const F = { x: (A.x + I.x) / 2, y: (A.y + I.y) / 2 };
+            
+            const strokeColor = isDarkTheme ? '#fef3c7' : '#333';
+            const fillColor = isDarkTheme ? '#fdba74' : '#000';
+            const lineColor = isDarkTheme ? '#f97316' : '#ea580c';
+            
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 2;
+            
+            // المستطيل ABCD
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // IJ بخط منقط
+            ctx.strokeStyle = strokeColor;
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(I.x, I.y);
+            ctx.lineTo(J.x, J.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // المثلث AID بخط متصل
+            ctx.strokeStyle = lineColor;
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(I.x, I.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // الخطوط المساعدة (متوسط AE)
+            ctx.strokeStyle = isDarkTheme ? '#fcd34d' : '#f59e0b';
+            ctx.setLineDash([4, 2]);
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(E.x, E.y);
+            ctx.stroke();
+            
+            // الخط DG
+            ctx.beginPath();
+            ctx.moveTo(D.x, D.y);
+            ctx.lineTo(G.x, G.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // رسم النقاط
+            ctx.fillStyle = fillColor;
+            const drawPoint = (p, label) => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, 2*Math.PI);
+                ctx.fill();
+                ctx.fillStyle = fillColor;
+                ctx.font = '12px Arial';
+                ctx.fillText(label, p.x + 5, p.y - 5);
+            };
+            drawPoint(A, 'A');
+            drawPoint(B, 'B');
+            drawPoint(C, 'C');
+            drawPoint(D, 'D');
+            drawPoint(I, 'I');
+            drawPoint(J, 'J');
+            drawPoint(E, 'E');
+            drawPoint(G, 'G');
+            drawPoint(F, 'F');
+        }
+        
+        function redrawAllDiagrams() {
+            drawBarChart('exercise4Canvas');
+            drawExercise5Student('exercise5Canvas');
+            if (!document.getElementById('correction').classList.contains('Tests-Hub-hidden')) {
+                drawBarChart('correctionExercise4Canvas');
+                drawExercise5Correction('correctionExercise5Canvas');
+            }
+        }
+        
+        // -------------------- تهيئة الصفحة --------------------
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+            else document.documentElement.dir = 'ltr';
+            
+            updateTextContent();
+            redrawAllDiagrams();
+            
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                throwOnError: false
+            });
+            
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() {
+                    changeLanguage(this.getAttribute('data-language'));
+                });
+            });
+            
+            document.getElementById('downloadPdf').addEventListener('click', downloadAsPDF);
+            document.getElementById('downloadOdt').addEventListener('click', downloadAsODT);
+            document.getElementById('downloadPng').addEventListener('click', downloadAsPNG);
+            
+            const correctionBtn = document.getElementById('toggleCorrection');
+            correctionBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                if (!corr.classList.contains('Tests-Hub-hidden')) {
+                    drawBarChart('correctionExercise4Canvas');
+                    drawExercise5Correction('correctionExercise5Canvas');
+                    renderMathInElement(corr, { delimiters: [{left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}], throwOnError: false });
+                }
+            });
+            
+            window.addEventListener('resize', function() {
+                redrawAllDiagrams();
+            });
+        });
+    </script>
+</body>
+</html>
