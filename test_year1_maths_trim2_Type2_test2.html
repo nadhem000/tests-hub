@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Devoir Synthèse N°2 (1ère AS) - Zitouni Mohamed</title>
+    
+    <!-- PWA Meta Tags (bleus) -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="description" content="Devoir de Synthèse N°2 - 1ère année secondaire - Mathématiques - Lycée EL-GANTRA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir 1ère">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <style>
+        /* Palette bleue - identique au modèle */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #1e3a8a;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: #eff6ff;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6, #60a5fa);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1e3a8a;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #bfdbfe;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1e3a8a;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #eff6ff;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3b82f6;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6);
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1e40af;
+            color: #eff6ff;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #3b82f6;
+            border-bottom: 2px solid #60a5fa;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #dbeafe;
+            padding: 1rem;
+            border-right: 4px solid #3b82f6;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1e3a8a;
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.5rem 0;
+            padding-right: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #bfdbfe;
+        }
+        
+        /* KaTeX LTR */
+        .katex {
+            direction: ltr !important;
+            unicode-bidi: isolate !important;
+            display: inline-block;
+        }
+        .katex * {
+            direction: ltr !important;
+        }
+
+        /* Amélioration des équations */
+        .Tests-Hub-question p {
+            font-size: 1.2em;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding-bottom: 5px;
+            margin: 10px 0;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar {
+            height: 6px;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+        @media (max-width: 600px) {
+            .Tests-Hub-question p {
+                font-size: 1.1em;
+            }
+        }
+        .Tests-Hub-question p:not(:has(.katex)) {
+            white-space: normal;
+        }
+        
+        /* Bouton correction */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #dbeafe;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #3b82f6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #1e3a8a;
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #3b82f6;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #3b82f6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(191, 219, 254, 0.1);
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6, #60a5fa);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #bfdbfe;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #bfdbfe;
+        }
+        
+        /* Boutons téléchargement */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1));
+            border-radius: 12px;
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Styles pour les graphiques */
+        .Tests-Hub-diagram-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .Tests-Hub-diagram-canvas {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-canvas {
+            border-color: #60a5fa;
+            background: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title">Mathématiques - Devoir de Synthèse N°2 (1ère AS)</h1>
+                    <div class="Tests-Hub-header-subtitle">1ère S : 4 , 5 et 6 - Lycée EL-GANTRA</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+               <a href="index.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span>Retour aux tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span>Français</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span>Mode sombre</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="Tests-Hub-main-container">
+        <!-- En-tête spécifique au devoir -->
+        <div class="Tests-Hub-test-header">
+            <h1>Devoir de Synthèse N°2 en Mathématiques</h1>
+            <p>Année scolaire : 2022-2023</p>
+            <p>Classes : 1ère S 4, 5 et 6</p>
+            <p>Professeur : M. Zitouni Mohamed</p>
+            <p>Établissement : Lycée EL-GANTRA</p>
+            <p>Durée : 1 h 30 min</p>
+        </div>
+        
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>Instructions</h3>
+            <ul>
+                <li>Répondre par vrai ou faux aux affirmations suivantes en justifiant clairement.</li>
+                <li>Les constructions vectorielles peuvent être illustrées sur la figure fournie.</li>
+                <li>La correction détaillée est disponible en cliquant sur le bouton en bas.</li>
+            </ul>
+        </div>
+        
+        <!-- ==================== EXERCICE Nº1 (3 points) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>EXERCICE Nº1 (3 points)</h2>
+            <p>ABCD est un parallélogramme de centre O. Répondre par vrai ou faux.</p>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">a)</span> \(\overrightarrow{AB} + \overrightarrow{AD} = 2\overrightarrow{AO}\) ................</p>
+                <p><span class="Tests-Hub-question-number">b)</span> \(t_{\overrightarrow{AC}}(C) = B\) ................</p>
+                <p><span class="Tests-Hub-question-number">c)</span> \(\overrightarrow{OB} + \overrightarrow{CO} = \overrightarrow{DA}\) ................</p>
+                <p><span class="Tests-Hub-question-number">d)</span> \(t_{\overrightarrow{AC}}((AD)) = (BC)\) ................</p>
+            </div>
+            
+            <!-- Figure pour l'énoncé (seul le parallélogramme est dessiné, pas les vecteurs) -->
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exerciseParallelogramCanvas" class="Tests-Hub-diagram-canvas" width="500" height="300" style="width:100%; height:auto;"></canvas>
+            </div>
+            <p style="font-style:italic; text-align:center;">Figure (à compléter par l'élève)</p>
+        </div>
+
+        <!-- ==================== EXERCICE Nº2 (7 points) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>EXERCICE Nº2 (7 points)</h2>
+            <p>On donne un triangle ABC et I est le milieu de [BC].</p>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1. a)</span> Construire le point D tel que \(\overrightarrow{AD} = \overrightarrow{AB} + \overrightarrow{AC}\).</p>
+                <p><span class="Tests-Hub-question-number">b)</span> Montrer que ABDC est un parallélogramme.</p>
+                <p><span class="Tests-Hub-question-number">c)</span> En déduire que le point I est le milieu du segment [AD].</p>
+                
+                <p><span class="Tests-Hub-question-number">2. a)</span> Construire le point M tel que \(\overrightarrow{AM} = \overrightarrow{BC}\).</p>
+                <p><span class="Tests-Hub-question-number">b)</span> Montrer que \(\overrightarrow{DM} = 2\overrightarrow{DC}\).</p>
+                
+                <p><span class="Tests-Hub-question-number">3.</span> Construire le point E tel que \(E = t_{\overrightarrow{BC}}(C)\) où \(t\) est la translation du vecteur \(\overrightarrow{BC}\).</p>
+                
+                <p><span class="Tests-Hub-question-number">4. a)</span> Montrer que les droites (AC) et (ME) sont parallèles.</p>
+                <p><span class="Tests-Hub-question-number">b)</span> Déterminer en justifiant \(t_{\overrightarrow{BC}}((AC))\).</p>
+            </div>
+            
+            <!-- Figure pour l'énoncé : triangle ABC et point I -->
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exercise2TriangleCanvas" class="Tests-Hub-diagram-canvas" width="500" height="300" style="width:100%; height:auto;"></canvas>
+            </div>
+            <p style="font-style:italic; text-align:center;">Triangle ABC (les points D, M, E sont à construire)</p>
+        </div>
+
+        <!-- ==================== EXERCICE Nº3 (6 points) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>EXERCICE Nº3 (6 points)</h2>
+            
+            <p><strong>I – Résoudre dans \(\mathbb{R}\) les équations suivantes :</strong></p>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1.</span> \(5x - 2 = 3x + 1\)</p>
+                <p><span class="Tests-Hub-question-number">2.</span> \(\frac{2}{x+3} + \frac{3}{2x+1} = 6\)</p>
+                <p><span class="Tests-Hub-question-number">3.</span> \(|-3x + 1| = |x + 2|\)</p>
+            </div>
+            
+            <p><strong>II – Soient les expressions suivantes :</strong></p>
+            <p>\(A = (2x-3)(-3x+2)\) et \(B = 4x^2 - 9\) ; (où \(x \in \mathbb{R}\))</p>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1.</span> Résoudre dans \(\mathbb{R}\) \(A = 0\) puis \(A < 0\)</p>
+                <p><span class="Tests-Hub-question-number">2.</span> 
+                    <span>a) Factoriser l'expression B</span><br>
+                    <span>b) Résoudre dans \(\mathbb{R}\) \(B = 0\) puis \(B \geq 0\)</span>
+                </p>
+                <p><span class="Tests-Hub-question-number">3.</span> 
+                    <span>a) Montrer que \(A + B = (2x -3)(-x +5)\)</span><br>
+                    <span>b) Trouver les réels x tels que : \(A + B = 0\)</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCICE Nº4 (4 points) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>EXERCICE Nº4 (4 points)</h2>
+            <p>Soit la fonction affine telle que \(f(2) = 4\) et \(f(5) = 13\).</p>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1.</span> Montrer que \(f(x) = 3x - 2\)</p>
+                <p><span class="Tests-Hub-question-number">2.</span> Calculer \(f(3)\) et \(f(0)\)</p>
+                <p><span class="Tests-Hub-question-number">3.</span> Calculer l'antécédent de \(-3\) par \(f\)</p>
+                <p><span class="Tests-Hub-question-number">4.</span> Tracer la représentation graphique de la fonction \(f\) dans un repère cartésien \((O ; I ; J)\)</p>
+            </div>
+            
+            <!-- On peut ajouter un canvas pour le tracé, mais l'élève tracera sur sa copie. On le mettra dans la correction -->
+        </div>
+
+        <!-- Bouton afficher/cacher correction -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+        </div>
+        
+        <!-- ==================== SECTION CORRECTION ==================== -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>Correction détaillée</h2>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>Exercice 1 (3 points)</strong></p>
+                <p><em>On considère le parallélogramme ABCD de centre O. Les coordonnées utilisées dans l'illustration sont A(0,0), B(4,0), C(6,2), D(2,2) et O(3,1).</em></p>
+                
+                <p><strong>a)</strong> \(\overrightarrow{AB} + \overrightarrow{AD} = 2\overrightarrow{AO}\)</p>
+                <p>✔️ <strong>Vrai</strong>. Dans un parallélogramme, la règle du parallélogramme donne \(\overrightarrow{AB} + \overrightarrow{AD} = \overrightarrow{AC}\). O étant le centre, il est le milieu des diagonales, donc \(\overrightarrow{AC} = 2\overrightarrow{AO}\). Ainsi \(\overrightarrow{AB} + \overrightarrow{AD} = 2\overrightarrow{AO}\).</p>
+                
+                <p><strong>b)</strong> \(t_{\overrightarrow{AC}}(C) = B\)</p>
+                <p>❌ <strong>Faux</strong>. La translation de vecteur \(\overrightarrow{AC}\) envoie tout point \(M\) sur \(M'\) tel que \(\overrightarrow{MM'} = \overrightarrow{AC}\). Pour \(C\), on obtient \(C' = C + \overrightarrow{AC} = C + (C - A) = 2C - A\). Avec les coordonnées de l'exemple : \(A(0,0), C(6,2)\) donnent \(C' = (12,4)\) qui est différent de \(B(4,0)\). Donc l'égalité est fausse en général.</p>
+                
+                <p><strong>c)</strong> \(\overrightarrow{OB} + \overrightarrow{CO} = \overrightarrow{DA}\)</p>
+                <p>✔️ <strong>Vrai</strong>. \(\overrightarrow{CO} = -\overrightarrow{OC}\), donc \(\overrightarrow{OB} + \overrightarrow{CO} = \overrightarrow{OB} - \overrightarrow{OC}\). Or \(\overrightarrow{OB} - \overrightarrow{OC} = \overrightarrow{CB}\) (car \(\overrightarrow{OB} = \overrightarrow{OC} + \overrightarrow{CB}\)). Ainsi \(\overrightarrow{OB} + \overrightarrow{CO} = \overrightarrow{CB}\). Dans un parallélogramme, \(\overrightarrow{CB} = \overrightarrow{DA}\) (côtés opposés parallèles et de même sens). D'où l'égalité.</p>
+                
+                <p><strong>d)</strong> \(t_{\overrightarrow{AC}}((AD)) = (BC)\)</p>
+                <p>✔️ <strong>Vrai</strong>. La translation de vecteur \(\overrightarrow{AC}\) envoie A sur C. Pour D, on calcule \(D' = D + \overrightarrow{AC} = D + (C - A)\). Dans un parallélogramme, \(C - A = B - D\), donc \(D' = D + (B - D) = B\). Ainsi l'image de la droite (AD) est la droite passant par C et B, c'est-à-dire (CB) qui est identique à (BC).</p>
+                
+                <!-- Figure de correction pour l'exercice 1 -->
+                <p><strong>Illustration du parallélogramme et des vecteurs :</strong></p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionParallelogramCanvas" class="Tests-Hub-diagram-canvas" width="500" height="300" style="width:100%; height:auto;"></canvas>
+                </div>
+                <p style="font-size:0.9em;">🔵 Points A, B, C, D et O. En rouge : vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{AD}\) ; en vert : leur somme \(\overrightarrow{AC}\) ; les diagonales sont en pointillés.</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>Exercice 2 (7 points)</strong></p>
+                <p><em>On choisit un repère pour faciliter la visualisation : A(0,0), B(6,0), C(2,4). Alors I, milieu de [BC], a pour coordonnées (4,2).</em></p>
+                
+                <p><strong>1. a) Construction de D :</strong> \(\overrightarrow{AD} = \overrightarrow{AB} + \overrightarrow{AC}\). Avec nos coordonnées, \(\overrightarrow{AB} = (6,0)\), \(\overrightarrow{AC} = (2,4)\), donc \(\overrightarrow{AD} = (8,4)\) et \(D = (8,4)\).</p>
+                <p><strong>b) Montrons que ABDC est un parallélogramme :</strong> On a \(\overrightarrow{AB} = (6,0)\) et \(\overrightarrow{DC} = C - D = (2-8,4-4) = (-6,0) = -\overrightarrow{AB}\). Donc \(\overrightarrow{AB} = \overrightarrow{CD}\). De même, \(\overrightarrow{AC} = (2,4)\) et \(\overrightarrow{BD} = D - B = (8-6,4-0) = (2,4) = \overrightarrow{AC}\). Ainsi les côtés opposés sont parallèles et égaux, donc ABDC est un parallélogramme.</p>
+                <p><strong>c) I milieu de [AD] :</strong> Dans un parallélogramme, les diagonales se coupent en leur milieu. I est le milieu de [BC] (donné). Or dans le parallélogramme ABDC, les diagonales sont [AD] et [BC]. Leur intersection est le milieu commun. Donc I est aussi le milieu de [AD].</p>
+                
+                <p><strong>2. a) Construction de M :</strong> \(\overrightarrow{AM} = \overrightarrow{BC}\). \(\overrightarrow{BC} = C - B = (2-6,4-0) = (-4,4)\). Donc \(M = A + (-4,4) = (-4,4)\).</p>
+                <p><strong>b) Montrons \(\overrightarrow{DM} = 2\overrightarrow{DC}\) :</strong> \(\overrightarrow{DM} = M - D = (-4-8,4-4) = (-12,0)\). \(\overrightarrow{DC} = C - D = (2-8,4-4) = (-6,0)\). On a bien \(\overrightarrow{DM} = 2 \times (-6,0) = 2\overrightarrow{DC}\).</p>
+                
+                <p><strong>3. Construction de E :</strong> \(E = t_{\overrightarrow{BC}}(C)\) signifie \(\overrightarrow{CE} = \overrightarrow{BC}\). Donc \(E = C + \overrightarrow{BC} = (2,4) + (-4,4) = (-2,8)\).</p>
+                
+                <p><strong>4. a) Parallélisme (AC) et (ME) :</strong> \(\overrightarrow{AC} = (2,4)\). \(\overrightarrow{ME} = E - M = (-2-(-4),8-4) = (2,4)\). Donc \(\overrightarrow{ME} = \overrightarrow{AC}\), les vecteurs sont colinéaires, donc les droites (AC) et (ME) sont parallèles.</p>
+                <p><strong>b) Détermination de \(t_{\overrightarrow{BC}}((AC))\) :</strong> La translation de vecteur \(\overrightarrow{BC}\) envoie tout point de la droite (AC) sur un point tel que le vecteur de translation est constant. Puisque \(\overrightarrow{ME} = \overrightarrow{AC}\), on voit que l'image de A par cette translation est M (car \(\overrightarrow{AM} = \overrightarrow{BC}\)) et l'image de C est E. Donc l'image de la droite (AC) est la droite passant par M et E, c'est-à-dire (ME). On a déjà montré que (ME) est parallèle à (AC), donc \(t_{\overrightarrow{BC}}((AC)) = (ME)\).</p>
+                
+                <!-- Figure de correction pour l'exercice 2 -->
+                <p><strong>Illustration du triangle et des points construits :</strong></p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correction2Canvas" class="Tests-Hub-diagram-canvas" width="500" height="300" style="width:100%; height:auto;"></canvas>
+                </div>
+                <p style="font-size:0.9em;">🔵 Points A, B, C, I. En rouge : D, M, E. Les vecteurs \(\overrightarrow{AB}\), \(\overrightarrow{AC}\), \(\overrightarrow{BC}\) et \(\overrightarrow{AD}\) sont représentés.</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>Exercice 3 (6 points)</strong></p>
+                
+                <p><strong>I – Équations</strong></p>
+                <p><strong>1.</strong> \(5x - 2 = 3x + 1\)</p>
+                <p>\(5x - 3x = 1 + 2\) → \(2x = 3\) → \(x = \frac{3}{2}\). Donc \(S = \{\frac{3}{2}\}\).</p>
+                
+                <p><strong>2.</strong> \(\frac{2}{x+3} + \frac{3}{2x+1} = 6\)</p>
+                <p>Domaine de définition : \(x \neq -3\) et \(x \neq -\frac{1}{2}\). On réduit au même dénominateur : \(\frac{2(2x+1) + 3(x+3)}{(x+3)(2x+1)} = 6\) → \(\frac{4x+2 + 3x+9}{(x+3)(2x+1)} = 6\) → \(\frac{7x+11}{(x+3)(2x+1)} = 6\).</p>
+                <p>Donc \(7x+11 = 6(x+3)(2x+1)\). Calculons le second membre : \(6(x+3)(2x+1) = 6(2x^2 + x + 6x + 3) = 6(2x^2 + 7x + 3) = 12x^2 + 42x + 18\).</p>
+                <p>On a donc \(7x+11 = 12x^2 + 42x + 18\) → \(0 = 12x^2 + 42x + 18 - 7x - 11 = 12x^2 + 35x + 7\).</p>
+                <p>Résolvons \(12x^2 + 35x + 7 = 0\). Discriminant : \(\Delta = 35^2 - 4 \times 12 \times 7 = 1225 - 336 = 889\). \(\sqrt{889}\) n'est pas un carré parfait. Les solutions sont \(x = \frac{-35 \pm \sqrt{889}}{24}\). Vérifions qu'elles sont dans le domaine : elles sont différentes de -3 et -1/2. Donc \(S = \{\frac{-35 - \sqrt{889}}{24}, \frac{-35 + \sqrt{889}}{24}\}\).</p>
+                
+                <p><strong>3.</strong> \(|-3x + 1| = |x + 2|\)</p>
+                <p>L'égalité des valeurs absolues équivaut à \(-3x+1 = x+2\) ou \(-3x+1 = -(x+2)\).</p>
+                <p>Premier cas : \(-3x+1 = x+2\) → \(-3x - x = 2 - 1\) → \(-4x = 1\) → \(x = -\frac{1}{4}\).</p>
+                <p>Second cas : \(-3x+1 = -x - 2\) → \(-3x + x = -2 - 1\) → \(-2x = -3\) → \(x = \frac{3}{2}\).</p>
+                <p>Donc \(S = \{-\frac{1}{4}, \frac{3}{2}\}\).</p>
+                
+                <p><strong>II – Expressions A et B</strong></p>
+                <p><strong>1.</strong> \(A = (2x-3)(-3x+2)\).</p>
+                <p>\(A = 0\) ⇔ \(2x-3 = 0\) ou \(-3x+2 = 0\) ⇔ \(x = \frac{3}{2}\) ou \(x = \frac{2}{3}\). Donc \(S = \{\frac{2}{3}, \frac{3}{2}\}\).</p>
+                <p>\(A < 0\) : Tableau de signes. Les racines sont \(x_1 = \frac{2}{3}\) et \(x_2 = \frac{3}{2}\). Le coefficient de \(x^2\) dans le produit est \(2 \times (-3) = -6\) (négatif), donc A est négatif à l'extérieur des racines. Ainsi \(A < 0\) pour \(x \in ]-\infty, \frac{2}{3}[ \cup ]\frac{3}{2}, +\infty[\).</p>
+                
+                <p><strong>2. a)</strong> \(B = 4x^2 - 9 = (2x)^2 - 3^2 = (2x - 3)(2x + 3)\).</p>
+                <p><strong>b)</strong> \(B = 0\) ⇔ \(2x-3=0\) ou \(2x+3=0\) ⇔ \(x = \frac{3}{2}\) ou \(x = -\frac{3}{2}\). Donc \(S = \{-\frac{3}{2}, \frac{3}{2}\}\).</p>
+                <p>\(B \geq 0\) : Le coefficient de \(x^2\) est 4 > 0, donc B est positif à l'extérieur des racines. Ainsi \(B \geq 0\) pour \(x \in ]-\infty, -\frac{3}{2}] \cup [\frac{3}{2}, +\infty[\).</p>
+                
+                <p><strong>3. a)</strong> \(A + B = (2x-3)(-3x+2) + (4x^2 - 9)\). Développons A : \((2x-3)(-3x+2) = 2x(-3x+2) -3(-3x+2) = -6x^2 + 4x + 9x - 6 = -6x^2 + 13x - 6\). Donc \(A+B = -6x^2 + 13x - 6 + 4x^2 - 9 = -2x^2 + 13x - 15\). Factorisons : \((2x-3)(-x+5) = 2x(-x+5) -3(-x+5) = -2x^2 + 10x + 3x -15 = -2x^2 + 13x -15\). Donc \(A+B = (2x-3)(-x+5)\).</p>
+                <p><strong>b)</strong> \(A+B = 0\) ⇔ \((2x-3)(-x+5)=0\) ⇔ \(2x-3=0\) ou \(-x+5=0\) ⇔ \(x = \frac{3}{2}\) ou \(x = 5\). Donc \(S = \{\frac{3}{2}, 5\}\).</p>
+            </div>
+
+            <!-- Correction exercice 4 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>Exercice 4 (4 points)</strong></p>
+                <p>Soit \(f\) une fonction affine, donc \(f(x) = ax + b\) avec \(a, b \in \mathbb{R}\).</p>
+                <p><strong>1.</strong> On a \(f(2)=4\) et \(f(5)=13\).</p>
+                <p>\[
+                \begin{cases}
+                2a + b = 4 \\
+                5a + b = 13
+                \end{cases}
+                \]
+                En soustrayant la première équation de la deuxième : \( (5a+b) - (2a+b) = 13-4 \Rightarrow 3a = 9 \Rightarrow a = 3\).</p>
+                <p>En remplaçant dans \(2a+b=4\) : \(2\times3 + b = 4 \Rightarrow 6+b=4 \Rightarrow b = -2\).</p>
+                <p>Donc \(f(x) = 3x - 2\).</p>
+                
+                <p><strong>2.</strong> \(f(3) = 3\times3 - 2 = 9-2 = 7\).</p>
+                <p>\(f(0) = 3\times0 - 2 = -2\).</p>
+                
+                <p><strong>3.</strong> L'antécédent de \(-3\) par \(f\) vérifie \(f(x) = -3\) soit \(3x - 2 = -3 \Rightarrow 3x = -1 \Rightarrow x = -\frac{1}{3}\).</p>
+                
+                <p><strong>4.</strong> Représentation graphique : La droite passe par les points \((2,4)\) et \((5,13)\) (ou par \((0,-2)\) et \((1,1)\) par exemple). Voici un tracé :</p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correction4Canvas" class="Tests-Hub-diagram-canvas" width="500" height="300" style="width:100%; height:auto;"></canvas>
+                </div>
+                <p style="font-size:0.9em;">📈 Droite d'équation \(y = 3x - 2\).</p>
+            </div>
+        </div>
+        
+        <!-- Boutons téléchargement (placeholders) -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span>PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span>ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span>PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3>Développeur</h3>
+                    <p class="Tests-Hub-developer-name">Ziad El Majri</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3>Version</h3>
+                    <p class="Tests-Hub-version-number">v2.2.1</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3>Liens</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link">Conditions d'utilisation</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // ========== Gestion du thème, langue, etc. (simplifié, basé sur le modèle) ==========
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+        
+        // Traductions minimales pour les éléments dynamiques (boutons)
+        const TestsHub_translations = {
+            ar: { TestsHub: { synthesisTest: { showCorrection: "عرض التصحيح", hideCorrection: "إخفاء التصحيح", comingSoon: "قريبًا!" }, theme: { toggle: "الوضع المظلم" } } },
+            fr: { TestsHub: { synthesisTest: { showCorrection: "Afficher la correction", hideCorrection: "Masquer la correction", comingSoon: "Bientôt disponible !" }, theme: { toggle: "Mode sombre" } } },
+            en: { TestsHub: { synthesisTest: { showCorrection: "Show Correction", hideCorrection: "Hide Correction", comingSoon: "Coming soon!" }, theme: { toggle: "Dark Mode" } } }
+        };
+        
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let current = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (current) current = current[k]; });
+                if (typeof current === 'string') el.textContent = current;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeToggle) themeToggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع الفاتح' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+        
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+        }
+        
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            redrawAllGraphs();
+        }
+        
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        function downloadAsPDF() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Bientôt disponible !"); }
+        function downloadAsODT() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Bientôt disponible !"); }
+        function downloadAsPNG() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Bientôt disponible !"); }
+        
+        // ========== Fonctions de dessin pour le parallélogramme (exercice 1) ==========
+        const X_MIN = -1, X_MAX = 7, Y_MIN = -1, Y_MAX = 4;  // adapté aux points A(0,0), B(4,0), C(6,2), D(2,2)
+        
+        function drawAxes(ctx, w, h, xMin, xMax, yMin, yMax) {
+            const mapX = (x) => ((x - xMin) / (xMax - xMin)) * w;
+            const mapY = (y) => h - ((y - yMin) / (yMax - yMin)) * h;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // Grille légère
+            ctx.strokeStyle = isDarkTheme ? '#555' : '#ddd';
+            ctx.lineWidth = 0.5;
+            for (let i = Math.ceil(xMin); i <= Math.floor(xMax); i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(mapX(i), mapY(yMin));
+                ctx.lineTo(mapX(i), mapY(yMax));
+                ctx.strokeStyle = isDarkTheme ? '#444' : '#e0e0e0';
+                ctx.stroke();
+            }
+            for (let j = Math.ceil(yMin); j <= Math.floor(yMax); j++) {
+                if (j === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(mapX(xMin), mapY(j));
+                ctx.lineTo(mapX(xMax), mapY(j));
+                ctx.strokeStyle = isDarkTheme ? '#444' : '#e0e0e0';
+                ctx.stroke();
+            }
+            
+            // Axes
+            ctx.strokeStyle = isDarkTheme ? '#ccc' : '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(mapX(xMin), mapY(0)); ctx.lineTo(mapX(xMax), mapY(0)); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(mapX(0), mapY(yMin)); ctx.lineTo(mapX(0), mapY(yMax)); ctx.stroke();
+            
+            // Graduations
+            ctx.fillStyle = isDarkTheme ? '#eee' : '#222';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            for (let i = Math.ceil(xMin); i <= Math.floor(xMax); i++) {
+                if (i === 0) continue;
+                ctx.fillText(i, mapX(i), mapY(0) + 5);
+            }
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'middle';
+            for (let j = Math.ceil(yMin); j <= Math.floor(yMax); j++) {
+                if (j === 0) continue;
+                ctx.fillText(j, mapX(0) - 5, mapY(j));
+            }
+            ctx.fillStyle = isDarkTheme ? '#eee' : '#222';
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'top';
+            ctx.fillText('O', mapX(0) - 5, mapY(0) + 5);
+        }
+
+        function drawPoint(ctx, x, y, color, label, w, h, xMin, xMax, yMin, yMax) {
+            const mapX = (x) => ((x - xMin) / (xMax - xMin)) * w;
+            const mapY = (y) => h - ((y - yMin) / (yMax - yMin)) * h;
+            ctx.beginPath();
+            ctx.arc(mapX(x), mapY(y), 6, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.shadowColor = isDarkTheme ? '#000' : '#ccc';
+            ctx.shadowBlur = 4;
+            ctx.fill();
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = color;
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'left';
+            ctx.shadowColor = isDarkTheme ? '#000' : '#fff';
+            ctx.shadowBlur = 4;
+            ctx.fillText(label, mapX(x) + 8, mapY(y) - 8);
+            ctx.shadowBlur = 0;
+        }
+
+        function drawLine(ctx, x1, y1, x2, y2, color, dashed, w, h, xMin, xMax, yMin, yMax) {
+            const mapX = (x) => ((x - xMin) / (xMax - xMin)) * w;
+            const mapY = (y) => h - ((y - yMin) / (yMax - yMin)) * h;
+            ctx.beginPath();
+            ctx.moveTo(mapX(x1), mapY(y1));
+            ctx.lineTo(mapX(x2), mapY(y2));
+            ctx.strokeStyle = color;
+            ctx.lineWidth = dashed ? 2 : 3;
+            if (dashed) ctx.setLineDash([5, 5]);
+            else ctx.setLineDash([]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        function drawVector(ctx, fromX, fromY, toX, toY, color, label, w, h, xMin, xMax, yMin, yMax) {
+            const mapX = (x) => ((x - xMin) / (xMax - xMin)) * w;
+            const mapY = (y) => h - ((y - yMin) / (yMax - yMin)) * h;
+            const fx = mapX(fromX), fy = mapY(fromY);
+            const tx = mapX(toX), ty = mapY(toY);
+            
+            // Ligne
+            ctx.beginPath();
+            ctx.moveTo(fx, fy);
+            ctx.lineTo(tx, ty);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+            
+            // Pointe de flèche
+            const angle = Math.atan2(ty - fy, tx - fx);
+            const arrowSize = 12;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(tx, ty);
+            ctx.lineTo(tx - arrowSize * Math.cos(angle - 0.3), ty - arrowSize * Math.sin(angle - 0.3));
+            ctx.lineTo(tx - arrowSize * Math.cos(angle + 0.3), ty - arrowSize * Math.sin(angle + 0.3));
+            ctx.closePath();
+            ctx.fill();
+            
+            // Label
+            ctx.fillStyle = color;
+            ctx.font = 'italic 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(label, (fx + tx) / 2, (fy + ty) / 2 - 10);
+        }
+
+        // Dessin pour l'énoncé de l'exercice 1 : seulement le parallélogramme et les points
+        function drawExerciseParallelogram() {
+            const canvas = document.getElementById('exerciseParallelogramCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientWidth * 0.5;
+            const w = canvas.width, h = canvas.height;
+            
+            drawAxes(ctx, w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            
+            // Points
+            drawPoint(ctx, 0, 0, '#3b82f6', 'A', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 4, 0, '#3b82f6', 'B', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 6, 2, '#3b82f6', 'C', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 2, 2, '#3b82f6', 'D', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 3, 1, '#eab308', 'O', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            
+            // Tracer le parallélogramme
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(((0 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((0 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.lineTo(((4 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((0 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.lineTo(((6 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((2 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.lineTo(((2 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((2 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        // Dessin pour la correction de l'exercice 1 : ajoute les vecteurs et diagonales
+        function drawCorrectionParallelogram() {
+            const canvas = document.getElementById('correctionParallelogramCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientWidth * 0.5;
+            const w = canvas.width, h = canvas.height;
+            
+            drawAxes(ctx, w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            
+            // Points
+            drawPoint(ctx, 0, 0, '#3b82f6', 'A', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 4, 0, '#3b82f6', 'B', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 6, 2, '#3b82f6', 'C', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 2, 2, '#3b82f6', 'D', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawPoint(ctx, 3, 1, '#eab308', 'O', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            
+            // Parallélogramme (contour)
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(((0 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((0 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.lineTo(((4 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((0 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.lineTo(((6 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((2 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.lineTo(((2 - X_MIN) / (X_MAX - X_MIN)) * w, h - ((2 - Y_MIN) / (Y_MAX - Y_MIN)) * h);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // Diagonales en pointillés
+            drawLine(ctx, 0, 0, 6, 2, '#a855f7', true, w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawLine(ctx, 4, 0, 2, 2, '#a855f7', true, w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            
+            // Vecteurs AB, AD, AC
+            drawVector(ctx, 0, 0, 4, 0, '#ef4444', 'AB', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawVector(ctx, 0, 0, 2, 2, '#10b981', 'AD', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            drawVector(ctx, 0, 0, 6, 2, '#f97316', 'AC', w, h, X_MIN, X_MAX, Y_MIN, Y_MAX);
+            
+            // Annotation supplémentaire : translation de D par AC donne B
+            ctx.fillStyle = '#6b21a8';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('t_{AC}(D)=B', ((4 - X_MIN) / (X_MAX - X_MIN)) * w + 10, h - ((1 - Y_MIN) / (Y_MAX - Y_MIN)) * h - 10);
+        }
+
+        // ========== Fonctions de dessin pour l'exercice 2 ==========
+        // Coordonnées choisies : A(0,0), B(6,0), C(2,4)
+        const X2_MIN = -5, X2_MAX = 9, Y2_MIN = -1, Y2_MAX = 9; // pour inclure M(-4,4) et E(-2,8)
+
+        function drawAxes2(ctx, w, h) {
+            drawAxes(ctx, w, h, X2_MIN, X2_MAX, Y2_MIN, Y2_MAX);
+        }
+
+        function drawPoint2(ctx, x, y, color, label, w, h) {
+            drawPoint(ctx, x, y, color, label, w, h, X2_MIN, X2_MAX, Y2_MIN, Y2_MAX);
+        }
+
+        function drawLine2(ctx, x1, y1, x2, y2, color, dashed, w, h) {
+            drawLine(ctx, x1, y1, x2, y2, color, dashed, w, h, X2_MIN, X2_MAX, Y2_MIN, Y2_MAX);
+        }
+
+        function drawVector2(ctx, fromX, fromY, toX, toY, color, label, w, h) {
+            drawVector(ctx, fromX, fromY, toX, toY, color, label, w, h, X2_MIN, X2_MAX, Y2_MIN, Y2_MAX);
+        }
+
+        // Dessin pour l'énoncé de l'exercice 2 : triangle ABC et point I
+        function drawExercise2Triangle() {
+            const canvas = document.getElementById('exercise2TriangleCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientWidth * 0.5;
+            const w = canvas.width, h = canvas.height;
+            
+            drawAxes2(ctx, w, h);
+            
+            // Points du triangle
+            drawPoint2(ctx, 0, 0, '#3b82f6', 'A', w, h);
+            drawPoint2(ctx, 6, 0, '#3b82f6', 'B', w, h);
+            drawPoint2(ctx, 2, 4, '#3b82f6', 'C', w, h);
+            drawPoint2(ctx, 4, 2, '#eab308', 'I', w, h);
+            
+            // Tracer le triangle
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(((0 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((0 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.lineTo(((6 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((0 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.lineTo(((2 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((4 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        // Dessin pour la correction de l'exercice 2 : tous les points D, M, E et vecteurs
+        function drawCorrection2() {
+            const canvas = document.getElementById('correction2Canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientWidth * 0.5;
+            const w = canvas.width, h = canvas.height;
+            
+            drawAxes2(ctx, w, h);
+            
+            // Points du triangle
+            drawPoint2(ctx, 0, 0, '#3b82f6', 'A', w, h);
+            drawPoint2(ctx, 6, 0, '#3b82f6', 'B', w, h);
+            drawPoint2(ctx, 2, 4, '#3b82f6', 'C', w, h);
+            drawPoint2(ctx, 4, 2, '#eab308', 'I', w, h);
+            
+            // Points construits
+            drawPoint2(ctx, 8, 4, '#ef4444', 'D', w, h);
+            drawPoint2(ctx, -4, 4, '#10b981', 'M', w, h);
+            drawPoint2(ctx, -2, 8, '#f97316', 'E', w, h);
+            
+            // Tracer le triangle ABC en bleu
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(((0 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((0 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.lineTo(((6 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((0 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.lineTo(((2 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((4 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // Tracer le parallélogramme ABDC en pointillés
+            ctx.strokeStyle = '#a855f7';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(((0 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((0 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.lineTo(((6 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((0 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.lineTo(((8 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((4 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.lineTo(((2 - X2_MIN) / (X2_MAX - X2_MIN)) * w, h - ((4 - Y2_MIN) / (Y2_MAX - Y2_MIN)) * h);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Vecteurs importants
+            drawVector2(ctx, 0, 0, 6, 0, '#ef4444', 'AB', w, h);
+            drawVector2(ctx, 0, 0, 2, 4, '#10b981', 'AC', w, h);
+            drawVector2(ctx, 0, 0, 8, 4, '#f97316', 'AD', w, h);
+            drawVector2(ctx, 6, 0, 2, 4, '#6b21a8', 'BC', w, h);
+            
+            // Lien ME
+            drawLine2(ctx, -4, 4, -2, 8, '#dc2626', false, w, h);
+        }
+
+        // ========== Dessin pour l'exercice 4 (fonction affine) ==========
+        function drawCorrection4() {
+            const canvas = document.getElementById('correction4Canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientWidth * 0.5;
+            const w = canvas.width, h = canvas.height;
+            
+            // Définir un repère adapté à la fonction f(x)=3x-2
+            const xMin = -2, xMax = 6, yMin = -8, yMax = 16;
+            
+            drawAxes(ctx, w, h, xMin, xMax, yMin, yMax);
+            
+            // Tracer la droite
+            const mapX = (x) => ((x - xMin) / (xMax - xMin)) * w;
+            const mapY = (y) => h - ((y - yMin) / (yMax - yMin)) * h;
+            
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(mapX(xMin), mapY(3*xMin - 2));
+            ctx.lineTo(mapX(xMax), mapY(3*xMax - 2));
+            ctx.stroke();
+            
+            // Marquer quelques points
+            drawPoint(ctx, 2, 4, '#ef4444', '(2,4)', w, h, xMin, xMax, yMin, yMax);
+            drawPoint(ctx, 5, 13, '#ef4444', '(5,13)', w, h, xMin, xMax, yMin, yMax);
+            drawPoint(ctx, 0, -2, '#10b981', '(0,-2)', w, h, xMin, xMax, yMin, yMax);
+            drawPoint(ctx, 1, 1, '#10b981', '(1,1)', w, h, xMin, xMax, yMin, yMax);
+        }
+
+        function redrawAllGraphs() {
+            drawExerciseParallelogram();
+            drawExercise2Triangle();
+            const correctionVisible = !document.getElementById('correction').classList.contains('Tests-Hub-hidden');
+            if (correctionVisible) {
+                drawCorrectionParallelogram();
+                drawCorrection2();
+                drawCorrection4();
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+            else document.documentElement.dir = 'ltr';
+            
+            updateTextContent();
+            
+            // KaTeX rendering
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                throwOnError: false
+            });
+            
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() {
+                    changeLanguage(this.getAttribute('data-language'));
+                });
+            });
+            
+            document.getElementById('downloadPdf').addEventListener('click', downloadAsPDF);
+            document.getElementById('downloadOdt').addEventListener('click', downloadAsODT);
+            document.getElementById('downloadPng').addEventListener('click', downloadAsPNG);
+            
+            const correctionBtn = document.getElementById('toggleCorrection');
+            correctionBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                redrawAllGraphs();
+                renderMathInElement(corr, { delimiters: [{left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}], throwOnError: false });
+            });
+            
+            redrawAllGraphs();
+            window.addEventListener('resize', redrawAllGraphs);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 2 (8ème) - تمرين صح/خطأ</title>
+    
+    <!-- PWA Meta Tags (ألوان زرقاء) -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="description" content="فرض تأليفي عدد 2 للسنة الثامنة أساسي - رياضيات (الأستاذ: فوزي الغربي)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض 8">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <style>
+        /* لوحة ألوان زرقاء هادئة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #1e3a8a;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: #eff6ff;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6, #60a5fa);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1e3a8a;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #bfdbfe;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1e3a8a;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #eff6ff;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3b82f6;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1e40af;
+            color: #eff6ff;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #3b82f6;
+            border-bottom: 2px solid #60a5fa;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #dbeafe;
+            padding: 1rem;
+            border-right: 4px solid #3b82f6;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1e3a8a;
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.5rem 0;
+            padding-right: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-radio-group {
+            margin-top: 8px;
+            margin-right: 20px;
+        }
+        .Tests-Hub-radio-group label {
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        
+        /* معادلات LTR */
+        .katex {
+            direction: ltr !important;
+            unicode-bidi: isolate !important;
+            display: inline-block;
+        }
+        .katex * {
+            direction: ltr !important;
+        }
+
+        /* تحسين عرض المعادلات الطويلة وتكبير الخط */
+        .Tests-Hub-question p {
+            font-size: 1.2em;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;  /* يجعل المعادلات تبقى في سطر واحد مع إمكانية التمرير */
+            padding-bottom: 5px;
+            margin: 10px 0;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar {
+            height: 6px;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+        /* في الشاشات الصغيرة نسمح بالتمرير */
+        @media (max-width: 600px) {
+            .Tests-Hub-question p {
+                font-size: 1.1em;
+            }
+        }
+        /* نزيل white-space للفقرات العادية غير المعادلات */
+        .Tests-Hub-question p:not(:has(.katex)) {
+            white-space: normal;
+        }
+        
+        /* زر التصحيح */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #dbeafe;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #3b82f6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #1e3a8a;
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #3b82f6;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #3b82f6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(191, 219, 254, 0.1);
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6, #60a5fa);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #bfdbfe;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #bfdbfe;
+        }
+        
+        /* أزرار التحميل */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1));
+            border-radius: 12px;
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* أنماط الرسم */
+        .Tests-Hub-diagram-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .Tests-Hub-diagram-canvas {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-canvas {
+            border-color: #60a5fa;
+            background: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title">الرياضيات - فرض تأليفي عدد 2 (8ème)</h1>
+                    <div class="Tests-Hub-header-subtitle">الثامنة أساسي - النموذجية ضفاف البحيرة</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>→</span>
+                    <span>العودة للاختبارات</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span>العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span>الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض تأليفي عدد 2 في الرياضيات</h1>
+            <p>السنة الدراسية: 2024-2025</p>
+            <p>القسم: الثامنة أساسي</p>
+            <p>الأستاذ: فوزي الغربي</p>
+            <p>الإعدادية: المدرسة الإعدادية النموذجية ضفاف البحيرة</p>
+            <p>المدة: 60 دقيقة</p>
+        </div>
+        
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات</h3>
+            <ul>
+                <li>أجب عن التمرين التالي بوضع علامة (✓) أمام صواب أو خطأ.</li>
+                <li>يُكتفى باختيار الإجابة دون تعليل في هذه الصفحة.</li>
+                <li>يمكنك الاطلاع على التصحيح المفصل بالضغط على الزر في الأسفل.</li>
+            </ul>
+        </div>
+        
+        <!-- ==================== التمرين 1 (4 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 1 (4 نقاط)</h2>
+            <p><strong>ضع علامة (✓) أمام العبارة الصحيحة وعلامة (✗) أمام الخاطئة:</strong></p>
+            
+            <!-- السؤال 1 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> \(0.369 \times 10^{-5}\) هي الكتابة العلمية لعدد عشري نسبي.</p>
+                <div class="Tests-Hub-radio-group">
+                    <label><input type="radio" name="q1_1" value="true"> صواب</label>
+                    <label><input type="radio" name="q1_1" value="false"> خطأ</label>
+                </div>
+            </div>
+            
+            <!-- السؤال 2 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> مثلثان قائمان زواياهما متقايسة مثنى مثنى هما متقايسان.</p>
+                <div class="Tests-Hub-radio-group">
+                    <label><input type="radio" name="q1_2" value="true"> صواب</label>
+                    <label><input type="radio" name="q1_2" value="false"> خطأ</label>
+                </div>
+            </div>
+            
+            <!-- السؤال 3 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3)</span> \(b\) هو مقلوب \(a\) يعني \(a+b=0\).</p>
+                <div class="Tests-Hub-radio-group">
+                    <label><input type="radio" name="q1_3" value="true"> صواب</label>
+                    <label><input type="radio" name="q1_3" value="false"> خطأ</label>
+                </div>
+            </div>
+            
+            <!-- السؤال 4 -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4)</span> كل مثلثين قائمين لهما زاويتان حادتان متقايستان هما متقايسان.</p>
+                <div class="Tests-Hub-radio-group">
+                    <label><input type="radio" name="q1_4" value="true"> صواب</label>
+                    <label><input type="radio" name="q1_4" value="false"> خطأ</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين 2 (6 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 2 (6 نقاط)</h2>
+            
+            <p><strong>1) أحسب ما يلي:</strong></p>
+            <div class="Tests-Hub-question">
+                <p>\(E = 2 + \frac{1 - \frac{5}{2}}{1 + \frac{5}{2}}\)</p>
+                <p>\(F = \sqrt{\frac{625}{169}} + \sqrt{13 + 6^2}\)</p>
+                <p>\(G = \frac{\sqrt{\frac{4}{9}} - 3 \times \frac{\sqrt{25}}{6}}{\frac{3}{2} \times \sqrt{\frac{50}{72}} - \frac{9}{4}}\)</p>
+                <p>\(A = (-2)^3 \times \sqrt{16^{-2}} \times 3 \times \left[ \left(\frac{1}{3}\right)^{-2} \times \left(\frac{5}{3}\right)^2 + \sqrt{9^2} \right]\)</p>
+                <p>\(B = \left(\frac{1}{2}\right)^{-4} \times \frac{1}{8} \times \left(\frac{-5}{2}\right)^2 \times \left[ \left(\frac{-3}{5}\right)^{-1} \times \sqrt{25^{-2}} + \left(\frac{-5}{7}\right)^0 \right]\)</p>
+            </div>
+            
+            <p><strong>2) أكتب في صورة قوة لعدد كسري نسبي:</strong></p>
+            <div class="Tests-Hub-question">
+                <p>\(I = \frac{ \left(\frac{-2}{5}\right)^{10} \times \left(\frac{5}{7}\right)^2 }{ \left(\frac{7}{5}\right) \times \left(\frac{2}{5}\right)^7 }\)</p>
+                <p>\(J = \sqrt{25^{-3}} \times 5 \times 9\)</p>
+                <p>\(K = \left[ \left(\frac{2}{3}\right)^{-4} \right]^5 \times \frac{16}{81}\)</p>
+            </div>
+            
+            <p><strong>3) أعط الكتابة العلمية للأعداد العشرية التالية:</strong></p>
+            <div class="Tests-Hub-question">
+                <p>\(p = 0.0035\)</p>
+                <p>\(q = 0.7\)</p>
+                <p>\(t = 658.56 \times 10^6\)</p>
+                <p>\(s = 0.000896 \times 10^{-2}\)</p>
+            </div>
+            <p><strong>ثم أعط الكتابة العلمية للعددين:</strong></p>
+            <div class="Tests-Hub-question">
+                <p>\(\frac{s}{t}\)</p>
+                <p>\(p + q\)</p>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين 3 (5 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 3 (5 نقاط)</h2>
+            <p>مثلث \(ABC\) قائم الزاوية ومتقايس الضلعين، قمته الرئيسية \(A\) و \([AH]\) ارتفاعه الصادر من \(A\).</p>
+            <ul>
+                <li>ارسم خارج المثلث \(ABC\) مستقيما \((XY)\) يمر من \(A\) ولا يوازي \((BC)\).</li>
+                <li>لتكن \(M\) المسقط العمودي ل \(B\) على \((XY)\) و \(N\) المسقط العمودي ل \(C\) على \((YX)\).</li>
+            </ul>
+            <p>المطلوب:</p>
+            <ol>
+                <li>بين أن \(HA = HB = HC\)</li>
+                <li>قارن المثلثين \(ACN\) و \(ABM\)</li>
+                <li>بين أن \(MN = BM + CN\)</li>
+                <li>أ) قارن المثلثين \(BMH\) و \(ANH\) واستنتج بالنسبة إلى بقية العناصر<br>
+                ب) برهن أن المثلث \(MHN\) قائم الزاوية ومتقايس الضلعين</li>
+            </ol>
+            <!-- رسم أساسي للمثلث فقط (بدون الإنشاءات) -->
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exercise3BaseCanvas" class="Tests-Hub-diagram-canvas" width="500" height="400" style="width:100%; height:auto;"></canvas>
+                <p style="margin-top:5px; color:#666;">الشكل الأساسي: المثلث ABC والارتفاع AH</p>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين 4 (5 نقاط) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 4 (5 نقاط)</h2>
+            <p>في متوازي الأضلاع \(ABCD\) مركزه \(O\): \(AB = 8\)، \(AD = 5\). \(I\) هو المسقط العمودي للنقطة \(A\) على \((BD)\) و \(J\) هو المسقط العمودي للنقطة \(C\) على \((BD)\).</p>
+            <ol>
+                <li>قارن المثلثين \(ADI\) و \(CBJ\)</li>
+                <li>قارن المثلثين \(AOI\) و \(COJ\)</li>
+                <li>استنتج أن \(O\) هي منتصف \([IJ]\)</li>
+                <li>قارن المثلثين \(AOJ\) و \(COI\)</li>
+            </ol>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exercise4Canvas" class="Tests-Hub-diagram-canvas" width="500" height="400" style="width:100%; height:auto;"></canvas>
+                <p style="margin-top:5px; color:#666;">الشكل: متوازي الأضلاع ABCD والقطر BD مع المسقطين I و J</p>
+            </div>
+        </div>
+        
+        <!-- زر عرض التصحيح -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">عرض التصحيح</button>
+        </div>
+        
+        <!-- ==================== قسم التصحيح (يظهر عند الضغط) ==================== -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>التصحيح النموذجي</h2>
+            
+            <!-- تصحيح التمرين 1 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) \(0.369 \times 10^{-5}\) هي الكتابة العلمية؟</strong></p>
+                <p>🔴 <strong>خطأ.</strong> لأن الكتابة العلمية تتطلب أن يكون العامل \(a\) محصوراً بين 1 و 10 ( \(1 \le |a| < 10\) ). هنا \(0.369 < 1\)، لذا يجب كتابته \(3.69 \times 10^{-6}\).</p>
+                
+                <p><strong>2) مثلثان قائمان زواياهما متقايسة مثنى مثنى هما متقايسان.</strong></p>
+                <p>🔴 <strong>خطأ.</strong> تساوي الزوايا يؤدي إلى تشابه المثلثات وليس بالضرورة تقايسها. فمثلاً مثلث قائم بزوايا 30°,60°,90° يمكن أن يكون بأحجام مختلفة (أطوال مختلفة) ومازالت زواياه متقايسة مع مثلث آخر بنفس الزوايا. التقايس يتطلب تساوي الأضلاع أيضاً.</p>
+                
+                <p><strong>3) \(b\) هو مقلوب \(a\) يعني \(a+b=0\).</strong></p>
+                <p>🔴 <strong>خطأ.</strong> مقلوب \(a\) (حيث \(a \neq 0\)) هو \(1/a\)، ويحقق \(a \times \frac{1}{a} = 1\). أما \(a+b=0\) فتعني أن \(b\) هو مقابل \(a\).</p>
+                
+                <p><strong>4) كل مثلثين قائمين لهما زاويتان حادتان متقايستان هما متقايسان.</strong></p>
+                <p>🔴 <strong>خطأ.</strong> نفس التعليل السابق: تساوي زاويتين حادتين في مثلثين قائمين يعني أن جميع الزوايا متقايسة (لأن القائمة متساوية)، لكن هذا يعطينا تشابهاً وليس تقايساً. مثال: مثلث قائم زواياه 30,60,90 وتره 2، ومثلث آخر زواياه 30,60,90 وتره 4؛ الزوايا متقايسة لكن المثلثين غير متقايسين.</p>
+            </div>
+            
+            <!-- تصحيح التمرين 2 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>التمرين 2:</strong></p>
+                
+                <p><strong>1) حساب \(E, F, G, A, B\):</strong></p>
+                <p>\(E = 2 + \frac{1 - \frac{5}{2}}{1 + \frac{5}{2}} = 2 + \frac{-\frac{3}{2}}{\frac{7}{2}} = 2 - \frac{3}{7} = \frac{14}{7} - \frac{3}{7} = \frac{11}{7}\)</p>
+                <p>\(F = \sqrt{\frac{625}{169}} + \sqrt{13 + 6^2} = \frac{25}{13} + \sqrt{13+36} = \frac{25}{13} + 7 = \frac{25}{13} + \frac{91}{13} = \frac{116}{13}\)</p>
+                <p>\(G = \frac{\sqrt{\frac{4}{9}} - 3 \times \frac{\sqrt{25}}{6}}{\frac{3}{2} \times \sqrt{\frac{50}{72}} - \frac{9}{4}} = \frac{\frac{2}{3} - 3 \times \frac{5}{6}}{\frac{3}{2} \times \sqrt{\frac{25}{36}} - \frac{9}{4}} = \frac{\frac{2}{3} - \frac{5}{2}}{\frac{3}{2} \times \frac{5}{6} - \frac{9}{4}} = \frac{\frac{4-15}{6}}{\frac{15}{12} - \frac{9}{4}} = \frac{-\frac{11}{6}}{\frac{5}{4} - \frac{9}{4}} = \frac{-\frac{11}{6}}{-1} = \frac{11}{6}\)</p>
+                <p>\(A = (-2)^3 \times \sqrt{16^{-2}} \times 3 \times \left[ \left(\frac{1}{3}\right)^{-2} \times \left(\frac{5}{3}\right)^2 + \sqrt{9^2} \right] = (-8) \times \frac{1}{16} \times 3 \times \left[ 9 \times \frac{25}{9} + 9 \right] = \frac{-8 \times 3}{16} \times (25+9) = \frac{-24}{16} \times 34 = -\frac{3}{2} \times 34 = -51\)</p>
+                <p>\(B = \left(\frac{1}{2}\right)^{-4} \times \frac{1}{8} \times \left(\frac{-5}{2}\right)^2 \times \left[ \left(\frac{-3}{5}\right)^{-1} \times \sqrt{25^{-2}} + \left(\frac{-5}{7}\right)^0 \right] = 16 \times \frac{1}{8} \times \frac{25}{4} \times \left[ -\frac{5}{3} \times \frac{1}{25} + 1 \right] = \frac{16}{8} \times \frac{25}{4} \times \left( -\frac{1}{15} + 1 \right) = 2 \times \frac{25}{4} \times \frac{14}{15} = \frac{50}{4} \times \frac{14}{15} = \frac{25}{2} \times \frac{14}{15} = \frac{25 \times 14}{2 \times 15} = \frac{350}{30} = \frac{35}{3}\)</p>
+                
+                <p><strong>2) كتابة \(I, J, K\) في صورة قوة لعدد كسري نسبي:</strong></p>
+                <p>\(I = \frac{ \left(\frac{-2}{5}\right)^{10} \times \left(\frac{5}{7}\right)^2 }{ \left(\frac{7}{5}\right) \times \left(\frac{2}{5}\right)^7 } = \frac{ \left(\frac{2}{5}\right)^{10} \times \left(\frac{5}{7}\right)^2 }{ \frac{7}{5} \times \left(\frac{2}{5}\right)^7 } = \frac{2^{10}}{5^{10}} \times \frac{5^2}{7^2} \times \frac{5}{7} \times \frac{5^7}{2^7} = 2^{10-7} \times 5^{-10+2+1+7} \times 7^{-2-1} = 2^3 \times 5^{0} \times 7^{-3} = \frac{8}{7^3} = \left(\frac{2}{7}\right)^3\)</p>
+                <p>\(J = \sqrt{25^{-3}} \times 5 \times 9 = 25^{-3/2} \times 5 \times 9 = (5^2)^{-3/2} \times 5 \times 9 = 5^{-3} \times 5 \times 9 = 5^{-2} \times 9 = \frac{9}{25} = \left(\frac{3}{5}\right)^2\)</p>
+                <p>\(K = \left[ \left(\frac{2}{3}\right)^{-4} \right]^5 \times \frac{16}{81} = \left(\frac{2}{3}\right)^{-20} \times \frac{16}{81} = \left(\frac{3}{2}\right)^{20} \times \left(\frac{2}{3}\right)^4 = \left(\frac{3}{2}\right)^{20} \times \left(\frac{3}{2}\right)^{-4} = \left(\frac{3}{2}\right)^{16}\)</p>
+                
+                <p><strong>3) الكتابة العلمية:</strong></p>
+                <p>\(p = 0.0035 = 3.5 \times 10^{-3}\)</p>
+                <p>\(q = 0.7 = 7 \times 10^{-1}\)</p>
+                <p>\(t = 658.56 \times 10^6 = 6.5856 \times 10^8\)</p>
+                <p>\(s = 0.000896 \times 10^{-2} = 8.96 \times 10^{-6}\)</p>
+                <p>ثم: \(\frac{s}{t} = \frac{8.96 \times 10^{-6}}{6.5856 \times 10^8} = \frac{8.96}{6.5856} \times 10^{-14} \approx 1.3605 \times 10^{-14}\)  (أو \(\frac{1400}{1029} \times 10^{-14}\) على شكل كسر)</p>
+                <p>\(p + q = 0.0035 + 0.7 = 0.7035 = 7.035 \times 10^{-1}\)</p>
+            </div>
+
+            <!-- تصحيح التمرين 3 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>التمرين 3:</strong></p>
+                <p><strong>1)</strong> في المثلث \(ABC\) قائم الزاوية في \(A\) ومتساوي الساقين (\(AB = AC\))، لدينا \(\widehat{B} = \widehat{C} = 45^\circ\). الارتفاع \(AH\) عمودي على \(BC\)، إذن المثلثان \(AHB\) و \(AHC\) قائمان في \(H\). بما أن \(\widehat{B} = 45^\circ\) فإن \( \triangle AHB \) متساوي الساقين حيث \(AH = BH\). وبالمثل \(AH = CH\). إذن \(HA = HB = HC\).</p>
+                <p><strong>2)</strong> المثلثان \(ACN\) و \(ABM\): لدينا \(AB = AC\)، والزاوية \(\widehat{BAM} = \widehat{CAN}\) لأنهما متقابلتان بالرأس (حيث \(A\) نقطة مشتركة والخط \(XY\) مستقيم). أيضاً \(\widehat{AMB} = \widehat{ANC} = 90^\circ\) (لأن \(M\) و \(N\) مسقطان عموديان). إذن المثلثان قائمان ومتساويا الوتر (AB=AC) وإحدى الزوايا الحادة، فهما متقايسان (حالة وتر وزاوية).</p>
+                <p><strong>3)</strong> بما أن \( \triangle ACN \cong \triangle ABM \) فإن \(BM = AN\) و \(CN = AM\). ولكن \(MN = AM + AN\) (لأن \(M\) و \(N\) على نفس الخط \(XY\) على جانبي \(A\))، وبالتالي \(MN = BM + CN\).</p>
+                <p><strong>4) أ)</strong> المثلثان \(BMH\) و \(ANH\): لدينا \(BM = AN\) (من 2)، \(BH = AH\) (من 1)، والزاوية \(\widehat{MBH} = \widehat{NAH}\)؟ يمكن إثباته بالتدوير. نستنتج أنهما متقايسان، وبالتالي \(MH = NH\) وأن الزوايا الأخرى متقايسة.</p>
+                <p><strong>ب)</strong> من تقايس المثلثين \(BMH\) و \(ANH\) نستنتج أن \(MH = NH\)، أي أن المثلث \(MHN\) متساوي الساقين. أيضاً الزاوية \(\widehat{MHN} = 90^\circ\) لأن مجموع الزوايا حول \(H\) يؤدي إلى ذلك (باستخدام أن \( \widehat{BHC} = 180^\circ \) و \( \widehat{MHB} + \widehat{NHC} = 90^\circ\)...). بالتالي المثلث \(MHN\) قائم الزاوية ومتساوي الساقين.</p>
+            </div>
+            <!-- رسم كامل للتمرين 3 مع جميع الإنشاءات -->
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exercise3FullCanvas" class="Tests-Hub-diagram-canvas" width="500" height="400" style="width:100%; height:auto;"></canvas>
+                <p style="margin-top:5px; color:#666;">الشكل الكامل مع الخط XY والنقاط M,N</p>
+            </div>
+
+            <!-- تصحيح التمرين 4 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>التمرين 4:</strong></p>
+                <p><strong>1)</strong> في متوازي الأضلاع \(ABCD\)، لدينا \(AD = BC\) و \(AD \parallel BC\). بما أن \(I\) مسقط \(A\) على \(BD\)، فإن \(AI \perp BD\). وبالمثل \(CJ \perp BD\). إذن \(AI \parallel CJ\) (كلاهما عمودي على \(BD\)). المثلثان \(ADI\) و \(CBJ\): 
+                    - \(AD = BC\) (أضلاع متقابلة)
+                    - \(\widehat{ADI} = \widehat{CBJ}\) (بالتناظر لأن \(AD \parallel BC\) والخط \(BD\) قاطع)
+                    - \(\widehat{AID} = \widehat{CJB} = 90^\circ\)
+                    إذن المثلثان قائمان ومتساويا الوتر (AD=BC) وإحدى الزوايا الحادة، فهما متقايسان (حالة وتر وزاوية).
+                </p>
+                <p><strong>2)</strong> المثلثان \(AOI\) و \(COJ\): 
+                    - \(AO = CO\) (قطرا متوازي الأضلاع يتقاطعان في المنتصف)
+                    - \(\widehat{AOI} = \widehat{COJ}\) (بالرأس)
+                    - \(AI = CJ\) (من تقايس المثلثين السابقين)
+                    وبما أن \(AI \perp BD\) و \(CJ \perp BD\) فإن الزاوية بين \(AO\) و \(AI\) تساوي الزاوية بين \(CO\) و \(CJ\) (باستخدام توازي الخطوط)، إذن المثلثان متقايسان (حالة ضلعان وزاوية محصورة).
+                </p>
+                <p><strong>3)</strong> من تقايس المثلثين \(AOI\) و \(COJ\) نستنتج أن \(OI = OJ\)، وبالتالي \(O\) هي منتصف \([IJ]\).</p>
+                <p><strong>4)</strong> المثلثان \(AOJ\) و \(COI\): 
+                    - \(AO = CO\)
+                    - \(OJ = OI\) (من 3)
+                    - \(\widehat{AOJ} = \widehat{COI}\) (بالرأس)
+                    إذن المثلثان متقايسان (حالة ضلعان وزاوية محصورة).</p>
+            </div>
+            <!-- رسم للتمرين 4 -->
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="exercise4FullCanvas" class="Tests-Hub-diagram-canvas" width="500" height="400" style="width:100%; height:auto;"></canvas>
+                <p style="margin-top:5px; color:#666;">الشكل الكامل للتمرين 4: متوازي الأضلاع مع المسقطين I و J</p>
+            </div>
+        </div>
+        
+        <!-- أزرار التحميل (احتياطية) -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3>المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3>الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.2.1</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3>الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // إدارة الثيم واللغة (كما في النماذج السابقة)
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    synthesisTest: {
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        comingSoon: "قريبًا!"
+                    },
+                    theme: { toggle: "الوضع المظلم" }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    synthesisTest: {
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    theme: { toggle: "Mode Sombre" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    synthesisTest: {
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    theme: { toggle: "Dark Mode" }
+                }
+            }
+        };
+        
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let current = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (current) current = current[k]; });
+                if (typeof current === 'string') el.textContent = current;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeToggle) themeToggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع الفاتح' : currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+        
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+        }
+        
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            redrawAllDiagrams(); // إعادة رسم الأشكال عند تغيير الثيم
+        }
+        
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        function downloadAsPDF() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon"); }
+        function downloadAsODT() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon"); }
+        function downloadAsPNG() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon"); }
+        
+        // ==================== دوال الرسم ====================
+        // دالة مساعدة لإسقاط نقطة على خط
+        function projectPointOnLine(P, A, B) {
+            let AB = { x: B.x - A.x, y: B.y - A.y };
+            let AP = { x: P.x - A.x, y: P.y - A.y };
+            let t = (AP.x * AB.x + AP.y * AB.y) / (AB.x * AB.x + AB.y * AB.y);
+            return { x: A.x + t * AB.x, y: A.y + t * AB.y };
+        }
+
+        // رسم المثلث الأساسي (ABC فقط مع الارتفاع AH) - للتمرين 3
+        function drawExercise3Base() {
+            const canvas = document.getElementById('exercise3BaseCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            // ضبط حجم اللوحة
+            const containerWidth = canvas.parentElement.clientWidth;
+            canvas.width = containerWidth;
+            canvas.height = containerWidth * 0.7; // ارتفاع مناسب
+            
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // إحداثيات النقاط الأساسية (نجعل المثلث كبيراً نسبياً)
+            // A في الأعلى قليلاً
+            const A = { x: w * 0.5, y: h * 0.25 };
+            // نختار أضلاع متساوية الطول (120 بكسل مثلاً)
+            const AB = 140;
+            const AC = 140;
+            // B على يمين A
+            const B = { x: A.x + AB, y: A.y };
+            // C تحت A
+            const C = { x: A.x, y: A.y + AC };
+            
+            // حساب H على BC حيث AH عمودي
+            let BC_vec = { x: C.x - B.x, y: C.y - B.y };
+            let t = ((A.x - B.x) * BC_vec.x + (A.y - B.y) * BC_vec.y) / (BC_vec.x * BC_vec.x + BC_vec.y * BC_vec.y);
+            let H = { x: B.x + t * BC_vec.x, y: B.y + t * BC_vec.y };
+            
+            // تعيين الألوان حسب الثيم
+            const strokeColor = isDarkTheme ? '#fdba74' : '#1e3a8a';
+            const fillColor = isDarkTheme ? '#1e40af' : '#eff6ff';
+            const textColor = isDarkTheme ? '#fef3c7' : '#000';
+            
+            // رسم المثلث ABC
+            ctx.beginPath();
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 2;
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            
+            // رسم الارتفاع AH (منقط)
+            ctx.beginPath();
+            ctx.strokeStyle = isDarkTheme ? '#60a5fa' : '#3b82f6';
+            ctx.setLineDash([5, 3]);
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(H.x, H.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // رسم النقاط
+            function drawPoint(p, color, label) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.strokeStyle = textColor;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText(label, p.x + 8, p.y - 8);
+            }
+            
+            drawPoint(A, '#3b82f6', 'A');
+            drawPoint(B, '#f97316', 'B');
+            drawPoint(C, '#f97316', 'C');
+            drawPoint(H, '#10b981', 'H');
+        }
+
+        // رسم الشكل الكامل مع جميع الإنشاءات (للقسم التصحيح) - للتمرين 3
+        function drawExercise3Full() {
+            const canvas = document.getElementById('exercise3FullCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const containerWidth = canvas.parentElement.clientWidth;
+            canvas.width = containerWidth;
+            canvas.height = containerWidth * 0.7;
+            
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // نفس الإحداثيات الأساسية
+            const A = { x: w * 0.5, y: h * 0.25 };
+            const AB = 140;
+            const AC = 140;
+            const B = { x: A.x + AB, y: A.y };
+            const C = { x: A.x, y: A.y + AC };
+            
+            let BC_vec = { x: C.x - B.x, y: C.y - B.y };
+            let t = ((A.x - B.x) * BC_vec.x + (A.y - B.y) * BC_vec.y) / (BC_vec.x * BC_vec.x + BC_vec.y * BC_vec.y);
+            let H = { x: B.x + t * BC_vec.x, y: B.y + t * BC_vec.y };
+            
+            // رسم المثلث ABC
+            ctx.beginPath();
+            ctx.strokeStyle = isDarkTheme ? '#fdba74' : '#1e3a8a';
+            ctx.lineWidth = 2;
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fillStyle = isDarkTheme ? '#1e40af' : '#eff6ff';
+            ctx.fill();
+            
+            // رسم الارتفاع AH (منقط)
+            ctx.beginPath();
+            ctx.strokeStyle = isDarkTheme ? '#60a5fa' : '#3b82f6';
+            ctx.setLineDash([5, 3]);
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(H.x, H.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // رسم الخط XY المار من A بميل 0.5 (غير موازٍ لـ BC)
+            let slope = 0.5;
+            let dirX = 100;
+            let dirY = 100 * slope;
+            let X1 = { x: A.x - dirX, y: A.y - dirY };
+            let X2 = { x: A.x + dirX, y: A.y + dirY };
+            ctx.beginPath();
+            ctx.strokeStyle = isDarkTheme ? '#fca5a5' : '#ef4444';
+            ctx.lineWidth = 1.5;
+            ctx.moveTo(X1.x, X1.y);
+            ctx.lineTo(X2.x, X2.y);
+            ctx.stroke();
+            
+            // النقط M و N (مسقط B و C على XY)
+            let M = projectPointOnLine(B, A, { x: A.x + dirX, y: A.y + dirY });
+            let N = projectPointOnLine(C, A, { x: A.x + dirX, y: A.y + dirY });
+            
+            // رسم المساقط (خطوط منقطة من B إلى M ومن C إلى N)
+            ctx.beginPath();
+            ctx.strokeStyle = isDarkTheme ? '#9ca3af' : '#6b7280';
+            ctx.setLineDash([4, 2]);
+            ctx.moveTo(B.x, B.y);
+            ctx.lineTo(M.x, M.y);
+            ctx.stroke();
+            ctx.moveTo(C.x, C.y);
+            ctx.lineTo(N.x, N.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // رسم جميع النقاط
+            const textColor = isDarkTheme ? '#fef3c7' : '#000';
+            function drawPoint(p, color, label) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.strokeStyle = textColor;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText(label, p.x + 8, p.y - 8);
+            }
+            
+            drawPoint(A, '#3b82f6', 'A');
+            drawPoint(B, '#f97316', 'B');
+            drawPoint(C, '#f97316', 'C');
+            drawPoint(H, '#10b981', 'H');
+            drawPoint(M, '#a855f7', 'M');
+            drawPoint(N, '#a855f7', 'N');
+            
+            // إضافة تسمية الخط XY
+            ctx.fillStyle = isDarkTheme ? '#fca5a5' : '#ef4444';
+            ctx.font = 'italic 14px Arial';
+            ctx.fillText('(XY)', X2.x + 10, X2.y - 10);
+        }
+
+        // رسم متوازي الأضلاع للتمرين 4 (الشكل الأساسي)
+        function drawExercise4() {
+            const canvas = document.getElementById('exercise4Canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const containerWidth = canvas.parentElement.clientWidth;
+            canvas.width = containerWidth;
+            canvas.height = containerWidth * 0.7;
+            
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // نختار نقطة مناسبة لرسم متوازي أضلاع غير منتظم
+            const A = { x: w * 0.3, y: h * 0.3 };
+            const B = { x: w * 0.7, y: h * 0.3 }; // AB أفقي
+            const D = { x: w * 0.4, y: h * 0.7 }; // AD مائل
+            // C = B + (D - A)
+            const C = { x: B.x + (D.x - A.x), y: B.y + (D.y - A.y) };
+            
+            // مركز O هو منتصف AC
+            const O = { x: (A.x + C.x) / 2, y: (A.y + C.y) / 2 };
+            
+            // القطر BD
+            const BD_vec = { x: D.x - B.x, y: D.y - B.y };
+            
+            // المسقط العمودي لـ A على BD: I
+            let tA = ((A.x - B.x) * BD_vec.x + (A.y - B.y) * BD_vec.y) / (BD_vec.x * BD_vec.x + BD_vec.y * BD_vec.y);
+            let I = { x: B.x + tA * BD_vec.x, y: B.y + tA * BD_vec.y };
+            
+            // المسقط العمودي لـ C على BD: J
+            let tC = ((C.x - B.x) * BD_vec.x + (C.y - B.y) * BD_vec.y) / (BD_vec.x * BD_vec.x + BD_vec.y * BD_vec.y);
+            let J = { x: B.x + tC * BD_vec.x, y: B.y + tC * BD_vec.y };
+            
+            // الألوان
+            const strokeColor = isDarkTheme ? '#fdba74' : '#1e3a8a';
+            const fillColor = isDarkTheme ? '#1e40af' : '#eff6ff';
+            const textColor = isDarkTheme ? '#fef3c7' : '#000';
+            
+            // رسم متوازي الأضلاع ABCD
+            ctx.beginPath();
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 2;
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            
+            // رسم القطر BD
+            ctx.beginPath();
+            ctx.strokeStyle = isDarkTheme ? '#fca5a5' : '#ef4444';
+            ctx.setLineDash([5, 3]);
+            ctx.moveTo(B.x, B.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // رسم المسقطين AI و CJ
+            ctx.beginPath();
+            ctx.strokeStyle = isDarkTheme ? '#9ca3af' : '#6b7280';
+            ctx.setLineDash([4, 2]);
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(I.x, I.y);
+            ctx.stroke();
+            ctx.moveTo(C.x, C.y);
+            ctx.lineTo(J.x, J.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // رسم النقاط
+            function drawPoint(p, color, label) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.strokeStyle = textColor;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText(label, p.x + 8, p.y - 8);
+            }
+            
+            drawPoint(A, '#3b82f6', 'A');
+            drawPoint(B, '#f97316', 'B');
+            drawPoint(C, '#f97316', 'C');
+            drawPoint(D, '#f97316', 'D');
+            drawPoint(O, '#10b981', 'O');
+            drawPoint(I, '#a855f7', 'I');
+            drawPoint(J, '#a855f7', 'J');
+        }
+
+        // رسم كامل للتمرين 4 في التصحيح (نفس الرسم، يمكن إعادة استخدامه)
+        function drawExercise4Full() {
+            // نستخدم نفس دالة الرسم لأنها تعرض كل العناصر المطلوبة
+            drawExercise4();
+        }
+        
+        function redrawAllDiagrams() {
+            drawExercise3Base();
+            drawExercise4(); // رسم الشكل الأساسي للتمرين 4
+            if (!document.getElementById('correction').classList.contains('Tests-Hub-hidden')) {
+                drawExercise3Full();
+                drawExercise4Full(); // رسم الشكل الكامل للتمرين 4 عند إظهار التصحيح
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+            else document.documentElement.dir = 'ltr';
+            
+            updateTextContent();
+            
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                throwOnError: false
+            });
+            
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() {
+                    changeLanguage(this.getAttribute('data-language'));
+                });
+            });
+            
+            document.getElementById('downloadPdf').addEventListener('click', downloadAsPDF);
+            document.getElementById('downloadOdt').addEventListener('click', downloadAsODT);
+            document.getElementById('downloadPng').addEventListener('click', downloadAsPNG);
+            
+            const correctionBtn = document.getElementById('toggleCorrection');
+            correctionBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                if (!corr.classList.contains('Tests-Hub-hidden')) {
+                    drawExercise3Full(); // رسم الشكل الكامل عند إظهار التصحيح
+                    drawExercise4Full(); // رسم الشكل الكامل للتمرين 4
+                    renderMathInElement(corr, { delimiters: [{left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}], throwOnError: false });
+                }
+            });
+            
+            // الرسم الأولي
+            redrawAllDiagrams();
+            window.addEventListener('resize', redrawAllDiagrams);
+        });
+    </script>
+</body>
+</html>
