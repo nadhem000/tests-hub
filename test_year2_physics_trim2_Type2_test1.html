@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Devoir de Contrôle N°2 - Physique Chimie (2ème Sciences)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#8b5cf6">
+    <meta name="description" content="Devoir de Contrôle N°2 pour 2ème Sciences - Physique Chimie (2024-2025)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir Physique">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- KaTeX pour les formules mathématiques -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
+            color: #ddd6fe;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #4c1d95, #8b5cf6, #7c3aed);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #5b21b6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #ddd6fe;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #7c3aed;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #4c1d95, #8b5cf6);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #5b21b6;
+            color: #ddd6fe;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #7c3aed;
+            border-bottom: 2px solid #8b5cf6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #7c3aed;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #c4b5fd;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #f5f3ff;
+            padding: 1rem;
+            border-left: 4px solid #8b5cf6;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #4c1d95;
+            border-left-color: #7c3aed;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        th {
+            background: #8b5cf6;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #4c1d95;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #7c3aed;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #8b5cf6;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #a78bfa;
+            background-color: #5b21b6;
+            color: #ddd6fe;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #7c3aed;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #a78bfa;
+        }
+        
+        /* Style pour les formules chimiques */
+        .Tests-Hub-chemical-formula {
+            font-family: 'Times New Roman', Times, serif;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-chemical-formula {
+            background: #4c1d95;
+        }
+        
+        /* Style pour les équations électriques */
+        .Tests-Hub-circuit-equation {
+            font-family: 'Courier New', monospace;
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-circuit-equation {
+            background: #5b21b6;
+        }
+        
+        /* Image container */
+        .Tests-Hub-image-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f5f3ff;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: #7c3aed;
+        }
+        
+        .Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 15px;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #c4b5fd;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, #8b5cf6, #7c3aed);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #f5f3ff;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #8b5cf6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #4c1d95;
+            border-left-color: #7c3aed;
+        }
+        
+        .Tests-Hub-correction-section h2 {
+            color: #8b5cf6;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h2 {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #8b5cf6;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #7c3aed;
+            font-size: 1.4rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #a78bfa;
+            border-bottom-color: #a78bfa;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(139, 92, 246, 0.08);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 3px solid #8b5cf6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(167, 139, 250, 0.12);
+            border-left-color: #a78bfa;
+        }
+        
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #666;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #c4b5fd;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #4c1d95, #8b5cf6, #7c3aed);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Download Buttons Styles */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(76, 29, 149, 0.2), rgba(139, 92, 246, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+        }
+        
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+        
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+        
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+                min-height: 70px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+            
+            .Tests-Hub-correction-answer {
+                padding: 1rem;
+            }
+        }
+        
+        /* Style pour les réponses à remplir */
+        .Tests-Hub-fill-in-blank {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 2px dashed #8b5cf6;
+            margin: 0 5px;
+            padding: 2px 5px;
+            text-align: center;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-fill-in-blank {
+            border-bottom-color: #a78bfa;
+        }
+        
+        /* Style pour les tableaux de données chimiques */
+        .Tests-Hub-chemical-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-chemical-table th {
+            background: linear-gradient(to right, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+            border: 2px solid white;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-chemical-table th {
+            background: linear-gradient(to right, #4c1d95, #8b5cf6);
+        }
+        
+        .Tests-Hub-chemical-table td {
+            border: 2px solid #e5e7eb;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+            min-width: 120px;
+            background: white;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-chemical-table td {
+            background: #5b21b6;
+            border-color: #8b5cf6;
+        }
+        
+        .Tests-Hub-chemical-table .Tests-Hub-chemical-row-header {
+            background: #f5f3ff;
+            font-weight: 600;
+            color: #7c3aed;
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-chemical-table .Tests-Hub-chemical-row-header {
+            background: #4c1d95;
+            color: #c4b5fd;
+        }
+        
+        /* Style pour les points de notation */
+        .Tests-Hub-points {
+            font-size: 0.85rem;
+            color: #7c3aed;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-points {
+            color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.physicsTest.title">Physique Chimie - Devoir de Contrôle</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.physicsTest.subtitle">2ème Sciences (2024-2025)</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.physicsTest.back">Retour aux Tests</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">Français</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1>Devoir de Contrôle N°2 - Physique Chimie</h1>
+            <p>Lycée Privé Ennasser Gafsa - Année scolaire : 2024/2025</p>
+            <p>Classe : 2ème Sciences - Professeur : I. Radhouani</p>
+            <p>Date : 2025 - Durée : 60 minutes</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>Instructions générales</h3>
+            <ul>
+                <li>Le devoir contient deux parties : Chimie (8 points) et Physique (12 points)</li>
+                <li>Répondez à toutes les questions sur cette feuille</li>
+                <li>La qualité de la rédaction et la clarté des réponses seront prises en compte</li>
+                <li>L'utilisation de la calculatrice est autorisée</li>
+            </ul>
+        </div>
+        
+        <!-- Partie CHIMIE -->
+        <div class="Tests-Hub-test-section">
+            <h2>CHIMIE (8 points)</h2>
+            
+            <!-- Exercice 1 Chimie -->
+            <div class="Tests-Hub-question">
+                <h3>Exercice N°1 <span class="Tests-Hub-points">(3 points)</span></h3>
+                
+                <p><span class="Tests-Hub-question-number">1.</span> Compléter : la solution aqueuse de chlorure de sodium conduit mieux le courant électrique que l'eau pure, son l'ionisation du chlorure de sodium dans l'eau est pratiquement totale le chlorure de sodium est <span class="Tests-Hub-points">(0.5A1)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Réponse..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">2.</span> Compléter et ajuster les équations suivantes de dissociation ionique ou de dissolution dans l'eau : <span class="Tests-Hub-points">(1A2)</span></p>
+                <p>• KNO<sub>3</sub> → <textarea class="Tests-Hub-answer-textarea" style="width: 80px;"></textarea> + <textarea class="Tests-Hub-answer-textarea" style="width: 80px;"></textarea></p>
+                <p>• <textarea class="Tests-Hub-answer-textarea" style="width: 100px;"></textarea> → Na<sup>+</sup> + <textarea class="Tests-Hub-answer-textarea" style="width: 80px;"></textarea> SO<sub>4</sub><sup>2-</sup></p>
+                
+                <p><span class="Tests-Hub-question-number">3.</span> Compléter : <span class="Tests-Hub-points">(1A1)</span></p>
+                <p>• Dans la réaction de précipitation les deux réactifs sont un <textarea class="Tests-Hub-answer-textarea" style="width: 120px;"></textarea> et un <textarea class="Tests-Hub-answer-textarea" style="width: 120px;"></textarea></p>
+                <p>• La précipitation des électrolytes dépend de <textarea class="Tests-Hub-answer-textarea" style="width: 120px;"></textarea> et de <textarea class="Tests-Hub-answer-textarea" style="width: 120px;"></textarea></p>
+                
+                <p><span class="Tests-Hub-question-number">4.</span> Les cations mercure Hg<sup>2+</sup> donnent avec une solution d'hydroxyde de sodium NaOH, un précipité de couleur Jaune. <span class="Tests-Hub-points">(0.5A1)</span></p>
+                <p><span class="Tests-Hub-question-number">a.</span> Écrire l'équation chimique de la réaction de précipitation.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Équation chimique..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Donner le nom du précipité obtenu.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Nom du précipité..."></textarea>
+            </div>
+            
+            <!-- Exercice 2 Chimie -->
+            <div class="Tests-Hub-question">
+                <h3>Exercice N°2 <span class="Tests-Hub-points">(5 points)</span></h3>
+                
+                <div class="Tests-Hub-chemical-formula">
+                    <p><strong>Masses molaires atomiques :</strong> Pb (207 g/mol) ; Cl (35.5 g/mol) ; S (32 g/mol) ; O (16 g/mol)</p>
+                </div>
+                
+                <p><span class="Tests-Hub-question-number">1.</span> On prépare un volume V = 100 cm³ d'une solution aqueuse (S) de chlorure de plomb PbCl<sub>2</sub>, en dissolvant complètement une masse m = 1,39 g de cet électrolyte dans l'eau.</p>
+                
+                <p><span class="Tests-Hub-question-number">a.</span> Exprimer puis calculer la concentration molaire C de la solution (S). <span class="Tests-Hub-points">(0.5A1)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Expression et calcul..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Écrire l'équation de la dissociation ionique du chlorure de plomb dans l'eau, sachant qu'il est un électrolyte fort. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Équation de dissociation..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">c.</span> Exprimer puis calculer la molarité des ions plomb et des ions chlorure présents dans (S). <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <p>Molarité des ions Pb<sup>2+</sup> : <textarea class="Tests-Hub-answer-textarea" style="width: 120px;"></textarea> mol/L</p>
+                <p>Molarité des ions Cl<sup>-</sup> : <textarea class="Tests-Hub-answer-textarea" style="width: 120px;"></textarea> mol/L</p>
+                
+                <p><span class="Tests-Hub-question-number">2.</span> Une deuxième solution (S') de sulfate de potassium de volume V' = 100 cm³ renferme une quantité d'ion sulfate SO<sub>4</sub><sup>2-</sup> égale à n<sub>SO4²⁻</sub> = 0,005 mol et une quantité d'ion potassium K<sup>+</sup> égale à n<sub>K⁺</sub> = 0,01 mol.</p>
+                
+                <p><span class="Tests-Hub-question-number">a.</span> Écrire l'équation de la dissociation ionique du sulfate de potassium dans l'eau, supposé électrolyte fort. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Équation de dissociation..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Déterminer la concentration molaire C' de la solution (S'). <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <p>C' = <textarea class="Tests-Hub-answer-textarea" style="width: 100px;"></textarea> mol/L</p>
+                
+                <p><span class="Tests-Hub-question-number">3.</span> On mélange totalement les deux solutions (S) et (S') : un précipité se forme.</p>
+                
+                <p><span class="Tests-Hub-question-number">a.</span> Écrire l'équation simplifiée de la réaction de précipitation. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Équation simplifiée..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Donner le nom et la couleur du précipité. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Nom et couleur..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">c.</span> Y a-t-il un réactif limitant ? Justifier. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Justification..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">d.</span> Calculer :</p>
+                <p>• La masse du précipité : <textarea class="Tests-Hub-answer-textarea" style="width: 120px;"></textarea> g</p>
+                <p>• Les molarités des ions restants :</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Calculs détaillés..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Partie PHYSIQUE -->
+        <div class="Tests-Hub-test-section">
+            <h2>PHYSIQUE (12 points)</h2>
+            
+            <!-- Exercice 1 Physique -->
+            <div class="Tests-Hub-question">
+                <h3>Exercice N°1 <span class="Tests-Hub-points">(6,5 points)</span></h3>
+                
+                <div class="Tests-Hub-chemical-formula">
+                    <p><strong>Donnée :</strong> ||g'|| = 10 N·kg⁻¹</p>
+                </div>
+                
+                <p>Deux plans parfaitement lisses (P1) et (P2) forment entre eux un angle de 90°.</p>
+                <p>Une barre homogène (AB) de poids m = 700 g, en contact sans frottement avec les deux plans, est en équilibre.</p>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-73" src="assets2/tests2/physical2/image-73.png" alt="Barre en équilibre entre deux plans">
+                    <div class="Tests-Hub-image-caption">Figure 1 : Barre homogène (AB) en équilibre entre deux plans</div>
+                </div>
+                
+                <p><span class="Tests-Hub-question-number">1.</span> Compléter : les forces qui s'exercent sur la barre sont : <span class="Tests-Hub-points">(0.75A1)</span></p>
+                <p>• P : <textarea class="Tests-Hub-answer-textarea" style="width: 150px;"></textarea></p>
+                <p>• R<sub>A</sub> : <textarea class="Tests-Hub-answer-textarea" style="width: 150px;"></textarea></p>
+                <p>• R<sub>B</sub> : <textarea class="Tests-Hub-answer-textarea" style="width: 150px;"></textarea></p>
+                
+                <div class="Tests-Hub-chemical-formula">
+                    <p>cos 45° = sin 45° = 0,7</p>
+                </div>
+                
+                <p>Représenter ces forces sur la figure-1 (sans échelle).</p>
+                
+                <p><span class="Tests-Hub-question-number">2.</span> Vérifier que ces trois forces sont concourantes et indiquer la position du centre d'inertie G de la barre. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Vérification et position de G..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">3.</span> Écrire la condition d'équilibre de la barre. <span class="Tests-Hub-points">(0.25A1)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Condition d'équilibre..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">4.</span> On considère le repère orthonormé (xOy).</p>
+                
+                <p><span class="Tests-Hub-question-number">a.</span> Représenter le poids de la barre au point O. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Description de la représentation..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Déduire la représentation de R<sub>A</sub> et R<sub>B</sub>. <span class="Tests-Hub-points">(0.5A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Déduction..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">c.</span> Compléter le tableau suivant : <span class="Tests-Hub-points">(1.5A2)</span></p>
+                <table class="Tests-Hub-chemical-table">
+                    <tr>
+                        <th>Force</th>
+                        <th>Composantes</th>
+                    </tr>
+                    <tr>
+                        <td>P</td>
+                        <td>P<sub>x</sub> = <textarea class="Tests-Hub-table-textarea"></textarea><br>
+                            P<sub>y</sub> = <textarea class="Tests-Hub-table-textarea"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>R<sub>A</sub></td>
+                        <td>R<sub>Ax</sub> = <textarea class="Tests-Hub-table-textarea"></textarea><br>
+                            R<sub>Ay</sub> = <textarea class="Tests-Hub-table-textarea"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>R<sub>B</sub></td>
+                        <td>R<sub>Bx</sub> = <textarea class="Tests-Hub-table-textarea"></textarea><br>
+                            R<sub>By</sub> = <textarea class="Tests-Hub-table-textarea"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                
+                <p><span class="Tests-Hub-question-number">d.</span> Montrer que : |R<sub>A</sub>| = |R<sub>B</sub> = ______</span></p>
+                <p>Calculer |R<sub>B</sub>| et |R<sub>A</sub>|</p>
+                <p>Échelle : 2.5 N → 1 cm</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Démonstration et calculs..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">5.</span> La barre AB est posée sur un plan P3 incliné de 45° par rapport à l'horizontale. Elle reste en état d'équilibre.</p>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-74" src="assets2/tests2/physical2/image-74.png" alt="Barre sur plan incliné">
+                    <div class="Tests-Hub-image-caption">Figure 2 : Barre sur plan incliné de 45°</div>
+                </div>
+                
+                <p><span class="Tests-Hub-question-number">a.</span> Représenter les forces qui s'exercent sur la barre AB. <span class="Tests-Hub-points">(0.75A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Description des forces..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Montrer que le contact entre la barre AB et le plan se fait avec frottement et déterminer la valeur de la force de frottement f. <span class="Tests-Hub-points">(0.75A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Démonstration et calcul..."></textarea>
+            </div>
+            
+            <!-- Exercice 2 Physique -->
+            <div class="Tests-Hub-question">
+                <h3>Exercice N°2 <span class="Tests-Hub-points">(5,5 points)</span></h3>
+                
+                <p><span class="Tests-Hub-question-number">1.</span> On considère le transformateur T supposé idéal, schématisé ci-dessus.</p>
+                <p>On connaît le nombre de spires du primaire (n<sub>1</sub> = 500 spires) et celui du secondaire (n<sub>2</sub> = 200 spires).</p>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-75" src="assets2/tests2/physical2/image-75.png" alt="Transformateur idéal">
+                    <div class="Tests-Hub-image-caption">Figure 3 : Transformateur idéal avec voltmètres et ampèremètre</div>
+                </div>
+                
+                <p><span class="Tests-Hub-question-number">a.</span> Compléter : <span class="Tests-Hub-points">(0.75A1)</span></p>
+                <p>• Le voltmètre V<sub>1</sub> indique U<sub>1</sub> : <textarea class="Tests-Hub-answer-textarea" style="width: 200px;"></textarea> de la tension au primaire.</p>
+                <p>• Le voltmètre V<sub>2</sub> indique U<sub>2</sub> : <textarea class="Tests-Hub-answer-textarea" style="width: 200px;"></textarea> de la tension au secondaire.</p>
+                <p>• L'ampèremètre A<sub>1</sub> indique I<sub>1</sub> : <textarea class="Tests-Hub-answer-textarea" style="width: 200px;"></textarea> du courant au primaire.</p>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Sachant que U<sub>1</sub> = 25 V et que I<sub>1</sub> = 20 mA, déduire U<sub>2</sub> et I<sub>2</sub>. <span class="Tests-Hub-points">(1A2)</span></p>
+                <p>U<sub>2</sub> = <textarea class="Tests-Hub-answer-textarea" style="width: 100px;"></textarea> V</p>
+                <p>I<sub>2</sub> = <textarea class="Tests-Hub-answer-textarea" style="width: 100px;"></textarea> A</p>
+                
+                <p><span class="Tests-Hub-question-number">c.</span> Déduire le type de ce transformateur : abaisseur / élévateur de tension / d'intensité. Justifier. <span class="Tests-Hub-points">(0.75A2)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Type et justification..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">2.</span> On étudie le circuit proposé sur le schéma ci-dessus, à l'aide d'un oscilloscope.</p>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-76" src="assets2/tests2/physical2/image-76.png" alt="Circuit avec oscilloscope">
+                    <div class="Tests-Hub-image-caption">Figure 4 : Circuit électrique avec oscilloscope</div>
+                </div>
+                
+                <p><span class="Tests-Hub-question-number">a.</span> Nommer les appareils ou les dipôles du circuit électrique encadrés en pointillés et repérés par les numéros 1, 2, 3. <span class="Tests-Hub-points">(0.75A1)</span></p>
+                <p>1 : <textarea class="Tests-Hub-answer-textarea" style="width: 150px;"></textarea></p>
+                <p>2 : <textarea class="Tests-Hub-answer-textarea" style="width: 150px;"></textarea></p>
+                <p>3 : <textarea class="Tests-Hub-answer-textarea" style="width: 150px;"></textarea></p>
+                
+                <p><span class="Tests-Hub-question-number">b.</span> Quelle est la nature de la tension observée sur l'écran de l'oscilloscope ? <span class="Tests-Hub-points">(0.5A1)</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Nature de la tension..."></textarea>
+                
+                <p><span class="Tests-Hub-question-number">c.</span> En utilisant les sensibilités de l'oscilloscope compléter le tableau suivant : <span class="Tests-Hub-points">(0.75A2)</span></p>
+                <table class="Tests-Hub-chemical-table">
+                    <tr>
+                        <th>Période</th>
+                        <th>Fréquence</th>
+                        <th>Valeur maximale</th>
+                    </tr>
+                    <tr>
+                        <td>T = <textarea class="Tests-Hub-table-textarea"></textarea></td>
+                        <td>N = <textarea class="Tests-Hub-table-textarea"></textarea></td>
+                        <td>U<sub>m</sub> = <textarea class="Tests-Hub-table-textarea"></textarea></td>
+                    </tr>
+                </table>
+                
+                <p><span class="Tests-Hub-question-number">d.</span> Sur l'écran de l'oscilloscope, tracer l'allure de la courbe obtenue quand on visualise la voie B.</p>
+                <p>Quelle est la nature de la tension visualisée sur la voie B ? <span class="Tests-Hub-points">(1A2)</span></p>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-77" src="assets2/tests2/physical2/image-77.png" alt="Écran d'oscilloscope">
+                    <div class="Tests-Hub-image-caption">Figure 5 : Écran de l'oscilloscope avec grille de mesure</div>
+                </div>
+                
+                <textarea class="Tests-Hub-large-textarea" placeholder="Description de la courbe et nature de la tension..."></textarea>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.physicsTest.showCorrection">Afficher la correction</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>Correction du devoir</h2>
+            
+            <!-- Correction CHIMIE -->
+            <h3>CHIMIE - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <h4>Exercice 1 - Correction <span class="Tests-Hub-points">(3 points)</span></h4>
+                
+                <p><strong>1.</strong> La solution aqueuse de chlorure de sodium conduit mieux le courant électrique que l'eau pure, son ionisation du chlorure de sodium dans l'eau est pratiquement totale : le chlorure de sodium est un <strong>électrolyte fort</strong>.</p>
+                
+                <p><strong>2.</strong> Équations de dissociation ionique :</p>
+                <p>• KNO<sub>3</sub> → K<sup>+</sup> + NO<sub>3</sub><sup>-</sup></p>
+                <p>• Na<sub>2</sub>SO<sub>4</sub> → 2Na<sup>+</sup> + SO<sub>4</sub><sup>2-</sup></p>
+                
+                <p><strong>3.</strong> Complétion :</p>
+                <p>• Dans la réaction de précipitation les deux réactifs sont un <strong>cation</strong> et un <strong>anion</strong>.</p>
+                <p>• La précipitation des électrolytes dépend de <strong>la nature des ions</strong> et de <strong>leur concentration</strong>.</p>
+                
+                <p><strong>4.</strong> Précipitation des ions mercure :</p>
+                <p><strong>a.</strong> Équation : Hg<sup>2+</sup> + 2OH<sup>-</sup> → Hg(OH)<sub>2</sub>↓</p>
+                <p><strong>b.</strong> Nom du précipité : <strong>hydroxyde de mercure(II)</strong>.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <h4>Exercice 2 - Correction <span class="Tests-Hub-points">(5 points)</span></h4>
+                
+                <p><strong>1. Solution de chlorure de plomb :</strong></p>
+                <p><strong>a.</strong> Masse molaire de PbCl<sub>2</sub> : M = 207 + 2×35,5 = 278 g/mol</p>
+                <p>Quantité de matière : n = m/M = 1,39/278 = 0,005 mol</p>
+                <p>Volume V = 100 cm³ = 0,1 L</p>
+                <p>Concentration : C = n/V = 0,005/0,1 = 0,05 mol/L</p>
+                
+                <p><strong>b.</strong> Équation de dissociation : PbCl<sub>2</sub> → Pb<sup>2+</sup> + 2Cl<sup>-</sup></p>
+                
+                <p><strong>c.</strong> Molarités des ions :</p>
+                <p>• [Pb<sup>2+</sup>] = C = 0,05 mol/L</p>
+                <p>• [Cl<sup>-</sup>] = 2C = 0,10 mol/L</p>
+                
+                <p><strong>2. Solution de sulfate de potassium :</strong></p>
+                <p><strong>a.</strong> Équation de dissociation : K<sub>2</sub>SO<sub>4</sub> → 2K<sup>+</sup> + SO<sub>4</sub><sup>2-</sup></p>
+                
+                <p><strong>b.</strong> Concentration C' :</p>
+                <p>D'après l'équation, n<sub>K⁺</sub> = 2n<sub>SO4²⁻</sub></p>
+                <p>Or n<sub>SO4²⁻</sub> = 0,005 mol ⇒ n<sub>K⁺</sub> = 0,01 mol (cohérent)</p>
+                <p>C' = n<sub>SO4²⁻</sub>/V' = 0,005/0,1 = 0,05 mol/L</p>
+                
+                <p><strong>3. Mélange des solutions :</strong></p>
+                <p><strong>a.</strong> Équation simplifiée : Pb<sup>2+</sup> + SO<sub>4</sub><sup>2-</sup> → PbSO<sub>4</sub>↓</p>
+                
+                <p><strong>b.</strong> Précipité : <strong>Sulfate de plomb(II)</strong>, couleur <strong>blanche</strong>.</p>
+                
+                <p><strong>c.</strong> Réactif limitant :</p>
+                <p>• n(Pb<sup>2+</sup>) = C×V = 0,05×0,1 = 0,005 mol</p>
+                <p>• n(SO<sub>4</sub><sup>2-</sup>) = C'×V' = 0,05×0,1 = 0,005 mol</p>
+                <p>Les ions sont en proportions stœchiométriques : aucun réactif limitant.</p>
+                
+                <p><strong>d.</strong> Calculs :</p>
+                <p>• Masse molaire de PbSO<sub>4</sub> : 207 + 32 + 4×16 = 303 g/mol</p>
+                <p>Masse du précipité : m = n×M = 0,005×303 = 1,515 g</p>
+                <p>• Après précipitation totale, les ions Pb<sup>2+</sup> et SO<sub>4</sub><sup>2-</sup> ont disparu.</p>
+                <p>Volume total = 0,2 L</p>
+                <p>[K<sup>+</sup>] = 0,01/0,2 = 0,05 mol/L</p>
+                <p>[Cl<sup>-</sup>] = (0,10×0,1)/0,2 = 0,05 mol/L</p>
+            </div>
+            
+            <!-- Correction PHYSIQUE -->
+            <h3>PHYSIQUE - Correction</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <h4>Exercice 1 - Correction <span class="Tests-Hub-points">(6,5 points)</span></h4>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-73-correction" src="assets2/tests2/physical2/image-73-correction.png" alt="Barre avec forces">
+                    <div class="Tests-Hub-image-caption">Figure 1 corrigée : Forces sur la barre</div>
+                </div>
+                
+                <p><strong>1.</strong> Forces sur la barre :</p>
+                <p>• P : poids de la barre (vertical, vers le bas, appliqué en G)</p>
+                <p>• R<sub>A</sub> : réaction du plan P1 (perpendiculaire à P1, appliquée en A)</p>
+                <p>• R<sub>B</sub> : réaction du plan P2 (perpendiculaire à P2, appliquée en B)</p>
+                
+                <p><strong>2.</strong> Les trois forces sont concourantes car la barre est en équilibre sous l'action de trois forces non parallèles. Le point de concours est le centre d'inertie G de la barre, situé au milieu de AB.</p>
+                
+                <p><strong>3.</strong> Condition d'équilibre : \(\vec{P} + \vec{R_A} + \vec{R_B} = \vec{0}\)</p>
+                
+                <p><strong>4.</strong> Repère (xOy) :</p>
+                <p><strong>a.</strong> Poids : P = m×g = 0,7×10 = 7 N</p>
+                <p>P orienté selon -y (vers le bas)</p>
+                
+                <p><strong>b.</strong> R<sub>A</sub> fait un angle de 45° avec l'horizontale (perpendiculaire à P1)</p>
+                <p>R<sub>B</sub> fait un angle de 45° avec la verticale (perpendiculaire à P2)</p>
+                
+                <p><strong>c.</strong> Tableau des composantes :</p>
+                <table class="Tests-Hub-chemical-table">
+                    <tr>
+                        <th>Force</th>
+                        <th>Composantes</th>
+                    </tr>
+                    <tr>
+                        <td>P (7 N)</td>
+                        <td>P<sub>x</sub> = 0<br>P<sub>y</sub> = -7 N</td>
+                    </tr>
+                    <tr>
+                        <td>R<sub>A</sub></td>
+                        <td>R<sub>Ax</sub> = R<sub>A</sub>×cos45° = 0,7R<sub>A</sub><br>
+                            R<sub>Ay</sub> = R<sub>A</sub>×sin45° = 0,7R<sub>A</sub>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>R<sub>B</sub></td>
+                        <td>R<sub>Bx</sub> = -R<sub>B</sub>×sin45° = -0,7R<sub>B</sub><br>
+                            R<sub>By</sub> = R<sub>B</sub>×cos45° = 0,7R<sub>B</sub>
+                        </td>
+                    </tr>
+                </table>
+                
+                <p><strong>d.</strong> Équilibre selon x : 0,7R<sub>A</sub> - 0,7R<sub>B</sub> = 0 ⇒ R<sub>A</sub> = R<sub>B</sub></p>
+                <p>Équilibre selon y : -7 + 0,7R<sub>A</sub> + 0,7R<sub>B</sub> = 0 ⇒ 0,7(R<sub>A</sub> + R<sub>B</sub>) = 7</p>
+                <p>Avec R<sub>A</sub> = R<sub>B</sub> = R : 0,7(2R) = 7 ⇒ 1,4R = 7 ⇒ R = 5 N</p>
+                <p>Donc |R<sub>A</sub>| = |R<sub>B</sub>| = 5 N</p>
+                <p>Échelle : 2,5 N → 1 cm donc 5 N → 2 cm</p>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-74-correction" src="assets2/tests2/physical2/image-74-correction.png" alt="Barre sur plan incliné avec forces">
+                    <div class="Tests-Hub-image-caption">Figure 2 corrigée : Forces avec frottement</div>
+                </div>
+                
+                <p><strong>5. Barre sur plan incliné :</strong></p>
+                <p><strong>a.</strong> Forces : P (poids), R (réaction du plan), f (force de frottement)</p>
+                <p>R est décomposée en R<sub>N</sub> (normale) et f (tangentielle)</p>
+                
+                <p><strong>b.</strong> Sans frottement, la composante du poids parallèle au plan (P×sin45° = 7×0,7 = 4,9 N) ne serait pas compensée.</p>
+                <p>Pour l'équilibre, il faut une force de frottement f opposée à cette composante.</p>
+                <p>f = P×sin45° = 4,9 N</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <h4>Exercice 2 - Correction <span class="Tests-Hub-points">(5,5 points)</span></h4>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-75-correction" src="assets2/tests2/physical2/image-75-correction.png" alt="Transformateur avec mesures">
+                    <div class="Tests-Hub-image-caption">Figure 3 corrigée : Transformateur avec valeurs</div>
+                </div>
+                
+                <p><strong>1. Transformateur :</strong></p>
+                <p><strong>a.</strong> Complétion :</p>
+                <p>• V<sub>1</sub> indique U<sub>1</sub> : <strong>la valeur efficace</strong> de la tension au primaire.</p>
+                <p>• V<sub>2</sub> indique U<sub>2</sub> : <strong>la valeur efficace</strong> de la tension au secondaire.</p>
+                <p>• A<sub>1</sub> indique I<sub>1</sub> : <strong>la valeur efficace</strong> du courant au primaire.</p>
+                
+                <p><strong>b.</strong> Calculs :</p>
+                <p>Rapport de transformation : m = n<sub>2</sub>/n<sub>1</sub> = 200/500 = 0,4</p>
+                <p>U<sub>2</sub> = m×U<sub>1</sub> = 0,4×25 = 10 V</p>
+                <p>Pour un transformateur idéal : U<sub>1</sub>I<sub>1</sub> = U<sub>2</sub>I<sub>2</sub></p>
+                <p>I<sub>2</sub> = (U<sub>1</sub>I<sub>1</sub>)/U<sub>2</sub> = (25×0,02)/10 = 0,05 A = 50 mA</p>
+                
+                <p><strong>c.</strong> Type : <strong>abaisseur de tension</strong> car U<sub>2</sub> < U<sub>1</sub> (10 V < 25 V)</p>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-76-correction" src="assets2/tests2/physical2/image-76-correction.png" alt="Circuit avec identification">
+                    <div class="Tests-Hub-image-caption">Figure 4 corrigée : Identification des composants</div>
+                </div>
+                
+                <p><strong>2. Circuit avec oscilloscope :</strong></p>
+                <p><strong>a.</strong> Identification :</p>
+                <p>1 : <strong>Générateur de tension alternative</strong></p>
+                <p>2 : <strong>Résistor (résistance)</strong></p>
+                <p>3 : <strong>Condensateur</strong></p>
+                
+                <p><strong>b.</strong> Nature de la tension : <strong>alternative sinusoïdale</strong></p>
+                
+                <p><strong>c.</strong> Mesures sur oscilloscope :</p>
+                <p>Base de temps : 2 ms/div (à vérifier selon l'image réelle)</p>
+                <p>Sensibilité verticale : 2 V/div (à vérifier selon l'image réelle)</p>
+                <p>• Période T = 4×2 = 8 ms = 0,008 s</p>
+                <p>• Fréquence N = 1/T = 1/0,008 = 125 Hz</p>
+                <p>• Valeur maximale U<sub>m</sub> = 2×2 = 4 V</p>
+                
+                <table class="Tests-Hub-chemical-table">
+                    <tr>
+                        <th>Période</th>
+                        <th>Fréquence</th>
+                        <th>Valeur maximale</th>
+                    </tr>
+                    <tr>
+                        <td>T = 8 ms</td>
+                        <td>N = 125 Hz</td>
+                        <td>U<sub>m</sub> = 4 V</td>
+                    </tr>
+                </table>
+                
+                <div class="Tests-Hub-image-container">
+                    <img id="img-77-correction" src="assets2/tests2/physical2/image-77-correction.png" alt="Oscilloscope voie B">
+                    <div class="Tests-Hub-image-caption">Figure 5 corrigée : Tension sur la voie B (déphasée)</div>
+                </div>
+                
+                <p><strong>d.</strong> Voie B visualise la tension aux bornes du condensateur.</p>
+                <p>Nature : <strong>tension alternative sinusoïdale déphasée</strong> par rapport à la tension du générateur.</p>
+                <p>Dans un circuit RC, la tension aux bornes du condensateur est en retard de phase par rapport au courant (et à la tension du générateur).</p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.physicsTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.physicsTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.physicsTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.1.3</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+    // Image Generation Module for Physics Test
+    const canvasConfigs = {
+        'img-73': { width: 400, height: 300, type: 'figure1' },
+        'img-74': { width: 400, height: 300, type: 'figure2' },
+        'img-75': { width: 400, height: 300, type: 'figure3' },
+        'img-76': { width: 400, height: 300, type: 'figure4' },
+        'img-77': { width: 400, height: 250, type: 'figure5' },
+        'img-73-correction': { width: 400, height: 300, type: 'figure1Correction' },
+        'img-74-correction': { width: 400, height: 300, type: 'figure2Correction' },
+        'img-75-correction': { width: 400, height: 300, type: 'figure3Correction' },
+        'img-76-correction': { width: 400, height: 300, type: 'figure4Correction' },
+        'img-77-correction': { width: 400, height: 250, type: 'figure5Correction' }
+    };
+
+    // Image drawing functions
+    const imageDrawers = {
+        // Figure 1: Barre en équilibre entre deux plans
+        figure1: function(ctx) {
+            // Background
+            ctx.fillStyle = '#f5f3ff';
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // Draw two perpendicular planes
+            ctx.strokeStyle = '#7c3aed';
+            ctx.lineWidth = 3;
+            
+            // Horizontal plane (P1)
+            ctx.beginPath();
+            ctx.moveTo(50, 250);
+            ctx.lineTo(350, 250);
+            ctx.stroke();
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#7c3aed';
+            ctx.fillText('(P1)', 180, 240);
+            
+            // Vertical plane (P2)
+            ctx.beginPath();
+            ctx.moveTo(100, 50);
+            ctx.lineTo(100, 250);
+            ctx.stroke();
+            ctx.fillText('(P2)', 110, 150);
+            
+            // Draw the bar (AB)
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(100, 250); // Point A on (P2)
+            ctx.lineTo(200, 150); // Point B on (P1)
+            ctx.stroke();
+            
+            // Label points
+            ctx.font = 'bold 14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText('A', 95, 265);
+            ctx.fillText('B', 205, 145);
+            
+            // Draw angles
+            ctx.strokeStyle = '#8b5cf6';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(100, 250, 30, -Math.PI/2, 0, false);
+            ctx.stroke();
+            ctx.fillText('45°', 120, 230);
+            
+            ctx.beginPath();
+            ctx.arc(200, 150, 30, Math.PI, Math.PI*1.5, false);
+            ctx.stroke();
+            ctx.fillText('45°', 215, 170);
+            
+            // Draw the bar label
+            ctx.font = 'italic 16px Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText('Barre (AB)', 130, 190);
+        },
+        
+        // Figure 2: Barre sur plan incliné
+        figure2: function(ctx) {
+            ctx.fillStyle = '#f5f3ff';
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // Draw inclined plane
+            ctx.strokeStyle = '#7c3aed';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(50, 250);
+            ctx.lineTo(350, 150);
+            ctx.stroke();
+            ctx.fillText('(P3)', 200, 160);
+            
+            // Draw the bar on the plane
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 4;
+            const barLength = 150;
+            const angle = Math.PI/4;
+            
+            ctx.beginPath();
+            ctx.moveTo(150, 225);
+            ctx.lineTo(150 + barLength * Math.cos(angle), 225 - barLength * Math.sin(angle));
+            ctx.stroke();
+            
+            // Draw angle
+            ctx.strokeStyle = '#8b5cf6';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(50, 250);
+            ctx.lineTo(150, 250);
+            ctx.lineTo(150, 225);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(150, 250, 30, -Math.PI/2, -Math.PI/4, true);
+            ctx.stroke();
+            ctx.fillText('45°', 175, 240);
+            
+            // Label the bar
+            ctx.font = 'bold 14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText('A', 145, 240);
+            ctx.fillText('B', 255, 160);
+            ctx.font = 'italic 16px Arial';
+            ctx.fillText('Barre AB', 180, 180);
+        },
+        
+        // Figure 3: Transformateur idéal
+        figure3: function(ctx) {
+            ctx.fillStyle = '#f5f3ff';
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // Draw transformer core
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.fillStyle = '#e5e7eb';
+            
+            // Core rectangle
+            ctx.fillRect(150, 100, 100, 120);
+            ctx.strokeRect(150, 100, 100, 120);
+            
+            // Primary coil
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for(let i = 0; i < 5; i++) {
+                ctx.moveTo(120, 130 + i*10);
+                ctx.lineTo(150, 130 + i*10);
+            }
+            ctx.stroke();
+            
+            // Secondary coil
+            ctx.strokeStyle = '#059669';
+            ctx.beginPath();
+            for(let i = 0; i < 4; i++) {
+                ctx.moveTo(280, 140 + i*10);
+                ctx.lineTo(250, 140 + i*10);
+            }
+            ctx.stroke();
+            
+            // Circuit wires
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            // Primary circuit
+            ctx.moveTo(50, 160);
+            ctx.lineTo(120, 160);
+            ctx.moveTo(150, 160);
+            ctx.lineTo(200, 160);
+            ctx.moveTo(200, 160);
+            ctx.lineTo(200, 60);
+            ctx.moveTo(200, 260);
+            ctx.lineTo(200, 220);
+            
+            // Secondary circuit
+            ctx.moveTo(280, 160);
+            ctx.lineTo(350, 160);
+            ctx.moveTo(250, 160);
+            ctx.lineTo(200, 160);
+            ctx.stroke();
+            
+            // Voltmeters and ammeter
+            ctx.fillStyle = '#1e40af';
+            ctx.font = 'bold 14px Arial';
+            
+            // V1
+            ctx.beginPath();
+            ctx.arc(50, 160, 15, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText('V₁', 45, 165);
+            
+            // V2
+            ctx.beginPath();
+            ctx.arc(350, 160, 15, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText('V₂', 345, 165);
+            
+            // A1
+            ctx.beginPath();
+            ctx.arc(200, 60, 15, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText('A₁', 195, 65);
+            
+            // Labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.fillText('Primaire', 100, 95);
+            ctx.fillText('n₁ = 500 spires', 100, 110);
+            
+            ctx.fillText('Secondaire', 260, 95);
+            ctx.fillText('n₂ = 200 spires', 260, 110);
+            
+            ctx.fillText('T', 195, 140);
+        },
+        
+        // Figure 4: Circuit avec oscilloscope
+        figure4: function(ctx) {
+            ctx.fillStyle = '#f5f3ff';
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // Draw circuit components
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            
+            // Generator (1)
+            ctx.beginPath();
+            ctx.arc(100, 150, 20, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText('1', 95, 155);
+            ctx.font = '10px Arial';
+            ctx.fillText('~', 97, 152);
+            
+            // Resistor (2)
+            ctx.fillRect(180, 135, 40, 30);
+            ctx.fillText('2', 195, 155);
+            
+            // Capacitor (3)
+            ctx.beginPath();
+            ctx.moveTo(280, 135);
+            ctx.lineTo(280, 165);
+            ctx.moveTo(300, 135);
+            ctx.lineTo(300, 165);
+            ctx.stroke();
+            ctx.fillText('3', 290, 155);
+            
+            // Oscilloscope
+            ctx.strokeRect(100, 200, 200, 60);
+            ctx.fillText('Oscilloscope', 165, 195);
+            
+            // Channels
+            ctx.beginPath();
+            ctx.moveTo(120, 200);
+            ctx.lineTo(120, 260);
+            ctx.moveTo(160, 200);
+            ctx.lineTo(160, 260);
+            ctx.stroke();
+            
+            ctx.fillText('Voie A', 115, 275);
+            ctx.fillText('Voie B', 155, 275);
+            
+            // Circuit connections
+            ctx.beginPath();
+            // Main circuit
+            ctx.moveTo(120, 150);
+            ctx.lineTo(180, 150);
+            ctx.moveTo(220, 150);
+            ctx.lineTo(280, 150);
+            ctx.moveTo(300, 150);
+            ctx.lineTo(350, 150);
+            
+            // Oscilloscope connections
+            ctx.moveTo(150, 150);
+            ctx.lineTo(150, 200);
+            ctx.moveTo(250, 150);
+            ctx.lineTo(250, 200);
+            ctx.stroke();
+            
+            // Component labels
+            ctx.font = 'bold 12px Arial';
+            ctx.fillStyle = '#dc2626';
+            ctx.fillText('Générateur', 85, 130);
+            ctx.fillText('Résistance', 175, 130);
+            ctx.fillText('Condensateur', 275, 130);
+        },
+        
+        // Figure 5: Écran d'oscilloscope
+        figure5: function(ctx) {
+            ctx.fillStyle = '#f5f3ff';
+            ctx.fillRect(0, 0, 400, 250);
+            
+            // Draw oscilloscope grid
+            ctx.strokeStyle = '#9ca3af';
+            ctx.lineWidth = 0.5;
+            
+            // Vertical lines
+            for(let x = 50; x <= 350; x += 30) {
+                ctx.beginPath();
+                ctx.moveTo(x, 50);
+                ctx.lineTo(x, 200);
+                ctx.stroke();
+            }
+            
+            // Horizontal lines
+            for(let y = 50; y <= 200; y += 30) {
+                ctx.beginPath();
+                ctx.moveTo(50, y);
+                ctx.lineTo(350, y);
+                ctx.stroke();
+            }
+            
+            // Border
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(50, 50, 300, 150);
+            
+            // Draw sine wave
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            const amplitude = 40;
+            const frequency = 0.05;
+            const phase = 0;
+            
+            for(let x = 50; x <= 350; x++) {
+                const y = 125 + amplitude * Math.sin(frequency * (x - 50) * Math.PI * 2 + phase);
+                if(x === 50) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            
+            // Labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.fillText('Voie A', 55, 40);
+            
+            // Scale indicators
+            ctx.fillText('2 V/div', 360, 125);
+            ctx.fillText('2 ms/div', 200, 220);
+            
+            // Draw markers
+            ctx.strokeStyle = '#059669';
+            ctx.lineWidth = 1;
+            
+            // Period marker
+            ctx.beginPath();
+            ctx.moveTo(50, 80);
+            ctx.lineTo(130, 80);
+            ctx.stroke();
+            
+            ctx.fillStyle = '#059669';
+            ctx.fillText('T = 8 ms', 85, 75);
+            
+            // Amplitude marker
+            ctx.beginPath();
+            ctx.moveTo(360, 125);
+            ctx.lineTo(360, 85);
+            ctx.stroke();
+            ctx.fillText('Uₘ = 4 V', 370, 110);
+        },
+        
+        // Correction versions (simplified with annotations)
+        figure1Correction: function(ctx) {
+            this.figure1(ctx);
+            // Add force annotations
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            
+            // Force at A (RA)
+            ctx.beginPath();
+            ctx.moveTo(100, 250);
+            ctx.lineTo(70, 220);
+            ctx.stroke();
+            ctx.fillStyle = '#dc2626';
+            ctx.fillText('R_A', 65, 215);
+            
+            // Force at B (RB)
+            ctx.beginPath();
+            ctx.moveTo(200, 150);
+            ctx.lineTo(230, 120);
+            ctx.stroke();
+            ctx.fillText('R_B', 235, 115);
+            
+            // Weight (P)
+            ctx.beginPath();
+            ctx.moveTo(150, 200);
+            ctx.lineTo(150, 230);
+            ctx.stroke();
+            ctx.fillText('P', 155, 240);
+        },
+        
+        figure2Correction: function(ctx) {
+            this.figure2(ctx);
+            // Add force annotations
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            
+            // Normal force (R)
+            ctx.beginPath();
+            ctx.moveTo(200, 180);
+            ctx.lineTo(200, 150);
+            ctx.stroke();
+            ctx.fillText('R', 205, 145);
+            
+            // Weight (P)
+            ctx.beginPath();
+            ctx.moveTo(200, 180);
+            ctx.lineTo(200, 220);
+            ctx.stroke();
+            ctx.fillText('P', 205, 225);
+            
+            // Friction (f)
+            ctx.beginPath();
+            ctx.moveTo(200, 180);
+            ctx.lineTo(180, 180);
+            ctx.stroke();
+            ctx.fillText('f', 175, 175);
+        },
+        
+        figure3Correction: function(ctx) {
+            this.figure3(ctx);
+            // Add measurement values
+            ctx.fillStyle = '#dc2626';
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('U₁ = 25 V', 30, 50);
+            ctx.fillText('I₁ = 20 mA', 30, 70);
+            
+            ctx.fillStyle = '#059669';
+            ctx.fillText('U₂ = 10 V', 320, 50);
+            ctx.fillText('I₂ = 50 mA', 320, 70);
+        },
+        
+        figure4Correction: function(ctx) {
+            this.figure4(ctx);
+            // Add component labels
+            ctx.fillStyle = '#dc2626';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('Générateur', 85, 130);
+            ctx.fillText('Résistance', 175, 130);
+            ctx.fillText('Condensateur', 275, 130);
+            
+            // Add identification numbers
+            ctx.fillStyle = '#333';
+            ctx.fillText('1', 97, 125);
+            ctx.fillText('2', 195, 125);
+            ctx.fillText('3', 290, 125);
+        },
+        
+        figure5Correction: function(ctx) {
+            this.figure5(ctx);
+            // Add second waveform for channel B (phase shifted)
+            ctx.strokeStyle = '#059669';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            const amplitude = 40;
+            const frequency = 0.05;
+            const phase = Math.PI / 2; // 90° phase shift
+            
+            for(let x = 50; x <= 350; x++) {
+                const y = 125 + amplitude * Math.sin(frequency * (x - 50) * Math.PI * 2 + phase);
+                if(x === 50) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            
+            ctx.fillStyle = '#059669';
+            ctx.fillText('Voie B', 300, 40);
+        }
+    };
+
+    // Function to create and insert an image
+function createImage(elementId, config) {
+    const imgElement = document.getElementById(elementId);
+    if (!imgElement) return;
+    
+    // Get the original src attribute from HTML
+    const originalSrc = imgElement.getAttribute('src');
+    
+    // Create a test image to check if the asset exists
+    const testImage = new Image();
+    
+    testImage.onload = function() {
+        // Asset exists - use it
+        console.log(`Asset found: ${originalSrc}`);
+        // Already loaded by the browser, so no action needed
+        // The img element already has the correct src
+    };
+    
+    testImage.onerror = function() {
+        // Asset doesn't exist - generate the diagram
+        console.log(`Asset not found: ${originalSrc}, generating diagram`);
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = config.width;
+        canvas.height = config.height;
+        
+        const ctx = canvas.getContext('2d');
+        
+        // Draw the image
+        if (imageDrawers[config.type]) {
+            imageDrawers[config.type](ctx);
+        }
+        
+        // Convert to data URL and set as image source
+        const dataURL = canvas.toDataURL('image/png');
+        imgElement.src = dataURL;
+        imgElement.alt = `Generated diagram for ${config.type}`;
+    };
+    
+    // Set the test source to check if the asset exists
+    // Use absolute path by joining with current page's base URL
+    let testSrc = originalSrc;
+    
+    // Handle relative paths
+    if (testSrc && !testSrc.startsWith('http') && !testSrc.startsWith('data:')) {
+        // Get base URL
+        const baseUrl = window.location.href.split('/').slice(0, -1).join('/');
+        
+        // Check if the src already starts with assets path
+        if (!testSrc.startsWith('assets')) {
+            testSrc = originalSrc;
+        }
+    }
+    
+    testImage.src = testSrc;
+}
+
+    // Generate all images
+    function generateAllImages() {
+        for (const [elementId, config] of Object.entries(canvasConfigs)) {
+            createImage(elementId, config);
+        }
+    }
+    
+    // Translation object for Physics Test page
+    let currentLanguage = 'fr';
+    let isDarkTheme = false;
+    
+    const TestsHub_translations = {
+        fr: {
+            TestsHub: {
+                physicsTest: {
+                    title: "Physique Chimie - Devoir de Contrôle",
+                    subtitle: "2ème Sciences (2024-2025)",
+                    back: "Retour aux Tests",
+                    showCorrection: "Afficher la correction",
+                    hideCorrection: "Masquer la correction",
+                    download: {
+                        pdf: "PDF",
+                        odt: "ODT",
+                        png: "PNG"
+                    },
+                    comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                },
+                language: {
+                    current: "Français"
+                },
+                theme: {
+                    toggle: "Mode Sombre"
+                },
+                footer: {
+                    developer: "المطور",
+                    version: "الإصدار",
+                    links: "الروابط",
+                    terms: "شروط الاستخدام",
+                    privacy: "سياسة الخصوصية"
+                }
+            }
+        },
+        en: {
+            TestsHub: {
+                physicsTest: {
+                    title: "Physics Chemistry - Control Test",
+                    subtitle: "2nd Year Sciences (2024-2025)",
+                    back: "Back to Tests",
+                    showCorrection: "Show Correction",
+                    hideCorrection: "Hide Correction",
+                    download: {
+                        pdf: "PDF",
+                        odt: "ODT",
+                        png: "PNG"
+                    },
+                    comingSoon: "Coming soon! This feature is under development."
+                },
+                language: {
+                    current: "English"
+                },
+                theme: {
+                    toggle: "Dark Mode"
+                },
+                footer: {
+                    developer: "Developer",
+                    version: "Version",
+                    links: "Links",
+                    terms: "Terms of Use",
+                    privacy: "Privacy Policy"
+                }
+            }
+        },
+        ar: {
+            TestsHub: {
+                physicsTest: {
+                    title: "الفيزياء والكيمياء - اختبار مراقبة",
+                    subtitle: "السنة الثانية علوم (2025-2024)",
+                    back: "العودة للاختبارات",
+                    showCorrection: "عرض التصحيح",
+                    hideCorrection: "إخفاء التصحيح",
+                    download: {
+                        pdf: "PDF",
+                        odt: "ODT",
+                        png: "PNG"
+                    },
+                    comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                },
+                language: {
+                    current: "العربية"
+                },
+                theme: {
+                    toggle: "الوضع المظلم"
+                },
+                footer: {
+                    developer: "المطور",
+                    version: "الإصدار",
+                    links: "الروابط",
+                    terms: "شروط الاستخدام",
+                    privacy: "سياسة الخصوصية"
+                }
+            }
+        }
+    };
+    
+    // Function to update text content (only for UI elements)
+    function updateTextContent() {
+        const elements = document.querySelectorAll('[data-i18n]');
+        
+        elements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            let translation = null;
+            
+            const keys = key.split('.');
+            let current = TestsHub_translations[currentLanguage];
+            
+            for (const k of keys) {
+                if (current && current[k] !== undefined) {
+                    current = current[k];
+                } else {
+                    current = null;
+                    break;
+                }
+            }
+            
+            translation = current;
+            
+            if (translation && typeof translation === 'string') {
+                element.textContent = translation;
+            }
+        });
+        
+        updateThemeToggleText();
+        updateCorrectionButtonText();
+    }
+    
+    // Function to update theme toggle text
+    function updateThemeToggleText() {
+        const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (themeToggle) {
+            if (isDarkTheme) {
+                if (currentLanguage === 'fr') {
+                    themeToggle.textContent = "Mode Clair";
+                } else if (currentLanguage === 'ar') {
+                    themeToggle.textContent = "الوضع الفاتح";
+                } else {
+                    themeToggle.textContent = "Light Mode";
+                }
+            } else {
+                themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+        }
+        
+        if (themeIcon) {
+            themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+    }
+    
+    // Function to update correction button text
+    function updateCorrectionButtonText() {
+        const correctionButton = document.getElementById('toggleCorrection');
+        const correctionSection = document.getElementById('correction');
+        
+        if (correctionButton) {
+            if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.showCorrection;
+            } else {
+                correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.hideCorrection;
+            }
+        }
+    }
+    
+    // Function to toggle theme
+    function toggleTheme() {
+        isDarkTheme = !isDarkTheme;
+        const body = document.body;
+        
+        if (isDarkTheme) {
+            body.classList.add('Tests-Hub-dark-theme');
+        } else {
+            body.classList.remove('Tests-Hub-dark-theme');
+        }
+        
+        updateThemeToggleText();
+        localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+    }
+    
+    // Function to change language (only for UI, not test content)
+    function changeLanguage(lang) {
+        if (!TestsHub_translations[lang]) return;
+        
+        currentLanguage = lang;
+        updateTextContent();
+        
+        const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+        if (languageButton) {
+            languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+        }
+        
+        // Set RTL for Arabic, LTR for other languages
+        if (lang === 'ar') {
+            document.documentElement.dir = 'rtl';
+            document.documentElement.lang = 'ar';
+        } else {
+            document.documentElement.dir = 'ltr';
+            document.documentElement.lang = lang;
+        }
+        
+        localStorage.setItem('testsHubLanguage', lang);
+    }
+    
+    // Download functions
+    function downloadAsPDF() {
+        const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.physicsTest?.comingSoon || "Coming soon";
+        alert(comingSoonMsg);
+    }
+    
+    function downloadAsODT() {
+        const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.physicsTest?.comingSoon || "Coming soon";
+        alert(comingSoonMsg);
+    }
+    
+    function downloadAsPNG() {
+        const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.physicsTest?.comingSoon || "Coming soon";
+        alert(comingSoonMsg);
+    }
+    
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', function() {
+        // Generate images first
+        generateAllImages();
+        
+        // Load saved preferences
+        const savedTheme = localStorage.getItem('testsHubTheme');
+        if (savedTheme === 'dark') {
+            isDarkTheme = true;
+            document.body.classList.add('Tests-Hub-dark-theme');
+        }
+        
+        const savedLanguage = localStorage.getItem('testsHubLanguage');
+        if (savedLanguage && TestsHub_translations[savedLanguage]) {
+            currentLanguage = savedLanguage;
+        }
+        
+        // Set RTL for Arabic, LTR for other languages
+        if (currentLanguage === 'ar') {
+            document.documentElement.dir = 'rtl';
+            document.documentElement.lang = 'ar';
+        } else {
+            document.documentElement.dir = 'ltr';
+            document.documentElement.lang = currentLanguage;
+        }
+        
+        // Render KaTeX formulas if any
+        if (typeof renderMathInElement !== 'undefined') {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+        
+        updateTextContent();
+        
+        // Attach event listeners
+        const themeButton = document.getElementById('themeToggle');
+        if (themeButton) {
+            themeButton.addEventListener('click', toggleTheme);
+        }
+        
+        const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+        languageOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.getAttribute('data-language');
+                changeLanguage(lang);
+            });
+        });
+        
+        // Download buttons event listeners
+        const pdfButton = document.getElementById('downloadPdf');
+        if (pdfButton) {
+            pdfButton.addEventListener('click', downloadAsPDF);
+        }
+        
+        const odtButton = document.getElementById('downloadOdt');
+        if (odtButton) {
+            odtButton.addEventListener('click', downloadAsODT);
+        }
+        
+        const pngButton = document.getElementById('downloadPng');
+        if (pngButton) {
+            pngButton.addEventListener('click', downloadAsPNG);
+        }
+        
+        // Correction toggle functionality
+        const correctionButton = document.getElementById('toggleCorrection');
+        if (correctionButton) {
+            correctionButton.addEventListener('click', function() {
+                const correctionSection = document.getElementById('correction');
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionSection.classList.remove('Tests-Hub-hidden');
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.hideCorrection;
+                    
+                    // Re-render math in correction section when it becomes visible
+                    if (typeof renderMathInElement !== 'undefined') {
+                        renderMathInElement(correctionSection, {
+                            delimiters: [
+                                {left: "$$", right: "$$", display: true},
+                                {left: "$", right: "$", display: false},
+                                {left: "\\(", right: "\\)", display: false},
+                                {left: "\\[", right: "\\]", display: true}
+                            ],
+                            throwOnError: false,
+                            strict: false
+                        });
+                    }
+                    
+                    // Regenerate correction images when correction is shown
+                    setTimeout(generateAllImages, 100);
+                } else {
+                    correctionSection.classList.add('Tests-Hub-hidden');
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.physicsTest.showCorrection;
+                }
+            });
+        }
+        
+        // Focus management for answer fields
+        const answerFields = document.querySelectorAll('.Tests-Hub-answer-textarea, .Tests-Hub-table-textarea');
+        answerFields.forEach((field, index) => {
+            field.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextIndex = index + 1;
+                    if (nextIndex < answerFields.length) {
+                        answerFields[nextIndex].focus();
+                    }
+                }
+            });
+        });
+        
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered:', registration);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    });
+</script>
+	
+</body>
+</html>

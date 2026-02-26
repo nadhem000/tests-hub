@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة N°2 - اللغة العربية (2016-2017)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6D28D9">
+    <meta name="description" content="فرض مراقبة N°2 للسنة الثالثة ثانوي - اللغة العربية (2016-2017)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - اختبار العربية">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f5ff 0%, #f1edff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+            color: #f0f0f0;
+        }
+        
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #6D28D9, #8B5CF6);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #2e1065, #6D28D9, #8B5CF6);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #4c1d95;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #5b21b6;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #6D28D9, #8B5CF6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #2e1065, #6D28D9);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #4c1d95;
+            color: #f0f0f0;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #6D28D9;
+            border-bottom: 2px solid #8B5CF6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #8B5CF6;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #8B5CF6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #f8f5ff;
+            padding: 1rem;
+            border-right: 4px solid #6D28D9;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #2e1065;
+            border-right-color: #8B5CF6;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-right: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #6D28D9;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #8B5CF6;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #6D28D9, #8B5CF6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #f8f5ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #6D28D9;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #2e1065;
+            border-right-color: #8B5CF6;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #6D28D9;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #8B5CF6;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(109, 40, 217, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #6D28D9;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(139, 92, 246, 0.1);
+            border-right-color: #8B5CF6;
+        }
+        
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #ccc;
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #6D28D9, #8B5CF6);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #2e1065, #6D28D9, #8B5CF6);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+        }
+        
+        /* Download Buttons Styles */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(109, 40, 217, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to left, rgba(46, 16, 101, 0.2), rgba(109, 40, 217, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+        }
+        
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive styles for download buttons */
+        @media (max-width: 768px) {
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-left: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-left: 10px;
+            }
+        }
+        
+        /* Arabic text styling */
+        .Tests-Hub-arabic-text {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: right;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .Tests-Hub-arabic-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .Tests-Hub-arabic-text .page-indicator {
+            display: block;
+            font-weight: bold;
+            color: #6D28D9;
+            margin-bottom: 0.5rem;
+            font-size: 16px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-arabic-text .page-indicator {
+            color: #8B5CF6;
+        }
+        
+        /* Forced RTL direction for test content */
+        .Tests-Hub-main-container,
+        .Tests-Hub-test-section,
+        .Tests-Hub-question,
+        .Tests-Hub-correction-section,
+        .Tests-Hub-correction-answer {
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Poetry styling */
+        .Tests-Hub-poetry {
+            font-family: 'Traditional Arabic', 'Arial', sans-serif;
+            line-height: 2;
+            font-size: 18px;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(109, 40, 217, 0.05), rgba(139, 92, 246, 0.05));
+            border-right: 4px solid #8B5CF6;
+            border-radius: 8px;
+            font-style: italic;
+            color: #4c1d95;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-poetry {
+            background: linear-gradient(to right, rgba(109, 40, 217, 0.1), rgba(139, 92, 246, 0.1));
+            border-right-color: #a78bfa;
+            color: #d8b4fe;
+        }
+        
+        .Tests-Hub-poetry .verse {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-poetry .poet-name {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 16px;
+            color: #6D28D9;
+            font-style: normal;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-poetry .poet-name {
+            color: #a78bfa;
+        }
+        
+        /* Organized list */
+        .Tests-Hub-organized-list {
+            margin: 1rem 0;
+            padding-right: 1.5rem;
+        }
+        
+        .Tests-Hub-organized-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-right: 1.2rem;
+        }
+        
+        .Tests-Hub-organized-list li:before {
+            content: "•";
+            color: #6D28D9;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-organized-list li:before {
+            color: #a78bfa;
+        }
+        
+        .Tests-Hub-sub-section {
+            margin: 1.5rem 0;
+            padding-right: 1rem;
+            border-right: 2px solid #ddd;
+            transition: border-color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-sub-section {
+            border-right-color: #5b21b6;
+        }
+        
+        .Tests-Hub-sub-title {
+            color: #6D28D9;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-sub-title {
+            color: #a78bfa;
+        }
+        
+        /* Section divider */
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, #6D28D9, transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-divider {
+            background: linear-gradient(to left, transparent, #a78bfa, transparent);
+        }
+        
+        /* Question input styling */
+        .Tests-Hub-answer-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #666;
+            background-color: #4c1d95;
+            color: #f0f0f0;
+        }
+        
+        /* Small textarea for short answers */
+        .Tests-Hub-small-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 16px;
+            resize: vertical;
+            margin-top: 5px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-small-textarea {
+            border-color: #666;
+            background-color: #4c1d95;
+            color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.arabicTest.title">اللغة العربية - فرض مراقبة</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.arabicTest.subtitle">السنة الثالثة ثانوي - آداب</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.arabicTest.back">العودة للاختبارات</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1>فرض مراقبة N°2 - اللغة والبلاغة والتعريب</h1>
+            <p>معهد الحسين بوزيان قفصة - 2016/2017</p>
+            <p>القسم: السنة الثالثة ثانوي - شعبة الآداب</p>
+            <p>الأستاذ: ميسم</p>
+            <p>المدة: 2 ساعات</p>
+            <p>التاريخ: الثلاثي الثاني</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات عامة</h3>
+            <ul>
+                <li>يجب الإجابة على جميع الأسئلة</li>
+                <li>الدقة في الإجابة ووضوح الخط</li>
+                <li>مراعاة القواعد النحوية والإملائية</li>
+                <li>التقيد بالوقت المخصص لكل قسم</li>
+            </ul>
+        </div>
+        
+        <!-- القسم الأول -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول: البلاغة والتحليل (10 نقاط)</h2>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> استخرج البديع والجمل التقريرية في الأمثلة التالية محدّدًا نوع كل منها:</p>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>1- "تَعَوَّضْتُ مِنْ وَاهَا بآهٍ" (ابنُ خفاجة)</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>2- ليس المطر نازلاً.</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>3- قال أعْرابيّ: "أتَتْنَا غُيُومُ جَرَادْ، بِنَاحِلِ حَصَادْ، فَحَرَدَتِ البِلاَدْ، وَأَهْلَكَتِ العِبَادْ"</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>4- "وَ نُنْكِرُ إِنْ شِئْنَا عَلَى النَّاسِ قَوْلَهُمْ ... وَلاَ يُنْكِرُونَ القَوْلَ حِينَ نَقُولُ" (أبو تمام)</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>5- قالَ عليْه السّلامُ لأنصارهِ: "إنّكُمْ لَتَكْثُرُونَ عِنْدَ الفَزَعِ وَتَقِلُونَ عِنْدَ الطّمَعِ"</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>6- "وَبِفِيهِ شِفَاءُ ظَمَائِي لَوْ ... يَدْنُو لِذَمَائِي مَوْرِدُهُ" (ابنُ الأَبّار)</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>7- "أَزُورُهُمْ وَسَوَادُ اللّيْلِ يَشْفَعُ لِي ... وَأَنْشَنِي وَبَيَاضُ الصُّبْحِ يُغْرِي بِي" (أبو الطّيّب)</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>8- لم تقبط الطائرة في المطار.</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>9- "فَهِمْتُ كِتابَكَ، يَا سَيِّدِي ... فَهِمْتُ، ولاَ عَجَبًا أنْ أهِيمًا" (شاعرٌ)</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p>10- "فَديتُكِ، إِنْ تَعْجَلِي بالجَفَاء،فَقَدْ يَهَبُ الرّيثَ بَعْضُ العَجَلْ"</p>
+                    <textarea class="Tests-Hub-small-textarea" placeholder="اكتب الإجابة هنا..."></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- القسم الثاني -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني: التعريب (10 نقاط)</h2>
+            
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> عرّب النص التالي مع الشكل التام:</p>
+                
+                <div class="Tests-Hub-instructions">
+                    <p><strong>النص الفرنسي:</strong></p>
+                    <div style="direction: ltr; text-align: left; font-family: 'Times New Roman', serif; padding: 1rem; border-radius: 5px;">
+                        <h3 style="text-align: center;">L'ART</h3>
+                        <p>Dans l'esprit des Egyptiens, le système hiéroglyphique n'est pas une simple pictographie traditionnelle. Formées d'images, les inscriptions, procèdent directement de la réalité naturelle; comme les dessins, elles ont une fonction demiurgique. On réserve donc à la vie courante les cursives qui rendent méconnaissables les figures, mais sur un monument religieux, chaque caractère est normalement dessiné avec un réalisme plus ou moins grand et est parfois traité comme un dessin-miniature.</p>
+                        <p style="text-align: right; font-style: italic; margin-top: 1rem;">Librairie Gallimard (HISTOIRE DE L'ART, P146)</p>
+                    </div>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>النص العربي:</strong></p>
+                    <textarea class="Tests-Hub-small-textarea" style="min-height: 300px;" placeholder="اكتب النص المعرب والمشكل هنا..."></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">إظهار التصحيح</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>تصحيح الفرض</h2>
+            
+            <!-- القسم الأول -->
+            <h3>القسم الأول: البلاغة والتحليل</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>الإجابة النموذجية:</strong></p>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>1- "تَعَوَّضْتُ مِنْ وَاهَا بآهٍ" (ابنُ خفاجة):</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: جناس ناقص (واهَا - بآهٍ)</li>
+                        <li>الجملة التقريرية: تعوّضتُ</li>
+                        <li>النوع: أسلوب تعويض وطباق معنوي</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>2- ليس المطر نازلاً:</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>الجملة التقريرية: ليس المطر نازلاً</li>
+                        <li>النوع: أسلوب نفي باستخدام ليس</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>3- قال أعْرابيّ: "أتَتْنَا غُيُومُ جَرَادْ، بِنَاحِلِ حَصَادْ، فَحَرَدَتِ البِلاَدْ، وَأَهْلَكَتِ العِبَادْ":</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: سجع مطرف (جراد - حصاد - البلاد - العباد)</li>
+                        <li>الجملة التقريرية: أتتنا غيوم جراد</li>
+                        <li>النوع: تشبيه تمثيلي (الجراد بالسحاب)</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>4- "وَ نُنْكِرُ إِنْ شِئْنَا عَلَى النَّاسِ قَوْلَهُمْ ... وَلاَ يُنْكِرُونَ القَوْلَ حِينَ نَقُولُ" (أبو تمام):</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: مقابلة (ننكر - لا ينكرون)</li>
+                        <li>الجملة التقريرية: ننكر إن شئنا</li>
+                        <li>النوع: طباق إيجاب وسلب</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>5- قالَ عليْه السّلامُ لأنصارهِ: "إنّكُمْ لَتَكْثُرُونَ عِنْدَ الفَزَعِ وَتَقِلُونَ عِنْدَ الطّمَعِ":</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: طباق (تكثُرون - تقلون) و (الفزع - الطمع)</li>
+                        <li>الجملة التقريرية: إنكم لتكثرون عند الفزع</li>
+                        <li>النوع: أسلوب تقرير باستخدام إنّ واللام</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>6- "وَبِفِيهِ شِفَاءُ ظَمَائِي لَوْ ... يَدْنُو لِذَمَائِي مَوْرِدُهُ" (ابنُ الأَبّار):</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: طباق (ظمائي - ذمائي)</li>
+                        <li>الجملة التقريرية: وفيه شفاء ظمائي</li>
+                        <li>النوع: استعارة مكنية (شفاء الظمأ)</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>7- "أَزُورُهُمْ وَسَوَادُ اللّيْلِ يَشْفَعُ لِي ... وَأَنْشَنِي وَبَيَاضُ الصُّبْحِ يُغْرِي بِي" (أبو الطّيّب):</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: طباق (سواد الليل - بياض الصبح)</li>
+                        <li>الجملة التقريرية: أزورهم وسواد الليل يشفع لي</li>
+                        <li>النوع: تشبيه ضمني (الليل بشفيع)</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>8- لم تقبط الطائرة في المطار:</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>الجملة التقريرية: لم تقبط الطائرة</li>
+                        <li>النوع: أسلوب نفي باستخدام لم مع الفعل المضارع</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>9- "فَهِمْتُ كِتابَكَ، يَا سَيِّدِي ... فَهِمْتُ، ولاَ عَجَبًا أنْ أهِيمًا" (شاعرٌ):</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: جناس تام (فهِمْتُ - أهِيمًا)</li>
+                        <li>الجملة التقريرية: فهمت كتابك</li>
+                        <li>النوع: أسلوب استدراك وتنبيه</li>
+                    </ul>
+                </div>
+                
+                <div class="Tests-Hub-sub-section">
+                    <p><strong>10- "فَديتُكِ، إِنْ تَعْجَلِي بالجَفَاء،فَقَدْ يَهَبُ الرّيثَ بَعْضُ العَجَلْ":</strong></p>
+                    <ul class="Tests-Hub-organized-list">
+                        <li>البديع: جناس ناقص (تعجلي - العجل)</li>
+                        <li>الجملة التقريرية: فديتك إن تعجلي بالجفاء</li>
+                        <li>النوع: أسلوب شرط معطوف على جوابه</li>
+                    </ul>
+                </div>
+                
+                <p class="Tests-Hub-correction-note"><strong>ملاحظة:</strong> البديع هو المحسنات اللفظية والمعنوية، والجملة التقريرية هي الجملة الخبرية التي تحتمل الصدق أو الكذب.</p>
+            </div>
+            
+            <!-- القسم الثاني -->
+            <h3>القسم الثاني: التعريب</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>النص المعرب:</strong></p>
+                <div class="Tests-Hub-poetry" style="text-align: right; font-style: normal; font-family: 'Traditional Arabic', 'Arial', sans-serif;">
+                    <h4 style="text-align: center; color: #6D28D9; margin-bottom: 1rem;">الفَنّ</h4>
+                    <p>في عُقُولِ المِصْرِيِّينَ، لَيْسَ النِّظَامُ الهِيرُوغْلِيفِيُّ مَجَرَّدَ تَصْوِيرٍ تَقْلِيدِيٍّ بَسِيطٍ. فَالنَّقُوشُ المُكَوَّنَةُ مِنَ الصُّوَرِ تَنْبَثِقُ مُبَاشَرَةً مِنَ الوَاقِعِ الطَّبِيعِيِّ؛ وَمِثْلَ الرُّسُومِ، فَإِنَّ لَهَا وَظِيفَةً خَلَّاقَةً. لِذَلِكَ، فَإِنَّنَا نُخَصِّصُ لِلْحَيَاةِ اليَوْمِيَّةِ الخَطَّ المُرْتَسِلَ الَّذِي يَجْعَلُ الأَشْكَالَ غَيْرَ مَعْرُوفَةٍ، أَمَّا عَلَى النُّصْبِ الدِّينِيِّ، فَكُلُّ حَرْفٍ يُرْسَمُ عَادَةً بِوَاقِعِيَّةٍ كَبِيرَةٍ أَوْ قَلِيلَةٍ، وَقَدْ يُعَامَلُ أحْيَانًا كَرَسْمٍ مُصَغَّرٍ.</p>
+                    <p style="text-align: left; font-style: italic; margin-top: 1rem; direction: ltr;">مَكْتَبَةُ غَالِيمَارْ (تَارِيخُ الفَنِّ، ص 146)</p>
+                </div>
+                <p class="Tests-Hub-correction-note"><strong>ملاحظات الترجمة:</strong></p>
+                <ul class="Tests-Hub-organized-list">
+                    <li>حافظت الترجمة على المعنى الأصلي للنص الفرنسي</li>
+                    <li>تمت مراعاة المصطلحات الفنية المتخصصة (الهيروغليفي، التصوير التقليدي، الخط المرسل)</li>
+                    <li>النص الفرنسي يتناول نظرة المصريين القدماء للنظام الهيروغليفي</li>
+                    <li>الترجمة حرفية مع بعض التصرف للحفاظ على الانسجام اللغوي العربي</li>
+                </ul>
+            </div>
+            
+            <hr class="Tests-Hub-divider">
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>نصيحة عامة:</strong></p>
+                <p>يجب على الطالب أن يركز على فهم أنواع البديع المختلفة (الجناس، الطباق، المقابلة، السجع) وأن يميز بين الجمل التقريرية والإنشائية. في قسم التعريب، ينبغي فهم النص الفرنسي جيدًا قبل الشروع في الترجمة، مع الاهتمام بالمصطلحات الفنية والتشكيل التام للنص العربي.</p>
+                <p><strong>عملاً موفقاً</strong></p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.arabicTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.arabicTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.arabicTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object for Arabic Test page
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    arabicTest: {
+                        title: "اللغة العربية - فرض مراقبة",
+                        subtitle: "السنة الثالثة ثانوي - آداب",
+                        back: "العودة للاختبارات",
+                        showCorrection: "إظهار التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    arabicTest: {
+                        title: "Arabe - Devoir de Contrôle",
+                        subtitle: "3ème Année Secondaire - Lettres",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    arabicTest: {
+                        title: "Arabic - Control Test",
+                        subtitle: "3rd Year Secondary - Literature",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+        
+        // Function to update text content (only for UI elements)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        // Function to update theme toggle text
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        // Function to update correction button text
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.arabicTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.arabicTest.hideCorrection;
+                }
+            }
+        }
+        
+        // Function to toggle theme
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        // Function to change language (only for UI, not test content)
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Download functions
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.arabicTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.arabicTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.arabicTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Set RTL for Arabic, LTR for other languages
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+            }
+            
+            updateTextContent();
+            
+            // Attach event listeners
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Download buttons event listeners
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            // Correction toggle functionality
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.arabicTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.arabicTest.showCorrection;
+                    }
+                });
+            }
+            
+            // Register service worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
