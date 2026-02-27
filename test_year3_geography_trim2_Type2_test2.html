@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي 2 - الجغرافيا (التباين بين الساحل والداخل)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0F766E">
+    <meta name="description" content="فرض تأليفي 2 في الجغرافيا - الثالثة آداب (التباين بين الساحل والداخل بالبلاد التونسية)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - اختبار الجغرافيا">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* ===== BASE STYLES (modified color palette: teal/emerald) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #CCF0E8 0%, #E0F2F1 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #134E4A 0%, #115E59 100%);
+            color: #F3F4F6;
+        }
+        
+        /* ===== TYPOGRAPHY CLASSES ===== */
+        .Tests-Hub-title-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-primary {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-secondary {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: inherit;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0F766E;
+        }
+        
+        .Tests-Hub-heading-tertiary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem;
+            color: inherit;
+        }
+        
+        .Tests-Hub-heading-section {
+            color: #0F766E;
+            border-bottom: 2px solid #0D9488;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-section {
+            color: #99F6E4;
+        }
+        
+        .Tests-Hub-heading-subsection {
+            color: #0D9488;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-subsection {
+            color: #2DD4BF;
+        }
+        
+        .Tests-Hub-heading-question {
+            color: #0F766E;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-heading-question {
+            color: #99F6E4;
+        }
+        
+        .Tests-Hub-paragraph {
+            margin-bottom: 1rem;
+            text-align: right;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+        
+        .Tests-Hub-paragraph-indent {
+            text-indent: 1.5rem;
+        }
+        
+        .Tests-Hub-text-italic {
+            font-style: italic;
+        }
+        
+        .Tests-Hub-text-bold {
+            font-weight: 700;
+            color: #0F766E;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-bold {
+            color: #99F6E4;
+        }
+        
+        .Tests-Hub-text-highlight {
+            background: rgba(15, 118, 110, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            border-right: 2px solid #0F766E;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-highlight {
+            background: rgba(153, 246, 228, 0.2);
+            border-right-color: #99F6E4;
+        }
+        
+        .Tests-Hub-text-label {
+            display: inline-block;
+            background: #0F766E;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-label {
+            background: #0D9488;
+        }
+        
+        .Tests-Hub-text-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-note {
+            color: #E5E7EB;
+        }
+        
+        .Tests-Hub-text-explanation {
+            color: #4B5563;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0.75rem 0;
+            padding-right: 1rem;
+            border-right: 3px solid #0F766E;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-explanation {
+            color: #E5E7EB;
+            border-right-color: #99F6E4;
+        }
+        
+        .Tests-Hub-text-correction {
+            color: #0F766E;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-correction {
+            color: #2DD4BF;
+        }
+        
+        .Tests-Hub-text-warning {
+            color: #D97706;
+            font-weight: 600;
+            background: rgba(217, 119, 6, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-right: 4px solid #D97706;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-warning {
+            color: #FBBF24;
+            background: rgba(217, 119, 6, 0.2);
+            border-right-color: #FBBF24;
+        }
+        
+        .Tests-Hub-text-success {
+            color: #059669;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #34D399;
+        }
+        
+        .Tests-Hub-text-error {
+            color: #DC2626;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-error {
+            color: #F87171;
+        }
+        
+        /* ===== LAYOUT CLASSES ===== */
+        .Tests-Hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .Tests-Hub-content-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-flex-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-flex-col {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .Tests-Hub-grid-cols-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        /* ===== COMPONENT CLASSES ===== */
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #0F766E, #0D9488);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #134E4A, #115E59, #0D9488);
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Buttons */
+        .Tests-Hub-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+        
+        .Tests-Hub-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-button-primary {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #0F766E, #0D9488);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .Tests-Hub-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-button-download {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-button-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Language Selector */
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #134E4A;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F3F4F6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #115E59;
+        }
+        
+        /* Test Content */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #0F766E, #0D9488);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #134E4A, #115E59);
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+            direction: rtl;
+            text-align: right;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #134E4A;
+            color: #F3F4F6;
+        }
+        
+        /* Instructions */
+        .Tests-Hub-instructions-container {
+            background: #CCF0E8;
+            padding: 1rem;
+            border-right: 4px solid #0D9488;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions-container {
+            background: #134E4A;
+            border-right-color: #99F6E4;
+        }
+        
+        /* Text Passage */
+        .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #CCF0E8 0%, #E0F2F1 100%);
+            border-right: 4px solid #0D9488;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px 0 0 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #134E4A 0%, #115E59 100%);
+            border-right-color: #99F6E4;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-text-passage {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding: 1.5rem;
+        }
+        
+        /* Questions */
+        .Tests-Hub-question-container {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #0F766E;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #99F6E4;
+        }
+        
+        /* Answer Inputs */
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+            text-align: right;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+            text-align: right;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input,
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea {
+            border-color: #666;
+            background-color: #134E4A;
+            color: #F3F4F6;
+        }
+        
+        /* Multiple Choice */
+        .Tests-Hub-multiple-choice-container {
+            margin: 10px 0;
+        }
+        
+        .Tests-Hub-choice-option {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        
+        .Tests-Hub-choice-option input {
+            margin-left: 10px;
+        }
+        
+        /* Correction */
+        .Tests-Hub-correction-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #CCF0E8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #0D9488;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #134E4A;
+            border-right-color: #99F6E4;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(15, 118, 110, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #0F766E;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(153, 246, 228, 0.1);
+            border-right-color: #99F6E4;
+        }
+        
+        /* Download Section */
+        .Tests-Hub-download-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(15, 118, 110, 0.1), rgba(13, 148, 136, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-section {
+            background: linear-gradient(to left, rgba(19, 78, 74, 0.2), rgba(17, 94, 89, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0F766E, #0D9488);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #134E4A, #115E59, #0D9488);
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-heading {
+            color: #CCF0E8;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Links */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #CCF0E8;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Developer Info */
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #CCF0E8;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #CCF0E8;
+        }
+        
+        /* Download Button Colors */
+        .Tests-Hub-download-pdf {
+            background: linear-gradient(135deg, #0F766E, #0D9488);
+            color: white;
+        }
+        
+        .Tests-Hub-download-pdf:hover {
+            background: linear-gradient(135deg, #134E4A, #115E59);
+        }
+        
+        .Tests-Hub-download-odt {
+            background: linear-gradient(135deg, #B45309, #D97706);
+            color: white;
+        }
+        
+        .Tests-Hub-download-odt:hover {
+            background: linear-gradient(135deg, #92400E, #B45309);
+        }
+        
+        .Tests-Hub-download-png {
+            background: linear-gradient(135deg, #6B21A8, #7E22CE);
+            color: white;
+        }
+        
+        .Tests-Hub-download-png:hover {
+            background: linear-gradient(135deg, #581C87, #6B21A8);
+        }
+        
+        /* Utility Classes */
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        .Tests-Hub-text-center {
+            text-align: center;
+        }
+        
+        .Tests-Hub-text-right {
+            text-align: right;
+        }
+        
+        .Tests-Hub-mb-1 {
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-mb-2 {
+            margin-bottom: 2rem;
+        }
+        
+        .Tests-Hub-mt-1 {
+            margin-top: 1rem;
+        }
+        
+        .Tests-Hub-mt-2 {
+            margin-top: 2rem;
+        }
+        
+        .Tests-Hub-mr-1 {
+            margin-right: 1rem;
+        }
+        
+        .Tests-Hub-pr-1 {
+            padding-right: 1rem;
+        }
+        
+        /* Table Styling */
+        .Tests-Hub-table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            direction: rtl;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: right;
+            transition: background 0.3s ease, border-color 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        th {
+            background: #0F766E;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        .Tests-Hub-dark-theme th {
+            background: #134E4A;
+        }
+        
+        tr:nth-child(even) {
+            background: #CCF0E8;
+        }
+        
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #115E59;
+        }
+        
+        .Tests-Hub-dark-theme td {
+            border-color: #134E4A;
+        }
+        
+        /* Arabic-specific styling */
+        .Tests-Hub-arabic-text {
+            line-height: 1.8;
+            font-size: 18px;
+            font-family: 'Arial', sans-serif;
+            text-align: right;
+        }
+        
+        /* Points Badge */
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: #0D9488;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #0F766E;
+        }
+        
+        /* Diagram Container */
+        .Tests-Hub-diagram-container {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-container {
+            background: #134E4A;
+            border-color: #0F766E;
+        }
+        
+        .Tests-Hub-diagram-title {
+            font-weight: bold;
+            color: #0F766E;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-title {
+            color: #99F6E4;
+        }
+        
+        .Tests-Hub-diagram-source {
+            font-style: italic;
+            color: #666;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-source {
+            color: #D1D5DB;
+        }
+        
+        .Tests-Hub-legend-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 1rem 0;
+        }
+        
+        .Tests-Hub-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .Tests-Hub-legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        /* Graph Canvas */
+        .Tests-Hub-graph-canvas {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-graph-canvas {
+            background-color: #115E59;
+            border-color: #0D9488;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+        }
+        
+        /* Scale Container */
+        .Tests-Hub-scale-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 0 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-scale-container {
+            color: #D1D5DB;
+        }
+        
+        /* Organized List */
+        .Tests-Hub-organized-list {
+            list-style: none;
+            padding-right: 1rem;
+        }
+        
+        .Tests-Hub-organized-list li {
+            margin-bottom: 0.75rem;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+        
+        .Tests-Hub-organized-list li:before {
+            content: "•";
+            color: #0D9488;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: -1em;
+            position: absolute;
+            right: 0;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-organized-list li:before {
+            color: #99F6E4;
+        }
+        
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-title-main {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-content-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-grid-cols-3 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .Tests-Hub-answer-input {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-answer-textarea {
+                min-height: 100px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-download-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-button-download {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-left: 15px;
+            }
+            
+            .Tests-Hub-table-container {
+                font-size: 0.9rem;
+            }
+            
+            table {
+                min-width: 700px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-heading-primary {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-section {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-button-download {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-button-download span:first-child {
+                font-size: 1.5rem;
+                margin-left: 10px;
+            }
+            
+            .Tests-Hub-graph-canvas {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content Tests-Hub-container Tests-Hub-flex-row">
+            <div class="Tests-Hub-flex-row">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-title-main" data-i18n="TestsHub.geographyTest.title">الجغرافيا - فرض تأليفي 2</h1>
+                    <div class="Tests-Hub-subtitle" data-i18n="TestsHub.geographyTest.subtitle">الثالثة آداب (التباين بين الساحل والداخل)</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.geographyTest.back">العودة للاختبارات</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="Tests-Hub-content-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1 class="Tests-Hub-heading-primary">فرض تأليفي عدد 2 - الجغرافيا</h1>
+            <p>الموضوع: التباين بين الساحل والداخل بالبلاد التونسية</p>
+            <p>المستوى: الثالثة آداب</p>
+            <p>الأستاذ: فوزي العياري</p>
+            <p>المعهد: معهد الروحية</p>
+            <p>السنة الدراسية: 2010/2011</p>
+            <p>المدة: ساعة ونصف</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions-container">
+            <h3 class="Tests-Hub-heading-subsection">تعليمات عامة</h3>
+            <ul class="Tests-Hub-organized-list">
+                <li>اقرأ الوثائق بعناية قبل الإجابة عن الأسئلة</li>
+                <li>أجب عن جميع الأسئلة بالترتيب المحدد</li>
+                <li>سيُؤخذ بعين الاعتبار جودة التحليل ودقة المعلومات</li>
+                <li>اكتب بخط واضح ومرتب</li>
+                <li>في السؤال الرابع، احرص على رسم الهستوغرام بجميع عناصره</li>
+                <li>استعمل البيانات الواردة في الوثائق فقط</li>
+            </ul>
+        </div>
+        
+        <!-- الوثائق -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">دراسة وثائق تتعلق بالتباين بين الساحل والداخل بالبلاد التونسية</h2>
+            
+            <!-- الوثيقة 1: رسم دائري -->
+            <div class="Tests-Hub-text-container Tests-Hub-mb-2">
+                <h3 class="Tests-Hub-heading-subsection">الوثيقة عدد 1: توزع السكان بالبلاد التونسية (نسب مئوية)</h3>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas class="Tests-Hub-graph-canvas" id="populationPieChart" style="height:250px;"></canvas>
+                    <div class="Tests-Hub-legend-container">
+                        <div class="Tests-Hub-legend-item">
+                            <div class="Tests-Hub-legend-color" style="background-color: #0D9488;"></div>
+                            <span>الأقاليم الساحلية: 68%</span>
+                        </div>
+                        <div class="Tests-Hub-legend-item">
+                            <div class="Tests-Hub-legend-color" style="background-color: #F59E0B;"></div>
+                            <span>الأقاليم الداخلية: 32%</span>
+                        </div>
+                    </div>
+                    <p class="Tests-Hub-diagram-source">المصدر: المعهد الوطني للإحصاء، تقديرات 2004</p>
+                </div>
+            </div>
+            
+            <!-- الوثيقة 2: نص -->
+            <div class="Tests-Hub-text-container">
+                <h3 class="Tests-Hub-heading-subsection">الوثيقة عدد 2: التوزع المتفاوت للاستثمارات</h3>
+                <div class="Tests-Hub-text-passage">
+                    <p class="Tests-Hub-paragraph">
+                        « ... رغم الحرص على العدالة المجالية خلال العشرية الأولى فان الشريط الساحلي استفاد بنسبة 80 % من الاستثمارات ... وخلال العشرية الثانية نلاحظ نفس الاتجاه للتركز الساحلي للاستثمارات : 79% من الصناعة التحويلية ... ويبرز التركز على مستوى الخدمات الاجتماعية بأكثر حدة ... كما ان الاستثمارات السياحية تركزت أساسا في أربع مناطق سياحية ساحلية. »
+                    </p>
+                    <p class="Tests-Hub-text-italic Tests-Hub-text-right Tests-Hub-mt-2">
+                        <strong>المصدر:</strong> عمر بالهادي – المجتمع، المجال والتنمية بالبلاد التونسية، 1992
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- الأسئلة -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">الأسئلة</h2>
+            
+            <!-- السؤال 1 -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">1.</span> قدّم الوثيقتين (نوعهما، مصدرهما، مضامينهما الرئيسية). <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="اكتب إجابتك هنا..."></textarea>
+            </div>
+            
+            <!-- السؤال 2 -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">2.</span> حلل التفاوت السكاني بين الساحل والداخل وبين أهم أسبابه وانعكاساته. <span class="Tests-Hub-points-badge">5 نقاط</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="اكتب إجابتك هنا..."></textarea>
+            </div>
+            
+            <!-- السؤال 3 -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">3.</span> ادرس التفاوت الاقتصادي بين الساحل والداخل وابرز أسبابه مستعينًا بالوثيقة 2. <span class="Tests-Hub-points-badge">5 نقاط</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="اكتب إجابتك هنا..."></textarea>
+            </div>
+            
+            <!-- السؤال 4 -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">4.</span> حوّل معطيات الوثيقة 1 (التوزع السكاني) إلى هستوغرام بياني. <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-note">(ارسم الهستوغرام في المساحة أدناه مع مراعاة جميع العناصر: العنوان، المصدر، السلم، المفتاح)</p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas class="Tests-Hub-graph-canvas" id="histogramCanvas"></canvas>
+                    <div class="Tests-Hub-scale-container">
+                        <span>الساحل</span>
+                        <span>الداخل</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- السؤال 5 -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">5.</span> تصوّر الحلول الممكنة للحد من التفاوت بين الساحل والداخل. <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="اكتب إجابتك هنا..."></textarea>
+            </div>
+        </div>
+        
+        <!-- مقاييس التصحيح -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">مقاييس إسناد الأعداد</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>المعيار</th>
+                        <th>النقاط</th>
+                        <th>ملاحظات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>المعلومات</td>
+                        <td>10 نقاط</td>
+                        <td>دقة المعلومات والاستشهاد بالوثائق</td>
+                    </tr>
+                    <tr>
+                        <td>المنهجية</td>
+                        <td>7 نقاط</td>
+                        <td>تنظيم الإجابة وتحليل المعطيات</td>
+                    </tr>
+                    <tr>
+                        <td>اللغة</td>
+                        <td>3 نقاط</td>
+                        <td>سلامة اللغة وجودة التعبير</td>
+                    </tr>
+                    <tr>
+                        <td><strong>المجموع</strong></td>
+                        <td><strong>20 نقطة</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-container">
+            <button class="Tests-Hub-button-primary" id="toggleCorrection">عرض التصحيح المفصل</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2 class="Tests-Hub-heading-section">التصحيح المفصل للفرض</h2>
+            
+            <!-- السؤال 1 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1.</span> <strong class="Tests-Hub-text-bold">تقديم الوثائق</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">الإجابة الصحيحة:</p>
+                <p><strong class="Tests-Hub-text-success">الوثيقة الأولى: رسم دائري (diagramme circulaire) صادر عن المعهد الوطني للإحصاء (تقديرات 2004) يوضح التوزع السكاني بين الأقاليم الساحلية (68%) والأقاليم الداخلية (32%) في تونس. الوثيقة الثانية: نص تحليلي مقتطف من كتاب عمر بالهادي "المجتمع، المجال والتنمية" (1992) يعرض التفاوت في توزيع الاستثمارات لصالح الشريط الساحلي (80% من الاستثمارات، 79% من الصناعة التحويلية، وتركّز الخدمات الاجتماعية والسياحية في المناطق الساحلية). تبيّن الوثيقتان معًا التباين الجهوي بين الساحل والداخل على المستويين السكاني والاقتصادي.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>التفصيل:</strong> الوثيقة 1: نوعها رسم بياني دائري، مصدرها المعهد الوطني للإحصاء، موضوعها توزع السكان. الوثيقة 2: نوعها نص، مصدرها عمر بالهادي، موضوعها توزع الاستثمارات. العلاقة: كلاهما يبرز التباين الجهوي.
+                </p>
+            </div>
+            
+            <!-- السؤال 2 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2.</span> <strong class="Tests-Hub-text-bold">تحليل التفاوت السكاني وأسبابه وانعكاساته</strong> <span class="Tests-Hub-points-badge">5 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">الإجابة الصحيحة:</p>
+                <p><strong class="Tests-Hub-text-success">يُظهر التوزع السكاني تركُّزًا واضحًا في المناطق الساحلية (68%) مقابل الداخل (32%)، مما يعكس تفاوتًا كبيرًا. الأسباب: العوامل التاريخية (استقطاب المدن الساحلية)، العوامل الاقتصادية (تركز الأنشطة الصناعية والتجارية والسياحية بالساحل)، العوامل الطبيعية (مناخ ألطف وموارد مائية أفضل)، وسوء التخطيط التنموي. الانعكاسات: ضغط على البنية التحتية بالساحل، هجرة داخلية نحو الساحل، تهميش المناطق الداخلية وتدهور الخدمات بها، تفاقم الفوارق الاجتماعية والتنموية.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>التفصيل:</strong> 2.5 نقطة للأسباب، 2.5 للانعكاسات.
+                </p>
+            </div>
+            
+            <!-- السؤال 3 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3.</span> <strong class="Tests-Hub-text-bold">التفاوت الاقتصادي وأسبابه</strong> <span class="Tests-Hub-points-badge">5 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">الإجابة الصحيحة:</p>
+                <p><strong class="Tests-Hub-text-success">تشير الوثيقة 2 إلى استفادة الشريط الساحلي بنسبة 80% من إجمالي الاستثمارات، و79% من الصناعة التحويلية، وتركّز الخدمات الاجتماعية والسياحية في أربع مناطق ساحلية. هذا التفاوت يرجع إلى: السياسات التنموية المنحازة تاريخيًا، جاذبية الساحل للاستثمار الخاص (بنية تحتية متطورة، سوق أكبر)، قرب الساحل من الأسواق الخارجية، تراكم رأس المال والبنية التحتية بالساحل منذ الاستعمار. النتيجة: تركز الأنشطة الاقتصادية بالساحل وتخلف الداخل.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>التفصيل:</strong> استخراج الأرقام (2ن)، تحليل الأسباب (3ن).
+                </p>
+            </div>
+            
+            <!-- السؤال 4 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">4.</span> <strong class="Tests-Hub-text-bold">تحويل معطيات الوثيقة 1 إلى هستوغرام</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">الإجابة الصحيحة:</p>
+                <div class="Tests-Hub-diagram-container">
+                    <p class="Tests-Hub-diagram-title">التوزع السكاني بين الساحل والداخل (نسب مئوية)</p>
+                    <canvas class="Tests-Hub-graph-canvas" id="correctionHistogram" style="height:250px;"></canvas>
+                    <div class="Tests-Hub-legend-container">
+                        <div class="Tests-Hub-legend-item"><div style="background:#0D9488; width:20px; height:20px;"></div> الساحل (68%)</div>
+                        <div class="Tests-Hub-legend-item"><div style="background:#F59E0B; width:20px; height:20px;"></div> الداخل (32%)</div>
+                    </div>
+                    <p class="Tests-Hub-diagram-source">المصدر: المعهد الوطني للإحصاء 2004</p>
+                </div>
+                <p class="Tests-Hub-text-explanation">
+                <strong>عناصر الهستوغرام:</strong> العنوان، المحور الأفقي (الجهات)، المحور العمودي (النسب %)، الأعمدة بارتفاع 68 و32، السلم المناسب (مثلاً 0-100%)، المفتاح، المصدر. (1.5 نقطة للرسم الصحيح، 1.5 للعناصر).
+                </p>
+            </div>
+            
+            <!-- السؤال 5 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">5.</span> <strong class="Tests-Hub-text-bold">الحلول الممكنة للحد من التفاوت</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">الإجابة الصحيحة:</p>
+                <p><strong class="Tests-Hub-text-success">يمكن اقتراح: 1) إعادة توزيع عادل للاستثمارات عبر توجيه مشاريع كبرى للداخل (مناطق تنموية، أقطاب صناعية جديدة). 2) تحسين البنية التحتية والخدمات الأساسية في المناطق الداخلية (صحة، تعليم، نقل). 3) تشجيع اللامركزية ودعم التنمية المحلية. 4) تطوير الفلاحة والموارد المحلية بالداخل. 5) تقديم حوافز ضريبية للمستثمرين في المناطق الداخلية.</strong></p>
+                <p class="Tests-Hub-text-explanation">
+                <strong>التفصيل:</strong> كل حل مقترح ومعلل يحصل على 0.6 نقطة.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-section">
+            <button class="Tests-Hub-button-download Tests-Hub-download-pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.geographyTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.geographyTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.geographyTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content Tests-Hub-container">
+            <div class="Tests-Hub-grid-cols-3">
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.2.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translation object (same as first test, but with minor adjustments if needed)
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "الجغرافيا - فرض تأليفي 2",
+                        subtitle: "الثالثة آداب (التباين بين الساحل والداخل)",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح المفصل",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "Géographie - Composition N°2",
+                        subtitle: "3ème Lettres (Disparité littoral/intérieur)",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "Geography - Second Test",
+                        subtitle: "3rd Year Arts (Coastal vs Interior Disparity)",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+        
+        // UI update functions (same as original, simplified)
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) current = current[k];
+                    else { current = null; break; }
+                }
+                translation = current;
+                if (translation && typeof translation === 'string') element.textContent = translation;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('#themeToggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    themeToggle.textContent = currentLanguage === 'fr' ? "Mode Clair" : (currentLanguage === 'ar' ? "الوضع الفاتح" : "Light Mode");
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+        
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = corr.classList.contains('Tests-Hub-hidden') 
+                    ? TestsHub_translations[currentLanguage].TestsHub.geographyTest.showCorrection
+                    : TestsHub_translations[currentLanguage].TestsHub.geographyTest.hideCorrection;
+            }
+        }
+        
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            drawPieChart();
+            drawHistogramPlaceholder();
+            drawCorrectionHistogram();
+        }
+        
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)').textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        // Drawing functions
+        function drawPieChart() {
+            const canvas = document.getElementById('populationPieChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = canvas.offsetWidth;
+            const height = canvas.height = 250;
+            ctx.clearRect(0, 0, width, height);
+            
+            const centerX = width/2, centerY = height/2, radius = Math.min(width, height)*0.3;
+            const data = [68, 32];
+            const colors = isDarkTheme ? ['#2DD4BF', '#FBBF24'] : ['#0D9488', '#F59E0B'];
+            let start = -Math.PI/2;
+            for (let i=0; i<data.length; i++) {
+                const angle = (data[i]/100) * 2 * Math.PI;
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, start, start+angle);
+                ctx.closePath();
+                ctx.fillStyle = colors[i];
+                ctx.fill();
+                start += angle;
+            }
+            // draw border
+            ctx.strokeStyle = isDarkTheme ? '#99F6E4' : '#0F766E';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2*Math.PI);
+            ctx.stroke();
+        }
+        
+        function drawHistogramPlaceholder() {
+            const canvas = document.getElementById('histogramCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = canvas.offsetWidth;
+            const height = canvas.height = 300;
+            ctx.clearRect(0, 0, width, height);
+            
+            // draw grid
+            ctx.strokeStyle = isDarkTheme ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+            ctx.lineWidth = 1;
+            for (let i=0; i<=width; i+=20) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,height); ctx.stroke(); }
+            for (let i=0; i<=height; i+=20) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(width,i); ctx.stroke(); }
+            
+            ctx.fillStyle = isDarkTheme ? '#99F6E4' : '#0F766E';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('ارسم الهستوغرام هنا', width/2, height/2);
+        }
+        
+        function drawCorrectionHistogram() {
+            const canvas = document.getElementById('correctionHistogram');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = canvas.offsetWidth;
+            const height = canvas.height = 250;
+            ctx.clearRect(0, 0, width, height);
+            
+            const padding = { left: 60, right: 30, top: 30, bottom: 50 };
+            const graphW = width - padding.left - padding.right;
+            const barW = graphW * 0.6 / 2; // two bars
+            const gap = graphW * 0.1;
+            const maxVal = 100;
+            
+            // axes
+            ctx.strokeStyle = isDarkTheme ? '#99F6E4' : '#0F766E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(padding.left, padding.top); ctx.lineTo(padding.left, height-padding.bottom); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(padding.left, height-padding.bottom); ctx.lineTo(width-padding.right, height-padding.bottom); ctx.stroke();
+            
+            // bars
+            const bars = [68, 32];
+            const colors = isDarkTheme ? ['#2DD4BF', '#FBBF24'] : ['#0D9488', '#F59E0B'];
+            for (let i=0; i<2; i++) {
+                const x = padding.left + gap + i*(barW+gap);
+                const barH = (bars[i]/maxVal) * (height - padding.top - padding.bottom);
+                ctx.fillStyle = colors[i];
+                ctx.fillRect(x, height-padding.bottom-barH, barW, barH);
+                // value
+                ctx.fillStyle = isDarkTheme ? '#E5E7EB' : '#1F2937';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(bars[i]+'%', x+barW/2, height-padding.bottom-barH-5);
+            }
+            
+            // labels
+            ctx.fillStyle = isDarkTheme ? '#99F6E4' : '#0F766E';
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('الساحل', padding.left + gap + barW/2, height-padding.bottom+25);
+            ctx.fillText('الداخل', padding.left + gap*2 + barW*1.5, height-padding.bottom+25);
+            ctx.fillText('النسبة المئوية', 20, height/2);
+        }
+        
+        // Download functions (same)
+        function downloadAsPDF() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest?.comingSoon || "Coming soon"); }
+        function downloadAsODT() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest?.comingSoon || "Coming soon"); }
+        function downloadAsPNG() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest?.comingSoon || "Coming soon"); }
+        
+        // Init
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+            updateTextContent();
+            
+            drawPieChart();
+            drawHistogramPlaceholder();
+            drawCorrectionHistogram();
+            
+            window.addEventListener('resize', () => {
+                drawPieChart();
+                drawHistogramPlaceholder();
+                drawCorrectionHistogram();
+            });
+            
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); });
+            });
+            document.getElementById('downloadPdf').addEventListener('click', downloadAsPDF);
+            document.getElementById('downloadOdt').addEventListener('click', downloadAsODT);
+            document.getElementById('downloadPng').addEventListener('click', downloadAsPNG);
+            
+            const corrBtn = document.getElementById('toggleCorrection');
+            corrBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                if (!corr.classList.contains('Tests-Hub-hidden')) drawCorrectionHistogram();
+            });
+            
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.log(err));
+            }
+        });
+    </script>
+</body>
+</html>
