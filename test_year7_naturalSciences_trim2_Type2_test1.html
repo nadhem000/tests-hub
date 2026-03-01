@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 2 - علوم الحياة والأرض (7ème)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="description" content="فرض تأليفي عدد 2 للسنة السابعة أساسي - علوم الحياة والأرض">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - SVT 7ème">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* ===== Original Styles (preserved) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1e3a8a;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: #bfdbfe;
+        }
+        
+        /* Header - Blue theme */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6, #60a5fa);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1e3a8a;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .Tests-Hub-language-option:hover {
+            background: #dbeafe;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1e3a8a;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3b82f6;
+        }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Test Content Styling - Blue theme */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6);
+        }
+        
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1e3a8a;
+            color: #bfdbfe;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .Tests-Hub-test-section h2 {
+            color: #3b82f6;
+            border-bottom: 2px solid #60a5fa;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #93c5fd;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            color: #60a5fa;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #93c5fd;
+        }
+        
+        .Tests-Hub-instructions {
+            background: #eff6ff;
+            padding: 1rem;
+            border-right: 4px solid #3b82f6;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1e40af;
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #3b82f6;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #3b82f6;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+        
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #3b82f6;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #60a5fa;
+            background-color: #1e3a8a;
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-right: 10px;
+        }
+        
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #93c5fd;
+        }
+        
+        /* Multiple Choice Questions */
+        .Tests-Hub-mc-question {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #eff6ff;
+            border-radius: 8px;
+            border-right: 3px solid #3b82f6;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-mc-question {
+            background: #1e40af;
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-mc-option {
+            display: block;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: white;
+            border: 1px solid #3b82f6;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .Tests-Hub-mc-option:hover {
+            background: #dbeafe;
+            border-color: #1e3a8a;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-mc-option {
+            background: #2563eb;
+            border-color: #60a5fa;
+            color: #bfdbfe;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-mc-option:hover {
+            background: #3b82f6;
+        }
+        
+        /* Table styling */
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            border: 1px solid #3b82f6;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .Tests-Hub-table th, .Tests-Hub-table td {
+            padding: 0.75rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-table th,
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #1e3a8a;
+        }
+        
+        .Tests-Hub-table th {
+            background-color: #3b82f6;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background-color: #1e40af;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-table tr {
+            background-color: #1e40af;
+        }
+        
+        /* Image container - placeholder */
+        .Tests-Hub-image-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #eff6ff;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: #1e40af;
+        }
+        
+        .Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #3b82f6;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #1e3a8a;
+            margin-top: 15px;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #93c5fd;
+        }
+        
+        /* Canvas Styling for diagrams */
+        .Tests-Hub-image-canvas-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #eff6ff !important;
+            border-radius: 12px;
+            transition: background 0.3s ease;
+            border: 2px solid #60a5fa;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-image-canvas-container {
+            background: #1e40af !important;
+            border-color: #3b82f6;
+        }
+        
+        .Tests-Hub-experiment-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            background: white;
+            margin: 0 auto;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-experiment-image {
+            border-color: #60a5fa;
+            background: #eff6ff;
+        }
+        
+        /* Label container */
+        .Tests-Hub-label-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+        
+        .Tests-Hub-label {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-label:hover {
+            background: #2563eb;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-label {
+            background: #60a5fa;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-label:hover {
+            background: #3b82f6;
+        }
+        
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-correction-section {
+            background: #eff6ff;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #3b82f6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #1e40af;
+            border-right-color: #60a5fa;
+        }
+        
+        .Tests-Hub-correction-section h2 {
+            color: #3b82f6;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h2 {
+            color: #93c5fd;
+        }
+        
+        .Tests-Hub-correction-section h3 {
+            color: #3b82f6;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #60a5fa;
+            font-size: 1.4rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #93c5fd;
+            border-bottom-color: #93c5fd;
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: rgba(59, 130, 246, 0.08);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-right: 3px solid #3b82f6;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(147, 197, 253, 0.12);
+            border-right-color: #93c5fd;
+        }
+        
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #1e3a8a;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #93c5fd;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .Tests-Hub-hidden {
+            display: none;
+        }
+        
+        /* Footer - Blue theme */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #3b82f6, #60a5fa);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #1e3a8a, #3b82f6, #60a5fa);
+        }
+        
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        
+        .Tests-Hub-footer-column h3 {
+            color: #FDE68A;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FDE68A;
+        }
+        
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        
+        .Tests-Hub-footer-link {
+            color: #FDE68A;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Download Buttons - Blue theme */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to left, rgba(30, 58, 138, 0.2), rgba(59, 130, 246, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: white;
+        }
+        
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        }
+        
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #6d28d9, #7c3aed);
+        }
+        
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-large-textarea {
+                min-height: 70px;
+                font-size: 12px;
+            }
+            
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+            
+            .Tests-Hub-correction-answer {
+                padding: 1rem;
+            }
+        }
+        
+        /* Style pour les listes numérotées */
+        .Tests-Hub-numbered-list {
+            list-style-type: decimal;
+            margin-right: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .Tests-Hub-numbered-list li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        /* Blank space for fill-in exercises */
+        .Tests-Hub-blank {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 2px dashed #3b82f6;
+            margin: 0 5px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-blank {
+            border-bottom-color: #60a5fa;
+        }
+        
+        /* Checkbox for multiple choice */
+        .Tests-Hub-checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        .Tests-Hub-checkbox-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Special styling for matching */
+        .Tests-Hub-matching-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 1rem 0;
+        }
+        
+        .Tests-Hub-matching-item {
+            flex: 1;
+            text-align: center;
+            background: #eff6ff;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* ===== ENHANCED STYLES (added for better readability and aesthetics) ===== */
+        
+        /* Typography improvements */
+        body {
+            line-height: 1.6;
+        }
+        
+        .Tests-Hub-test-section h2 {
+            font-size: 1.8rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .Tests-Hub-test-section h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            border-bottom: 2px solid rgba(96, 165, 250, 0.3);
+            padding-bottom: 0.3rem;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            border-bottom-color: rgba(147, 197, 253, 0.3);
+        }
+        
+        /* Question styling */
+        .Tests-Hub-question {
+            background: rgba(59, 130, 246, 0.02);
+            padding: 1.2rem 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question {
+            background: rgba(30, 64, 175, 0.3);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        
+        .Tests-Hub-question-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            background: #2563eb;
+        }
+        
+        /* Textarea and input enhancements */
+        .Tests-Hub-answer-textarea,
+        .Tests-Hub-table-textarea,
+        .Tests-Hub-large-textarea {
+            border: 2px solid #dbeafe;
+            background-color: #f8fafc;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+        }
+        
+        .Tests-Hub-answer-textarea:focus,
+        .Tests-Hub-table-textarea:focus,
+        .Tests-Hub-large-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background-color: white;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2563eb;
+            background-color: #0f2b5c;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea:focus,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea:focus,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+            background-color: #1e3a8a;
+        }
+        
+        /* Table improvements */
+        .Tests-Hub-table {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .Tests-Hub-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-size: 0.9rem;
+        }
+        
+        .Tests-Hub-table td {
+            vertical-align: middle;
+        }
+        
+        .Tests-Hub-table tr:hover td {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:hover td {
+            background-color: rgba(96, 165, 250, 0.15);
+        }
+        
+        /* Multiple choice options */
+        .Tests-Hub-mc-option {
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .Tests-Hub-checkbox-option {
+            padding: 0.3rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+        
+        .Tests-Hub-checkbox-option:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-checkbox-option:hover {
+            background: rgba(96, 165, 250, 0.15);
+        }
+        
+        /* Instructions section */
+        .Tests-Hub-instructions {
+            border-right-width: 6px;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.05), transparent);
+        }
+        
+        .Tests-Hub-instructions h3 {
+            margin-top: 0;
+            border-bottom: none;
+        }
+        
+        /* Correction section enhancements */
+        .Tests-Hub-correction-section {
+            border-right-width: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .Tests-Hub-correction-answer {
+            background: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: #1e40af;
+        }
+        
+        .Tests-Hub-correction-answer ul, 
+        .Tests-Hub-correction-answer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Download buttons enhancement */
+        .Tests-Hub-download-buttons {
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Improve spacing for matching lists */
+        .Tests-Hub-matching-row {
+            background: rgba(59, 130, 246, 0.03);
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-matching-row {
+            background: rgba(96, 165, 250, 0.05);
+        }
+        
+        /* Responsive fine-tuning */
+        @media (max-width: 768px) {
+            .Tests-Hub-question {
+                padding: 1rem;
+            }
+            
+            .Tests-Hub-table {
+                font-size: 0.9rem;
+            }
+            
+            .Tests-Hub-table th, 
+            .Tests-Hub-table td {
+                padding: 0.5rem;
+            }
+            
+            .Tests-Hub-answer-textarea {
+                min-width: 70px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .Tests-Hub-question-number {
+                display: block;
+                margin-bottom: 0.5rem;
+                text-align: center;
+            }
+        }
+
+        /* ===== ADDITIONAL FIXES FOR DARK MODE READABILITY AND INPUT USABILITY ===== */
+        
+        /* Dark mode placeholder color */
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea::placeholder,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea::placeholder,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea::placeholder {
+            color: #a0c0e0; /* lighter blue-gray */
+            opacity: 1;
+        }
+        
+        /* Ensure list items in instructions are readable in dark mode */
+        .Tests-Hub-dark-theme .Tests-Hub-instructions ul li {
+            color: #e0f2fe; /* very light blue */
+        }
+        
+        /* Make table input fields full width and taller for easier typing */
+        .Tests-Hub-table td .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-width: 0; /* override min-width */
+            height: 40px;
+            font-size: 14px;
+            margin: 0; /* remove side margins */
+        }
+        
+        @media (max-width: 768px) {
+            .Tests-Hub-table td .Tests-Hub-answer-textarea {
+                height: 35px;
+                font-size: 13px;
+            }
+        }
+        
+        /* Improve blank visibility in fill-in exercises */
+        .Tests-Hub-blank {
+            border-bottom: 2px dashed #3b82f6;
+            background-color: rgba(59, 130, 246, 0.05);
+            min-width: 100px;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-blank {
+            border-bottom-color: #60a5fa;
+            background-color: rgba(96, 165, 250, 0.1);
+        }
+        
+        /* Add subtle hover effect on input fields */
+        .Tests-Hub-answer-textarea:hover,
+        .Tests-Hub-table-textarea:hover,
+        .Tests-Hub-large-textarea:hover {
+            border-color: #2563eb;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea:hover,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea:hover,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:hover {
+            border-color: #93c5fd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (unchanged) -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.naturalSciencesTest.title">علوم الحياة والأرض - فرض تأليفي عدد 2</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.naturalSciencesTest.subtitle">السنة السابعة أساسي</div>
+                </div>
+            </div>
+            
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.naturalSciencesTest.back">العودة للاختبارات</span>
+                </a>
+                
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content (unchanged) -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1>علوم الحياة والأرض - فرض تأليفي عدد 2 (2023-2024)</h1>
+            <p>المدرسة الإعدادية زاوية الجديدي بني خلاد</p>
+            <p>القسم: السنة السابعة أساسي - السنة الدراسية: 2023-2024</p>
+            <p>الأستاذة: حنان بورقيبة</p>
+            <p>التوقيت: ساعة واحدة</p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات عامة</h3>
+            <ul>
+                <li>يحتوي الموضوع على جزئين: الجزء الأول (12 نقطة) والجزء الثاني (8 نقاط)</li>
+                <li>يجب الإجابة على جميع الأسئلة</li>
+                <li>جودة الكتابة ووضوح الإجابة سوف يؤخذان بعين الاعتبار</li>
+                <li>يجب كتابة الإجابات في الأماكن المخصصة لذلك</li>
+            </ul>
+        </div>
+        
+        <!-- الجزء الأول: 12 نقطة -->
+        <div class="Tests-Hub-test-section">
+            <h2>الجزء الأول: 12 نقطة</h2>
+            
+            <!-- التمرين الأول: 7.5 نقطة -->
+            <div class="Tests-Hub-question">
+                <h3>التمرين الأول: (7.5 نقطة)</h3>
+                
+                <!-- 1- أربط بسهم بما يناسب -->
+                <p><span class="Tests-Hub-question-number">1-</span> أربط بسهم بما يناسب:</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+                    <div style="flex: 1;">
+                        <p><strong>الحيوانات:</strong></p>
+                        <ul>
+                            <li>الزواحف</li>
+                            <li>الطيور</li>
+                            <li>الثدييات</li>
+                            <li>الضفدعات</li>
+                            <li>الأسماك</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1;">
+                        <p><strong>الصفات:</strong></p>
+                        <ul>
+                            <li>حرارة مستقرة وبيوضة</li>
+                            <li>حرارة متغيرة وجلد رطب</li>
+                            <li>حراشف ملتحمة لا يمكن اقتلاعها</li>
+                            <li>جلد يغطى بالأشواك</li>
+                            <li>حراشف ملتحمة يمكن اقتلاعها</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>اكتب الاقتران في الخانة: (مثال: الزواحف ← .....)</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="أكتب الاقترانات هنا..."></textarea>
+                
+                <!-- 2- ضع في دائرة الإجابة الصحيحة -->
+                <p><span class="Tests-Hub-question-number">2-</span> ضع في دائرة الإجابة الصحيحة لكل حيوان:</p>
+                <table class="Tests-Hub-table">
+                    <tr>
+                        <th>الحيوان</th>
+                        <th>الخصائص</th>
+                    </tr>
+                    <tr>
+                        <td>السلحفاة</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="اختر: حرارة مستقرة/متغيرة، تنفس رئوي، زواحف"></td>
+                    </tr>
+                    <tr>
+                        <td>السردين</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="اختر: حرارة مستقرة/متغيرة، تنفس رئوي، حراشف"></td>
+                    </tr>
+                    <tr>
+                        <td>الحمامة</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="اختر: حرارة مستقرة/متغيرة، ريش، بيوضة"></td>
+                    </tr>
+                    <tr>
+                        <td>الأفعى</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="اختر: حرارة متغيرة، حراشف، زواحف"></td>
+                    </tr>
+                    <tr>
+                        <td>الدلفين</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="اختر: حرارة مستقرة، ولودة، تنفس رئوي"></td>
+                    </tr>
+                </table>
+                
+                <!-- 3- أكمل بما يناسب -->
+                <p><span class="Tests-Hub-question-number">3-</span> أكمل بما يناسب:</p>
+                <p>رغم اشتراك الحيوانات في عدة خصائص مثل: <span class="Tests-Hub-blank"></span> جسمها أو امتلاكها <span class="Tests-Hub-blank"></span> فإنها كثيرة <span class="Tests-Hub-blank"></span> ويعود ذلك إلى اختلاف واضح: في <span class="Tests-Hub-blank"></span> وفي طرق <span class="Tests-Hub-blank"></span> و في طرق <span class="Tests-Hub-blank"></span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="أكمل الفراغات..."></textarea>
+                
+                <!-- 4- أكمل بما يناسب -->
+                <p><span class="Tests-Hub-question-number">4-</span> أكمل بما يناسب:</p>
+                <p>- يتنقل الأفعى: <span class="Tests-Hub-blank"></span></p>
+                <p>- يتنقل الضفدع: <span class="Tests-Hub-blank"></span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="أكمل..."></textarea>
+                
+                <!-- 5- ما هو تصنيف الإنسان؟ فسّر ذلك. -->
+                <p><span class="Tests-Hub-question-number">5-</span> ما هو تصنيف الإنسان؟ فسّر ذلك.</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="اكتب التصنيف والتفسير..."></textarea>
+            </div>
+            
+            <!-- التمرين الثاني: 4.5 نقطة -->
+            <div class="Tests-Hub-question">
+                <h3>التمرين الثاني: (4.5 نقطة)</h3>
+                
+                <!-- 1- ضع علامة (×) أمام الإجابة الصحيحة -->
+                <p><span class="Tests-Hub-question-number">1-</span> ضع علامة (×) أمام الإجابة الصحيحة:</p>
+                <div class="Tests-Hub-mc-question">
+                    <div class="Tests-Hub-checkbox-option">
+                        <input type="checkbox" id="q1_1"> <label for="q1_1">الحيوانات الفقرية تشترك في بنية جسمها فقط</label>
+                    </div>
+                    <div class="Tests-Hub-checkbox-option">
+                        <input type="checkbox" id="q1_2"> <label for="q1_2">مظاهر التنوع البيولوجي الخارجي يمثل: التكاثر</label>
+                    </div>
+                    <div class="Tests-Hub-checkbox-option">
+                        <input type="checkbox" id="q1_3"> <label for="q1_3">الحيوانات الفقرية الولودة: تلد وترضع صغارها</label>
+                    </div>
+                </div>
+                
+                <!-- 2- أجب بخطأ أو صواب وأصلح الجمل الخاطئة -->
+                <p><span class="Tests-Hub-question-number">2-</span> أجب بخطأ أو صواب وأصلح الجمل الخاطئة:</p>
+                <table class="Tests-Hub-table">
+                    <tr>
+                        <th>العبارة</th>
+                        <th>صواب/خطأ</th>
+                        <th>التصحيح</th>
+                    </tr>
+                    <tr>
+                        <td>الحيوانات الفقرية تختلف في مظهرها الخارجي وأنظمتها الغذائية</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="صواب/خطأ"></td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="إن كانت خاطئة"></td>
+                    </tr>
+                    <tr>
+                        <td>الخاصيات المشتركة بين الحيوانات الفقرية هي التي تعكس تنوعها</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="صواب/خطأ"></td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="إن كانت خاطئة"></td>
+                    </tr>
+                    <tr>
+                        <td>الحيوان الفقري يتركب من رأس وأطراف</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="صواب/خطأ"></td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="إن كانت خاطئة"></td>
+                    </tr>
+                    <tr>
+                        <td>تنفس الأسماك بواسطة غلاصمها</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="صواب/خطأ"></td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="إن كانت خاطئة"></td>
+                    </tr>
+                    <tr>
+                        <td>الثدييات مثل الأسماك لها حرارة متغيرة</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="صواب/خطأ"></td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="إن كانت خاطئة"></td>
+                    </tr>
+                    <tr>
+                        <td>التنوع البيولوجي يمثل الحيوانات الفقرية فقط</td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="صواب/خطأ"></td>
+                        <td><input type="text" class="Tests-Hub-answer-textarea" placeholder="إن كانت خاطئة"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- الجزء الثاني: 8 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>الجزء الثاني: 8 نقاط</h2>
+            
+            <!-- التمرين الأول: 4.5 نقطة -->
+            <div class="Tests-Hub-question">
+                <h3>التمرين الأول: (4.5 نقطة)</h3>
+                
+                <p><span class="Tests-Hub-question-number">1-</span> عرف المصطلحات التالية:</p>
+                <p>- الصنف: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="تعريف الصنف"></p>
+                <p>- المعيار: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="تعريف المعيار"></p>
+                <p>- التنوع البيولوجي: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="تعريف التنوع البيولوجي"></p>
+                <p>- الحيوان الفقري: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="تعريف الحيوان الفقري"></p>
+                
+                <p><span class="Tests-Hub-question-number">2-</span> من خلال دراسة الحيوانات الفقرية:</p>
+                <p>- أذكر مظاهر التشابه: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="..."></p>
+                <p>- أذكر 3 أصناف: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="..."></p>
+                <p>- أذكر 3 معايير: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="..."></p>
+                <p>- أذكر مظاهر التنوع الداخلي: <input type="text" class="Tests-Hub-answer-textarea" style="width:80%;" placeholder="..."></p>
+            </div>
+            
+            <!-- التمرين الثاني: 3.5 نقطة -->
+            <div class="Tests-Hub-question">
+                <h3>التمرين الثاني: (3.5 نقطة)</h3>
+                
+                <p><span class="Tests-Hub-question-number">1-</span> أتمم الجدول بما يناسب:</p>
+                <table class="Tests-Hub-table">
+                    <tr>
+                        <th>الحيوان</th>
+                        <th>طريقة التكاثر</th>
+                        <th>غطاء جلد الحيوان</th>
+                        <th>حرارة الحيوان</th>
+                    </tr>
+                    <tr>
+                        <td>قنفذ</td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ولود/بيوض"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="شوك/شعر"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ثابتة/متغيرة"></td>
+                    </tr>
+                    <tr>
+                        <td>تمساح</td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ولود/بيوض"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="حراشف"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ثابتة/متغيرة"></td>
+                    </tr>
+                    <tr>
+                        <td>سمندل</td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ولود/بيوض"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="جلد رطب"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ثابتة/متغيرة"></td>
+                    </tr>
+                    <tr>
+                        <td>نعامة</td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ولود/بيوض"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ريش"></td>
+                        <td><input type="text" class="Tests-Hub-table-textarea" placeholder="ثابتة/متغيرة"></td>
+                    </tr>
+                </table>
+                
+                <p><span class="Tests-Hub-question-number">2-</span> من خلال دراسة الحيوانات الفقرية بالجدول:</p>
+                <p>- أذكر الشعبة التي تنتمي إليها هذه الحيوانات: <input type="text" class="Tests-Hub-answer-textarea" style="width:70%;" placeholder="..."></p>
+                <p>- أذكر القاسم المشترك بين هذه الحيوانات: <input type="text" class="Tests-Hub-answer-textarea" style="width:70%;" placeholder="..."></p>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.naturalSciencesTest.showCorrection">عرض التصحيح</button>
+        </div>
+        
+        <!-- Correction Section (unchanged) -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>تصحيح الفرض</h2>
+            
+            <h3>التمرين الأول - التصحيح (7.5 نقطة)</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1- الربط:</strong></p>
+                <ul>
+                    <li>الزواحف ← حراشف ملتحمة لا يمكن اقتلاعها</li>
+                    <li>الطيور ← حرارة مستقرة وبيوضة</li>
+                    <li>الثدييات ← جلد يغطى بالأشواك (ملاحظة: الصفة النموذجية للثدييات هي وجود الشعر، ولكن القنفذ كأحد الثدييات يغطى جلده بالأشواك. يمكن اعتبار هذه الصفة للثدييات بشكل عام خطأ، لكن في هذا التمرين هي الصفة المتاحة. الثدييات بشكل عام لها جلد يغطى بالشعر، والولادة والإرضاع.)</li>
+                    <li>الضفدعات ← حرارة متغيرة وجلد رطب</li>
+                    <li>الأسماك ← حراشف ملتحمة يمكن اقتلاعها</li>
+                </ul>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2- الإجابات الصحيحة لكل حيوان:</strong></p>
+                <ul>
+                    <li>السلحفاة: زواحف، حرارة متغيرة، تنفس رئوي، حراشف ملتحمة لا تقتلع.</li>
+                    <li>السردين: أسماك، حرارة متغيرة، تنفس غلصمي، حراشف يمكن اقتلاعها.</li>
+                    <li>الحمامة: طيور، حرارة مستقرة، ريش، بيوضة.</li>
+                    <li>الأفعى: زواحف، حرارة متغيرة، حراشف ملتحمة لا تقتلع.</li>
+                    <li>الدلفين: ثدييات، حرارة مستقرة، ولودة، تنفس رئوي.</li>
+                </ul>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3- إكمال الفراغات:</strong></p>
+                <p>رغم اشتراك الحيوانات في عدة خصائص مثل: <strong>تناظر</strong> جسمها أو امتلاكها <strong>عمود فقري</strong> فإنها كثيرة <strong>التنوع</strong> ويعود ذلك إلى اختلاف واضح: في <strong>الشكل الخارجي</strong> وفي طرق <strong>التكاثر</strong> و في طرق <strong>التنفس</strong>.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>4- إكمال:</strong></p>
+                <p>- يتنقل الأفعى: <strong>بالانزلاق أو التعرج</strong>.</p>
+                <p>- يتنقل الضفدع: <strong>بالقفز (بمساعدة الأرجل الخلفية) والسباحة</strong>.</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>5- تصنيف الإنسان:</strong></p>
+                <p>الإنسان ينتمي إلى <strong>شعبة الفقاريات، صنف الثدييات، رتبة الرئيسيات، فصيلة البشر</strong>. وهو يتميز بصفات مثل: وجود عمود فقري، حرارة ثابتة، ولودة، يرضع صغاره، له دماغ متطور، ويسير منتصبا.</p>
+            </div>
+            
+            <h3>التمرين الثاني - التصحيح (4.5 نقطة)</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1- علامة (×):</strong></p>
+                <ul>
+                    <li>✗ الحيوانات الفقرية تشترك في بنية جسمها فقط (بل تشترك في خصائص أخرى كوجود عمود فقري وجهاز عصبي...)</li>
+                    <li>✗ مظاهر التنوع البيولوجي الخارجي يمثل: التكاثر (التنوع الخارجي يشمل اللون، الشكل، الحجم، وليس التكاثر الذي يعد خاصية وظيفية)</li>
+                    <li>✓ الحيوانات الفقرية الولودة: تلد وترضع صغارها (صحيح، مثل الثدييات)</li>
+                </ul>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2- صواب/خطأ مع التصحيح:</strong></p>
+                <table class="Tests-Hub-table">
+                    <tr><th>العبارة</th><th>صواب/خطأ</th><th>التصحيح</th></tr>
+                    <tr><td>الحيوانات الفقرية تختلف في مظهرها الخارجي وأنظمتها الغذائية</td><td>صواب</td><td>--</td></tr>
+                    <tr><td>الخاصيات المشتركة بين الحيوانات الفقرية هي التي تعكس تنوعها</td><td>خطأ</td><td>الخاصيات المختلفة هي التي تعكس تنوعها</td></tr>
+                    <tr><td>الحيوان الفقري يتركب من رأس وأطراف</td><td>خطأ</td><td>بعض الفقاريات مثل الأسماك ليس لها أطراف، بل زعانف. الفقاريات تتركب من رأس، جذع، وذيل غالبا.</td></tr>
+                    <tr><td>تنفس الأسماك بواسطة غلاصمها</td><td>صواب</td><td>--</td></tr>
+                    <tr><td>الثدييات مثل الأسماك لها حرارة متغيرة</td><td>خطأ</td><td>الثدييات حرارة ثابتة (منزل الحرارة) بينما الأسماك حرارة متغيرة (متقلبة الحرارة)</td></tr>
+                    <tr><td>التنوع البيولوجي يمثل الحيوانات الفقرية فقط</td><td>خطأ</td><td>التنوع البيولوجي يشمل جميع الكائنات الحية (نباتات، حيوانات فقارية ولا فقارية، كائنات دقيقة) والنظم البيئية.</td></tr>
+                </table>
+            </div>
+            
+            <h3>الجزء الثاني - التصحيح</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>التمرين الأول (4.5 نقطة):</strong></p>
+                <p>- <strong>الصنف:</strong> مجموعة من الكائنات الحية تتشابه في صفات عامة وتضم أصنافا فرعية أصغر. (مثل صنف الطيور، الثدييات)</p>
+                <p>- <strong>المعيار:</strong> الصفة أو الخاصية التي يعتمد عليها العالم لتصنيف الكائنات الحية (مثل: طريقة التكاثر، نوع الغطاء الجلدي، درجة حرارة الجسم).</p>
+                <p>- <strong>التنوع البيولوجي:</strong> يشمل تنوع الكائنات الحية (أنواع، أجناس، أصناف) وتنوع النظم البيئية والاختلافات الجينية داخل النوع الواحد.</p>
+                <p>- <strong>الحيوان الفقري:</strong> حيوان يمتلك عموداً فقرياً (هيكل عظمي داخلي) يحمي الحبل العصبي، مثل الأسماك، البرمائيات، الزواحف، الطيور، الثدييات.</p>
+                <p>- <strong>مظاهر التشابه:</strong> وجود عمود فقري، تناظر جانبي، وجود رأس وجذع وذيل، جهاز عصبي مركزي، جهاز هضمي كامل.</p>
+                <p>- <strong>3 أصناف:</strong> الأسماك، البرمائيات، الزواحف، الطيور، الثدييات (اختر 3).</p>
+                <p>- <strong>3 معايير:</strong> طريقة التكاثر (ولود/بيوض)، نوع الغطاء الجلدي (حراشف، ريش، شعر، جلد رطب)، درجة حرارة الجسم (ثابتة/متغيرة).</p>
+                <p>- <strong>مظاهر التنوع الداخلي:</strong> تنوع في الأعضاء الداخلية مثل القلب (بأذينين أو ثلاثة أو أربعة)، الرئتين (أكياس رئوية عند الطيور)، الجهاز الهضمي (طول الأمعاء حسب النظام الغذائي).</p>
+            </div>
+            
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>التمرين الثاني (3.5 نقطة):</strong></p>
+                <p><strong>1- الجدول مكتمل:</strong></p>
+                <table class="Tests-Hub-table">
+                    <tr><th>الحيوان</th><th>طريقة التكاثر</th><th>غطاء جلد الحيوان</th><th>حرارة الحيوان</th></tr>
+                    <tr><td>قنفذ</td><td>ولود</td><td>شوك (أشواك)</td><td>ثابتة</td></tr>
+                    <tr><td>تمساح</td><td>بيوض</td><td>حراشف قرنية</td><td>متغيرة</td></tr>
+                    <tr><td>سمندل</td><td>بيوض</td><td>جلد رطب</td><td>متغيرة</td></tr>
+                    <tr><td>نعامة</td><td>بيوض</td><td>ريش</td><td>ثابتة</td></tr>
+                </table>
+                <p><strong>2- الشعبة:</strong> الفقاريات.</p>
+                <p><strong>القاسم المشترك:</strong> جميعها تمتلك عموداً فقرياً (تنتمي لشعبة الفقاريات).</p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.naturalSciencesTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.naturalSciencesTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.naturalSciencesTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+    
+    <!-- Footer (unchanged) -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <!-- Column 1: Developer -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                
+                <!-- Column 2: Version -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.1.2</p>
+                </div>
+                
+                <!-- Column 3: Links -->
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a>
+                        </li>
+                        <li>
+                            <a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // (Script unchanged - exactly as original)
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+        
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    naturalSciencesTest: {
+                        title: "علوم الحياة والأرض - فرض تأليفي عدد 2",
+                        subtitle: "السنة السابعة أساسي",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    naturalSciencesTest: {
+                        title: "Sciences de la Vie et de la Terre - Devoir N°2",
+                        subtitle: "7ème Année de Base",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    naturalSciencesTest: {
+                        title: "Natural Sciences - Test N°2",
+                        subtitle: "7th Grade",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+        
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                
+                translation = current;
+                
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (themeToggle) {
+                if (isDarkTheme) {
+                    if (currentLanguage === 'ar') {
+                        themeToggle.textContent = "الوضع الفاتح";
+                    } else if (currentLanguage === 'fr') {
+                        themeToggle.textContent = "Mode Clair";
+                    } else {
+                        themeToggle.textContent = "Light Mode";
+                    }
+                } else {
+                    themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                }
+            }
+            
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+        
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            
+            if (correctionButton) {
+                if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.naturalSciencesTest.showCorrection;
+                } else {
+                    correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.naturalSciencesTest.hideCorrection;
+                }
+            }
+        }
+        
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const body = document.body;
+            
+            if (isDarkTheme) {
+                body.classList.add('Tests-Hub-dark-theme');
+            } else {
+                body.classList.remove('Tests-Hub-dark-theme');
+            }
+            
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+        
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            
+            currentLanguage = lang;
+            updateTextContent();
+            
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+        
+        function downloadAsPDF() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.naturalSciencesTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsODT() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.naturalSciencesTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        function downloadAsPNG() {
+            const comingSoonMsg = TestsHub_translations[currentLanguage]?.TestsHub?.naturalSciencesTest?.comingSoon || "Coming soon";
+            alert(comingSoonMsg);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+            }
+            
+            updateTextContent();
+            
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+            }
+            
+            const languageOptions = document.querySelectorAll('.Tests-Hub-language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-language');
+                    changeLanguage(lang);
+                });
+            });
+            
+            const pdfButton = document.getElementById('downloadPdf');
+            if (pdfButton) {
+                pdfButton.addEventListener('click', downloadAsPDF);
+            }
+            
+            const odtButton = document.getElementById('downloadOdt');
+            if (odtButton) {
+                odtButton.addEventListener('click', downloadAsODT);
+            }
+            
+            const pngButton = document.getElementById('downloadPng');
+            if (pngButton) {
+                pngButton.addEventListener('click', downloadAsPNG);
+            }
+            
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    if (correctionSection.classList.contains('Tests-Hub-hidden')) {
+                        correctionSection.classList.remove('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.naturalSciencesTest.hideCorrection;
+                    } else {
+                        correctionSection.classList.add('Tests-Hub-hidden');
+                        correctionButton.textContent = TestsHub_translations[currentLanguage].TestsHub.naturalSciencesTest.showCorrection;
+                    }
+                });
+            }
+            
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
