@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التربية المدنية - فرض مراقبة عدد 3 (7 أساسي) - نموذج 5 (2009/2010)</title>
+    
+    <!-- PWA Meta (برتقالي/كهرماني) -->
+    <meta name="theme-color" content="#f97316">
+    <meta name="description" content="فرض مراقبة عدد 3 في التربية المدنية - السنة السابعة أساسي - نموذج 5 (المدرسة الإعدادية الحصري - دوز)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - فرض مدنية 7 (5)">
+    
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <script src="html2canvas.min.js"></script>
+    <script src="jspdf.umd.min.js"></script>
+    
+    <style>
+        /* ========== نفس الأنماط البرتقالية المستخدمة سابقاً (كاملة) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #7c2d12;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #431407 0%, #7c2d12 100%);
+            color: #ffedd5;
+        }
+        
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #f97316, #ea580c);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #431407, #7c2d12, #ea580c);
+        }
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-back-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #7c2d12;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover {
+            background: #fed7aa;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #431407;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #ffedd5;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #9a3412;
+        }
+        .Tests-Hub-theme-toggle, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #f97316, #ea580c);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #431407, #7c2d12, #ea580c);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #fed7aa;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #fed7aa;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        :root {
+            --Tests-Hub-bg-start: #ffedd5;
+            --Tests-Hub-bg-end: #fed7aa;
+            --Tests-Hub-card-bg: rgba(255, 255, 255, 0.85);
+            --Tests-Hub-card-shadow-1: rgba(124, 45, 18, 0.2);
+            --Tests-Hub-card-shadow-2: rgba(255, 255, 255, 0.8);
+            --Tests-Hub-card-shadow-3: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-card-border: rgba(255, 255, 255, 0.7);
+            --Tests-Hub-h1-color: #c2410c;
+            --Tests-Hub-h1-shadow-1: rgba(255, 255, 255, 0.8);
+            --Tests-Hub-h1-shadow-2: rgba(0, 0, 0, 0.1);
+            --Tests-Hub-section-title-border: #f97316;
+            --Tests-Hub-section-title-color: #ea580c;
+            --Tests-Hub-section-title-shadow: white;
+            --Tests-Hub-split-row-bg: #ffffffd9;
+            --Tests-Hub-split-row-shadow: rgba(124, 45, 18, 0.15);
+            --Tests-Hub-split-row-inset-border: rgba(255, 255, 255, 1);
+            --Tests-Hub-text-column-bg: #fff7ed;
+            --Tests-Hub-text-column-inset: #ffffff;
+            --Tests-Hub-text-column-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-question-list-bg: #fff7ed;
+            --Tests-Hub-question-list-border: #f97316;
+            --Tests-Hub-question-list-color: #7c2d12;
+            --Tests-Hub-answers-bg: #fff7ed;
+            --Tests-Hub-answers-border: #fdba74;
+            --Tests-Hub-answers-inset: #ffffff;
+            --Tests-Hub-answers-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-answers-h3-color: #c2410c;
+            --Tests-Hub-answers-h3-border: #f97316;
+            --Tests-Hub-answers-li-color: #7c2d12;
+            --Tests-Hub-answers-strong-color: #b45309;
+            --Tests-Hub-inter-note-bg: #fef3c7;
+            --Tests-Hub-inter-note-border: #f97316;
+            --Tests-Hub-inter-note-inset: #fffbeb;
+            --Tests-Hub-inter-note-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-inter-note-color: #2c3e50;
+            --Tests-Hub-input-bg: rgba(255, 255, 255, 0.9);
+            --Tests-Hub-input-border: #fed7aa;
+            --Tests-Hub-note-bg: #fff7ed;
+            --Tests-Hub-note-border: #f97316;
+        }
+        
+        .Tests-Hub-dark-theme {
+            --Tests-Hub-card-bg: rgba(67, 20, 7, 0.85);
+            --Tests-Hub-h1-color: #fed7aa;
+            --Tests-Hub-section-title-color: #fdba74;
+            --Tests-Hub-split-row-bg: #5a2a12d9;
+            --Tests-Hub-text-column-bg: #431407;
+            --Tests-Hub-text-column-inset: #7c2d12;
+            --Tests-Hub-question-list-bg: #431407;
+            --Tests-Hub-question-list-color: #ffedd5;
+            --Tests-Hub-answers-bg: #431407;
+            --Tests-Hub-answers-border: #9a3412;
+            --Tests-Hub-answers-li-color: #ffedd5;
+            --Tests-Hub-answers-h3-color: #fed7aa;
+            --Tests-Hub-answers-strong-color: #fbbf24;
+            --Tests-Hub-inter-note-bg: #7c2d12;
+            --Tests-Hub-inter-note-color: #fef9c3;
+            --Tests-Hub-input-bg: #431407;
+            --Tests-Hub-input-border: #9a3412;
+            --Tests-Hub-note-bg: #431407;
+            --Tests-Hub-note-border: #f97316;
+        }
+        
+        .Tests-Hub-card {
+            max-width: 1400px;
+            width: 100%;
+            background: var(--Tests-Hub-card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 28px;
+            box-shadow: 0 30px 50px var(--Tests-Hub-card-shadow-1),
+            inset 0 2px 4px var(--Tests-Hub-card-shadow-2),
+            inset 0 -2px 4px var(--Tests-Hub-card-shadow-3);
+            border: 1px solid var(--Tests-Hub-card-border);
+        }
+        .Tests-Hub-h1 {
+            text-align: center;
+            color: var(--Tests-Hub-h1-color);
+            margin: 0 0 8px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--Tests-Hub-h1-shadow-1), -1px -1px 2px var(--Tests-Hub-h1-shadow-2);
+        }
+        .Tests-Hub-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding-right: 20px;
+            border-right: 8px solid var(--Tests-Hub-section-title-border);
+            color: var(--Tests-Hub-section-title-color);
+            text-shadow: 1px 1px 2px var(--Tests-Hub-section-title-shadow);
+        }
+        .Tests-Hub-question-list {
+            background: var(--Tests-Hub-question-list-bg);
+            padding: 1rem 1.8rem;
+            border-radius: 28px;
+            margin: 10px 0;
+            border-right: 6px solid var(--Tests-Hub-question-list-border);
+        }
+        .Tests-Hub-question-list ol, .Tests-Hub-question-list ul {
+            margin-right: 1.2rem;
+            line-height: 1.9;
+        }
+        .Tests-Hub-question-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-answers {
+            background: var(--Tests-Hub-answers-bg);
+            border-radius: 30px;
+            padding: 20px 30px;
+            border: 1px solid var(--Tests-Hub-answers-border);
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-answers-inset), 0 6px 12px var(--Tests-Hub-answers-shadow);
+            font-size: 1.1rem;
+        }
+        .Tests-Hub-answers h3 {
+            color: var(--Tests-Hub-answers-h3-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-right: 6px solid var(--Tests-Hub-answers-h3-border);
+            padding-right: 15px;
+        }
+        .Tests-Hub-answer-input {
+            margin: 10px 0 15px 5px;
+        }
+        .Tests-Hub-answer-input textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        .Tests-Hub-detail-note {
+            background: var(--Tests-Hub-note-bg);
+            border-right: 4px solid var(--Tests-Hub-note-border);
+            padding: 12px 18px;
+            margin: 12px 0 15px 20px;
+            border-radius: 18px;
+            font-size: 1rem;
+        }
+        .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #f97316, #ea580c);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #9a3412, #7c2d12);
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.8rem;
+        }
+        #loading-overlay .Tests-Hub-spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid #f97316;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media print {
+            .Tests-Hub-header-container, .Tests-Hub-footer-container, .Tests-Hub-header-controls,
+            .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle,
+            .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button,
+            .Tests-Hub-answer-input, .Tests-Hub-inter-note { display: none !important; }
+            .Tests-Hub-presentation-card { display: block !important; }
+            #correction-section { display: block !important; page-break-before: always; }
+            body { background: white !important; color: black !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column, .Tests-Hub-image-column, .Tests-Hub-svg-container {
+                backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
+            }
+        }
+        .Tests-Hub-print-mode { background: white !important; }
+        .Tests-Hub-print-mode .Tests-Hub-card, .Tests-Hub-print-mode .Tests-Hub-split-row,
+        .Tests-Hub-print-mode .Tests-Hub-text-column, .Tests-Hub-print-mode .Tests-Hub-image-column {
+            background: white !important; box-shadow: none !important; border: 1px solid #ddd !important;
+        }
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255,255,240,0.5);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .matching-table th, .matching-table td {
+            border: 1px solid var(--Tests-Hub-question-list-border);
+            padding: 12px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .matching-table th:first-child, .matching-table td:first-child {
+            text-align: right;
+        }
+        .matching-table th {
+            background: var(--Tests-Hub-section-title-border);
+            color: white;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">التربية المدنية - فرض مراقبة عدد 3 (7 أساسي) - نموذج 5 (2009/2010)</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">الأستاذ: غير محدد | السنة الدراسية: 2009-2010</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back"><span>←</span> <span>العودة إلى الاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.header.language">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span></button>
+                <button class="Tests-Hub-print-button" id="printDownloadBtn"><span>🖨️</span><span data-i18n="TestsHub.header.print">طباعة</span></button>
+                <button class="Tests-Hub-pdf-button" id="pdfDownloadBtn"><span>📄</span><span data-i18n="TestsHub.header.pdf">PDF</span></button>
+                <button class="Tests-Hub-image-save-button" id="imageSaveBtn" data-i18n-title="TestsHub.imageSaveButton" title="صورة"><span>🖼️</span><span data-i18n="TestsHub.imageSaveButton">صورة</span></button>
+            </div>
+        </div>
+    </header>
+    
+    <div id="loading-overlay"><div class="Tests-Hub-spinner"></div><div data-i18n="TestsHub.loading.message">جاري التحميل...</div></div>
+    
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-card Tests-Hub-presentation-card">
+            <div data-i18n="TestsHub.presentation.line1" style="font-size: 1.8rem; font-weight: 700;">📋 فرض مراقبة عدد 3 - تربية مدنية - سابعة أساسي (2009-2010)</div>
+            <div data-i18n="TestsHub.presentation.line2" style="font-size: 1.2rem;">👨‍🏫 الأستاذ: غير محدد</div>
+            <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: 2009/2010</div>
+            <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 7 أساسي</div>
+            <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: المدرسة الإعدادية الحصري - دوز</div>
+            <div style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: ساعة واحدة</div>
+        </div>
+        
+        <div class="Tests-Hub-card">
+            <h1 class="Tests-Hub-h1">🧑‍🏫 التربية المدنية (20 نقطة)</h1>
+            
+            <section>
+                <h2 class="Tests-Hub-section-title">📘 التمرين الأول: تصنيف المفاهيم (8 نقاط)</h2>
+                <div class="Tests-Hub-question-list">
+                    <p style="font-weight:600; margin-bottom:1rem;">ضع علامة (✓) في الخانة المناسبة لكل عنصر من عناصر القائمة:</p>
+                    <table class="matching-table">
+                        <thead>
+                            <tr><th>العناصر (المعطيات)</th><th>المجال التربوي للمدرسة</th><th>المجال التعليمي للمدرسة</th>
+                        </thead>
+                        <tbody>
+                            <tr><td style="text-align:right;">• تدريب التلميذ على المبادرة</td><td style="text-align:center;">(   )</td><td style="text-align:center;">(   )</td>
+                            </tr>
+                            <tr><td style="text-align:right;">• التشبع بروح المسؤولية</td><td style="text-align:center;">(   )</td><td style="text-align:center;">(   )</td></tr>
+                            <tr><td style="text-align:right;">• تجسيد روح المواطنة</td><td style="text-align:center;">(   )</td><td style="text-align:center;">(   )</td></tr>
+                            <tr><td style="text-align:right;">• الاقتناع بضرورة التلازم بين الحقوق والواجبات</td><td style="text-align:center;">(   )</td><td style="text-align:center;">(   )</td></tr>
+                            <tr><td style="text-align:right;">• تقبل العلوم والمعارف</td><td style="text-align:center;">(   )</td><td style="text-align:center;">(   )</td></tr>
+                            <tr><td style="text-align:right;">• اكتساب منهجيات في حل المسائل</td><td style="text-align:center;">(   )</td><td style="text-align:center;">(   )</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="Tests-Hub-section-title">📝 التمرين الثاني: فقرة إنشائية (12 نقطة)</h2>
+                <div class="Tests-Hub-question-list">
+                    <p style="font-weight:600; margin-bottom:1rem;">حدد مختلف قواعد التعامل المدرسي وتأثيرها في تكوين شخصية التلميذ.</p>
+                    <div class="Tests-Hub-answer-input"><textarea rows="8" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                </div>
+            </section>
+            
+            <div style="text-align: center;">
+                <button class="Tests-Hub-toggle-correction-btn" id="toggleCorrectionBtn">
+                    <span id="toggleCorrectionIcon">👁️</span>
+                    <span id="toggleCorrectionText" data-i18n="TestsHub.showCorrection">إظهار الإصلاح</span>
+                </button>
+            </div>
+            
+            <section id="correction-section" style="display: none;">
+                <h2 class="Tests-Hub-section-title">✅ الإصلاح المفصّل</h2>
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الأول: التصنيف الصحيح</h3>
+                    <ul style="margin-right:1.8rem;">
+                        <li><strong>تدريب التلميذ على المبادرة</strong> → المجال التربوي للمدرسة (✓)</li>
+                        <li><strong>التشبع بروح المسؤولية</strong> → المجال التربوي للمدرسة (✓)</li>
+                        <li><strong>تجسيد روح المواطنة</strong> → المجال التربوي للمدرسة (✓)</li>
+                        <li><strong>الاقتناع بضرورة التلازم بين الحقوق والواجبات</strong> → المجال التربوي للمدرسة (✓)</li>
+                        <li><strong>تقبل العلوم والمعارف</strong> → المجال التعليمي للمدرسة (✓)</li>
+                        <li><strong>اكتساب منهجيات في حل المسائل</strong> → المجال التعليمي للمدرسة (✓)</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">يكمّل المجالان أحدهما الآخر: فالمجال التربوي يبني القيم والسلوكيات، بينما المجال التعليمي يزوّد التلميذ بالمعارف والمهارات العلمية.</div>
+                    
+                    <h3>📌 إصلاح التمرين الثاني: قواعد التعامل المدرسي وتأثيرها في تكوين الشخصية</h3>
+					
+                    <div>
+                        <p><strong>مختلف قواعد التعامل المدرسي:</strong></p>
+                        <ul style="margin-right:1.8rem;">
+                            <li><strong>الاحترام المتبادل:</strong> احترام المعلمين، الزملاء، والعاملين، وكذلك احترام الممتلكات العامة والخاصة.</li>
+                            <li><strong>الانضباط والالتزام بالقوانين:</strong> احترام الأوقات (المواظبة)، تطبيق النظام الداخلي، الالتزام بالزي المدرسي.</li>
+                            <li><strong>التعاون والتضامن:</strong> مساعدة الزملاء، العمل الجماعي، تقبل الاختلافات، والمشاركة في الأنشطة.</li>
+                            <li><strong>الصدق والأمانة:</strong> النزاهة في الامتحانات، الصدق في الأقوال والأفعال، تحمل المسؤولية.</li>
+                            <li><strong>النظافة والنظام:</strong> المحافظة على البيئة المدرسية، النظافة الشخصية، ترتيب الأدوات.</li>
+                            <li><strong>المشاركة الفاعلة:</strong> إبداء الرأي، الانخراط في الحياة المدرسية (مجالس التلاميذ، الأندية).</li>
+                        </ul>
+                        <p><strong>تأثير هذه القواعد في تكوين شخصية التلميذ:</strong></p>
+                        <ul style="margin-right:1.8rem;">
+                            <li><strong>بناء شخصية متوازنة:</strong> الانضباط والاحترام يرسخان ضبط النفس والثقة، فيصبح التلميذ قادراً على تحمل المسؤولية واتخاذ القرارات السليمة.</li>
+                            <li><strong>تنمية المواطنة الفاعلة:</strong> من خلال التعاون والمشاركة، يكتسب التلميذ روح الجماعة والإحساس بالانتماء إلى مجتمعه، ويتعلم حقوقه وواجباته عملياً.</li>
+                            <li><strong>اكتساب المهارات الاجتماعية:</strong> الاحتكاك المنتظم وفق قواعد أخلاقية يعلم التلميذ فن الحوار، وحل النزاعات، والتعاطف مع الآخرين، وهي أساس النجاح في الحياة.</li>
+                            <li><strong>التحصيل الدراسي المتميز:</strong> الالتزام والصدق يدفعان نحو الجد والاجتهاد، بينما التعاون يخلق بيئة تعليمية محفزة.</li>
+                            <li><strong>الوقاية من السلوكيات المنحرفة:</strong> التربية على القيم داخل المدرسة تشكل حماية من العنف والتنمر والتسرب المدرسي.</li>
+                        </ul>
+                        <div class="Tests-Hub-detail-note">المدرسة ليست فقط مكاناً للتعليم، بل هي فضاء حياة متكامل؛ فالقواعد المدرسية إذا طبقت بحكمة صارت رافداً أساسياً لبناء شخصية التلميذ اجتماعياً وأخلاقياً ومهنياً.</div>
+                    <div style="line-height:1.8;">
+                        <p><strong>المقدمة:</strong> تعتبر المدرسة فضاءً تربوياً متكاملاً لا يقتصر دوره على تقديم الدروس بل يمتد إلى تشكيل شخصية المتعلم وتوجيه سلوكه. ومن أبرز الآليات التي تحقق هذا الدور هي القواعد المنظمة للتعامل المدرسي، فهي تشكل إطاراً أخلاقياً واجتماعياً يضمن انسجام التلميذ مع محيطه وينمي فيه قيماً أساسية.</p>
+                        <p><strong>الجوهر (التفصيل):</strong> تتنوع قواعد التعامل المدرسي لتشمل احترام الغير (معلمين وزملاء وعمال)، والالتزام بالانضباط والمواظبة، والتعاون والتضامن في الأنشطة الجماعية، والصدق والأمانة في الأقوال والأعمال، والنظافة والنظام في الفضاء المدرسي، والمشاركة الفاعلة في الحياة المدرسية. كل هذه القواعد تؤثر بعمق في بناء شخصية التلميذ: فاحترام الآخر يعلمه التسامح ويصقله باللباقة، والانضباط يرسخ في داخله ضبط النفس وتحمل المسؤولية، والتعاون ينمي روح الفريق ويدرب على حل الخلافات بأساليب حضارية. أما الصدق فيقوي ثقته بنفسه وبالآخرين، والنظام يخلق لديه حس التنظيم والاعتناء بالبيئة، والمشاركة تزرع فيه روح المواطنة الفاعلة وتكسبه مهارات القيادة والحوار. بهذه الطريقة، تتحول القواعد من مجرد لوائح إلى ممارسات يومية تشكل وعي التلميذ وتوجهه نحو النجاح الدراسي والاجتماعي.</p>
+                        <p><strong>الخاتمة:</strong> إن الالتزام بقواعد التعامل المدرسي ليس غاية في ذاته، بل وسيلة لتنشئة جيل متوازن أخلاقياً، قادر على الاندماج الإيجابي في مجتمعه. فكل قاعدة تترجم إلى سلوك راشد يعزز استقرار التلميذ النفسي ويفتح أمامه آفاق النجاح. ولذلك، يجب على المؤسسة التربوية أن تعمل باستمرار على ترسيخ هذه القواعد بطرق تربوية محفزة، لأنها تشكل اللبنة الأساسية لشخصية مواطن المستقبل.</p>
+                        <p style="margin-top:15px;">🔹 يمكن للتلميذ أن يستشهد بتجارب شخصية أو أمثلة من واقعه المدرسي لإثراء إجابته، مع الحرص على التسلسل المنطقي وسلامة اللغة.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v2.5.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">روابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        (function() {
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            let correctionVisible = false;
+            
+            const TestsHub_translations = {
+                ar: { 
+                    TestsHub: { 
+                        header: { title: "التربية المدنية - فرض مراقبة عدد 3 (7 أساسي) - نموذج 5 (2009/2010)", subtitle: "الأستاذ: غير محدد | السنة الدراسية: 2009-2010", back: "العودة إلى الاختبارات", language: "العربية", print: "طباعة", pdf: "PDF", defaultPdfFileName: "Devoir_Civique_7_modele5.pdf", errorPdfCapture: "حدث خطأ أثناء إنشاء ملف PDF." },
+                        loading: { message: "جاري التحميل..." },
+                        theme: { toggle: "الوضع الليلي" },
+                        footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v2.5.0" },
+                        presentation: { line1: "📋 فرض مراقبة عدد 3 - تربية مدنية - سابعة أساسي (2009-2010)", line2: "👨‍🏫 الأستاذ: غير محدد", line3: "📅 السنة الدراسية: 2009/2010", line4: "📚 المستوى: 7 أساسي", line5: "🏫 المؤسسة: المدرسة الإعدادية الحصري - دوز" },
+                        showCorrection: "إظهار الإصلاح", hideCorrection: "إخفاء الإصلاح", imageSaveButton: "صورة", errorImageCapture: "حدث خطأ أثناء إنشاء الصورة.", defaultImageFileName: "فرض_مدنية_7_نموذج5"
+                    } 
+                },
+                fr: { 
+                    TestsHub: { 
+                        header: { title: "Éducation Civique - Devoir N°3 (7ème) - Modèle 5 (2009/2010)", subtitle: "Prof.: non défini | Année 2009-2010", back: "Retour aux examens", language: "Français", print: "Imprimer", pdf: "PDF", defaultPdfFileName: "Devoir_Civique_7_modele5.pdf", errorPdfCapture: "Erreur lors de la création du PDF." },
+                        loading: { message: "Chargement..." },
+                        theme: { toggle: "Mode sombre" },
+                        footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité", developerName: "Ziad Mejri", versionNumber: "v2.5.0" },
+                        presentation: { line1: "📋 Devoir N°3 - Éducation Civique - 7ème (2009-2010)", line2: "👨‍🏫 Professeur: non défini", line3: "📅 Année scolaire: 2009/2010", line4: "📚 Classe: 7ème", line5: "🏫 Établissement: المدرسة الإعدادية الحصري - دوز" },
+                        showCorrection: "Afficher la correction", hideCorrection: "Cacher la correction", imageSaveButton: "Image", errorImageCapture: "Erreur lors de la création de l'image.", defaultImageFileName: "Devoir_Civique_7_modele5"
+                    } 
+                },
+                en: { 
+                    TestsHub: { 
+                        header: { title: "Civic Education - Test N°3 (Grade 7) - Model 5 (2009/2010)", subtitle: "Teacher: not defined | Year 2009-2010", back: "Back to tests", language: "English", print: "Print", pdf: "PDF", defaultPdfFileName: "Civic_Exam_7_model5.pdf", errorPdfCapture: "Error creating PDF." },
+                        loading: { message: "Loading..." },
+                        theme: { toggle: "Dark Mode" },
+                        footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms of use", privacy: "Privacy policy", developerName: "Ziad Mejri", versionNumber: "v2.5.0" },
+                        presentation: { line1: "📋 Test N°3 - Civic Education - 7th Grade (2009-2010)", line2: "👨‍🏫 Teacher: not defined", line3: "📅 Academic Year: 2009/2010", line4: "📚 Class: 7th Grade", line5: "🏫 School: المدرسة الإعدادية الحصري - دوز" },
+                        showCorrection: "Show correction", hideCorrection: "Hide correction", imageSaveButton: "Image", errorImageCapture: "Error creating image.", defaultImageFileName: "Civic_Exam_7_model5"
+                    } 
+                }
+            };
+            
+            function updateTextContent() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.textContent = current;
+                });
+                updateThemeToggleText();
+                updateToggleButtonText();
+            }
+            function updateThemeToggleText() {
+                const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeToggle) themeToggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            function updateToggleButtonText() {
+                const toggleText = document.getElementById('toggleCorrectionText');
+                if (toggleText) toggleText.textContent = correctionVisible ? TestsHub_translations[currentLanguage].TestsHub.hideCorrection : TestsHub_translations[currentLanguage].TestsHub.showCorrection;
+            }
+            function toggleTheme() { isDarkTheme = !isDarkTheme; document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme); updateThemeToggleText(); localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light'); }
+            function changeLanguage(lang) {
+                if (!TestsHub_translations[lang]) return;
+                currentLanguage = lang;
+                updateTextContent();
+                document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+                localStorage.setItem('testsHubLanguage', lang);
+                const imageBtn = document.getElementById('imageSaveBtn');
+                if (imageBtn) imageBtn.setAttribute('title', TestsHub_translations[currentLanguage].TestsHub.imageSaveButton);
+            }
+            function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
+            function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
+            
+            function getCleanCloneForCapture(element) {
+                const clone = element.cloneNode(true);
+                clone.querySelectorAll('.Tests-Hub-header-controls, .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle, .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button').forEach(el => el.remove());
+                clone.querySelectorAll('.Tests-Hub-answer-input').forEach(div => {
+                    const textarea = div.querySelector('textarea');
+                    if (textarea) {
+                        const placeholder = document.createElement('div');
+                        placeholder.style.borderBottom = '1px dashed #888';
+                        placeholder.style.minHeight = '2em';
+                        placeholder.style.marginBottom = '10px';
+                        placeholder.style.padding = '5px';
+                        placeholder.style.backgroundColor = '#f9f9f9';
+                        placeholder.style.borderRadius = '4px';
+                        placeholder.textContent = '_________________________';
+                        div.innerHTML = '';
+                        div.appendChild(placeholder);
+                    }
+                });
+                return clone;
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLanguage = localStorage.getItem('testsHubLanguage');
+                if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+                if (currentLanguage === 'ar') document.documentElement.dir = 'rtl'; else document.documentElement.dir = 'ltr';
+                updateTextContent();
+                if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); }));
+                document.getElementById('printDownloadBtn').addEventListener('click', () => setTimeout(() => window.print(), 50));
+                
+                // PDF download with full slicing and header/footer
+                document.getElementById('pdfDownloadBtn').addEventListener('click', async function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const body = document.body;
+                    
+                    // Save original display state
+                    const originalDisplay = correctionSection.style.display;
+                    correctionSection.style.display = 'none';
+                    body.classList.add('Tests-Hub-print-mode');
+                    showLoading();
+                    
+                    try {
+                        // Capture test part
+                        const testClone = getCleanCloneForCapture(mainContainer);
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute';
+                        tempDiv.style.left = '-9999px';
+                        tempDiv.style.top = '0';
+                        tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                        tempDiv.style.backgroundColor = '#ffffff';
+                        tempDiv.style.padding = '20px';
+                        tempDiv.appendChild(testClone);
+                        document.body.appendChild(tempDiv);
+                        
+                        const testCanvas = await html2canvas(tempDiv, { scale: 1.5, backgroundColor: '#ffffff', logging: false, allowTaint: true, useCORS: true });
+                        document.body.removeChild(tempDiv);
+                        
+                        // Capture correction if exists
+                        let correctionCanvas = null;
+                        if (correctionSection) {
+                            correctionSection.style.display = 'block';
+                            await new Promise(resolve => setTimeout(resolve, 50));
+                            const corrClone = getCleanCloneForCapture(correctionSection);
+                            const tempCorr = document.createElement('div');
+                            tempCorr.style.position = 'absolute';
+                            tempCorr.style.left = '-9999px';
+                            tempCorr.style.top = '0';
+                            tempCorr.style.width = mainContainer.offsetWidth + 'px';
+                            tempCorr.style.backgroundColor = '#ffffff';
+                            tempCorr.style.padding = '20px';
+                            tempCorr.appendChild(corrClone);
+                            document.body.appendChild(tempCorr);
+                            
+                            correctionCanvas = await html2canvas(tempCorr, { scale: 1.5, backgroundColor: '#ffffff', logging: false, allowTaint: true, useCORS: true });
+                            document.body.removeChild(tempCorr);
+                        }
+                        
+                        // Restore original display
+                        correctionSection.style.display = originalDisplay;
+                        body.classList.remove('Tests-Hub-print-mode');
+                        
+                        // Create PDF
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+                        const pageWidth = pdf.internal.pageSize.getWidth();
+                        const pageHeight = pdf.internal.pageSize.getHeight();
+                        const topMargin = 30;
+                        const bottomMargin = 30;
+                        const contentHeight = pageHeight - topMargin - bottomMargin;
+                        
+                        const fileName = TestsHub_translations[currentLanguage].TestsHub.defaultPdfFileName || 'exam.pdf';
+                        const headerFileName = fileName.replace(/\.pdf$/i, '');
+                        
+                        const getSlices = (canvas) => {
+                            const scale = pageWidth / canvas.width;
+                            const sliceCanvasHeight = contentHeight / scale;
+                            const slices = [];
+                            let y = 0;
+                            while (y < canvas.height) {
+                                const height = Math.min(sliceCanvasHeight, canvas.height - y);
+                                slices.push({ y, height });
+                                y += height;
+                            }
+                            return slices;
+                        };
+                        
+                        const addHeaderFooter = (pageNum, totalPages) => {
+                            pdf.setFontSize(12);
+                            pdf.setTextColor(40,40,40);
+                            pdf.text(headerFileName, pageWidth/2, topMargin/2, { align: 'center' });
+                            pdf.setFontSize(10);
+                            pdf.text(`Page ${pageNum} / ${totalPages}`, pageWidth/2, pageHeight - bottomMargin/2, { align: 'center' });
+                            pdf.setDrawColor(200,200,200);
+                            pdf.line(40, topMargin-2, pageWidth-40, topMargin-2);
+                            pdf.line(40, pageHeight - bottomMargin+2, pageWidth-40, pageHeight - bottomMargin+2);
+                        };
+                        
+                        const testSlices = getSlices(testCanvas);
+                        const correctionSlices = correctionCanvas ? getSlices(correctionCanvas) : [];
+                        const totalPages = testSlices.length + correctionSlices.length;
+                        let pageCounter = 1;
+                        
+                        const addSlice = (canvas, slice, isFirstPage) => {
+                            if (!isFirstPage) pdf.addPage();
+                            const sliceCanvas = document.createElement('canvas');
+                            sliceCanvas.width = canvas.width;
+                            sliceCanvas.height = slice.height;
+                            const ctx = sliceCanvas.getContext('2d');
+                            ctx.drawImage(canvas, 0, slice.y, canvas.width, slice.height, 0, 0, canvas.width, slice.height);
+                            const imgData = sliceCanvas.toDataURL('image/jpeg', 0.9);
+                            pdf.addImage(imgData, 'JPEG', 0, topMargin, pageWidth, slice.height * (pageWidth / canvas.width));
+                            addHeaderFooter(pageCounter, totalPages);
+                            pageCounter++;
+                        };
+                        
+                        testSlices.forEach((slice, i) => addSlice(testCanvas, slice, i === 0));
+                        if (correctionSlices.length) {
+                            correctionSlices.forEach((slice, i) => addSlice(correctionCanvas, slice, i === 0 && testSlices.length === 0));
+                        }
+                        
+                        pdf.save(fileName);
+                        
+                    } catch (error) {
+                        console.error('PDF error:', error);
+                        alert(TestsHub_translations[currentLanguage].TestsHub.errorPdfCapture);
+                        correctionSection.style.display = originalDisplay;
+                        body.classList.remove('Tests-Hub-print-mode');
+                    } finally {
+                        hideLoading();
+                    }
+                });
+                
+                // Image save button (full page)
+                document.getElementById('imageSaveBtn').addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const wasHidden = correctionSection && correctionSection.style.display === 'none';
+                    if (wasHidden) correctionSection.style.display = 'block';
+                    showLoading();
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const clone = getCleanCloneForCapture(mainContainer);
+                    const tempDiv = document.createElement('div');
+                    tempDiv.style.position = 'absolute';
+                    tempDiv.style.left = '-9999px';
+                    tempDiv.style.top = '0';
+                    tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                    tempDiv.style.backgroundColor = '#ffffff';
+                    tempDiv.style.padding = '20px';
+                    tempDiv.appendChild(clone);
+                    document.body.appendChild(tempDiv);
+                    
+                    html2canvas(tempDiv, { scale: 2, backgroundColor: '#ffffff' })
+                        .then(canvas => {
+                            document.body.removeChild(tempDiv);
+                            const fileName = TestsHub_translations[currentLanguage].TestsHub.defaultImageFileName + '.png';
+                            const link = document.createElement('a');
+                            link.download = fileName;
+                            link.href = canvas.toDataURL('image/png');
+                            link.click();
+                            if (wasHidden) correctionSection.style.display = 'none';
+                        }).catch(e => {
+                            alert(TestsHub_translations[currentLanguage].TestsHub.errorImageCapture);
+                            document.body.removeChild(tempDiv);
+                            if (wasHidden) correctionSection.style.display = 'none';
+                        }).finally(() => hideLoading());
+                });
+                
+                const toggleBtn = document.getElementById('toggleCorrectionBtn');
+                const correctionSection = document.getElementById('correction-section');
+                if (toggleBtn && correctionSection) {
+                    toggleBtn.addEventListener('click', function() {
+                        correctionVisible = !correctionVisible;
+                        correctionSection.style.display = correctionVisible ? 'block' : 'none';
+                        updateToggleButtonText();
+                        document.getElementById('toggleCorrectionIcon').textContent = correctionVisible ? '👁️‍🗨️' : '👁️';
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

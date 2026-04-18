@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجغرافيا - فرض تأليفي عدد 3 (7 أساسي) - النموذج 1</title>
+    
+    <!-- PWA Meta (أخضر/ترابي) -->
+    <meta name="theme-color" content="#2b6e4f">
+    <meta name="description" content="فرض تأليفي عدد 3 في الجغرافيا - السنة السابعة أساسي - النموذج 1 - المدرسة الإعدادية بالسواسي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - جغرافيا 7 (تأليفي 3)">
+    
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <script src="html2canvas.min.js"></script>
+    <script src="jspdf.umd.min.js"></script>
+    
+    <style>
+        /* ========== لوحة ألوان (أخضر طبيعي / ترابي) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e9f5e9 0%, #c8e6c9 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1e3a2f;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e3a2f 0%, #2b5a42 100%);
+            color: #e0f2e0;
+        }
+        
+        .Tests-Hub-header-container {
+            background: linear-gradient(135deg, #2e7d32, #1b5e2a, #0f4c1f);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(135deg, #1b4d2a, #2c6e3a, #3e8e4a);
+        }
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-back-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #2e7d32;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover {
+            background: #dcedc8;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2b5a42;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #e0f2e0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3e8e4a;
+        }
+        .Tests-Hub-theme-toggle, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-footer-container {
+            background: linear-gradient(135deg, #2e7d32, #1b5e2a, #0f4c1f);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(135deg, #1b4d2a, #2c6e3a, #3e8e4a);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #c8e6c9;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #c8e6c9;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        :root {
+            --Tests-Hub-card-bg: rgba(245, 255, 240, 0.92);
+            --Tests-Hub-card-shadow-1: rgba(30, 60, 40, 0.2);
+            --Tests-Hub-card-shadow-2: rgba(255, 255, 235, 0.9);
+            --Tests-Hub-card-shadow-3: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-card-border: rgba(100, 150, 100, 0.6);
+            --Tests-Hub-h1-color: #2b5a2b;
+            --Tests-Hub-h1-shadow-1: #e8f5e9;
+            --Tests-Hub-section-title-border: #5f9e5f;
+            --Tests-Hub-section-title-color: #2c6e3a;
+            --Tests-Hub-question-list-bg: #f1f9ee;
+            --Tests-Hub-question-list-border: #7cb342;
+            --Tests-Hub-question-list-color: #2a5c3e;
+            --Tests-Hub-answers-bg: #fef9e6;
+            --Tests-Hub-answers-border: #c5e0b4;
+            --Tests-Hub-answers-inset: #ffffff;
+            --Tests-Hub-answers-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-answers-h3-color: #2e7d32;
+            --Tests-Hub-answers-h3-border: #8bc34a;
+            --Tests-Hub-answers-li-color: #2c5e3a;
+            --Tests-Hub-answers-strong-color: #b95f2b;
+            --Tests-Hub-inter-note-bg: #eef5e3;
+            --Tests-Hub-inter-note-border: #9ccc65;
+            --Tests-Hub-inter-note-color: #2c5e3a;
+            --Tests-Hub-input-bg: rgba(255, 250, 235, 0.95);
+            --Tests-Hub-input-border: #c8e6c9;
+            --Tests-Hub-note-bg: #e0f2e0;
+            --Tests-Hub-note-border: #5e9c5e;
+            --Tests-Hub-table-bg: #f8fff0;
+            --Tests-Hub-svg-bg: #fefef7;
+        }
+        
+        .Tests-Hub-dark-theme {
+            --Tests-Hub-card-bg: rgba(40, 70, 45, 0.85);
+            --Tests-Hub-h1-color: #b8e0b8;
+            --Tests-Hub-section-title-color: #a5d6a5;
+            --Tests-Hub-question-list-bg: #3e6a4a;
+            --Tests-Hub-question-list-color: #e0f2e0;
+            --Tests-Hub-answers-bg: #4e6e4a;
+            --Tests-Hub-answers-border: #6f9e6f;
+            --Tests-Hub-answers-li-color: #f0f7e8;
+            --Tests-Hub-answers-h3-color: #c8e6c9;
+            --Tests-Hub-answers-strong-color: #ffcf9a;
+            --Tests-Hub-inter-note-bg: #3d6745;
+            --Tests-Hub-inter-note-color: #f0f7e0;
+            --Tests-Hub-input-bg: #5c7e55;
+            --Tests-Hub-input-border: #a5d6a5;
+            --Tests-Hub-note-bg: #446e49;
+            --Tests-Hub-note-border: #9fcc9f;
+            --Tests-Hub-table-bg: #4a6e48;
+            --Tests-Hub-svg-bg: #5d7e58;
+        }
+        
+        .Tests-Hub-card {
+            max-width: 1400px;
+            width: 100%;
+            background: var(--Tests-Hub-card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 28px;
+            box-shadow: 0 30px 50px var(--Tests-Hub-card-shadow-1),
+            inset 0 2px 4px var(--Tests-Hub-card-shadow-2),
+            inset 0 -2px 4px var(--Tests-Hub-card-shadow-3);
+            border: 1px solid var(--Tests-Hub-card-border);
+        }
+        .Tests-Hub-h1 {
+            text-align: center;
+            color: var(--Tests-Hub-h1-color);
+            margin: 0 0 8px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--Tests-Hub-h1-shadow-1);
+        }
+        .Tests-Hub-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding-right: 20px;
+            border-right: 8px solid var(--Tests-Hub-section-title-border);
+            color: var(--Tests-Hub-section-title-color);
+        }
+        .Tests-Hub-question-list {
+            background: var(--Tests-Hub-question-list-bg);
+            padding: 1rem 1.8rem;
+            border-radius: 28px;
+            margin: 10px 0;
+            border-right: 6px solid var(--Tests-Hub-question-list-border);
+        }
+        .Tests-Hub-question-list ol, .Tests-Hub-question-list ul {
+            margin-right: 1.2rem;
+            line-height: 1.9;
+        }
+        .Tests-Hub-question-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-answers {
+            background: var(--Tests-Hub-answers-bg);
+            border-radius: 30px;
+            padding: 20px 30px;
+            border: 1px solid var(--Tests-Hub-answers-border);
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-answers-inset), 0 6px 12px var(--Tests-Hub-answers-shadow);
+            font-size: 1.05rem;
+        }
+        .Tests-Hub-answers h3 {
+            color: var(--Tests-Hub-answers-h3-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-right: 6px solid var(--Tests-Hub-answers-h3-border);
+            padding-right: 15px;
+        }
+        .Tests-Hub-answers li {
+            margin-bottom: 10px;
+        }
+        .Tests-Hub-answer-input {
+            margin: 10px 0 15px 5px;
+        }
+        .Tests-Hub-answer-input textarea, .Tests-Hub-answer-input input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .Tests-Hub-history-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--Tests-Hub-table-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .Tests-Hub-history-table th, .Tests-Hub-history-table td {
+            border: 1px solid var(--Tests-Hub-input-border);
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .Tests-Hub-history-table th {
+            background: var(--Tests-Hub-section-title-border);
+            color: white;
+        }
+        .Tests-Hub-radio-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+        .Tests-Hub-radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .Tests-Hub-svg-container {
+            background: var(--Tests-Hub-svg-bg);
+            border-radius: 28px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .Tests-Hub-svg-container svg {
+            width: 100%;
+            height: auto;
+            max-width: 450px;
+            border-radius: 16px;
+            display: inline-block;
+        }
+        .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #3c8c40, #1e5a2a);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.8rem;
+        }
+        #loading-overlay .Tests-Hub-spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid #7cb342;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* PRINT STYLES - Enhanced to ensure first part is visible */
+        @media print {
+            /* Hide interactive controls and input fields */
+            .Tests-Hub-header-container, .Tests-Hub-footer-container, .Tests-Hub-header-controls,
+            .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle,
+            .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button,
+            .Tests-Hub-answer-input, .Tests-Hub-inter-note { display: none !important; }
+            
+            /* Ensure all sections are displayed */
+            .Tests-Hub-presentation-card { display: block !important; }
+            #correction-section { display: block !important; page-break-before: always; }
+            
+            /* Force the first part (definitions & table) to be fully visible */
+            section, .Tests-Hub-question-list, .Tests-Hub-history-table {
+                display: block !important;
+                overflow: visible !important;
+                page-break-inside: avoid;
+            }
+            
+            /* Ensure table cells keep their structure */
+            .Tests-Hub-history-table td, .Tests-Hub-history-table th {
+                display: table-cell !important;
+                border: 1px solid #ccc !important;
+                padding: 8px !important;
+                vertical-align: middle !important;
+                background-color: #fff !important;
+                color: #000 !important;
+            }
+            
+            /* Hide radio buttons and replace with a visible checkmark */
+            .Tests-Hub-radio-group input[type="radio"] {
+                display: none !important;
+            }
+            .Tests-Hub-radio-group {
+                display: block !important;
+                text-align: center;
+                font-weight: bold;
+                color: #2e7d32;
+            }
+            .Tests-Hub-radio-group::before {
+                content: "✓";
+                font-size: 1.3rem;
+                font-weight: bold;
+                color: #2e7d32;
+            }
+            
+            /* Make definitions list items visible */
+            .Tests-Hub-question-list ol li, .Tests-Hub-question-list ul li {
+                display: list-item !important;
+                margin-bottom: 10px !important;
+            }
+            
+            /* General print background and colors */
+            body {
+                background: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column, .Tests-Hub-image-column, .Tests-Hub-svg-container {
+                backdrop-filter: none !important;
+                background: white !important;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+            .Tests-Hub-history-table th {
+                background: #ccc !important;
+                color: black !important;
+            }
+        }
+        .Tests-Hub-print-mode { background: white !important; }
+        .Tests-Hub-print-mode .Tests-Hub-card, .Tests-Hub-print-mode .Tests-Hub-split-row,
+        .Tests-Hub-print-mode .Tests-Hub-text-column, .Tests-Hub-print-mode .Tests-Hub-image-column {
+            background: white !important; box-shadow: none !important; border: 1px solid #ddd !important;
+        }
+        .Tests-Hub-detail-note {
+            background: var(--Tests-Hub-note-bg);
+            border-right: 4px solid var(--Tests-Hub-note-border);
+            padding: 12px 18px;
+            margin-top: 12px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-legend-note {
+            font-size: 0.85rem;
+            margin-top: 8px;
+            text-align: center;
+            color: var(--Tests-Hub-answers-strong-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">الجغرافيا - فرض تأليفي عدد 3 (7 أساسي) - النموذج 1</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">الأستاذة: منية زهير | السنة الدراسية: 2010-2009</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back"><span>←</span> <span>العودة إلى الاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.header.language">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span></button>
+                <button class="Tests-Hub-print-button" id="printDownloadBtn"><span>🖨️</span><span data-i18n="TestsHub.header.print">طباعة</span></button>
+                <button class="Tests-Hub-pdf-button" id="pdfDownloadBtn"><span>📄</span><span data-i18n="TestsHub.header.pdf">PDF</span></button>
+                <button class="Tests-Hub-image-save-button" id="imageSaveBtn"><span>🖼️</span><span data-i18n="TestsHub.imageSaveButton">صورة</span></button>
+            </div>
+        </div>
+    </header>
+    
+    <div id="loading-overlay"><div class="Tests-Hub-spinner"></div><div data-i18n="TestsHub.loading.message">جاري التحميل...</div></div>
+    
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-card Tests-Hub-presentation-card">
+            <div data-i18n="TestsHub.presentation.line1" style="font-size: 1.8rem; font-weight: 700;">🌍 فرض تأليفي عدد 3 - جغرافيا - سابعة أساسي (النموذج 1) 2010-2009</div>
+            <div data-i18n="TestsHub.presentation.line2" style="font-size: 1.2rem;">👩‍🏫 الأستاذة: منية زهير</div>
+            <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: 2010/2009</div>
+            <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 7 أساسي</div>
+            <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: المدرسة الإعدادية بالسواسي</div>
+            <div style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 60 دقيقة</div>
+        </div>
+        
+        <div class="Tests-Hub-card">
+            <h1 class="Tests-Hub-h1">🗺️ الجغرافيا (20 نقطة)</h1>
+            
+            <!-- القسم الأول: 8 نقاط -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📌 القسم الأول: المفاهيم والتمييز بين الأقاليم (8 نقاط)</h2>
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">1) عرّف المصطلحات التالية: (4 ن)</h3>
+                    <ol>
+                        <li><strong>الدلتا:</strong> <div class="Tests-Hub-answer-input"><textarea rows="2" placeholder="اكتب تعريف الدلتا..."></textarea></div></li>
+                        <li><strong>السهول الكبرى:</strong> <div class="Tests-Hub-answer-input"><textarea rows="2" placeholder="اكتب تعريف السهول الكبرى..."></textarea></div></li>
+                    </ol>
+                </div>
+                
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">2) أضع كل خاصية في الوادي المناسب: (4 ن)</h3>
+                    <table class="Tests-Hub-history-table">
+                        <thead><tr><th>الخاصية</th><th>دلتا الميكونغ</th><th>السهول الكبرى</th> </thead>
+                        <tbody>
+                            <tr><td>النهر</td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop1" value="mekong">✓</label></div></td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop1" value="plains">✓</label></div></td> </tr>
+                            <tr><td>المكننة</td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop2" value="mekong">✓</label></div></td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop2" value="plains">✓</label></div></td> </tr>
+                            <tr><td>زراعات كبرى</td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop3" value="mekong">✓</label></div></td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop3" value="plains">✓</label></div></td> </tr>
+                            <tr><td>زراعة الأرز</td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop4" value="mekong">✓</label></div></td><td><div class="Tests-Hub-radio-group"><label><input type="radio" name="prop4" value="plains">✓</label></div></td> </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- القسم الثاني: 10 نقاط + 2 تنظيم -->
+            <section>
+                <h2 class="Tests-Hub-section-title">🏙️ القسم الثاني: تحليل مخطط مدينة من العالم المتقدم (10 نقاط)</h2>
+                <div class="Tests-Hub-question-list">
+                    <div class="Tests-Hub-svg-container" id="city-diagram"></div>
+                    <ol style="margin-top: 15px;">
+                        <li><strong>إلى أي عالم تنتمي هذه المدينة؟</strong> (1ن)<div class="Tests-Hub-answer-input"><textarea rows="2" placeholder="اكتب إجابتك..."></textarea></div></li>
+                        <li><strong>حدد وظيفة كل مكون من مكونات هذه المدينة (حي الأعمال، حي الأقليات، الضاحية السكنية الراقية).</strong> (3ن)<div class="Tests-Hub-answer-input"><textarea rows="3" placeholder="اذكر وظائف كل منطقة..."></textarea></div></li>
+                        <li><strong>بين خصائص كل من الضواحي وحي الأقليات (من حيث البنية السكنية، الخدمات، المساحات الخضراء، النشاط الاقتصادي).</strong> (6ن)<div class="Tests-Hub-answer-input"><textarea rows="5" placeholder="قارن بين خصائص حي الأقليات والضواحي..."></textarea></div></li>
+                    </ol>
+                    <div class="Tests-Hub-detail-note">✨ نقطتان إضافيتان (2 ن) على سلامة الصياغة وحسن التنظيم (تنسيق الإجابة، الخط الواضح، تقسيم الفقرات).</div>
+                </div>
+            </section>
+            
+            <div style="text-align: center;">
+                <button class="Tests-Hub-toggle-correction-btn" id="toggleCorrectionBtn">
+                    <span id="toggleCorrectionIcon">👁️</span>
+                    <span id="toggleCorrectionText" data-i18n="TestsHub.showCorrection">إظهار الإصلاح</span>
+                </button>
+            </div>
+            
+            <!-- الإصلاح التفصيلي -->
+            <section id="correction-section" style="display: none;">
+                <h2 class="Tests-Hub-section-title">✅ الإصلاح التفصيلي (مع ملاحظات معمقة)</h2>
+                
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح القسم الأول</h3>
+                    <p><strong>تعريف الدلتا:</strong> شكل أرضي رسوبي ينشأ عند مصب النهر حيث يتفرع إلى عدة أذرع ويترسب الطمي الغني بالعناصر الغذائية. تتكون الدلتا نتيجة تراجع مياه البحر أمام الرواسب النهرية، وتتميز بتربة خصبة جداً وتعتبر مناطق زراعية مكتظة بالسكان (مثل دلتا النيل، دلتا الميكونغ، دلتا الغانج).</p>
+                    <div class="Tests-Hub-detail-note">📘 <strong>ملاحظة تفصيلية:</strong> الدلتا هي منطقة توازن بين النهر والبحر، وتتأثر بعوامل طبيعية (كمية الرواسب، المد والجزر) وبشرية (السدود، الري). في دلتا الميكونغ، يعتمد السكان على زراعة الأرز وصيد الأسماك، بينما تواجه الدلتا تحديات مثل ارتفاع منسوب البحر والتلوث.</div>
+                    
+                    <p><strong>تعريف السهول الكبرى:</strong> منطقة شاسعة منبسطة تمتد في أمريكا الشمالية من كندا جنوباً إلى المكسيك، تغطي مساحة حوالي 1.3 مليون كم². تتميز بتربة براري عميقة (تشيرنوزيم) ومناخ قاري (شتاء بارد، صيف حار). تُعد "سلة غذاء العالم" بفضل المكننة الفائقة وزراعة الحبوب (القمح، الذرة) بكميات هائلة.</p>
+                    <div class="Tests-Hub-detail-note">🌾 <strong>ملاحظة تفصيلية:</strong> تعتمد السهول الكبرى على الري الاصطناعي في المناطق الجافة، وتواجه مشاكل التعرية الريحية والجفاف الدوري (مثل "وعاء الغبار" في الثلاثينيات). الإنتاج الزراعي فيها يعتمد بشكل كبير على الشركات العملاقة والتكنولوجيا الحديثة.</div>
+                    
+                    <h3 style="margin-top:20px;">إصلاح الجدول: توزيع الخصائص</h3>
+                    <ul>
+                        <li><strong>النهر → دلتا الميكونغ:</strong> نهر الميكونغ هو شريان الحياة للدلتا، حيث يوفر المياه والطمي والمواصلات.</li>
+                        <li><strong>المكننة → السهول الكبرى:</strong> استخدام الآلات الضخمة (جرارات، حصادات) بسبب المساحات الشاسعة والعمل الزراعي الرأسمالي.</li>
+                        <li><strong>زراعات كبرى → السهول الكبرى:</strong> زراعة القمح والذرة والذرة الصفراء بكميات تجارية ضخمة موجهة للتصدير.</li>
+                        <li><strong>زراعة الأرز → دلتا الميكونغ:</strong> الأرز هو المحصول الأساسي في الدلتا بسبب وفرة المياه والتربة الطينية، ويعتمد على اليد العاملة الكثيفة.</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">📊 <strong>ملاحظة منهجية:</strong> هذه المقارنة تبرز الاختلاف بين نموذج الزراعة التقليدية المكثفة (دلتا آسيا) والنموذج الرأسمالي الموسع (السهول الكبرى). يجب على التلميذ فهم أن العوامل الطبيعية (المناخ، التربة) والتنظيم البشري يحددان النشاط الزراعي.</div>
+                </div>
+                
+                <div class="Tests-Hub-answers">
+                    <h3>🏙️ إصلاح القسم الثاني: نموذج المدينة الأمريكية (المخطط الدائري المركز)</h3>
+                    <p><strong>1) عالم الانتماء:</strong> تنتمي هذه المدينة إلى <strong>العالم المتقدم (الشمال الصناعي)</strong>، وهي نموذج للمدينة الأمريكية المستند إلى نظرية "المناطق المتحدة المركز" التي وضعها إرنست بورجز عام 1925 استناداً إلى دراسة مدينة شيكاغو.</p>
+                    <div class="Tests-Hub-detail-note">🌐 <strong>ملاحظة تفصيلية:</strong> هذا النموذج يعكس التوسع الحضري في الدول الرأسمالية حيث تنتظم المدينة في دوائر متتالية حسب الوظائف والدخل. نجد أن النواة (حي الأعمال) تحتوي على أعلى قيمة عقارية وأنشطة القطاع الثالث، بينما تتراجع الجودة كلما ابتعدنا عن المركز في البداية (حي الأقليات) ثم تعود للارتفاع في الضواحي الراقية.</div>
+                    
+                    <p><strong>2) وظائف المكونات:</strong></p>
+                    <ul>
+                        <li><strong>حي الأعمال (CBD - النواة):</strong> وظائف إدارية ومالية وتجارية راقية (بنوك، تأمين، شركات محاماة، استشارات هندسية، مقرات الشركات الكبرى)، بالإضافة إلى خدمات متخصصة. يتميز بناطحات السحاب، وقلة السكن، وارتفاع قيمة العقار.</li>
+                        <li><strong>حي الأقليات والفقراء (الحزام الأول):</strong> وظيفة سكنية للطبقات الفقيرة والمهاجرين والأقليات العرقية (أفارقة، لاتينيون). توجد به خدمات تجارية وإدارية محدودة (محلات صغيرة، مدارس قديمة)، وصناعات خفيفة ملوثة. يعاني من الاكتظاظ وضعف البنية التحتية.</li>
+                        <li><strong>الضاحية السكنية الراقية (الحزام الثاني):</strong> وظيفة سكنية مريحة للطبقات الغنية والمتوسطة العليا، تتوفر بها مراكز تجارية كبرى (مولات)، فضاءات خضراء، مدارس راقية، وخدمات صحية متطورة. تمثل ملاذاً للهدوء والخصوصية.</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">🏢 <strong>ملاحظة تفصيلية:</strong> في حي الأعمال، تتجمع الوظائف القيادية (CBD) وتكون الكثافة السكانية نهارية عالية جداً، بينما تسكن الطبقة العاملة في الأحياء القديمة القريبة (منطقة الانتقال). أما الضواحي فتعتمد على السيارات بشكل كامل وتعكس نمط الحياة الأمريكي.</div>
+                    
+                    <p><strong>3) خصائص الضواحي وحي الأقليات (مقارنة معمقة):</strong></p>
+                    <ul>
+                        <li><strong>حي الأقليات:</strong> 
+                            <ul><li>🏚️ <strong>البنية السكنية:</strong> عمارات قديمة متلاصقة، مبانٍ منخفضة الجودة، كثافة سكانية عالية.</li>
+                            <li>🛒 <strong>الخدمات:</strong> محدودة (بقالات، مصالح بلدية، مراكز صحية مزدحمة).</li>
+                            <li>🌳 <strong>المساحات الخضراء:</strong> غائبة تقريباً، تفتقر إلى الحدائق والمتنزهات.</li>
+                            <li>🏭 <strong>النشاط الاقتصادي:</strong> صناعات صغيرة ملوثة، ورشات، تجارة غير منظمة، بطالة مرتفعة.</li></ul>
+                            <div class="Tests-Hub-detail-note">📉 <strong>ملاحظة:</strong> هذا الحي يعاني من التهميش الاجتماعي والمكاني، وغالباً ما يتحول إلى مناطق عشوائية أو متدهورة، ويشهد مشاكل أمنية وبيئية.</div>
+                        </li>
+                        <li><strong>الضواحي الراقية:</strong>
+                            <ul><li>🏡 <strong>البنية السكنية:</strong> فلل منفصلة، طرقات واسعة متعامدة، مساحات كبيرة، أنماط معمارية متنوعة.</li>
+                            <li>🛍️ <strong>الخدمات:</strong> مجمعات تجارية ضخمة (مولات)، مدارس خاصة، مستشفيات راقية، أندية رياضية.</li>
+                            <li>🌲 <strong>المساحات الخضراء:</strong> وفيرة (حدائق عامة، ممرات للمشي، غابات صغيرة).</li>
+                            <li>💼 <strong>النشاط الاقتصادي:</strong> شركات خدمات راقية، فروع بنوك، مقرات إقليمية، تجارة التجزئة الفاخرة.</li></ul>
+                            <div class="Tests-Hub-detail-note">🏆 <strong>ملاحظة:</strong> الضواحي تجسيد للحلم الأمريكي، حيث توفر جودة حياة عالية، لكنها تعزز التقسيم الطبقي والتمييز العرقي عبر آليات السوق والتخطيط الحضري.</div>
+                        </li>
+                    </ul>
+                    
+                    <div class="Tests-Hub-detail-note">✍️ <strong>تذكير بالنقطتين الإضافيتين:</strong> تُمنح للتلميذ الذي ينظم إجابته في فقرات منفصلة، يستخدم لغة سليمة، ويحرص على تسلسل الأفكار (تقديم → عوامل → مظاهر). كما يُشترط وضوح الخط واستخدام علامات الترقيم المناسبة.</div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v3.4.0 (جغرافيا - نموذج مطابق للموقع)</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul class="Tests-Hub-footer-links-list"><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        (function() {
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            let correctionVisible = false;
+            
+            const TestsHub_translations = {
+                ar: { 
+                    TestsHub: { 
+                        header: { title: "الجغرافيا - فرض تأليفي عدد 3 (7 أساسي) - النموذج 1", subtitle: "الأستاذة: منية زهير | السنة الدراسية: 2010-2009", back: "العودة إلى الاختبارات", language: "العربية", print: "طباعة", pdf: "PDF", defaultPdfFileName: "Geographie_7_synthese3_modele1.pdf", errorPdfCapture: "حدث خطأ أثناء إنشاء ملف PDF." },
+                        loading: { message: "جاري التحميل..." },
+                        theme: { toggle: "الوضع الليلي" },
+                        footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v3.4.0" },
+                        presentation: { line1: "🌍 فرض تأليفي عدد 3 - جغرافيا - سابعة أساسي (النموذج 1) 2010-2009", line2: "👩‍🏫 الأستاذة: منية زهير", line3: "📅 السنة الدراسية: 2010/2009", line4: "📚 المستوى: 7 أساسي", line5: "🏫 المؤسسة: المدرسة الإعدادية بالسواسي" },
+                        showCorrection: "إظهار الإصلاح", hideCorrection: "إخفاء الإصلاح", imageSaveButton: "صورة", errorImageCapture: "حدث خطأ أثناء إنشاء الصورة.", defaultImageFileName: "فرض_جغرافيا_7_نموذج1"
+                    } 
+                },
+                fr: { 
+                    TestsHub: { 
+                        header: { title: "Géographie - Devoir Synthèse N°3 (7ème) - Modèle 1", subtitle: "Prof: Mounia Zouhair | Année: 2009-2010", back: "Retour", language: "Français", print: "Imprimer", pdf: "PDF", defaultPdfFileName: "Geographie_7_synthese3_modele1.pdf", errorPdfCapture: "Erreur lors de la création du PDF." },
+                        loading: { message: "Chargement..." },
+                        theme: { toggle: "Mode sombre" },
+                        footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions", privacy: "Confidentialité", developerName: "Ziad Mejri", versionNumber: "v3.4.0" },
+                        presentation: { line1: "🌍 Devoir Synthèse N°3 - Géographie - 7ème (Modèle 1) 2009-2010", line2: "👩‍🏫 Prof: Mounia Zouhair", line3: "📅 Année: 2009/2010", line4: "📚 Niveau: 7ème", line5: "🏫 Établissement: Collège El Souassi" },
+                        showCorrection: "Afficher correction", hideCorrection: "Cacher correction", imageSaveButton: "Image", errorImageCapture: "Erreur création image.", defaultImageFileName: "Devoir_Geo_7_modele1"
+                    } 
+                },
+                en: { 
+                    TestsHub: { 
+                        header: { title: "Geography - Synthesis Test N°3 (Grade 7) - Model 1", subtitle: "Teacher: Mounia Zouhair | Year: 2009-2010", back: "Back", language: "English", print: "Print", pdf: "PDF", defaultPdfFileName: "Geography_Grade7_Synthesis3_Model1.pdf", errorPdfCapture: "Error creating PDF." },
+                        loading: { message: "Loading..." },
+                        theme: { toggle: "Dark Mode" },
+                        footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy", developerName: "Ziad Mejri", versionNumber: "v3.4.0" },
+                        presentation: { line1: "🌍 Synthesis Test N°3 - Geography - 7th Grade (Model 1) 2009-2010", line2: "👩‍🏫 Teacher: Mounia Zouhair", line3: "📅 Year: 2009/2010", line4: "📚 Grade: 7", line5: "🏫 School: El Souassi Prep School" },
+                        showCorrection: "Show correction", hideCorrection: "Hide correction", imageSaveButton: "Image", errorImageCapture: "Error creating image.", defaultImageFileName: "Geo_Grade7_Model1"
+                    } 
+                }
+            };
+            
+            function updateTextContent() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.textContent = current;
+                });
+                updateThemeToggleText();
+                updateToggleButtonText();
+            }
+            function updateThemeToggleText() {
+                const themeSpan = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeSpan) themeSpan.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            function updateToggleButtonText() {
+                const toggleText = document.getElementById('toggleCorrectionText');
+                if (toggleText) toggleText.textContent = correctionVisible ? TestsHub_translations[currentLanguage].TestsHub.hideCorrection : TestsHub_translations[currentLanguage].TestsHub.showCorrection;
+            }
+            function toggleTheme() { isDarkTheme = !isDarkTheme; document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme); updateThemeToggleText(); localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light'); }
+            function changeLanguage(lang) {
+                if (!TestsHub_translations[lang]) return;
+                currentLanguage = lang;
+                updateTextContent();
+                document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+                localStorage.setItem('testsHubLanguage', lang);
+            }
+            function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
+            function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
+            
+            function getCleanCloneForCapture(element) {
+                const clone = element.cloneNode(true);
+                clone.querySelectorAll('.Tests-Hub-header-controls, .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle, .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button').forEach(el => el.remove());
+                clone.querySelectorAll('.Tests-Hub-answer-input').forEach(div => {
+                    const ta = div.querySelector('textarea');
+                    if (ta) {
+                        const placeholder = document.createElement('div');
+                        placeholder.style.borderBottom = '1px dashed #888';
+                        placeholder.style.minHeight = '2em';
+                        placeholder.style.marginBottom = '10px';
+                        placeholder.style.padding = '5px';
+                        placeholder.style.backgroundColor = '#f9f9f9';
+                        placeholder.style.borderRadius = '4px';
+                        placeholder.textContent = '_________________________';
+                        div.innerHTML = '';
+                        div.appendChild(placeholder);
+                    }
+                    const inp = div.querySelector('input');
+                    if (inp && inp.type === 'text') {
+                        const placeholder = document.createElement('div');
+                        placeholder.style.borderBottom = '1px dashed #888';
+                        placeholder.style.minHeight = '2em';
+                        placeholder.style.marginBottom = '10px';
+                        placeholder.style.padding = '5px';
+                        placeholder.style.backgroundColor = '#f9f9f9';
+                        placeholder.style.borderRadius = '4px';
+                        placeholder.textContent = '_________________________';
+                        div.innerHTML = '';
+                        div.appendChild(placeholder);
+                    }
+                });
+                // replace radio groups with visible checkmarks
+                clone.querySelectorAll('.Tests-Hub-radio-group').forEach(rg => {
+                    rg.innerHTML = '✓';
+                    rg.style.display = 'block';
+                    rg.style.textAlign = 'center';
+                    rg.style.fontSize = '1.3rem';
+                    rg.style.fontWeight = 'bold';
+                    rg.style.color = '#2e7d32';
+                });
+                return clone;
+            }
+            
+            function drawCityDiagram(containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                container.innerHTML = '';
+                const svgNS = "http://www.w3.org/2000/svg";
+                const width = 450, height = 450;
+                const svg = document.createElementNS(svgNS, "svg");
+                svg.setAttribute("width", width);
+                svg.setAttribute("height", height);
+                svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+                const centerX = width/2, centerY = height/2;
+                const radii = [70, 135, 200];
+                const labels = ["حي الأعمال", "حي الأقليات", "ضاحية سكن راق"];
+                const colors = ["#ffd966cc", "#e6b8a2cc", "#b6d7a8cc"];
+                for (let i = 0; i < radii.length; i++) {
+                    const circle = document.createElementNS(svgNS, "circle");
+                    circle.setAttribute("cx", centerX);
+                    circle.setAttribute("cy", centerY);
+                    circle.setAttribute("r", radii[i]);
+                    circle.setAttribute("fill", colors[i]);
+                    circle.setAttribute("stroke", "#5f8b4c");
+                    circle.setAttribute("stroke-width", "2.5");
+                    svg.appendChild(circle);
+                }
+                for (let ang = 0; ang < 360; ang += 45) {
+                    const rad = ang * Math.PI/180;
+                    const x2 = centerX + 210 * Math.cos(rad);
+                    const y2 = centerY + 210 * Math.sin(rad);
+                    const line = document.createElementNS(svgNS, "line");
+                    line.setAttribute("x1", centerX);
+                    line.setAttribute("y1", centerY);
+                    line.setAttribute("x2", x2);
+                    line.setAttribute("y2", y2);
+                    line.setAttribute("stroke", "#9cbb8c");
+                    line.setAttribute("stroke-width", "0.8");
+                    line.setAttribute("stroke-dasharray", "4 4");
+                    svg.appendChild(line);
+                }
+                for (let i = 0; i < radii.length; i++) {
+                    const text = document.createElementNS(svgNS, "text");
+                    text.setAttribute("x", centerX);
+                    text.setAttribute("y", centerY - radii[i] + (i===0?20: i===1?28:32));
+                    text.setAttribute("text-anchor", "middle");
+                    text.setAttribute("font-size", i===0?"14":"13");
+                    text.setAttribute("font-weight", "bold");
+                    text.setAttribute("fill", "#2c5e2e");
+                    text.textContent = labels[i];
+                    svg.appendChild(text);
+                }
+                const centerDot = document.createElementNS(svgNS, "circle");
+                centerDot.setAttribute("cx", centerX);
+                centerDot.setAttribute("cy", centerY);
+                centerDot.setAttribute("r", "6");
+                centerDot.setAttribute("fill", "#b95f2b");
+                centerDot.setAttribute("stroke", "white");
+                centerDot.setAttribute("stroke-width", "1.5");
+                svg.appendChild(centerDot);
+                container.appendChild(svg);
+                const legend = document.createElement("div");
+                legend.className = "Tests-Hub-legend-note";
+                legend.innerHTML = "🔵 المركز: حي الأعمال (CBD) &nbsp;&nbsp;|&nbsp;&nbsp; 🟠 الحزام الأول: حي الأقليات &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 الحزام الثاني: ضاحية سكن راق";
+                container.appendChild(legend);
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLanguage = localStorage.getItem('testsHubLanguage');
+                if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+                if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+                else document.documentElement.dir = 'ltr';
+                updateTextContent();
+                if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
+                drawCityDiagram('city-diagram');
+                
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); }));
+                document.getElementById('printDownloadBtn').addEventListener('click', () => window.print());
+                
+                document.getElementById('pdfDownloadBtn').addEventListener('click', async function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const body = document.body;
+                    const originalDisplay = correctionSection.style.display;
+                    correctionSection.style.display = 'none';
+                    body.classList.add('Tests-Hub-print-mode');
+                    showLoading();
+                    try {
+                        const testClone = getCleanCloneForCapture(mainContainer);
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                        tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                        tempDiv.appendChild(testClone);
+                        document.body.appendChild(tempDiv);
+                        const testCanvas = await html2canvas(tempDiv, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                        document.body.removeChild(tempDiv);
+                        let correctionCanvas = null;
+                        if (correctionSection) {
+                            correctionSection.style.display = 'block';
+                            await new Promise(r => setTimeout(r, 50));
+                            const corrClone = getCleanCloneForCapture(correctionSection);
+                            const tempCorr = document.createElement('div');
+                            tempCorr.style.position = 'absolute'; tempCorr.style.left = '-9999px'; tempCorr.style.width = mainContainer.offsetWidth + 'px';
+                            tempCorr.style.backgroundColor = '#ffffff'; tempCorr.style.padding = '20px';
+                            tempCorr.appendChild(corrClone);
+                            document.body.appendChild(tempCorr);
+                            correctionCanvas = await html2canvas(tempCorr, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                            document.body.removeChild(tempCorr);
+                        }
+                        correctionSection.style.display = originalDisplay;
+                        body.classList.remove('Tests-Hub-print-mode');
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+                        const pageWidth = pdf.internal.pageSize.getWidth();
+                        const pageHeight = pdf.internal.pageSize.getHeight();
+                        const topMargin = 30, bottomMargin = 30;
+                        const contentHeight = pageHeight - topMargin - bottomMargin;
+                        const fileName = TestsHub_translations[currentLanguage].TestsHub.header.defaultPdfFileName;
+                        const headerFileName = fileName.replace(/\.pdf$/i, '');
+                        const getSlices = (canvas) => {
+                            const scale = pageWidth / canvas.width;
+                            const sliceCanvasHeight = contentHeight / scale;
+                            const slices = []; let y = 0;
+                            while (y < canvas.height) { const h = Math.min(sliceCanvasHeight, canvas.height - y); slices.push({ y, height: h }); y += h; }
+                            return slices;
+                        };
+                        const addHeaderFooter = (pageNum, total) => { pdf.setFontSize(12); pdf.setTextColor(40,40,40); pdf.text(headerFileName, pageWidth/2, topMargin/2, { align: 'center' }); pdf.setFontSize(10); pdf.text(`${currentLanguage==='ar'?'صفحة':'Page'} ${pageNum} / ${total}`, pageWidth/2, pageHeight - bottomMargin/2, { align: 'center' }); pdf.line(40, topMargin-2, pageWidth-40, topMargin-2); pdf.line(40, pageHeight-bottomMargin+2, pageWidth-40, pageHeight-bottomMargin+2); };
+                        const testSlices = getSlices(testCanvas);
+                        const corrSlices = correctionCanvas ? getSlices(correctionCanvas) : [];
+                        let pageCounter = 1, total = testSlices.length + corrSlices.length;
+                        testSlices.forEach((slice,i) => { if(i!==0) pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = testCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(testCanvas, 0, slice.y, testCanvas.width, slice.height, 0, 0, testCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/testCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        corrSlices.forEach((slice,i) => { pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = correctionCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(correctionCanvas, 0, slice.y, correctionCanvas.width, slice.height, 0, 0, correctionCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/correctionCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        pdf.save(fileName);
+                    } catch(e) { console.error(e); alert(TestsHub_translations[currentLanguage].TestsHub.header.errorPdfCapture); correctionSection.style.display = originalDisplay; body.classList.remove('Tests-Hub-print-mode'); } finally { hideLoading(); }
+                });
+                
+                document.getElementById('imageSaveBtn').addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const wasHidden = correctionSection && correctionSection.style.display === 'none';
+                    if (wasHidden) correctionSection.style.display = 'block';
+                    showLoading();
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const clone = getCleanCloneForCapture(mainContainer);
+                    const tempDiv = document.createElement('div');
+                    tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                    tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                    tempDiv.appendChild(clone);
+                    document.body.appendChild(tempDiv);
+                    html2canvas(tempDiv, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                        document.body.removeChild(tempDiv);
+                        const link = document.createElement('a');
+                        link.download = TestsHub_translations[currentLanguage].TestsHub.defaultImageFileName + '.png';
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                        if (wasHidden) correctionSection.style.display = 'none';
+                    }).catch(e => { alert(TestsHub_translations[currentLanguage].TestsHub.errorImageCapture); document.body.removeChild(tempDiv); if (wasHidden) correctionSection.style.display = 'none'; }).finally(() => hideLoading());
+                });
+                
+                const toggleBtn = document.getElementById('toggleCorrectionBtn');
+                const correctionSection = document.getElementById('correction-section');
+                if (toggleBtn && correctionSection) {
+                    toggleBtn.addEventListener('click', function() {
+                        correctionVisible = !correctionVisible;
+                        correctionSection.style.display = correctionVisible ? 'block' : 'none';
+                        updateToggleButtonText();
+                        document.getElementById('toggleCorrectionIcon').textContent = correctionVisible ? '👁️‍🗨️' : '👁️';
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

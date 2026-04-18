@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة N°3 - فيزياء (7ème)</title>
+    
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#f97316">
+    <meta name="description" content="فرض مراقبة عدد 3 في الفيزياء - السنة السابعة أساسي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فيزياء">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #7c2d12 0%, #9a3412 100%);
+            color: #fff7ed;
+        }
+        
+        /* Header - ORANGE palette */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #f97316, #fb923c);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #7c2d12, #ea580c, #f97316);
+        }
+        
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .Tests-Hub-language-selector { position: relative; }
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-button:hover { background: rgba(255, 255, 255, 0.25); }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown { display: block; }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover { background: #f0f0f0; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown { background: #9a3412; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option { color: #fff7ed; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover { background: #c2410c; }
+        
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-theme-toggle:hover { background: rgba(255, 255, 255, 0.25); }
+        
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        /* Main */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #f97316, #fb923c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #7c2d12, #ea580c);
+        }
+        
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: background 0.3s, color 0.3s;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #9a3412;
+            color: #fff7ed;
+        }
+        .Tests-Hub-test-section h2 {
+            color: #f97316;
+            border-bottom: 2px solid #fb923c;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 { color: #fdba74; }
+        .Tests-Hub-test-section h3 {
+            color: #fb923c;
+            margin: 1.5rem 0 1rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 { color: #fed7aa; }
+        
+        .Tests-Hub-instructions {
+            background: #fff7ed;
+            padding: 1rem;
+            border-right: 4px solid #f97316;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #7c2d12;
+            border-right-color: #fb923c;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            text-align: right;
+        }
+        th {
+            background: #f97316;
+            color: white;
+        }
+        .Tests-Hub-dark-theme th { background: #7c2d12; }
+        tr:nth-child(even) { background: #f8fafc; }
+        .Tests-Hub-dark-theme tr:nth-child(even) { background: #c2410c; }
+        .Tests-Hub-dark-theme td { border-color: #ea580c; }
+        
+        .Tests-Hub-answer-textarea, .Tests-Hub-table-textarea, .Tests-Hub-large-textarea {
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        .Tests-Hub-answer-textarea { min-width: 100px; height: 30px; }
+        .Tests-Hub-table-textarea { width: 100%; height: 30px; }
+        .Tests-Hub-large-textarea { width: 100%; min-height: 80px; margin-top: 8px; }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            background: #7c2d12;
+            border-color: #fb923c;
+            color: #fff7ed;
+        }
+        
+        .Tests-Hub-question { margin: 1.2rem 0; }
+        .Tests-Hub-question-number { font-weight: bold; color: #f97316; }
+        .Tests-Hub-dark-theme .Tests-Hub-question-number { color: #fdba74; }
+        
+        .Tests-Hub-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-image-container { background: #c2410c; }
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption { color: #fed7aa; }
+        
+        /* Canvas styles */
+        .Tests-Hub-canvas-box {
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 15px 0;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-canvas-box { background: #7c2d12; }
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+        
+        /* Correction */
+        .Tests-Hub-correction-toggle-container { text-align: center; margin: 2rem 0; }
+        .Tests-Hub-toggle-button {
+            background: linear-gradient(to left, #f97316, #fb923c);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .Tests-Hub-correction-section {
+            background: #fff7ed;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #f97316;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #7c2d12;
+            border-right-color: #fb923c;
+        }
+        .Tests-Hub-correction-answer {
+            background: rgba(249, 115, 22, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #f97316;
+        }
+        .Tests-Hub-hidden { display: none; }
+        
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #f97316, #fb923c);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #7c2d12, #ea580c, #f97316);
+        }
+        .Tests-Hub-footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .Tests-Hub-footer-columns { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+        .Tests-Hub-footer-column h3 { color: #FDE68A; margin-bottom: 1rem; }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number { font-weight: 600; color: #FDE68A; }
+        .Tests-Hub-footer-link { color: #FDE68A; text-decoration: none; }
+        
+        /* Download buttons */
+        .Tests-Hub-download-buttons {
+            display: flex; justify-content: center; gap: 20px;
+            margin: 2.5rem 0; padding: 1.5rem;
+            background: rgba(249,115,22,0.1); border-radius: 12px;
+        }
+        .Tests-Hub-download-button {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-width: 100px; height: 100px; border: none; border-radius: 12px;
+            font-weight: 600; font-size: 1.1rem; cursor: pointer; color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .Tests-Hub-download-button.pdf { background: linear-gradient(135deg, #dc2626, #ef4444); }
+        .Tests-Hub-download-button.odt { background: linear-gradient(135deg, #f97316, #fb923c); }
+        .Tests-Hub-download-button.png { background: linear-gradient(135deg, #fb923c, #fdba74); }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content { flex-direction: column; }
+            .Tests-Hub-footer-columns { grid-template-columns: 1fr; }
+            .Tests-Hub-download-buttons { flex-direction: column; align-items: center; }
+            .Tests-Hub-download-button { width: 80%; flex-direction: row; justify-content: flex-start; padding: 1rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.physicsTest.title">الفيزياء - فرض مراقبة N°3</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.physicsTest.subtitle">السابعة أساسي</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button"><span>→</span><span data-i18n="TestsHub.physicsTest.back">العودة</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.language.current">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar"><span>🌐</span> العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr"><span>🌐</span> Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en"><span>🌐</span> English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span></button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض مراقبة عدد 3 في العلوم الفيزيائية</h1>
+            <p>المدرسة الإعدادية العلا - الحبيب | الأستاذ: زهير الهمادي</p>
+            <p>السنة الدراسية: 2015-2016 | المدة: ساعة واحدة</p>
+            <p>Devoir de Contrôle N°3 - Physique - 7ème</p>
+        </div>
+        
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات</h3>
+            <ul><li>الإجابة على جميع التمارين</li><li>الوضوح والدقة مطلوبان</li></ul>
+        </div>
+        
+        <!-- EXERCICE 1 -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 1 (7 نقاط)</h2>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> أكمل الجدول بالكلمات: النحاس - الفضة - الفولاذ - الخشب - الحديد - القصدير</p>
+                <table>
+                    <tr><th>أجسام يجذبها المغنط</th><th>أجسام لا يجذبها المغنط</th></tr>
+                    <tr><td><textarea class="Tests-Hub-table-textarea" placeholder="أكتب هنا..."></textarea></td><td><textarea class="Tests-Hub-table-textarea" placeholder="أكتب هنا..."></textarea></td></tr>
+                    <tr><td><textarea class="Tests-Hub-table-textarea" placeholder="..."></textarea></td><td><textarea class="Tests-Hub-table-textarea" placeholder="..."></textarea></td></tr>
+                </table>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> صحيح أو خطأ:</p>
+                <ul style="list-style:none;">
+                    <li>• بعيدا عن التأثيرات المغناطيسية تأخذ الإبرة الممغنطة اتجاه شمال-جنوب <textarea class="Tests-Hub-answer-textarea" placeholder="صحيح/خطأ"></textarea></li>
+                    <li>• يجذب القطب الشمالي للمغنط القطب الشمالي للإبرة <textarea class="Tests-Hub-answer-textarea" placeholder="صحيح/خطأ"></textarea></li>
+                    <li>• يشتد التأثير المغناطيسي كلما ابتعدنا عن طرفي المغنط <textarea class="Tests-Hub-answer-textarea" placeholder="صحيح/خطأ"></textarea></li>
+                    <li>• يمكن فصل قطبي مغنط عن بعضهما <textarea class="Tests-Hub-answer-textarea" placeholder="صحيح/خطأ"></textarea></li>
+                    <li>• يتمغنط النحاس بالاحتكاك <textarea class="Tests-Hub-answer-textarea" placeholder="صحيح/خطأ"></textarea></li>
+                </ul>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3-</span> مغنطان لكل منهما قطبان A , A' و B , B'</p>
+                <p>1. أتمم الجدول (تجاذب / تنافر):</p>
+                <table style="width:auto;">
+                    <tr><th></th><th>B</th><th>B'</th></tr>
+                    <tr><td>A</td><td><textarea class="Tests-Hub-table-textarea" style="width:80px;"></textarea></td><td><textarea class="Tests-Hub-table-textarea" style="width:80px;"></textarea></td></tr>
+                    <tr><td>A'</td><td><textarea class="Tests-Hub-table-textarea" style="width:80px;"></textarea></td><td>يجذب</td></tr>
+                </table>
+                <p>2. إذا كان A جنوبي، حدد الأقطاب: B' = <textarea class="Tests-Hub-answer-textarea"></textarea> , B = <textarea class="Tests-Hub-answer-textarea"></textarea> , A' = <textarea class="Tests-Hub-answer-textarea"></textarea></p>
+            </div>
+        </div>
+        
+        <!-- EXERCICE 2 -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 2 (13 نقطة)</h2>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> تأمل التجربة:</p>
+                <div class="Tests-Hub-image-container">
+                    <canvas id="magnetismExpCanvas" width="500" height="200" style="width:100%; height:auto; background:#fefce8;"></canvas>
+                    <div class="Tests-Hub-image-caption">مغنط – حديد لين – حديد صلب – برادة الحديد</div>
+                </div>
+                <p>أ. نوع التمغنط: <textarea class="Tests-Hub-large-textarea" placeholder="..."></textarea></p>
+                <p>ب. خاصية تمغنط الحديد الصلب: <textarea class="Tests-Hub-large-textarea" placeholder="..."></textarea></p>
+                <p>ج. خاصية تمغنط الحديد اللين: <textarea class="Tests-Hub-large-textarea" placeholder="..."></textarea></p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> ثلاثة مغانط (A,A') , (B,B') , (C,C')</p>
+                <div class="Tests-Hub-image-container">
+                    <canvas id="threeMagnetsCanvas" width="500" height="180" style="width:100%; height:auto; background:#fefce8;"></canvas>
+                    <div class="Tests-Hub-image-caption">تفاعل الأقطاب</div>
+                </div>
+                <p>أ. هل القطبان A و B من نفس النوع؟ <textarea class="Tests-Hub-answer-textarea"></textarea></p>
+                <p>ب. هل القطبان A و C من نفس النوع؟ <textarea class="Tests-Hub-answer-textarea"></textarea></p>
+                <p>ج. أكمل الجدول (تجاذب/تنافر):</p>
+                <table style="width:auto;">
+                    <tr><th></th><th>B</th><th>B'</th><th>C</th><th>C'</th></tr>
+                    <tr><td>A</td><td><textarea class="Tests-Hub-table-textarea"></textarea></td><td><textarea class="Tests-Hub-table-textarea"></textarea></td><td><textarea class="Tests-Hub-table-textarea"></textarea></td><td><textarea class="Tests-Hub-table-textarea"></textarea></td></tr>
+                    <tr><td>A'</td><td><textarea class="Tests-Hub-table-textarea"></textarea></td><td><textarea class="Tests-Hub-table-textarea"></textarea></td><td><textarea class="Tests-Hub-table-textarea"></textarea></td><td><textarea class="Tests-Hub-table-textarea"></textarea></td></tr>
+                </table>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3-</span> حك سلك معدني بمغنط فانجذبت إليه برادة الحديد.</p>
+                <p>اسم الطريقة: <textarea class="Tests-Hub-large-textarea" placeholder="..."></textarea></p>
+            </div>
+        </div>
+        
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">عرض التصحيح</button>
+        </div>
+        
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>تصحيح الفرض</h2>
+            <h3>التمرين 1</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1-</strong> يجذبها المغنط: الفولاذ، الحديد. لا يجذبها: النحاس، الفضة، الخشب، القصدير.</p>
+                <p><strong>2-</strong> صحيح / خطأ / خطأ / خطأ / خطأ</p>
+                <p><strong>3-</strong> الجدول: A مع B' تنافر، A مع B تجاذب (إذا A' مع B' يجذب). وبما أن A جنوبي فإن A' شمالي. B' يجذب A' إذن B' جنوبي، B شمالي.</p>
+            </div>
+            <h3>التمرين 2</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1-</strong> أ. تمغنط باللمس (أو تمغنط مؤقت). ب. الحديد الصلب يحتفظ بالمغنطة (مغنطة دائمة). ج. الحديد اللين يفقد المغنطة بسرعة (مغنطة مؤقتة).</p>
+                <div class="Tests-Hub-image-container">
+                    <canvas id="correctionMagnetismExpCanvas" width="500" height="200" style="width:100%; height:auto; background:#fefce8;"></canvas>
+                    <div class="Tests-Hub-image-caption">التجربة مع الشرح</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2-</strong> من الرسم: A و A' متنافران مع B' ، إذا A و B مختلفان. A و C متنافران (مختلفان). الجدول حسب الرسم: A مع B' تنافر، A مع C تنافر، A مع C' تجاذب ... إلخ.</p>
+                <div class="Tests-Hub-image-container">
+                    <canvas id="correctionThreeMagnetsCanvas" width="500" height="180" style="width:100%; height:auto; background:#fefce8;"></canvas>
+                </div>
+                <p><strong>3-</strong> التمغنط بالاحتكاك (أو الدلك).</p>
+            </div>
+        </div>
+        
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3>المطور</h3><p class="Tests-Hub-developer-name">زياد الماجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3>الإصدار</h3><p class="Tests-Hub-version-number">v2.0.6</p></div>
+                <div class="Tests-Hub-footer-column"><h3>روابط</h3><a href="#" class="Tests-Hub-footer-link">شروط الاستخدام</a></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        (function(){
+            // ---------- CANVAS DRAWING ----------
+            function drawMagnetismExperiment(ctx, width, height, isCorrection = false) {
+                ctx.clearRect(0,0,width,height);
+                // magnet
+                ctx.fillStyle = '#b91c1c'; ctx.fillRect(50,70,120,40);
+                ctx.fillStyle = '#1e3a8a'; ctx.fillRect(170,70,120,40);
+                ctx.fillStyle = '#333'; ctx.font = 'bold 14px Arial';
+                ctx.fillStyle = 'white'; ctx.fillText('N', 90,95); ctx.fillText('S', 230,95);
+                // soft iron (right)
+                ctx.fillStyle = '#9ca3af'; ctx.fillRect(320,75,80,30);
+                ctx.fillStyle = 'black'; ctx.font = '12px Arial'; ctx.fillText('حديد لين', 330,65);
+                // hard iron (left)
+                ctx.fillStyle = '#6b7280'; ctx.fillRect(0,75,40,30);
+                ctx.fillText('حديد صلب', 2,65);
+                // filings pattern
+                ctx.strokeStyle = '#a16207'; ctx.lineWidth = 1.5;
+                for(let i=0;i<8;i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(180 + i*15, 120); ctx.lineTo(200 + i*10, 140);
+                    ctx.stroke();
+                }
+                if(isCorrection) {
+                    ctx.fillStyle = '#075985'; ctx.font = 'bold 13px Arial';
+                    ctx.fillText('تمغنط باللمس', 150,170);
+                }
+            }
+            
+            function drawThreeMagnets(ctx, width, height, isCorrection = false) {
+                ctx.clearRect(0,0,width,height);
+                // magnet 1 (A,A')
+                ctx.fillStyle = '#b91c1c'; ctx.fillRect(30,50,60,25);
+                ctx.fillStyle = '#1e3a8a'; ctx.fillRect(90,50,60,25);
+                ctx.fillStyle = 'white'; ctx.font = 'bold 12px Arial';
+                ctx.fillText('A', 45,67); ctx.fillText("A'", 105,67);
+                // magnet 2 (B,B')
+                ctx.fillStyle = '#b91c1c'; ctx.fillRect(200,50,60,25);
+                ctx.fillStyle = '#1e3a8a'; ctx.fillRect(260,50,60,25);
+                ctx.fillText('B', 215,67); ctx.fillText("B'", 275,67);
+                // magnet 3 (C,C')
+                ctx.fillStyle = '#b91c1c'; ctx.fillRect(370,50,60,25);
+                ctx.fillStyle = '#1e3a8a'; ctx.fillRect(430,50,60,25);
+                ctx.fillText('C', 385,67); ctx.fillText("C'", 445,67);
+                // interactions
+                ctx.strokeStyle = '#0f172a'; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(150,40); ctx.lineTo(200,40); ctx.stroke();
+                ctx.fillStyle = '#dc2626'; ctx.font = 'bold 14px Arial';
+                ctx.fillText('تنافر', 155,35);
+                ctx.beginPath(); ctx.moveTo(320,40); ctx.lineTo(370,40); ctx.stroke();
+                ctx.fillText('تجاذب', 325,35);
+                if(isCorrection) {
+                    ctx.fillStyle = '#075985'; ctx.font = 'bold 12px Arial';
+                    ctx.fillText('A و B مختلفان', 80,110);
+                    ctx.fillText('A و C متنافران ← مختلفان', 280,110);
+                }
+            }
+            
+            const canvases = [
+                {id:'magnetismExpCanvas', correction:false},
+                {id:'threeMagnetsCanvas', correction:false},
+                {id:'correctionMagnetismExpCanvas', correction:true},
+                {id:'correctionThreeMagnetsCanvas', correction:true}
+            ];
+            canvases.forEach(c => {
+                const canvas = document.getElementById(c.id);
+                if(canvas) {
+                    const ctx = canvas.getContext('2d');
+                    const w = canvas.width, h = canvas.height;
+                    if(c.id.includes('Magnetism')) drawMagnetismExperiment(ctx, w, h, c.correction);
+                    else drawThreeMagnets(ctx, w, h, c.correction);
+                }
+            });
+            
+            // ---------- TRANSLATION & THEME ----------
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            const translations = {
+                ar: { TestsHub: { physicsTest: { title:"الفيزياء - فرض مراقبة N°3", subtitle:"السابعة أساسي", back:"العودة", showCorrection:"عرض التصحيح", hideCorrection:"إخفاء التصحيح", download:{ pdf:"PDF", odt:"ODT", png:"PNG" }, comingSoon:"قريباً" } , language:{current:"العربية"}, theme:{toggle:"الوضع المظلم"}, footer:{developer:"المطور",version:"الإصدار",links:"الروابط"} } },
+                fr: { TestsHub: { physicsTest: { title:"Physique - Contrôle N°3", subtitle:"7ème", back:"Retour", showCorrection:"Afficher", hideCorrection:"Masquer", download:{ pdf:"PDF", odt:"ODT", png:"PNG" }, comingSoon:"Bientôt" } , language:{current:"Français"}, theme:{toggle:"Mode sombre"}, footer:{developer:"Développeur",version:"Version"} } },
+                en: { TestsHub: { physicsTest: { title:"Physics - Test N°3", subtitle:"7th Grade", back:"Back", showCorrection:"Show", hideCorrection:"Hide", download:{ pdf:"PDF", odt:"ODT", png:"PNG" }, comingSoon:"Soon" } , language:{current:"English"}, theme:{toggle:"Dark mode"}, footer:{developer:"Developer",version:"Version"} } }
+            };
+            
+            function updateUIText() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    let val = key.split('.').reduce((o,k)=> o?.[k], translations[currentLanguage]?.TestsHub);
+                    if(typeof val === 'string') el.textContent = val;
+                });
+                const btn = document.getElementById('toggleCorrection');
+                if(btn) btn.textContent = document.getElementById('correction').classList.contains('Tests-Hub-hidden') ? 
+                    translations[currentLanguage].TestsHub.physicsTest.showCorrection : translations[currentLanguage].TestsHub.physicsTest.hideCorrection;
+                document.getElementById('themeIcon').textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            
+            function toggleTheme() {
+                isDarkTheme = !isDarkTheme;
+                document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+                localStorage.setItem('testsHubTheme', isDarkTheme?'dark':'light');
+                updateUIText();
+            }
+            
+            document.addEventListener('DOMContentLoaded', ()=>{
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if(savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLang = localStorage.getItem('testsHubLanguage') || 'ar';
+                currentLanguage = savedLang; document.documentElement.lang = savedLang; document.documentElement.dir = savedLang==='ar'?'rtl':'ltr';
+                updateUIText();
+                
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                    opt.addEventListener('click', ()=>{
+                        const lang = opt.dataset.language;
+                        currentLanguage = lang;
+                        document.documentElement.lang = lang;
+                        document.documentElement.dir = lang==='ar'?'rtl':'ltr';
+                        localStorage.setItem('testsHubLanguage', lang);
+                        updateUIText();
+                    });
+                });
+                
+                const corrBtn = document.getElementById('toggleCorrection');
+                const corrSec = document.getElementById('correction');
+                corrBtn.addEventListener('click', ()=>{
+                    corrSec.classList.toggle('Tests-Hub-hidden');
+                    corrBtn.textContent = corrSec.classList.contains('Tests-Hub-hidden') ? 
+                        translations[currentLanguage].TestsHub.physicsTest.showCorrection : translations[currentLanguage].TestsHub.physicsTest.hideCorrection;
+                });
+                
+                ['Pdf','Odt','Png'].forEach(type => {
+                    document.getElementById(`download${type}`).addEventListener('click', ()=> alert(translations[currentLanguage].TestsHub.physicsTest.comingSoon));
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

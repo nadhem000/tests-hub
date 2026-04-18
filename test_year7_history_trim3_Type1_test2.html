@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التاريخ - فرض مراقبة عدد 3 (7 أساسي) - النموذج 2 (2023-2024)</title>
+    
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#2c5e2e">
+    <meta name="description" content="فرض مراقبة عدد 3 في التاريخ - السنة السابعة أساسي - النموذج 2 (2023-2024)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - تاريخ 7 (نموذج2)">
+    
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <script src="html2canvas.min.js"></script>
+    <script src="jspdf.umd.min.js"></script>
+    
+    <style>
+        /* ========== نفس الأنماط السابقة مع الحفاظ على الهوية ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e8f0e5 0%, #cbdcc7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #2d3e2b;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e2a1c 0%, #2c3a24 100%);
+            color: #e9f5e1;
+        }
+        
+        .Tests-Hub-header-container {
+            background: linear-gradient(135deg, #2b6e4f, #1e5a3c, #144d30);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(135deg, #14381f, #265e3a, #3b7a53);
+        }
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-back-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #2d3e2b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover {
+            background: #d0e2c4;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2c3a24;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #e9f5e1;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #4f7a4a;
+        }
+        .Tests-Hub-theme-toggle, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-footer-container {
+            background: linear-gradient(135deg, #2b6e4f, #1e5a3c, #144d30);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(135deg, #14381f, #265e3a, #3b7a53);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #e0f0da;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #fed7aa;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        :root {
+            --Tests-Hub-bg-start: #e8f0e5;
+            --Tests-Hub-bg-end: #cbdcc7;
+            --Tests-Hub-card-bg: rgba(248, 252, 240, 0.92);
+            --Tests-Hub-card-shadow-1: rgba(38, 66, 37, 0.2);
+            --Tests-Hub-card-shadow-2: rgba(255, 255, 240, 0.9);
+            --Tests-Hub-card-border: rgba(210, 230, 190, 0.9);
+            --Tests-Hub-h1-color: #2b6e4f;
+            --Tests-Hub-h1-shadow-1: #eef5e9;
+            --Tests-Hub-section-title-border: #5f9e6e;
+            --Tests-Hub-section-title-color: #2b6e4f;
+            --Tests-Hub-question-list-bg: #f9fff5;
+            --Tests-Hub-question-list-border: #7fb073;
+            --Tests-Hub-question-list-color: #2c4d2a;
+            --Tests-Hub-answers-bg: #fafef5;
+            --Tests-Hub-answers-border: #8fc27e;
+            --Tests-Hub-answers-inset: #ffffff;
+            --Tests-Hub-answers-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-answers-h3-color: #2b6e4f;
+            --Tests-Hub-answers-h3-border: #6fa85c;
+            --Tests-Hub-answers-li-color: #2c4d2a;
+            --Tests-Hub-answers-strong-color: #3f7e4a;
+            --Tests-Hub-inter-note-bg: #ecf5e5;
+            --Tests-Hub-inter-note-border: #7fb073;
+            --Tests-Hub-inter-note-color: #2c3e2b;
+            --Tests-Hub-input-bg: rgba(255, 255, 245, 0.95);
+            --Tests-Hub-input-border: #bddba8;
+            --Tests-Hub-note-bg: #f1f8ea;
+            --Tests-Hub-note-border: #7aa86a;
+            --Tests-Hub-table-bg: #fefff7;
+        }
+        
+        .Tests-Hub-dark-theme {
+            --Tests-Hub-card-bg: rgba(35, 55, 30, 0.85);
+            --Tests-Hub-h1-color: #b9e6a3;
+            --Tests-Hub-section-title-color: #c8e6b5;
+            --Tests-Hub-question-list-bg: #2b4230;
+            --Tests-Hub-question-list-color: #e2f0db;
+            --Tests-Hub-answers-bg: #2c4230;
+            --Tests-Hub-answers-border: #5f9e6e;
+            --Tests-Hub-answers-li-color: #eef5e3;
+            --Tests-Hub-answers-h3-color: #cce6bd;
+            --Tests-Hub-answers-strong-color: #d4f0c4;
+            --Tests-Hub-inter-note-bg: #3a5a3c;
+            --Tests-Hub-inter-note-color: #f5fce6;
+            --Tests-Hub-input-bg: #4b6e42;
+            --Tests-Hub-input-border: #7ea872;
+            --Tests-Hub-note-bg: #365a38;
+            --Tests-Hub-note-border: #7fb073;
+            --Tests-Hub-table-bg: #314e32;
+        }
+        
+        .Tests-Hub-card {
+            max-width: 1400px;
+            width: 100%;
+            background: var(--Tests-Hub-card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 28px;
+            box-shadow: 0 30px 50px var(--Tests-Hub-card-shadow-1),
+            inset 0 2px 4px var(--Tests-Hub-card-shadow-2),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--Tests-Hub-card-border);
+        }
+        .Tests-Hub-h1 {
+            text-align: center;
+            color: var(--Tests-Hub-h1-color);
+            margin: 0 0 8px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px var(--Tests-Hub-h1-shadow-1);
+        }
+        .Tests-Hub-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding-right: 20px;
+            border-right: 8px solid var(--Tests-Hub-section-title-border);
+            color: var(--Tests-Hub-section-title-color);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        .Tests-Hub-question-list {
+            background: var(--Tests-Hub-question-list-bg);
+            padding: 1rem 1.8rem;
+            border-radius: 28px;
+            margin: 10px 0;
+            border-right: 6px solid var(--Tests-Hub-question-list-border);
+        }
+        .Tests-Hub-question-list ol, .Tests-Hub-question-list ul {
+            margin-right: 1.2rem;
+            line-height: 1.9;
+        }
+        .Tests-Hub-question-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-answers {
+            background: var(--Tests-Hub-answers-bg);
+            border-radius: 30px;
+            padding: 20px 30px;
+            border: 1px solid var(--Tests-Hub-answers-border);
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-answers-inset), 0 6px 12px var(--Tests-Hub-answers-shadow);
+            font-size: 1.1rem;
+        }
+        .Tests-Hub-answers h3 {
+            color: var(--Tests-Hub-answers-h3-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-right: 6px solid var(--Tests-Hub-answers-h3-border);
+            padding-right: 15px;
+        }
+        .Tests-Hub-answer-input {
+            margin: 10px 0 15px 5px;
+        }
+        .Tests-Hub-answer-input textarea, .Tests-Hub-answer-input input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .inline-input {
+            display: inline-block;
+            width: auto;
+            min-width: 130px;
+            margin: 0 8px;
+        }
+        .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #5f9e6e, #3f7a4a);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.4);
+            transition: transform 0.2s;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #7fb073, #5f9e6e);
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.8rem;
+        }
+        #loading-overlay .Tests-Hub-spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid #7fb073;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media print {
+            .Tests-Hub-header-container, .Tests-Hub-footer-container, .Tests-Hub-header-controls,
+            .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle,
+            .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button,
+            .Tests-Hub-answer-input, .Tests-Hub-inter-note { display: none !important; }
+            .Tests-Hub-presentation-card { display: block !important; }
+            #correction-section { display: block !important; page-break-before: always; }
+            body { background: white !important; color: black !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column {
+                backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">التاريخ - فرض مراقبة عدد 3 (7 أساسي) - النموذج 2 (2023-2024)</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">الأستاذ: غير محدد | السنة الدراسية: 2023-2024</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back"><span>←</span> <span>العودة إلى الاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.header.language">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span></button>
+                <button class="Tests-Hub-print-button" id="printDownloadBtn"><span>🖨️</span><span data-i18n="TestsHub.header.print">طباعة</span></button>
+                <button class="Tests-Hub-pdf-button" id="pdfDownloadBtn"><span>📄</span><span data-i18n="TestsHub.header.pdf">PDF</span></button>
+                <button class="Tests-Hub-image-save-button" id="imageSaveBtn" data-i18n-title="TestsHub.imageSaveButton" title="صورة"><span>🖼️</span><span data-i18n="TestsHub.imageSaveButton">صورة</span></button>
+            </div>
+        </div>
+    </header>
+    
+    <div id="loading-overlay"><div class="Tests-Hub-spinner"></div><div data-i18n="TestsHub.loading.message">جاري التحميل...</div></div>
+    
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-card Tests-Hub-presentation-card">
+            <div data-i18n="TestsHub.presentation.line1" style="font-size: 1.8rem; font-weight: 700;">📜 فرض مراقبة عدد 3 - تاريخ - سابعة أساسي (النموذج 2) 2023-2024</div>
+            <div data-i18n="TestsHub.presentation.line2" style="font-size: 1.2rem;">👨‍🏫 الأستاذ: غير محدد</div>
+            <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: 2023/2024</div>
+            <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 7 أساسي</div>
+            <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: غير محدد</div>
+            <div style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 30 دقائق</div>
+        </div>
+        
+        <div class="Tests-Hub-card">
+            <h1 class="Tests-Hub-h1">📖 التاريخ (20 نقطة)</h1>
+            
+            <section>
+                <h2 class="Tests-Hub-section-title">📌 القسم الأول: المعارف الأساسية (6 نقاط)</h2>
+                <!-- التمرين 1 : أكمل الفراغ (صيغة محايدة) -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">1) أكمل الفراغ (4 ن)</h3>
+                    <div style="font-size:1.1rem; line-height:2.5;">
+                        وُلِدَ مُحَمَّدُ بْنُ عَبْدِ اللهِ سَنَةَ 
+                        <input type="text" placeholder="السنة ..." style="width:110px; margin:0 5px;" class="inline-input"> 
+                        فِي عَامِ 
+                        <input type="text" placeholder="العام ..." style="width:140px; margin:0 5px;" class="inline-input"> 
+                        وَهُوَ يَنْتَمِي إِلَى قَبِيلَةِ 
+                        <input type="text" placeholder="القبيلة ..." style="width:140px; margin:0 5px;" class="inline-input"> 
+                        فِي مَدِينَةِ 
+                        <input type="text" placeholder="المدينة ..." style="width:130px; margin:0 5px;" class="inline-input">
+                    </div>
+                </div>
+                
+                <!-- التمرين 2 : أكتب الإجابة المناسبة (غار ...) -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">2) أكتب الإجابة المناسبة (2 ن)</h3>
+                    <p style="margin-bottom:10px;">نَزَلَ الْوَحْيُ (حَسَبَ الْمُصَادِرِ التَّارِيخِيَّةِ) عَلَى مُحَمَّدٍ فِي غَارِ : 
+                        <input type="text" placeholder="أكتب اسم الغار هنا ..." style="width:200px; margin-right:8px;" class="inline-input">
+                    </p>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="Tests-Hub-section-title">✍️ القسم الثاني: تحرير موضوعي (12 نقطة)</h2>
+                <div class="Tests-Hub-question-list">
+                    <p style="font-weight:600; margin-bottom:0.8rem;">حرّر فقرة تاريخية متكاملة (مقدمة، جوهر، خاتمة) تُبرز كيفية نشر محمد لدعوته في مكة المكرمة، مع توضيح أساليب قريش في التصدي لها، ونتائج المرحلة المكية.</p>
+                    <div class="Tests-Hub-answer-input"><textarea rows="10" placeholder="اكتب فقرتك هنا بخط واضح وجميل (مقدمة - عرض الأحداث - خاتمة)..." style="min-height:220px;"></textarea></div>
+                </div>
+            </section>
+                <h2 style="font-weight:600; margin-bottom:0.8rem;">(2 نقطة على سلامة العرض وحسن الخط)</h2>
+            
+            <div style="text-align: center;">
+                <button class="Tests-Hub-toggle-correction-btn" id="toggleCorrectionBtn">
+                    <span id="toggleCorrectionIcon">👁️</span>
+                    <span id="toggleCorrectionText" data-i18n="TestsHub.showCorrection">إظهار الإصلاح</span>
+                </button>
+            </div>
+            
+            <!-- قسم الإصلاح التفصيلي  -->
+            <section id="correction-section" style="display: none;">
+                <h2 class="Tests-Hub-section-title">✅ الإصلاح المفصّل (معلومات تاريخية موضوعية)</h2>
+                
+                <!-- إصلاح التمرين 1 : مولد محمد -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين 1 : مولد محمد بن عبد الله</h3>
+                    <ul>
+                        <li><strong>السنة:</strong> 570 ميلادية (حوالي عام 52 ق.هـ).</li>
+                        <li><strong>العام:</strong> عام الفيل (العام الذي شهد محاولة أبرهة هدم الكعبة).</li>
+                        <li><strong>القبيلة:</strong> قريش (بني هاشم).</li>
+                        <li><strong>المدينة:</strong> مكة المكرمة.</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">🔍 ولد محمد بن عبد الله في مكة، ونشأ يتيم الأب، وكان يعمل في التجارة قبل البعثة.</div>
+                </div>
+                
+                <!-- إصلاح التمرين 2 : نزول الوحي -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين 2 : مكان نزول الوحي الأول</h3>
+                    <ul>
+                        <li><strong>الإجابة الصحيحة:</strong> غار حراء (جبل النور).</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">📖 وفقاً للمصادر التاريخية، كان محمد يتعبد في غار حراء قبل البعثة، وهناك نزل عليه جبريل لأول مرة. أما غار ثور فكان ملجأه أثناء الهجرة إلى المدينة.</div>
+                </div>
+                
+                <!-- إصلاح التمرين 3 : الفقرة الإنشائية (نسخة محايدة) -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين 3 : نشر الدعوة في مكة – نموذج إجابة</h3>
+                    <div style="background:var(--Tests-Hub-inter-note-bg); border-radius: 20px; padding: 15px; margin-bottom:20px;">
+                        <p><strong>🧠 المخطط المطلوب في الإجابة:</strong></p>
+                        <ul>
+                            <li><strong>المقدمة:</strong> التعريف ببداية الدعوة في مكة بعد نزول الوحي.</li>
+                            <li><strong>الجوهر:</strong> 
+                                <ul><li>مرحلة الدعوة السرية (3 سنوات) في دار الأرقم.</li>
+                                <li>مرحلة الدعوة الجهرية بعد نزول الأمر بالتبليغ العلني.</li>
+                                <li>أساليب قريش في مقاومة الدعوة: السخرية، التعذيب (بلال، عمار، آل ياسر)، الحصار الاقتصادي على بني هاشم في شعب أبي طالب.</li>
+                                <li>هجرة بعض المسلمين إلى الحبشة هرباً من الاضطهاد.</li>
+                                <li>عام الحزن (وفاة أبي طالب وخديجة) ثم حادثة الإسراء والمعراج.</li>
+                                <li>بيعة العقبة مع الأنصار وتهيئة الهجرة إلى المدينة.</li></ul>
+                            </li>
+                            <li><strong>الخاتمة:</strong> صمود المسلمين ونجاح الدعوة في ترسيخ الإيمان رغم المعارضة، وتمهيد تأسيس نواة الدولة الإسلامية في المدينة.</li>
+                        </ul>
+                    </div>
+                    <p><strong>📖 نموذج إجابة موضوعي (مقدمة – جوهر – خاتمة):</strong></p>
+                    <div style="line-height:1.9;">
+                        <p><strong>المقدمة:</strong> بَعْدَ نُزُولِ الْوَحْيِ عَلَى مُحَمَّدِ بْنِ عَبْدِ اللهِ سَنَةَ 610 م، بَدَأَ فِي نَشْرِ الرِّسَالَةِ فِي مَكَّةَ. تَمَيَّزَتِ الْمَرْحَلَةُ الْمَكِّيَّةُ بِالتَّأْسِيسِ لِلْجَمَاعَةِ الْمُسْلِمَةِ وَالتَّعْرِيضِ لِاضْطِهَادٍ شَدِيدٍ مِنْ قُرَيْشٍ.</p>
+                        <p><strong>الجوهر:</strong> اسْتَمَرَّتِ الدَّعْوَةُ السِّرِّيَّةُ ثَلَاثَ سَنَوَاتٍ، اجْتَمَعَ فِيهَا الْمُسْلِمُونَ الْأَوَّلُونَ فِي دَارِ الْأَرْقَمِ. ثُمَّ أُمِرَ مُحَمَّدٌ بِالْجَهْرِ، فَصَعِدَ الصَّفَا وَأَعْلَنَ دَعْوَتَهُ، فَقَابَلَتْهُ قُرَيْشٌ بِالسُّخْرِيَةِ وَالْعَدَاوَةِ. تَصَاعَدَ الْإِيذَاءُ حَتَّى عُذِّبَ بَعْضُ الْمُسْتَضْعَفِينَ كَبِلَالٍ وَعَمَّارٍ، وَاسْتُشْهِدَتْ سُمَيَّةُ أُمُّ عَمَّارٍ. فَرَضَتْ قُرَيْشٌ حِصَارًا عَلَى بَنِي هَاشِمٍ فِي شِعْبِ أَبِي طَالِبٍ لِمُدَّةِ ثَلَاثِ سَنَوَاتٍ، عَانَوْا فِيهَا الْجُوعَ وَالْمَرَضَ، لَكِنَّهُمْ صَمَدُوا. هَاجَرَ فَرِيقٌ مِنَ الْمُسْلِمِينَ إِلَى الْحَبَشَةِ طَلَبًا لِلْأَمَانِ، وَرَفَضَ النَّجَاشِيُّ تَسْلِيمَهُمْ لِرُسُلِ قُرَيْشٍ. بَعْدَ رَفْعِ الْحِصَارِ، تُوُفِّيَ أَبُو طَالِبٍ وَخَدِيجَةُ (عَامُ الْحُزْنِ). وَجَاءَتْ بَيْعَتَا الْعَقَبَةِ مَعَ الْأَنْصَارِ لِتَكُونَ بِشَارَةَ الْهِجْرَةِ إِلَى الْمَدِينَةِ وَتَأْسِيسِ دَوْلَةِ الْمَدِينَةِ.</p>
+                        <p><strong>الخاتمة:</strong> هَكَذَا صَمَدَ الْمُسْلِمُونَ فِي مَكَّةَ رُغْمَ شِدَّةِ الِاضْطِهَادِ، وَتَمَكَّنَتِ الدَّعْوَةُ مِنَ الِانْتِشَارِ، مُمَهِّدَةً لِانْطِلَاقَةِ الْمَرْحَلَةِ الْمَدَنِيَّةِ وَبِنَاءِ الْمُجْتَمَعِ الْمُسْلِمِ.</p>
+                        <div class="Tests-Hub-detail-note">🌿 <strong>ملاحظة:</strong> الإجابة تشمل المراحل الأساسية (السرية والجهرية)، وأساليب قريش (تعذيب، حصار)، والنتائج (هجرة الحبشة، بيعة العقبة). حُسن الخط والتنظيم يحصلان على النقطتين المخصصتين.</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v2.8.0 (نموذج محايد)</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul class="Tests-Hub-footer-links-list"><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        (function() {
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            let correctionVisible = false;
+            
+            const TestsHub_translations = {
+                ar: { 
+                    TestsHub: { 
+                        header: { title: "التاريخ - فرض مراقبة عدد 3 (7 أساسي) - النموذج 2 (2023-2024)", subtitle: "الأستاذ: غير محدد | السنة الدراسية: 2023-2024", back: "العودة إلى الاختبارات", language: "العربية", print: "طباعة", pdf: "PDF", defaultPdfFileName: "Histoire_7_controle3_modele2.pdf", errorPdfCapture: "حدث خطأ أثناء إنشاء ملف PDF." },
+                        loading: { message: "جاري التحميل..." },
+                        theme: { toggle: "الوضع الليلي" },
+                        footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v2.8.0" },
+                        presentation: { line1: "📜 فرض مراقبة عدد 3 - تاريخ - سابعة أساسي (النموذج 2) 2023-2024", line2: "👨‍🏫 الأستاذ: غير محدد", line3: "📅 السنة الدراسية: 2023/2024", line4: "📚 المستوى: 7 أساسي", line5: "🏫 المؤسسة: غير محدد" },
+                        showCorrection: "إظهار الإصلاح", hideCorrection: "إخفاء الإصلاح", imageSaveButton: "صورة", errorImageCapture: "حدث خطأ أثناء إنشاء الصورة.", defaultImageFileName: "فرض_تاريخ_7_نموذج2"
+                    } 
+                },
+                fr: { 
+                    TestsHub: { 
+                        header: { title: "Histoire - Devoir de Contrôle N°3 (7ème) - Modèle 2 (2023-2024)", subtitle: "Prof.: non défini | Année 2023-2024", back: "Retour aux examens", language: "Français", print: "Imprimer", pdf: "PDF", defaultPdfFileName: "Histoire_7_controle3_modele2.pdf", errorPdfCapture: "Erreur lors de la création du PDF." },
+                        loading: { message: "Chargement..." },
+                        theme: { toggle: "Mode sombre" },
+                        footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité", developerName: "Ziad Mejri", versionNumber: "v2.8.0" },
+                        presentation: { line1: "📜 Devoir N°3 - Histoire - 7ème (Modèle 2) 2023-2024", line2: "👨‍🏫 Professeur: non défini", line3: "📅 Année scolaire: 2023/2024", line4: "📚 Classe: 7ème", line5: "🏫 Établissement: non défini" },
+                        showCorrection: "Afficher la correction", hideCorrection: "Cacher la correction", imageSaveButton: "Image", errorImageCapture: "Erreur lors de la création de l'image.", defaultImageFileName: "Histoire_7_controle3_modele2"
+                    } 
+                },
+                en: { 
+                    TestsHub: { 
+                        header: { title: "History - Test N°3 (Grade 7) - Model 2 (2023-2024)", subtitle: "Teacher: not defined | Year 2023-2024", back: "Back to tests", language: "English", print: "Print", pdf: "PDF", defaultPdfFileName: "History_7_test3_model2.pdf", errorPdfCapture: "Error creating PDF." },
+                        loading: { message: "Loading..." },
+                        theme: { toggle: "Dark Mode" },
+                        footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms of use", privacy: "Privacy policy", developerName: "Ziad Mejri", versionNumber: "v2.8.0" },
+                        presentation: { line1: "📜 Test N°3 - History - 7th Grade (Model 2) 2023-2024", line2: "👨‍🏫 Teacher: not defined", line3: "📅 Academic Year: 2023/2024", line4: "📚 Class: 7th Grade", line5: "🏫 School: not defined" },
+                        showCorrection: "Show correction", hideCorrection: "Hide correction", imageSaveButton: "Image", errorImageCapture: "Error creating image.", defaultImageFileName: "History_Grade7_Test3_Model2"
+                    } 
+                }
+            };
+            
+            function updateTextContent() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.textContent = current;
+                });
+                updateThemeToggleText();
+                updateToggleButtonText();
+            }
+            function updateThemeToggleText() {
+                const themeToggleSpan = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeToggleSpan) themeToggleSpan.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            function updateToggleButtonText() {
+                const toggleText = document.getElementById('toggleCorrectionText');
+                if (toggleText) toggleText.textContent = correctionVisible ? TestsHub_translations[currentLanguage].TestsHub.hideCorrection : TestsHub_translations[currentLanguage].TestsHub.showCorrection;
+            }
+            function toggleTheme() { isDarkTheme = !isDarkTheme; document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme); updateThemeToggleText(); localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light'); }
+            function changeLanguage(lang) {
+                if (!TestsHub_translations[lang]) return;
+                currentLanguage = lang;
+                updateTextContent();
+                const langBtn = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+                if (langBtn) langBtn.textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+                localStorage.setItem('testsHubLanguage', lang);
+            }
+            function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
+            function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
+            
+            function getCleanCloneForCapture(element) {
+                const clone = element.cloneNode(true);
+                clone.querySelectorAll('.Tests-Hub-header-controls, .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle, .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button').forEach(el => el.remove());
+                clone.querySelectorAll('.Tests-Hub-answer-input input, .Tests-Hub-answer-input textarea, .inline-input').forEach(input => {
+                    const placeholderDiv = document.createElement('div');
+                    placeholderDiv.style.borderBottom = '1px dashed #aaa';
+                    placeholderDiv.style.minHeight = '2em';
+                    placeholderDiv.style.margin = '5px 0';
+                    placeholderDiv.style.backgroundColor = '#faf3e0';
+                    placeholderDiv.style.borderRadius = '12px';
+                    placeholderDiv.style.padding = '6px';
+                    placeholderDiv.textContent = '_______________';
+                    input.parentNode.replaceChild(placeholderDiv, input);
+                });
+                return clone;
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLanguage = localStorage.getItem('testsHubLanguage');
+                if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+                if (currentLanguage === 'ar') document.documentElement.dir = 'rtl'; else document.documentElement.dir = 'ltr';
+                updateTextContent();
+                if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); }));
+                document.getElementById('printDownloadBtn').addEventListener('click', () => setTimeout(() => window.print(), 50));
+                
+                // PDF و Image functions preserved (same as before but with updated file name handling)
+                document.getElementById('pdfDownloadBtn').addEventListener('click', async function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const originalDisplay = correctionSection.style.display;
+                    correctionSection.style.display = 'none';
+                    document.body.classList.add('Tests-Hub-print-mode');
+                    showLoading();
+                    try {
+                        const testClone = getCleanCloneForCapture(mainContainer);
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                        tempDiv.style.backgroundColor = '#fff'; tempDiv.style.padding = '20px';
+                        tempDiv.appendChild(testClone);
+                        document.body.appendChild(tempDiv);
+                        const testCanvas = await html2canvas(tempDiv, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                        document.body.removeChild(tempDiv);
+                        let correctionCanvas = null;
+                        if (correctionSection) {
+                            correctionSection.style.display = 'block';
+                            await new Promise(r => setTimeout(r, 50));
+                            const corrClone = getCleanCloneForCapture(correctionSection);
+                            const tempCorr = document.createElement('div');
+                            tempCorr.style.position = 'absolute'; tempCorr.style.left = '-9999px'; tempCorr.style.width = mainContainer.offsetWidth + 'px';
+                            tempCorr.style.backgroundColor = '#fff'; tempCorr.style.padding = '20px';
+                            tempCorr.appendChild(corrClone);
+                            document.body.appendChild(tempCorr);
+                            correctionCanvas = await html2canvas(tempCorr, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                            document.body.removeChild(tempCorr);
+                        }
+                        correctionSection.style.display = originalDisplay;
+                        document.body.classList.remove('Tests-Hub-print-mode');
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+                        const pageWidth = pdf.internal.pageSize.getWidth();
+                        const pageHeight = pdf.internal.pageSize.getHeight();
+                        const topMargin = 30, bottomMargin = 30;
+                        const contentHeight = pageHeight - topMargin - bottomMargin;
+                        const fileName = TestsHub_translations[currentLanguage].TestsHub.header.defaultPdfFileName;
+                        const getSlices = (canvas) => {
+                            const scale = pageWidth / canvas.width;
+                            const sliceCanvasHeight = contentHeight / scale;
+                            const slices = []; let y = 0;
+                            while (y < canvas.height) { const h = Math.min(sliceCanvasHeight, canvas.height - y); slices.push({ y, height: h }); y += h; }
+                            return slices;
+                        };
+                        const addHeaderFooter = (pageNum, total) => { pdf.setFontSize(12); pdf.setTextColor(40,40,40); pdf.text(fileName.replace(/\.pdf$/i,''), pageWidth/2, topMargin/2, { align: 'center' }); pdf.setFontSize(10); pdf.text(`صفحة ${pageNum} / ${total}`, pageWidth/2, pageHeight - bottomMargin/2, { align: 'center' }); pdf.line(40, topMargin-2, pageWidth-40, topMargin-2); pdf.line(40, pageHeight-bottomMargin+2, pageWidth-40, pageHeight-bottomMargin+2); };
+                        const testSlices = getSlices(testCanvas);
+                        const corrSlices = correctionCanvas ? getSlices(correctionCanvas) : [];
+                        let pageCounter = 1, total = testSlices.length + corrSlices.length;
+                        testSlices.forEach((slice,i) => { if(i!==0) pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = testCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(testCanvas, 0, slice.y, testCanvas.width, slice.height, 0, 0, testCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/testCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        corrSlices.forEach((slice,i) => { pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = correctionCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(correctionCanvas, 0, slice.y, correctionCanvas.width, slice.height, 0, 0, correctionCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/correctionCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        pdf.save(fileName);
+                    } catch(e) { console.error(e); alert(TestsHub_translations[currentLanguage].TestsHub.header.errorPdfCapture); correctionSection.style.display = originalDisplay; document.body.classList.remove('Tests-Hub-print-mode'); } finally { hideLoading(); }
+                });
+                
+                document.getElementById('imageSaveBtn').addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const wasHidden = correctionSection && correctionSection.style.display === 'none';
+                    if (wasHidden) correctionSection.style.display = 'block';
+                    showLoading();
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const clone = getCleanCloneForCapture(mainContainer);
+                    const tempDiv = document.createElement('div');
+                    tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                    tempDiv.style.backgroundColor = '#fff'; tempDiv.style.padding = '20px';
+                    tempDiv.appendChild(clone);
+                    document.body.appendChild(tempDiv);
+                    html2canvas(tempDiv, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                        document.body.removeChild(tempDiv);
+                        const link = document.createElement('a');
+                        link.download = TestsHub_translations[currentLanguage].TestsHub.defaultImageFileName + '.png';
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                        if (wasHidden) correctionSection.style.display = 'none';
+                    }).catch(e => { alert(TestsHub_translations[currentLanguage].TestsHub.errorImageCapture); document.body.removeChild(tempDiv); if (wasHidden) correctionSection.style.display = 'none'; }).finally(() => hideLoading());
+                });
+                
+                const toggleBtn = document.getElementById('toggleCorrectionBtn');
+                const correctionSection = document.getElementById('correction-section');
+                if (toggleBtn && correctionSection) {
+                    toggleBtn.addEventListener('click', () => { correctionVisible = !correctionVisible; correctionSection.style.display = correctionVisible ? 'block' : 'none'; updateToggleButtonText(); document.getElementById('toggleCorrectionIcon').textContent = correctionVisible ? '👁️‍🗨️' : '👁️'; });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

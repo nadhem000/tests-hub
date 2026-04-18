@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دراسة نص - فرض تأليفي عدد 3 (7 أساسي) - النموذج 2</title>
+    
+    <!-- PWA Meta (ذهبي دافئ) -->
+    <meta name="theme-color" content="#d97706">
+    <meta name="description" content="فرض تأليفي عدد 3 في دراسة نص - السنة السابعة أساسي - النموذج 2 (نص ويلي بوي)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - عربي 7 (تأليفي 3)">
+    
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <script src="html2canvas.min.js"></script>
+    <script src="jspdf.umd.min.js"></script>
+    
+    <style>
+        /* ========== لوحة ألوان (ذهبي دافئ / عنبري) مستوحاة من النموذج الأول ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #7b341e;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #2c1a0c 0%, #5a3e2b 100%);
+            color: #fef3c7;
+        }
+        
+        .Tests-Hub-header-container {
+            background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(135deg, #92400e, #b45309, #f59e0b);
+        }
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-back-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #b45309;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover {
+            background: #fed7aa;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2c1a0c;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #fef3c7;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #b45309;
+        }
+        .Tests-Hub-theme-toggle, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-footer-container {
+            background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(135deg, #92400e, #b45309, #f59e0b);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #fed7aa;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #fed7aa;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        :root {
+            --Tests-Hub-card-bg: rgba(255, 248, 225, 0.92);
+            --Tests-Hub-card-shadow-1: rgba(180, 83, 9, 0.2);
+            --Tests-Hub-card-shadow-2: rgba(255, 245, 215, 0.9);
+            --Tests-Hub-card-shadow-3: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-card-border: rgba(253, 186, 116, 0.8);
+            --Tests-Hub-h1-color: #c2410c;
+            --Tests-Hub-h1-shadow-1: #fff1e0;
+            --Tests-Hub-section-title-border: #fb923c;
+            --Tests-Hub-section-title-color: #ea580c;
+            --Tests-Hub-question-list-bg: #fff7ed;
+            --Tests-Hub-question-list-border: #fdba74;
+            --Tests-Hub-question-list-color: #9a3412;
+            --Tests-Hub-answers-bg: #fffaf0;
+            --Tests-Hub-answers-border: #fed7aa;
+            --Tests-Hub-answers-inset: #ffffff;
+            --Tests-Hub-answers-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-answers-h3-color: #c2410c;
+            --Tests-Hub-answers-h3-border: #fb923c;
+            --Tests-Hub-answers-li-color: #7b341e;
+            --Tests-Hub-answers-strong-color: #b45309;
+            --Tests-Hub-inter-note-bg: #fff0db;
+            --Tests-Hub-inter-note-border: #fdba74;
+            --Tests-Hub-inter-note-color: #7b2e1a;
+            --Tests-Hub-input-bg: rgba(255, 245, 230, 0.95);
+            --Tests-Hub-input-border: #fed7aa;
+            --Tests-Hub-note-bg: #ffefdb;
+            --Tests-Hub-note-border: #fdba74;
+            --Tests-Hub-table-bg: #fffaf0;
+        }
+        
+        .Tests-Hub-dark-theme {
+            --Tests-Hub-card-bg: rgba(60, 45, 30, 0.85);
+            --Tests-Hub-h1-color: #fdba74;
+            --Tests-Hub-section-title-color: #fb923c;
+            --Tests-Hub-question-list-bg: #4d3a2a;
+            --Tests-Hub-question-list-color: #ffedd5;
+            --Tests-Hub-answers-bg: #5c4636;
+            --Tests-Hub-answers-border: #b45309;
+            --Tests-Hub-answers-li-color: #ffedd5;
+            --Tests-Hub-answers-h3-color: #fed7aa;
+            --Tests-Hub-answers-strong-color: #ffd9b5;
+            --Tests-Hub-inter-note-bg: #704d34;
+            --Tests-Hub-inter-note-color: #ffefdb;
+            --Tests-Hub-input-bg: #84654c;
+            --Tests-Hub-input-border: #f59e0b;
+            --Tests-Hub-note-bg: #74553b;
+            --Tests-Hub-note-border: #fb923c;
+            --Tests-Hub-table-bg: #4d3a2a;
+        }
+        
+        .Tests-Hub-card {
+            max-width: 1400px;
+            width: 100%;
+            background: var(--Tests-Hub-card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 28px;
+            box-shadow: 0 30px 50px var(--Tests-Hub-card-shadow-1),
+            inset 0 2px 4px var(--Tests-Hub-card-shadow-2),
+            inset 0 -2px 4px var(--Tests-Hub-card-shadow-3);
+            border: 1px solid var(--Tests-Hub-card-border);
+        }
+        .Tests-Hub-h1 {
+            text-align: center;
+            color: var(--Tests-Hub-h1-color);
+            margin: 0 0 8px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--Tests-Hub-h1-shadow-1);
+        }
+        .Tests-Hub-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding-right: 20px;
+            border-right: 8px solid var(--Tests-Hub-section-title-border);
+            color: var(--Tests-Hub-section-title-color);
+        }
+        .Tests-Hub-question-list {
+            background: var(--Tests-Hub-question-list-bg);
+            padding: 1rem 1.8rem;
+            border-radius: 28px;
+            margin: 10px 0;
+            border-right: 6px solid var(--Tests-Hub-question-list-border);
+        }
+        .Tests-Hub-question-list ol, .Tests-Hub-question-list ul {
+            margin-right: 1.2rem;
+            line-height: 1.9;
+        }
+        .Tests-Hub-question-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-answers {
+            background: var(--Tests-Hub-answers-bg);
+            border-radius: 30px;
+            padding: 20px 30px;
+            border: 1px solid var(--Tests-Hub-answers-border);
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-answers-inset), 0 6px 12px var(--Tests-Hub-answers-shadow);
+            font-size: 1.05rem;
+        }
+        .Tests-Hub-answers h3 {
+            color: var(--Tests-Hub-answers-h3-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-right: 6px solid var(--Tests-Hub-answers-h3-border);
+            padding-right: 15px;
+        }
+        .Tests-Hub-answer-input {
+            margin: 10px 0 15px 5px;
+        }
+        .Tests-Hub-answer-input textarea, .Tests-Hub-answer-input input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .Tests-Hub-history-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--Tests-Hub-table-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .Tests-Hub-history-table th, .Tests-Hub-history-table td {
+            border: 1px solid var(--Tests-Hub-input-border);
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .Tests-Hub-history-table th {
+            background: var(--Tests-Hub-section-title-border);
+            color: white;
+        }
+        .Tests-Hub-detail-note {
+            background: var(--Tests-Hub-note-bg);
+            border-right: 4px solid var(--Tests-Hub-note-border);
+            padding: 12px 18px;
+            margin: 12px 0 15px 20px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #f59e0b, #b45309);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #fb923c, #ea580c);
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.8rem;
+        }
+        #loading-overlay .Tests-Hub-spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid #fb923c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* طريقة الصندوق - تصميم شبيه بالنموذج الأول */
+        .Tests-Hub-box-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+            background: var(--Tests-Hub-table-bg);
+        }
+        .Tests-Hub-box-table th, .Tests-Hub-box-table td {
+            border: 1px solid var(--Tests-Hub-input-border);
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .Tests-Hub-box-table th {
+            background: var(--Tests-Hub-section-title-border);
+            color: white;
+            font-weight: bold;
+        }
+        .Tests-Hub-level-structure td {
+            border-top: 4px double #333;
+            border-bottom: 4px double #333;
+            background-color: rgba(0,0,0,0.05);
+        }
+        .Tests-Hub-text-narrative {
+            background: var(--Tests-Hub-note-bg);
+            padding: 20px;
+            border-radius: 28px;
+            margin: 15px 0;
+            border-right: 6px solid var(--Tests-Hub-note-border);
+            line-height: 1.8;
+        }
+        @media print {
+            .Tests-Hub-header-container, .Tests-Hub-footer-container, .Tests-Hub-header-controls,
+            .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle,
+            .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button,
+            .Tests-Hub-answer-input { display: none !important; }
+            .Tests-Hub-presentation-card { display: block !important; }
+            #correction-section { display: block !important; page-break-before: always; }
+            body { background: white !important; color: black !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .Tests-Hub-card { background: white !important; box-shadow: none !important; border: 1px solid #ccc !important; overflow: visible !important; backdrop-filter: none !important; }
+            .Tests-Hub-text-narrative {
+                background: #f9f9f9 !important;
+                border: 1px solid #ddd !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">دراسة نص - فرض تأليفي عدد 3 (7 أساسي) - النموذج 2</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">الأستاذ: غير محدد | السنة الدراسية: 2023-2024</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back"><span>←</span> <span>العودة إلى الاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.header.language">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span></button>
+                <button class="Tests-Hub-print-button" id="printDownloadBtn"><span>🖨️</span><span data-i18n="TestsHub.header.print">طباعة</span></button>
+                <button class="Tests-Hub-pdf-button" id="pdfDownloadBtn"><span>📄</span><span data-i18n="TestsHub.header.pdf">PDF</span></button>
+                <button class="Tests-Hub-image-save-button" id="imageSaveBtn"><span>🖼️</span><span data-i18n="TestsHub.imageSaveButton">صورة</span></button>
+            </div>
+        </div>
+    </header>
+    
+    <div id="loading-overlay"><div class="Tests-Hub-spinner"></div><div data-i18n="TestsHub.loading.message">جاري التحميل...</div></div>
+    
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-card Tests-Hub-presentation-card">
+            <div data-i18n="TestsHub.presentation.line1" style="font-size: 1.8rem; font-weight: 700;">📖 فرض تأليفي عدد 3 - دراسة نص - سابعة أساسي (النموذج 2) 2023-2024</div>
+            <div data-i18n="TestsHub.presentation.line2" style="font-size: 1.2rem;">👩‍🏫 الأستاذ: غير محدد</div>
+            <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: 2023/2024</div>
+            <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 7 أساسي</div>
+            <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: غير محدد</div>
+            <div style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 60 دقيقة</div>
+        </div>
+        
+        <div class="Tests-Hub-card">
+            <h1 class="Tests-Hub-h1">📝 دراسة نص (20 نقطة)</h1>
+            
+            <!-- النص (بنفس نمط النموذج الأول) -->
+            <div class="Tests-Hub-text-narrative">
+                <p><strong>النص :</strong></p>
+                <p>كان الصبي بائع الصحف ذو القدمين القذرتين يبتسم بخبث وهو يحاول إقناع سكران أن يشتري نسخة مهترئة من صحيفته. كان السكران يعارض بيأس وهو يغمر الغلام بشتائم من النوع الفظّ.<br>
+                وكان بالقرب منهما الطفل "ويلي بوي" يستتر خلفهما في واحد من الأزقة التي لا حصر لها، يرقبهما بحياء. وعادت بـ"ويلي بوي" الذكريات إلى الماضي وهو يرقب مشهد الغلام والسكران.<br>
+                في تلك الليلة بكى بكاءً مرًّا، لقد ناحت النساء حول أمّه التي كانت ترقد باردة لا مبالية بأيّ شيء. وتذكّر أنّه استيقظ إنسانًا جديدًا فخلق في نفسه جميع الذكريات، فلكي يؤمن بأنّ أمّه لم تمت لا بدّ من أن يؤمن بأنّها لم تعش أبدًا.<br>
+                وفي غضون ليلة تحوّل إنسانًا جديدًا غير قادر على الإحساس، عاجزًا عن الذكرى، بل تحوّل إلى آلة. في الرابعة عشرة من عمره، عندما أقاموا القدّاس على روح أمّه، كان يقرأ كتابًا أمريكيًّا من الكتب الساخرة. لقد كره رائحة الزهور ذلك اليوم، وكره كل وجود يذكّره بها.<br>
+                كان يكره أيّ ذكرى تربطه بأمّه: كيف كانت تميل على رجلها اليسرى أثناء سيرها، وكيف كانت يدها المنتفختان من كثرة العمل. غطّى "ويلي بوي" وجهه بيديه وبكى بطريقة لم يبكِ مثلها عندما ماتت أمّه. وانطلق الغلام بائع الصحف جاريًا بالقرب منه.</p>
+                <p><strong>المصدر:</strong> عودة كاملو: قصص من الأدب الإفريقي – الدار العربية للكتاب</p>
+            </div>
+            
+            <!-- I. الفهم -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📖 I. الفهم (4 نقاط)</h2>
+                <div class="Tests-Hub-question-list">
+                    <ol>
+                        <li>اشرح العبارات المسطرة: (0.5 ن)<br>• يَسْتَتِرُ = <div class="Tests-Hub-answer-input"><textarea rows="1" placeholder="اكتب المعنى..."></textarea></div><br>• نَاحَتْ = <div class="Tests-Hub-answer-input"><textarea rows="1" placeholder="اكتب المعنى..."></textarea></div></li>
+                        <li>يتعرَّضُ أطفال الشوارع إلى مَخَاطِرَ كثيرةٍ، وَضّح ذلك: (1 ن)<div class="Tests-Hub-answer-input"><textarea rows="3" placeholder="اذكر المخاطر..."></textarea></div></li>
+                        <li>بَكَى الطِّفْلُ بِطَرِيقَةٍ لَمْ يَبْكِ بِمِثْلِهَا عِنْدَمَا مَاتَتْ أُمُّهُ، فَمَ تُفَسِّرُ ذَلِكَ؟ (1 ن)<div class="Tests-Hub-answer-input"><textarea rows="3" placeholder="فسر سبب البكاء..."></textarea></div></li>
+                        <li>أَثَارَ مَشْهَدُ الْغُلاَمِ وَالسَّكْرَانِ ذِكْرِيَاتِ "وِيلِي بُوي" وَعَوْدَتِهِ إِلَى الْمَاضِي. مَا الْعَلاَقَةُ بَيْنَ الْمَشْهَدِ وَذِكْرِيَاتِهِ؟ (1.5 ن)<div class="Tests-Hub-answer-input"><textarea rows="3" placeholder="بيّن العلاقة..."></textarea></div></li>
+                    </ol>
+                </div>
+            </section>
+            
+            <!-- II. اللغة -->
+            <section>
+                <h2 class="Tests-Hub-section-title">✍️ II. اللغة (6 نقاط)</h2>
+                <!-- 1) النحو -->
+                <div class="Tests-Hub-question-list">
+                    <h3>1) بيّن وظيفة ما تحته خط في النص واذكر شكله النحوي: (1.5 ن)</h3>
+                    <table class="Tests-Hub-history-table">
+                        <thead> <th>العبارات المسطرة</th><th>الوظيفة</th><th>الشكل النحوي</th> </thead>
+                        <tbody>
+                            <tr><td style="font-weight:bold">بَكَى [بِكَاءً مُرَّا]</td><td><div class="Tests-Hub-answer-input"><input type="text" placeholder="الوظيفة"></div></td><td><div class="Tests-Hub-answer-input"><input type="text" placeholder="الشكل"></div></td> </tr>
+                            <tr><td style="font-weight:bold">يَبْسِمُ [بِخَبَثٍ]</td><td><div class="Tests-Hub-answer-input"><input type="text" placeholder="الوظيفة"></div></td><td><div class="Tests-Hub-answer-input"><input type="text" placeholder="الشكل"></div></td> </tr>
+                            <tr><td style="font-weight:bold">وَانْطَلَقَ الْغُلَامُ [جَارِيًا بِالْقُرْبِ مِنْهُمَا]</td><td><div class="Tests-Hub-answer-input"><input type="text" placeholder="الوظيفة"></div></td><td><div class="Tests-Hub-answer-input"><input type="text" placeholder="الشكل"></div></td> </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="Tests-Hub-question-list">
+                    <h3>2) أتمم الجمل التالية مراعيًا المطلوب: (1 ن)</h3>
+                    <p>• لَقَدْ كَرِهَ رَائِحَةَ الزُّهُورِ ........................................ (مفعول مطلق يُفِيدُ بَيَانَ النَّوْعِ)</p>
+                    <div class="Tests-Hub-answer-input"><input type="text" placeholder="أكمل الجملة"></div>
+                    <p>• طِفْلٌ يَسْتَتِرُ خَلْفَهُمَا ........................................ (حَالٌ مُرَكَّبٌ بِالْجَرِّ)</p>
+                    <div class="Tests-Hub-answer-input"><input type="text" placeholder="أكمل الجملة"></div>
+                </div>
+                
+                <div class="Tests-Hub-question-list">
+                    <h3>3) حلَّ بطريقة الصندوق: (4 ن)</h3>
+                    <p style="font-weight:bold;">وَانْطَلَقَ الْغُلاَمُ بَائِعَ الصُّحُفِ جَارِيًا بِالْقُرْبِ مِنْهُ</p>
+                    <div class="Tests-Hub-answer-input"><textarea rows="8" placeholder="اكتب تحليلك بطريقة الصناديق هنا..."></textarea></div>
+                </div>
+                
+                <!-- الصرف -->
+                <div class="Tests-Hub-question-list">
+                    <h3>4) أكمل تعمير الجدول: (1.5 ن)</h3>
+                    <table class="Tests-Hub-history-table">
+                        <thead><th>الفعل</th><th>اسم الفاعل</th><th>اسم المفعول</th></thead>
+                        <tbody>
+                            <tr><td>قَرَأ</td><td><div class="Tests-Hub-answer-input"><input type="text"></div></td><td><div class="Tests-Hub-answer-input"><input type="text"></div></td> </tr>
+                            <tr><td>كَرَّهَ</td><td><div class="Tests-Hub-answer-input"><input type="text"></div></td><td><div class="Tests-Hub-answer-input"><input type="text"></div></td> </tr>
+                            <tr><td>غَمَرَ</td><td><div class="Tests-Hub-answer-input"><input type="text"></div></td><td><div class="Tests-Hub-answer-input"><input type="text"></div></td> </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="Tests-Hub-question-list">
+                    <h3>5) حدد الصيغة الصرفية للكلمات التالية: (0.5 ن)</h3>
+                    <p>• خُبْتُ: <div class="Tests-Hub-answer-input"><input type="text" placeholder="الصيغة"></div></p>
+                    <p>• عَاجِزًا: <div class="Tests-Hub-answer-input"><input type="text" placeholder="الصيغة"></div></p>
+                    <p>• سَكْرَان: <div class="Tests-Hub-answer-input"><input type="text" placeholder="الصيغة"></div></p>
+                </div>
+                
+                <div class="Tests-Hub-question-list">
+                    <h3>6) صرف حسب المطلوب: (0.5 ن)</h3>
+                    <p>بكى بطريقة مؤسفةٍ.</p>
+                    <p>• أَنْتَ لَمْ .................... بطريقة مؤسفةٍ.<div class="Tests-Hub-answer-input"><input type="text"></div></p>
+                    <p>• الأَمْرُ مَعَ أَنْتُمَا: .................... بطريقة مؤسفةٍ.<div class="Tests-Hub-answer-input"><input type="text"></div></p>
+                    <p>• الْمُضَارِعُ مَعَ هِيَ: .................... بطريقة مؤسفةٍ.<div class="Tests-Hub-answer-input"><input type="text"></div></p>
+                </div>
+            </section>
+            
+            <!-- III. الإنتاج الكتابي -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📝 III. الإنتاج الكتابي (10 نقاط)</h2>
+                <div class="Tests-Hub-question-list">
+                    <p>شَاهَدْتَ بَرْنَامَجًا تِلْفَزِيًّا بِعَرْضٍ مَأْسَاتُهُ طِفْلٌ وَمُعَانَاتُهُ (فَقْر – حَرْب – إِعَاقَة) مُتَحَدِّثًا بِلِسَانِهِ فَتَأَثَّرْتَ بِقِصَّتِهِ.<br>أَنْقُلْ مَا قَالَهُ الطِّفْلُ عَلَى لِسَانِهِ مُبْرِزًا كَيْفِيَةَ تَعَاطُفِكَ مَعَهُ فِي نَصٍّ لَا يَتَجَاوَزُ الْخُمُسَ عُشْرًا سَطْرًا.</p>
+                    <div class="Tests-Hub-answer-input"><textarea rows="10" placeholder="اكتب موضوعك هنا..."></textarea></div>
+                </div>
+            </section>
+            
+            <div style="text-align: center;">
+                <button class="Tests-Hub-toggle-correction-btn" id="toggleCorrectionBtn">
+                    <span id="toggleCorrectionIcon">👁️</span>
+                    <span id="toggleCorrectionText" data-i18n="TestsHub.showCorrection">إظهار الإصلاح</span>
+                </button>
+            </div>
+            
+            <!-- الإصلاح التفصيلي (بنفس أسلوب النموذج الأول) -->
+            <section id="correction-section" style="display: none;">
+                <h2 class="Tests-Hub-section-title">✅ الإصلاح التفصيلي</h2>
+                
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح الفهم</h3>
+                    <p><strong>1) شرح العبارات:</strong><br>• يَسْتَتِرُ = يَخْتَبِئُ / يَتَوَارَى عَنِ الأَنْظَارِ.<br>• نَاحَتْ = بَكَتْ / رَفَعَتِ الصَّوْتَ بِالْبُكَاءِ وَالنَّدْبِ.</p>
+                    <div class="Tests-Hub-detail-note">الاستتار يدل على الخوف والهشاشة النفسية للطفل، والنوح يعبر عن فاجعة الفقدان.</div>
+                    <p><strong>2) مخاطر أطفال الشوارع:</strong> مخاطر جسدية (أمراض، عنف)، نفسية (فقدان الطفولة، الإهانة)، أخلاقية (انحراف، استغلال)، اجتماعية (تسرب من التعليم، تشرد).</p>
+                    <div class="Tests-Hub-detail-note">النص يجسد هذه المخاطر عبر مشهد السكران والغلام، ويعكس واقعاً مأساوياً.</div>
+                    <p><strong>3) تفسير البكاء الشديد:</strong> بكى الطفل بكاءً أشد لأنه لم يبكِ عند موت أمه حزنًا حقيقيًا بل صدمة وتحول إلى آلة، فأدرك لاحقًا خسارته لمشاعره وإنسانيته، فبكى ندماً وخوفاً على مستقبله القاسي.</p>
+                    <div class="Tests-Hub-detail-note">هذا البكاء هو صرخة وعي بعد جمود، أعمق من فقدان الأم.</div>
+                    <p><strong>4) العلاقة بين المشهد وذكرياته:</strong> علاقة تذكير (مشابهة). مشهد الصراع والشتائم والضياع عكس الأجواء القاسية التي عاشها ويلي بوي بعد وفاة أمه، حيث تحول إلى إنسان خالٍ من المشاعر.</p>
+                </div>
+                
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح اللغة (النحو والصرف)</h3>
+                    <p><strong>1) وظيفة وشكل المركبات:</strong></p>
+                    <table class="Tests-Hub-history-table"><thead><th>العبارة</th><th>الوظيفة</th><th>الشكل النحوي</th></thead>
+                    <tbody><tr><td>بَكَى بِكَاءً مُرَّا</td><td>مفعول مطلق</td><td>مركب نعتي</td></tr>
+                    <tr><td>يَبْسِمُ بِخَبَثٍ</td><td>حال</td><td>مركب بالجر</td></tr>
+                    <tr><td>وَانْطَلَقَ الْغُلَامُ جَارِيًا...</td><td>حال</td><td>مركب شبه اسنادي</td></tr></tbody></table>
+                    <p><strong>2) إتمام الجمل:</strong><br>• كَرِهَ رَائِحَةَ الزُّهُورِ <strong>كُرْهًا شَدِيدًا</strong> (مفعول مطلق لنوع).<br>• طِفْلٌ يَسْتَتِرُ خَلْفَهُمَا <strong>مُخْتَفِيًا بِهِمَا</strong> (حال مركب بالجر).</p>
+                    <p><strong>3) تحليل طريقة الصندوق (النموذج الكامل):</strong></p>
+                    <div style="overflow-x: auto;">
+                        <table class="Tests-Hub-box-table">
+                            <thead> <th>المستوى</th><th>وَانْطَلَقَ</th><th>الْغُلاَمُ</th><th>بَائِعَ</th><th>الصُّحُفِ</th><th>جَارِيًا</th><th>بِ</th><th>الْقُرْبِ</th><th>مِنْ</th><th>هُ</th> </thead>
+                            <tbody>
+                                <tr><td>م5</td><td></td><td></td><td></td><td></td><td></td><td>جار</td><td>مجرور</td><td></td><td></td></tr>
+                                <tr><td>م4</td><td></td><td></td><td></td><td></td><td></td><td>مضاف</td><td colspan="2">مضاف إليه مركب بالجر</td><td></td></tr>
+                                <tr><td>م3</td><td></td><td></td><td></td><td>مضاف</td><td>مضاف إليه</td><td>جار</td><td colspan="3">مجرور مركب إضافي</td></tr>
+                                <tr><td>م2</td><td></td><td>بدل</td><td colspan="2">مُبْدَلٌ مِنْهُ مركب إضافي</td><td>اسم فاعل مشتق</td><td colspan="4">متعلق به مركب بالجر</td></tr>
+                                <tr><td>م1</td><td>فعل</td><td colspan="3">فاعل مركب بدلي</td><td colspan="5">حال مركب شبه اسنادي</td></tr>
+                                <tr class="Tests-Hub-level-structure"><td>التركيب</td><td colspan="9">جُمْلَةٌ فِعْلِيَّةٌ بَسِيطَةٌ</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="Tests-Hub-detail-note">التحليل يوضح التدرج من أصغر وحدة (م5) إلى أكبر تركيب. الجملة فعلية: فعل + فاعل + حال (مركب من اسم فاعل ومتعلق).</div>
+                    <p><strong>4) إكمال جدول الصرف:</strong></p>
+                    <table class="Tests-Hub-history-table"><thead><th>الفعل</th><th>اسم الفاعل</th><th>اسم المفعول</th></thead>
+                    <tbody><tr><td>قَرَأ</td><td>قَارِئٌ</td><td>مَقْرُوءٌ</td></tr>
+                    <tr><td>كَرَّهَ</td><td>مُكَرِّهٌ</td><td>مُكَرَّهٌ</td></tr>
+                    <tr><td>غَمَرَ</td><td>غَامِرٌ</td><td>مَغْمُورٌ</td></tr></tbody></table>
+                    <p><strong>5) الصيغ الصرفية:</strong><br>• خُبْتُ: صفة مشبهة.<br>• عَاجِزًا: اسم فاعل.<br>• سَكْرَان: صيغة مبالغة.</p>
+                    <p><strong>6) التصريف المطلوب:</strong><br>• أَنْتَ لَمْ <strong>تَبْكِ</strong> بطريقة مؤسفةٍ.<br>• الأَمْرُ مَعَ أَنْتُمَا: <strong>ابْكِيَا</strong> بطريقة مؤسفةٍ.<br>• الْمُضَارِعُ مَعَ هِيَ: <strong>تَبْكِي</strong> بطريقة مؤسفةٍ.</p>
+                </div>
+                
+                <div class="Tests-Hub-answers">
+                    <h3>🌱 الإنتاج الكتابي (نموذج مقترح)</h3>
+                    <p>"... كنتُ أظنُّ أنَّ الطفولةَ ألعابٌ وضحكاتٌ، لكنَّ الحربَ علَّمتني أنَّ الطفولةَ دمعٌ ولهفةٌ على الأمان. اشتعلت النارُ في قريتنا ليلةَ عيدٍ، فتحوَّلَ فرحي إلى رعبٍ. رأيتُ بأمِّ عينيَّ كيفَ يسقطُ الناسُ كأوراقِ الخريفِ. سقطَ أبي، ثمَّ أمي، وصرتُ وحدي أركضُ حافيًا بينَ الرصاصِ والجثثِ. لم أعدْ أعرفُ معنىً للبيتِ غيرَ هذا الركنِ القاسي تحتَ الجسرِ. أبحثُ في القمامةِ عن رغيفٍ يطعمُ جوعي الذي لا ينتهي. أنظرُ إلى الأطفالِ الذينَ يذهبونَ إلى المدارسِ، فأتساءلُ: لماذا أنا مختلفٌ؟ لماذا تُركتُ وحدي؟ أتمنى لو أنَّ أحدًا يسمعُ صرختي، أو يمسحُ دمعةَ خوفي قبلَ أنْ تموتَ فيَّ كلُّ الأحلامِ."</p>
+                    <div class="Tests-Hub-detail-note">النص يجسد معاناة الطفولة في ظروف قاسية بأسلوب سردي مؤثر، ويظهر التعاطف عبر وصف المشاعر والأحلام المسلوبة.</div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v5.2.0 (عربي - نموذج 2 تأليفي)</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul class="Tests-Hub-footer-links-list"><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        (function() {
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            let correctionVisible = false;
+            
+            const TestsHub_translations = {
+                ar: { 
+                    TestsHub: { 
+                        header: { title: "دراسة نص - فرض تأليفي عدد 3 (7 أساسي) - النموذج 2", subtitle: "الأستاذ: غير محدد | السنة الدراسية: 2023-2024", back: "العودة إلى الاختبارات", language: "العربية", print: "طباعة", pdf: "PDF", defaultPdfFileName: "Arabe_7_synthese3_modele2.pdf", errorPdfCapture: "حدث خطأ أثناء إنشاء ملف PDF." },
+                        loading: { message: "جاري التحميل..." },
+                        theme: { toggle: "الوضع الليلي" },
+                        footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v5.2.0" },
+                        presentation: { line1: "📖 فرض تأليفي عدد 3 - دراسة نص - سابعة أساسي (النموذج 2) 2023-2024", line2: "👩‍🏫 الأستاذ: غير محدد", line3: "📅 السنة الدراسية: 2023/2024", line4: "📚 المستوى: 7 أساسي", line5: "🏫 المؤسسة: غير محدد" },
+                        showCorrection: "إظهار الإصلاح", hideCorrection: "إخفاء الإصلاح", imageSaveButton: "صورة", errorImageCapture: "حدث خطأ أثناء إنشاء الصورة.", defaultImageFileName: "فرض_عربي_7_نموذج2"
+                    } 
+                },
+                fr: { 
+                    TestsHub: { 
+                        header: { title: "Arabe - Devoir de Synthèse N°3 (7ème) - Modèle 2", subtitle: "Prof.: Non spécifié | Année: 2023-2024", back: "Retour", language: "Français", print: "Imprimer", pdf: "PDF", defaultPdfFileName: "Arabe_7_synthese3_modele2.pdf", errorPdfCapture: "Erreur lors de la création du PDF." },
+                        loading: { message: "Chargement..." },
+                        theme: { toggle: "Mode sombre" },
+                        footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions", privacy: "Confidentialité", developerName: "Ziad Mejri", versionNumber: "v5.2.0" },
+                        presentation: { line1: "📖 Devoir Synthèse N°3 - Arabe - 7ème (Modèle 2) 2023-2024", line2: "👩‍🏫 Prof: Non spécifié", line3: "📅 Année: 2023/2024", line4: "📚 Niveau: 7ème", line5: "🏫 Établissement: Non spécifié" },
+                        showCorrection: "Afficher correction", hideCorrection: "Cacher correction", imageSaveButton: "Image", errorImageCapture: "Erreur création image.", defaultImageFileName: "Devoir_Arabe_7_modele2"
+                    } 
+                },
+                en: { 
+                    TestsHub: { 
+                        header: { title: "Final-Trim Test N°3 - Arabic - 7th Grade (Model 2)", subtitle: "Teacher: Not specified | Year: 2023-2024", back: "Back", language: "English", print: "Print", pdf: "PDF", defaultPdfFileName: "Arabic_Grade7_Synthesis3_Model2.pdf", errorPdfCapture: "Error creating PDF." },
+                        loading: { message: "Loading..." },
+                        theme: { toggle: "Dark Mode" },
+                        footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy", developerName: "Ziad Mejri", versionNumber: "v5.2.0" },
+                        presentation: { line1: "📖 Final-Trim Test N°3 - Arabic - 7th Grade (Model 2) 2023-2024", line2: "👩‍🏫 Teacher: Not specified", line3: "📅 Year: 2023/2024", line4: "📚 Grade: 7", line5: "🏫 School: Not specified" },
+                        showCorrection: "Show correction", hideCorrection: "Hide correction", imageSaveButton: "Image", errorImageCapture: "Error creating image.", defaultImageFileName: "Arabic_Grade7_Model2"
+                    } 
+                }
+            };
+            
+            function updateTextContent() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.textContent = current;
+                });
+                updateThemeToggleText();
+                updateToggleButtonText();
+            }
+            function updateThemeToggleText() {
+                const themeSpan = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeSpan) themeSpan.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            function updateToggleButtonText() {
+                const toggleText = document.getElementById('toggleCorrectionText');
+                if (toggleText) toggleText.textContent = correctionVisible ? TestsHub_translations[currentLanguage].TestsHub.hideCorrection : TestsHub_translations[currentLanguage].TestsHub.showCorrection;
+            }
+            function toggleTheme() { isDarkTheme = !isDarkTheme; document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme); updateThemeToggleText(); localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light'); }
+            function changeLanguage(lang) {
+                if (!TestsHub_translations[lang]) return;
+                currentLanguage = lang;
+                updateTextContent();
+                const langSpan = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+                if(langSpan) langSpan.textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+                localStorage.setItem('testsHubLanguage', lang);
+            }
+            function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
+            function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
+            
+            function getCleanCloneForCapture(element) {
+                const clone = element.cloneNode(true);
+                clone.querySelectorAll('.Tests-Hub-header-controls, .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle, .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button').forEach(el => el.remove());
+                clone.querySelectorAll('.Tests-Hub-answer-input').forEach(div => {
+                    const ta = div.querySelector('textarea');
+                    if (ta) {
+                        const placeholder = document.createElement('div');
+                        placeholder.style.borderBottom = '1px dashed #888';
+                        placeholder.style.minHeight = '2em';
+                        placeholder.style.marginBottom = '10px';
+                        placeholder.style.padding = '5px';
+                        placeholder.style.backgroundColor = '#f9f9f9';
+                        placeholder.style.borderRadius = '4px';
+                        placeholder.textContent = '_________________________';
+                        div.innerHTML = '';
+                        div.appendChild(placeholder);
+                    }
+                    const inp = div.querySelector('input');
+                    if (inp && inp.type === 'text') {
+                        const placeholder = document.createElement('div');
+                        placeholder.style.borderBottom = '1px dashed #888';
+                        placeholder.style.minHeight = '2em';
+                        placeholder.style.marginBottom = '10px';
+                        placeholder.style.padding = '5px';
+                        placeholder.style.backgroundColor = '#f9f9f9';
+                        placeholder.style.borderRadius = '4px';
+                        placeholder.textContent = '_________________________';
+                        div.innerHTML = '';
+                        div.appendChild(placeholder);
+                    }
+                });
+                return clone;
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLanguage = localStorage.getItem('testsHubLanguage');
+                if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+                if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+                else document.documentElement.dir = 'ltr';
+                updateTextContent();
+                if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
+                
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); }));
+                document.getElementById('printDownloadBtn').addEventListener('click', () => window.print());
+                
+                document.getElementById('pdfDownloadBtn').addEventListener('click', async function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const body = document.body;
+                    const originalDisplay = correctionSection.style.display;
+                    correctionSection.style.display = 'none';
+                    body.classList.add('Tests-Hub-print-mode');
+                    showLoading();
+                    try {
+                        const testClone = getCleanCloneForCapture(mainContainer);
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                        tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                        tempDiv.appendChild(testClone);
+                        document.body.appendChild(tempDiv);
+                        const testCanvas = await html2canvas(tempDiv, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                        document.body.removeChild(tempDiv);
+                        let correctionCanvas = null;
+                        if (correctionSection) {
+                            correctionSection.style.display = 'block';
+                            await new Promise(r => setTimeout(r, 50));
+                            const corrClone = getCleanCloneForCapture(correctionSection);
+                            const tempCorr = document.createElement('div');
+                            tempCorr.style.position = 'absolute'; tempCorr.style.left = '-9999px'; tempCorr.style.width = mainContainer.offsetWidth + 'px';
+                            tempCorr.style.backgroundColor = '#ffffff'; tempCorr.style.padding = '20px';
+                            tempCorr.appendChild(corrClone);
+                            document.body.appendChild(tempCorr);
+                            correctionCanvas = await html2canvas(tempCorr, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                            document.body.removeChild(tempCorr);
+                        }
+                        correctionSection.style.display = originalDisplay;
+                        body.classList.remove('Tests-Hub-print-mode');
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+                        const pageWidth = pdf.internal.pageSize.getWidth();
+                        const pageHeight = pdf.internal.pageSize.getHeight();
+                        const topMargin = 30, bottomMargin = 30;
+                        const contentHeight = pageHeight - topMargin - bottomMargin;
+                        const fileName = TestsHub_translations[currentLanguage].TestsHub.header.defaultPdfFileName;
+                        const headerFileName = fileName.replace(/\.pdf$/i, '');
+                        const getSlices = (canvas) => {
+                            const scale = pageWidth / canvas.width;
+                            const sliceCanvasHeight = contentHeight / scale;
+                            const slices = []; let y = 0;
+                            while (y < canvas.height) { const h = Math.min(sliceCanvasHeight, canvas.height - y); slices.push({ y, height: h }); y += h; }
+                            return slices;
+                        };
+                        const addHeaderFooter = (pageNum, total) => { pdf.setFontSize(12); pdf.setTextColor(40,40,40); pdf.text(headerFileName, pageWidth/2, topMargin/2, { align: 'center' }); pdf.setFontSize(10); pdf.text(`${currentLanguage==='ar'?'صفحة':'Page'} ${pageNum} / ${total}`, pageWidth/2, pageHeight - bottomMargin/2, { align: 'center' }); pdf.line(40, topMargin-2, pageWidth-40, topMargin-2); pdf.line(40, pageHeight-bottomMargin+2, pageWidth-40, pageHeight-bottomMargin+2); };
+                        const testSlices = getSlices(testCanvas);
+                        const corrSlices = correctionCanvas ? getSlices(correctionCanvas) : [];
+                        let pageCounter = 1, total = testSlices.length + corrSlices.length;
+                        testSlices.forEach((slice,i) => { if(i!==0) pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = testCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(testCanvas, 0, slice.y, testCanvas.width, slice.height, 0, 0, testCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/testCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        corrSlices.forEach((slice,i) => { pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = correctionCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(correctionCanvas, 0, slice.y, correctionCanvas.width, slice.height, 0, 0, correctionCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/correctionCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        pdf.save(fileName);
+                    } catch(e) { console.error(e); alert(TestsHub_translations[currentLanguage].TestsHub.header.errorPdfCapture); correctionSection.style.display = originalDisplay; body.classList.remove('Tests-Hub-print-mode'); } finally { hideLoading(); }
+                });
+                
+                document.getElementById('imageSaveBtn').addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const wasHidden = correctionSection && correctionSection.style.display === 'none';
+                    if (wasHidden) correctionSection.style.display = 'block';
+                    showLoading();
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const clone = getCleanCloneForCapture(mainContainer);
+                    const tempDiv = document.createElement('div');
+                    tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                    tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                    tempDiv.appendChild(clone);
+                    document.body.appendChild(tempDiv);
+                    html2canvas(tempDiv, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                        document.body.removeChild(tempDiv);
+                        const link = document.createElement('a');
+                        link.download = TestsHub_translations[currentLanguage].TestsHub.defaultImageFileName + '.png';
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                        if (wasHidden) correctionSection.style.display = 'none';
+                    }).catch(e => { alert(TestsHub_translations[currentLanguage].TestsHub.errorImageCapture); document.body.removeChild(tempDiv); if (wasHidden) correctionSection.style.display = 'none'; }).finally(() => hideLoading());
+                });
+                
+                const toggleBtn = document.getElementById('toggleCorrectionBtn');
+                const correctionSection = document.getElementById('correction-section');
+                if (toggleBtn && correctionSection) {
+                    toggleBtn.addEventListener('click', function() {
+                        correctionVisible = !correctionVisible;
+                        correctionSection.style.display = correctionVisible ? 'block' : 'none';
+                        updateToggleButtonText();
+                        document.getElementById('toggleCorrectionIcon').textContent = correctionVisible ? '👁️‍🗨️' : '👁️';
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

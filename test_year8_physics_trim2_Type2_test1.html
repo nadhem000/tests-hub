@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفيزياء - فرض تأليفي عدد 2 (8 أساسي) - دارة كهربائية</title>
+    
+    <!-- PWA Meta (أزرق/سماوي) -->
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="description" content="فرض تأليفي عدد 2 في الفيزياء - السنة الثامنة أساسي - الإعدادية التقنية سبيطلة">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - فرض فيزياء 8">
+    
+    <!-- Apple Touch Icons (يمكن إزالتها إذا الملفات غير موجودة) -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- KaTeX (للعرض الرياضي) -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    <script src="html2canvas.min.js"></script>
+	<!-- Include the jsPDF Library -->
+	<script src="jspdf.umd.min.js"></script>
+    <!-- SVG.js -->
+    <script src="svg/svg.min.js"></script>
+    <!-- ملف الرسم الخارجي -->
+    <script src="circuitDrawer.js"></script>
+    
+    <!-- ========== النمط الموحَّد ========== -->
+    <style>
+        /* ========== المتغيرات العامة والسمة الفاتحة ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #0c4a6e;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%);
+            color: #e0f2fe;
+        }
+        
+        /* ========== مكونات الرأس والقدم ========== */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #0ea5e9, #0284c7);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #0c4a6e, #0369a1, #0ea5e9);
+        }
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-back-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #0c4a6e;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover {
+            background: #bfdbfe;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #0c4a6e;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #e0f2fe;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #0ea5e9;
+        }
+        .Tests-Hub-theme-toggle {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* زر تحميل print الجديد */
+        .Tests-Hub-print-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-print-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        /* زر تحميل pdf الجديد */
+        .Tests-Hub-pdf-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-pdf-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        /* زر الحفظ كصورة (بديل) */
+        .Tests-Hub-image-save-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0ea5e9, #0284c7);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0c4a6e, #0369a1, #0ea5e9);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #7dd3fc;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #7dd3fc;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        /* ========== الحاوية الرئيسية ========== */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* ========== أنماط بطاقة التمرين ========== */
+        :root {
+            --Tests-Hub-bg-start: #d9e2ec;
+            --Tests-Hub-bg-end: #f0f5fa;
+            --Tests-Hub-card-bg: rgba(255, 255, 255, 0.85);
+            --Tests-Hub-card-shadow-1: rgba(0, 20, 30, 0.2);
+            --Tests-Hub-card-shadow-2: rgba(255, 255, 255, 0.8);
+            --Tests-Hub-card-shadow-3: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-card-border: rgba(255, 255, 255, 0.7);
+            --Tests-Hub-h1-color: #0b3954;
+            --Tests-Hub-h1-shadow-1: rgba(255, 255, 255, 0.8);
+            --Tests-Hub-h1-shadow-2: rgba(0, 0, 0, 0.1);
+            --Tests-Hub-section-title-border: #f39c12;
+            --Tests-Hub-section-title-color: #1e4f6e;
+            --Tests-Hub-section-title-shadow: white;
+            --Tests-Hub-split-row-bg: #ffffffd9;
+            --Tests-Hub-split-row-shadow: rgba(0, 20, 30, 0.15);
+            --Tests-Hub-split-row-inset-border: rgba(255, 255, 255, 1);
+            --Tests-Hub-text-column-bg: #f8f5f0;
+            --Tests-Hub-text-column-inset: #fff8e7;
+            --Tests-Hub-text-column-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-svg-container-bg: #fcfcfc;
+            --Tests-Hub-svg-container-shadow-1: rgba(0, 0, 0, 0.03);
+            --Tests-Hub-svg-container-shadow-2: rgba(0, 0, 0, 0.1);
+            --Tests-Hub-svg-container-border: #ffffff;
+            --Tests-Hub-svg-bg: #fefefe;
+            --Tests-Hub-svg-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-question-list-bg: #f0f7fc;
+            --Tests-Hub-question-list-border: #f39c12;
+            --Tests-Hub-question-list-color: #1e3c5a;
+            --Tests-Hub-answers-bg: #f8f3e7;
+            --Tests-Hub-answers-border: #e0d6c0;
+            --Tests-Hub-answers-inset: #fff8e7;
+            --Tests-Hub-answers-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-answers-h3-color: #1e5f3e;
+            --Tests-Hub-answers-h3-border: #f39c12;
+            --Tests-Hub-answers-li-color: #1d3e5e;
+            --Tests-Hub-answers-strong-color: #c4450c;
+            --Tests-Hub-inter-note-bg: #fef7e9;
+            --Tests-Hub-inter-note-border: #f6b83e;
+            --Tests-Hub-inter-note-inset: #ffeecc;
+            --Tests-Hub-inter-note-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-inter-note-color: #2c3e50;
+            --Tests-Hub-symbols-strong-color: #c4450c;
+            --Tests-Hub-fallback-color: #a52a2a;
+            --Tests-Hub-white: #ffffff;
+            --Tests-Hub-black-005: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-black-01: rgba(0, 0, 0, 0.1);
+        
+            /* متغيرات الدارة (ألوان فاتحة) */
+            --Tests-Hub-circuit-wire: #2e4057;
+            --Tests-Hub-circuit-grid: #e6ecf5;
+            --Tests-Hub-circuit-junction-fill: #bf8f6a;
+            --Tests-Hub-circuit-junction-stroke: #6b4a3c;
+            --Tests-Hub-circuit-gen-fill: #fff2db;
+            --Tests-Hub-circuit-gen-stroke: #b45f2b;
+            --Tests-Hub-circuit-switch-stroke: #4a5c6e;
+            --Tests-Hub-circuit-switch-knob-fill: #f0f3f8;
+            --Tests-Hub-circuit-switch-knob-stroke: #2c3e50;
+            --Tests-Hub-circuit-resistor-fill: #faf2e4;
+            --Tests-Hub-circuit-resistor-stroke: #8b5a2b;
+            --Tests-Hub-circuit-ammeter-stroke: #1f6d9b;
+            --Tests-Hub-circuit-ammeter-fill: white;
+            --Tests-Hub-circuit-lamp-stroke: #c99f2e;
+            --Tests-Hub-circuit-lamp-fill: #fffde7;
+            --Tests-Hub-circuit-motor-stroke: #2c7a4d;
+            --Tests-Hub-circuit-motor-fill: #e8f0fe;
+            --Tests-Hub-circuit-motor-text: #1d5e3f;
+            --Tests-Hub-circuit-label-gen: #b6490e;
+            --Tests-Hub-circuit-label-plus: #c0392b;
+            --Tests-Hub-circuit-label-minus: #2c3e50;
+            --Tests-Hub-circuit-label-k: #1e3c4f;
+            --Tests-Hub-circuit-label-r: #a05017;
+            --Tests-Hub-circuit-label-a: #1f6d9b;
+            --Tests-Hub-circuit-label-l1: #b7711a;
+            --Tests-Hub-circuit-label-m: #1d5e3f;
+            --Tests-Hub-circuit-label-node: #8e44ad;
+            --Tests-Hub-circuit-arrow-stroke: #c0392b;
+            --Tests-Hub-circuit-arrow-fill: #c0392b;
+            --Tests-Hub-circuit-arrow-text: #a5260e;
+            --Tests-Hub-circuit-border-light: #d0d9e5;
+        
+            /* أنماط جديدة للإدخالات والملاحظات */
+            --Tests-Hub-input-bg: rgba(255, 255, 255, 0.9);
+            --Tests-Hub-input-border: #c0d0e0;
+            --Tests-Hub-note-bg: #e8f0fa;
+            --Tests-Hub-note-border: #3498db;
+        
+            /* ألوان شاشة المشواف */
+            --Tests-Hub-oscilloscope-bg: #111;
+            --Tests-Hub-oscilloscope-grid: #2a4a6a;
+            --Tests-Hub-oscilloscope-axis: #0a8;
+            --Tests-Hub-oscilloscope-trace: #ffaa00;
+        }
+        
+        /* ========== السمة الداكنة للدارة ========== */
+        .Tests-Hub-dark-theme {
+            --Tests-Hub-card-bg: rgba(10, 30, 50, 0.85);
+            --Tests-Hub-h1-color: #b0d4f0;
+            --Tests-Hub-section-title-color: #7ab0d0;
+            --Tests-Hub-split-row-bg: #1a2e42d9;
+            --Tests-Hub-text-column-bg: #2a3e52;
+            --Tests-Hub-text-column-inset: #3a5068;
+            --Tests-Hub-question-list-bg: #1f3a50;
+            --Tests-Hub-question-list-color: #d0e0f0;
+            --Tests-Hub-answers-bg: #2a3f4a;
+            --Tests-Hub-answers-border: #4a6070;
+            --Tests-Hub-answers-li-color: #d0e0f0;
+            --Tests-Hub-answers-h3-color: #90c0a0;
+            --Tests-Hub-answers-strong-color: #f0b090;
+            --Tests-Hub-inter-note-bg: #2a3f4a;
+            --Tests-Hub-inter-note-color: #e0e0e0;
+            --Tests-Hub-symbols-strong-color: #f0b090;
+        
+            /* ألوان الدارة للوضع الداكن */
+            --Tests-Hub-circuit-wire: #a0c0e0;
+            --Tests-Hub-circuit-grid: #2a4050;
+            --Tests-Hub-circuit-junction-fill: #d9a066;
+            --Tests-Hub-circuit-junction-stroke: #8b6b4f;
+            --Tests-Hub-circuit-gen-fill: #3a5f7a;
+            --Tests-Hub-circuit-gen-stroke: #e09e6b;
+            --Tests-Hub-circuit-switch-stroke: #a0b8cc;
+            --Tests-Hub-circuit-switch-knob-fill: #c0d0e0;
+            --Tests-Hub-circuit-switch-knob-stroke: #8098b0;
+            --Tests-Hub-circuit-resistor-fill: #5a4a3a;
+            --Tests-Hub-circuit-resistor-stroke: #dbb07c;
+            --Tests-Hub-circuit-ammeter-stroke: #7fb0d0;
+            --Tests-Hub-circuit-ammeter-fill: #2c3e50;
+            --Tests-Hub-circuit-lamp-stroke: #e5b84c;
+            --Tests-Hub-circuit-lamp-fill: #4a3e2a;
+            --Tests-Hub-circuit-motor-stroke: #6fa87f;
+            --Tests-Hub-circuit-motor-fill: #2a4a3a;
+            --Tests-Hub-circuit-motor-text: #c0e0c0;
+            --Tests-Hub-circuit-label-gen: #f0b080;
+            --Tests-Hub-circuit-label-plus: #f08070;
+            --Tests-Hub-circuit-label-minus: #a0c0e0;
+            --Tests-Hub-circuit-label-k: #c0d0e0;
+            --Tests-Hub-circuit-label-r: #f0b060;
+            --Tests-Hub-circuit-label-a: #a0d0f0;
+            --Tests-Hub-circuit-label-l1: #f0c060;
+            --Tests-Hub-circuit-label-m: #a0e0a0;
+            --Tests-Hub-circuit-label-node: #d0a0f0;
+            --Tests-Hub-circuit-arrow-stroke: #f08070;
+            --Tests-Hub-circuit-arrow-fill: #f08070;
+            --Tests-Hub-circuit-arrow-text: #f0a080;
+            --Tests-Hub-circuit-border-light: #4a6070;
+        
+            /* السمة الداكنة للإدخالات */
+            --Tests-Hub-input-bg: #2a4050;
+            --Tests-Hub-input-border: #5a7a90;
+            --Tests-Hub-note-bg: #1e3a4a;
+            --Tests-Hub-note-border: #5a9ac0;
+        
+            /* ألوان شاشة المشواف في الوضع الداكن */
+            --Tests-Hub-oscilloscope-bg: #0a1a2a;
+            --Tests-Hub-oscilloscope-grid: #3a5a7a;
+            --Tests-Hub-oscilloscope-axis: #2c8;
+            --Tests-Hub-oscilloscope-trace: #fc3;
+        }
+        
+        /* أنماط البطاقة */
+        .Tests-Hub-card {
+            max-width: 1400px;
+            width: 100%;
+            background: var(--Tests-Hub-card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 28px;
+            box-shadow: 0 30px 50px var(--Tests-Hub-card-shadow-1),
+            inset 0 2px 4px var(--Tests-Hub-card-shadow-2),
+            inset 0 -2px 4px var(--Tests-Hub-card-shadow-3);
+            border: 1px solid var(--Tests-Hub-card-border);
+        }
+        .Tests-Hub-h1 {
+            text-align: center;
+            color: var(--Tests-Hub-h1-color);
+            margin: 0 0 8px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--Tests-Hub-h1-shadow-1), -1px -1px 2px var(--Tests-Hub-h1-shadow-2);
+        }
+        .Tests-Hub-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding-right: 20px;
+            border-right: 8px solid var(--Tests-Hub-section-title-border);
+            color: var(--Tests-Hub-section-title-color);
+            text-shadow: 1px 1px 2px var(--Tests-Hub-section-title-shadow);
+        }
+        .Tests-Hub-split-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+            background: var(--Tests-Hub-split-row-bg);
+            backdrop-filter: blur(4px);
+            border-radius: 36px;
+            padding: 20px;
+            box-shadow: 0 15px 30px var(--Tests-Hub-split-row-shadow), inset 0 0 0 1px var(--Tests-Hub-split-row-inset-border);
+        }
+        .Tests-Hub-text-column {
+            flex: 1 1 300px;
+            min-width: 280px;
+            background: var(--Tests-Hub-text-column-bg);
+            border-radius: 28px;
+            padding: 20px 25px;
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-text-column-inset), 0 6px 12px var(--Tests-Hub-text-column-shadow);
+        }
+        .Tests-Hub-image-column {
+            flex: 1 1 300px;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .Tests-Hub-svg-container {
+            background: var(--Tests-Hub-svg-container-bg);
+            border-radius: 28px;
+            padding: 12px;
+            box-shadow: inset 0 0 20px var(--Tests-Hub-svg-container-shadow-1), 0 10px 18px var(--Tests-Hub-svg-container-shadow-2);
+            min-height: 200px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--Tests-Hub-svg-container-border);
+        }
+        .Tests-Hub-svg-container svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            background: var(--Tests-Hub-svg-bg);
+            box-shadow: 0 4px 12px var(--Tests-Hub-svg-shadow);
+        }
+        .Tests-Hub-question-list {
+            background: var(--Tests-Hub-question-list-bg);
+            padding: 1rem 1.8rem;
+            border-radius: 28px;
+            margin: 10px 0;
+            border-right: 6px solid var(--Tests-Hub-question-list-border);
+        }
+        .Tests-Hub-question-list ol, .Tests-Hub-question-list ul {
+            margin-right: 1.2rem;
+            line-height: 1.9;
+        }
+        .Tests-Hub-question-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-answers {
+            background: var(--Tests-Hub-answers-bg);
+            border-radius: 30px;
+            padding: 20px 30px;
+            border: 1px solid var(--Tests-Hub-answers-border);
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-answers-inset), 0 6px 12px var(--Tests-Hub-answers-shadow);
+            font-size: 1.1rem;
+        }
+        .Tests-Hub-answers h3 {
+            color: var(--Tests-Hub-answers-h3-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-right: 6px solid var(--Tests-Hub-answers-h3-border);
+            padding-right: 15px;
+        }
+        .Tests-Hub-answers li {
+            margin-bottom: 8px;
+            color: var(--Tests-Hub-answers-li-color);
+        }
+        .Tests-Hub-answers strong {
+            color: var(--Tests-Hub-answers-strong-color);
+        }
+        .Tests-Hub-inter-note {
+            background: var(--Tests-Hub-inter-note-bg);
+            border-right: 6px solid var(--Tests-Hub-inter-note-border);
+            padding: 16px 24px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: inset 0 1px 4px var(--Tests-Hub-inter-note-inset), 0 4px 8px var(--Tests-Hub-inter-note-shadow);
+            color: var(--Tests-Hub-inter-note-color);
+            text-align: center;
+            margin: 30px 0 10px;
+            backdrop-filter: blur(2px);
+        }
+        .Tests-Hub-symbols {
+            background: var(--Tests-Hub-inter-note-bg);
+            border-right: 6px solid var(--Tests-Hub-inter-note-border);
+            padding: 14px 22px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            box-shadow: inset 0 1px 4px var(--Tests-Hub-inter-note-inset), 0 4px 8px var(--Tests-Hub-inter-note-shadow);
+            color: var(--Tests-Hub-inter-note-color);
+            font-weight: 500;
+            margin-top: 15px;
+        }
+        .Tests-Hub-symbols strong {
+            color: var(--Tests-Hub-symbols-strong-color);
+        }
+        .Tests-Hub-fallback {
+            color: var(--Tests-Hub-fallback-color);
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2rem;
+        }
+        .katex { font-size: 1.1em; }
+        .Tests-Hub-question-list .katex, .Tests-Hub-answers .katex {
+            direction: ltr;
+            display: inline-block;
+        }
+        
+        /* أنماط الإدخالات والملاحظات التفصيلية */
+        .Tests-Hub-answer-input {
+            margin: 10px 0 15px 5px;
+        }
+        .Tests-Hub-answer-input textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+            transition: border 0.2s;
+        }
+        .Tests-Hub-answer-input textarea:focus {
+            outline: none;
+            border-color: #f39c12;
+        }
+        .Tests-Hub-detail-note {
+            background: var(--Tests-Hub-note-bg);
+            border-right: 4px solid var(--Tests-Hub-note-border);
+            padding: 12px 18px;
+            margin: 12px 0 15px 20px;
+            border-radius: 18px;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            color: var(--Tests-Hub-inter-note-color);
+        }
+        .Tests-Hub-detail-note::before {
+            content: "🔍 ملاحظة تفصيلية: ";
+            font-weight: 600;
+            color: var(--Tests-Hub-note-border);
+        }
+        
+        /* بطاقة العرض (Presentation Card) */
+        .Tests-Hub-presentation-card {
+            margin-bottom: 2rem;
+        }
+        
+        /* زر إظهار/إخفاء الإصلاح */
+        .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #f39c12, #e67e22);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .Tests-Hub-toggle-correction-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .Tests-Hub-toggle-correction-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #d97706, #b45309);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .Tests-Hub-footer-columns { grid-template-columns: 1fr; }
+            .Tests-Hub-header-content { flex-direction: column; }
+        }
+        
+        /* ========== أنماط الطباعة المحسّنة بشكل كبير ========== */
+        @media print {
+    /* إخفاء العناصر غير المرغوب فيها */
+    .Tests-Hub-header-container,
+    .Tests-Hub-footer-container,
+    .Tests-Hub-header-controls,
+    .Tests-Hub-toggle-correction-btn,
+    .Tests-Hub-language-selector,
+    .Tests-Hub-theme-toggle,
+    .Tests-Hub-back-button,
+    .Tests-Hub-print-button,
+    .Tests-Hub-pdf-button,
+    .Tests-Hub-image-save-button,
+    .Tests-Hub-answer-input,
+    input[type="radio"],
+    .Tests-Hub-radio-group,
+    .Tests-Hub-inter-note {
+        display: none !important;
+    }
+
+    /* إظهار بطاقة العرض التقديمي (sub-header) */
+    .Tests-Hub-presentation-card {
+        display: block !important;
+    }
+
+    /* إظهار الإصلاح في صفحة جديدة */
+    #correction-section {
+        display: block !important;
+        page-break-before: always;
+    }
+
+    /* إعادة تعيين الخلفيات والألوان */
+    body {
+        background: white !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* إزالة التأثيرات الزجاجية والظلال */
+    .Tests-Hub-card,
+    .Tests-Hub-split-row,
+    .Tests-Hub-text-column,
+    .Tests-Hub-image-column,
+    .Tests-Hub-svg-container {
+        backdrop-filter: none !important;
+        background: white !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+
+    /* تقليل الهوامش والحشوات لتوفير المساحة */
+    .Tests-Hub-card {
+        padding: 10px !important;
+    }
+
+    .Tests-Hub-split-row {
+        margin: 10px 0 !important;
+        padding: 10px !important;
+        gap: 10px !important;
+        page-break-inside: auto !important;  /* السماح بكسر الصف عبر الصفحات */
+    }
+
+    .Tests-Hub-text-column,
+    .Tests-Hub-image-column {
+        padding: 10px !important;
+    }
+
+    /* منع الارتفاع الأدنى لحاويات SVG */
+    .Tests-Hub-svg-container {
+        min-height: auto !important;
+        padding: 5px !important;
+    }
+
+    /* ضبط حجم SVG ليتناسب مع المحتوى */
+    .Tests-Hub-svg-container svg {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        border: 1px solid #aaa !important;
+        background: white !important;
+        box-shadow: none !important;
+    }
+
+    /* منع فواصل الصفحات بعد العناوين */
+    h2, h3 {
+        page-break-after: avoid;
+    }
+
+    /* حجم الخط الأساسي */
+    body, p, li {
+        font-size: 11pt;
+    }
+
+    /* ضبط هوامش الصفحة */
+    .Tests-Hub-main-container {
+        margin: 0 !important;
+        padding: 0.3cm !important;
+    }
+}
+/* ========== شاشة التحميل ========== */
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 1.8rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+#loading-overlay .Tests-Hub-spinner {
+    width: 60px;
+    height: 60px;
+    border: 8px solid rgba(255,255,255,0.3);
+    border-top: 8px solid #f39c12;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<body>
+    <!-- ========== الرأس الموحَّد ========== -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">الفيزياء - فرض تأليفي عدد 2 (8 أساسي)</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">الإعدادية التقنية سبيطلة | الأستاذ أيوب الدبابي</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back">
+                    <span>←</span>
+                    <span>العودة إلى الاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.header.language">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span>
+                </button>
+                <!-- زر تحميل print الجديد -->
+                <button class="Tests-Hub-print-button" id="printDownloadBtn">
+    <span>🖨️</span>
+    <span data-i18n="TestsHub.header.print">طباعة</span>
+</button>
+				<button class="Tests-Hub-pdf-button" id="pdfDownloadBtn">
+    <span>📄</span>
+    <span data-i18n="TestsHub.header.pdf">PDF</span>
+</button>
+                <!-- زر بديل للحفظ كصورة (إذا لم يعمل print) -->
+                <button class="Tests-Hub-image-save-button" id="imageSaveBtn" title="" data-i18n-title="TestsHub.imageSaveButton">
+                    <span>🖼️</span>
+                    <span data-i18n="TestsHub.imageSaveButton">صورة</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+<!-- شاشة التحميل -->
+<div id="loading-overlay">
+    <div class="Tests-Hub-spinner"></div>
+    <div data-i18n="TestsHub.loading.message">جاري التحميل...</div>
+</div>
+    <!-- ========== المحتوى الرئيسي ========== -->
+    <main class="Tests-Hub-main-container">
+        <!-- بطاقة العرض التقديمي -->
+        <div class="Tests-Hub-card Tests-Hub-presentation-card">
+            <div data-i18n="TestsHub.presentation.line1" style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">📋 فرض تأليفي عدد 2 - فيزياء - ثامنة أساسي</div>
+            <div data-i18n="TestsHub.presentation.line2" style="font-size: 1.2rem; margin-top: 0.25rem;">👨‍🏫 الأستاذ: أيوب الدبابي</div>
+            <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: 2023-2024</div>
+            <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 8 أساسي</div>
+            <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: الإعدادية التقنية سبيطلة</div>
+        </div>
+        
+        <!-- بطاقة التمرين الأصلي -->
+        <div class="Tests-Hub-card">
+            <h1 class="Tests-Hub-h1">⚡ تمارين (20 نقطة) ⚡</h1>
+            
+            <!-- قسم التمارين -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📘 التمارين</h2>
+                
+                <!-- ========== تمرين عدد 1 ========== -->
+                <div class="Tests-Hub-split-row">
+                    <div class="Tests-Hub-text-column">
+                        <div class="Tests-Hub-question-list">
+                            <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">📝 تمرين عدد 1 : (03ن)</h3>
+                            <p style="font-weight:500; margin-bottom:1rem;">أجب بصواب أو خطأ</p>
+                            <ol style="list-style-type: none; padding-right: 0;">
+                                <li style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                                        <span style="font-weight:500;">1. احتراق المازوط أفضل من احتراق الكحول</span>
+                                        <div class="Tests-Hub-radio-group" style="display: flex; gap: 1.5rem;">
+                                            <label style="display: flex; align-items: center; gap: 0.3rem;">
+                                                <input type="radio" name="q1" value="true"> صواب
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.3rem;">
+                                                <input type="radio" name="q1" value="false"> خطأ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                                        <span style="font-weight:500;">2. احتراق الشمعة احتراق تام</span>
+                                        <div class="Tests-Hub-radio-group" style="display: flex; gap: 1.5rem;">
+                                            <label style="display: flex; align-items: center; gap: 0.3rem;">
+                                                <input type="radio" name="q2" value="true"> صواب
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.3rem;">
+                                                <input type="radio" name="q2" value="false"> خطأ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                                        <span style="font-weight:500;">3. يركب جهاز الأمبيرمتر بالتوازي مع الدارة</span>
+                                        <div class="Tests-Hub-radio-group" style="display: flex; gap: 1.5rem;">
+                                            <label style="display: flex; align-items: center; gap: 0.3rem;">
+                                                <input type="radio" name="q3" value="true"> صواب
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.3rem;">
+                                                <input type="radio" name="q3" value="false"> خطأ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- التمرين الثاني -->
+                <div class="Tests-Hub-split-row">
+                    <div class="Tests-Hub-text-column">
+                        <div class="Tests-Hub-question-list">
+                            <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">⚡ تمرين عدد 2 : دارة كهربائية (07 نقاط) ⚡</h3>
+                            <ol style="font-weight:500;">
+                                <li>أرمز بحرف لكل عقدة في الدارة (01ن)
+                                    <div class="Tests-Hub-answer-input">
+                                        <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                    </div>
+                                </li>
+                                <li>أذكر كل عناصر الدارة (01ن)
+                                    <div class="Tests-Hub-answer-input">
+                                        <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                    </div>
+                                </li>
+                                <li>أرمز بسهم التيارات الكهربائية التالية : (01ن)
+                                    <ul>
+                                        <li>\(I\) التيار الصادر عن المولد</li>
+                                        <li>\(I_1\) التيار المار بالمصباح</li>
+                                        <li>\(I_2\) التيار المار بالمحرك</li>
+                                    </ul>
+                                    <div class="Tests-Hub-answer-input">
+                                        <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                    </div>
+                                </li>
+                                <li>علما وأن: \(I = 0.6\,\text{A}\)  و \(I_1 = 0.2\,\text{A}\)
+                                    <ol>
+                                        <li>حدد قيمة شدة التيار المار بالمكون R (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                        <li>أسرد قانون العقد (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                        <li>طبق قانون العقد في كل عقدة (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                        <li>أوجد شدة التيار المار بالمكون M؟ (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="Tests-Hub-symbols">
+                            <span style="font-size:1.3rem;">🔍 الرموز في الشكل: </span> 
+                            G (مولد) · k (قاطع) · R (مقاومة) · \(A_1, A_2\) (أمبيرمتران) · \(L_1\) (مصباح) · M (محرك)
+                        </div>
+                    </div>
+                    <div class="Tests-Hub-image-column">
+                        <div class="Tests-Hub-svg-container" id="test-container"></div>
+                    </div>
+                </div>
+                
+                <!-- ========== التمرين الثالث ========== -->
+                <div class="Tests-Hub-split-row">
+                    <div class="Tests-Hub-text-column">
+                        <div class="Tests-Hub-question-list">
+                            <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">🔋 تمرين عدد 3 : (10ن)</h3>
+                            <ol style="font-weight:500;">
+                                <li>نعتبر الدارة الكهربائية المغلقة التالية:
+                                    <ul>
+                                        <li>عرف التوتر الكهربائي (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>المقارنة الحالة الكهربائية للنقطتين P و N قمنا بوصلهما بمشواف الذبذبات فلاحظنا ارتفاع الخط الضوئي إلى الأعلى كما هو مبين في الرسم1
+                                    <ul>
+                                        <li>أ. هل النقطتين مختلفتين من حيث الحالة الكهربائية ؟ علل إجابتك (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                        <li>ب. هل يوجد توتر كهربائي بين النقطتين ؟ (0.5ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>قمنا بربط المشواف بالنقطتين D و Q فلاحظنا أن الخط الضوئي بقي وسط الشاشة كما يبينه الرسم 2
+                                    <ul>
+                                        <li>هل النقطتين D و Q مختلفتين من حيث الحالة الكهربائية ؟ علل إجابتك (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li>أ. لقيس التوتر الكهربائي بين قطبي المحرك استعملنا جهازا ماذا يسمى ؟ (0.5ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                        <li>ب. كيف يوصل هذا الجهاز في الدارة الكهربائية ؟ أرسم هذا الجهاز بين قطبي المحرك مع تحديد القطب الموجب والسالب لهذا الجهاز (0.5ن)</li>
+                                        <li>ج. أشار هذا الجهاز إلى البيانات التالية : L=40; c=10v; E=100
+                                            <br>احسب قيمة التوتر \(U_{CD}\) بين قطبي المحرك. (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li>أ. أرسم على الدارة التوترات الكهربائية التالية: \(U_{QN}\)، \(U_{PN}\)، \(U_{AB}\)، \(U_{BC}\)، \(U_{CD}\) (01ن)</li>
+                                        <li>ب. أسرد قانون الحلقات (01ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                        <li>ج. احسب \(U_{PN}\) علما أن الخط الضوئي ارتفع بحوالي 3 مربعات وأن الحساسية العمودية تشير إلى \(4\,\text{V/DIV}\) (01ن) (1.5ن)
+                                            <div class="Tests-Hub-answer-input">
+                                                <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>بتطبيق قانون الحلقات أحسب قيمة التوتر \(U_{AB}\) بين قطبي المصباح إذا علمت أن:
+                                    <ul>
+                                        <li>\(U_{QN} = 0.5\,\text{V}\)</li>
+                                        <li>\(U_{BC} = 4\,\text{V}\)</li>
+                                    </ul>
+                                    <div class="Tests-Hub-answer-input">
+                                        <textarea rows="2" placeholder="اكتب إجابتك هنا..."></textarea>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="Tests-Hub-image-column">
+                        <div class="Tests-Hub-svg-container" id="ex3-circuit"></div>
+                        <div class="Tests-Hub-svg-container" id="ex3-img1"></div>
+                        <div class="Tests-Hub-svg-container" id="ex3-img2"></div>
+                    </div>
+                </div>
+                
+               <!--  <div class="Tests-Hub-inter-note">
+                    📌 ملاحظة: ستتم إضافة تمارين أخرى لاحقاً.
+                </div> -->
+            </section>
+            
+            <!-- زر إظهار/إخفاء الإصلاح -->
+            <div style="text-align: center;">
+                <button class="Tests-Hub-toggle-correction-btn" id="toggleCorrectionBtn">
+                    <span id="toggleCorrectionIcon">👁️</span>
+                    <span id="toggleCorrectionText" data-i18n="TestsHub.showCorrection">إظهار الإصلاح</span>
+                </button>
+            </div>
+            
+            <!-- قسم الإصلاح (مخفي افتراضياً) -->
+            <section id="correction-section" style="display: none;">
+                <h2 class="Tests-Hub-section-title">✅ الإصلاح</h2>
+                
+                <!-- إصلاح تمرين 1 -->
+                <div class="Tests-Hub-split-row">
+                    <div class="Tests-Hub-text-column">
+                        <div class="Tests-Hub-answers">
+                            <h3>📌 إصلاح تمرين 1</h3>
+                            <ol style="list-style-type: none;">
+                                <li style="margin-bottom: 1rem;">
+                                    <strong>1. احتراق المازوط أفضل من احتراق الكحول:</strong> خطأ
+                                    <div class="Tests-Hub-detail-note">المازوط يسبب تلوثاً أكبر، والكحول احتراقه أنظف.</div>
+                                </li>
+                                <li style="margin-bottom: 1rem;">
+                                    <strong>2. احتراق الشمعة احتراق تام:</strong> خطأ
+                                    <div class="Tests-Hub-detail-note">احتراق الشمعة غير تام بسبب وجود شوائب وسخام.</div>
+                                </li>
+                                <li style="margin-bottom: 1rem;">
+                                    <strong>3. يركب جهاز الأمبيرمتر بالتوازي مع الدارة:</strong> خطأ
+                                    <div class="Tests-Hub-detail-note">الأمبيرمتر يركب على التوالي لقياس شدة التيار.</div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الإصلاح الثاني -->
+                <div class="Tests-Hub-split-row">
+                    <div class="Tests-Hub-text-column">
+                        <div class="Tests-Hub-answers">
+                            <h3>📌 إصلاح تمرين 2</h3>
+                            <ol>
+                                <li><strong>العقد:</strong> A (العقدة العلوية) و B (العقدة السفلية) – كما هو موضح بالرسم.
+                                    <div class="Tests-Hub-detail-note">العقدة هي نقطة التقاء ثلاث أسلاك على الأقل. في هذه الدارة، نجد عقدتين: العقدة العليا (A) حيث تتفرع التيارات إلى المصباح والمحرك، والعقدة السفلى (B) حيث تلتقي التيارات القادمة من المصباح والمحرك وتعود إلى المولد.</div>
+                                </li>
+                                <li><strong>عناصر الدارة:</strong> مولد (G)، قاطع (k)، مقاومة (R)، أمبيرمتر \(A_1\)، أمبيرمتر \(A_2\)، مصباح \(L_1\)، محرك M.
+                                    <div class="Tests-Hub-detail-note">تم تحديد العناصر بناءً على رموزها الموحدة: المولد (G) يوفر الطاقة، القاطع (k) يفتح ويغلق الدارة، المقاومة (R) تحد من التيار، الأمبيرمترات (A₁,A₂) تقيس التيار، المصباح (L₁) يضيء، المحرك (M) يدور. كل عنصر يؤدي وظيفة محددة في الدارة.</div>
+                                </li>
+                                <li><strong>التيارات:</strong> تمثل بالأسهم الحمراء (\(I\) الصادر من المولد، \(I_1\) في فرع المصباح، \(I_2\) في فرع المحرك).
+                                    <div class="Tests-Hub-detail-note">تم تمثيل التيار الصادر من المولد I بالاتجاه من القطب الموجب إلى السالب خارج المولد (اتجاه التيار الكهربائي الاصطلاحي). التيار I₁ يمر في فرع المصباح، والتيار I₂ في فرع المحرك. جميع التيارات تتفق مع قاعدة المستقبل للمولد: التيار يخرج من الموجب ويدخل إلى السالب.</div>
+                                </li>
+                                <li>
+                                    <strong>بالنسبة للتيارات:</strong> \(I = 0.6\,\text{A}\) ، \(I_1 = 0.2\,\text{A}\).
+                                    <ol style="list-style-type: lower-alpha; margin-right: 1.8rem; margin-top: 8px;">
+                                        <li><strong>تيار المقاومة R:</strong> \(I_R = I = 0.6\,\text{A}\) (لأنه التيار نفسه الخارج من العقدة B والعائد إلى المولد).
+                                            <div class="Tests-Hub-detail-note">المقاومة R موصولة على التوالي مع المولد وبالتالي يمر فيها نفس التيار الذي يمر في المولد (التيار الرئيسي I). لا يوجد أي تفرع بينهما، لذا فإن التيار في R هو نفسه I.</div>
+                                        </li>
+                                        <li><strong>قانون العقد:</strong> "مجموع شدة التيارات الداخلة إلى عقدة يساوي مجموع شدة التيارات الخارجة منها".
+                                            <div class="Tests-Hub-detail-note">قانون العقد هو تطبيق لمبدأ انحفاظ التيار الكهربائي (انحفاظ الشحنة). التيار الذي يدخل إلى عقدة لا يختفي، بل يخرج منها عبر الفروع المختلفة. هذا القانون أساسي لتحليل الدارات الكهربائية.</div>
+                                        </li>
+                                        <li><strong>تطبيق قانون العقد:</strong>
+                                            <ul>
+                                                <li>عند العقدة A: \(I = I_1 + I_2 \Rightarrow 0.6 = 0.2 + I_2 \Rightarrow I_2 = 0.4\,\text{A}\).</li>
+                                                <li>عند العقدة B: \(I_1 + I_2 = I\) (تحقق).</li>
+                                            </ul>
+                                            <div class="Tests-Hub-detail-note">عند العقدة A: التيار I الداخل (من المولد) يتفرع إلى I₁ و I₂. إذاً I = I₁ + I₂. نعوض I=0.6, I₁=0.2 فنجد I₂=0.4A. عند العقدة B: التيارات I₁ و I₂ تدخل (من المصباح والمحرك) وتخرج I (عائداً إلى المولد)، إذن I₁+I₂ = I وهو متحقق، مما يؤكد صحة الحسابات.</div>
+                                        </li>
+                                        <li><strong>تيار المحرك M:</strong> \(I_2 = 0.4\,\text{A}\).
+                                            <div class="Tests-Hub-detail-note">من تطبيق قانون العقد على العقدة A، وجدنا I₂ = 0.4 A. هذا هو التيار المار في المحرك M. يمكن التحقق أيضاً من العقدة B: I₁+I₂ = 0.2+0.4 = 0.6A = I، وهو متطابق.</div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="Tests-Hub-image-column">
+                        <div class="Tests-Hub-svg-container" id="correction-container"></div>
+                    </div>
+                </div>
+                
+                <!-- ========== إصلاح التمرين الثالث ========== -->
+                <div class="Tests-Hub-split-row">
+                    <div class="Tests-Hub-text-column">
+                        <div class="Tests-Hub-answers">
+                            <h3>📌 إصلاح تمرين 3</h3>
+                            <ol>
+                                <li><strong>تعريف التوتر الكهربائي:</strong> التوتر الكهربائي بين نقطتين هو الفرق في الحالة الكهربائية (أو الجهد) بينهما، ويقاس بالفولط.
+                                    <div class="Tests-Hub-detail-note">التوتر هو كمية فيزيائية تعبر عن الطاقة التي يكتسبها أو يفقدها التيار الكهربائي عند الانتقال بين نقطتين.</div>
+                                </li>
+                                <li><strong>المقارنة بين P و N:</strong>
+                                    <ul>
+                                        <li>أ. نعم، النقطتان P و N مختلفتان في الحالة الكهربائية لأن الخط الضوئي ارتفع إلى الأعلى مما يدل على وجود توتر موجب (أو فرق جهد).
+                                            <div class="Tests-Hub-detail-note">ارتفاع الخط الضوئي إلى الأعلى يعني أن المشواف سجل توتراً موجباً، أي أن النقطة P أعلى جهداً من N.</div>
+                                        </li>
+                                        <li>ب. نعم، يوجد توتر كهربائي بين P و N لأن المشواف أظهر انحرافاً.
+                                            <div class="Tests-Hub-detail-note">وجود انحراف يعني أن هناك فرق جهد، وبالتالي توتر غير معدوم.</div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong>النقطتان D و Q:</strong> لا، النقطتان D و Q غير مختلفتين (أي لهما نفس الحالة الكهربائية) لأن الخط الضوئي بقي في الوسط، مما يعني أن التوتر بينهما معدوم.
+                                    <div class="Tests-Hub-detail-note">بقاء الخط في الوسط يعني أن فرق الجهد صفر، وبالتالي النقطتان متساويتان في الحالة الكهربائية.</div>
+                                </li>
+                                <li><strong>قياس التوتر بين قطبي المحرك:</strong>
+                                    <ul>
+                                        <li>أ. الجهاز يسمى فولطمتر (أو جهاز قياس التوتر).</li>
+                                        <li>ب. يوصل الفولطمتر على التوازي (بالتفرع) بين قطبي المحرك، مع توصيل القطب الموجب للفولطمتر بالقطب الموجب للمحرك والقطب السالب بالقطب السالب.</li>
+                                        <li>ج. لحساب قيمة التوتر \(U_{CD}\) بين قطبي المحرك، نستخدم العلاقة: \(U = \frac{L}{E} \times c\)، حيث \(L=40\) (القراءة)، \(E=100\) (التدريج الكلي)، \(c=10\,\text{V}\) (القياس). إذن \(U_{CD} = \frac{40}{100} \times 10 = 4\,\text{V}\).</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li><strong>أ. رسم التوترات:</strong> (يتم رسم الأسهم على الدارة حسب الأقطاب)
+                                            <div class="Tests-Hub-detail-note">تمثل التوترات بأسهم من النقطة ذات الجهد الأقل إلى الأعلى (أو العكس حسب الاصطلاح).</div>
+                                        </li>
+                                        <li><strong>ب. قانون الحلقات:</strong> "مجموع التوترات الكهربائية في حلقة مغلقة يساوي صفراً" (أو مجموع التوترات المولدة يساوي مجموع التوترات المستهلكة).</li>
+                                        <li><strong>ج. حساب \(U_{PN}\):</strong> \(U_{PN} = 3\,\text{مربعات} \times 4\,\text{V/DIV} = 12\,\text{V}\).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>حساب \(U_{AB}\):</strong> بتطبيق قانون الحلقات على الحلقة الرئيسية (افتراضاً) نجد: \(U_{PN} = U_{QN} + U_{AB} + U_{BC} + U_{CD}\). لدينا \(U_{PN}=12\,\text{V}\)، \(U_{QN}=0.5\,\text{V}\)، \(U_{BC}=4\,\text{V}\)، و \(U_{CD}=4\,\text{V}\). إذن: \(12 = 0.5 + U_{AB} + 4 + 4 \Rightarrow U_{AB} = 12 - 8.5 = 3.5\,\text{V}\). 
+                                    <div class="Tests-Hub-detail-note">قيمة \(U_{AB}\) موجبة، مما يعني أن اتجاه التوتر بين قطبي المصباح يتوافق مع الاتجاه المفترض.</div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="Tests-Hub-image-column">
+                        <div class="Tests-Hub-svg-container" id="corr3-circuit"></div>
+                        <div class="Tests-Hub-svg-container" id="corr3-img1"></div>
+                        <div class="Tests-Hub-svg-container" id="corr3-img2"></div>
+                    </div>
+                </div>
+            </section>
+        </div> <!-- نهاية card -->
+    </main>
+    
+    <!-- ========== القدم الموحَّد ========== -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v2.5.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">روابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ========== سكربت موحَّد (التهيئة والترجمة) ========== -->
+    <script>
+        (function() {
+            // ========== إعدادات الترجمة والسمة ==========
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            let correctionVisible = false; // حالة إظهار الإصلاح
+            
+            const TestsHub_translations = {
+                ar: { 
+                    TestsHub: { 
+                        header: { 
+                            title: "الفيزياء - فرض تأليفي عدد 2 (8 أساسي)", 
+                            subtitle: "الإعدادية التقنية سبيطلة | الأستاذ أيوب الدبابي", 
+                            back: "العودة إلى الاختبارات", 
+                            language: "العربية",
+                            print: "طباعة",
+pdf: "PDF",
+defaultPdfFileName: "Physics_Exam_8.pdf",
+errorPdfCapture: "حدث خطأ أثناء إنشاء ملف PDF. راجع وحدة التحقق."
+                        },
+        loading: {
+		message: "جاري التحميل..."
+		},
+                        theme: { toggle: "الوضع الليلي" },
+                        footer: { 
+                            developer: "المطور", 
+                            version: "الإصدار", 
+                            links: "روابط", 
+                            terms: "شروط الاستخدام", 
+                            privacy: "سياسة الخصوصية", 
+                            developerName: "زياد المجري", 
+                            versionNumber: "v2.5.0" 
+                        },
+                        presentation: {
+                            line1: "📋 فرض تأليفي عدد 2 - فيزياء - ثامنة أساسي",
+                            line2: "👨‍🏫 الأستاذ: أيوب الدبابي",
+                            line3: "📅 السنة الدراسية: 2023-2024",
+                            line4: "📚 المستوى: 8 أساسي",
+                            line5: "🏫 المؤسسة: الإعدادية التقنية سبيطلة"
+                        },
+                        showCorrection: "إظهار الإصلاح",
+                        hideCorrection: "إخفاء الإصلاح",
+                        // إضافات جديدة
+                        imageSaveButton: "صورة",
+                        errorImageCapture: "حدث خطأ أثناء إنشاء الصورة. راجع وحدة التحقق.",
+                        defaultImageFileName: "الفرض_الفيزياء_8"
+                    } 
+                },
+                fr: { 
+                    TestsHub: { 
+                        header: { 
+                            title: "Physique - Devoir de Synthèse N°2 (8ème)", 
+                            subtitle: "Collège Technique Sbitla | Mr Ayoub Dabbebi", 
+                            back: "Retour aux examens", 
+                            language: "Français",
+                            print: "Imprimer",
+							pdf: "PDF",
+defaultPdfFileName: "Devoir_Physique_8.pdf",
+errorPdfCapture: "Erreur lors de la création du PDF. Vérifiez la console."
+                        },
+        loading: { message: "Chargement..." },
+                        theme: { toggle: "Mode sombre" },
+                        footer: { 
+                            developer: "Développeur", 
+                            version: "Version", 
+                            links: "Liens", 
+                            terms: "Conditions d'utilisation", 
+                            privacy: "Politique de confidentialité", 
+                            developerName: "Ziad Mejri", 
+                            versionNumber: "v2.5.0" 
+                        },
+                        presentation: {
+                            line1: "📋 Devoir de Synthèse N°2 - Physique - 8ème",
+                            line2: "👨‍🏫 Professeur: Ayoub Dabbebi",
+                            line3: "📅 Année scolaire: 2023-2024",
+                            line4: "📚 Classe: 8ème",
+                            line5: "🏫 Établissement: Collège Technique Sbitla"
+                        },
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Cacher la correction",
+                        // إضافات جديدة
+                        imageSaveButton: "Image",
+                        errorImageCapture: "Erreur lors de la création de l'image. Vérifiez la console.",
+                        defaultImageFileName: "Devoir_Physique_8"
+                    } 
+                },
+                en: { 
+                    TestsHub: { 
+                        header: { 
+                            title: "Physics - End Trim Test N°2 (Grade 8)", 
+                            subtitle: "Sbitla Technical Middle School | Mr Ayoub Dabbebi", 
+                            back: "Back to tests", 
+                            language: "English",
+                            print: "Print",
+							pdf: "PDF",
+defaultPdfFileName: "Physics_Exam_8.pdf",
+errorPdfCapture: "Error creating PDF. Check the console."
+                        },
+        loading: { message: "Loading..." },
+                        theme: { toggle: "Dark Mode" },
+                        footer: { 
+                            developer: "Developer", 
+                            version: "Version", 
+                            links: "Links", 
+                            terms: "Terms of use", 
+                            privacy: "Privacy policy", 
+                            developerName: "Ziad Mejri", 
+                            versionNumber: "v2.5.0" 
+                        },
+                        presentation: {
+                            line1: "📋 End Trim Test N°2 - Physics - 8th Grade",
+                            line2: "👨‍🏫 Teacher: Ayoub Dabbebi",
+                            line3: "📅 Academic Year: 2023-2024",
+                            line4: "📚 Class: 8th Grade",
+                            line5: "🏫 School: Sbitla Technical Middle School"
+                        },
+                        showCorrection: "Show correction",
+                        hideCorrection: "Hide correction",
+                        // إضافات جديدة
+                        imageSaveButton: "Image",
+                        errorImageCapture: "Error creating image. Check the console.",
+                        defaultImageFileName: "Physics_Exam_8"
+                    } 
+                }
+            };
+            
+            function updateTextContent() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.textContent = current;
+                });
+                // معالجة data-i18n-title
+                document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-title');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.setAttribute('title', current);
+                });
+                updateThemeToggleText();
+                updateToggleButtonText();
+            }
+            
+            function updateThemeToggleText() {
+                const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeToggle) themeToggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            
+            function updateToggleButtonText() {
+                const toggleText = document.getElementById('toggleCorrectionText');
+                if (toggleText) {
+                    const key = correctionVisible ? 'hideCorrection' : 'showCorrection';
+                    toggleText.textContent = TestsHub_translations[currentLanguage].TestsHub[key];
+                }
+            }
+            
+            function toggleTheme() {
+                isDarkTheme = !isDarkTheme;
+                document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+                updateThemeToggleText();
+                localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            }
+            
+            function changeLanguage(lang) {
+                if (!TestsHub_translations[lang]) return;
+                currentLanguage = lang;
+                updateTextContent();
+                document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+                localStorage.setItem('testsHubLanguage', lang);
+                // تحديث عنوان زر الصورة (قد يكون تم تغييره عبر data-i18n-title)
+                const imageBtn = document.getElementById('imageSaveBtn');
+                if (imageBtn) {
+                    imageBtn.setAttribute('title', TestsHub_translations[currentLanguage].TestsHub.imageSaveButton);
+                }
+            }
+            
+function showLoading() {
+    document.getElementById('loading-overlay').style.display = 'flex';
+}
+function hideLoading() {
+    document.getElementById('loading-overlay').style.display = 'none';
+}
+            // ========== التهيئة ==========
+            document.addEventListener('DOMContentLoaded', function() {
+                // استرجاع الإعدادات المخزنة
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') {
+                    isDarkTheme = true;
+                    document.body.classList.add('Tests-Hub-dark-theme');
+                }
+                const savedLanguage = localStorage.getItem('testsHubLanguage');
+                if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                    currentLanguage = savedLanguage;
+                }
+                if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+                else document.documentElement.dir = 'ltr';
+                updateTextContent();
+                
+                // تشغيل KaTeX
+                if (typeof renderMathInElement === 'function') {
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                        throwOnError: false
+                    });
+                }
+                
+                // أحداث السمات واللغة
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                    opt.addEventListener('click', function() {
+                        changeLanguage(this.getAttribute('data-language'));
+                    });
+                });
+                
+                // زر تحميل print
+               document.getElementById('printDownloadBtn').addEventListener('click', function() {
+    <!-- showLoading(); --> // إظهار شاشة التحميل
+    // تأخير بسيط للسماح بتحديث الواجهة
+    setTimeout(function() {
+        window.print(); // يبقى محجوباً حتى إغلاق نافذة الطباعة
+        hideLoading(); // بعد إغلاق الطباعة نخفي الشاشة
+    }, 50);
+});
+                // PDF download button (مصحح بالكامل)
+document.getElementById('pdfDownloadBtn').addEventListener('click', async function() {
+    const correctionSection = document.getElementById('correction-section');
+    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+    const body = document.body;
+
+    // تخزين الحالة الأصلية للإصلاح
+    const originalDisplay = correctionSection.style.display;
+
+    // 1. التأكد من تحديث الرسومات
+    redrawAllSVGs();
+
+    // 2. تطبيق أنماط الطباعة (خلفية بيضاء، إلخ)
+    body.classList.add('Tests-Hub-print-mode');
+
+    // 3. إخفاء الإصلاح قبل تصوير الاختبار (دون شرط)
+    correctionSection.style.display = 'none';
+    showLoading();
+
+    try {
+        // تصوير جزء الاختبار (بدون الإصلاح)
+        const testCanvas = await html2canvas(mainContainer, {
+            scale: 1.5,
+            backgroundColor: '#ffffff',
+            logging: false,
+            allowTaint: false,
+            useCORS: true
+        });
+
+        // تصوير الإصلاح (بعد إظهاره)
+        correctionSection.style.display = 'block';
+        await new Promise(resolve => setTimeout(resolve, 50));
+        const correctionCanvas = await html2canvas(correctionSection, {
+            scale: 1.5,
+            backgroundColor: '#ffffff',
+            logging: false,
+            allowTaint: false,
+            useCORS: true
+        });
+
+        // استعادة الحالة الأصلية للإصلاح
+        correctionSection.style.display = originalDisplay;
+        body.classList.remove('Tests-Hub-print-mode');
+
+        // 4. إنشاء ملف PDF (نفس الكود السابق)
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const topMargin = 30;
+        const bottomMargin = 30;
+        const contentHeight = pageHeight - topMargin - bottomMargin;
+
+        const fileName = TestsHub_translations[currentLanguage].TestsHub.defaultPdfFileName || 'exam.pdf';
+        const headerFileName = fileName.replace(/\.pdf$/i, '');
+
+        const getSlices = (canvas) => {
+            const scale = pageWidth / canvas.width;
+            const sliceCanvasHeight = contentHeight / scale;
+            const slices = [];
+            let y = 0;
+            while (y < canvas.height) {
+                const height = Math.min(sliceCanvasHeight, canvas.height - y);
+                slices.push({ y, height });
+                y += height;
+            }
+            return slices;
+        };
+
+        const addHeaderFooter = (pageNum, totalPages) => {
+            pdf.setFontSize(12);
+            pdf.setTextColor(40, 40, 40);
+            pdf.text(headerFileName, pageWidth / 2, topMargin / 2, { align: 'center' });
+            pdf.setFontSize(10);
+            pdf.text(`Page ${pageNum} / ${totalPages}`, pageWidth / 2, pageHeight - bottomMargin / 2, { align: 'center' });
+            pdf.setDrawColor(200, 200, 200);
+            pdf.line(40, topMargin - 2, pageWidth - 40, topMargin - 2);
+            pdf.line(40, pageHeight - bottomMargin + 2, pageWidth - 40, pageHeight - bottomMargin + 2);
+        };
+
+        const testSlices = getSlices(testCanvas);
+        const correctionSlices = correctionCanvas ? getSlices(correctionCanvas) : [];
+        const totalPages = testSlices.length + correctionSlices.length;
+        let pageCounter = 1;
+
+        const addSlice = (canvas, slice, isFirstPage) => {
+            if (!isFirstPage) pdf.addPage();
+            const sliceCanvas = document.createElement('canvas');
+            sliceCanvas.width = canvas.width;
+            sliceCanvas.height = slice.height;
+            const ctx = sliceCanvas.getContext('2d');
+            ctx.drawImage(canvas, 0, slice.y, canvas.width, slice.height, 0, 0, canvas.width, slice.height);
+            const imgData = sliceCanvas.toDataURL('image/jpeg', 0.9);
+            pdf.addImage(imgData, 'JPEG', 0, topMargin, pageWidth, slice.height * (pageWidth / canvas.width));
+            addHeaderFooter(pageCounter, totalPages);
+            pageCounter++;
+        };
+
+        testSlices.forEach((slice, i) => addSlice(testCanvas, slice, i === 0));
+        if (correctionSlices.length) {
+            correctionSlices.forEach((slice, i) => addSlice(correctionCanvas, slice, i === 0 && testSlices.length === 0));
+        }
+
+        pdf.save(fileName);
+
+    } catch (error) {
+        console.error('PDF generation error:', error);
+        alert(TestsHub_translations[currentLanguage].TestsHub.errorPdfCapture || 'Error generating PDF');
+        // استعادة الحالة في حال الخطأ
+        correctionSection.style.display = originalDisplay;
+        body.classList.remove('Tests-Hub-print-mode');
+    } finally {
+        hideLoading();
+    }
+});
+
+// دالة لإعادة رسم جميع SVG (لضمان ظهورها في الالتقاط)
+function redrawAllSVGs() {
+    if (typeof drawCircuit !== 'function') return;
+    // إعادة رسم SVGs الخاصة بالإصلاح
+    document.getElementById('correction-container').innerHTML = '';
+    document.getElementById('corr3-circuit').innerHTML = '';
+    document.getElementById('corr3-img1').innerHTML = '';
+    document.getElementById('corr3-img2').innerHTML = '';
+    drawCircuit('correction-container', true);
+    drawEx3Circuit('corr3-circuit', true, true);
+    drawOscilloscope('corr3-img1', 3, 'الرسم 1');
+    drawOscilloscope('corr3-img2', 0, 'الرسم 2');
+}
+                // زر الحفظ كصورة (بديل) مع استخدام الترجمة
+                document.getElementById('imageSaveBtn').addEventListener('click', function() {
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const correctionSection = document.getElementById('correction-section');
+                    const wasHidden = correctionSection && correctionSection.style.display === 'none';
+
+                    // إظهار الإصلاح مؤقتاً إذا كان مخفياً
+                    if (wasHidden) {
+                        correctionSection.style.display = 'block';
+                    }
+
+                    // إعادة رسم SVG الخاصة بالإصلاح (إذا لزم الأمر)
+                    if (typeof drawCircuit === 'function') {
+                        document.getElementById('correction-container').innerHTML = '';
+                        document.getElementById('corr3-circuit').innerHTML = '';
+                        document.getElementById('corr3-img1').innerHTML = '';
+                        document.getElementById('corr3-img2').innerHTML = '';
+                        drawCircuit('correction-container', true);
+                        drawEx3Circuit('corr3-circuit', true, true);
+                        drawOscilloscope('corr3-img1', 3, 'الرسم 1');
+                        drawOscilloscope('corr3-img2', 0, 'الرسم 2');
+                    }
+
+    showLoading(); // ← إظهار شاشة التحميل
+                    setTimeout(function() {
+                        html2canvas(mainContainer, {
+                            scale: 2,
+                            backgroundColor: null,
+                            logging: false,
+                            allowTaint: false,
+                            useCORS: true
+                        }).then(canvas => {
+                            // اسم الملف مترجم
+                            const fileName = TestsHub_translations[currentLanguage].TestsHub.defaultImageFileName + '.png';
+                            const link = document.createElement('a');
+                            link.download = fileName;
+                            link.href = canvas.toDataURL('image/png');
+                            link.click();
+
+                            // استعادة حالة الإصلاح
+                            if (wasHidden) {
+                                correctionSection.style.display = 'none';
+                            }
+                        }).catch(error => {
+                            console.error('خطأ في إنشاء الصورة:', error);
+                            // رسالة خطأ مترجمة
+                            const errorMsg = TestsHub_translations[currentLanguage].TestsHub.errorImageCapture;
+                            alert(errorMsg);
+                            if (wasHidden) {
+                                correctionSection.style.display = 'none';
+                            }
+        }).finally(() => {
+            hideLoading(); // ← إخفاء شاشة التحميل بعد الانتهاء (نجاح أو فشل)
+        });
+    }, 50);
+                });
+                
+                // زر إظهار/إخفاء الإصلاح
+                const toggleBtn = document.getElementById('toggleCorrectionBtn');
+                const correctionSection = document.getElementById('correction-section');
+                if (toggleBtn && correctionSection) {
+                    toggleBtn.addEventListener('click', function() {
+                        correctionVisible = !correctionVisible;
+                        correctionSection.style.display = correctionVisible ? 'block' : 'none';
+                        updateToggleButtonText();
+                        const icon = document.getElementById('toggleCorrectionIcon');
+                        if (icon) icon.textContent = correctionVisible ? '👁️‍🗨️' : '👁️';
+                    });
+                }
+                
+                // رسم الدارة للتمرين الثاني
+                if (typeof drawCircuit === 'function') {
+                    drawCircuit('test-container', false);
+                    drawCircuit('correction-container', true);  // الإصلاح مع الأسهم
+                    
+                    // رسم صور المشواف للتمرين الثالث
+                    drawOscilloscope('ex3-img1', 3, 'الرسم 1');   // ارتفاع 3 مربعات
+                    drawOscilloscope('ex3-img2', 0, 'الرسم 2');   // في المنتصف
+                    
+                    // رسم صور المشواف للإصلاح الثالث
+                    drawOscilloscope('corr3-img1', 3, 'الرسم 1');
+                    drawOscilloscope('corr3-img2', 0, 'الرسم 2');
+                    
+                    // رسم الدارة الجديدة للتمرين الثالث
+                    drawEx3Circuit('ex3-circuit', false, false);    // التمرين: لا فولطمتر ولا أسهم توترات
+                    drawEx3Circuit('corr3-circuit', true, true);    // الإصلاح: فولطمتر + أسهم التوترات
+                } else {
+                    console.warn('دوال الرسم غير موجودة. تأكد من تحميل circuitDrawer.js');
+                }
+            });
+        })();
+    </script>
+    <!-- يمكن إضافة مكتبة html2canvas هنا إذا أردت تفعيل زر الحفظ كصورة -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script> -->
+</body>
+</html>
