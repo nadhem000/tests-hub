@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<title>Tests Hub - Devoir de Synthèse N°3 - Mathématiques</title>
+		
+		<!-- PWA Meta Tags -->
+		<meta name="theme-color" content="#7C3AED">
+		<meta name="description" content="Devoir de Synthèse N°3 pour 1ère AS - Mathématiques">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Synthèse">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="application-name" content="Tests Hub">
+		
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+		
+		<!-- Manifest -->
+		<link rel="manifest" href="manifest.json">
+		
+		<!-- KaTeX local -->
+		<link rel="stylesheet" href="katex/katex.min.css">
+		<script defer src="katex/katex.min.js"></script>
+		<script defer src="katex/contrib/auto-render.min.js"></script>
+		
+		<style>
+			/* ===== STYLES EXACTS DE Tests Hub (trim1_Type2_test1) ===== */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			
+			body {
+				background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				transition: background 0.3s ease;
+				color: #333;
+			}
+			
+			body.Tests-Hub-dark-theme {
+				background: linear-gradient(135deg, #1e0b3a 0%, #2d1b69 100%);
+				color: #e6e6e6;
+			}
+			
+			/* Header */
+			.Tests-Hub-header-container {
+				background: linear-gradient(to right, #7C3AED, #8B5CF6);
+				color: white;
+				padding: 1.5rem 2rem;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+				transition: background 0.3s ease;
+				position: relative;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-header-container {
+				background: linear-gradient(to right, #1e0b3a, #7C3AED, #8B5CF6);
+			}
+			
+			.Tests-Hub-header-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 15px;
+			}
+			
+			.Tests-Hub-header-left {
+				display: flex;
+				align-items: center;
+				gap: 15px;
+			}
+			
+			.Tests-Hub-header-icon {
+				width: 48px;
+				height: 48px;
+				object-fit: contain;
+			}
+			
+			.Tests-Hub-header-title {
+				font-size: 1.8rem;
+				font-weight: 700;
+				letter-spacing: 1px;
+			}
+			
+			.Tests-Hub-header-subtitle {
+				font-size: 1rem;
+				opacity: 0.9;
+				margin-top: 3px;
+			}
+			
+			.Tests-Hub-header-controls {
+				display: flex;
+				align-items: center;
+				gap: 15px;
+			}
+			
+			.Tests-Hub-language-selector {
+				position: relative;
+			}
+			
+			.Tests-Hub-language-button {
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-language-button:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+			
+			.Tests-Hub-language-dropdown {
+				position: absolute;
+				top: 100%;
+				right: 0;
+				background: white;
+				border-radius: 8px;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+				min-width: 120px;
+				display: none;
+				z-index: 100;
+			}
+			
+			.Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+				display: block;
+			}
+			
+			.Tests-Hub-language-option {
+				padding: 0.8rem 1rem;
+				color: #333;
+				cursor: pointer;
+				transition: background 0.3s ease;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			
+			.Tests-Hub-language-option:hover {
+				background: #f0f0f0;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+				background: #2d1b69;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-option {
+				color: #e6e6e6;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+				background: #3d2b79;
+			}
+			
+			.Tests-Hub-theme-toggle {
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-theme-toggle:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Back Button */
+			.Tests-Hub-back-button {
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				transition: background 0.3s ease;
+				text-decoration: none;
+				font-size: 0.95rem;
+			}
+			
+			.Tests-Hub-back-button:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Main Content */
+			.Tests-Hub-main-container {
+				flex: 1;
+				max-width: 1000px;
+				margin: 2rem auto;
+				padding: 0 2rem;
+				width: 100%;
+			}
+			
+			/* Test Content Styling */
+			.Tests-Hub-test-header {
+				text-align: center;
+				background: linear-gradient(to right, #7C3AED, #8B5CF6);
+				color: white;
+				padding: 1.5rem;
+				border-radius: 10px;
+				margin-bottom: 2rem;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-header {
+				background: linear-gradient(to right, #1e0b3a, #7C3AED);
+			}
+			
+			.Tests-Hub-test-header h1 {
+				font-size: 1.5rem;
+				margin-bottom: 0.5rem;
+			}
+			
+			.Tests-Hub-test-section {
+				background: white;
+				border-radius: 10px;
+				padding: 1.5rem;
+				margin-bottom: 1.5rem;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+				transition: background 0.3s ease, color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section {
+				background: #2d1b69;
+				color: #e6e6e6;
+			}
+			
+			.Tests-Hub-test-section h2 {
+				color: #7C3AED;
+				border-bottom: 2px solid #8B5CF6;
+				padding-bottom: 8px;
+				margin-bottom: 1.5rem;
+				transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+				color: #a78bfa;
+			}
+			
+			.Tests-Hub-test-section h3 {
+				color: #8B5CF6;
+				margin-top: 1.5rem;
+				margin-bottom: 1rem;
+				transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+				color: #c4b5fd;
+			}
+			
+			.Tests-Hub-instructions {
+				background: #faf5ff;
+				padding: 1rem;
+				border-left: 4px solid #7C3AED;
+				margin-bottom: 1.5rem;
+				border-radius: 5px;
+				transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-instructions {
+				background: #1e0b3a;
+				border-left-color: #8B5CF6;
+			}
+			
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 1.5rem 0;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+			
+			th, td {
+				border: 1px solid #ddd;
+				padding: 12px 15px;
+				text-align: center;
+				transition: background 0.3s ease, border-color 0.3s ease;
+			}
+			
+			th {
+				background: #7C3AED;
+				color: white;
+				font-weight: 600;
+			}
+			
+			.Tests-Hub-dark-theme th {
+				background: #1e0b3a;
+			}
+			
+			tr:nth-child(even) {
+				background: #f9f9f9;
+			}
+			
+			.Tests-Hub-dark-theme tr:nth-child(even) {
+				background: #3d2b79;
+			}
+			
+			.Tests-Hub-dark-theme td {
+				border-color: #4d3b89;
+			}
+			
+			.Tests-Hub-answer-textarea, .Tests-Hub-table-textarea {
+				display: inline-block;
+				min-width: 100px;
+				border: 1px solid #aaa;
+				border-radius: 4px;
+				margin: 0 5px;
+				padding: 5px;
+				height: 30px;
+				font-family: inherit;
+				font-size: 14px;
+				resize: none;
+				vertical-align: middle;
+			}
+			
+			.Tests-Hub-table-textarea {
+				width: 100%;
+				height: 30px;
+			}
+			
+			.Tests-Hub-large-textarea {
+				width: 100%;
+				min-height: 60px;
+				border: 1px solid #aaa;
+				border-radius: 4px;
+				padding: 10px;
+				font-family: inherit;
+				font-size: 14px;
+				resize: vertical;
+				margin-top: 10px;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+			.Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+			.Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+				border-color: #666;
+				background-color: #2d1b69;
+				color: #e6e6e6;
+			}
+			
+			.Tests-Hub-question {
+				margin: 1.2rem 0;
+				padding-left: 10px;
+			}
+			
+			.Tests-Hub-question-number {
+				font-weight: bold;
+				color: #7C3AED;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-question-number {
+				color: #a78bfa;
+			}
+			
+			.Tests-Hub-true-false {
+				display: flex;
+				align-items: center;
+				margin: 10px 0;
+			}
+			
+			.Tests-Hub-true-false input {
+				margin-right: 10px;
+			}
+			
+			.Tests-Hub-image-container, .Tests-Hub-canvas-container {
+				text-align: center;
+				margin: 1.5rem 0;
+				padding: 1rem;
+				background: #f9f9f9;
+				border-radius: 8px;
+				transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-image-container,
+			.Tests-Hub-dark-theme .Tests-Hub-canvas-container {
+				background: #3d2b79;
+			}
+			
+			.Tests-Hub-image-container img, canvas {
+				max-width: 100%;
+				height: auto;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-image-caption {
+				font-style: italic;
+				color: #666;
+				margin-top: 10px;
+				font-size: 0.9em;
+				transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-image-caption {
+				color: #bdc3c7;
+			}
+			
+			/* Correction Section */
+			.Tests-Hub-correction-toggle-container {
+				text-align: center;
+				margin: 2rem 0;
+			}
+			
+			.Tests-Hub-toggle-button {
+				display: inline-block;
+				padding: 0.8rem 1.5rem;
+				background: linear-gradient(to right, #7C3AED, #8B5CF6);
+				color: white;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				font-size: 1rem;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-toggle-button:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-correction-section {
+				background: #faf5ff;
+				border-radius: 10px;
+				padding: 1.5rem;
+				margin-top: 1.5rem;
+				border-left: 4px solid #6d28d9;
+				transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-correction-section {
+				background: #1e0b3a;
+				border-left-color: #8B5CF6;
+			}
+			
+			.Tests-Hub-correction-section h3 {
+				color: #6d28d9;
+				margin-top: 0;
+				margin-bottom: 1rem;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+				color: #a78bfa;
+			}
+			
+			/* Style pour les formules mathématiques */
+			.Tests-Hub-math-formula {
+				font-family: 'Times New Roman', Times, serif;
+				font-style: italic;
+				background: #f8f8f8;
+				padding: 15px;
+				border-radius: 5px;
+				margin: 15px 0;
+				text-align: center;
+				transition: background 0.3s ease;
+				overflow-x: auto;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-math-formula {
+				background: #2d1b69;
+			}
+			
+			.Tests-Hub-math-expr {
+				font-family: 'Times New Roman', Times, serif;
+				font-style: italic;
+				margin: 5px 0;
+			}
+			
+			.Tests-Hub-hidden {
+				display: none;
+			}
+			
+			/* Download Buttons Styles */
+			.Tests-Hub-download-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 20px;
+				margin: 2.5rem 0;
+				padding: 1.5rem;
+				background: linear-gradient(to right, rgba(124, 58, 237, 0.1), rgba(139, 92, 246, 0.1));
+				border-radius: 12px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+				transition: all 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+				background: linear-gradient(to right, rgba(30, 11, 58, 0.2), rgba(124, 58, 237, 0.2));
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-download-button {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				min-width: 100px;
+				height: 100px;
+				padding: 1rem;
+				border: none;
+				border-radius: 12px;
+				cursor: pointer;
+				font-weight: 600;
+				font-size: 1.1rem;
+				transition: all 0.3s ease;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			
+			.Tests-Hub-download-button span:first-child {
+				font-size: 2rem;
+				margin-bottom: 8px;
+			}
+			
+			.Tests-Hub-download-button.pdf {
+				background: linear-gradient(135deg, #dc2626, #ef4444);
+				color: white;
+			}
+			
+			.Tests-Hub-download-button.odt {
+				background: linear-gradient(135deg, #059669, #10b981);
+				color: white;
+			}
+			
+			.Tests-Hub-download-button.png {
+				background: linear-gradient(135deg, #3b82f6, #60a5fa);
+				color: white;
+			}
+			
+			.Tests-Hub-download-button:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+			}
+			
+			.Tests-Hub-download-button.pdf:hover {
+				background: linear-gradient(135deg, #b91c1c, #dc2626);
+			}
+			
+			.Tests-Hub-download-button.odt:hover {
+				background: linear-gradient(135deg, #047857, #059669);
+			}
+			
+			.Tests-Hub-download-button.png:hover {
+				background: linear-gradient(135deg, #2563eb, #3b82f6);
+			}
+			
+			.Tests-Hub-download-button:active {
+				transform: translateY(-2px);
+			}
+			
+			/* Footer */
+			.Tests-Hub-footer-container {
+				background: linear-gradient(to right, #7C3AED, #8B5CF6);
+				color: white;
+				padding: 2rem;
+				margin-top: auto;
+				transition: background 0.3s ease;
+			}
+			
+			.Tests-Hub-dark-theme .Tests-Hub-footer-container {
+				background: linear-gradient(to right, #1e0b3a, #7C3AED, #8B5CF6);
+			}
+			
+			.Tests-Hub-footer-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			
+			.Tests-Hub-footer-columns {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 2rem;
+			}
+			
+			.Tests-Hub-footer-column {
+				text-align: center;
+			}
+			
+			.Tests-Hub-footer-column h3 {
+				color: #FDE68A;
+				margin-bottom: 1rem;
+				font-size: 1.2rem;
+				font-weight: 600;
+			}
+			
+			.Tests-Hub-footer-column p {
+				margin-bottom: 0.5rem;
+				opacity: 0.9;
+			}
+			
+			.Tests-Hub-developer-name {
+				font-weight: 600;
+				color: #FDE68A;
+			}
+			
+			.Tests-Hub-version-number {
+				font-weight: 600;
+				color: #FDE68A;
+			}
+			
+			/* Footer Links Styles */
+			.Tests-Hub-footer-links-list {
+				list-style: none;
+			}
+			
+			.Tests-Hub-footer-link {
+				color: #FDE68A;
+				text-decoration: none;
+				display: inline-block;
+				margin: 0.5rem 0;
+				transition: color 0.3s ease;
+			}
+			
+			.Tests-Hub-footer-link:hover {
+				color: white;
+				text-decoration: underline;
+			}
+			
+			/* Responsive */
+			@media (max-width: 768px) {
+				.Tests-Hub-header-content {
+					flex-direction: column;
+					text-align: center;
+					gap: 10px;
+				}
+				
+				.Tests-Hub-header-title {
+					font-size: 1.5rem;
+				}
+				
+				.Tests-Hub-header-controls {
+					margin-top: 15px;
+					flex-wrap: wrap;
+					justify-content: center;
+				}
+				
+				.Tests-Hub-main-container {
+					padding: 0 1rem;
+				}
+				
+				.Tests-Hub-footer-columns {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+					text-align: center;
+				}
+				
+				table {
+					font-size: 0.9rem;
+				}
+				
+				th, td {
+					padding: 8px 10px;
+				}
+				
+				.Tests-Hub-answer-textarea,
+				.Tests-Hub-table-textarea {
+					height: 25px;
+					font-size: 12px;
+				}
+				
+				.Tests-Hub-large-textarea {
+					min-height: 50px;
+					font-size: 12px;
+				}
+				
+				.Tests-Hub-download-buttons {
+					flex-direction: column;
+					align-items: center;
+					gap: 15px;
+					padding: 1rem;
+				}
+				
+				.Tests-Hub-download-button {
+					width: 80%;
+					max-width: 250px;
+					height: 80px;
+					flex-direction: row;
+					justify-content: flex-start;
+					padding: 1rem 1.5rem;
+				}
+				
+				.Tests-Hub-download-button span:first-child {
+					font-size: 1.8rem;
+					margin-bottom: 0;
+					margin-right: 15px;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				.Tests-Hub-test-header h1 {
+					font-size: 1.2rem;
+				}
+				
+				.Tests-Hub-test-section {
+					padding: 1rem;
+				}
+				
+				.Tests-Hub-header-container {
+					padding: 1rem;
+				}
+				
+				.Tests-Hub-download-buttons {
+					gap: 10px;
+				}
+				
+				.Tests-Hub-download-button {
+					height: 70px;
+					font-size: 1rem;
+					padding: 0.8rem 1.2rem;
+				}
+				
+				.Tests-Hub-download-button span:first-child {
+					font-size: 1.5rem;
+					margin-right: 10px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Header -->
+		<header class="Tests-Hub-header-container">
+			<div class="Tests-Hub-header-content">
+				<div class="Tests-Hub-header-left">
+					<img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+					<div>
+						<h1 class="Tests-Hub-header-title" data-i18n="TestsHub.synthesisTest.title">Mathématiques - Devoir de Synthèse N°3</h1>
+						<div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.synthesisTest.subtitle">1ère Année Secondaire</div>
+					</div>
+				</div>
+				
+				<div class="Tests-Hub-header-controls">
+					<a href="index.html" class="Tests-Hub-back-button">
+						<span>←</span>
+						<span data-i18n="TestsHub.synthesisTest.back">Retour aux Tests</span>
+					</a>
+					
+					<div class="Tests-Hub-language-selector">
+						<button class="Tests-Hub-language-button">
+							<span>🌐</span>
+							<span data-i18n="TestsHub.language.current">Français</span>
+							<span>▼</span>
+						</button>
+						<div class="Tests-Hub-language-dropdown">
+							<div class="Tests-Hub-language-option" data-language="fr">
+								<span>🌐</span> Français
+							</div>
+							<div class="Tests-Hub-language-option" data-language="en">
+								<span>🌐</span> English
+							</div>
+							<div class="Tests-Hub-language-option" data-language="ar">
+								<span>🌐</span> العربية
+							</div>
+						</div>
+					</div>
+					
+					<button class="Tests-Hub-theme-toggle" id="themeToggle">
+						<span id="themeIcon">🌙</span>
+						<span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+					</button>
+				</div>
+			</div>
+		</header>
+		
+		<!-- Main Content -->
+		<main class="Tests-Hub-main-container">
+			<!-- Test Header -->
+			<div class="Tests-Hub-test-header">
+				<h1>Devoir de Synthèse N°3 de Mathématiques</h1>
+				<p>Délégation de Sousse - 2024/2025</p>
+				<p>Classe : 1ère AS - Professeur : Mme Fatima Chatti</p>
+				<p>Durée : 1h30</p>
+			</div>
+			
+			<!-- Instructions -->
+			<div class="Tests-Hub-test-section Tests-Hub-instructions">
+				<h3>Instructions générales</h3>
+				<ul>
+					<li>Le sujet comporte quatre exercices indépendants</li>
+					<li>La qualité de la rédaction et la clarté des raisonnements seront prises en compte</li>
+					<li>Toute réponse doit être justifiée</li>
+				</ul>
+			</div>
+			
+			<!-- ================= EXERCICE 1 ================= -->
+			<div class="Tests-Hub-test-section">
+				<h2>Exercice n°1 (4 points)</h2>
+				<p><strong>I) Choisir la bonne réponse sans justification.</strong></p>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">1) Solution du système \(\begin{cases} 3x+5y=22 \\ -8x-2y=-2 \end{cases}\) :</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm1" value="(4;2)"> a) \((4;2)\)</label>
+					</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm1" value="(-1;5)"> b) \((-1;5)\)</label>
+					</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm1" value="(2;-7)"> c) \((2;-7)\)</label>
+					</div>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">2) Le tableau ci-contre représente une série statistique et \(x\) un réel. Si la série est bimodale, alors \(x =\) ?</div>
+					<table style="width:auto; margin-left:1.2rem;">
+						<tr><th>Valeurs</th><th>6</th><th>8</th><th>11</th><th>12</th><th>17</th><th>20</th></tr>
+						<tr><td>Effectifs</td><td>1</td><td>7</td><td>6</td><td>\(x+1\)</td><td>3</td><td>4</td></tr>
+					</table>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm2" value="6"> a) \(x=6\)</label>
+					</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm2" value="7"> b) \(x=7\)</label>
+					</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm2" value="8"> c) \(x=8\)</label>
+					</div>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">3) Soit \(R\) le quart de tour direct de centre \(O\). Si \(R(A)=B\) et \(R(B)=C\) alors :</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm3" value="R(C)=A"> a) \(R(C)=A\)</label>
+					</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm3" value="B milieu"> b) \(B\) est le milieu de \([AC]\)</label>
+					</div>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="qcm3" value="rectangle B"> c) \(ABC\) est rectangle en \(B\)</label>
+					</div>
+				</div>
+				<p style="margin-top:1rem;"><strong>II) Répondre par vrai ou faux sans justification.</strong></p>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">Soit la série statistique à valeurs discrètes données par le tableau suivant (\(x\) et \(y\) deux réels strictement positifs).<br>
+					Alors \((x; y)\) vérifie le système \(\begin{cases} 2x+y=12 \\ x+y=10 \end{cases}\) ?</div>
+					<table style="width:auto; margin-left:1.2rem;">
+						<tr><th>Valeurs</th><th>10</th><th>11</th><th>12</th><th>13</th></tr>
+						<tr><td>Effectifs</td><td>\(x\)</td><td>\(y\)</td><td>\(x\)</td><td>\(y\)</td></tr>
+						<tr><th>E-C-C</th><th></th><th></th><th>12</th><th>20</th></tr>
+					</table>
+					<div class="Tests-Hub-true-false">
+						<label><input type="radio" name="vfSerie" value="Vrai"> Vrai</label>
+						<label><input type="radio" name="vfSerie" value="Faux"> Faux</label>
+					</div>
+				</div>
+			</div>
+			
+			<!-- ================= EXERCICE 2 ================= -->
+			<div class="Tests-Hub-test-section">
+				<h2>Exercice n°2 (5 points)</h2>
+				<p>Enquête sur les salaires mensuels (en dinars) :</p>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">1) Compléter le tableau dans la feuille annexe :</div>
+					<table class="annexe-table">
+						<thead><tr><th>Salaires</th><th>Effectifs</th><th>Fréquences</th><th>F.C.C</th><th>Centres</th></tr></thead>
+						<tbody>
+							<tr><td>[800;1000[</td><td>10</td><td><input type="number" id="freq1" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="fcc1" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="centre1" step="1" placeholder="..." style="width:80px;"></td></tr>
+							<tr><td>[1000;1200[</td><td>22</td><td><input type="number" id="freq2" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="fcc2" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="centre2" step="1" placeholder="..." style="width:80px;"></td></tr>
+							<tr><td>[1200;1400[</td><td>30</td><td><input type="number" id="freq3" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="fcc3" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="centre3" step="1" placeholder="..." style="width:80px;"></td></tr>
+							<tr><td>[1400;1600[</td><td>18</td><td><input type="number" id="freq4" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="fcc4" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="centre4" step="1" placeholder="..." style="width:80px;"></td></tr>
+							<tr><td>[1600;1800[</td><td>12</td><td><input type="number" id="freq5" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="fcc5" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="centre5" step="1" placeholder="..." style="width:80px;"></td></tr>
+							<tr><td>[1800;2000[</td><td>8</td><td><input type="number" id="freq6" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="fcc6" step="0.01" placeholder="..." style="width:80px;"></td><td><input type="number" id="centre6" step="1" placeholder="..." style="width:80px;"></td></tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">2) a) Déterminer la classe modale :</div>
+					<input type="text" id="modalClass" placeholder="..." style="width:170px;">
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">b) Calculer le salaire moyen :</div>
+					<input type="number" id="meanSalary" step="0.01" placeholder="..."> DT
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">3) a) Construire sur la feuille annexe le polygone des fréquences cumulées croissantes.</div>
+					<div class="Tests-Hub-question-number" style="margin-top:1rem;">b) En déduire une valeur approchée de la médiane \(M_e\) :</div>
+					<input type="number" id="medianValue" step="1" placeholder="..."> DT
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">4) Déterminer le pourcentage des employés gagnant un salaire inférieur à 1400 dinars :</div>
+					<input type="number" id="percentInf" step="0.1" placeholder="..."> %
+				</div>
+			</div>
+			
+			<!-- ================= EXERCICE 3 ================= -->
+			<div class="Tests-Hub-test-section">
+				<h2>Exercice n°3 (5 points)</h2>
+				<p>Dans un repère orthonormé \((O,\vec{i},\vec{j})\), on donne \(A(1;3),\; B(-3;0),\; C(-1;-1)\).</p>
+				<div class="Tests-Hub-canvas-container">
+					<canvas id="ex3Canvas" width="600" height="350" style="width:100%; max-width:600px;"></canvas>
+					<p>Figure : points A, B, C, D (parallélogramme), droites (E) et (E'), centre K.</p>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">1) Déterminer les coordonnées de \(D\) tel que \(ABCD\) soit un parallélogramme :</div>
+					<div class="coord-group"><label>\(x_D =\)</label> <input type="text" id="dx" placeholder="..." size="5"> &nbsp; <label>\(y_D =\)</label> <input type="text" id="dy" placeholder="..." size="5"></div>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">2) Déterminer les coordonnées du centre \(K\) de \(ABCD\) :</div>
+					<div class="coord-group"><label>\(x_K =\)</label> <input type="text" id="kx" placeholder="..." size="5"> &nbsp; <label>\(y_K =\)</label> <input type="text" id="ky" placeholder="..." size="5"></div>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">3) Soient \((E): 2x-y+1=0\) et \((E'): x-3y+3=0\).<br>
+					a) Vérifier que \(A\) et \(C\) sont solutions de \((E)\).<br>
+					b) Vérifier que \(B\) et \(D\) sont solutions de \((E')\).<br>
+					c) En déduire graphiquement la solution du système \(\begin{cases}2x-y=-1 \\ x-3y=-3\end{cases}\) :</div>
+					<div class="coord-group"><label>\(x =\)</label> <input type="text" id="solx" placeholder="..." size="5"> &nbsp; <label>\(y =\)</label> <input type="text" id="soly" placeholder="..." size="5"></div>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">4) Résoudre dans \(\mathbb{R}^2\) le système (S) par le calcul :</div>
+					<input type="text" id="calcSol" placeholder="..." style="width:130px;">
+				</div>
+			</div>
+			
+			<!-- ================= EXERCICE 4 ================= -->
+			<div class="Tests-Hub-test-section">
+				<h2>Exercice n°4 (6 points)</h2>
+				<p>Repère orthonormé \((O,\vec{i},\vec{j})\). Points \(A(-2;2),\; B(0;-2),\; C(4;0),\; D(2;4)\).</p>
+				<div class="Tests-Hub-canvas-container">
+					<canvas id="quadCanvas" width="600" height="350" style="width:100%; max-width:550px;"></canvas>
+					<p>Carré ABCD et éléments de la rotation (points E, F, G)</p>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">1) a) Calculer les distances \(AD\), \(AC\) et \(DC\) :</div>
+					<div class="coord-group"><label>\(AD =\)</label> <input type="text" id="adVal" placeholder="..." size="10"> &nbsp; <label>\(AC =\)</label> <input type="text" id="acVal" placeholder="..." size="10"> &nbsp; <label>\(DC =\)</label> <input type="text" id="dcVal" placeholder="..." size="10"></div>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">b) En déduire la nature du triangle \(ADC\) :</div>
+					<input type="text" id="natureAdc" placeholder="..." style="width:240px;">
+					<p style="margin-top:5px;">c) Montrer que le quadrilatère \(ABCD\) est un carré.</p>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">2) Soit \(E\) le milieu de \([BC]\), \(F\) l'intersection de \((AE)\) et \((CD)\). La perpendiculaire à \((AE)\) passant par \(A\) coupe \((BC)\) en \(G\).<br>
+					\(r\) est le quart de tour direct de centre \(A\).<br>
+					a) Images de \(A\) et \(B\) par \(r\) : \(r(A)=\) <input type="text" id="rA" placeholder="..." size="5"> , \(r(B)=\) <input type="text" id="rB" placeholder="..." size="5"><br>
+					b) Image de la droite \((AB)\) par \(r\) : <input type="text" id="rAB" placeholder="..." style="width:110px;"><br>
+					c) Image de la droite \((GC)\) par \(r\) : <input type="text" id="rGC" placeholder="..." style="width:110px;"><br>
+					d) En déduire que \(F = r(G)\). Relation : <input type="text" id="fgRelation" placeholder="..." style="width:140px;"></div>
+				</div>
+				<div class="Tests-Hub-question">
+					<div class="Tests-Hub-question-number">3) Soit \((\mathcal{E})\) le cercle de centre \(B\) passant par \(A\).<br>
+					a) Déterminer et construire l'image \((\mathcal{E}')\) de \((\mathcal{E})\) par \(r\).<br>
+					b) Déterminer l'intersection des cercles \((\mathcal{E})\) et \((\mathcal{E}')\) :</div>
+					<input type="text" id="intersection" placeholder="..." style="width:180px;">
+				</div>
+			</div>
+			
+			<!-- Correction Toggle -->
+			<div class="Tests-Hub-correction-toggle-container">
+				<button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+			</div>
+			
+			<!-- Correction Section (COMPLÈTE) -->
+			<div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+				<h2>Correction détaillée – analyse et développement</h2>
+				
+				<h3>Exercice 1</h3>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>I.1) Système :</strong> \(\begin{cases}3x+5y=22\\-8x-2y=-2\end{cases}\). Testons chaque couple.<br>
+					- \((4;2)\) : \(3·4+5·2=12+10=22\) ; \(-8·4-2·2=-32-4=-36\neq -2\) → non.<br>
+					- \((-1;5)\) : \(3(-1)+5·5=-3+25=22\) ; \(-8(-1)-2·5=8-10=-2\) → vérifie.<br>
+					- \((2;-7)\) : \(3·2+5(-7)=6-35=-29\neq22\). <strong>Réponse b) \((-1;5)\).</strong><br>
+					<em>Analyse :</em> On peut aussi résoudre par combinaison ou substitution.</p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>I.2) Bimodalité :</strong> Une série est bimodale si deux valeurs distinctes ont le même effectif maximal. Effectifs donnés : 1, 7, 6, \(x+1\), 3, 4. Le max actuel est 7 (valeur 8). Pour avoir un deuxième mode, il faut qu’une autre valeur ait aussi l’effectif 7. Les candidats : \(x+1 = 7 \Rightarrow x=6\). Alors effectif de 12 devient 7, donc modes : 8 et 12. <strong>Réponse a) \(x=6\).</strong></p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>I.3) Quart de tour direct :</strong> \(R\) rotation d’angle \(90^\circ\) autour de \(O\). \(R(A)=B\) et \(R(B)=C\). Alors \(OA=OB\) et \(OB=OC\), \( \widehat{AOB}=90^\circ,\ \widehat{BOC}=90^\circ\). Dans le triangle \(ABC\), on montre que \(\widehat{ABC}=90^\circ\). Ainsi \(ABC\) rectangle en \(B\). <strong>Réponse c).</strong></p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>II) Vrai/Faux :</strong> Effectif total = \(x+y+x+y = 2(x+y)\). Les conditions \(x+y=10\) et \(2x+y=12\). En soustrayant : \((2x+y)-(x+y)=x=2\), puis \(y=8\). Les effectifs deviennent positifs, les égalités sont cohérentes. L’affirmation est donc <strong>VRAIE</strong>.</p>
+				</div>
+				
+				<h3>Exercice 2 – analyse complète</h3>
+<div class="Tests-Hub-math-formula">
+    <p><strong>1) Tableau statistique complet :</strong></p>
+    <table style="width:100%; margin:1rem 0; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Salaires (DT)</th>
+                <th>Effectifs (nᵢ)</th>
+                <th>Fréquences (fᵢ)</th>
+                <th>F.C.C</th>
+                <th>Centres (xᵢ)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>[800 ; 1000[</td><td>10</td><td>0,10</td><td>0,10</td><td>900</td></tr>
+            <tr><td>[1000 ; 1200[</td><td>22</td><td>0,22</td><td>0,32</td><td>1100</td></tr>
+            <tr><td>[1200 ; 1400[</td><td>30</td><td>0,30</td><td>0,62</td><td>1300</td></tr>
+            <tr><td>[1400 ; 1600[</td><td>18</td><td>0,18</td><td>0,80</td><td>1500</td></tr>
+            <tr><td>[1600 ; 1800[</td><td>12</td><td>0,12</td><td>0,92</td><td>1700</td></tr>
+            <tr><td>[1800 ; 2000[</td><td>8</td><td>0,08</td><td>1,00</td><td>1900</td></tr>
+            <tr style="font-weight:bold; background:rgba(124,58,237,0.1);">
+                <td>Total</td><td>100</td><td>1,00</td><td>—</td><td>—</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Effectif total \(N = 10+22+30+18+12+8 = 100\).<br>
+    Fréquences = effectif / N.<br>
+    Centres = (borne inf + borne sup) / 2.</p>
+</div>
+<div class="Tests-Hub-math-formula">
+    <p><strong>2a) Classe modale :</strong> L’effectif le plus élevé est 30 pour \([1200;1400[\). Donc <strong>[1200;1400[</strong>.</p>
+</div>
+<div class="Tests-Hub-math-formula">
+    <p><strong>2b) Salaire moyen :</strong> \(\bar{x} = \frac{\sum n_i \times \text{centre}_i}{N} = \frac{10·900 + 22·1100 + 30·1300 + 18·1500 + 12·1700 + 8·1900}{100}\)<br>
+    \(= \frac{9000+24200+39000+27000+20400+15200}{100} = \frac{134800}{100}=1348\ \text{DT}\).</p>
+</div>
+<div class="Tests-Hub-canvas-container">
+    <canvas id="corrFCC" width="600" height="280" style="width:100%; max-width:600px;"></canvas>
+    <p>Polygone des F.C.C. avec médiane</p>
+</div>
+<div class="Tests-Hub-math-formula">
+    <p><strong>3) Polygone des FCC et médiane :</strong> On place les points (800;0,10), (1000;0,32), (1200;0,62), (1400;0,80), (1600;0,92), (1800;1,00).<br>
+    Médiane : on cherche l’antécédent de 0,50. Interpolation dans \([1200;1400[\) :<br>
+    \(M_e = 1200 + \frac{0,50-0,32}{0,62-0,32}\times 200 = 1200 + \frac{0,18}{0,30}\times200 = 1200+120 = 1320\ \text{DT}\).</p>
+</div>
+<div class="Tests-Hub-math-formula">
+    <p><strong>4) Pourcentage de salaires < 1400 DT :</strong> La FCC de la classe \([1200;1400[\) vaut 0,62, donc <strong>62 %</strong> des employés gagnent moins de 1400 DT.</p>
+</div>
+				
+				<h3>Exercice 3 – développements</h3>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>1) Parallélogramme \(ABCD\) :</strong> On utilise \(\overrightarrow{AB} = \overrightarrow{DC}\). \(\overrightarrow{AB} = (-3-1;0-3)=(-4;-3)\). Soit \(D(x;y)\), \(\overrightarrow{DC}=(-1-x;-1-y)\). Égalité : \(-1-x=-4 \Rightarrow x=3\) ; \(-1-y=-3 \Rightarrow y=2\). Donc \(D(3;2)\).</p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>2) Centre \(K\) :</strong> Intersection des diagonales, milieu de \([AC]\) : \(K\left(\frac{1+(-1)}{2};\frac{3+(-1)}{2}\right) = (0;1)\).</p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>3) Vérifications :</strong> (E) \(2x-y+1=0\) : \(A(1;3):2-3+1=0\) ; \(C(-1;-1): -2-(-1)+1=-2+1+1=0\).<br>
+					(E') \(x-3y+3=0\) : \(B(-3;0): -3-0+3=0\) ; \(D(3;2): 3-6+3=0\).<br>
+					Le système \(\begin{cases}2x-y=-1\\x-3y=-3\end{cases}\) a pour solution l’intersection des deux droites (E) et (E'). Graphiquement les droites se coupent au point \(K(0;1)\).</p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>4) Résolution par calcul :</strong> De \(2x-y=-1\) on tire \(y=2x+1\). Report dans \(x-3(2x+1)=-3 \Rightarrow x-6x-3=-3 \Rightarrow -5x=0 \Rightarrow x=0\). Alors \(y=1\). Solution unique \((0;1)\).</p>
+				</div>
+				
+				<h3>Exercice 4 – analyse géométrique détaillée</h3>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>1) Distances :</strong> \(AD = \sqrt{(2-(-2))^2+(4-2)^2} = \sqrt{4^2+2^2}=\sqrt{20}=2\sqrt5\).<br>
+					\(AC = \sqrt{(4-(-2))^2+(0-2)^2} = \sqrt{6^2+(-2)^2}=\sqrt{40}=2\sqrt{10}\).<br>
+					\(DC = \sqrt{(4-2)^2+(0-4)^2} = \sqrt{2^2+(-4)^2}=\sqrt{20}=2\sqrt5\).<br>
+					\(AD = DC\) et \(AD^2+DC^2 = 20+20=40 = AC^2\) : triangle \(ADC\) rectangle isocèle en \(D\).</p>
+					<p>Montrons que \(ABCD\) est un carré : \(AB = \sqrt{(0+2)^2+(-2-2)^2} = 2\sqrt5\), \(BC = 2\sqrt5\). Vecteurs \(\overrightarrow{AB}=(2;-4)\) et \(\overrightarrow{BC}=(4;2)\), produit scalaire = \(2·4+(-4)·2=8-8=0\) ⇒ angle droit. Les quatre côtés sont égaux et un angle droit → \(ABCD\) carré.</p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>2) Rotation \(r\) quart de tour direct autour de \(A\).</strong><br>
+					a) \(r(A)=A\) (centre fixe). \(\overrightarrow{AB}=(2;-4)\) ; rotation directe \(90^\circ\) : \((x;y)\to (-y;x)\) donne \((-(-4);2)=(4;2)\). Donc \(r(B) = A + (4;2)= (2;4)=D\).<br>
+					b) L’image de la droite \((AB)\) par \(r\) est la droite passant par \(r(A)=A\) et \(r(B)=D\), soit \((AD)\).<br>
+					c) Pour \((GC)\) : par construction \(G\) sur \((BC)\), \((GC)\) perpendiculaire à \((AE)\). La rotation envoie \((AE)\) sur \((AG)\) et \((BC)\) sur \((CD)\). On obtient \(r(G)=F\) et \(r(C)\) est un point sur \((CD)\). Donc l'image de \((GC)\) est \((CD)\).<br>
+					d) \(F = r(G)\).</p>
+				</div>
+				<div class="Tests-Hub-math-formula">
+					<p><strong>3) Cercles :</strong> \((\mathcal{E})\) centre \(B\), rayon \(BA = 2\sqrt5\). Son image par \(r\) est le cercle \((\mathcal{E}')\) de centre \(r(B)=D\) et même rayon. Intersection des deux cercles : le point \(A\) car \(BA=DA\) et \(A\) fixe par rotation ; également le point \(C\) car \(BC = DC = 2\sqrt5\) (carré). Donc intersection = \(\{A ; C\}\).</p>
+				</div>
+				<div class="Tests-Hub-canvas-container">
+					<canvas id="corrCanvas" width="600" height="350" style="width:100%; max-width:550px;"></canvas>
+					<p>Figure de correction : carré, points E, F, G et cercles</p>
+				</div>
+				<p><em>Conclusion :</em> chaque réponse s’appuie sur des calculs rigoureux ou des propriétés de rotation et de géométrie analytique.</p>
+			</div>
+			
+			<!-- Download Buttons -->
+			<div class="Tests-Hub-download-buttons">
+				<button class="Tests-Hub-download-button pdf" id="downloadPdf">
+					<span>📄</span>
+					<span>PDF</span>
+				</button>
+				<button class="Tests-Hub-download-button odt" id="downloadOdt">
+					<span>📝</span>
+					<span>ODT</span>
+				</button>
+				<button class="Tests-Hub-download-button png" id="downloadPng">
+					<span>🖼️</span>
+					<span>PNG</span>
+				</button>
+			</div>
+		</main>
+		
+		<!-- Footer -->
+		<footer class="Tests-Hub-footer-container">
+			<div class="Tests-Hub-footer-content">
+				<div class="Tests-Hub-footer-columns">
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.developer">Développeur</h3>
+						<p class="Tests-Hub-developer-name">زياد الماجري</p>
+					</div>
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.version">Version</h3>
+						<p class="Tests-Hub-version-number">v2.0.6</p>
+					</div>
+					<div class="Tests-Hub-footer-column">
+						<h3 data-i18n="TestsHub.footer.links">Liens</h3>
+						<ul class="Tests-Hub-footer-links-list">
+							<li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Conditions d'utilisation</a></li>
+							<li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Politique de confidentialité</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<script>
+			// ---- TRADUCTIONS ET THÈME (comme dans vos fichiers) ----
+			let currentLanguage = 'fr';
+			let isDarkTheme = false;
+// ========== HELPER: Get theme‑aware canvas background color ==========
+function getCanvasBackgroundColor() {
+    return document.body.classList.contains('Tests-Hub-dark-theme') ? '#1e1e2f' : '#ffffff';
+}
+
+// ========== HELPER: Get theme‑aware text color ==========
+function getCanvasTextColor() {
+    return document.body.classList.contains('Tests-Hub-dark-theme') ? '#f0f0f0' : '#064e3b';
+}
+
+// ========== HELPER: Get axis colors (distinct X/Y in dark mode) ==========
+function getAxisColors() {
+    const isDark = document.body.classList.contains('Tests-Hub-dark-theme');
+    return {
+        xAxis: isDark ? '#67e8f9' : '#1f2937',   // cyan / dark grey
+        yAxis: isDark ? '#f472b6' : '#1f2937',   // pink / dark grey
+        grid: isDark ? '#4b5563' : '#d1d5db'
+    };
+}
+			
+			const TestsHub_translations = {
+				fr: {
+					TestsHub: {
+						synthesisTest: {
+							title: "Mathématiques - Devoir de Synthèse N°3",
+							subtitle: "1ère Année Secondaire",
+							back: "Retour aux Tests",
+							comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+						},
+						language: { current: "Français" },
+						theme: { toggle: "Mode Sombre" },
+                    footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité" }
+					}
+				},
+				en: {
+					TestsHub: {
+						synthesisTest: { title: "Mathematics - Synthesis Test N°3", subtitle: "1st Year Secondary School", back: "Back to Tests", comingSoon: "Coming soon!" },
+						language: { current: "English" },
+						theme: { toggle: "Dark Mode" },
+						footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy" }
+					}
+				},
+				ar: {
+					TestsHub: {
+						synthesisTest: { title: "الرياضيات - اختبار تأليفي عدد 3", subtitle: "السنة الأولى ثانوي", back: "العودة للاختبارات", comingSoon: "قريبًا!" },
+						language: { current: "العربية" },
+						theme: { toggle: "الوضع المظلم" },
+						footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية" }
+					}
+				}
+			};
+			
+			function updateTextContent() {
+				document.querySelectorAll('[data-i18n]').forEach(el => {
+					const key = el.getAttribute('data-i18n');
+					const keys = key.split('.');
+					let current = TestsHub_translations[currentLanguage];
+					for (const k of keys) {
+						if (current && current[k] !== undefined) current = current[k];
+						else { current = null; break; }
+					}
+					if (current && typeof current === 'string') el.textContent = current;
+				});
+				updateThemeToggleText();
+				updateCorrectionButtonText();
+			}
+			
+			function updateThemeToggleText() {
+				const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+				const themeIcon = document.getElementById('themeIcon');
+				if (themeToggle) {
+					if (isDarkTheme) {
+						if (currentLanguage === 'fr') themeToggle.textContent = "Mode Clair";
+						else if (currentLanguage === 'ar') themeToggle.textContent = "الوضع الفاتح";
+						else themeToggle.textContent = "Light Mode";
+					} else {
+						themeToggle.textContent = TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+					}
+				}
+				if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+			}
+			
+			function updateCorrectionButtonText() {
+				const btn = document.getElementById('toggleCorrection');
+				const corr = document.getElementById('correction');
+				if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? "Afficher la correction" : "Masquer la correction";
+			}
+			
+			function toggleTheme() {
+    isDarkTheme = !isDarkTheme;
+    document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+    updateThemeToggleText();
+    localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+    
+    // 🔄 Redessiner les deux premiers canvas avec la nouvelle couleur de texte
+    drawEx3Diagram();
+    drawQuad('quadCanvas', false);
+}
+			
+			function changeLanguage(lang) {
+				if (!TestsHub_translations[lang]) return;
+				currentLanguage = lang;
+				updateTextContent();
+				document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = TestsHub_translations[lang].TestsHub.language.current;
+				document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+				document.documentElement.lang = lang;
+				localStorage.setItem('testsHubLanguage', lang);
+			}
+			
+			
+// ========== POLYGONE DES FCC (correction) ==========
+function drawFCC(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+    
+    // --- CLEAR WITH SOLID BACKGROUND ---
+    ctx.fillStyle = getCanvasBackgroundColor();
+    ctx.fillRect(0, 0, w, h);
+    
+    const axisColors = getAxisColors();
+    const margin = 45;
+    const points = [
+        {x:800, y:0.10}, {x:1000, y:0.32}, {x:1200, y:0.62},
+        {x:1400, y:0.80}, {x:1600, y:0.92}, {x:1800, y:1.0}
+    ];
+    const xMin = 800, xMax = 2000, yMin = 0, yMax = 1;
+    const mapX = x => margin + (x - xMin) / (xMax - xMin) * (w - 2 * margin);
+    const mapY = y => h - margin - (y - yMin) / (yMax - yMin) * (h - 2 * margin);
+    
+    // Axes
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.xAxis;
+    ctx.lineWidth = 1.5;
+    ctx.moveTo(margin, h - margin);
+    ctx.lineTo(w - margin, h - margin);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.yAxis;
+    ctx.lineWidth = 1.5;
+    ctx.moveTo(margin, margin);
+    ctx.lineTo(margin, h - margin);
+    ctx.stroke();
+    
+    // Étiquettes
+    ctx.fillStyle = getCanvasTextColor();
+    ctx.font = '12px "Segoe UI"';
+    for (let i = 0; i <= 5; i++) {
+        let xv = 800 + i * 200;
+        ctx.fillText(xv, mapX(xv) - 15, h - margin + 18);
+    }
+    for (let i = 0; i <= 5; i++) {
+        let yv = i * 0.2;
+        ctx.fillText(yv.toFixed(1), margin - 28, mapY(yv) + 4);
+    }
+    ctx.fillText("Salaires (DT)", w / 2 - 40, h - 12);
+    ctx.fillText("FCC", 18, margin + 15);
+    
+    // Polygone
+    ctx.beginPath();
+    points.forEach((p, i) => {
+        let x = mapX(p.x), y = mapY(p.y);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    
+    // Points
+    points.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(mapX(p.x), mapY(p.y), 5, 0, 2 * Math.PI);
+        ctx.fillStyle = getCanvasTextColor();
+        ctx.fill();
+    });
+    
+    // Médiane
+    let yMed = mapY(0.5);
+    ctx.beginPath();
+    ctx.moveTo(margin, yMed);
+    ctx.lineTo(w - margin, yMed);
+    ctx.strokeStyle = '#f97316';
+    ctx.setLineDash([6, 8]);
+    ctx.stroke();
+    
+    let xMed = 1200 + (0.5 - 0.32) / (0.62 - 0.32) * 200;
+    let xMedPix = mapX(xMed);
+    ctx.beginPath();
+    ctx.moveTo(xMedPix, margin);
+    ctx.lineTo(xMedPix, h - margin);
+    ctx.stroke();
+    
+    ctx.fillStyle = getCanvasTextColor();
+    ctx.fillText("Me ≈ " + Math.round(xMed) + " DT", xMedPix + 5, yMed - 8);
+    ctx.setLineDash([]);
+}
+
+// ========== DIAGRAMME EXERCICE 3 ==========
+function drawEx3Diagram() {
+    const canvas = document.getElementById('ex3Canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+    
+    ctx.fillStyle = getCanvasBackgroundColor();
+    ctx.fillRect(0, 0, w, h);
+    
+    const axisColors = getAxisColors();
+    const margin = 50, xMin = -5, xMax = 5, yMin = -3, yMax = 5;
+    const mapX = x => margin + (x - xMin) / (xMax - xMin) * (w - 2 * margin);
+    const mapY = y => h - margin - (y - yMin) / (yMax - yMin) * (h - 2 * margin);
+    
+    // Grille
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.grid;
+    ctx.lineWidth = 0.8;
+    for (let i = -4; i <= 4; i++) {
+        ctx.moveTo(mapX(i), mapY(yMin));
+        ctx.lineTo(mapX(i), mapY(yMax));
+        ctx.stroke();
+        ctx.moveTo(mapX(xMin), mapY(i));
+        ctx.lineTo(mapX(xMax), mapY(i));
+        ctx.stroke();
+    }
+    
+    // Axes X et Y
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.xAxis;
+    ctx.lineWidth = 2;
+    ctx.moveTo(mapX(xMin), mapY(0));
+    ctx.lineTo(mapX(xMax), mapY(0));
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.yAxis;
+    ctx.lineWidth = 2;
+    ctx.moveTo(mapX(0), mapY(yMin));
+    ctx.lineTo(mapX(0), mapY(yMax));
+    ctx.stroke();
+    
+    const A = { x: 1, y: 3 }, B = { x: -3, y: 0 }, C = { x: -1, y: -1 },
+          D = { x: 3, y: 2 }, K = { x: 0, y: 1 };
+    
+    const drawPoint = (p, label, color) => {
+        ctx.beginPath();
+        ctx.arc(mapX(p.x), mapY(p.y), 5, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.fillStyle = getCanvasTextColor();
+        ctx.font = 'bold 13px "Segoe UI"';
+        ctx.fillText(label, mapX(p.x) + 8, mapY(p.y) - 6);
+    };
+    
+    drawPoint(A, 'A', '#059669');
+    drawPoint(B, 'B', '#059669');
+    drawPoint(C, 'C', '#059669');
+    drawPoint(D, 'D', '#f59e0b');
+    drawPoint(K, 'K', '#dc2626');
+    
+    // Parallélogramme ABCD
+    ctx.beginPath();
+    [A, B, C, D].forEach(p => ctx.lineTo(mapX(p.x), mapY(p.y)));
+    ctx.closePath();
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    
+    // Droite (E) : 2x - y + 1 = 0  => y = 2x + 1
+    ctx.beginPath();
+    ctx.setLineDash([5, 5]);
+    for (let xv = xMin; xv <= xMax; xv += 0.2) {
+        let yv = 2 * xv + 1;
+        if (yv >= yMin && yv <= yMax) {
+            if (xv === xMin) ctx.moveTo(mapX(xv), mapY(yv));
+            else ctx.lineTo(mapX(xv), mapY(yv));
+        }
+    }
+    ctx.strokeStyle = '#f97316';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Droite (E') : x - 3y + 3 = 0 => y = (x + 3)/3
+    ctx.beginPath();
+    for (let xv = xMin; xv <= xMax; xv += 0.2) {
+        let yv = (xv + 3) / 3;
+        if (yv >= yMin && yv <= yMax) {
+            if (xv === xMin) ctx.moveTo(mapX(xv), mapY(yv));
+            else ctx.lineTo(mapX(xv), mapY(yv));
+        }
+    }
+    ctx.strokeStyle = '#3b82f6';
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    ctx.fillStyle = getCanvasTextColor();
+    ctx.font = 'italic 12px sans-serif';
+    ctx.fillText("(E): 2x-y+1=0", mapX(1.5), mapY(2 * 1.5 + 1) - 8);
+    ctx.fillText("(E'): x-3y+3=0", mapX(2.2), mapY((2.2 + 3) / 3) - 6);
+}
+
+// ========== DIAGRAMME EXERCICE 4 (avec/sans éléments supplémentaires) ==========
+function drawQuad(canvasId, showExtra = false) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+    
+    ctx.fillStyle = getCanvasBackgroundColor();
+    ctx.fillRect(0, 0, w, h);
+    
+    const axisColors = getAxisColors();
+    const pts = { A: { x: -2, y: 2 }, B: { x: 0, y: -2 }, C: { x: 4, y: 0 }, D: { x: 2, y: 4 } };
+    const xMin = -3, xMax = 5, yMin = -3, yMax = 5, margin = 40;
+    const mapX = x => margin + (x - xMin) / (xMax - xMin) * (w - 2 * margin);
+    const mapY = y => h - margin - (y - yMin) / (yMax - yMin) * (h - 2 * margin);
+    
+    // Grille
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.grid;
+    ctx.lineWidth = 1;
+    for (let i = -2; i <= 4; i++) {
+        ctx.moveTo(mapX(i), mapY(yMin));
+        ctx.lineTo(mapX(i), mapY(yMax));
+        ctx.stroke();
+        ctx.moveTo(mapX(xMin), mapY(i));
+        ctx.lineTo(mapX(xMax), mapY(i));
+        ctx.stroke();
+    }
+    
+    // Axes X et Y
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.xAxis;
+    ctx.lineWidth = 2;
+    ctx.moveTo(mapX(xMin), mapY(0));
+    ctx.lineTo(mapX(xMax), mapY(0));
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.strokeStyle = axisColors.yAxis;
+    ctx.lineWidth = 2;
+    ctx.moveTo(mapX(0), mapY(yMin));
+    ctx.lineTo(mapX(0), mapY(yMax));
+    ctx.stroke();
+    
+    // Carré ABCD
+    ctx.beginPath();
+    [pts.A, pts.B, pts.C, pts.D, pts.A].forEach(p => ctx.lineTo(mapX(p.x), mapY(p.y)));
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    
+    function drawPoint(p, label, color) {
+        ctx.beginPath();
+        ctx.arc(mapX(p.x), mapY(p.y), 5, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.fillStyle = getCanvasTextColor();
+        ctx.font = 'bold 14px "Segoe UI"';
+        ctx.fillText(label, mapX(p.x) + 8, mapY(p.y) - 6);
+    }
+    
+    drawPoint(pts.A, 'A', '#059669');
+    drawPoint(pts.B, 'B', '#059669');
+    drawPoint(pts.C, 'C', '#059669');
+    drawPoint(pts.D, 'D', '#059669');
+    
+    if (showExtra) {
+        let E = { x: (pts.B.x + pts.C.x) / 2, y: (pts.B.y + pts.C.y) / 2 };
+        drawPoint(E, 'E', '#f59e0b');
+        
+        function intersect(p1, p2, p3, p4) {
+            let d = (p1.x - p2.x) * (p3.y - p4.y) - (p1.y - p2.y) * (p3.x - p4.x);
+            if (Math.abs(d) < 1e-6) return null;
+            let t = ((p1.x - p3.x) * (p3.y - p4.y) - (p1.y - p3.y) * (p3.x - p4.x)) / d;
+            return { x: p1.x + t * (p2.x - p1.x), y: p1.y + t * (p2.y - p1.y) };
+        }
+        
+        let F = intersect(pts.A, E, pts.C, pts.D);
+        if (F) drawPoint(F, 'F', '#ec489a');
+        
+        let dirAE = { x: E.x - pts.A.x, y: E.y - pts.A.y };
+        let perp = { x: -dirAE.y, y: dirAE.x };
+        let G = intersect(pts.A, { x: pts.A.x + perp.x, y: pts.A.y + perp.y }, pts.B, pts.C);
+        if (G) drawPoint(G, 'G', '#ef4444');
+        
+        let rad = Math.hypot(pts.A.x - pts.B.x, pts.A.y - pts.B.y);
+        let rMap = rad * (w - 2 * margin) / (xMax - xMin);
+        
+        ctx.beginPath();
+        ctx.arc(mapX(pts.B.x), mapY(pts.B.y), rMap, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#8b5cf6';
+        ctx.setLineDash([5, 5]);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.arc(mapX(pts.D.x), mapY(pts.D.y), rMap, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#a855f7';
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+}
+			
+			// Initialisation
+			document.addEventListener('DOMContentLoaded', function() {
+				const savedTheme = localStorage.getItem('testsHubTheme');
+				if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+				const savedLanguage = localStorage.getItem('testsHubLanguage');
+				if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+				if (currentLanguage === 'ar') { document.documentElement.dir = 'rtl'; document.documentElement.lang = 'ar'; }
+				
+				renderMathInElement(document.body, {
+					delimiters: [
+						{left: "$$", right: "$$", display: true},
+						{left: "$", right: "$", display: false},
+						{left: "\\(", right: "\\)", display: false},
+						{left: "\\[", right: "\\]", display: true}
+					],
+					ignoredTags: ["script", "noscript", "style", "textarea", "pre"]
+				});
+				
+				updateTextContent();
+				drawFCC('fccPolygon');
+				drawEx3Diagram();
+				drawQuad('quadCanvas', false);
+				
+				document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+				document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+					opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); });
+				});
+				
+				const corrBtn = document.getElementById('toggleCorrection');
+				const corrDiv = document.getElementById('correction');
+				corrBtn.addEventListener('click', () => {
+					corrDiv.classList.toggle('Tests-Hub-hidden');
+					updateCorrectionButtonText();
+					if (!corrDiv.classList.contains('Tests-Hub-hidden')) {
+						drawFCC('corrFCC');
+						drawQuad('corrCanvas', true);
+						renderMathInElement(corrDiv, { delimiters: [{left:"$$", right:"$$", display:true},{left:"$", right:"$", display:false}] });
+					}
+				});
+				
+				['Pdf','Odt','Png'].forEach(type => {
+					document.getElementById('download'+type).addEventListener('click', ()=> alert(TestsHub_translations[currentLanguage].TestsHub.synthesisTest.comingSoon));
+				});
+				
+				if ('serviceWorker' in navigator) {
+					navigator.serviceWorker.register('/sw.js').catch(()=>{});
+				}
+			});
+		</script>
+	</body>
+</html>You're right — the canvas background wasn't being set to a solid color, so the text (which is light grey in dark mode) became invisible against the default white/transparent canvas. Here are the **corrected and complete** functions with explicit theme‑aware background, proper text color, and distinct axis colors.
+
+Replace **all three drawing functions** and add the helper functions exactly as shown below.
+
+---
+
+### ✅ Complete replacement code (copy everything below into your `<script>` section)
+
+```javascript
+
+```
+
+---
+
+### 🧪 What changed & why it works now
+
+| Problem | Fix |
+|---------|-----|
+| Text invisible in dark mode | Replaced `getComputedStyle(document.body).backgroundColor` with a **solid theme‑aware background** (`#1e1e2f` for dark, `#ffffff` for light). |
+| Canvas background transparent | Now every drawing function starts with `ctx.fillRect(0,0,w,h)` filled with the correct background. |
+| Text color too dark | `getCanvasTextColor()` returns `#f0f0f0` in dark mode (was `#e0e0e0` – slightly brighter now). |
+| Axes not distinct | `getAxisColors()` returns **cyan** for X and **pink** for Y in dark mode. |
+
+Just copy the whole block above, replace the existing drawing functions, and refresh – everything will be perfectly readable in both light and dark modes 🎯

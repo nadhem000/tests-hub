@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة عدد3 - فلسفة (ثالثة ثانوي)</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#059669">
+    <meta name="description" content="فرض مراقبة عدد3 في الفلسفة - ثالثة ثانوي إقتصاد وآداب - المعهد الخاص المعرفة">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فلسفة 3">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* ===== NEW COLOR PALETTE: EMERALD / TEAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ecfdf5 0%, #a7f3d0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #064e3b;
+            line-height: 1.6;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+            color: #d1fae5;
+        }
+        
+        /* TYPOGRAPHY */
+        .Tests-Hub-title-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .Tests-Hub-subtitle { font-size: 1rem; opacity: 0.9; margin-top: 3px; }
+        .Tests-Hub-heading-primary { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .Tests-Hub-heading-section {
+            color: #047857;
+            border-bottom: 2px solid #10b981;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-heading-section { color: #6ee7b7; }
+        .Tests-Hub-heading-subsection {
+            color: #10b981;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-heading-subsection { color: #a7f3d0; }
+        .Tests-Hub-text-bold { font-weight: 700; color: #047857; }
+        .Tests-Hub-dark-theme .Tests-Hub-text-bold { color: #6ee7b7; }
+        .Tests-Hub-text-highlight {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            border-right: 2px solid #10b981;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-highlight {
+            background: rgba(110, 231, 183, 0.2);
+            border-right-color: #34d399;
+        }
+        .Tests-Hub-text-note { font-style: italic; color: #065f46; margin: 0.5rem 0; }
+        .Tests-Hub-dark-theme .Tests-Hub-text-note { color: #a7f3d0; }
+        .Tests-Hub-text-explanation {
+            color: #064e3b;
+            font-size: 0.95rem;
+            margin: 0.75rem 0;
+            padding-right: 1rem;
+            border-right: 3px solid #10b981;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-explanation { color: #d1fae5; border-right-color: #34d399; }
+        .Tests-Hub-text-correction { color: #059669; font-weight: 600; }
+        .Tests-Hub-dark-theme .Tests-Hub-text-correction { color: #34d399; }
+        .Tests-Hub-text-warning {
+            color: #065f46;
+            font-weight: 600;
+            background: rgba(5, 150, 105, 0.08);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-right: 4px solid #059669;
+            margin: 1rem 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-warning {
+            color: #a7f3d0;
+            background: rgba(16, 185, 129, 0.15);
+            border-right-color: #34d399;
+        }
+        .Tests-Hub-text-success { color: #059669; }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success { color: #34d399; }
+        
+        /* LAYOUT */
+        .Tests-Hub-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+        .Tests-Hub-content-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        .Tests-Hub-flex-row { display: flex; align-items: center; gap: 15px; }
+        .Tests-Hub-grid-cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        
+        /* HEADER */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #059669, #10b981);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #064e3b, #047857, #10b981);
+        }
+        .Tests-Hub-header-controls { display: flex; align-items: center; gap: 15px; }
+        
+        /* BUTTONS */
+        .Tests-Hub-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-button:hover { background: rgba(255, 255, 255, 0.25); }
+        .Tests-Hub-button-primary {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #059669, #10b981);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        .Tests-Hub-button-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        
+        /* LANGUAGE DROPDOWN */
+        .Tests-Hub-language-selector { position: relative; }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown { display: block; }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #064e3b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover { background: #d1fae5; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown { background: #064e3b; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option { color: #d1fae5; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover { background: #047857; }
+        
+        /* TEST CONTENT */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #059669, #10b981);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-header { background: linear-gradient(to left, #064e3b, #047857); }
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            direction: rtl;
+            text-align: right;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section { background: #064e3b; color: #d1fae5; }
+        
+        .Tests-Hub-instructions-container {
+            background: #d1fae5;
+            padding: 1rem;
+            border-right: 4px solid #10b981;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-instructions-container { background: #022c22; border-right-color: #34d399; }
+        
+        .Tests-Hub-text-container {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-right: 4px solid #10b981;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px 0 0 12px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-container { background: linear-gradient(135deg, #064e3b, #047857); border-right-color: #34d399; }
+        
+        .Tests-Hub-text-passage {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: right;
+            padding: 1.5rem;
+            position: relative;
+        }
+        .Tests-Hub-text-passage::before, .Tests-Hub-text-passage::after {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(16, 185, 129, 0.15);
+            position: absolute;
+            font-family: Georgia, serif;
+        }
+        .Tests-Hub-text-passage::before { top: 10px; right: 20px; }
+        .Tests-Hub-text-passage::after { bottom: 10px; left: 20px; }
+        
+        .Tests-Hub-question-container { margin: 1.2rem 0; padding-left: 10px; }
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #047857;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-question-number { color: #6ee7b7; }
+        .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #9ca3af;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+            text-align: right;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea {
+            background: #022c22;
+            color: #d1fae5;
+            border-color: #047857;
+        }
+        
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        /* CORRECTION SECTION */
+        .Tests-Hub-correction-container { text-align: center; margin: 2rem 0; }
+        .Tests-Hub-correction-section {
+            background: #d1fae5;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #10b981;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section { background: #022c22; border-right-color: #34d399; }
+        .Tests-Hub-correction-answer {
+            background: rgba(16, 185, 129, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #10b981;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer { background: rgba(52, 211, 153, 0.1); border-right-color: #34d399; }
+        
+        /* DOWNLOAD BUTTONS */
+        .Tests-Hub-download-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(5,150,105,0.1), rgba(16,185,129,0.1));
+            border-radius: 12px;
+        }
+        .Tests-Hub-button-download {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .Tests-Hub-download-pdf { background: linear-gradient(135deg, #047857, #059669); color: white; }
+        .Tests-Hub-download-odt { background: linear-gradient(135deg, #0f766e, #14b8a6); color: white; }
+        .Tests-Hub-download-png { background: linear-gradient(135deg, #b45309, #d97706); color: white; }
+        .Tests-Hub-button-download:hover { transform: translateY(-5px); }
+        
+        /* FOOTER */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #059669, #10b981);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container { background: linear-gradient(to left, #064e3b, #047857, #10b981); }
+        .Tests-Hub-footer-column { text-align: center; }
+        .Tests-Hub-footer-heading { color: #d1fae5; margin-bottom: 1rem; }
+        .Tests-Hub-footer-link { color: #d1fae5; text-decoration: none; }
+        
+        .Tests-Hub-hidden { display: none; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td { border: 1px solid #9ca3af; padding: 10px; text-align: right; }
+        th { background: #047857; color: white; }
+        .Tests-Hub-dark-theme th { background: #065f46; }
+        .Tests-Hub-dark-theme td { border-color: #047857; }
+        
+        @media (max-width: 768px) {
+            .Tests-Hub-grid-cols-3 { grid-template-columns: 1fr; }
+            .Tests-Hub-download-section { flex-direction: column; align-items: center; }
+            .Tests-Hub-button-download { width: 80%; flex-direction: row; justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content Tests-Hub-container Tests-Hub-flex-row">
+            <div class="Tests-Hub-flex-row">
+                <img src="assets/icons/icon-96x96.png" alt="Logo" style="width:48px;height:48px;">
+                <div>
+                    <h1 class="Tests-Hub-title-main" data-i18n="TestsHub.philosophyTest.title">فرض مراقبة عدد 3 - فلسفة</h1>
+                    <div class="Tests-Hub-subtitle" data-i18n="TestsHub.philosophyTest.subtitle">ثالثة ثانوي (إقتصاد وآداب) - المعهد الخاص المعرفة</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button" data-i18n="TestsHub.philosophyTest.back"><span>→</span> العودة للاختبارات</a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button"><span>🌐</span> <span data-i18n="TestsHub.language.current">العربية</span> <span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle"><span id="themeIcon">🌙</span> <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-content-container">
+        <div class="Tests-Hub-test-header">
+            <h1 class="Tests-Hub-heading-primary">فرض مراقبة عدد 3 - فلسفة</h1>
+            <p>المعهد الخاص المعرفة | الأستاذ: ضياء شعبان</p>
+            <p>القسم: ثالثة ثانوي إقتصاد وآداب | المدة: ساعة ونصف</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions-container">
+            <h3 class="Tests-Hub-heading-subsection">تعليمات</h3>
+            <ul style="padding-right:20px;">
+                <li>أجب عن جميع الأسئلة بدقة ووضوح.</li>
+                <li>تحرير الإجابات بأسلوب فلسفي منظم.</li>
+                <li>يُمنح نقطة إضافية لجودة التعبير والخط.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول (10 نقاط) -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">القسم الأول (10 نقاط)</h2>
+
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">1-</span> ماهي أهم القضايا التي يلتزم بها ابن رشد؟ عددها. <span class="Tests-Hub-points-badge">2ن</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="أكتب إجابتك هنا ..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">2-</span> ماهو الإلتزام عند سارتر؟ <span class="Tests-Hub-points-badge">2ن</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="أكتب تعريف الإلتزام عند سارتر ..."></textarea>
+            </div>
+
+            <!-- النص (بول نيزان) -->
+            <div class="Tests-Hub-text-container">
+                <div class="Tests-Hub-text-passage">
+                    <p>«ما أُسمّيه بالمثقّف المزيّف، هو ما يُمكن أن يطلق عليه اسمُ (كلب الحراسة) الذي تنتجه الطّبقةُ السّائدة للذّؤْد والدفاع عن مصالح ذات النّزعة الخصوصية، كمصالح الأحزاب والفئات التي تصوّرُ نفسَها وكأنّها من إنتاج المناهج الدّقيقة والطّرائق السّياسية التي تدّعي الصّرامة، والدّقة، وخدمة مصالح البلاد؛ والمثقّفُ المزيّف قبل كلِّ شيء مثقّفٌ مُباع، والمثقّفون المزيَّفون يشعرون بأنّ مصالحهم مرتبطة بمصالح الطبقة السّائدة، ولا يريدون أن يشعروا بغير ذلك؛ هكذا، تراهم يَتزيَّنون بزيِّ المثقّف، فيتظاهرون بنقد الطبقة المهيمنة، بيد أنّه نقدٌ مغشوش ومرگّب، وبعبارة أخرى، لا يقول المثقّف المزيّف [لا] مثْلُه مثل المثقّف الحقيقي، بل يَقول [لا]، [ولكنْ]؛ أو يقول: [أَعْلَم ذلك حقَّ العِلم، ولكن ينبغي أيضًا] وما إلى ذلك .. وهنا أطرح سؤالاً: هلْ في بلادنا مثقّفونَ حقيقيون؟ الجواب: أشكُّ في ذلك»</p>
+                    <p style="margin-top:15px; text-align:left; font-weight:bold;">— بول نيزان (Paul Nizan)</p>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">3-</span> ما هو موضوع النص؟ <span class="Tests-Hub-points-badge">1ن</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="موضوع النص ..."></textarea>
+            </div>
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">4-</span> ما هي أطروحة النص؟ <span class="Tests-Hub-points-badge">1ن</span></p>
+                <textarea class="Tests-Hub-answer-textarea" placeholder="الأطروحة الأساسية ..."></textarea>
+            </div>
+        </div>
+
+        <!-- القسم الثاني (من اقتراح AI) -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">القسم الثاني (10 نقاط) - مقال فلسفي</h2>
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">الموضوع:</span> "هل يمكن للمثقف أن يكون محايداً في مجتمع يعاني من التفاوت والظلم؟" حلل وناقش مبرزاً موقفين متعارضين مع تقديم رأيك الشخصي.</p>
+                <textarea class="Tests-Hub-answer-textarea" style="min-height:300px;" placeholder="حرر مقالك هنا ... (مقدمة، عرض، خاتمة)"></textarea>
+            </div>
+        </div>
+
+        <!-- سلم التنقيط -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">سلم التنقيط</h2>
+            <table>
+                <thead><tr><th>المحاور</th><th>النقاط</th></tr></thead>
+                <tbody>
+                    <tr><td>القسم الأول: ابن رشد + سارتر + نص نيزان</td><td>10 نقاط</td></tr>
+                    <tr><td>القسم الثاني: مقال فلسفي</td><td>10 نقاط</td></tr>
+                    <tr><td><strong>المجموع</strong></td><td><strong>20 نقطة</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- زر عرض التصحيح -->
+        <div class="Tests-Hub-correction-container">
+            <button class="Tests-Hub-button-primary" id="toggleCorrection">📖 عرض التصحيح المفصل</button>
+        </div>
+
+        <!-- قسم التصحيح المفصل (تحليل عميق) -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2 class="Tests-Hub-heading-section">التصحيح النموذجي - تحليل معمق</h2>
+
+            <!-- القسم الأول تصحيح -->
+            <h3 class="Tests-Hub-heading-subsection">القسم الأول (10 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1- ابن رشد:</span> أهم القضايا التي التزم بها: <strong>التوفيق بين الحكمة والشريعة (فصل المقال)، الدفاع عن العقل والبرهان، نقد المتكلمين (تهافت التهافت)، إثبات قدم العالم وضرورة التأويل، والدعوة إلى حرية التفلسف.</strong> (تُمنح نقطتان لذكر 4 قضايا على الأقل مع الشرح).</p>
+                <p class="Tests-Hub-text-explanation"><strong>تحليل:</strong> ابن رشد يرى أن الفلسفة لا تتعارض مع الدين، بل هي سبيل لفهم الشريعة بطريقة أعمق. التزامه كان عقلانياً تنويرياً.</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2- سارتر:</span> الإلتزام (L'engagement) هو مسؤولية الفرد المطلقة في اختياراته التي تُلزم الإنسانية جمعاء. الإنسان "مشروع" يحقق حريته عبر الفعل، ولا يمكنه التهرب من الإلتزام لأنه محكوم عليه بالحرية. <span class="Tests-Hub-text-success">(تعريف دقيق + إشارة إلى "الوجودية مذهب إنساني")</span></p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3- موضوع النص:</span> <strong>نقد المثقف المزيف (كلب الحراسة) الذي يخدم مصالح الطبقة السائدة تحت ستار النقد والموضوعية.</strong> <span class="Tests-Hub-points-badge">1ن</span></p>
+                <p><span class="Tests-Hub-question-number">4- أطروحة النص:</span> <strong>المثقف المزيف هو أداة في يد السلطة، يمارس نقداً مغشوشاً ويعجز عن قول "لا" الحقيقية، على عكس المثقف العضوي الملتزم.</strong> <span class="Tests-Hub-points-badge">1ن</span></p>
+                <p class="Tests-Hub-text-warning"><strong>تحليل إضافي:</strong> يستخدم نيزان استعارة "كلب الحراسة" لفضح دور بعض المثقفين في تبرير الوضع القائم. النص يعكس نقداً ماركسياً للمثقف البرجوازي.</p>
+            </div>
+
+            <!-- القسم الثاني تصحيح مفصل (تخطيط + تحرير مسترسل) -->
+            <h3 class="Tests-Hub-heading-subsection">القسم الثاني: تصحيح المقال (10 نقاط)</h3>
+            
+            <div class="Tests-Hub-correction-answer">
+                <h4 style="color:#047857; margin-bottom:10px;">🔹 تخطيط الفقرة (منهجية التحليل)</h4>
+                <p><strong>المقدمة:</strong> طرح إشكالية دور المثقف بين الحياد والالتزام في مجتمع غير عادل. الإشارة إلى جدلية "المثقف الكوني" و"المثقف العضوي".</p>
+                <p><strong>الجوهر (عرض الأطروحات):</strong></p>
+                <ul style="padding-right:20px; margin-bottom:10px;">
+                    <li><strong>الأطروحة الأولى: ضرورة الحياد</strong> – عرض موقف جوليان بندا في "خيانة المثقفين" حيث يدين المثقف الذي ينحاز إلى العواطف السياسية بدل الدفاع عن القيم الخالدة (العدل، الحقيقة). الحياد هنا ليس سلبياً بل التزام بالمبادئ العقلية.</li>
+                    <li><strong>الأطروحة الثانية: استحالة الحياد ووجوب الالتزام</strong> – عرض موقف أنطونيو غرامشي حول "المثقف العضوي" المرتبط بطبقة اجتماعية ويساهم في تغيير الواقع. ثم موقف سارتر الذي يرى أن الصمت موقف، وأن الكاتب الملتزم يكتب ليكشف التناقضات.</li>
+                    <li><strong>مناقشة نقدية:</strong> هل الحياد المطلق مجرد وهم؟ هل يمكن للمثقف أن يكون "كلب حراسة" إذا تخلى عن دوره النقدي؟ استحضار نقد نيزان للمثقف المزيف.</li>
+                </ul>
+                <p><strong>الخاتمة:</strong> تأكيد أن الحياد التام مستحيل في سياق اللامساواة، لكن الالتزام يجب أن يكون أخلاقياً نزيهاً لا تبريرياً. المثقف الحق هو من يمارس نقداً مزدوجاً: للسلطة وللجمهور، واضعاً الحقيقة والعدالة فوق المصالح الضيقة.</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <h4 style="color:#047857; margin-bottom:15px;">📝 التحرير (نموذج إجابة مسترسلة - 22 سطراً تحليلياً)</h4>
+                <div style="line-height:1.9; text-align:justify;">
+                    <p>تثير إشكالية دور المثقف في مجتمع ممزق بالتفاوت والظلم سؤالاً محورياً: هل الحياد الفكري فضيلة أم جريمة صمت؟ يرى فريق من المفكرين أن المثقف هو حارس القيم الكونية المتعالية، بينما يرى آخرون أن التزامه بمعركة التحرر الاجتماعي شرط لوجوده. تكمن أهمية هذه الإشكالية في كونها تمس جوهر مسؤولية النخبة المثقفة إزاء الواقع التاريخي. فهل يمكن للمثقف أن يترفع عن الصراعات الاجتماعية باسم الموضوعية، أم أن صمته هو في حد ذاته انحياز ضمني للقوى المهيمنة؟ للإجابة عن ذلك سنعرض موقفي الحياد والالتزام ثم نناقشهما للوصول إلى موقف تركيبي.</p>
+                    <p>يدافع جوليان بندا في كتابه الشهير "خيانة المثقفين" عن نموذج المثقف الكلاسيكي الذي ينبغي أن يكون "رجل الدين العلماني"، المدافع عن القيم الخالدة كالعدالة والحقيقة والعقل. يرى بندا أن المثقفين الحقيقيين، مثل سقراط وإسبينوزا وفولتير، كانوا يقفون ضد أهواء الجماهير وسياسات الأمراء على حد سواء. المثقف عند بندا ليس منعزلاً عن العالم، لكن التزامه يكون بالمبادئ المجردة وليس بالمصالح العاطفية للأحزاب أو الأمم. وبالتالي، فإن الحياد هنا ليس سلبياً، بل هو موقف أخلاقي رفيع يضمن للمثقف استقلاليته وقدرته على إصدار أحكام نقدية غير مشوهة بالانتماءات الضيقة. هذا الموقف يبدو مثالياً لأنه يحمي الفكر من أن يتحول إلى أداة دعائية أو ما أسماه بول نيزان بـ"كلب الحراسة".</p>
+                    <p>بيد أن هذه النظرة المثالية تصطدم بتحليل الماركسيين، وعلى رأسهم أنطونيو غرامشي، الذي صاغ مفهوم "المثقف العضوي". يرى غرامشي أن كل طبقة اجتماعية تخلق مثقفيها الخاصين الذين يعملون على صياغة وعيها وقيادة مشروعها التاريخي. من هذا المنطلق، لا وجود لحياد مطلق خارج إطار الصراع الطبقي. حتى المثقف الذي يدّعي التجرد إنما يخدم، بوعي أو بدونه، مصالح طبقة معينة. وفي السياق نفسه، يذهب جان بول سارتر في محاضرته "الوجودية مذهب إنساني" إلى أن الكاتب الملتزم لا يمكنه أن يبقى محايداً، لأن الصمت بحد ذاته موقف. فحين يرفض الكاتب أن يكتب عن الجوع أو القمع، فهو يختار، بملء حريته، أن يترك الأمور على حالها. بالنسبة لسارتر، "الكلمة فعل"، والكتابة هي كشف للعالم بهدف تغييره. الالتزام هنا ليس خيانة للحقيقة، بل هو تجسيد للمسؤولية الوجودية.</p>
+                    <p>غير أن نقد الموقف الالتزامي لا يتوقف عند حدود الخوف من الدعائية. فالتاريخ يعج بنماذج لمثقفين التزموا بأيديولوجيات شمولية ففقدوا روحهم النقدية وتحولوا إلى مبررين للاستبداد. هنا تكمن خطورة أن يتحول المثقف إلى "مثقف مزيف" حسب تعبير نيزان، حيث يمارس نقداً مغشوشاً مزيناً بالعبارات الرنانة لكنه في العمق يدافع عن المصالح الضيقة للطبقة السائدة. لذلك، يبدو أن المثقف الحق هو من يحافظ على توتر خلاق بين الحياد والالتزام: فهو يلتزم بقضايا العدالة الإنسانية، لكنه لا يقدم ولاءه الأعمى لأي تنظيم سياسي. إنه يمارس نقداً مزدوجاً: نقداً للواقع الظالم، ونقداً ذاتياً للأخطاء التي يمكن أن تقع فيها الحركات التحررية. ختاماً، يمكن القول إن المثقف في مجتمع يعاني التفاوت لا يملك ترف الحياد المطلق، فموقعه الاجتماعي وملكته النقدية تفرضان عليه أن يكون شاهداً على عصره. لكن شرعية التزامه تستمد من نزاهته الفكرية وشجاعته في توجيه السهام نحو الخطأ أينما كان، واضعاً الحقيقة والكرامة الإنسانية فوق كل اعتبار.</p>
+                </div>
+                <p class="Tests-Hub-text-explanation" style="margin-top:15px;"><strong>معايير التقييم:</strong> فهم السؤال (3ن)، الحجاج والتماسك (3ن)، توظيف المعرفة الفلسفية (2ن)، سلامة اللغة (2ن).</p>
+            </div>
+
+            <p class="Tests-Hub-text-note" style="margin-top:20px;"><strong>ملاحظة هامة:</strong> هذه الإجابات نموذجية، ويُقدر للمصحح مراعاة الصياغات المختلفة التي تحمل نفس المعنى الفلسفي.</p>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-section">
+            <button class="Tests-Hub-button-download Tests-Hub-download-pdf" id="downloadPdf"><span>📄</span> PDF</button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-odt" id="downloadOdt"><span>📝</span> ODT</button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-png" id="downloadPng"><span>🖼️</span> PNG</button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-container">
+            <div class="Tests-Hub-grid-cols-3">
+                <div class="Tests-Hub-footer-column"><h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.developer">المطور</h3><p>زياد الماجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.version">الإصدار</h3><p>v2.1.0</p></div>
+                <div class="Tests-Hub-footer-column"><h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.links">روابط</h3><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function(){
+            // ------ Translation Object (matching other files pattern) ------
+            const TestsHub_translations = {
+                ar: {
+                    TestsHub: {
+                        philosophyTest: {
+                            title: "فرض مراقبة عدد 3 - فلسفة",
+                            subtitle: "ثالثة ثانوي (إقتصاد وآداب) - المعهد الخاص المعرفة",
+                            back: "العودة للاختبارات",
+                            showCorrection: "📖 عرض التصحيح المفصل",
+                            hideCorrection: "📖 إخفاء التصحيح",
+                            download: { pdf: "PDF", odt: "ODT", png: "PNG" },
+                            comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                        },
+                        language: { current: "العربية" },
+                        theme: { toggle: "الوضع المظلم" },
+                        footer: {
+                            developer: "المطور",
+                            version: "الإصدار",
+                            links: "الروابط",
+                            terms: "شروط الاستخدام",
+                            privacy: "سياسة الخصوصية"
+                        }
+                    }
+                },
+                fr: {
+                    TestsHub: {
+                        philosophyTest: {
+                            title: "Devoir de contrôle N°3 - Philosophie",
+                            subtitle: "3ème année (Économie & Lettres) - Institut privé Al Maarifa",
+                            back: "Retour aux tests",
+                            showCorrection: "📖 Afficher la correction",
+                            hideCorrection: "📖 Masquer la correction",
+                            download: { pdf: "PDF", odt: "ODT", png: "PNG" },
+                            comingSoon: "Bientôt disponible !"
+                        },
+                        language: { current: "Français" },
+                        theme: { toggle: "Mode sombre" },
+                        footer: {
+                            developer: "Développeur",
+                            version: "Version",
+                            links: "Liens",
+                            terms: "Conditions",
+                            privacy: "Confidentialité"
+                        }
+                    }
+                },
+                en: {
+                    TestsHub: {
+                        philosophyTest: {
+                            title: "Mid-term Test N°3 - Philosophy",
+                            subtitle: "3rd Year (Economics & Arts) - Al Maarifa Private Institute",
+                            back: "Back to tests",
+                            showCorrection: "📖 Show correction",
+                            hideCorrection: "📖 Hide correction",
+                            download: { pdf: "PDF", odt: "ODT", png: "PNG" },
+                            comingSoon: "Coming soon!"
+                        },
+                        language: { current: "English" },
+                        theme: { toggle: "Dark mode" },
+                        footer: {
+                            developer: "Developer",
+                            version: "Version",
+                            links: "Links",
+                            terms: "Terms",
+                            privacy: "Privacy"
+                        }
+                    }
+                }
+            };
+
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+
+            // Helper to update UI text (same pattern)
+            function updateTextContent() {
+                const lang = TestsHub_translations[currentLanguage]?.TestsHub;
+                if (!lang) return;
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    const keys = key.split('.');
+                    let val = TestsHub_translations[currentLanguage];
+                    for (let k of keys) val = val?.[k];
+                    if (typeof val === 'string') el.textContent = val;
+                });
+                // Update language button text
+                const langBtnSpan = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+                if (langBtnSpan) langBtnSpan.textContent = lang.language.current;
+                // Update correction button text
+                const corrBtn = document.getElementById('toggleCorrection');
+                const corrSec = document.getElementById('correction');
+                if (corrBtn) {
+                    corrBtn.textContent = corrSec.classList.contains('Tests-Hub-hidden') ? lang.philosophyTest.showCorrection : lang.philosophyTest.hideCorrection;
+                }
+                // Update theme toggle text
+                const themeSpan = document.querySelector('#themeToggle span:last-child');
+                if (themeSpan) {
+                    if (isDarkTheme) {
+                        themeSpan.textContent = currentLanguage === 'fr' ? 'Mode clair' : (currentLanguage === 'ar' ? 'الوضع الفاتح' : 'Light mode');
+                    } else {
+                        themeSpan.textContent = lang.theme.toggle;
+                    }
+                }
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+
+            function toggleTheme() {
+                isDarkTheme = !isDarkTheme;
+                document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+                updateTextContent();
+                localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            }
+
+            function changeLanguage(lang) {
+                if (TestsHub_translations[lang]) {
+                    currentLanguage = lang;
+                    document.documentElement.lang = lang;
+                    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                    updateTextContent();
+                    localStorage.setItem('testsHubLanguage', lang);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // Load preferences
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLang = localStorage.getItem('testsHubLanguage');
+                if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+                document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = currentLanguage;
+                updateTextContent();
+
+                // Event listeners
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                    opt.addEventListener('click', (e) => changeLanguage(opt.dataset.language));
+                });
+
+                const corrBtn = document.getElementById('toggleCorrection');
+                const corrDiv = document.getElementById('correction');
+                corrBtn.addEventListener('click', () => {
+                    corrDiv.classList.toggle('Tests-Hub-hidden');
+                    updateTextContent();
+                });
+
+                function showComingSoon() { 
+                    alert(TestsHub_translations[currentLanguage].TestsHub.philosophyTest.comingSoon); 
+                }
+                document.getElementById('downloadPdf').addEventListener('click', showComingSoon);
+                document.getElementById('downloadOdt').addEventListener('click', showComingSoon);
+                document.getElementById('downloadPng').addEventListener('click', showComingSoon);
+
+                if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+            });
+        })();
+    </script>
+</body>
+</html>
