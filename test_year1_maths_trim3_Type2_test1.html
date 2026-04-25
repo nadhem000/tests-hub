@@ -1577,27 +1577,4 @@ function drawQuad(canvasId, showExtra = false) {
 			});
 		</script>
 	</body>
-</html>You're right — the canvas background wasn't being set to a solid color, so the text (which is light grey in dark mode) became invisible against the default white/transparent canvas. Here are the **corrected and complete** functions with explicit theme‑aware background, proper text color, and distinct axis colors.
-
-Replace **all three drawing functions** and add the helper functions exactly as shown below.
-
----
-
-### ✅ Complete replacement code (copy everything below into your `<script>` section)
-
-```javascript
-
-```
-
----
-
-### 🧪 What changed & why it works now
-
-| Problem | Fix |
-|---------|-----|
-| Text invisible in dark mode | Replaced `getComputedStyle(document.body).backgroundColor` with a **solid theme‑aware background** (`#1e1e2f` for dark, `#ffffff` for light). |
-| Canvas background transparent | Now every drawing function starts with `ctx.fillRect(0,0,w,h)` filled with the correct background. |
-| Text color too dark | `getCanvasTextColor()` returns `#f0f0f0` in dark mode (was `#e0e0e0` – slightly brighter now). |
-| Axes not distinct | `getAxisColors()` returns **cyan** for X and **pink** for Y in dark mode. |
-
-Just copy the whole block above, replace the existing drawing functions, and refresh – everything will be perfectly readable in both light and dark modes 🎯
+</html>
