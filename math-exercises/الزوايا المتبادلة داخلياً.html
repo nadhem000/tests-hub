@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الزوايا المتبادلة داخلياً | لوحة التمارين</title>
+
+    <!-- ══════════════ CSS متغيرات عامة (متوافقة مع اللوحة) ══════════════ -->
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.10);
+            --shadow-xl: 0 20px 48px rgba(0,0,0,0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --badge-easy-bg: #e6f4ea;
+            --badge-easy-text: #1a6b3c;
+            --badge-medium-bg: #fef3e0;
+            --badge-medium-text: #8a5c1a;
+            --badge-hard-bg: #fde8e8;
+            --badge-hard-text: #8b1a1a;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0,0,0,0.35);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+            --shadow: 0 4px 16px rgba(0,0,0,0.25);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+            --shadow-xl: 0 20px 48px rgba(0,0,0,0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --badge-easy-bg: #1a3b2a;
+            --badge-easy-text: #4ade80;
+            --badge-medium-bg: #3b2e1a;
+            --badge-medium-text: #fbbf24;
+            --badge-hard-bg: #3b1a1a;
+            --badge-hard-text: #f87171;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0,0,0,0.55);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* شريط التمرير */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+
+        /* ══════════════ الرأس (مطابق للّوحة) ══════════════ */
+        .dashboard-header {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+            backdrop-filter: blur(10px);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+
+        /* ══════════════ محتوى التمرين ══════════════ */
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 900px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 16px;
+        }
+        canvas {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            width: 100%;
+            height: auto;
+            aspect-ratio: 850 / 480;
+        }
+        [data-theme="dark"] canvas {
+            background: #1a2332;
+        }
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 12px 0 20px;
+            text-align: center;
+            background: var(--surface2);
+            padding: 14px 18px;
+            border-radius: 80px;
+            line-height: 2.2;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0 4px;
+            border: 1px solid var(--border);
+        }
+        .question-text span { white-space: nowrap; }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.4rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 36px;
+            text-align: center;
+            padding: 4px 2px;
+            margin: 0 3px;
+            width: 4em;
+            min-width: 70px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44,110,158,0.2);
+        }
+        .input-short { width: 3em !important; min-width: 60px; }
+        .input-angle { width: 5em !important; min-width: 85px; }
+
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+            color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #2c3e66; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.1rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+        }
+        .example-hint {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* ══════════════ الذيل (مطابق للّوحة) ══════════════ */
+        .dashboard-footer {
+            width: 100%;
+            max-width: 900px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s, border-color 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 {
+            font-size: 0.9rem; font-weight: 700;
+            color: var(--accent); margin-bottom: 2px;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a {
+            color: var(--text2); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .footer-col { align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ الرأس ═══════════ -->
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <!-- ═══════════ تمرين تفاعلي ═══════════ -->
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📐</span> <span data-i18n="exercise_heading">الزوايا المتبادلة داخلياً</span> <span>🔁</span>
+        </h1>
+
+        <div class="canvas-container">
+            <canvas id="altIntCanvas" width="850" height="480" aria-label="رسم توضيحي للزوايا المتبادلة داخلياً"></canvas>
+        </div>
+
+        <div class="question-text" id="altIntQuestion"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="example-hint" data-i18n="hint">📌 املأ الحقول: المستقيم الثاني ، القاطع ، نقطة التقاطع الأولى ، نقطة التقاطع الثانية ، الزاوية الأولى (3 حروف) ، الزاوية الثانية (3 حروف)</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <!-- ═══════════ الذيل ═══════════ -->
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <!-- ═══════════ سكريبت التمرين + التكيّف ═══════════ -->
+    <script>
+        (function() {
+            "use strict";
+
+            // ────────────── العناصر ──────────────
+            const canvas = document.getElementById('altIntCanvas');
+            const ctx = canvas.getContext('2d');
+            const questionContainer = document.getElementById('altIntQuestion');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            // مدخلات ديناميكية
+            let inputFields = {
+                line2: null,
+                trans: null,
+                pt1: null,
+                pt2: null,
+                angle1: null,
+                angle2: null
+            };
+
+            const LATIN_LETTERS = 'ABCDEFGHJKLMNPQRSTUVWXYZ'.split('');
+
+            // متغيرات الرسم
+            let line1, line2, transversal, point1, point2;
+            let leftPoint1, abovePoint, belowPoint, rightPoint2;
+            let angle1Name, angle2Name;
+            let attempts, score, gameActive, isSwitchingRound;
+            let rotationAngle, flipSign, transRandomSeed;
+
+            // ══════════════ الترجمة ══════════════
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'الزوايا المتبادلة داخلياً',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ الحقول: المستقيم الثاني ، القاطع ، نقطة التقاطع الأولى ، نقطة التقاطع الثانية ، الزاوية الأولى (3 حروف) ، الزاوية الثانية (3 حروف)',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    fill_all: '⚠️ الرجاء ملء جميع الحقول الستة.',
+                    invalid_single: '❌ الحقول المفردة يجب أن تكون حرفاً لاتينياً كبيراً واحداً (A-Z).',
+                    invalid_angle: '❌ أسماء الزوايا يجب أن تكون 3 حروف لاتينية كبيرة.',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! الإجابة الصحيحة: {line2} {trans} {pt1} {pt2} {angle1} {angle2}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Angles alternes-internes',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez : 2e droite, sécante, 1er point d\'intersection, 2e point d\'intersection, angle1 (3 lettres), angle2 (3 lettres)',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    fill_all: '⚠️ Veuillez remplir tous les champs.',
+                    invalid_single: '❌ Les champs simples doivent être une seule lettre majuscule (A-Z).',
+                    invalid_angle: '❌ Les noms d\'angle doivent comporter 3 lettres majuscules.',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! Réponse : {line2} {trans} {pt1} {pt2} {angle1} {angle2}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions d\'utilisation',
+                    footer_privacy: 'Politique de confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify et GitHub',
+                    sound_on_title: 'Son (activé)',
+                    sound_off_title: 'Son (désactivé)',
+                    back_title: 'Retour au tableau'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Alternate Interior Angles',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill in: second line, transversal, first intersection point, second intersection point, angle1 (3 letters), angle2 (3 letters)',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    fill_all: '⚠️ Please fill in all six fields.',
+                    invalid_single: '❌ Single fields must be one uppercase Latin letter (A-Z).',
+                    invalid_angle: '❌ Angle names must be 3 uppercase Latin letters.',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Incorrect! Answer: {line2} {trans} {pt1} {pt2} {angle1} {angle2}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back to dashboard'
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(`{${k}}`, v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (key) el.textContent = t(key);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                localStorage.setItem('exercise_altint_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderQuestion();
+                messageEl.innerHTML = '';
+                drawFigure();
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_altint_lang');
+                if (saved && translations[saved]) {
+                    applyLanguage(saved);
+                    return;
+                }
+                const navLang = navigator.language?.split('-')[0];
+                if (navLang && translations[navLang]) {
+                    applyLanguage(navLang);
+                } else {
+                    applyLanguage('ar');
+                }
+            }
+
+            // ══════════════ الصوت (باستخدام Web Audio) ══════════════
+            let soundEnabled = true;
+            let audioCtx = null;
+
+            function getAudioContext() {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                return audioCtx;
+            }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {
+                    // تجاهل أخطاء الصوت
+                }
+            }
+
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_altint_sound');
+                if (saved === 'off') {
+                    soundEnabled = false;
+                    btnSound.textContent = '🔇';
+                    btnSound.title = t('sound_off_title');
+                } else {
+                    soundEnabled = true;
+                    btnSound.textContent = '🔊';
+                    btnSound.title = t('sound_on_title');
+                }
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_altint_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            // ══════════════ الوضع الداكن ══════════════
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_altint_theme', theme); } catch(e) {}
+            }
+
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                try {
+                    const saved = localStorage.getItem('exercise_altint_theme');
+                    if (saved === 'dark' || saved === 'light') {
+                        applyTheme(saved);
+                        return;
+                    }
+                } catch(e) {}
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    applyTheme('dark');
+                } else {
+                    applyTheme('light');
+                }
+            }
+
+            // ══════════════ العودة إلى اللوحة ══════════════
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            // ══════════════ بناء واجهة السؤال ══════════════
+            function buildQuestionHTML() {
+                const l1 = line1;
+                const template = currentLang === 'ar' ?
+                    `<span>لدينا (</span><span class="line1-display">${l1}</span><span>) و(</span>
+                    <input type="text" id="inputLine2" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off" inputmode="text">
+                    <span>) متوازيان والمستقيم (</span>
+                    <input type="text" id="inputTrans" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) يقطعهما في النقطتين (</span>
+                    <input type="text" id="inputPt1" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) و(</span>
+                    <input type="text" id="inputPt2" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) إذن الزاويتان (</span>
+                    <input type="text" id="inputAngle1" class="inline-input input-angle" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>) و(</span>
+                    <input type="text" id="inputAngle2" class="inline-input input-angle" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>) متبادلتان داخلياً ومتقايستان.</span>`
+                : currentLang === 'fr' ?
+                    `<span>Nous avons (</span><span class="line1-display">${l1}</span><span>) et (</span>
+                    <input type="text" id="inputLine2" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) parallèles et la sécante (</span>
+                    <input type="text" id="inputTrans" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) les coupe en (</span>
+                    <input type="text" id="inputPt1" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) et (</span>
+                    <input type="text" id="inputPt2" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) donc les angles (</span>
+                    <input type="text" id="inputAngle1" class="inline-input input-angle" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>) et (</span>
+                    <input type="text" id="inputAngle2" class="inline-input input-angle" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>) sont alternes-internes et isométriques.</span>`
+                : // en
+                    `<span>We have (</span><span class="line1-display">${l1}</span><span>) and (</span>
+                    <input type="text" id="inputLine2" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) parallel and the transversal (</span>
+                    <input type="text" id="inputTrans" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) intersects them at (</span>
+                    <input type="text" id="inputPt1" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) and (</span>
+                    <input type="text" id="inputPt2" class="inline-input input-short" maxlength="1" placeholder="?" dir="ltr" autocomplete="off">
+                    <span>) so the angles (</span>
+                    <input type="text" id="inputAngle1" class="inline-input input-angle" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>) and (</span>
+                    <input type="text" id="inputAngle2" class="inline-input input-angle" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>) are alternate interior and congruent.</span>`;
+                return template;
+            }
+
+            function refreshInputRefs() {
+                inputFields.line2 = document.getElementById('inputLine2');
+                inputFields.trans = document.getElementById('inputTrans');
+                inputFields.pt1 = document.getElementById('inputPt1');
+                inputFields.pt2 = document.getElementById('inputPt2');
+                inputFields.angle1 = document.getElementById('inputAngle1');
+                inputFields.angle2 = document.getElementById('inputAngle2');
+            }
+
+            function renderQuestion() {
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                setTimeout(() => inputFields.line2?.focus(), 30);
+            }
+
+            // ══════════════ التوليد العشوائي ══════════════
+            function randomLetter(exclude = []) {
+                const available = LATIN_LETTERS.filter(l => !exclude.includes(l));
+                return available[Math.floor(Math.random() * available.length)] || 'X';
+            }
+
+            function generateAllLetters() {
+                const l1 = randomLetter();
+                const l2 = randomLetter([l1]);
+                const trans = randomLetter([l1, l2]);
+                const p1 = randomLetter([l1, l2, trans]);
+                const p2 = randomLetter([l1, l2, trans, p1]);
+
+                const ptLeft = randomLetter([l1, l2, trans, p1, p2]);
+                const ptAbove = randomLetter([l1, l2, trans, p1, p2, ptLeft]);
+                const ptBelow = randomLetter([l1, l2, trans, p1, p2, ptLeft, ptAbove]);
+                const ptRight = randomLetter([l1, l2, trans, p1, p2, ptLeft, ptAbove, ptBelow]);
+
+                if (Math.random() < 0.5) {
+                    line1 = l1; line2 = l2;
+                } else {
+                    line1 = l2; line2 = l1;
+                }
+                transversal = trans;
+                point1 = p1;
+                point2 = p2;
+                leftPoint1 = ptLeft;
+                abovePoint = ptAbove;
+                belowPoint = ptBelow;
+                rightPoint2 = ptRight;
+
+                angle1Name = `${leftPoint1}${point1}${abovePoint}`;
+                angle2Name = `${belowPoint}${point2}${rightPoint2}`;
+                transRandomSeed = Math.random();
+            }
+
+            function drawFigure() {
+                canvas.width = 850;
+                canvas.height = 480;
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const w = canvas.width, h = canvas.height;
+                ctx.save();
+                ctx.translate(w/2, h/2);
+                if (flipSign === -1) ctx.scale(-1, 1);
+                ctx.rotate(rotationAngle);
+
+                const xMin = -170, xMax = 170;
+                const y1 = -40, y2 = 40;
+                const line1Start = {x:xMin, y:y1}, line1End = {x:xMax, y:y1};
+                const line2Start = {x:xMin, y:y2}, line2End = {x:xMax, y:y2};
+                const seed = transRandomSeed;
+                const transStart = {x: xMin+40+seed*30, y: y1-30};
+                const transEnd = {x: xMax-40-seed*30, y: y2+30};
+
+                function drawLine(p1,p2,color,width) {
+                    ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y);
+                    ctx.strokeStyle=color; ctx.lineWidth=width; ctx.stroke();
+                }
+                drawLine(line1Start,line1End,'#1f5e8c',3.5);
+                drawLine(line2Start,line2End,'#1f5e8c',3.5);
+                drawLine(transStart,transEnd,'#c0392b',3.2);
+
+                function intersect(p1,p2,p3,p4) {
+                    const x1=p1.x,y1=p1.y,x2=p2.x,y2=p2.y,x3=p3.x,y3=p3.y,x4=p4.x,y4=p4.y;
+                    const d=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);
+                    if(Math.abs(d)<1e-10) return null;
+                    const t=((x1-x3)*(y3-y4)-(y1-y3)*(x3-x4))/d;
+                    return {x:x1+t*(x2-x1), y:y1+t*(y2-y1)};
+                }
+                const inter1 = intersect(line1Start,line1End,transStart,transEnd);
+                const inter2 = intersect(line2Start,line2End,transStart,transEnd);
+
+                function pointAlong(from,to,dist) {
+                    const dx=to.x-from.x, dy=to.y-from.y, len=Math.sqrt(dx*dx+dy*dy);
+                    return len<1e-6 ? {x:from.x,y:from.y} : {x:from.x+dx*dist/len, y:from.y+dy*dist/len};
+                }
+                const auxLeft = pointAlong(inter1,line1Start,40);
+                const auxAbove = pointAlong(inter1,transStart,40);
+                const auxBelow = pointAlong(inter2,transEnd,40);
+                const auxRight = pointAlong(inter2,line2End,40);
+
+                function drawAngleArc(vertex,dir1,dir2,radius,color) {
+                    const a1=Math.atan2(dir1.y,dir1.x), a2=Math.atan2(dir2.y,dir2.x);
+                    ctx.beginPath(); ctx.moveTo(vertex.x,vertex.y);
+                    ctx.arc(vertex.x,vertex.y,radius,a1,a2); ctx.lineTo(vertex.x,vertex.y);
+                    ctx.fillStyle=color; ctx.globalAlpha=0.28; ctx.fill(); ctx.globalAlpha=1;
+                    ctx.strokeStyle=color; ctx.lineWidth=1.8; ctx.stroke();
+                }
+                drawAngleArc(inter1, {x:line1Start.x-inter1.x, y:line1Start.y-inter1.y}, {x:transStart.x-inter1.x, y:transStart.y-inter1.y}, 22, '#1e4b6e');
+                drawAngleArc(inter2, {x:line2End.x-inter2.x, y:line2End.y-inter2.y}, {x:transEnd.x-inter2.x, y:transEnd.y-inter2.y}, 22, '#1e4b6e');
+                ctx.restore();
+
+                function getTransformed(x,y) {
+                    const cos=Math.cos(rotationAngle), sin=Math.sin(rotationAngle);
+                    let xr=x*cos - y*sin, yr=x*sin + y*cos;
+                    xr*=flipSign;
+                    return {x:xr+w/2, y:yr+h/2};
+                }
+                function drawTextAt(px,py,text,color,ox=0,oy=0) {
+                    const p=getTransformed(px,py);
+                    ctx.font='bold 19px "Segoe UI"'; ctx.textAlign='center'; ctx.textBaseline='middle';
+                    ctx.fillStyle=color; ctx.fillText(text,p.x+ox,p.y+oy);
+                }
+                drawTextAt(line1Start.x-30,line1Start.y-10,line1,'#0b3b4f');
+                drawTextAt(line2Start.x-30,line2Start.y+12,line2,'#0b3b4f');
+                drawTextAt((transStart.x+transEnd.x)/2+20,(transStart.y+transEnd.y)/2-8,transversal,'#a4281c');
+                drawTextAt(inter1.x,inter1.y,point1,'#1e4b6e',14,-22);
+                drawTextAt(inter2.x,inter2.y,point2,'#1e4b6e',14,24);
+                function drawPoint(px,py,letter,color) {
+                    const p=getTransformed(px,py);
+                    ctx.beginPath(); ctx.arc(p.x,p.y,6.5,0,2*Math.PI); ctx.fillStyle=color; ctx.fill();
+                    ctx.font='bold 20px "Segoe UI"'; ctx.fillStyle=color; ctx.fillText(letter,p.x+14,p.y-7);
+                }
+                const apc='#0d6b4e';
+                drawPoint(auxLeft.x,auxLeft.y,leftPoint1,apc);
+                drawPoint(auxAbove.x,auxAbove.y,abovePoint,apc);
+                drawPoint(auxBelow.x,auxBelow.y,belowPoint,apc);
+                drawPoint(auxRight.x,auxRight.y,rightPoint2,apc);
+            }
+
+            function refreshDrawing() {
+                rotationAngle = Math.random()*2*Math.PI;
+                flipSign = Math.random()<0.5 ? 1 : -1;
+                drawFigure();
+            }
+
+            function generateNewQuestion() {
+                generateAllLetters();
+                renderQuestion();
+                refreshDrawing();
+            }
+
+            // ══════════════ التحقق والجولة ══════════════
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => inputFields.line2?.focus(), 50);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let key in inputFields) {
+                    if (inputFields[key]) inputFields[key].disabled = disabled;
+                }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) {
+                    messageEl.innerHTML = t('round_restart');
+                    return;
+                }
+                if (attempts >= 10) {
+                    finishCurrentRound();
+                    return;
+                }
+
+                const ans = {
+                    line2: inputFields.line2.value.trim().toUpperCase(),
+                    trans: inputFields.trans.value.trim().toUpperCase(),
+                    pt1: inputFields.pt1.value.trim().toUpperCase(),
+                    pt2: inputFields.pt2.value.trim().toUpperCase(),
+                    angle1: inputFields.angle1.value.trim().toUpperCase(),
+                    angle2: inputFields.angle2.value.trim().toUpperCase()
+                };
+
+                if (!ans.line2 || !ans.trans || !ans.pt1 || !ans.pt2 || !ans.angle1 || !ans.angle2) {
+                    messageEl.innerHTML = t('fill_all');
+                    return;
+                }
+                for (let s of [ans.line2, ans.trans, ans.pt1, ans.pt2]) {
+                    if (s.length !== 1 || !LATIN_LETTERS.includes(s)) {
+                        messageEl.innerHTML = t('invalid_single');
+                        return;
+                    }
+                }
+                for (let a of [ans.angle1, ans.angle2]) {
+                    if (a.length !== 3 || [...a].some(ch => !LATIN_LETTERS.includes(ch))) {
+                        messageEl.innerHTML = t('invalid_angle');
+                        return;
+                    }
+                }
+
+                const pointsForward = ans.pt1 === point1 && ans.pt2 === point2;
+                const pointsReversed = ans.pt1 === point2 && ans.pt2 === point1;
+                const pointsCorrect = pointsForward || pointsReversed;
+                const mainCorrect = ans.line2 === line2 && ans.trans === transversal && pointsCorrect;
+
+                const possible = [angle1Name, angle2Name];
+                function isAngleOk(a) {
+                    const rev = a[2]+a[1]+a[0];
+                    return possible.includes(a) || possible.includes(rev);
+                }
+                const angle1Ok = isAngleOk(ans.angle1);
+                const angle2Ok = isAngleOk(ans.angle2);
+                const isCorrect = mainCorrect && angle1Ok && angle2Ok && (new Set([ans.angle1, ans.angle2]).size === 2);
+
+                attempts++;
+                if (isCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    messageEl.innerHTML = t('wrong', {
+                        line2, trans: transversal, pt1: point1, pt2: point2,
+                        angle1: angle1Name, angle2: angle2Name
+                    });
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+
+                if (attempts === 10) {
+                    finishCurrentRound();
+                    return;
+                }
+                generateNewQuestion();
+                setTimeout(() => inputFields.line2?.focus(), 30);
+            }
+
+            // ══════════════ ربط الأحداث ══════════════
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', () => {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = '🔄 ' + (currentLang==='ar'?'تم تغيير الشكل (لا تحتسب محاولة)':currentLang==='fr'?'Figure changée':'Figure changed');
+                setTimeout(() => { if (messageEl.innerHTML.includes('🔄')) messageEl.innerHTML = ''; }, 1500);
+            });
+
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault();
+                    handleCheck();
+                }
+            });
+
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            // تحميل الإعدادات المحفوظة
+            loadLanguage();
+            loadTheme();
+            loadSoundPref();
+
+            // بدء الجولة الأولى
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateAllLetters();
+            renderQuestion();
+            refreshDrawing();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => inputFields.line2?.focus(), 80);
+
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

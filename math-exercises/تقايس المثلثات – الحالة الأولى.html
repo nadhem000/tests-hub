@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقايس المثلثات – الحالة الأولى | لوحة التمارين</title>
+    <style>
+        /* نفس المتغيرات والأنماط السابقة دون تغيير */
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --badge-easy-bg: #e6f4ea;
+            --badge-easy-text: #1a6b3c;
+            --badge-medium-bg: #fef3e0;
+            --badge-medium-text: #8a5c1a;
+            --badge-hard-bg: #fde8e8;
+            --badge-hard-text: #8b1a1a;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0, 0, 0, 0.35);
+            --angle-color-1: #d9443a;
+            --angle-color-2: #2a7db5;
+            --angle-color-3: #3a8f4e;
+            --angle-light-1: rgba(217, 68, 58, 0.22);
+            --angle-light-2: rgba(42, 125, 181, 0.22);
+            --angle-light-3: rgba(58, 143, 78, 0.22);
+            --triangle-bg: #f9fbfd;
+            --triangle-border: #cbdde9;
+            --canvas-bg: #ffffff;
+            --canvas-shadow: rgba(0, 0, 0, 0.08);
+            --vertex-fill: #1a1a2e;
+            --vertex-stroke: #ffffff;
+            --side-stroke: #2c3e50;
+            --label-color: #0b2b3b;
+            --legend-bg: #f0f4fb;
+            --legend-text: #2c3e50;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --badge-easy-bg: #1a3b2a;
+            --badge-easy-text: #4ade80;
+            --badge-medium-bg: #3b2e1a;
+            --badge-medium-text: #fbbf24;
+            --badge-hard-bg: #3b1a1a;
+            --badge-hard-text: #f87171;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0, 0, 0, 0.55);
+            --angle-light-1: rgba(248, 113, 113, 0.28);
+            --angle-light-2: rgba(96, 165, 250, 0.26);
+            --angle-light-3: rgba(74, 222, 128, 0.26);
+            --triangle-bg: #1a2332;
+            --triangle-border: #334155;
+            --canvas-bg: #1a2332;
+            --canvas-shadow: rgba(0, 0, 0, 0.3);
+            --vertex-fill: #e2e8f0;
+            --vertex-stroke: #1e293b;
+            --side-stroke: #94a3b8;
+            --label-color: #e2e8f0;
+            --legend-bg: #1e293b;
+            --legend-text: #bcc8d6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+
+        .dashboard-header {
+            position: relative;
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+            backdrop-filter: blur(10px);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .legend-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--legend-text);
+            background: var(--legend-bg);
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+        }
+        .legend-dot {
+            display: inline-block;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            margin-inline-end: 4px;
+            vertical-align: middle;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .triangles-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .triangle-panel {
+            flex: 1 1 340px;
+            min-width: 280px;
+            max-width: 500px;
+            background: var(--triangle-bg);
+            border-radius: 28px;
+            padding: 10px;
+            border: 1px solid var(--triangle-border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.35s, border-color 0.35s;
+        }
+        .triangle-label {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--section-header-text);
+            margin-bottom: 4px;
+            background: var(--section-header-bg);
+            padding: 4px 16px;
+            border-radius: 30px;
+        }
+        .triangle-panel canvas {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 0.85;
+            border-radius: 20px;
+            background: var(--canvas-bg);
+            border: 1px solid var(--border2);
+            box-shadow: 0 4px 12px var(--canvas-shadow);
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 12px 0 20px;
+            text-align: center;
+            background: var(--surface2);
+            padding: 14px 18px;
+            border-radius: 80px;
+            line-height: 2.3;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0 3px;
+            border: 1px solid var(--border);
+        }
+        .question-text span { white-space: nowrap; }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.3rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 4em;
+            min-width: 72px;
+            max-width: 110px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44,110,158,0.2);
+        }
+        .input-tri { width: 4em !important; min-width: 74px; }
+
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+            color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #2c3e66; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.1rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .example-hint {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s, border-color 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 {
+            font-size: 0.9rem; font-weight: 700;
+            color: var(--accent); margin-bottom: 2px;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a {
+            color: var(--text2); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .footer-col { align-items: center; }
+            .question-text { font-size: 1.1rem; padding: 10px 6px; line-height: 2; border-radius: 40px; }
+            .inline-input { font-size: 1.05rem; width: 3em; min-width: 54px; }
+            .triangles-row { gap: 10px; }
+            .triangle-panel { min-width: 240px; }
+            .stats { font-size: 1rem; padding: 10px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <!-- التمرين -->
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📐</span> <span data-i18n="exercise_heading">تقايس المثلثات – الحالة الأولى</span> <span>🔺</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">زاوية – زاوية – زاوية (AAA)</div>
+
+        <div class="legend-row">
+            <span><span class="legend-dot" style="background:var(--angle-color-1);"></span> <span data-i18n="legend_pair1">الزوج الأول</span></span>
+            <span><span class="legend-dot" style="background:var(--angle-color-2);"></span> <span data-i18n="legend_pair2">الزوج الثاني</span></span>
+            <span><span class="legend-dot" style="background:var(--angle-color-3);"></span> <span data-i18n="legend_pair3">الزوج الثالث</span></span>
+            <span style="margin-inline-start:8px;" data-i18n="legend_hint">⭕ الزوايا المتقايسة</span>
+        </div>
+
+        <div class="triangles-row">
+            <div class="triangle-panel" id="panel1">
+                <span class="triangle-label" id="tri1Label">🔺 المثلث الأول</span>
+                <canvas id="canvas1" width="420" height="360"></canvas>
+            </div>
+            <div class="triangle-panel" id="panel2">
+                <span class="triangle-label" id="tri2Label">🔺 المثلث الثاني</span>
+                <canvas id="canvas2" width="420" height="360"></canvas>
+            </div>
+        </div>
+
+        <div class="question-text" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="example-hint" data-i18n="hint">📌 املأ جميع الفراغات (10 خانات): اسم المثلث الأول، اسم المثلث الثاني، ثلاثة أزواج من الزوايا المتقايسة، ثم اسمي المثلثين مجدداً.</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const canvas1 = document.getElementById('canvas1');
+            const ctx1 = canvas1.getContext('2d');
+            const canvas2 = document.getElementById('canvas2');
+            const ctx2 = canvas2.getContext('2d');
+            const questionContainer = document.getElementById('questionContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const tri1Label = document.getElementById('tri1Label');
+            const tri2Label = document.getElementById('tri2Label');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let inputRefs = {};
+            let triangle1Name = '';
+            let triangle2Name = '';
+            let tri1Vertices = [];
+            let tri2Vertices = [];
+            let angleMapping = [];
+            let currentTri1Pts = [];
+            let currentTri2Pts = [];
+            let attempts = 0;
+            let score = 0;
+            let gameActive = true;
+            let isSwitchingRound = false;
+
+            const LATIN_LETTERS = 'ABCDEFGHJKLMNPQRSTUVWXYZ'.split('');
+            const ANGLE_COLORS = ['#d9443a', '#2a7db5', '#3a8f4e'];
+            const ANGLE_COLORS_LIGHT = [
+                'rgba(217,68,58,0.22)',
+                'rgba(42,125,181,0.22)',
+                'rgba(58,143,78,0.22)'
+            ];
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'تقايس المثلثات – الحالة الأولى',
+                    exercise_subtitle: 'زاوية – زاوية – زاوية (AAA)',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات (10 خانات): اسم المثلث الأول، اسم المثلث الثاني، ثلاثة أزواج من الزوايا المتقايسة، ثم اسمي المثلثين مجدداً.',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    legend_pair1: 'الزوج الأول',
+                    legend_pair2: 'الزوج الثاني',
+                    legend_pair3: 'الزوج الثالث',
+                    legend_hint: '⭕ الزوايا المتقايسة',
+                    tri_label: '🔺 المثلث',
+                    fill_all: '⚠️ الرجاء ملء جميع الفراغات العشرة.',
+                    invalid_format: '❌ كل فراغ يجب أن يكون 3 حروف لاتينية كبيرة (A-Z).',
+                    invalid_letters: '❌ استخدم فقط الحروف اللاتينية الكبيرة (A-Z).',
+                    invalid_triangle: '❌ أحد أسماء المثلثات غير صحيح.',
+                    invalid_angle_format: '❌ تنسيق خاطئ لأحد أسماء الزوايا (الحرف الأوسط يجب أن يكون رأس الزاوية).',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! المثلثان: {tri1} و {tri2}. الزوايا المتقايسة: {pairs}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الشكل (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Triangles isométriques – 1er cas',
+                    exercise_subtitle: 'Angle – Angle – Angle (AAA)',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez les 10 champs : nom du 1er triangle, nom du 2e, trois paires d\'angles égaux, puis les deux noms de triangles.',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    legend_pair1: '1ère paire',
+                    legend_pair2: '2e paire',
+                    legend_pair3: '3e paire',
+                    legend_hint: '⭕ Angles isométriques',
+                    tri_label: '🔺 Triangle',
+                    fill_all: '⚠️ Veuillez remplir tous les dix champs.',
+                    invalid_format: '❌ Chaque champ doit comporter 3 lettres majuscules (A-Z).',
+                    invalid_letters: '❌ Utilisez uniquement des lettres latines majuscules (A-Z).',
+                    invalid_triangle: '❌ Un des noms de triangle est incorrect.',
+                    invalid_angle_format: '❌ Format d\'angle incorrect (la lettre du milieu doit être le sommet).',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! Triangles : {tri1} et {tri2}. Angles isométriques : {pairs}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
+                    figure_changed: '🔄 Figure changée (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions d\'utilisation',
+                    footer_privacy: 'Politique de confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify et GitHub',
+                    sound_on_title: 'Son (activé)',
+                    sound_off_title: 'Son (désactivé)',
+                    back_title: 'Retour au tableau'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Congruent Triangles – 1st Case',
+                    exercise_subtitle: 'Angle – Angle – Angle (AAA)',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill in all 10 fields: 1st triangle name, 2nd triangle name, three pairs of congruent angles, then both triangle names again.',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    legend_pair1: '1st pair',
+                    legend_pair2: '2nd pair',
+                    legend_pair3: '3rd pair',
+                    legend_hint: '⭕ Congruent angles',
+                    tri_label: '🔺 Triangle',
+                    fill_all: '⚠️ Please fill in all ten fields.',
+                    invalid_format: '❌ Each field must be 3 uppercase Latin letters (A-Z).',
+                    invalid_letters: '❌ Use only uppercase Latin letters (A-Z).',
+                    invalid_triangle: '❌ One of the triangle names is incorrect.',
+                    invalid_angle_format: '❌ Incorrect angle format (middle letter must be the vertex).',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Incorrect! Triangles: {tri1} and {tri2}. Congruent angles: {pairs}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
+                    figure_changed: '🔄 Figure changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back to dashboard'
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(`{${k}}`, v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (key) el.textContent = t(key);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                const soundTitle = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnSound').title = soundTitle;
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                localStorage.setItem('exercise_cong1_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                updateTriangleLabels();
+                renderQuestion();
+                messageEl.innerHTML = '';
+                drawFigures();
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_cong1_lang');
+                if (saved && translations[saved]) {
+                    applyLanguage(saved);
+                    return;
+                }
+                const navLang = navigator.language?.split('-')[0];
+                if (navLang && translations[navLang]) {
+                    applyLanguage(navLang);
+                } else {
+                    applyLanguage('ar');
+                }
+            }
+
+            function updateTriangleLabels() {
+                if (triangle1Name && triangle2Name) {
+                    tri1Label.textContent = `${t('tri_label')} (${triangle1Name})`;
+                    tri2Label.textContent = `${t('tri_label')} (${triangle2Name})`;
+                } else {
+                    tri1Label.textContent = t('tri_label') + ' 1';
+                    tri2Label.textContent = t('tri_label') + ' 2';
+                }
+            }
+
+            let soundEnabled = true;
+            let audioCtx = null;
+
+            function getAudioContext() {
+                if (!audioCtx) {
+                    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                }
+                return audioCtx;
+            }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_cong1_sound');
+                if (saved === 'off') {
+                    soundEnabled = false;
+                    btnSound.textContent = '🔇';
+                    btnSound.title = t('sound_off_title');
+                } else {
+                    soundEnabled = true;
+                    btnSound.textContent = '🔊';
+                    btnSound.title = t('sound_on_title');
+                }
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_cong1_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_cong1_theme', theme); } catch (e) {}
+                drawFigures();
+            }
+
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                try {
+                    const saved = localStorage.getItem('exercise_cong1_theme');
+                    if (saved === 'dark' || saved === 'light') {
+                        applyTheme(saved);
+                        return;
+                    }
+                } catch (e) {}
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    applyTheme('dark');
+                } else {
+                    applyTheme('light');
+                }
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            function buildQuestionHTML() {
+                return `
+                    <span data-i18n-static="q_part1">في المثلث (</span>
+                    <input type="text" id="inpTri1" class="inline-input input-tri" maxlength="3" placeholder="ABC" dir="ltr" autocomplete="off">
+                    <span data-i18n-static="q_part2">) و(</span>
+                    <input type="text" id="inpTri2" class="inline-input input-tri" maxlength="3" placeholder="DEF" dir="ltr" autocomplete="off">
+                    <span data-i18n-static="q_part3">) لدينا:</span>
+                    <span data-i18n-static="q_angle">الزاوية (</span>
+                    <input type="text" id="inpA1" class="inline-input input-tri" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span data-i18n-static="q_equals">) تساوي (</span>
+                    <input type="text" id="inpA2" class="inline-input input-tri" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>)</span>
+                    <span data-i18n-static="q_comma1">، والزاوية (</span>
+                    <input type="text" id="inpB1" class="inline-input input-tri" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span data-i18n-static="q_equals2">) تساوي (</span>
+                    <input type="text" id="inpB2" class="inline-input input-tri" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>)</span>
+                    <span data-i18n-static="q_comma2">، والزاوية (</span>
+                    <input type="text" id="inpC1" class="inline-input input-tri" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span data-i18n-static="q_equals3">) تساوي (</span>
+                    <input type="text" id="inpC2" class="inline-input input-tri" maxlength="3" placeholder="XYZ" dir="ltr" autocomplete="off">
+                    <span>)</span>
+                    <span data-i18n-static="q_therefore">إذن المثلثان (</span>
+                    <input type="text" id="inpTri1b" class="inline-input input-tri" maxlength="3" placeholder="ABC" dir="ltr" autocomplete="off">
+                    <span data-i18n-static="q_and">) و(</span>
+                    <input type="text" id="inpTri2b" class="inline-input input-tri" maxlength="3" placeholder="DEF" dir="ltr" autocomplete="off">
+                    <span data-i18n-static="q_conclusion">) متقايسان حسب الحالة الأولى لتقايس المثلثات.</span>
+                `;
+            }
+
+            function localizeQuestionHTML() {
+                const texts = {
+                    ar: {
+                        q_part1: 'في المثلث (',
+                        q_part2: ') و(',
+                        q_part3: ') لدينا:',
+                        q_angle: 'الزاوية (',
+                        q_equals: ') تساوي (',
+                        q_comma1: '، والزاوية (',
+                        q_equals2: ') تساوي (',
+                        q_comma2: '، والزاوية (',
+                        q_equals3: ') تساوي (',
+                        q_therefore: 'إذن المثلثان (',
+                        q_and: ') و(',
+                        q_conclusion: ') متقايسان حسب الحالة الأولى لتقايس المثلثات.'
+                    },
+                    fr: {
+                        q_part1: 'Dans le triangle (',
+                        q_part2: ') et (',
+                        q_part3: ') on a :',
+                        q_angle: 'L\'angle (',
+                        q_equals: ') est égal à (',
+                        q_comma1: ', l\'angle (',
+                        q_equals2: ') est égal à (',
+                        q_comma2: ', l\'angle (',
+                        q_equals3: ') est égal à (',
+                        q_therefore: 'Donc les triangles (',
+                        q_and: ') et (',
+                        q_conclusion: ') sont isométriques selon le 1er cas d\'isométrie des triangles.'
+                    },
+                    en: {
+                        q_part1: 'In triangle (',
+                        q_part2: ') and (',
+                        q_part3: ') we have:',
+                        q_angle: 'Angle (',
+                        q_equals: ') equals (',
+                        q_comma1: ', angle (',
+                        q_equals2: ') equals (',
+                        q_comma2: ', angle (',
+                        q_equals3: ') equals (',
+                        q_therefore: 'Therefore triangles (',
+                        q_and: ') and (',
+                        q_conclusion: ') are congruent by the 1st case of triangle congruence.'
+                    }
+                };
+                const dict = texts[currentLang] || texts.ar;
+                questionContainer.querySelectorAll('[data-i18n-static]').forEach(el => {
+                    const key = el.dataset.i18nStatic;
+                    if (key && dict[key]) el.textContent = dict[key];
+                });
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {
+                    tri1: document.getElementById('inpTri1'),
+                    tri2: document.getElementById('inpTri2'),
+                    a1: document.getElementById('inpA1'),
+                    a2: document.getElementById('inpA2'),
+                    b1: document.getElementById('inpB1'),
+                    b2: document.getElementById('inpB2'),
+                    c1: document.getElementById('inpC1'),
+                    c2: document.getElementById('inpC2'),
+                    tri1b: document.getElementById('inpTri1b'),
+                    tri2b: document.getElementById('inpTri2b'),
+                };
+            }
+
+            function clearAllInputs() {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].value = '';
+                }
+            }
+
+            function renderQuestion() {
+                questionContainer.innerHTML = buildQuestionHTML();
+                localizeQuestionHTML();
+                refreshInputRefs();
+                clearAllInputs();
+            }
+
+            function getRandomLetter(exclude = []) {
+                const available = LATIN_LETTERS.filter(l => !exclude.includes(l));
+                if (available.length === 0) return 'X';
+                return available[Math.floor(Math.random() * available.length)];
+            }
+
+            function shuffleArray(arr) {
+                const a = arr.slice();
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
+            }
+
+            function generateBaseTrianglePoints(canvasW, canvasH) {
+                const cx = canvasW / 2;
+                const cy = canvasH / 2;
+                const maxR = Math.min(canvasW, canvasH) * 0.42;
+                const minR = maxR * 0.6;
+
+                const angles = [];
+                let a1 = Math.random() * Math.PI * 0.5 + 0.3;
+                let a2 = a1 + Math.random() * (Math.PI * 0.9) + 0.8;
+                let a3 = a2 + Math.random() * (Math.PI * 0.7) + 0.8;
+                angles.push(a1, a2, a3);
+                const shuffled = shuffleArray(angles);
+
+                const points = shuffled.map(a => {
+                    const r = minR + Math.random() * (maxR - minR);
+                    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+                });
+
+                const centroidX = points.reduce((s, p) => s + p.x, 0) / 3;
+                const centroidY = points.reduce((s, p) => s + p.y, 0) / 3;
+                points.forEach(p => { p.x += cx - centroidX; p.y += cy - centroidY; });
+                return points;
+            }
+
+            // التحويل الجامد الحقيقي: دوران، انعكاس، إزاحة (بدون تغيير قياس)
+            function applyRigidTransform(points, canvasW, canvasH) {
+                const cx = canvasW / 2;
+                const cy = canvasH / 2;
+                // زاوية دوران صغيرة لتجنب تطابق كامل مع الأصل
+                const angle = (Math.random() - 0.5) * 0.8; // ±0.4 راديان (~ ±23°)
+                const flipX = Math.random() < 0.5 ? -1 : 1;
+                const flipY = Math.random() < 0.5 ? -1 : 1;
+
+                const centroidX = points.reduce((s, p) => s + p.x, 0) / 3;
+                const centroidY = points.reduce((s, p) => s + p.y, 0) / 3;
+
+                // إزاحة معتدلة لضمان بقاء المثلث داخل اللوحة
+                const shiftX = (Math.random() - 0.5) * canvasW * 0.2;
+                const shiftY = (Math.random() - 0.5) * canvasH * 0.15;
+
+                return points.map(p => {
+                    let dx = p.x - centroidX;
+                    let dy = p.y - centroidY;
+                    // تطبيق الانعكاس
+                    dx *= flipX;
+                    dy *= flipY;
+                    // تطبيق الدوران
+                    const cos = Math.cos(angle);
+                    const sin = Math.sin(angle);
+                    const rx = dx * cos - dy * sin;
+                    const ry = dx * sin + dy * cos;
+                    // الموقع النهائي: مركز canvas + الإزاحة
+                    return { x: cx + rx + shiftX, y: cy + ry + shiftY };
+                });
+            }
+
+            function angleAtVertex(prev, vertex, next) {
+                const v1 = { x: prev.x - vertex.x, y: prev.y - vertex.y };
+                const v2 = { x: next.x - vertex.x, y: next.y - vertex.y };
+                const dot = v1.x * v2.x + v1.y * v2.y;
+                const cross = v1.x * v2.y - v1.y * v2.x;
+                return Math.atan2(Math.abs(cross), dot);
+            }
+
+            function matchTrianglesByAngles(points1, points2, labels1, labels2) {
+                const n = 3;
+                const angles1 = [];
+                const angles2 = [];
+                for (let i = 0; i < n; i++) {
+                    const prev1 = points1[(i + 2) % n], curr1 = points1[i], next1 = points1[(i + 1) % n];
+                    angles1.push({ index: i, label: labels1[i], angle: angleAtVertex(prev1, curr1, next1) });
+                    const prev2 = points2[(i + 2) % n], curr2 = points2[i], next2 = points2[(i + 1) % n];
+                    angles2.push({ index: i, label: labels2[i], angle: angleAtVertex(prev2, curr2, next2) });
+                }
+                angles1.sort((a, b) => a.angle - b.angle);
+                angles2.sort((a, b) => a.angle - b.angle);
+
+                const mapping = [];
+                const used2 = new Set();
+                for (let i = 0; i < n; i++) {
+                    let bestJ = -1, bestDiff = Infinity;
+                    for (let j = 0; j < n; j++) {
+                        if (used2.has(j)) continue;
+                        const diff = Math.abs(angles1[i].angle - angles2[j].angle);
+                        if (diff < bestDiff) { bestDiff = diff; bestJ = j; }
+                    }
+                    used2.add(bestJ);
+                    mapping.push({
+                        tri1Vertex: angles1[i].label,
+                        tri1Index: angles1[i].index,
+                        tri2Vertex: angles2[bestJ].label,
+                        tri2Index: angles2[bestJ].index,
+                        color: ANGLE_COLORS[i],
+                        colorLight: ANGLE_COLORS_LIGHT[i]
+                    });
+                }
+                return mapping.sort((a, b) => a.tri1Index - b.tri1Index);
+            }
+
+            function generateAllData() {
+                const basePts = generateBaseTrianglePoints(420, 360);
+                // استخدم التحويل الجامد الصارم
+                const similarPts = applyRigidTransform(basePts, 420, 360);
+
+                const l1 = getRandomLetter();
+                const l2 = getRandomLetter([l1]);
+                const l3 = getRandomLetter([l1, l2]);
+                const l4 = getRandomLetter([l1, l2, l3]);
+                const l5 = getRandomLetter([l1, l2, l3, l4]);
+                const l6 = getRandomLetter([l1, l2, l3, l4, l5]);
+
+                tri1Vertices = [l1, l2, l3];
+                tri2Vertices = [l4, l5, l6];
+                triangle1Name = tri1Vertices.join('');
+                triangle2Name = tri2Vertices.join('');
+
+                updateTriangleLabels();
+
+                const tri1Pts = basePts.map((p, i) => ({ ...p, label: tri1Vertices[i], index: i }));
+                const tri2Pts = similarPts.map((p, i) => ({ ...p, label: tri2Vertices[i], index: i }));
+
+                angleMapping = matchTrianglesByAngles(basePts, similarPts, tri1Vertices, tri2Vertices);
+                return { pts1: tri1Pts, pts2: tri2Pts };
+            }
+
+            function drawTriangle(ctx, pts, labels, canvasW, canvasH, mapping, isTri1) {
+                ctx.clearRect(0, 0, canvasW, canvasH);
+                ctx.save();
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                const sideColor = isDark ? '#94a3b8' : '#2c3e50';
+                const vertexFill = isDark ? '#e2e8f0' : '#1a1a2e';
+                const vertexStroke = isDark ? '#1e293b' : '#ffffff';
+                const labelColor = isDark ? '#e2e8f0' : '#0b2b3b';
+
+                for (let i = 0; i < 3; i++) {
+                    const j = (i + 1) % 3;
+                    ctx.beginPath();
+                    ctx.moveTo(pts[i].x, pts[i].y);
+                    ctx.lineTo(pts[j].x, pts[j].y);
+                    ctx.strokeStyle = sideColor;
+                    ctx.lineWidth = 2.4;
+                    ctx.stroke();
+                }
+
+                for (let i = 0; i < 3; i++) {
+                    const prev = pts[(i + 2) % 3];
+                    const curr = pts[i];
+                    const next = pts[(i + 1) % 3];
+                    const mapEntry = mapping.find(m => (isTri1 && m.tri1Index === i) || (!isTri1 && m.tri2Index === i));
+                    const arcColor = mapEntry ? mapEntry.color : '#666';
+                    const arcFill = mapEntry ? mapEntry.colorLight : 'rgba(100,100,100,0.18)';
+                    const arcRadius = 23;
+
+                    const v1 = { x: prev.x - curr.x, y: prev.y - curr.y };
+                    const v2 = { x: next.x - curr.x, y: next.y - curr.y };
+                    const ang1 = Math.atan2(v1.y, v1.x);
+                    const ang2 = Math.atan2(v2.y, v2.x);
+
+                    ctx.beginPath();
+                    ctx.moveTo(curr.x, curr.y);
+                    ctx.arc(curr.x, curr.y, arcRadius, ang1, ang2);
+                    ctx.lineTo(curr.x, curr.y);
+                    ctx.fillStyle = arcFill;
+                    ctx.fill();
+                    ctx.strokeStyle = arcColor;
+                    ctx.lineWidth = 2.2;
+                    ctx.stroke();
+
+                    const midAngle = (ang1 + ang2) / 2;
+                    const labelR = arcRadius + 16;
+                    const lx = curr.x + labelR * Math.cos(midAngle);
+                    const ly = curr.y + labelR * Math.sin(midAngle);
+                    ctx.font = 'bold 12px "Segoe UI", "Arial"';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = arcColor;
+                    ctx.fillText(`∠${i+1}`, lx, ly);
+                }
+
+                for (let i = 0; i < 3; i++) {
+                    const p = pts[i];
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 7, 0, 2 * Math.PI);
+                    ctx.fillStyle = vertexFill;
+                    ctx.fill();
+                    ctx.strokeStyle = vertexStroke;
+                    ctx.lineWidth = 2.2;
+                    ctx.stroke();
+                    ctx.font = 'bold 18px "Segoe UI", "Arial"';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = labelColor;
+                    ctx.fillText(labels[i], p.x + 19, p.y - 18);
+                }
+                ctx.restore();
+            }
+
+            function drawFigures() {
+                drawTriangle(ctx1, currentTri1Pts, tri1Vertices, 420, 360, angleMapping, true);
+                drawTriangle(ctx2, currentTri2Pts, tri2Vertices, 420, 360, angleMapping, false);
+            }
+
+            function generateNewQuestion() {
+                const data = generateAllData();
+                currentTri1Pts = data.pts1;
+                currentTri2Pts = data.pts2;
+                renderQuestion();
+                drawFigures();
+            }
+
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                for (let key in inputRefs) { if (inputRefs[key]) inputRefs[key].disabled = false; }
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => inputRefs.tri1?.focus(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let key in inputRefs) { if (inputRefs[key]) inputRefs[key].disabled = disabled; }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over', {score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function getAngleNamesForVertex(idx, labels) {
+                const prev = labels[(idx + 2) % 3];
+                const curr = labels[idx];
+                const next = labels[(idx + 1) % 3];
+                return { standard: `${prev}${curr}${next}`, reversed: `${next}${curr}${prev}`, vertex: curr };
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const ansTri1 = (inputRefs.tri1?.value || '').trim().toUpperCase();
+                const ansTri2 = (inputRefs.tri2?.value || '').trim().toUpperCase();
+                const ansA1 = (inputRefs.a1?.value || '').trim().toUpperCase();
+                const ansA2 = (inputRefs.a2?.value || '').trim().toUpperCase();
+                const ansB1 = (inputRefs.b1?.value || '').trim().toUpperCase();
+                const ansB2 = (inputRefs.b2?.value || '').trim().toUpperCase();
+                const ansC1 = (inputRefs.c1?.value || '').trim().toUpperCase();
+                const ansC2 = (inputRefs.c2?.value || '').trim().toUpperCase();
+                const ansTri1b = (inputRefs.tri1b?.value || '').trim().toUpperCase();
+                const ansTri2b = (inputRefs.tri2b?.value || '').trim().toUpperCase();
+
+                if ([ansTri1, ansTri2, ansA1, ansA2, ansB1, ansB2, ansC1, ansC2, ansTri1b, ansTri2b].some(v => !v)) {
+                    messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return;
+                }
+                for (let s of [ansTri1, ansTri2, ansA1, ansA2, ansB1, ansB2, ansC1, ansC2, ansTri1b, ansTri2b]) {
+                    if (s.length !== 3) { messageEl.innerHTML = t('invalid_format'); messageEl.style.color = 'var(--accent3)'; return; }
+                    for (let ch of s) {
+                        if (!LATIN_LETTERS.includes(ch)) { messageEl.innerHTML = t('invalid_letters'); messageEl.style.color = 'var(--accent3)'; return; }
+                    }
+                }
+
+                const tri1Set = new Set(triangle1Name.split(''));
+                const tri2Set = new Set(triangle2Name.split(''));
+                const isValidTriangleName = (name, set) => new Set(name.split('')).size === 3 && [...set].every(l => name.includes(l));
+
+                if (!isValidTriangleName(ansTri1, tri1Set) || !isValidTriangleName(ansTri2, tri2Set) ||
+                    !isValidTriangleName(ansTri1b, tri1Set) || !isValidTriangleName(ansTri2b, tri2Set)) {
+                    messageEl.innerHTML = t('invalid_triangle'); messageEl.style.color = 'var(--accent3)';
+                    attempts++; updateStatsUI();
+                    if (attempts >= 10) finishCurrentRound(); else generateNewQuestion();
+                    return;
+                }
+
+                function vertexFromAngle(input, labels) {
+                    for (let i = 0; i < 3; i++) {
+                        const { standard, reversed, vertex } = getAngleNamesForVertex(i, labels);
+                        if (input === standard || input === reversed) return vertex;
+                    }
+                    return null;
+                }
+
+                const a1Vertex = vertexFromAngle(ansA1, tri1Vertices);
+                const a2Vertex = vertexFromAngle(ansA2, tri2Vertices);
+                const b1Vertex = vertexFromAngle(ansB1, tri1Vertices);
+                const b2Vertex = vertexFromAngle(ansB2, tri2Vertices);
+                const c1Vertex = vertexFromAngle(ansC1, tri1Vertices);
+                const c2Vertex = vertexFromAngle(ansC2, tri2Vertices);
+
+                if (!a1Vertex || !a2Vertex || !b1Vertex || !b2Vertex || !c1Vertex || !c2Vertex) {
+                    messageEl.innerHTML = t('invalid_angle_format'); messageEl.style.color = 'var(--accent3)';
+                    attempts++; updateStatsUI();
+                    if (attempts >= 10) finishCurrentRound(); else generateNewQuestion();
+                    return;
+                }
+
+                const pairs = [
+                    { v1: a1Vertex, v2: a2Vertex },
+                    { v1: b1Vertex, v2: b2Vertex },
+                    { v1: c1Vertex, v2: c2Vertex }
+                ];
+                let matched = 0;
+                const usedMapping = new Set();
+                for (let pair of pairs) {
+                    for (let m = 0; m < angleMapping.length; m++) {
+                        if (usedMapping.has(m)) continue;
+                        if (pair.v1 === angleMapping[m].tri1Vertex && pair.v2 === angleMapping[m].tri2Vertex) {
+                            usedMapping.add(m); matched++; break;
+                        }
+                    }
+                }
+
+                const allAngles = [ansA1, ansA2, ansB1, ansB2, ansC1, ansC2];
+                const isCorrect = matched === 3 && (new Set(allAngles)).size === 6;
+
+                attempts++;
+                if (isCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct'); messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    const correctPairs = angleMapping.map(m => {
+                        const a1 = getAngleNamesForVertex(m.tri1Index, tri1Vertices).standard;
+                        const a2 = getAngleNamesForVertex(m.tri2Index, tri2Vertices).standard;
+                        return `${a1} = ${a2}`;
+                    }).join(' ، ');
+                    messageEl.innerHTML = t('wrong', { tri1: triangle1Name, tri2: triangle2Name, pairs: correctPairs });
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => inputRefs.tri1?.focus(), 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed'); messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => inputRefs.tri1?.focus(), 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault(); handleCheck();
+                }
+            });
+
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage();
+            loadTheme();
+            loadSoundPref();
+
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            const initData = generateAllData();
+            currentTri1Pts = initData.pts1;
+            currentTri2Pts = initData.pts2;
+            renderQuestion();
+            drawFigures();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => inputRefs.tri1?.focus(), 100);
+
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

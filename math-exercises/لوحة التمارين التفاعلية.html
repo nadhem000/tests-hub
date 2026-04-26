@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📐 لوحة التمارين التفاعلية – الرياضيات</title>
+	<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="footer.css">
+    <style>
+    /* ═════════════ المتغيرات العامة (تبقى هنا لأنها تُستخدم في كل الصفحة) ═════════════ */
+    :root {
+        --bg: #eef2f7;
+        --bg2: #d9e2ec;
+        --surface: #ffffff;
+        --surface2: #f4f7fb;
+        --surface3: #e8eef6;
+        --text: #0b2b3b;
+        --text2: #3a5a78;
+        --text3: #5a7a98;
+        --border: #cbdde9;
+        --border2: #dce6ef;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+        --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+        --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+        --accent: #2c6e9e;
+        --accent2: #1f8a4c;
+        --accent3: #d9443a;
+        --tag-bg: #e2eaf5;
+        --tag-text: #1e3a4f;
+        --tag-active-bg: #2c3e66;
+        --tag-active-text: #ffffff;
+        --input-bg: #fffef7;
+        --input-border: #90a4c3;
+        --section-header-bg: #e9f0f9;
+        --section-header-text: #1f3a4b;
+        --toggle-bg: #dce4f0;
+        --scrollbar-thumb: #c1cddb;
+        --scrollbar-track: transparent;
+        --badge-easy-bg: #e6f4ea;
+        --badge-easy-text: #1a6b3c;
+        --badge-medium-bg: #fef3e0;
+        --badge-medium-text: #8a5c1a;
+        --badge-hard-bg: #fde8e8;
+        --badge-hard-text: #8b1a1a;
+        --card-accent-opacity: 0.18;
+        --overlay: rgba(0, 0, 0, 0.35);
+        --modal-bg: #ffffff;
+    }
+
+    [data-theme="dark"] {
+        --bg: #0f172a;
+        --bg2: #1a2332;
+        --surface: #1e293b;
+        --surface2: #1a2332;
+        --surface3: #243044;
+        --text: #e2e8f0;
+        --text2: #bcc8d6;
+        --text3: #8f9eb2;
+        --border: #334155;
+        --border2: #2d3a4a;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+        --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+        --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+        --accent: #60a5fa;
+        --accent2: #4ade80;
+        --accent3: #f87171;
+        --tag-bg: #243044;
+        --tag-text: #bcc8d6;
+        --tag-active-bg: #60a5fa;
+        --tag-active-text: #0f172a;
+        --input-bg: #1a2332;
+        --input-border: #475569;
+        --section-header-bg: #1e293b;
+        --section-header-text: #e2e8f0;
+        --toggle-bg: #334155;
+        --scrollbar-thumb: #475569;
+        --scrollbar-track: #1e293b;
+        --badge-easy-bg: #1a3b2a;
+        --badge-easy-text: #4ade80;
+        --badge-medium-bg: #3b2e1a;
+        --badge-medium-text: #fbbf24;
+        --badge-hard-bg: #3b1a1a;
+        --badge-hard-text: #f87171;
+        --card-accent-opacity: 0.28;
+        --overlay: rgba(0, 0, 0, 0.55);
+        --modal-bg: #1e293b;
+    }
+
+    /* ═════════════ الأساسيات العامة ═════════════ */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+    }
+
+    body {
+        font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'Helvetica Neue', sans-serif;
+        background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 100px 16px 16px;
+        padding-top: 16px;  /* تعديل صغير للهيدر العائم */
+        transition: background 0.4s ease, color 0.35s ease;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* شريط التمرير */
+    ::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 10px;
+    }
+
+    /* ═════════════ شريط الوسوم (يحتفظ به) ═════════════ */
+    .tags-bar {
+        max-width: 1240px;
+        margin: 0 auto 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .tags-bar .tags-label {
+        font-weight: 700;
+        color: var(--text2);
+        font-size: 0.9rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-left: 4px;
+    }
+    .tag-chip {
+        padding: 7px 16px;
+        border-radius: 50px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: 2px solid var(--border);
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        white-space: nowrap;
+        transition: all 0.18s;
+        user-select: none;
+        flex-shrink: 0;
+    }
+    .tag-chip:hover {
+        border-color: var(--accent);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+    }
+    .tag-chip.active {
+        background: var(--tag-active-bg);
+        color: var(--tag-active-text);
+        border-color: var(--tag-active-bg);
+        box-shadow: var(--shadow);
+    }
+    .tag-chip.tag-all {
+        background: var(--surface);
+        font-weight: 700;
+        border-style: dashed;
+    }
+    .tag-chip.tag-all.active {
+        background: var(--accent);
+        color: #fff;
+        border-style: solid;
+        border-color: var(--accent);
+    }
+
+    /* ═════════════ المحتوى الرئيسي ═════════════ */
+    .main-content {
+        max-width: 1240px;
+        margin: 0 auto;
+    }
+
+    /* ═════════════ الأقسام والتمارين ═════════════ */
+    .exercise-section {
+        margin-bottom: 20px;
+        border-radius: 28px;
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transition: all 0.35s ease;
+    }
+    .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 22px;
+        cursor: pointer;
+        user-select: none;
+        background: var(--section-header-bg);
+        color: var(--section-header-text);
+        font-weight: 700;
+        font-size: 1.15rem;
+        gap: 10px;
+        transition: background 0.25s;
+        border-bottom: 1px solid transparent;
+    }
+    .section-header:hover {
+        filter: brightness(0.96);
+    }
+    [data-theme="dark"] .section-header:hover {
+        filter: brightness(1.12);
+    }
+    .section-header .section-title-area {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .section-header .section-icon {
+        font-size: 1.6rem;
+    }
+    .section-header .section-count {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text3);
+        background: var(--surface);
+        padding: 4px 12px;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+    }
+    .section-toggle-icon {
+        font-size: 1.2rem;
+        transition: transform 0.35s ease;
+        color: var(--text3);
+    }
+    .exercise-section.collapsed .section-toggle-icon {
+        transform: rotate(-90deg);
+    }
+    .exercise-section.collapsed .section-header {
+        border-bottom-color: transparent;
+    }
+    .section-body {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        gap: 16px;
+        padding: 18px;
+        transition: all 0.4s ease;
+        max-height: 3000px;
+        opacity: 1;
+    }
+    .exercise-section.collapsed .section-body {
+        max-height: 0;
+        opacity: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+        gap: 0;
+    }
+
+    /* ═════════════ بطاقات التمارين ═════════════ */
+    .exercise-card {
+        background: var(--surface);
+        border-radius: 22px;
+        border: 1px solid var(--border2);
+        box-shadow: var(--shadow-sm);
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.28s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+        outline: none;
+    }
+    .exercise-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--card-accent, #2c6e9e);
+        border-radius: 22px 22px 0 0;
+        transition: height 0.25s ease, opacity 0.25s;
+    }
+    .exercise-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--accent);
+    }
+    .exercise-card:hover::before {
+        height: 8px;
+        opacity: 0.9;
+    }
+    .exercise-card:active {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+    }
+    .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    .card-icon {
+        font-size: 2.4rem;
+        flex-shrink: 0;
+        line-height: 1;
+    }
+    .card-badges {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    .badge {
+        padding: 4px 11px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        white-space: nowrap;
+        letter-spacing: -0.2px;
+    }
+    .badge-difficulty-easy {
+        background: var(--badge-easy-bg);
+        color: var(--badge-easy-text);
+    }
+    .badge-difficulty-medium {
+        background: var(--badge-medium-bg);
+        color: var(--badge-medium-text);
+    }
+    .badge-difficulty-hard {
+        background: var(--badge-hard-bg);
+        color: var(--badge-hard-text);
+    }
+    .badge-class {
+        background: var(--tag-bg);
+        color: var(--tag-text);
+    }
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.3;
+        letter-spacing: -0.3px;
+    }
+    .card-description {
+        font-size: 0.88rem;
+        color: var(--text2);
+        line-height: 1.5;
+        flex-grow: 1;
+    }
+    .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .card-tag {
+        font-size: 0.72rem;
+        padding: 3px 10px;
+        border-radius: 50px;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+        border: 1px solid transparent;
+        z-index: 2;
+        position: relative;
+    }
+    .card-tag:hover {
+        border-color: var(--accent);
+        background: var(--surface3);
+        transform: translateY(-1px);
+    }
+    .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 2px;
+    }
+    .card-version {
+        font-size: 0.7rem;
+        color: var(--text3);
+        background: var(--surface3);
+        padding: 3px 9px;
+        border-radius: 50px;
+        font-weight: 500;
+    }
+    .card-link-btn {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #fff;
+        background: var(--accent);
+        padding: 7px 16px;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        z-index: 2;
+        position: relative;
+        white-space: nowrap;
+    }
+    .card-link-btn:hover {
+        filter: brightness(1.12);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        transform: translateY(-1px);
+    }
+
+    /* ═════════════ حالة عدم وجود نتائج ═════════════ */
+    .empty-state {
+        text-align: center;
+        padding: 50px 20px;
+        color: var(--text3);
+        font-size: 1.1rem;
+        grid-column: 1 / -1;
+    }
+    .empty-state .empty-icon {
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 12px;
+        opacity: 0.6;
+    }
+
+    /* ═════════════ أزرار الإجراءات العامة (أسفل الوسوم) ═════════════ */
+    .global-actions {
+        max-width: 1240px;
+        margin: 0 auto 10px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    .btn-text {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--accent);
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 50px;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+    .btn-text:hover {
+        background: var(--surface3);
+        text-decoration: underline;
+    }
+
+    /* ═════════════ النافذة المنبثقة (المعاينة) ═════════════ */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--overlay);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+    .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .modal-box {
+        background: var(--modal-bg);
+        border-radius: 24px;
+        width: 92vw;
+        max-width: 960px;
+        height: 82vh;
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .modal-header {
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface2);
+        gap: 10px;
+    }
+    .modal-title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--text);
+    }
+    .modal-close {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        color: var(--text);
+    }
+    .modal-close:hover {
+        background: var(--accent3);
+        color: #fff;
+        border-color: var(--accent3);
+    }
+    .modal-iframe {
+        flex: 1;
+        width: 100%;
+        border: none;
+    }
+
+    /* ═════════════ التجاوب مع الشاشات المتوسطة ═════════════ */
+    @media (max-width: 768px) {
+        /* تم نقل body padding إلى header.css إذا دعت الحاجة، لكننا نحتفظ بالتعديل هنا للتوافق */
+        body { padding-top: 16px; }
+
+        /* الأقسام والبطاقات */
+        .section-body { grid-template-columns: 1fr; padding: 12px; gap: 10px; }
+        .exercise-card { padding: 14px; border-radius: 18px; }
+        .card-title { font-size: 1.05rem; }
+
+        /* شريط الوسوم */
+        .tags-bar { gap: 5px; }
+        .tag-chip { padding: 5px 11px; font-size: 0.78rem; }
+
+        /* لاحظ أن أنماط الهيدر والفوتر أصبحت في ملفاتها الخاصة */
+    }
+
+    @media (max-width: 420px) {
+        body { padding: 16px 8px 8px; }
+
+        /* الأقسام */
+        .section-header { padding: 12px 14px; font-size: 1rem; }
+        .section-body { padding: 8px; gap: 8px; }
+        .exercise-card { padding: 10px; border-radius: 15px; }
+
+        /* الهيدر يبقى في header.css */
+    }
+</style>
+</head>
+<body>
+
+    <!-- ═══════════════ HEADER (ثابت) ═══════════════ -->
+    <header class="dashboard-header" id="dashboardHeader">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين التفاعلية</span>
+        </div>
+        <div class="header-controls">
+            <span class="stats-pill" id="statsPill">📚 <span id="totalCount">0</span> تمارين</span>
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="بحث عن تمرين..." autocomplete="off">
+            </div>
+            <select class="lang-select" id="langSelect" aria-label="اختيار اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" data-i18n-title="btn_dark_mode_title" data-i18n-aria-label="btn_dark_mode_aria" title="الوضع الليلي / النهاري" aria-label="تبديل الوضع">
+                🌙
+            </button>
+            <button class="btn-icon" id="btnExpandAll" data-i18n-title="btn_expand_all_title" data-i18n-aria-label="btn_expand_all_aria" title="توسيع / طيّ الكل" aria-label="توسيع الكل">
+                📂
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════ TAGS BAR ═══════════════ -->
+    <div class="tags-bar" id="tagsBar">
+        <span class="tags-label" data-i18n="tags_label">🏷️ الوسوم:</span>
+        <!-- dynamically filled -->
+    </div>
+
+    <!-- ═══════════════ GLOBAL ACTIONS ═══════════════ -->
+    <div class="global-actions">
+        <button class="btn-text" id="btnCollapseAll" data-i18n="collapse_all">📁 طيّ جميع الأقسام</button>
+        <button class="btn-text" id="btnExpandAllSections" data-i18n="expand_all">📂 توسيع جميع الأقسام</button>
+    </div>
+
+    <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+    <main class="main-content" id="mainContent">
+        <!-- dynamically filled -->
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <!-- ═══════════════ MODAL (preview) ═══════════════ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">معاينة التمرين</span>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <iframe class="modal-iframe" id="modalIframe" src="" title="معاينة"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        </div>
+    </div>
+
+<script src="library.js"></script>
+<script>
+(function() {
+    "use strict";
+
+    // ═══════════════════════════════════════════════
+    // الترجمة (i18n)
+    // ═══════════════════════════════════════════════
+    const translations = {
+        ar: {
+            app_title: 'لوحة التمارين التفاعلية',
+            stats_all: '📚 {count} تمارين',
+            stats_filtered: '📚 {filtered} / {total} تمرين',
+            search_placeholder: 'بحث عن تمرين...',
+            btn_dark_mode_title: 'الوضع الليلي / النهاري',
+            btn_dark_mode_aria: 'تبديل الوضع',
+            btn_expand_all_title: 'توسيع / طيّ الكل',
+            btn_expand_all_aria: 'توسيع الكل',
+            tags_label: '🏷️ الوسوم:',
+            tag_all: '📋 الكل',
+            collapse_all: '📁 طيّ جميع الأقسام',
+            expand_all: '📂 توسيع جميع الأقسام',
+            footer_links: 'روابط',
+            footer_terms: 'شروط الاستخدام',
+            footer_privacy: 'سياسة الخصوصية',
+            footer_version: 'الإصدار',
+            footer_dev: 'تطوير',
+            footer_host: 'مستضاف على Netlify و GitHub',
+            difficulty_easy: '🟢 سهل',
+            difficulty_medium: '🟡 متوسط',
+            difficulty_hard: '🔴 صعب',
+            card_version: '📦 v{version} · ⏱️ {time}',
+            card_open: '🚀 فتح التمرين',
+            empty_state_text: 'لا توجد تمارين مطابقة لبحثك.',
+            empty_state_sub: 'جرّب تغيير الوسوم أو كلمات البحث.',
+            modal_title_default: 'معاينة التمرين',
+            modal_title_preview: '👁️ معاينة: {name}',
+            section_count: '{count} تمارين'
+        },
+        fr: {
+            app_title: 'Tableau d\'exercices interactif',
+            stats_all: '📚 {count} exercices',
+            stats_filtered: '📚 {filtered} / {total} exercices',
+            search_placeholder: 'Rechercher un exercice...',
+            btn_dark_mode_title: 'Mode sombre / clair',
+            btn_dark_mode_aria: 'Changer le mode',
+            btn_expand_all_title: 'Déplier / Replier tout',
+            btn_expand_all_aria: 'Déplier tout',
+            tags_label: '🏷️ Tags :',
+            tag_all: '📋 Tous',
+            collapse_all: '📁 Replier toutes les sections',
+            expand_all: '📂 Déplier toutes les sections',
+            footer_links: 'Liens',
+            footer_terms: 'Conditions d\'utilisation',
+            footer_privacy: 'Politique de confidentialité',
+            footer_version: 'Version',
+            footer_dev: 'Développement',
+            footer_host: 'Hébergé sur Netlify et GitHub',
+            difficulty_easy: '🟢 Facile',
+            difficulty_medium: '🟡 Moyen',
+            difficulty_hard: '🔴 Difficile',
+            card_version: '📦 v{version} · ⏱️ {time}',
+            card_open: '🚀 Ouvrir l\'exercice',
+            empty_state_text: 'Aucun exercice trouvé.',
+            empty_state_sub: 'Essayez de modifier les tags ou la recherche.',
+            modal_title_default: 'Aperçu de l\'exercice',
+            modal_title_preview: '👁️ Aperçu : {name}',
+            section_count: '{count} exercices'
+        },
+        en: {
+            app_title: 'Interactive Exercise Board',
+            stats_all: '📚 {count} exercises',
+            stats_filtered: '📚 {filtered} / {total} exercises',
+            search_placeholder: 'Search for an exercise...',
+            btn_dark_mode_title: 'Dark / Light mode',
+            btn_dark_mode_aria: 'Toggle mode',
+            btn_expand_all_title: 'Expand / Collapse all',
+            btn_expand_all_aria: 'Expand all',
+            tags_label: '🏷️ Tags:',
+            tag_all: '📋 All',
+            collapse_all: '📁 Collapse all sections',
+            expand_all: '📂 Expand all sections',
+            footer_links: 'Links',
+            footer_terms: 'Terms of use',
+            footer_privacy: 'Privacy policy',
+            footer_version: 'Version',
+            footer_dev: 'Development',
+            footer_host: 'Hosted on Netlify & GitHub',
+            difficulty_easy: '🟢 Easy',
+            difficulty_medium: '🟡 Medium',
+            difficulty_hard: '🔴 Hard',
+            card_version: '📦 v{version} · ⏱️ {time}',
+            card_open: '🚀 Open Exercise',
+            empty_state_text: 'No exercises found.',
+            empty_state_sub: 'Try changing tags or search terms.',
+            modal_title_default: 'Exercise Preview',
+            modal_title_preview: '👁️ Preview: {name}',
+            section_count: '{count} exercises'
+        }
+    };
+
+    let currentLang = 'ar';
+
+    function t(key, params = {}) {
+        const dict = translations[currentLang] || translations.ar;
+        let text = dict[key] || key;
+        Object.entries(params).forEach(([k, v]) => {
+            text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v);
+        });
+        return text;
+    }
+
+    function updateStaticI18n() {
+        // عناصر تحمل data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (key) el.textContent = t(key);
+        });
+        // placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.dataset.i18nPlaceholder;
+            if (key) el.placeholder = t(key);
+        });
+        // titles
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            const key = el.dataset.i18nTitle;
+            if (key) el.title = t(key);
+        });
+        // aria-labels
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+            const key = el.dataset.i18nAriaLabel;
+            if (key) el.setAttribute('aria-label', t(key));
+        });
+    }
+
+    function applyLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLang = lang;
+        localStorage.setItem('dashboard_lang', lang);
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        updateStaticI18n();
+        // تحديث الأجزاء الديناميكية
+        renderTagsBar();
+        renderAllSections();
+        updateStats();
+        // إعادة تعيين عنوان المودال الافتراضي
+        document.getElementById('modalTitle').textContent = t('modal_title_default');
+        // تحديث placeholder البحث مرة أخرى للتأكيد (لأنه قد لا يكون له data-i18n-placeholder? لديه)
+        document.getElementById('searchInput').placeholder = t('search_placeholder');
+    }
+
+    function loadLanguage() {
+        const saved = localStorage.getItem('dashboard_lang');
+        if (saved && translations[saved]) {
+            applyLanguage(saved);
+            return;
+        }
+        // استخدام لغة المتصفح إذا كانت مدعومة
+        const navLang = navigator.language?.split('-')[0];
+        if (navLang && translations[navLang]) {
+            applyLanguage(navLang);
+        } else {
+            applyLanguage('ar');
+        }
+    }
+
+    // ───── عناصر DOM ─────
+    const mainContent = document.getElementById('mainContent');
+    const tagsBar = document.getElementById('tagsBar');
+    const searchInput = document.getElementById('searchInput');
+    const btnDarkMode = document.getElementById('btnDarkMode');
+    const btnExpandAll = document.getElementById('btnExpandAll');
+    const btnCollapseAll = document.getElementById('btnCollapseAll');
+    const btnExpandAllSections = document.getElementById('btnExpandAllSections');
+    const statsPill = document.getElementById('statsPill');
+    const totalCountSpan = document.getElementById('totalCount');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalIframe = document.getElementById('modalIframe');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalClose = document.getElementById('modalClose');
+    const htmlElement = document.documentElement;
+    const langSelect = document.getElementById('langSelect');
+
+    // ───── حالة التطبيق ─────
+    let activeTags = new Set();
+    let allTags = [];
+    let collapsedSections = new Set();
+
+    // ───── تجميع كل الوسوم ─────
+    function collectAllTags() {
+        const tagSet = new Set();
+        exercises.forEach(ex => {
+            ex.tags.forEach(t => tagSet.add(t));
+        });
+        allTags = Array.from(tagSet).sort();
+    }
+    collectAllTags();
+
+    // ───── تحديث شريط الوسوم ─────
+    function renderTagsBar() {
+        let html = `<span class="tags-label">${t('tags_label')}</span>`;
+        html +=
+            `<span class="tag-chip tag-all${activeTags.size === 0 ? ' active' : ''}" data-tag="__all__">${t('tag_all')}</span>`;
+        allTags.forEach(tag => {
+            const isActive = activeTags.has(tag);
+            html +=
+                `<span class="tag-chip${isActive ? ' active' : ''}" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</span>`;
+        });
+        tagsBar.innerHTML = html;
+
+        tagsBar.querySelectorAll('.tag-chip').forEach(chip => {
+            chip.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const tag = this.dataset.tag;
+                if (tag === '__all__') {
+                    activeTags.clear();
+                } else {
+                    if (activeTags.has(tag)) {
+                        activeTags.delete(tag);
+                    } else {
+                        activeTags.add(tag);
+                    }
+                }
+                renderTagsBar();
+                renderAllSections();
+                updateStats();
+            });
+        });
+    }
+
+    // ───── تصفية التمارين ─────
+    function getFilteredExercises() {
+        const query = searchInput.value.trim().toLowerCase();
+        let filtered = exercises;
+
+        if (activeTags.size > 0) {
+            filtered = filtered.filter(ex => ex.tags.some(t => activeTags.has(t)));
+        }
+
+        if (query) {
+            filtered = filtered.filter(ex => {
+                const searchable = [
+                    ex.name,
+                    ex.description,
+                    ex.section,
+                    ex.class,
+                    ex.difficulty,
+                    ex.mainLanguage,
+                    ex.curriculum,
+                    ex.author,
+                    ...ex.tags,
+                    ...ex.keywords,
+                ].join(' ').toLowerCase();
+                return searchable.includes(query);
+            });
+        }
+        return filtered;
+    }
+
+    // ───── تجميع التمارين حسب القسم ─────
+    function groupBySection(filtered) {
+        const groups = {};
+        filtered.forEach(ex => {
+            if (!groups[ex.section]) {
+                groups[ex.section] = {
+                    icon: ex.sectionIcon || '📝',
+                    exercises: [],
+                };
+            }
+            groups[ex.section].exercises.push(ex);
+        });
+        const orderedSections = [];
+        const seenSections = new Set();
+        exercises.forEach(ex => {
+            if (groups[ex.section] && !seenSections.has(ex.section)) {
+                seenSections.add(ex.section);
+                orderedSections.push(ex.section);
+            }
+        });
+        Object.keys(groups).forEach(sec => {
+            if (!seenSections.has(sec)) orderedSections.push(sec);
+        });
+        return { groups, orderedSections };
+    }
+
+    // ───── رسم بطاقة تمرين ─────
+    function renderCard(ex) {
+        const diffClass = ex.difficulty === 'easy' ? 'badge-difficulty-easy' :
+            ex.difficulty === 'medium' ? 'badge-difficulty-medium' : 'badge-difficulty-hard';
+        const diffKey = 'difficulty_' + ex.difficulty;
+        const diffLabel = t(diffKey, {}) || (ex.difficulty === 'easy' ? '🟢 سهل' : ex.difficulty === 'medium' ? '🟡 متوسط' : '🔴 صعب');
+        const accentColor = htmlElement.getAttribute('data-theme') === 'dark' ?
+            (ex.cardColorDark || ex.cardColor || '#60a5fa') :
+            (ex.cardColor || '#2c6e9e');
+
+        const tagsHTML = ex.tags.map(t =>
+            `<span class="card-tag" data-tag="${escapeHTML(t)}" title="تصفية بهذا الوسم">${escapeHTML(t)}</span>`
+        ).join('');
+
+        return `
+        <div class="exercise-card"
+             style="--card-accent: ${accentColor};"
+             data-id="${ex.id}"
+             data-link="${escapeHTML(ex.link)}"
+             data-name="${escapeHTML(ex.name)}"
+             title="🔗 ${escapeHTML(ex.name)}">
+            <div class="card-top">
+                <span class="card-icon">${ex.thumbnail || ex.sectionIcon || '📝'}</span>
+                <div class="card-badges">
+                    <span class="badge ${diffClass}">${diffLabel}</span>
+                    <span class="badge badge-class">${escapeHTML(ex.class)}</span>
+                </div>
+            </div>
+            <h3 class="card-title">${escapeHTML(ex.name)}</h3>
+            <p class="card-description">${escapeHTML(ex.description)}</p>
+            <div class="card-tags">${tagsHTML}</div>
+            <div class="card-footer">
+                <span class="card-version">${t('card_version', { version: ex.version, time: ex.estimatedTime })}</span>
+                <span class="card-link-btn" data-action="open">${t('card_open')}</span>
+            </div>
+        </div>`;
+    }
+
+    // ───── رسم جميع الأقسام ─────
+    function renderAllSections() {
+        const filtered = getFilteredExercises();
+        const { groups, orderedSections } = groupBySection(filtered);
+
+        if (filtered.length === 0) {
+            mainContent.innerHTML = `
+                <div class="empty-state">
+                    <span class="empty-icon">🔍</span>
+                    <p>${t('empty_state_text')}</p>
+                    <p style="font-size:0.85rem;margin-top:6px;">${t('empty_state_sub')}</p>
+                </div>`;
+            return;
+        }
+
+        let html = '';
+        orderedSections.forEach(sectionName => {
+            const group = groups[sectionName];
+            if (!group || group.exercises.length === 0) return;
+            const isCollapsed = collapsedSections.has(sectionName);
+            const cardsHTML = group.exercises.map(ex => renderCard(ex)).join('');
+            html += `
+            <div class="exercise-section${isCollapsed ? ' collapsed' : ''}" data-section="${escapeHTML(sectionName)}">
+                <div class="section-header" data-section-name="${escapeHTML(sectionName)}">
+                    <div class="section-title-area">
+                        <span class="section-icon">${group.icon}</span>
+                        <span>${escapeHTML(sectionName)}</span>
+                        <span class="section-count">${t('section_count', { count: group.exercises.length })}</span>
+                    </div>
+                    <span class="section-toggle-icon">▼</span>
+                </div>
+                <div class="section-body">${cardsHTML}</div>
+            </div>`;
+        });
+        mainContent.innerHTML = html;
+
+        bindCardEvents();
+        bindSectionToggleEvents();
+    }
+
+    // ───── ربط أحداث البطاقات ─────
+    function bindCardEvents() {
+        mainContent.querySelectorAll('.exercise-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.classList.contains('card-tag')) {
+                    e.stopPropagation();
+                    const tag = e.target.dataset.tag;
+                    if (tag) {
+                        activeTags.clear();
+                        activeTags.add(tag);
+                        renderTagsBar();
+                        renderAllSections();
+                        updateStats();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                    return;
+                }
+                if (e.target.closest('[data-action="open"]')) {
+                    e.stopPropagation();
+                }
+                const link = card.dataset.link;
+                if (link) {
+                    window.open(link, '_blank', 'noopener,noreferrer');
+                }
+            });
+
+            card.addEventListener('dblclick', function(e) {
+                e.preventDefault();
+                const link = card.dataset.link;
+                const name = card.dataset.name;
+                if (link) {
+                    openPreview(link, name);
+                }
+            });
+        });
+
+        mainContent.querySelectorAll('[data-action="open"]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = btn.closest('.exercise-card');
+                if (card && card.dataset.link) {
+                    window.open(card.dataset.link, '_blank', 'noopener,noreferrer');
+                }
+            });
+        });
+
+        mainContent.querySelectorAll('.card-tag').forEach(tagEl => {
+            tagEl.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const tag = this.dataset.tag;
+                if (tag) {
+                    activeTags.clear();
+                    activeTags.add(tag);
+                    renderTagsBar();
+                    renderAllSections();
+                    updateStats();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+
+    // ───── ربط أحداث طيّ الأقسام ─────
+    function bindSectionToggleEvents() {
+        mainContent.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const sectionName = this.dataset.sectionName;
+                const sectionEl = this.closest('.exercise-section');
+                if (sectionEl) {
+                    const isNowCollapsed = !sectionEl.classList.contains('collapsed');
+                    if (isNowCollapsed) {
+                        sectionEl.classList.add('collapsed');
+                        collapsedSections.add(sectionName);
+                    } else {
+                        sectionEl.classList.remove('collapsed');
+                        collapsedSections.delete(sectionName);
+                    }
+                    saveCollapsedState();
+                }
+            });
+        });
+    }
+
+    // ───── حفظ/استرجاع حالة الطيّ ─────
+    function saveCollapsedState() {
+        try {
+            localStorage.setItem('dashboard_collapsed_sections', JSON.stringify([...collapsedSections]));
+        } catch (e) { /* ignore */ }
+    }
+
+    function loadCollapsedState() {
+        try {
+            const saved = localStorage.getItem('dashboard_collapsed_sections');
+            if (saved) {
+                const arr = JSON.parse(saved);
+                collapsedSections = new Set(arr);
+            }
+        } catch (e) {
+            collapsedSections = new Set();
+        }
+    }
+
+    // ───── المعاينة في نافذة منبثقة ─────
+    function openPreview(link, name) {
+        modalTitle.textContent = t('modal_title_preview', { name: name });
+        modalIframe.src = link;
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePreview() {
+        modalOverlay.classList.remove('active');
+        modalIframe.src = '';
+        document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closePreview);
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) closePreview();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closePreview();
+        }
+    });
+
+    // ───── تحديث الإحصائيات ─────
+    function updateStats() {
+        const filtered = getFilteredExercises();
+        totalCountSpan.textContent = filtered.length;
+        if (filtered.length === exercises.length) {
+            statsPill.innerHTML = t('stats_all', { count: exercises.length });
+        } else {
+            statsPill.innerHTML = t('stats_filtered', { filtered: filtered.length, total: exercises.length });
+        }
+    }
+
+    // ───── الوضع الليلي ─────
+    function applyTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+        try {
+            localStorage.setItem('dashboard_theme', theme);
+        } catch (e) { /* ignore */ }
+        renderAllSections();
+        updateStats();
+    }
+
+    function toggleTheme() {
+        const current = htmlElement.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    function loadTheme() {
+        try {
+            const saved = localStorage.getItem('dashboard_theme');
+            if (saved === 'dark' || saved === 'light') {
+                applyTheme(saved);
+                return;
+            }
+        } catch (e) { /* ignore */ }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+    }
+
+    // ───── توسيع/طيّ الكل ─────
+function toggleExpandCollapseAll() {
+    const anyExpanded = document.querySelector('.exercise-section:not(.collapsed)');
+    if (anyExpanded) {
+        collapseAllSections();
+    } else {
+        expandAllSections();
+    }
+}
+    function collapseAllSections() {
+        mainContent.querySelectorAll('.exercise-section').forEach(sec => {
+            sec.classList.add('collapsed');
+            const name = sec.dataset.section;
+            if (name) collapsedSections.add(name);
+        });
+        saveCollapsedState();
+    }
+
+    function expandAllSections() {
+        mainContent.querySelectorAll('.exercise-section').forEach(sec => {
+            sec.classList.remove('collapsed');
+            const name = sec.dataset.section;
+            if (name) collapsedSections.delete(name);
+        });
+        saveCollapsedState();
+    }
+
+    // ───── دوال مساعدة ─────
+    function escapeHTML(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // ───── ربط الأحداث العامة ─────
+    btnDarkMode.addEventListener('click', toggleTheme);
+btnExpandAll.addEventListener('click', toggleExpandCollapseAll);
+    btnCollapseAll.addEventListener('click', collapseAllSections);
+    btnExpandAllSections.addEventListener('click', expandAllSections);
+
+    searchInput.addEventListener('input', function() {
+        renderTagsBar();
+        renderAllSections();
+        updateStats();
+    });
+
+    langSelect.addEventListener('change', function() {
+        applyLanguage(this.value);
+    });
+
+    // اختصار لوحة المفاتيح
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            searchInput.focus();
+            searchInput.select();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            try {
+                const saved = localStorage.getItem('dashboard_theme');
+                if (!saved) {
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            } catch (err) { /* ignore */ }
+        });
+    }
+
+    // ───── بدء التشغيل ─────
+    function init() {
+        loadLanguage();   // ← تحميل اللغة أولاً
+        loadTheme();
+        loadCollapsedState();
+        renderTagsBar();
+        renderAllSections();
+        updateStats();
+        console.log('✅ لوحة التمارين التفاعلية جاهزة |',
+            exercises.length, 'تمارين |',
+            Object.keys(groupBySection(exercises).groups).length, 'أقسام |',
+            allTags.length, 'وسوم');
+        console.log('💡 نصيحة: Ctrl+K للبحث السريع | Ctrl+D للوضع الليلي | نقرة مزدوجة للمعاينة');
+    }
+
+    init();
+
+    // ───── تصدير للاستخدام الخارجي (اختياري) ─────
+    window.DashboardAPI = {
+        getExercises: () => exercises,
+        addExercise: (ex) => {
+            exercises.push(ex);
+            collectAllTags();
+            renderTagsBar();
+            renderAllSections();
+            updateStats();
+        },
+        refresh: () => {
+            collectAllTags();
+            renderTagsBar();
+            renderAllSections();
+            updateStats();
+        },
+        getFiltered: getFilteredExercises,
+        toggleTheme,
+        getTheme: () => htmlElement.getAttribute('data-theme'),
+        expandAll: expandAllSections,
+        collapseAll: collapseAllSections,
+        setLanguage: (lang) => applyLanguage(lang),
+        getLanguage: () => currentLang,
+    };
+
+    console.log('📦 DashboardAPI متاح عبر window.DashboardAPI');
+})();
+</script>
+</body>
+</html>

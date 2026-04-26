@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوسط الحسابي | لوحة التمارين</title>
+    <style>
+        /* ══════════════ متغيرات عامة (متوافقة مع اللوحة) ══════════════ */
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --badge-easy-bg: #e6f4ea;
+            --badge-easy-text: #1a6b3c;
+            --badge-medium-bg: #fef3e0;
+            --badge-medium-text: #8a5c1a;
+            --badge-hard-bg: #fde8e8;
+            --badge-hard-text: #8b1a1a;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0, 0, 0, 0.35);
+            --canvas-bg: #ffffff;
+            --canvas-shadow: rgba(0, 0, 0, 0.08);
+            --text-color-canvas: #0b3b4f;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --badge-easy-bg: #1a3b2a;
+            --badge-easy-text: #4ade80;
+            --badge-medium-bg: #3b2e1a;
+            --badge-medium-text: #fbbf24;
+            --badge-hard-bg: #3b1a1a;
+            --badge-hard-text: #f87171;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0, 0, 0, 0.55);
+            --canvas-bg: #1a2332;
+            --canvas-shadow: rgba(0, 0, 0, 0.3);
+            --text-color-canvas: #e2e8f0;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+
+        /* ═══════════ الهيدر ═══════════ */
+        .dashboard-header {
+            position: relative;
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+            backdrop-filter: blur(10px);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .btn-icon {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+
+        /* ═══════════ غلاف التمرين ═══════════ */
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ═══════════ الجدول الإحصائي ═══════════ */
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 28px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s, border-color 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 14px 18px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 14px 18px;
+            border-left: 1px solid var(--table-border);
+            min-width: 60px;
+            transition: background 0.35s, color 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .stats-table .index-cell {
+            background: var(--surface2);
+            color: var(--text3);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 10px 18px;
+            border-left: 1px solid var(--table-border);
+        }
+
+        /* ═══════════ السؤال التفصيلي ═══════════ */
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2.2;
+            border: 1px solid var(--border);
+        }
+        .addition-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 1.4rem;
+            direction: ltr; /* تظهر الأرقام والرموز من اليسار لليمين */
+            margin: 8px 0;
+        }
+        .addition-line .num {
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--surface3);
+            padding: 4px 10px;
+            border-radius: 16px;
+        }
+        .addition-line .plus {
+            font-weight: 800;
+            margin: 0 2px;
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.3rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            min-width: 70px;
+            max-width: 110px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44,110,158,0.2);
+        }
+        .count-line, .mean-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 8px 0;
+        }
+        .mean-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 2px;
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+            color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #2c3e66; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.1rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .example-hint {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* ═══════════ الذيل ═══════════ */
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s, border-color 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 {
+            font-size: 0.9rem; font-weight: 700;
+            color: var(--accent); margin-bottom: 2px;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a {
+            color: var(--text2); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .footer-col { align-items: center; }
+            .question-block { font-size: 1.1rem; padding: 12px 8px; }
+            .inline-input { font-size: 1rem; min-width: 54px; }
+            .addition-line { font-size: 1.1rem; }
+            .stats { font-size: 1rem; padding: 10px 16px; }
+            .stats-table { font-size: 1rem; }
+            .stats-table .header-cell, .stats-table .value-cell { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">الوسط الحسابي (المتوسط)</span> <span>🧮</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">حساب الوسط من مجموعة بيانات</div>
+
+        <!-- جدول بسطرين: المؤشرات ثم القيم -->
+        <div class="stats-table-container" id="statsTableContainer"></div>
+
+        <!-- السؤال المفصل -->
+        <div class="question-block" id="questionBlock"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="example-hint" data-i18n="hint">📌 املأ المجموع، عدد القيم، ثم أكمل معادلة الوسط (المجموع ÷ العدد = الوسط)</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionBlock = document.getElementById('questionBlock');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let currentNumbers = [];
+            let sumVal, countVal, meanVal;
+            let attempts = 0;
+            let score = 0;
+            let gameActive = true;
+            let isSwitchingRound = false;
+            let inputRefs = {};
+
+            // ══════════════ الترجمة ══════════════
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'الوسط الحسابي (المتوسط)',
+                    exercise_subtitle: 'حساب الوسط من مجموعة بيانات',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ المجموع، عدد القيم، ثم أكمل معادلة الوسط (المجموع ÷ العدد = الوسط)',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    index_row: 'العدد',
+                    values_row: 'القِيَم',
+                    fill_all: '⚠️ الرجاء إدخال القيم الخمس (المجموع، العدد، ثم معادلة الوسط)',
+                    invalid_numbers: '❌ المجموع والعدد يجب أن يكونا عددين صحيحين، والوسط يمكن أن يكون رقماً عشرياً',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! المجموع: {sum}، العدد: {count}، الوسط: {sum} ÷ {count} = {mean}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    sum_line_intro: 'لدينا مجموع القيم:',
+                    count_line_intro: 'ولدينا عدد القيم',
+                    mean_line_intro: 'إذن الوسط الحسابي',
+                    equals: '=',
+                    divide: '÷'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Moyenne arithmétique',
+                    exercise_subtitle: 'Calcul de la moyenne d\'un ensemble de données',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Entrez la somme, le nombre de valeurs, puis l\'équation (somme ÷ nombre = moyenne)',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    index_row: 'N°',
+                    values_row: 'Valeurs',
+                    fill_all: '⚠️ Veuillez entrer les cinq valeurs (somme, nombre, équation)',
+                    invalid_numbers: '❌ La somme et le nombre doivent être entiers, la moyenne peut être décimale',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! Somme : {sum}, nombre : {count}, moyenne : {sum} ÷ {count} = {mean}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions d\'utilisation',
+                    footer_privacy: 'Politique de confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify et GitHub',
+                    sound_on_title: 'Son (activé)',
+                    sound_off_title: 'Son (désactivé)',
+                    back_title: 'Retour au tableau',
+                    sum_line_intro: 'Somme des valeurs :',
+                    count_line_intro: 'Nombre de valeurs',
+                    mean_line_intro: 'Donc la moyenne',
+                    equals: '=',
+                    divide: '÷'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Arithmetic Mean (Average)',
+                    exercise_subtitle: 'Calculate the mean from a data set',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Enter the sum, count, then complete the equation (Sum ÷ Count = Mean)',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    index_row: 'No.',
+                    values_row: 'Values',
+                    fill_all: '⚠️ Please enter all five values (sum, count, equation)',
+                    invalid_numbers: '❌ Sum and count must be integers, mean can be decimal',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong! Sum: {sum}, Count: {count}, Mean: {sum} ÷ {count} = {mean}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back to dashboard',
+                    sum_line_intro: 'Sum of values:',
+                    count_line_intro: 'Number of values',
+                    mean_line_intro: 'So the mean',
+                    equals: '=',
+                    divide: '÷'
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(`{${k}}`, v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (key) el.textContent = t(key);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                localStorage.setItem('exercise_mean_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_mean_lang');
+                if (saved && translations[saved]) {
+                    applyLanguage(saved);
+                    return;
+                }
+                const navLang = navigator.language?.split('-')[0];
+                if (navLang && translations[navLang]) {
+                    applyLanguage(navLang);
+                } else {
+                    applyLanguage('ar');
+                }
+            }
+
+            // ════════ الصوت ════════
+            let soundEnabled = true;
+            let audioCtx = null;
+            function getAudioContext() {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_mean_sound');
+                if (saved === 'off') {
+                    soundEnabled = false;
+                    btnSound.textContent = '🔇';
+                } else {
+                    soundEnabled = true;
+                    btnSound.textContent = '🔊';
+                }
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_mean_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            // ════════ الوضع الداكن ════════
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_mean_theme', theme); } catch(e) {}
+            }
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            }
+            function loadTheme() {
+                try {
+                    const saved = localStorage.getItem('exercise_mean_theme');
+                    if (saved === 'dark' || saved === 'light') {
+                        applyTheme(saved);
+                        return;
+                    }
+                } catch(e) {}
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    applyTheme('dark');
+                } else {
+                    applyTheme('light');
+                }
+            }
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            // ════════ توليد الأعداد (غير مرتبة) ════════
+            function generateNumbers() {
+                const count = 5 + Math.floor(Math.random() * 4); // 5 to 8 numbers
+                const numbers = [];
+                for (let i = 0; i < count; i++) {
+                    numbers.push(Math.floor(Math.random() * 90) + 10); // 10 to 99
+                }
+                if (new Set(numbers).size === 1) {
+                    numbers[0] += Math.floor(Math.random() * 5) + 1;
+                }
+                return numbers;
+            }
+
+            function computeStats(nums) {
+                const sum = nums.reduce((a, b) => a + b, 0);
+                const count = nums.length;
+                const mean = sum / count;
+                return { sum, count, mean };
+            }
+
+            // ════════ عرض الجدول ════════
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                const indexLabel = dict.index_row || 'العدد';
+                const valuesLabel = dict.values_row || 'القِيَم';
+
+                let html = '<table class="stats-table">';
+                html += '<tr>';
+                html += `<td class="header-cell">${indexLabel}</td>`;
+                currentNumbers.forEach((_, i) => {
+                    html += `<td class="index-cell">${i + 1}</td>`;
+                });
+                html += '</tr>';
+
+                html += '<tr>';
+                html += `<td class="header-cell">${valuesLabel}</td>`;
+                currentNumbers.forEach(num => {
+                    html += `<td class="value-cell">${num}</td>`;
+                });
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            // ════════ بناء السؤال التفصيلي ════════
+            function buildQuestionHTML() {
+                const sumIntro = t('sum_line_intro');
+                const countIntro = t('count_line_intro');
+                const meanIntro = t('mean_line_intro');
+                const eq = t('equals');
+                const div = t('divide');
+
+                // بناء سطر الجمع: num1 + num2 + ... = [input]
+                let additionHtml = `<div class="addition-line">`;
+                currentNumbers.forEach((num, idx) => {
+                    if (idx > 0) additionHtml += `<span class="plus">+</span>`;
+                    additionHtml += `<span class="num">${num}</span>`;
+                });
+                additionHtml += `<span class="plus" style="margin:0 6px;">${eq}</span>`;
+                additionHtml += `<input type="text" id="inpSum1" class="inline-input" placeholder="?" dir="ltr" inputmode="numeric">`;
+                additionHtml += `</div>`;
+
+                // سطر العد
+                let countHtml = `<div class="count-line">`;
+                countHtml += `<span>${countIntro} (</span>`;
+                countHtml += `<input type="text" id="inpCount" class="inline-input" placeholder="?" dir="ltr" inputmode="numeric">`;
+                countHtml += `<span>)</span>`;
+                countHtml += `</div>`;
+
+                // سطر الوسط
+                let meanHtml = `<div class="mean-line" dir="ltr">`;
+                meanHtml += `<span>${meanIntro} = </span>`;
+                meanHtml += `<input type="text" id="inpSum2" class="inline-input" placeholder="?" dir="ltr" inputmode="numeric">`;
+                meanHtml += `<span class="operator">${div}</span>`;
+                meanHtml += `<input type="text" id="inpCount2" class="inline-input" placeholder="?" dir="ltr" inputmode="numeric">`;
+                meanHtml += `<span class="operator">${eq}</span>`;
+                meanHtml += `<input type="text" id="inpMean" class="inline-input" placeholder="?" dir="ltr" inputmode="decimal">`;
+                meanHtml += `</div>`;
+
+                return `
+                    <div>${sumIntro}</div>
+                    ${additionHtml}
+                    ${countHtml}
+                    <div style="margin-top:6px;">${meanHtml}</div>
+                `;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {
+                    sum1: document.getElementById('inpSum1'),
+                    count: document.getElementById('inpCount'),
+                    sum2: document.getElementById('inpSum2'),
+                    count2: document.getElementById('inpCount2'),
+                    mean: document.getElementById('inpMean'),
+                };
+            }
+
+            function clearInputs() {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].value = '';
+                }
+            }
+
+            function renderAll() {
+                renderTable();
+                questionBlock.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            // ════════ إدارة الجولة ════════
+            function generateNewQuestion() {
+                currentNumbers = generateNumbers();
+                const stats = computeStats(currentNumbers);
+                sumVal = stats.sum;
+                countVal = stats.count;
+                meanVal = stats.mean;
+                renderAll();
+            }
+
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => inputRefs.sum1?.focus(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].disabled = disabled;
+                }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) {
+                    messageEl.innerHTML = t('round_restart');
+                    return;
+                }
+                if (attempts >= 10) {
+                    finishCurrentRound();
+                    return;
+                }
+
+                const ansSum1 = inputRefs.sum1.value.trim();
+                const ansCount = inputRefs.count.value.trim();
+                const ansSum2 = inputRefs.sum2.value.trim();
+                const ansCount2 = inputRefs.count2.value.trim();
+                const ansMean = inputRefs.mean.value.trim();
+
+                if (!ansSum1 || !ansCount || !ansSum2 || !ansCount2 || !ansMean) {
+                    messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                const numSum1 = Number(ansSum1);
+                const numCount = Number(ansCount);
+                const numSum2 = Number(ansSum2);
+                const numCount2 = Number(ansCount2);
+                const numMean = Number(ansMean);
+
+                // التحقق من صحة الإدخال
+                if (!Number.isInteger(numSum1) || !Number.isInteger(numCount) ||
+                    !Number.isInteger(numSum2) || !Number.isInteger(numCount2) ||
+                    isNaN(numMean)) {
+                    messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                const sumOk = (numSum1 === sumVal && numSum2 === sumVal);
+                const countOk = (numCount === countVal && numCount2 === countVal);
+                const meanOk = Math.abs(numMean - meanVal) < 1e-9;
+
+                const correct = sumOk && countOk && meanOk;
+                attempts++;
+
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    messageEl.innerHTML = t('wrong', { sum: sumVal, count: countVal, mean: meanVal });
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+                if (attempts >= 10) {
+                    finishCurrentRound();
+                    return;
+                }
+                generateNewQuestion();
+                setTimeout(() => inputRefs.sum1?.focus(), 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) {
+                    messageEl.innerHTML = t('round_restart');
+                    return;
+                }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => {
+                    if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = '';
+                }, 1500);
+                setTimeout(() => inputRefs.sum1?.focus(), 40);
+            }
+
+            // ════════ ربط الأحداث ════════
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionBlock.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault();
+                    handleCheck();
+                }
+            });
+
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            // ════════ بدء التشغيل ════════
+            loadLanguage();
+            loadTheme();
+            loadSoundPref();
+
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => inputRefs.sum1?.focus(), 100);
+
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

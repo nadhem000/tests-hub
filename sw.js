@@ -1,17 +1,20 @@
 /**
 	* Tests Hub - Service Worker
-	* Version: v2.5.2
+	* Version: v2.5.3
 	* Features: Offline support, Background sync, Push notifications, Periodic sync
 */
 
-const CACHE_NAME = 'tests-hub-v2.5.2';
-const STATIC_CACHE_NAME = 'tests-hub-static-v2.5.2';
-const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.5.2';
+const CACHE_NAME = 'tests-hub-v2.5.3';
+const STATIC_CACHE_NAME = 'tests-hub-static-v2.5.3';
+const DYNAMIC_CACHE_NAME = 'tests-hub-dynamic-v2.5.3';
 
 // Files to cache on install (app shell)
 const STATIC_ASSETS = [
 	'/',
 	'/index.html',
+    '/math-exercises/',
+    '/math-exercises/index.html',
+    '/math-exercises/تمرين الزاوية.html',
 	'/Tests_7th.html',
 	'/Tests_8th.html',
 	'/Tests_9th.html',
@@ -357,6 +360,9 @@ async function updateCachedContent() {
 		const pagesToUpdate = [
 			'/',
 			'/index.html',
+    '/math-exercises/',
+    '/math-exercises/index.html',
+    '/math-exercises/تمرين الزاوية.html',
 			'/Tests_7th.html',
 			'/Tests_8th.html',
 			'/Tests_9th.html',
