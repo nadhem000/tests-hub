@@ -436,6 +436,22 @@
             margin-top: 8px;
             text-align: center;
         }
+.start-note {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffcc00, #ff8800);
+    color: #1a1a1a;
+    font-weight: 700;
+    padding: 10px 32px;
+    border-radius: 50px;
+    animation: pulse-note 2s infinite;
+    box-shadow: 0 4px 15px rgba(255, 136, 0, 0.35);
+    letter-spacing: 0.3px;
+}
+@keyframes pulse-note {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
 
         .dashboard-footer {
             width: 100%;
@@ -530,7 +546,11 @@
         </div>
 
         <div class="example-hint" data-i18n="hint">📌 املأ جميع الفراغات (10 خانات): اسم المثلثين، زاويتين متقايستين، الضلع المحصور، ثم اسما المثلثين مجدداً.</div>
-        <div id="messageBox" class="message"></div>
+<div class="start-note">
+    <span class="message" data-i18n="click_new_to_start">👆 اضغط على "سؤال جديد" للبدء</span>
+</div>
+        
+<div id="messageBox" class="message"></div>
 
         <div class="stats">
             <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
@@ -630,7 +650,8 @@
                     footer_host: 'مستضاف على Netlify و GitHub',
                     sound_on_title: 'الصوت (مفعل)',
                     sound_off_title: 'الصوت (معطل)',
-                    back_title: 'العودة إلى لوحة التمارين'
+                    back_title: 'العودة إلى لوحة التمارين',
+    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء'
                 },
                 fr: {
                     app_title: 'Tableau d\'exercices',
@@ -666,7 +687,8 @@
                     footer_host: 'Hébergé sur Netlify et GitHub',
                     sound_on_title: 'Son (activé)',
                     sound_off_title: 'Son (désactivé)',
-                    back_title: 'Retour au tableau'
+                    back_title: 'Retour au tableau',
+    click_new_to_start: '👆 Cliquez sur "Nouvelle question" pour commencer'
                 },
                 en: {
                     app_title: 'Exercise Board',
@@ -702,7 +724,8 @@
                     footer_host: 'Hosted on Netlify & GitHub',
                     sound_on_title: 'Sound (on)',
                     sound_off_title: 'Sound (off)',
-                    back_title: 'Back to dashboard'
+                    back_title: 'Back to dashboard',
+    click_new_to_start: '👆 Click "New Question" to start'
                 }
             };
 
@@ -727,6 +750,7 @@
             function applyLanguage(lang) {
                 if (!translations[lang]) return;
                 currentLang = lang;
+    document.getElementById('langSelect').value = lang;
                 localStorage.setItem('exercise_cong2_lang', lang);
                 document.documentElement.lang = lang;
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -1445,6 +1469,7 @@
             btnBack.addEventListener('click', goBack);
 
             loadLanguage();
+            document.getElementById('langSelect').value = currentLang;   // sync dropdown
             loadTheme();
             loadSoundPref();
 

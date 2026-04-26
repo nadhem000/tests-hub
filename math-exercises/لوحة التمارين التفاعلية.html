@@ -589,6 +589,9 @@
             <button class="btn-icon" id="btnExpandAll" data-i18n-title="btn_expand_all_title" data-i18n-aria-label="btn_expand_all_aria" title="توسيع / طيّ الكل" aria-label="توسيع الكل">
                 📂
             </button>
+    <a href="../" class="btn-icon" id="btnHome"
+   data-i18n-title="home_button_title"
+   data-i18n-aria-label="home_button_aria">🏠</a>
         </div>
     </header>
 
@@ -678,6 +681,9 @@
             empty_state_sub: 'جرّب تغيير الوسوم أو كلمات البحث.',
             modal_title_default: 'معاينة التمرين',
             modal_title_preview: '👁️ معاينة: {name}',
+home_button_text: 'الرئيسية',
+home_button_title: 'العودة إلى الصفحة الرئيسية',
+home_button_aria: 'العودة إلى الصفحة الرئيسية',
             section_count: '{count} تمارين'
         },
         fr: {
@@ -708,6 +714,9 @@
             empty_state_sub: 'Essayez de modifier les tags ou la recherche.',
             modal_title_default: 'Aperçu de l\'exercice',
             modal_title_preview: '👁️ Aperçu : {name}',
+home_button_text: 'Accueil',
+home_button_title: 'Retour à la page d\'accueil',
+home_button_aria: 'Retour à la page d\'accueil',
             section_count: '{count} exercices'
         },
         en: {
@@ -738,6 +747,9 @@
             empty_state_sub: 'Try changing tags or search terms.',
             modal_title_default: 'Exercise Preview',
             modal_title_preview: '👁️ Preview: {name}',
+home_button_text: 'Home',
+home_button_title: 'Back to main page',
+home_button_aria: 'Back to main page',
             section_count: '{count} exercises'
         }
     };
@@ -780,6 +792,7 @@
         if (!translations[lang]) return;
         currentLang = lang;
         localStorage.setItem('dashboard_lang', lang);
+            document.getElementById('langSelect').value = currentLang;   // sync dropdown
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
         updateStaticI18n();
@@ -1251,6 +1264,7 @@ btnExpandAll.addEventListener('click', toggleExpandCollapseAll);
     // ───── بدء التشغيل ─────
     function init() {
         loadLanguage();   // ← تحميل اللغة أولاً
+            document.getElementById('langSelect').value = currentLang;   // sync dropdown
         loadTheme();
         loadCollapsedState();
         renderTagsBar();

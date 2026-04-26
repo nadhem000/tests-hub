@@ -635,7 +635,7 @@
             function t(key, params = {}) {
                 const dict = translations[currentLang] || translations.ar;
                 let text = dict[key] || key;
-                Object.entries(params).forEach(([k, v]) => text = text.replace(`{${k}}`, v));
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
                 return text;
             }
 
@@ -653,6 +653,7 @@
             function applyLanguage(lang) {
                 if (!translations[lang]) return;
                 currentLang = lang;
+    document.getElementById('langSelect').value = lang;
                 localStorage.setItem('exercise_range_lang', lang);
                 document.documentElement.lang = lang;
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -984,6 +985,7 @@
 
             // ════════ بدء التشغيل ════════
             loadLanguage();
+            document.getElementById('langSelect').value = currentLang;   // sync dropdown
             loadTheme();
             loadSoundPref();
 

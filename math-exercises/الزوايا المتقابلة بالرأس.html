@@ -583,6 +583,7 @@
             function applyLanguage(lang) {
                 if (!translations[lang]) return;
                 currentLang = lang;
+    document.getElementById('langSelect').value = lang;
                 localStorage.setItem('exercise_vert_lang', lang);
                 document.documentElement.lang = lang;
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -1068,6 +1069,7 @@
 
             // تحميل الإعدادات المحفوظة
             loadLanguage();
+            document.getElementById('langSelect').value = currentLang;   // sync dropdown
             loadTheme();
             loadSoundPref();
 
