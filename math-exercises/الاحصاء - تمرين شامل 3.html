@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمرين شامل 3: مخططات – مدى – وسط – منوال – احتمال | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.10);
+            --shadow-xl: 0 20px 48px rgba(0,0,0,0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0,0,0,0.35);
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-mode: #8b5cf6;
+            --highlight-mode-light: rgba(139,92,246,0.12);
+            --highlight-mode-badge: #7c3aed;
+            --highlight-prob: #0ea5e9;
+            --highlight-prob-light: rgba(14,165,233,0.08);
+            --highlight-prob-badge: #0284c7;
+            --section-accent-range: #e06c2e;
+            --section-accent-mean: #6366f1;
+            --section-accent-mode: #8b5cf6;
+            --section-accent-prob: #0ea5e9;
+            --section-accent-chart: #f59e0b;
+            --section-bg-range: rgba(224,108,46,0.06);
+            --section-bg-mean: rgba(99,102,241,0.06);
+            --section-bg-mode: rgba(139,92,246,0.06);
+            --section-bg-prob: rgba(14,165,233,0.05);
+            --section-bg-chart: rgba(245,158,11,0.06);
+            --highlight-prod: #059669;
+            --highlight-prod-light: rgba(5,150,105,0.08);
+            --highlight-sum: #6366f1;
+            --highlight-sum-light: rgba(99,102,241,0.08);
+            --highlight-mean: #e06c2e;
+            --highlight-mean-light: rgba(224,108,46,0.08);
+            --chart-color1: #FF6B6B;
+            --chart-color2: #4ECDC4;
+            --chart-color3: #45B7D1;
+            --freq-table-accent: #f59e0b;
+            --stats-header-bg: #e9f0f9;
+            --stats-cell-bg: #f4f7fb;
+            --stats-stripe-bg: #eef2f7;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+            --shadow: 0 4px 16px rgba(0,0,0,0.25);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+            --shadow-xl: 0 20px 48px rgba(0,0,0,0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0,0,0,0.55);
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-mode: #a78bfa;
+            --highlight-mode-light: rgba(167,139,250,0.18);
+            --highlight-mode-badge: #8b5cf6;
+            --highlight-prob: #38bdf8;
+            --highlight-prob-light: rgba(56,189,248,0.12);
+            --highlight-prob-badge: #0ea5e9;
+            --section-accent-range: #f08a50;
+            --section-accent-mean: #818cf8;
+            --section-accent-mode: #a78bfa;
+            --section-accent-prob: #38bdf8;
+            --section-accent-chart: #fbbf24;
+            --section-bg-range: rgba(240,138,80,0.08);
+            --section-bg-mean: rgba(129,140,248,0.08);
+            --section-bg-mode: rgba(167,139,250,0.08);
+            --section-bg-prob: rgba(56,189,248,0.07);
+            --section-bg-chart: rgba(251,191,36,0.08);
+            --highlight-prod: #34d399;
+            --highlight-prod-light: rgba(52,211,153,0.10);
+            --highlight-sum: #818cf8;
+            --highlight-sum-light: rgba(129,140,248,0.10);
+            --highlight-mean: #f08a50;
+            --highlight-mean-light: rgba(240,138,80,0.10);
+            --chart-color1: #f87171;
+            --chart-color2: #5ee6d8;
+            --chart-color3: #60c5e8;
+            --freq-table-accent: #fbbf24;
+            --stats-header-bg: #1e293b;
+            --stats-cell-bg: #1a2332;
+            --stats-stripe-bg: #141e2e;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        .dashboard-header {
+            position: relative;
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+            backdrop-filter: blur(10px);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: var(--surface2);
+            border-radius: 30px;
+            padding: 16px 12px 10px;
+            box-shadow: var(--shadow);
+        }
+        .pie-svg {
+            width: 200px;
+            height: 200px;
+            filter: drop-shadow(0 5px 12px rgba(0,0,0,0.1));
+            flex-shrink: 0;
+        }
+        .bar-svg {
+            width: 300px;
+            height: 200px;
+            display: block;
+        }
+        .chart-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .chart-legend-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        .total-context {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 10px 26px;
+            border-radius: 40px;
+            margin-bottom: 16px;
+            border: 2px solid var(--section-accent-chart);
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: var(--shadow-sm);
+        }
+        .chart-type-badge {
+            display: inline-block;
+            background: var(--section-accent-chart);
+            color: #fff;
+            font-weight: 700;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 18px 20px;
+            border-radius: 28px;
+            line-height: 2.2;
+            border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+        }
+        .section-card.chart-card {
+            border-right: 4px solid var(--section-accent-chart);
+            background: var(--section-bg-chart);
+        }
+        .section-card.range-card {
+            border-right: 4px solid var(--section-accent-range);
+            background: var(--section-bg-range);
+        }
+        .section-card.mean-card {
+            border-right: 4px solid var(--section-accent-mean);
+            background: var(--section-bg-mean);
+        }
+        .section-card.mode-card {
+            border-right: 4px solid var(--section-accent-mode);
+            background: var(--section-bg-mode);
+        }
+        .section-card.prob-card {
+            border-right: 4px solid var(--section-accent-prob);
+            background: var(--section-bg-prob);
+        }
+        .section-card.prod-card {
+            border-right: 4px solid var(--highlight-prod);
+            background: var(--highlight-prod-light);
+        }
+        .section-card.sum-card {
+            border-right: 4px solid var(--highlight-sum);
+            background: var(--highlight-sum-light);
+        }
+        [data-theme="dark"] .section-card.chart-card {
+            border-right: 4px solid var(--section-accent-chart);
+            background: var(--section-bg-chart);
+        }
+        [data-theme="dark"] .section-card.range-card {
+            border-right: 4px solid var(--section-accent-range);
+            background: var(--section-bg-range);
+        }
+        [data-theme="dark"] .section-card.mean-card {
+            border-right: 4px solid var(--section-accent-mean);
+            background: var(--section-bg-mean);
+        }
+        [data-theme="dark"] .section-card.mode-card {
+            border-right: 4px solid var(--section-accent-mode);
+            background: var(--section-bg-mode);
+        }
+        [data-theme="dark"] .section-card.prob-card {
+            border-right: 4px solid var(--section-accent-prob);
+            background: var(--section-bg-prob);
+        }
+        [data-theme="dark"] .section-card.prod-card {
+            border-right: 4px solid var(--highlight-prod);
+            background: var(--highlight-prod-light);
+        }
+        [data-theme="dark"] .section-card.sum-card {
+            border-right: 4px solid var(--highlight-sum);
+            background: var(--highlight-sum-light);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+        .section-label.chart-label {
+            color: var(--section-accent-chart);
+            background: rgba(245,158,11,0.12);
+        }
+        .section-label.range-label {
+            color: var(--section-accent-range);
+            background: rgba(224,108,46,0.1);
+        }
+        .section-label.mean-label {
+            color: var(--section-accent-mean);
+            background: rgba(99,102,241,0.1);
+        }
+        .section-label.mode-label {
+            color: var(--section-accent-mode);
+            background: rgba(139,92,246,0.1);
+        }
+        .section-label.prob-label {
+            color: var(--section-accent-prob);
+            background: rgba(14,165,233,0.1);
+        }
+        .section-label.prod-label {
+            color: var(--highlight-prod);
+            background: rgba(5,150,105,0.10);
+        }
+        .section-label.sum-label {
+            color: var(--highlight-sum);
+            background: rgba(99,102,241,0.10);
+        }
+        [data-theme="dark"] .section-label.chart-label {
+            background: rgba(251,191,36,0.18);
+        }
+        [data-theme="dark"] .section-label.range-label {
+            background: rgba(240,138,80,0.15);
+        }
+        [data-theme="dark"] .section-label.mean-label {
+            background: rgba(129,140,248,0.15);
+        }
+        [data-theme="dark"] .section-label.mode-label {
+            background: rgba(167,139,250,0.15);
+        }
+        [data-theme="dark"] .section-label.prob-label {
+            background: rgba(56,189,248,0.18);
+        }
+        [data-theme="dark"] .section-label.prod-label {
+            background: rgba(52,211,153,0.15);
+        }
+        [data-theme="dark"] .section-label.sum-label {
+            background: rgba(129,140,248,0.15);
+        }
+        .question-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 6px 0;
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3.2em;
+            min-width: 58px;
+            max-width: 110px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44,110,158,0.2);
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 4px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 16px;
+            margin: 8px 0 0 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+        }
+        .calc-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 2px;
+        }
+        .calc-line .mode-label-inline {
+            font-weight: 800;
+            color: var(--highlight-mode);
+            font-size: 1.2rem;
+            margin-right: 6px;
+        }
+        .calc-line .prob-label-inline {
+            font-weight: 800;
+            color: var(--highlight-prob);
+            font-size: 1.2rem;
+            margin-right: 6px;
+        }
+        .calc-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            color: var(--highlight-prod);
+        }
+        .calc-line .freq-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            color: var(--highlight-sum);
+        }
+        .formula-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 6px 0;
+            direction: ltr;
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 16px;
+        }
+        .formula-line .num-display {
+            font-weight: 800;
+            color: var(--accent);
+            background: var(--surface3);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+        }
+        .formula-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 2px;
+        }
+        .addition-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 1.3rem;
+            direction: ltr;
+            margin: 6px 0;
+        }
+        .addition-line .num {
+            font-weight: 700;
+            color: var(--section-accent-mean);
+            background: var(--surface3);
+            padding: 4px 10px;
+            border-radius: 16px;
+        }
+        .addition-line .num.prod-num {
+            color: var(--highlight-prod);
+        }
+        .addition-line .num.freq-num {
+            color: var(--highlight-sum);
+        }
+        .addition-line .plus {
+            font-weight: 800;
+            margin: 0 2px;
+        }
+        .count-line,
+        .mean-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 6px 0;
+        }
+        .mean-line {
+            direction: ltr;
+        }
+        .mean-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 2px;
+        }
+        .formula-hint {
+            font-size: 0.95rem;
+            color: var(--text2);
+            text-align: center;
+            margin-top: 4px;
+            font-weight: 500;
+            background: var(--surface3);
+            padding: 3px 14px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .freq-table-container {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0 8px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .freq-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 2px solid var(--freq-table-accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s, border-color 0.35s;
+        }
+        .freq-table .header-cell {
+            background: var(--stats-header-bg);
+            color: var(--section-header-text);
+            padding: 12px 14px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .freq-table .value-cell {
+            background: var(--stats-cell-bg);
+            color: var(--text);
+            padding: 12px 14px;
+            border-left: 1px solid var(--table-border);
+            min-width: 60px;
+            transition: background 0.35s, color 0.35s;
+            position: relative;
+        }
+        .freq-table .value-cell:nth-child(even) {
+            background: var(--stats-stripe-bg);
+        }
+        .freq-table .mode-highlight {
+            background: var(--highlight-mode-light) !important;
+            color: var(--highlight-mode);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 2px var(--highlight-mode);
+            border-radius: 4px;
+        }
+        .freq-table .mode-highlight::after {
+            content: " ⭑";
+            font-size: 1rem;
+            color: var(--highlight-mode-badge);
+        }
+        .freq-table .prob-highlight {
+            background: var(--highlight-prob-light) !important;
+            color: var(--highlight-prob);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 2px var(--highlight-prob);
+            border-radius: 4px;
+        }
+        .freq-table .prob-highlight::after {
+            content: " 🎯";
+            font-size: 0.9rem;
+        }
+        .color-indicator {
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        .table-title-line {
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--freq-table-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .example-hint {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .start-note {
+            display: inline-block;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            color: white;
+            font-weight: 700;
+            padding: 8px 26px;
+            border-radius: 50px;
+            animation: pulse-note 2s infinite;
+            box-shadow: 0 4px 15px rgba(14,165,233,0.35);
+            letter-spacing: 0.3px;
+            font-size: 0.95rem;
+        }
+        @keyframes pulse-note {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s, border-color 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1rem;
+                padding: 12px 8px;
+            }
+            .section-card {
+                padding: 10px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 2.8em;
+                min-width: 48px;
+            }
+            .calc-line {
+                font-size: 1.05rem;
+                padding: 4px 10px;
+                border-radius: 30px;
+            }
+            .calc-line .operator {
+                font-size: 1.2rem;
+            }
+            .formula-line {
+                font-size: 1rem;
+                padding: 4px 10px;
+                border-radius: 30px;
+            }
+            .formula-line .num-display {
+                font-size: 1rem;
+                padding: 3px 7px;
+            }
+            .formula-line .operator {
+                font-size: 1.2rem;
+            }
+            .addition-line {
+                font-size: 1.05rem;
+            }
+            .addition-line .num {
+                padding: 3px 7px;
+                font-size: 1rem;
+            }
+            .stats {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
+            .freq-table {
+                font-size: 0.9rem;
+            }
+            .freq-table .header-cell,
+            .freq-table .value-cell {
+                padding: 10px 8px;
+            }
+            .pie-svg {
+                width: 150px;
+                height: 150px;
+            }
+            .bar-svg {
+                width: 240px;
+                height: 160px;
+            }
+            .chart-container {
+                padding: 10px 6px 6px;
+                gap: 10px;
+            }
+            .chart-legend {
+                font-size: 0.8rem;
+                gap: 4px;
+            }
+            .section-label {
+                font-size: 0.9rem;
+            }
+            .total-context {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊🎲</span> <span data-i18n="exercise_heading">تمرين شامل 3: مخططات – مدى – وسط – منوال – احتمال</span> <span>📊🎲</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">قراءة المخطط، المدى، المعدل الحسابي، المنوال، والاحتمال التجريبي</div>
+
+        <div class="chart-container" id="chartContainer">
+            <svg class="pie-svg" viewBox="0 0 300 300" id="pieSvg" style="display:none;"></svg>
+            <svg class="bar-svg" viewBox="0 0 360 220" id="barSvg" style="display:none;"></svg>
+            <div class="chart-legend" id="chartLegend"></div>
+        </div>
+
+        <div style="text-align:center;">
+            <div class="total-context" id="totalContext"></div>
+        </div>
+
+        <div class="question-block" id="questionBlock"></div>
+
+        <div class="freq-table-container" id="freqTableContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div style="text-align:center;">
+            <span class="start-note" data-i18n="click_new_to_start">👆 اضغط على "سؤال جديد" للبدء</span>
+        </div>
+        <div class="example-hint" data-i18n="hint">📌 املأ جميع الفراغات: معادلات المخطط، جدول التكرارات، المدى، المعدل الحسابي، المنوال، ثم الاحتمال التجريبي</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionBlock = document.getElementById('questionBlock');
+            const freqTableContainer = document.getElementById('freqTableContainer');
+            const pieSvg = document.getElementById('pieSvg');
+            const barSvg = document.getElementById('barSvg');
+            const chartLegend = document.getElementById('chartLegend');
+            const totalContextEl = document.getElementById('totalContext');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            const chartColors = ['#FF6B6B', '#4ECDC4', '#45B7D1'];
+            const chartColorsDark = ['#f87171', '#5ee6d8', '#60c5e8'];
+
+            let currentCategories = [];
+            let currentPercentages = [];
+            let currentTotal = 100;
+            let currentContextKey;
+            let currentChartType = 'bar';
+            let correctValues = [];
+            let correctProducts = [];
+            let sumProdVal, sumFreqVal, weightedMeanVal;
+            let rangeVal = 2;
+            let modeValue, modeFrequency;
+            let targetProbIndex = 0;
+            let attempts = 0;
+            let score = 0;
+            let gameActive = true;
+            let isSwitchingRound = false;
+            let inputRefs = {};
+
+            const scenarios = {
+                computers: {
+                    ar: { context: 'تم سؤال 100 عائلة عن عدد الحواسيب التي تملكها', categories: ['حاسوب واحد', 'حاسوبان', 'ثلاثة حواسيب'] },
+                    fr: { context: 'On a demandé à 100 familles combien d\'ordinateurs elles possèdent', categories: ['1 ordinateur', '2 ordinateurs', '3 ordinateurs'] },
+                    en: { context: '100 families were asked how many computers they own', categories: ['1 computer', '2 computers', '3 computers'] }
+                },
+                phones: {
+                    ar: { context: 'تم سؤال 100 عائلة عن عدد الهواتف التي تملكها', categories: ['هاتف واحد', 'هاتفان', 'ثلاثة هواتف'] },
+                    fr: { context: 'On a demandé à 100 familles combien de téléphones elles possèdent', categories: ['1 téléphone', '2 téléphones', '3 téléphones'] },
+                    en: { context: '100 families were asked how many phones they own', categories: ['1 phone', '2 phones', '3 phones'] }
+                },
+                cars: {
+                    ar: { context: 'تم سؤال 100 عائلة عن عدد السيارات التي تملكها', categories: ['سيارة واحدة', 'سيارتان', 'ثلاث سيارات'] },
+                    fr: { context: 'On a demandé à 100 familles combien de voitures elles possèdent', categories: ['1 voiture', '2 voitures', '3 voitures'] },
+                    en: { context: '100 families were asked how many cars they own', categories: ['1 car', '2 cars', '3 cars'] }
+                },
+                tvs: {
+                    ar: { context: 'تم سؤال 100 عائلة عن عدد أجهزة التلفاز التي تملكها', categories: ['جهاز واحد', 'جهازان', 'ثلاثة أجهزة'] },
+                    fr: { context: 'On a demandé à 100 familles combien de téléviseurs elles possèdent', categories: ['1 téléviseur', '2 téléviseurs', '3 téléviseurs'] },
+                    en: { context: '100 families were asked how many TVs they own', categories: ['1 TV', '2 TVs', '3 TVs'] }
+                },
+                books: {
+                    ar: { context: 'تم سؤال 100 تلميذاً عن عدد الكتب التي قرأها هذا الشهر', categories: ['كتاب واحد', 'كتابان', 'ثلاثة كتب'] },
+                    fr: { context: 'On a demandé à 100 élèves combien de livres ils ont lus ce mois', categories: ['1 livre', '2 livres', '3 livres'] },
+                    en: { context: '100 students were asked how many books they read this month', categories: ['1 book', '2 books', '3 books'] }
+                }
+            };
+            const scenarioKeys = Object.keys(scenarios);
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'تمرين شامل 3: مخططات – مدى – وسط – منوال – احتمال',
+                    exercise_subtitle: 'قراءة المخطط، المدى، المعدل الحسابي، المنوال، والاحتمال التجريبي',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات: معادلات المخطط، جدول التكرارات، المدى، المعدل الحسابي، المنوال، ثم الاحتمال التجريبي',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    fill_all: '⚠️ الرجاء إدخال جميع القيم',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة فقط (المعدل يمكن أن يكون عشراً)',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong_title: '❌ خطأ!',
+                    wrong_range: '📏 المدى: أكبر قيمة = 3، أصغر قيمة = 1، المدى = 3 − 1 = 2',
+                    wrong_products: '📋 الجداءات الصحيحة: {p1}، {p2}، {p3}',
+                    wrong_weighted_mean: '🧮 المعدل = {sumProd} ÷ {sumFreq} = {mean}',
+                    wrong_mode: '🔢 المنوال: القيمة الأكثر تكراراً هي {mode}، تكررت {freq} مرات. المنوال = {mode}',
+                    wrong_prob: '🎲 احتمال «{cat}» = {freq} ÷ {total} × 100 = {pct}%',
+                    wrong_chart: '📊 قيم التكرارات الصحيحة: {cat1} = {val1}، {cat2} = {val2}، {cat3} = {val3}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    total_label: 'المجموع الكلي',
+                    chart_section_label: '📊 أولاً: قراءة المخطط',
+                    chart_bar_badge: 'مخطط عصيات',
+                    chart_pie_badge: 'مخطط دائري',
+                    formula_section_label: 'حساب عدد العائلات التي تملك',
+                    table_title: '📋 جدول التكرارات (القيمة والتكرار):',
+                    table_header_value: 'القيمة',
+                    table_header_frequency: 'التكرار',
+                    operator_multiply: '×',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    operator_minus: '−',
+                    operator_plus: '+',
+                    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء',
+                    step_label_prefix: 'الخطوة',
+                    range_section_label: '📏 ثانياً: المدى (للقيم 1، 2، 3)',
+                    range_line1_part1: 'أكبر قيمة في السلسلة هي (',
+                    range_line1_part2: ') وأصغر قيمة هي (',
+                    range_line1_part3: ') إذن المدى هو:',
+                    weighted_mean_section_label: '🧮 ثالثاً: حساب المعدل (الوسط الموزون)',
+                    prod_section_label: '📋 حساب جداء كل قيمة في تكرارها (xᵢ × fᵢ)',
+                    sum_section_label: '📊 حساب المجموعين',
+                    mean_section_label: '🧮 حساب المعدل',
+                    sum_prod_intro: 'مجموع الجداءات (xᵢ×fᵢ):',
+                    sum_freq_intro: 'مجموع التكرارات (fᵢ):',
+                    mean_line_intro: 'إذن المعدل = (مجموع xᵢ×fᵢ) ÷ (مجموع fᵢ):',
+                    formula_hint_text: 'المعدل = (مجموع xᵢ×fᵢ) ÷ (مجموع fᵢ)',
+                    mode_section_label: '🔢 رابعاً: المنوال (القيمة الأكثر تكراراً)',
+                    mode_line1_part1: 'القيمة الأكثر تكراراً في الجدول هي (',
+                    mode_line1_part2: ') حيث تكررت (',
+                    mode_line1_part3: ') مرات. إذن:',
+                    mode_label: 'المنوال =',
+                    prob_section_label: '🎲 خامساً: الاحتمال التجريبي',
+                    prob_step1_label: '🔍 استخرج تكرار الفئة المطلوبة',
+                    prob_step1_text: 'تكرار «{cat}» من الجدول =',
+                    prob_step2_label: '🧮 المجموع الكلي للتجارب',
+                    prob_step2_intro: 'المجموع الكلي = مجموع التكرارات =',
+                    prob_step3_label: '📐 طبق قانون الاحتمال التجريبي',
+                    prob_step3_intro: 'الاحتمال التجريبي لـ «{cat}» =',
+                    prob_formula_line: '( تكرار الفئة ÷ المجموع الكلي ) × 100',
+                    value_labels: ['1', '2', '3'],
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Exercice complet 3 : Graphiques – Étendue – Moyenne – Mode – Probabilité',
+                    exercise_subtitle: 'Lire le graphique, étendue, moyenne pondérée, mode et probabilité expérimentale',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs : équations, tableau, étendue, moyenne, mode, probabilité',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    fill_all: '⚠️ Veuillez remplir toutes les valeurs',
+                    invalid_numbers: '❌ Veuillez entrer des nombres entiers (la moyenne peut être décimale)',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong_title: '❌ Faux !',
+                    wrong_range: '📏 Étendue : plus grande valeur = 3, plus petite = 1, étendue = 3 − 1 = 2',
+                    wrong_products: '📋 Produits corrects : {p1}, {p2}, {p3}',
+                    wrong_weighted_mean: '🧮 Moyenne = {sumProd} ÷ {sumFreq} = {mean}',
+                    wrong_mode: '🔢 Mode : la valeur la plus fréquente est {mode}, apparaît {freq} fois. Mode = {mode}',
+                    wrong_prob: '🎲 Probabilité de « {cat} » = {freq} ÷ {total} × 100 = {pct}%',
+                    wrong_chart: '📊 Effectifs corrects : {cat1} = {val1}, {cat2} = {val2}, {cat3} = {val3}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions d\'utilisation',
+                    footer_privacy: 'Politique de confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify et GitHub',
+                    sound_on_title: 'Son (activé)',
+                    sound_off_title: 'Son (désactivé)',
+                    back_title: 'Retour au tableau',
+                    total_label: 'Total',
+                    chart_section_label: '📊 1. Lecture du graphique',
+                    chart_bar_badge: 'Diagramme à barres',
+                    chart_pie_badge: 'Diagramme circulaire',
+                    formula_section_label: 'Calcul du nombre de familles possédant',
+                    table_title: '📋 Tableau des effectifs (valeur et effectif) :',
+                    table_header_value: 'Valeur',
+                    table_header_frequency: 'Effectif',
+                    operator_multiply: '×',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    operator_minus: '−',
+                    operator_plus: '+',
+                    click_new_to_start: '👆 Cliquez sur "Nouvelle question" pour commencer',
+                    step_label_prefix: 'Étape',
+                    range_section_label: '📏 2. Étendue (des valeurs 1, 2, 3)',
+                    range_line1_part1: 'La plus grande valeur est (',
+                    range_line1_part2: ') et la plus petite est (',
+                    range_line1_part3: ') donc l\'étendue est :',
+                    weighted_mean_section_label: '🧮 3. Moyenne pondérée',
+                    prod_section_label: '📋 Calcul du produit de chaque valeur par son effectif (xᵢ × fᵢ)',
+                    sum_section_label: '📊 Calcul des deux sommes',
+                    mean_section_label: '🧮 Calcul de la moyenne',
+                    sum_prod_intro: 'Somme des produits (xᵢ×fᵢ) :',
+                    sum_freq_intro: 'Somme des effectifs (fᵢ) :',
+                    mean_line_intro: 'Donc la moyenne = (Somme xᵢ×fᵢ) ÷ (Somme fᵢ) :',
+                    formula_hint_text: 'Moyenne = (Somme xᵢ×fᵢ) ÷ (Somme fᵢ)',
+                    mode_section_label: '🔢 4. Mode (valeur la plus fréquente)',
+                    mode_line1_part1: 'La valeur la plus fréquente est (',
+                    mode_line1_part2: ') car elle apparaît (',
+                    mode_line1_part3: ') fois. Donc :',
+                    mode_label: 'Mode =',
+                    prob_section_label: '🎲 5. Probabilité expérimentale',
+                    prob_step1_label: '🔍 Extraire l\'effectif de la catégorie',
+                    prob_step1_text: 'Effectif de « {cat} » =',
+                    prob_step2_label: '🧮 Total des essais',
+                    prob_step2_intro: 'Total = somme des effectifs =',
+                    prob_step3_label: '📐 Appliquer la formule de probabilité',
+                    prob_step3_intro: 'Probabilité de « {cat} » =',
+                    prob_formula_line: '( effectif ÷ total ) × 100',
+                    value_labels: ['1', '2', '3'],
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Comprehensive Exercise 3: Charts – Range – Mean – Mode – Probability',
+                    exercise_subtitle: 'Read the chart, range, weighted mean, mode, and experimental probability',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill all fields: chart equations, frequency table, range, weighted mean, mode, and probability',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    fill_all: '⚠️ Please fill all values',
+                    invalid_numbers: '❌ Please enter integers (mean can be decimal)',
+                    correct: '✅ Correct! +1 point',
+                    wrong_title: '❌ Wrong!',
+                    wrong_range: '📏 Range: largest value = 3, smallest = 1, range = 3 − 1 = 2',
+                    wrong_products: '📋 Correct products: {p1}, {p2}, {p3}',
+                    wrong_weighted_mean: '🧮 Mean = {sumProd} ÷ {sumFreq} = {mean}',
+                    wrong_mode: '🔢 Mode: the most frequent value is {mode}, appears {freq} times. Mode = {mode}',
+                    wrong_prob: '🎲 Probability of "{cat}" = {freq} ÷ {total} × 100 = {pct}%',
+                    wrong_chart: '📊 Correct frequencies: {cat1} = {val1}, {cat2} = {val2}, {cat3} = {val3}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back to dashboard',
+                    total_label: 'Total',
+                    chart_section_label: '📊 1. Reading the chart',
+                    chart_bar_badge: 'Bar Chart',
+                    chart_pie_badge: 'Pie Chart',
+                    formula_section_label: 'Calculate number of families with',
+                    table_title: '📋 Frequency table (value and frequency):',
+                    table_header_value: 'Value',
+                    table_header_frequency: 'Frequency',
+                    operator_multiply: '×',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    operator_minus: '−',
+                    operator_plus: '+',
+                    click_new_to_start: '👆 Click "New Question" to start',
+                    step_label_prefix: 'Step',
+                    range_section_label: '📏 2. Range (of values 1, 2, 3)',
+                    range_line1_part1: 'The largest value is (',
+                    range_line1_part2: ') and the smallest is (',
+                    range_line1_part3: ') so the range is:',
+                    weighted_mean_section_label: '🧮 3. Weighted Mean',
+                    prod_section_label: '📋 Calculate each value × its frequency (xᵢ × fᵢ)',
+                    sum_section_label: '📊 Calculate the two sums',
+                    mean_section_label: '🧮 Calculate the mean',
+                    sum_prod_intro: 'Sum of products (xᵢ×fᵢ):',
+                    sum_freq_intro: 'Sum of frequencies (fᵢ):',
+                    mean_line_intro: 'So the mean = (Sum xᵢ×fᵢ) ÷ (Sum fᵢ):',
+                    formula_hint_text: 'Mean = (Sum xᵢ×fᵢ) ÷ (Sum fᵢ)',
+                    mode_section_label: '🔢 4. Mode (most frequent value)',
+                    mode_line1_part1: 'The most frequent value is (',
+                    mode_line1_part2: ') appearing (',
+                    mode_line1_part3: ') times. So:',
+                    mode_label: 'Mode =',
+                    prob_section_label: '🎲 5. Experimental Probability',
+                    prob_step1_label: '🔍 Extract the frequency',
+                    prob_step1_text: 'Frequency of "{cat}" =',
+                    prob_step2_label: '🧮 Total trials',
+                    prob_step2_intro: 'Total = sum of frequencies =',
+                    prob_step3_label: '📐 Apply probability formula',
+                    prob_step3_intro: 'Experimental probability of "{cat}" =',
+                    prob_formula_line: '( frequency ÷ total ) × 100',
+                    value_labels: ['1', '2', '3'],
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (key) el.textContent = t(key);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                const soundTitle = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnSound').title = soundTitle;
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_combo3_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_combo3_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const navLang = navigator.language?.split('-')[0];
+                if (navLang && translations[navLang]) { applyLanguage(navLang); } else { applyLanguage('ar'); }
+            }
+
+            let soundEnabled = true;
+            let audioCtx = null;
+
+            function getAudioContext() {
+                if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_combo3_sound');
+                if (saved === 'off') { soundEnabled = false;
+                    btnSound.textContent = '🔇'; } else { soundEnabled = true;
+                    btnSound.textContent = '🔊'; }
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_combo3_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_combo3_theme', theme); } catch (e) {}
+                renderChart();
+            }
+
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                try {
+                    const saved = localStorage.getItem('exercise_combo3_theme');
+                    if (saved === 'dark' || saved === 'light') { applyTheme(saved); return; }
+                } catch (e) {}
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    applyTheme('dark');
+                } else { applyTheme('light'); }
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else { window.location.href = 'لوحة التمارين التفاعلية.html'; }
+            }
+
+            function getCurrentColors() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                return isDark ? chartColorsDark : chartColors;
+            }
+
+            function generatePercentages() {
+                const modeIdx = Math.floor(Math.random() * 3);
+                const pHigh = Math.floor(Math.random() * 16) + 40;
+                let remaining = 100 - pHigh;
+                let pLow1 = Math.floor(Math.random() * (remaining - 2)) + 1;
+                let pLow2 = remaining - pLow1;
+                if (pLow1 === pLow2) {
+                    if (pLow1 > 1) { pLow1--;
+                        pLow2++; } else { pLow1++;
+                        pLow2--; }
+                }
+                const percentages = new Array(3);
+                percentages[modeIdx] = pHigh;
+                const otherIdx1 = (modeIdx + 1) % 3;
+                const otherIdx2 = (modeIdx + 2) % 3;
+                percentages[otherIdx1] = pLow1;
+                percentages[otherIdx2] = pLow2;
+                return percentages;
+            }
+
+            function generateNewQuestion() {
+                const scenarioKey = scenarioKeys[Math.floor(Math.random() * scenarioKeys.length)];
+                currentContextKey = scenarioKey;
+                const scenario = scenarios[scenarioKey];
+                const langData = scenario[currentLang] || scenario.ar;
+                currentCategories = [...langData.categories];
+                currentPercentages = generatePercentages();
+                currentTotal = 100;
+                currentChartType = Math.random() < 0.5 ? 'bar' : 'pie';
+                correctValues = currentPercentages.map(p => currentTotal * p / 100);
+                correctProducts = correctValues.map((v, i) => (i + 1) * v);
+                sumProdVal = correctProducts.reduce((a, b) => a + b, 0);
+                sumFreqVal = correctValues.reduce((a, b) => a + b, 0);
+                weightedMeanVal = sumProdVal / sumFreqVal;
+                rangeVal = 2;
+                let maxFreq = Math.max(...correctValues);
+                modeValue = correctValues.indexOf(maxFreq) + 1;
+                modeFrequency = maxFreq;
+                targetProbIndex = Math.floor(Math.random() * 3);
+                renderAll();
+            }
+
+            function renderChart() {
+                const colors = getCurrentColors();
+                pieSvg.style.display = 'none';
+                barSvg.style.display = 'none';
+
+                if (currentChartType === 'pie') {
+                    pieSvg.style.display = 'block';
+                    const cx = 150,
+                        cy = 150,
+                        r = 120;
+                    let startAngle = -Math.PI / 2;
+                    let pathsHtml = '';
+                    currentPercentages.forEach((pct, i) => {
+                        const sweepAngle = (pct / 100) * 2 * Math.PI;
+                        const endAngle = startAngle + sweepAngle;
+                        const x1 = cx + r * Math.cos(startAngle);
+                        const y1 = cy + r * Math.sin(startAngle);
+                        const x2 = cx + r * Math.cos(endAngle);
+                        const y2 = cy + r * Math.sin(endAngle);
+                        const largeArc = sweepAngle > Math.PI ? 1 : 0;
+                        const pathD =
+                            `M ${cx} ${cy} L ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${largeArc} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`;
+                        pathsHtml +=
+                            `<path d="${pathD}" fill="${colors[i]}" stroke="var(--surface)" stroke-width="3" />`;
+                        startAngle = endAngle;
+                    });
+                    pieSvg.innerHTML = pathsHtml;
+                } else {
+                    barSvg.style.display = 'block';
+                    const barWidth = 70,
+                        spacing = 30,
+                        startX = 40,
+                        baseY = 190,
+                        maxBarHeight = 150;
+                    let html = '';
+                    html +=
+                        `<line x1="20" y1="${baseY}" x2="340" y2="${baseY}" stroke="var(--text3)" stroke-width="2"/>`;
+                    currentPercentages.forEach((pct, i) => {
+                        const barHeight = (pct / 100) * maxBarHeight;
+                        const x = startX + i * (barWidth + spacing);
+                        const y = baseY - barHeight;
+                        html +=
+                            `<rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" fill="${colors[i]}" rx="4" />`;
+                        html +=
+                            `<text x="${x + barWidth/2}" y="${y - 8}" text-anchor="middle" fill="var(--text)" font-weight="bold" font-size="14">${pct}%</text>`;
+                        html +=
+                            `<text x="${x + barWidth/2}" y="${baseY + 18}" text-anchor="middle" fill="var(--text2)" font-size="12">${currentCategories[i]}</text>`;
+                    });
+                    barSvg.innerHTML = html;
+                }
+
+                let legendHtml = '';
+                currentCategories.forEach((cat, i) => {
+                    legendHtml += `
+                        <div class="chart-legend-item">
+                            <span class="chart-legend-dot" style="background:${colors[i]};"></span>
+                            <span>${cat} – <strong>${currentPercentages[i]}%</strong></span>
+                        </div>`;
+                });
+                chartLegend.innerHTML = legendHtml;
+
+                const scenario = scenarios[currentContextKey];
+                const langData = scenario[currentLang] || scenario.ar;
+                const chartBadge = currentChartType === 'bar' ? t('chart_bar_badge') : t('chart_pie_badge');
+                totalContextEl.innerHTML =
+                    `<span class="chart-type-badge">${chartBadge}</span> ${langData.context}`;
+            }
+
+            function buildQuestionHTML() {
+                const opMul = t('operator_multiply');
+                const opDiv = t('operator_divide');
+                const opEq = t('operator_equals');
+                const opMinus = t('operator_minus');
+                const opPlus = t('operator_plus');
+                const sectionLabel = t('formula_section_label');
+                const stepPrefix = t('step_label_prefix');
+                const targetCat = currentCategories[targetProbIndex];
+
+                let html = '';
+                html +=
+                    `<div class="section-card chart-card"><div class="section-label chart-label">${t('chart_section_label')}</div>`;
+                currentCategories.forEach((cat, i) => {
+                    html += `
+                    <div style="margin:8px 0;">
+                        <span style="font-weight:700;">${stepPrefix} ${i + 1}: ${sectionLabel} <strong>${cat}</strong> (${currentPercentages[i]}%)</span>
+                        <div class="formula-line">
+                            <input type="text" id="inpTotal${i}" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span class="operator">${opMul}</span>
+                            <span class="num-display">${currentPercentages[i]}</span>
+                            <span class="operator">${opDiv}</span>
+                            <span class="num-display">100</span>
+                            <span class="operator">${opEq}</span>
+                            <input type="text" id="inpResult${i}" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>`;
+                });
+                html += `</div>`;
+
+                html +=
+                    `<div class="section-card range-card"><div class="section-label range-label">${t('range_section_label')}</div>
+                    <div class="question-line">
+                        <span>${t('range_line1_part1')}</span>
+                        <input type="text" id="inpMax1" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span>${t('range_line1_part2')}</span>
+                        <input type="text" id="inpMin1" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span>${t('range_line1_part3')}</span>
+                    </div>
+                    <div class="calc-line" dir="ltr">
+                        <input type="text" id="inpMax2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span class="operator">${opMinus}</span>
+                        <input type="text" id="inpMin2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span class="operator">${opEq}</span>
+                        <input type="text" id="inpRange" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                    </div></div>`;
+
+                html +=
+                    `<div class="section-card prod-card"><div class="section-label prod-label">${t('prod_section_label')}</div>`;
+                for (let i = 0; i < 3; i++) {
+                    const value = i + 1;
+                    html += `
+                    <div class="calc-line">
+                        <span style="font-weight:700;color:var(--text);margin-right:6px;">(${value})</span>
+                        <span class="num-display">${value}</span>
+                        <span class="operator">${opMul}</span>
+                        <input type="text" id="inpWF${i}" class="inline-input" placeholder="f${value}" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span class="operator">${opEq}</span>
+                        <input type="text" id="inpProd${i}" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                    </div>`;
+                }
+                html += `</div>`;
+
+                html +=
+                    `<div class="section-card sum-card"><div class="section-label sum-label">${t('sum_section_label')}</div>`;
+                html += `<div style="text-align:center;margin-bottom:4px;font-weight:700;">${t('sum_prod_intro')}</div>`;
+                let sumProdAddition = `<div class="addition-line">`;
+                correctProducts.forEach((p, idx) => {
+                    if (idx > 0) sumProdAddition += `<span class="plus">${opPlus}</span>`;
+                    sumProdAddition += `<span class="num prod-num">${p}</span>`;
+                });
+                sumProdAddition += `<span class="plus" style="margin:0 6px;">${opEq}</span>`;
+                sumProdAddition +=
+                    `<input type="text" id="inpSumProd1" class="inline-input" placeholder="?" dir="ltr" inputmode="numeric">`;
+                sumProdAddition += `</div>`;
+                html += sumProdAddition;
+
+                html +=
+                    `<div style="text-align:center;margin:10px 0 4px;font-weight:700;">${t('sum_freq_intro')}</div>`;
+                let sumFreqAddition = `<div class="addition-line">`;
+                correctValues.forEach((f, idx) => {
+                    if (idx > 0) sumFreqAddition += `<span class="plus">${opPlus}</span>`;
+                    sumFreqAddition += `<span class="num freq-num">${f}</span>`;
+                });
+                sumFreqAddition += `<span class="plus" style="margin:0 6px;">${opEq}</span>`;
+                sumFreqAddition +=
+                    `<input type="text" id="inpSumFreq1" class="inline-input" placeholder="?" dir="ltr" inputmode="numeric">`;
+                sumFreqAddition += `</div>`;
+                html += sumFreqAddition;
+                html += `</div>`;
+
+                html +=
+                    `<div class="section-card mean-card"><div class="section-label mean-label">${t('mean_section_label')}</div>`;
+                html += `<div style="text-align:center;margin-bottom:4px;font-weight:700;">${t('mean_line_intro')}</div>`;
+                html += `
+                    <div class="calc-line">
+                        <input type="text" id="inpSumProd2" class="inline-input" placeholder="∑" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span class="operator">${opDiv}</span>
+                        <input type="text" id="inpSumFreq2" class="inline-input" placeholder="∑f" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span class="operator">${opEq}</span>
+                        <input type="text" id="inpMean" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal">
+                    </div>`;
+                html +=
+                    `<div style="text-align:center;"><span class="formula-hint">📝 ${t('formula_hint_text')}</span></div>`;
+                html += `</div>`;
+
+                html +=
+                    `<div class="section-card mode-card"><div class="section-label mode-label">${t('mode_section_label')}</div>
+                    <div class="question-line">
+                        <span>${t('mode_line1_part1')}</span>
+                        <input type="text" id="inpMode1" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span>${t('mode_line1_part2')}</span>
+                        <input type="text" id="inpFreq" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        <span>${t('mode_line1_part3')}</span>
+                    </div>
+                    <div class="calc-line" dir="ltr">
+                        <span class="mode-label-inline">${t('mode_label')}</span>
+                        <input type="text" id="inpMode2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                    </div></div>`;
+
+                const freqSumParts = correctValues.map(f =>
+                    `<span class="num-display">${f}</span>`).join(` <span class="operator">${opPlus}</span> `);
+
+                html +=
+                    `<div class="section-card prob-card"><div class="section-label prob-label">${t('prob_section_label')}</div>
+                    <div class="section-card" style="margin:6px 0;border-right:3px solid var(--highlight-prob);">
+                        <div style="font-weight:700;margin-bottom:4px;color:var(--highlight-prob);">${t('prob_step1_label')}</div>
+                        <div style="font-weight:700;margin-bottom:6px;">${t('prob_step1_text', {cat: targetCat})}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpProbFreq1" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card" style="margin:6px 0;border-right:3px solid var(--highlight-sum);">
+                        <div style="font-weight:700;margin-bottom:4px;color:var(--highlight-sum);">${t('prob_step2_label')}</div>
+                        <div style="font-weight:700;margin-bottom:6px;">${t('prob_step2_intro')}</div>
+                        <div class="formula-line" dir="ltr">
+                            ${freqSumParts}
+                            <span class="operator">${opEq}</span>
+                            <input type="text" id="inpProbTotal1" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card" style="margin:6px 0;border-right:3px solid var(--section-accent-mean);">
+                        <div style="font-weight:700;margin-bottom:4px;color:var(--section-accent-mean);">${t('prob_step3_label')}</div>
+                        <div style="font-weight:700;margin-bottom:6px;">${t('prob_step3_intro', {cat: targetCat})}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpProbFreq2" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
+                            <span class="operator">${opDiv}</span>
+                            <input type="text" id="inpProbTotal2" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
+                            <span class="operator">${opMul}</span>
+                            <span class="num-display">100</span>
+                            <span class="operator">=</span>
+                            <input type="text" id="inpProbPercent" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
+                            <span style="font-weight:800;font-size:1.4rem;color:var(--accent);">%</span>
+                        </div>
+                        <div class="hint-text" style="font-size:0.9rem;color:var(--text2);margin-top:4px;text-align:center;">📝 ${t('prob_formula_line')}</div>
+                    </div></div>`;
+
+                return html;
+            }
+
+            function renderFreqTable() {
+                const colors = getCurrentColors();
+                const headerValue = t('table_header_value');
+                const headerFreq = t('table_header_frequency');
+                const valueLabels = t('value_labels');
+                const vl = Array.isArray(valueLabels) ? valueLabels : ['1', '2', '3'];
+                const modeIdx = correctValues.indexOf(Math.max(...correctValues));
+
+                let html = `<div class="table-title-line">${t('table_title')}</div>`;
+                html += '<table class="freq-table">';
+                html += '<tr>';
+                html += `<td class="header-cell">${headerValue}</td>`;
+                for (let i = 0; i < 3; i++) {
+                    html +=
+                        `<td class="value-cell"><span class="color-indicator" style="background:${colors[i]};"></span> ${vl[i]}</td>`;
+                }
+                html += '</tr>';
+                html += '<tr>';
+                html += `<td class="header-cell">${headerFreq}</td>`;
+                for (let i = 0; i < 3; i++) {
+                    const isMode = (i === modeIdx);
+                    const isProb = (i === targetProbIndex);
+                    let modeClass = '';
+                    if (isMode && isProb) modeClass = ' mode-highlight prob-highlight';
+                    else if (isMode) modeClass = ' mode-highlight';
+                    else if (isProb) modeClass = ' prob-highlight';
+                    html +=
+                        `<td class="value-cell${modeClass}"><input type="text" id="inpTable${i}" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric" style="width:4.5em;"></td>`;
+                }
+                html += '</tr>';
+                html += '</table>';
+                freqTableContainer.innerHTML = html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                for (let i = 0; i < 3; i++) {
+                    inputRefs['total' + i] = document.getElementById('inpTotal' + i);
+                    inputRefs['result' + i] = document.getElementById('inpResult' + i);
+                    inputRefs['table' + i] = document.getElementById('inpTable' + i);
+                    inputRefs['wf' + i] = document.getElementById('inpWF' + i);
+                    inputRefs['prod' + i] = document.getElementById('inpProd' + i);
+                }
+                inputRefs['max1'] = document.getElementById('inpMax1');
+                inputRefs['min1'] = document.getElementById('inpMin1');
+                inputRefs['max2'] = document.getElementById('inpMax2');
+                inputRefs['min2'] = document.getElementById('inpMin2');
+                inputRefs['range'] = document.getElementById('inpRange');
+                inputRefs['sumProd1'] = document.getElementById('inpSumProd1');
+                inputRefs['sumFreq1'] = document.getElementById('inpSumFreq1');
+                inputRefs['sumProd2'] = document.getElementById('inpSumProd2');
+                inputRefs['sumFreq2'] = document.getElementById('inpSumFreq2');
+                inputRefs['mean'] = document.getElementById('inpMean');
+                inputRefs['mode1'] = document.getElementById('inpMode1');
+                inputRefs['freq'] = document.getElementById('inpFreq');
+                inputRefs['mode2'] = document.getElementById('inpMode2');
+                inputRefs['probFreq1'] = document.getElementById('inpProbFreq1');
+                inputRefs['probTotal1'] = document.getElementById('inpProbTotal1');
+                inputRefs['probFreq2'] = document.getElementById('inpProbFreq2');
+                inputRefs['probTotal2'] = document.getElementById('inpProbTotal2');
+                inputRefs['probPercent'] = document.getElementById('inpProbPercent');
+            }
+
+            function clearInputs() {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].value = '';
+                }
+            }
+
+            function renderAll() {
+                renderChart();
+                questionBlock.innerHTML = buildQuestionHTML();
+                renderFreqTable();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => { if (inputRefs['total0']) inputRefs['total0'].focus(); }, 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].disabled = disabled;
+                }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function formatMean(val) {
+                const rounded = Math.round(val * 100) / 100;
+                if (Number.isInteger(rounded)) return rounded.toString();
+                return rounded.toFixed(2).replace(/\.?0+$/, '');
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const rawValues = {};
+                let allFilled = true;
+                const allKeys = [];
+                for (let i = 0; i < 3; i++) {
+                    allKeys.push('total' + i, 'result' + i, 'table' + i, 'wf' + i, 'prod' + i);
+                }
+                allKeys.push('max1', 'min1', 'max2', 'min2', 'range', 'sumProd1', 'sumFreq1', 'sumProd2', 'sumFreq2',
+                    'mean', 'mode1', 'freq', 'mode2', 'probFreq1', 'probTotal1', 'probFreq2', 'probTotal2',
+                    'probPercent');
+                for (const k of allKeys) {
+                    const v = inputRefs[k]?.value.trim() || '';
+                    rawValues[k] = v;
+                    if (!v) allFilled = false;
+                }
+
+                if (!allFilled) { messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                const num = {};
+                let allValid = true;
+                const intKeys = [];
+                for (let i = 0; i < 3; i++) {
+                    intKeys.push('total' + i, 'result' + i, 'table' + i, 'wf' + i, 'prod' + i);
+                }
+                intKeys.push('max1', 'min1', 'max2', 'min2', 'range', 'sumProd1', 'sumFreq1', 'sumProd2', 'sumFreq2',
+                    'mode1', 'freq', 'mode2', 'probFreq1', 'probTotal1', 'probFreq2', 'probTotal2', 'probPercent');
+                for (const k of intKeys) {
+                    num[k] = Number(rawValues[k]);
+                    if (!Number.isInteger(num[k])) allValid = false;
+                }
+                num['mean'] = Number(rawValues['mean']);
+                if (isNaN(num['mean'])) allValid = false;
+
+                if (!allValid) { messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                let chartCorrect = true;
+                for (let i = 0; i < 3; i++) {
+                    if (num['total' + i] !== currentTotal) chartCorrect = false;
+                    if (num['result' + i] !== correctValues[i]) chartCorrect = false;
+                    if (num['table' + i] !== correctValues[i]) chartCorrect = false;
+                }
+
+                const rangeCorrect = (num['max1'] === 3 && num['min1'] === 1 && num['max2'] === 3 && num['min2'] ===
+                    1 && num['range'] === 2);
+
+                let weightedMeanCorrect = true;
+                for (let i = 0; i < 3; i++) {
+                    if (num['wf' + i] !== correctValues[i]) weightedMeanCorrect = false;
+                    if (num['prod' + i] !== correctProducts[i]) weightedMeanCorrect = false;
+                }
+                if (num['sumProd1'] !== sumProdVal || num['sumFreq1'] !== sumFreqVal || num['sumProd2'] !==
+                    sumProdVal || num['sumFreq2'] !== sumFreqVal) weightedMeanCorrect = false;
+                if (Math.abs(num['mean'] - weightedMeanVal) >= 0.01) weightedMeanCorrect = false;
+
+                const modeCorrect = (num['mode1'] === modeValue && num['freq'] === modeFrequency && num['mode2'] ===
+                    modeValue);
+
+                const correctProbFreq = correctValues[targetProbIndex];
+                const correctProbPct = correctProbFreq;
+                const probCorrect = (
+                    num['probFreq1'] === correctProbFreq &&
+                    num['probTotal1'] === currentTotal &&
+                    num['probFreq2'] === correctProbFreq &&
+                    num['probTotal2'] === currentTotal &&
+                    num['probPercent'] === correctProbPct
+                );
+
+                const allCorrect = chartCorrect && rangeCorrect && weightedMeanCorrect && modeCorrect && probCorrect;
+                attempts++;
+
+                if (allCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    const meanDisplay = formatMean(weightedMeanVal);
+                    const cat1 = currentCategories[0],
+                        cat2 = currentCategories[1],
+                        cat3 = currentCategories[2];
+                    const targetCat = currentCategories[targetProbIndex];
+                    messageEl.innerHTML = `
+                        <strong>${t('wrong_title')}</strong><br>
+                        ${t('wrong_chart',{cat1,val1:correctValues[0],cat2,val2:correctValues[1],cat3,val3:correctValues[2]})}<br>
+                        ${t('wrong_range')}<br>
+                        ${t('wrong_products',{p1:correctProducts[0],p2:correctProducts[1],p3:correctProducts[2]})}<br>
+                        ${t('wrong_weighted_mean',{sumProd:sumProdVal,sumFreq:sumFreqVal,mean:meanDisplay})}<br>
+                        ${t('wrong_mode',{mode:modeValue,freq:modeFrequency})}<br>
+                        ${t('wrong_prob',{cat:targetCat,freq:correctProbFreq,total:currentTotal,pct:correctProbPct})}
+                    `;
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => { if (inputRefs['total0']) inputRefs['total0'].focus(); }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => { if (inputRefs['total0']) inputRefs['total0'].focus(); }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionBlock.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); }
+            });
+            freqTableContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => { if (inputRefs['total0']) inputRefs['total0'].focus(); }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

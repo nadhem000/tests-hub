@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمرين التكرار والتواتر | لوحة التمارين</title>
+    <style>
+        /* ══════════════ متغيرات عامة ══════════════ */
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --badge-easy-bg: #e6f4ea;
+            --badge-easy-text: #1a6b3c;
+            --badge-medium-bg: #fef3e0;
+            --badge-medium-text: #8a5c1a;
+            --badge-hard-bg: #fde8e8;
+            --badge-hard-text: #8b1a1a;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0, 0, 0, 0.35);
+            --canvas-bg: #ffffff;
+            --canvas-shadow: rgba(0, 0, 0, 0.08);
+            --text-color-canvas: #0b3b4f;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-freq: #0891b2;
+            --highlight-freq-light: rgba(8, 145, 178, 0.08);
+            --highlight-freq-badge: #0e7490;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --badge-easy-bg: #1a3b2a;
+            --badge-easy-text: #4ade80;
+            --badge-medium-bg: #3b2e1a;
+            --badge-medium-text: #fbbf24;
+            --badge-hard-bg: #3b1a1a;
+            --badge-hard-text: #f87171;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0, 0, 0, 0.55);
+            --canvas-bg: #1a2332;
+            --canvas-shadow: rgba(0, 0, 0, 0.3);
+            --text-color-canvas: #e2e8f0;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-freq: #22d3ee;
+            --highlight-freq-light: rgba(34, 211, 238, 0.12);
+            --highlight-freq-badge: #06b6d4;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+
+        /* ════════ الهيدر ════════ */
+        .dashboard-header {
+            position: relative;
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+
+        /* ════════ غلاف التمرين ════════ */
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ════════ الجدول الإحصائي ════════ */
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 28px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s, border-color 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 14px 18px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 14px 18px;
+            border-left: 1px solid var(--table-border);
+            min-width: 70px;
+            transition: background 0.35s, color 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .stats-table .index-cell {
+            background: var(--surface2);
+            color: var(--text3);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 10px 18px;
+            border-left: 1px solid var(--table-border);
+        }
+        /* تمييز صف التكرارات */
+        .freq-row .value-cell {
+            background: var(--highlight-freq-light);
+            color: var(--highlight-freq);
+            font-weight: 700;
+        }
+        .freq-row .value-cell:nth-child(even) {
+            background: rgba(8, 145, 178, 0.05);
+        }
+        [data-theme="dark"] .freq-row .value-cell {
+            background: var(--highlight-freq-light);
+        }
+        /* تمييز خلية الفئة المطلوبة */
+        .value-cell.target-category {
+            background: #fef3c7 !important;
+            color: #92400e;
+            font-weight: 800;
+            box-shadow: inset 0 0 0 3px #f59e0b;
+        }
+        [data-theme="dark"] .value-cell.target-category {
+            background: #78350f !important;
+            color: #fde68a;
+            box-shadow: inset 0 0 0 3px #fbbf24;
+        }
+
+        /* ════════ كتلة الأسئلة ════════ */
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2.2;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+            text-align: center;
+        }
+        .section-card.total-card {
+            border-right: 4px solid var(--accent);
+            background: rgba(44, 110, 158, 0.04);
+        }
+        .section-card.relative-card {
+            border-right: 4px solid var(--highlight-freq);
+            background: var(--highlight-freq-light);
+        }
+        [data-theme="dark"] .section-card.total-card {
+            background: rgba(96, 165, 250, 0.06);
+        }
+        [data-theme="dark"] .section-card.relative-card {
+            background: var(--highlight-freq-light);
+        }
+        .section-label {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .section-label.total-label {
+            color: var(--accent);
+            background: rgba(44, 110, 158, 0.1);
+        }
+        .section-label.relative-label {
+            color: var(--highlight-freq);
+            background: rgba(8, 145, 178, 0.12);
+        }
+        .question-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 6px 0;
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 6px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 8px 18px;
+            margin: 10px 0 0 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .calc-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 4px;
+        }
+        .calc-line .freq-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            color: var(--highlight-freq);
+            margin: 0 2px;
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.25rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3.2em;
+            min-width: 58px;
+            max-width: 110px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44, 110, 158, 0.2);
+        }
+        .percent-sign {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-left: 2px;
+        }
+        .formula-hint {
+            font-size: 0.9rem;
+            color: var(--text2);
+            margin-top: 6px;
+            font-weight: 500;
+            background: var(--surface3);
+            padding: 3px 14px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .example-hint {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* ════════ الذيل ════════ */
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s, border-color 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1.1rem;
+                padding: 12px 8px;
+            }
+            .inline-input {
+                font-size: 1.05rem;
+                width: 3em;
+                min-width: 54px;
+            }
+            .stats {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
+            .stats-table {
+                font-size: 1rem;
+            }
+            .stats-table .header-cell,
+            .stats-table .value-cell {
+                padding: 10px 12px;
+            }
+            .calc-line {
+                font-size: 1.1rem;
+                padding: 6px 12px;
+                border-radius: 30px;
+            }
+            .calc-line .operator {
+                font-size: 1.2rem;
+            }
+            .calc-line .freq-display {
+                font-size: 1rem;
+                padding: 3px 8px;
+            }
+            .section-label {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">التكرار والتواتر</span> <span>📋</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">حساب التكرار الجملي والتواتر لعدد مرات الذهاب للمكتبة</div>
+
+        <!-- جدول السلسلة الإحصائية (ثلاثة أسطر: المؤشر، عدد المرات، عدد التلاميذ) -->
+        <div class="stats-table-container" id="statsTableContainer"></div>
+
+        <!-- الأسئلة المفصلة -->
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="example-hint" data-i18n="hint">📌 املأ التكرار الجملي ثم معادلة التواتر للفئة المطلوبة (التكرار ÷ الجملي = النسبة المئوية)</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            // ════════ بيانات التمرين ════════
+            let currentCategories = []; // أسماء الفئات (مثلاً: مرة، مرتان، ثلاث مرات)
+            let currentFreqs = []; // التكرارات (عدد التلاميذ)
+            let totalFreqVal; // التكرار الجملي (مجموع التلاميذ)
+            let targetIndex; // رقم الفئة المطلوب حساب تواترها
+            let inputRefs = {};
+
+            // متغيرات اللعبة
+            let attempts = 0;
+            let score = 0;
+            let gameActive = true;
+            let isSwitchingRound = false;
+
+            // ══════════════ الترجمة ══════════════
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'التكرار والتواتر',
+                    exercise_subtitle: 'حساب التكرار الجملي والتواتر لعدد مرات الذهاب للمكتبة',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ التكرار الجملي ثم معادلة التواتر للفئة المطلوبة (التكرار ÷ الجملي = النسبة المئوية)',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    index_row: 'العدد',
+                    values_row: 'عدد المرات',
+                    freqs_row: 'عدد التلاميذ',
+                    total_section_label: '📊 أولاً: حساب التكرار الجملي (مجموع التلاميذ)',
+                    relative_section_label: '📈 ثانياً: حساب تواتر فئة',
+                    total_intro: 'التكرار الجملي = مجموع التكرارات =',
+                    relative_intro_part1: 'تواتر فئة «',
+                    relative_intro_part2: '» = (تكرارها ÷ التكرار الجملي) × 100',
+                    formula_hint: 'التواتر = (تكرار الفئة ÷ التكرار الجملي) × 100',
+                    fill_all: '⚠️ الرجاء إدخال القيم الثلاث (التكرار الجملي، تكرار الفئة، النسبة المئوية)',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة فقط',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! التكرار الجملي = {total}، تواتر {cat} = {freq} ÷ {total} × 100 = {pct}%',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '='
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Effectif et Fréquence',
+                    exercise_subtitle: 'Calculer l\'effectif total et la fréquence pour les visites à la bibliothèque',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Entrez l\'effectif total puis l\'équation de fréquence (effectif ÷ total = pourcentage)',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    index_row: 'N°',
+                    values_row: 'Nb de fois',
+                    freqs_row: 'Nb d\'élèves',
+                    total_section_label: '📊 1. Calcul de l\'effectif total (somme des élèves)',
+                    relative_section_label: '📈 2. Fréquence de la catégorie',
+                    total_intro: 'Effectif total = somme des effectifs =',
+                    relative_intro_part1: 'Fréquence de « ',
+                    relative_intro_part2: ' » = (effectif ÷ effectif total) × 100',
+                    formula_hint: 'Fréquence = (effectif ÷ effectif total) × 100',
+                    fill_all: '⚠️ Veuillez entrer les trois valeurs (total, effectif, pourcentage)',
+                    invalid_numbers: '❌ Veuillez entrer des nombres entiers uniquement',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! Effectif total = {total}, Fréquence de {cat} = {freq} ÷ {total} × 100 = {pct}%',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions d\'utilisation',
+                    footer_privacy: 'Politique de confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify et GitHub',
+                    sound_on_title: 'Son (activé)',
+                    sound_off_title: 'Son (désactivé)',
+                    back_title: 'Retour au tableau',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '='
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Frequency & Relative Frequency',
+                    exercise_subtitle: 'Calculate total frequency and relative frequency for library visit counts',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Enter the total frequency then the relative frequency equation (freq ÷ total = percentage)',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    index_row: 'No.',
+                    values_row: 'Visit count',
+                    freqs_row: 'Students',
+                    total_section_label: '📊 1. Total frequency (sum of students)',
+                    relative_section_label: '📈 2. Relative frequency of',
+                    total_intro: 'Total frequency = sum of frequencies =',
+                    relative_intro_part1: 'Relative frequency of "',
+                    relative_intro_part2: '" = (frequency ÷ total frequency) × 100',
+                    formula_hint: 'Relative frequency = (frequency ÷ total frequency) × 100',
+                    fill_all: '⚠️ Please fill all three values (total, frequency, percentage)',
+                    invalid_numbers: '❌ Please enter integers only',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong! Total frequency = {total}, Relative frequency of {cat} = {freq} ÷ {total} × 100 = {pct}%',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back to dashboard',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '='
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (key) el.textContent = t(key);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                const soundTitle = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnSound').title = soundTitle;
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_frequency_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_frequency_lang');
+                if (saved && translations[saved]) {
+                    applyLanguage(saved);
+                    return;
+                }
+                const navLang = navigator.language?.split('-')[0];
+                if (navLang && translations[navLang]) {
+                    applyLanguage(navLang);
+                } else {
+                    applyLanguage('ar');
+                }
+            }
+
+            // ════════ الصوت ════════
+            let soundEnabled = true;
+            let audioCtx = null;
+
+            function getAudioContext() {
+                if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) { /* ignore */ }
+            }
+
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_frequency_sound');
+                if (saved === 'off') {
+                    soundEnabled = false;
+                    btnSound.textContent = '🔇';
+                } else {
+                    soundEnabled = true;
+                    btnSound.textContent = '🔊';
+                }
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_frequency_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            // ════════ الوضع الداكن ════════
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_frequency_theme', theme); } catch (e) {}
+            }
+
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                try {
+                    const saved = localStorage.getItem('exercise_frequency_theme');
+                    if (saved === 'dark' || saved === 'light') {
+                        applyTheme(saved);
+                        return;
+                    }
+                } catch (e) {}
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    applyTheme('dark');
+                } else {
+                    applyTheme('light');
+                }
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            // ════════ مجموعات فئات المكتبة (عدد مرات الذهاب) ════════
+            const libraryVisitSets = [{
+                ar: ['مرة', 'مرتان', 'ثلاث مرات'],
+                fr: ['1 fois', '2 fois', '3 fois'],
+                en: ['Once', 'Twice', 'Three times']
+            }, {
+                ar: ['مرة واحدة', 'مرتين', 'ثلاث مرات'],
+                fr: ['1 fois', '2 fois', '3 fois'],
+                en: ['Once', 'Twice', 'Three times']
+            }, {
+                ar: ['مرة', 'مرتان', 'ثلاث مرات'],
+                fr: ['Une fois', 'Deux fois', 'Trois fois'],
+                en: ['One time', 'Two times', 'Three times']
+            }];
+
+            // ════════ توليد البيانات ════════
+            function generateScenario() {
+                // نضمن أن التكرار الجملي سهل (10، 20، 25) والنسبة المئوية صحيحة
+                const possibleTotals = [10, 20, 25];
+                const total = possibleTotals[Math.floor(Math.random() * possibleTotals.length)];
+
+                // نختار فئة عشوائياً لتكون هي المستهدفة (targetIndex)
+                const tIndex = Math.floor(Math.random() * 3);
+
+                // نولد تكرار الفئة المستهدفة بحيث تكون النسبة المئوية صحيحة
+                let targetFreq;
+                if (total === 10) targetFreq = [2, 5, 4, 2][Math.floor(Math.random() * 4)]; // 20%,50%,40%,20%
+                else if (total === 20) targetFreq = [4, 5, 10, 8][Math.floor(Math.random() * 4)]; // 20%,25%,50%,40%
+                else targetFreq = [5, 10, 15][Math.floor(Math.random() * 3)]; // 20%,40%,60%
+
+                const remaining = total - targetFreq;
+                let f1, f2;
+                if (remaining <= 0) {
+                    f1 = 1;
+                    f2 = total - targetFreq - f1;
+                } else {
+                    f1 = Math.floor(Math.random() * (remaining - 1)) + 1;
+                    f2 = remaining - f1;
+                }
+
+                const freqs = [0, 0, 0];
+                freqs[tIndex] = targetFreq;
+                let otherIdx = 0;
+                for (let i = 0; i < 3; i++) {
+                    if (i !== tIndex) {
+                        freqs[i] = (otherIdx === 0) ? f1 : f2;
+                        otherIdx++;
+                    }
+                }
+
+                // التأكد من عدم وجود قيم سالبة
+                for (let i = 0; i < 3; i++) {
+                    if (freqs[i] <= 0) freqs[i] = 1;
+                }
+
+                const set = libraryVisitSets[Math.floor(Math.random() * libraryVisitSets.length)];
+                const cats = set[currentLang] || set.ar;
+                return { cats, freqs, total, tIndex };
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                const indexLabel = dict.index_row || 'العدد';
+                const valuesLabel = dict.values_row || 'عدد المرات';
+                const freqsLabel = dict.freqs_row || 'عدد التلاميذ';
+
+                let html = '<table class="stats-table">';
+                // صف المؤشرات
+                html += '<tr>';
+                html += `<td class="header-cell">${indexLabel}</td>`;
+                currentCategories.forEach((_, i) => {
+                    html += `<td class="index-cell">${i + 1}</td>`;
+                });
+                html += '</tr>';
+                // صف الفئات (عدد المرات)
+                html += '<tr>';
+                html += `<td class="header-cell">${valuesLabel}</td>`;
+                currentCategories.forEach((cat, i) => {
+                    const targetClass = (i === targetIndex) ? ' target-category' : '';
+                    html += `<td class="value-cell${targetClass}">${cat}</td>`;
+                });
+                html += '</tr>';
+                // صف التكرارات (عدد التلاميذ)
+                html += '<tr class="freq-row">';
+                html += `<td class="header-cell">${freqsLabel}</td>`;
+                currentFreqs.forEach((f, i) => {
+                    const targetClass = (i === targetIndex) ? ' target-category' : '';
+                    html += `<td class="value-cell${targetClass}">${f}</td>`;
+                });
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opPlus = t('operator_plus');
+                const opDiv = t('operator_divide');
+                const opMul = t('operator_multiply');
+                const opEq = t('operator_equals');
+
+                // سطر جمع التكرارات: [ ] + [ ] + [ ] = [ ]
+                let additionLine = '<div class="calc-line" dir="ltr">';
+                currentFreqs.forEach((f, i) => {
+                    if (i > 0) additionLine += `<span class="operator">${opPlus}</span>`;
+                    additionLine += `<span class="freq-display">${f}</span>`;
+                });
+                additionLine += `<span class="operator" style="margin:0 8px;">${opEq}</span>`;
+                additionLine +=
+                    `<input type="text" id="inpTotal1" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                additionLine += `</div>`;
+
+                // سطر معادلة التواتر: [تكرار الفئة] ÷ [التكرار الجملي] × 100 = [النسبة]%
+                const targetCat = currentCategories[targetIndex];
+                const targetFreq = currentFreqs[targetIndex];
+                let equationLine = '<div class="calc-line" dir="ltr">';
+                equationLine +=
+                    `<input type="text" id="inpCatFreq" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                equationLine += `<span class="operator">${opDiv}</span>`;
+                equationLine +=
+                    `<input type="text" id="inpTotal2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                equationLine += `<span class="operator">${opMul}</span>`;
+                equationLine += `<span style="font-weight:800;margin:0 2px;">100</span>`;
+                equationLine += `<span class="operator">${opEq}</span>`;
+                equationLine +=
+                    `<input type="text" id="inpPercent" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                equationLine += `<span class="percent-sign">%</span>`;
+                equationLine += `</div>`;
+
+                return `
+                    <div class="section-card total-card">
+                        <div class="section-label total-label">${t('total_section_label')}</div>
+                        <div style="font-weight:700;margin-bottom:4px;">${t('total_intro')}</div>
+                        ${additionLine}
+                    </div>
+                    <div class="section-card relative-card">
+                        <div class="section-label relative-label">${t('relative_section_label')} «${targetCat}»</div>
+                        <div style="font-weight:700;margin-bottom:4px;">${t('relative_intro_part1')}${targetCat}${t('relative_intro_part2')}</div>
+                        ${equationLine}
+                        <div class="formula-hint">📝 ${t('formula_hint')}</div>
+                    </div>
+                `;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {
+                    total1: document.getElementById('inpTotal1'),
+                    catFreq: document.getElementById('inpCatFreq'),
+                    total2: document.getElementById('inpTotal2'),
+                    percent: document.getElementById('inpPercent'),
+                };
+            }
+
+            function clearInputs() {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].value = '';
+                }
+            }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateScenario();
+                currentCategories = data.cats;
+                currentFreqs = data.freqs;
+                totalFreqVal = data.total;
+                targetIndex = data.tIndex;
+                renderAll();
+            }
+
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => inputRefs.total1?.focus(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].disabled = disabled;
+                }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) {
+                    messageEl.innerHTML = t('round_restart');
+                    return;
+                }
+                if (attempts >= 10) {
+                    finishCurrentRound();
+                    return;
+                }
+
+                const vTotal1 = inputRefs.total1.value.trim();
+                const vCatFreq = inputRefs.catFreq.value.trim();
+                const vTotal2 = inputRefs.total2.value.trim();
+                const vPercent = inputRefs.percent.value.trim();
+
+                if (!vTotal1 || !vCatFreq || !vTotal2 || !vPercent) {
+                    messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                const nTotal1 = Number(vTotal1);
+                const nCatFreq = Number(vCatFreq);
+                const nTotal2 = Number(vTotal2);
+                const nPercent = Number(vPercent);
+
+                if (!Number.isInteger(nTotal1) || !Number.isInteger(nCatFreq) || !Number.isInteger(nTotal2) || !
+                    Number.isInteger(nPercent)) {
+                    messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                const correctCatFreq = currentFreqs[targetIndex];
+                const correctPercent = (correctCatFreq / totalFreqVal) * 100;
+
+                const isCorrect =
+                    nTotal1 === totalFreqVal &&
+                    nCatFreq === correctCatFreq &&
+                    nTotal2 === totalFreqVal &&
+                    nPercent === correctPercent;
+
+                attempts++;
+
+                if (isCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    messageEl.innerHTML = t('wrong', {
+                        total: totalFreqVal,
+                        cat: currentCategories[targetIndex],
+                        freq: correctCatFreq,
+                        pct: correctPercent
+                    });
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+                if (attempts >= 10) {
+                    finishCurrentRound();
+                    return;
+                }
+                generateNewQuestion();
+                setTimeout(() => inputRefs.total1?.focus(), 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) {
+                    messageEl.innerHTML = t('round_restart');
+                    return;
+                }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => {
+                    if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = '';
+                }, 1500);
+                setTimeout(() => inputRefs.total1?.focus(), 40);
+            }
+
+            // ════════ ربط الأحداث ════════
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault();
+                    handleCheck();
+                }
+            });
+
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            // ════════ بدء التشغيل ════════
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => inputRefs.total1?.focus(), 100);
+
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

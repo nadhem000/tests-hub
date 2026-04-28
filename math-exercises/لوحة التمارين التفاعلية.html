@@ -183,6 +183,36 @@
         border-color: var(--accent);
     }
 
+    /* ═════════════ إضافة: زر طيّ/توسيع الوسوم ═════════════ */
+    .tags-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 4px 10px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        color: var(--text2);
+        transition: all 0.15s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        line-height: 1;
+    }
+    .tags-toggle:hover {
+        background: var(--surface3);
+        border-color: var(--accent);
+        color: var(--text);
+    }
+
+    /* حاوية تجميع الوسوم الإضافية */
+    .tags-chips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+    }
+
     /* ═════════════ المحتوى الرئيسي ═════════════ */
     .main-content {
         max-width: 1240px;
@@ -537,30 +567,22 @@
 
     /* ═════════════ التجاوب مع الشاشات المتوسطة ═════════════ */
     @media (max-width: 768px) {
-        /* تم نقل body padding إلى header.css إذا دعت الحاجة، لكننا نحتفظ بالتعديل هنا للتوافق */
         body { padding-top: 16px; }
 
-        /* الأقسام والبطاقات */
         .section-body { grid-template-columns: 1fr; padding: 12px; gap: 10px; }
         .exercise-card { padding: 14px; border-radius: 18px; }
         .card-title { font-size: 1.05rem; }
 
-        /* شريط الوسوم */
         .tags-bar { gap: 5px; }
         .tag-chip { padding: 5px 11px; font-size: 0.78rem; }
-
-        /* لاحظ أن أنماط الهيدر والفوتر أصبحت في ملفاتها الخاصة */
     }
 
     @media (max-width: 420px) {
         body { padding: 16px 8px 8px; }
 
-        /* الأقسام */
         .section-header { padding: 12px 14px; font-size: 1rem; }
         .section-body { padding: 8px; gap: 8px; }
         .exercise-card { padding: 10px; border-radius: 15px; }
-
-        /* الهيدر يبقى في header.css */
     }
 </style>
 </head>
@@ -597,7 +619,6 @@
 
     <!-- ═══════════════ TAGS BAR ═══════════════ -->
     <div class="tags-bar" id="tagsBar">
-        <span class="tags-label" data-i18n="tags_label">🏷️ الوسوم:</span>
         <!-- dynamically filled -->
     </div>
 
@@ -681,10 +702,12 @@
             empty_state_sub: 'جرّب تغيير الوسوم أو كلمات البحث.',
             modal_title_default: 'معاينة التمرين',
             modal_title_preview: '👁️ معاينة: {name}',
-home_button_text: 'الرئيسية',
-home_button_title: 'العودة إلى الصفحة الرئيسية',
-home_button_aria: 'العودة إلى الصفحة الرئيسية',
-            section_count: '{count} تمارين'
+            home_button_text: 'الرئيسية',
+            home_button_title: 'العودة إلى الصفحة الرئيسية',
+            home_button_aria: 'العودة إلى الصفحة الرئيسية',
+            section_count: '{count} تمارين',
+            tags_toggle_show: 'إظهار الوسوم',
+            tags_toggle_hide: 'إخفاء الوسوم'
         },
         fr: {
             app_title: 'Tableau d\'exercices interactif',
@@ -714,10 +737,12 @@ home_button_aria: 'العودة إلى الصفحة الرئيسية',
             empty_state_sub: 'Essayez de modifier les tags ou la recherche.',
             modal_title_default: 'Aperçu de l\'exercice',
             modal_title_preview: '👁️ Aperçu : {name}',
-home_button_text: 'Accueil',
-home_button_title: 'Retour à la page d\'accueil',
-home_button_aria: 'Retour à la page d\'accueil',
-            section_count: '{count} exercices'
+            home_button_text: 'Accueil',
+            home_button_title: 'Retour à la page d\'accueil',
+            home_button_aria: 'Retour à la page d\'accueil',
+            section_count: '{count} exercices',
+            tags_toggle_show: 'Afficher les tags',
+            tags_toggle_hide: 'Masquer les tags'
         },
         en: {
             app_title: 'Interactive Exercise Board',
@@ -747,10 +772,12 @@ home_button_aria: 'Retour à la page d\'accueil',
             empty_state_sub: 'Try changing tags or search terms.',
             modal_title_default: 'Exercise Preview',
             modal_title_preview: '👁️ Preview: {name}',
-home_button_text: 'Home',
-home_button_title: 'Back to main page',
-home_button_aria: 'Back to main page',
-            section_count: '{count} exercises'
+            home_button_text: 'Home',
+            home_button_title: 'Back to main page',
+            home_button_aria: 'Back to main page',
+            section_count: '{count} exercises',
+            tags_toggle_show: 'Show tags',
+            tags_toggle_hide: 'Hide tags'
         }
     };
 
@@ -766,22 +793,18 @@ home_button_aria: 'Back to main page',
     }
 
     function updateStaticI18n() {
-        // عناصر تحمل data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.dataset.i18n;
             if (key) el.textContent = t(key);
         });
-        // placeholders
         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
             const key = el.dataset.i18nPlaceholder;
             if (key) el.placeholder = t(key);
         });
-        // titles
         document.querySelectorAll('[data-i18n-title]').forEach(el => {
             const key = el.dataset.i18nTitle;
             if (key) el.title = t(key);
         });
-        // aria-labels
         document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
             const key = el.dataset.i18nAriaLabel;
             if (key) el.setAttribute('aria-label', t(key));
@@ -792,17 +815,14 @@ home_button_aria: 'Back to main page',
         if (!translations[lang]) return;
         currentLang = lang;
         localStorage.setItem('dashboard_lang', lang);
-            document.getElementById('langSelect').value = currentLang;   // sync dropdown
+        document.getElementById('langSelect').value = currentLang;
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
         updateStaticI18n();
-        // تحديث الأجزاء الديناميكية
         renderTagsBar();
         renderAllSections();
         updateStats();
-        // إعادة تعيين عنوان المودال الافتراضي
         document.getElementById('modalTitle').textContent = t('modal_title_default');
-        // تحديث placeholder البحث مرة أخرى للتأكيد (لأنه قد لا يكون له data-i18n-placeholder? لديه)
         document.getElementById('searchInput').placeholder = t('search_placeholder');
     }
 
@@ -812,7 +832,6 @@ home_button_aria: 'Back to main page',
             applyLanguage(saved);
             return;
         }
-        // استخدام لغة المتصفح إذا كانت مدعومة
         const navLang = navigator.language?.split('-')[0];
         if (navLang && translations[navLang]) {
             applyLanguage(navLang);
@@ -842,7 +861,22 @@ home_button_aria: 'Back to main page',
     let activeTags = new Set();
     let allTags = [];
     let collapsedSections = new Set();
+    let tagsExpanded = true;              // إضافة: حالة توسيع قائمة الوسوم
 
+// دوال ترجمة مساعدة للقسم والصف
+function translateSection(original) {
+    if (window.sectionTranslations && window.sectionTranslations[currentLang] && window.sectionTranslations[currentLang][original]) {
+        return window.sectionTranslations[currentLang][original];
+    }
+    return original; // الرجوع للأصل إن لم توجد ترجمة
+}
+
+function translateClass(original) {
+    if (window.classTranslations && window.classTranslations[currentLang] && window.classTranslations[currentLang][original]) {
+        return window.classTranslations[currentLang][original];
+    }
+    return original;
+}
     // ───── تجميع كل الوسوم ─────
     function collectAllTags() {
         const tagSet = new Set();
@@ -853,18 +887,50 @@ home_button_aria: 'Back to main page',
     }
     collectAllTags();
 
-    // ───── تحديث شريط الوسوم ─────
+    // ───── إضافة: تحميل/حفظ حالة توسيع الوسوم ─────
+    function loadTagsExpandState() {
+        try {
+            const saved = localStorage.getItem('dashboard_tags_expanded');
+            if (saved !== null) {
+                tagsExpanded = (saved === 'true');
+            }
+        } catch(e) { /* ignore */ }
+    }
+
+    function saveTagsExpandState() {
+        try {
+            localStorage.setItem('dashboard_tags_expanded', tagsExpanded.toString());
+        } catch(e) {}
+    }
+
+    // ───── تحديث شريط الوسوم (معدل) ─────
     function renderTagsBar() {
+        const isAllActive = activeTags.size === 0;
         let html = `<span class="tags-label">${t('tags_label')}</span>`;
-        html +=
-            `<span class="tag-chip tag-all${activeTags.size === 0 ? ' active' : ''}" data-tag="__all__">${t('tag_all')}</span>`;
+        html += `<span class="tag-chip tag-all${isAllActive ? ' active' : ''}" data-tag="__all__">${t('tag_all')}</span>`;
+        // زر التبديل
+        html += `<button class="tags-toggle" title="${tagsExpanded ? t('tags_toggle_hide') : t('tags_toggle_show')}" aria-label="${tagsExpanded ? t('tags_toggle_hide') : t('tags_toggle_show')}">${tagsExpanded ? '▲' : '▼'}</button>`;
+        // حاوية الوسوم
+        html += `<div class="tags-chips-container" style="display: ${tagsExpanded ? 'flex' : 'none'};">`;
         allTags.forEach(tag => {
             const isActive = activeTags.has(tag);
-            html +=
-                `<span class="tag-chip${isActive ? ' active' : ''}" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</span>`;
+            html += `<span class="tag-chip${isActive ? ' active' : ''}" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</span>`;
         });
+        html += `</div>`;
         tagsBar.innerHTML = html;
 
+        // ربط زر التبديل
+        const toggleBtn = tagsBar.querySelector('.tags-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                tagsExpanded = !tagsExpanded;
+                saveTagsExpandState();
+                renderTagsBar(); // إعادة رسم لتحديث الأيقونة والظهور
+            });
+        }
+
+        // ربط أحداث الوسوم (كل الوسوم داخل tagsBar)
         tagsBar.querySelectorAll('.tag-chip').forEach(chip => {
             chip.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -887,32 +953,36 @@ home_button_aria: 'Back to main page',
 
     // ───── تصفية التمارين ─────
     function getFilteredExercises() {
-        const query = searchInput.value.trim().toLowerCase();
-        let filtered = exercises;
+    const query = searchInput.value.trim().toLowerCase();
+    let filtered = exercises;
 
-        if (activeTags.size > 0) {
-            filtered = filtered.filter(ex => ex.tags.some(t => activeTags.has(t)));
-        }
-
-        if (query) {
-            filtered = filtered.filter(ex => {
-                const searchable = [
-                    ex.name,
-                    ex.description,
-                    ex.section,
-                    ex.class,
-                    ex.difficulty,
-                    ex.mainLanguage,
-                    ex.curriculum,
-                    ex.author,
-                    ...ex.tags,
-                    ...ex.keywords,
-                ].join(' ').toLowerCase();
-                return searchable.includes(query);
-            });
-        }
-        return filtered;
+    if (activeTags.size > 0) {
+        filtered = filtered.filter(ex => ex.tags.some(t => activeTags.has(t)));
     }
+
+    if (query) {
+        filtered = filtered.filter(ex => {
+            // تضمين النص الأصلي والترجمات
+            const searchable = [
+                ex.name,
+                ex.description,
+                ex.section,
+                ex.class,
+                ex.difficulty,
+                ex.mainLanguage,
+                ex.curriculum,
+                ex.author,
+                ...ex.tags,
+                ...ex.keywords,
+                // إضافة الترجمة الحالية للقسم والصف إن وجدت
+                translateSection(ex.section),
+                translateClass(ex.class)
+            ].join(' ').toLowerCase();
+            return searchable.includes(query);
+        });
+    }
+    return filtered;
+}
 
     // ───── تجميع التمارين حسب القسم ─────
     function groupBySection(filtered) {
@@ -942,81 +1012,86 @@ home_button_aria: 'Back to main page',
 
     // ───── رسم بطاقة تمرين ─────
     function renderCard(ex) {
-        const diffClass = ex.difficulty === 'easy' ? 'badge-difficulty-easy' :
-            ex.difficulty === 'medium' ? 'badge-difficulty-medium' : 'badge-difficulty-hard';
-        const diffKey = 'difficulty_' + ex.difficulty;
-        const diffLabel = t(diffKey, {}) || (ex.difficulty === 'easy' ? '🟢 سهل' : ex.difficulty === 'medium' ? '🟡 متوسط' : '🔴 صعب');
-        const accentColor = htmlElement.getAttribute('data-theme') === 'dark' ?
-            (ex.cardColorDark || ex.cardColor || '#60a5fa') :
-            (ex.cardColor || '#2c6e9e');
+    const tName = (ex.translations && ex.translations[currentLang] && ex.translations[currentLang].name) || ex.name;
+    const tDesc = (ex.translations && ex.translations[currentLang] && ex.translations[currentLang].description) || ex.description;
+    const tClass = translateClass(ex.class);   // ← ترجمة الصف
 
-        const tagsHTML = ex.tags.map(t =>
-            `<span class="card-tag" data-tag="${escapeHTML(t)}" title="تصفية بهذا الوسم">${escapeHTML(t)}</span>`
-        ).join('');
+    const diffClass = ex.difficulty === 'easy' ? 'badge-difficulty-easy' :
+        ex.difficulty === 'medium' ? 'badge-difficulty-medium' : 'badge-difficulty-hard';
+    const diffKey = 'difficulty_' + ex.difficulty;
+    const diffLabel = t(diffKey, {}) || (ex.difficulty === 'easy' ? '🟢 سهل' : ex.difficulty === 'medium' ? '🟡 متوسط' : '🔴 صعب');
+    const accentColor = htmlElement.getAttribute('data-theme') === 'dark' ?
+        (ex.cardColorDark || ex.cardColor || '#60a5fa') :
+        (ex.cardColor || '#2c6e9e');
 
-        return `
-        <div class="exercise-card"
-             style="--card-accent: ${accentColor};"
-             data-id="${ex.id}"
-             data-link="${escapeHTML(ex.link)}"
-             data-name="${escapeHTML(ex.name)}"
-             title="🔗 ${escapeHTML(ex.name)}">
-            <div class="card-top">
-                <span class="card-icon">${ex.thumbnail || ex.sectionIcon || '📝'}</span>
-                <div class="card-badges">
-                    <span class="badge ${diffClass}">${diffLabel}</span>
-                    <span class="badge badge-class">${escapeHTML(ex.class)}</span>
-                </div>
+    const tagsHTML = ex.tags.map(t =>
+        `<span class="card-tag" data-tag="${escapeHTML(t)}" title="تصفية بهذا الوسم">${escapeHTML(t)}</span>`
+    ).join('');
+
+    return `
+    <div class="exercise-card"
+         style="--card-accent: ${accentColor};"
+         data-id="${ex.id}"
+         data-link="${escapeHTML(ex.link)}"
+         data-name="${escapeHTML(tName)}"
+         title="🔗 ${escapeHTML(tName)}">
+        <div class="card-top">
+            <span class="card-icon">${ex.thumbnail || ex.sectionIcon || '📝'}</span>
+            <div class="card-badges">
+                <span class="badge ${diffClass}">${diffLabel}</span>
+                <span class="badge badge-class">${escapeHTML(tClass)}</span>
             </div>
-            <h3 class="card-title">${escapeHTML(ex.name)}</h3>
-            <p class="card-description">${escapeHTML(ex.description)}</p>
-            <div class="card-tags">${tagsHTML}</div>
-            <div class="card-footer">
-                <span class="card-version">${t('card_version', { version: ex.version, time: ex.estimatedTime })}</span>
-                <span class="card-link-btn" data-action="open">${t('card_open')}</span>
-            </div>
-        </div>`;
-    }
+        </div>
+        <h3 class="card-title">${escapeHTML(tName)}</h3>
+        <p class="card-description">${escapeHTML(tDesc)}</p>
+        <div class="card-tags">${tagsHTML}</div>
+        <div class="card-footer">
+            <span class="card-version">${t('card_version', { version: ex.version, time: ex.estimatedTime })}</span>
+            <span class="card-link-btn" data-action="open">${t('card_open')}</span>
+        </div>
+    </div>`;
+}
 
     // ───── رسم جميع الأقسام ─────
     function renderAllSections() {
-        const filtered = getFilteredExercises();
-        const { groups, orderedSections } = groupBySection(filtered);
+    const filtered = getFilteredExercises();
+    const { groups, orderedSections } = groupBySection(filtered);
 
-        if (filtered.length === 0) {
-            mainContent.innerHTML = `
-                <div class="empty-state">
-                    <span class="empty-icon">🔍</span>
-                    <p>${t('empty_state_text')}</p>
-                    <p style="font-size:0.85rem;margin-top:6px;">${t('empty_state_sub')}</p>
-                </div>`;
-            return;
-        }
-
-        let html = '';
-        orderedSections.forEach(sectionName => {
-            const group = groups[sectionName];
-            if (!group || group.exercises.length === 0) return;
-            const isCollapsed = collapsedSections.has(sectionName);
-            const cardsHTML = group.exercises.map(ex => renderCard(ex)).join('');
-            html += `
-            <div class="exercise-section${isCollapsed ? ' collapsed' : ''}" data-section="${escapeHTML(sectionName)}">
-                <div class="section-header" data-section-name="${escapeHTML(sectionName)}">
-                    <div class="section-title-area">
-                        <span class="section-icon">${group.icon}</span>
-                        <span>${escapeHTML(sectionName)}</span>
-                        <span class="section-count">${t('section_count', { count: group.exercises.length })}</span>
-                    </div>
-                    <span class="section-toggle-icon">▼</span>
-                </div>
-                <div class="section-body">${cardsHTML}</div>
+    if (filtered.length === 0) {
+        mainContent.innerHTML = `
+            <div class="empty-state">
+                <span class="empty-icon">🔍</span>
+                <p>${t('empty_state_text')}</p>
+                <p style="font-size:0.85rem;margin-top:6px;">${t('empty_state_sub')}</p>
             </div>`;
-        });
-        mainContent.innerHTML = html;
-
-        bindCardEvents();
-        bindSectionToggleEvents();
+        return;
     }
+
+    let html = '';
+    orderedSections.forEach(sectionName => {
+        const group = groups[sectionName];
+        if (!group || group.exercises.length === 0) return;
+        const isCollapsed = collapsedSections.has(sectionName);
+        const translatedSection = translateSection(sectionName);   // ← ترجمة القسم
+        const cardsHTML = group.exercises.map(ex => renderCard(ex)).join('');
+        html += `
+        <div class="exercise-section${isCollapsed ? ' collapsed' : ''}" data-section="${escapeHTML(sectionName)}">
+            <div class="section-header" data-section-name="${escapeHTML(sectionName)}">
+                <div class="section-title-area">
+                    <span class="section-icon">${group.icon}</span>
+                    <span>${escapeHTML(translatedSection)}</span>
+                    <span class="section-count">${t('section_count', { count: group.exercises.length })}</span>
+                </div>
+                <span class="section-toggle-icon">▼</span>
+            </div>
+            <div class="section-body">${cardsHTML}</div>
+        </div>`;
+    });
+    mainContent.innerHTML = html;
+
+    bindCardEvents();
+    bindSectionToggleEvents();
+}
 
     // ───── ربط أحداث البطاقات ─────
     function bindCardEvents() {
@@ -1188,14 +1263,14 @@ home_button_aria: 'Back to main page',
     }
 
     // ───── توسيع/طيّ الكل ─────
-function toggleExpandCollapseAll() {
-    const anyExpanded = document.querySelector('.exercise-section:not(.collapsed)');
-    if (anyExpanded) {
-        collapseAllSections();
-    } else {
-        expandAllSections();
+    function toggleExpandCollapseAll() {
+        const anyExpanded = document.querySelector('.exercise-section:not(.collapsed)');
+        if (anyExpanded) {
+            collapseAllSections();
+        } else {
+            expandAllSections();
+        }
     }
-}
     function collapseAllSections() {
         mainContent.querySelectorAll('.exercise-section').forEach(sec => {
             sec.classList.add('collapsed');
@@ -1223,7 +1298,7 @@ function toggleExpandCollapseAll() {
 
     // ───── ربط الأحداث العامة ─────
     btnDarkMode.addEventListener('click', toggleTheme);
-btnExpandAll.addEventListener('click', toggleExpandCollapseAll);
+    btnExpandAll.addEventListener('click', toggleExpandCollapseAll);
     btnCollapseAll.addEventListener('click', collapseAllSections);
     btnExpandAllSections.addEventListener('click', expandAllSections);
 
@@ -1263,10 +1338,11 @@ btnExpandAll.addEventListener('click', toggleExpandCollapseAll);
 
     // ───── بدء التشغيل ─────
     function init() {
-        loadLanguage();   // ← تحميل اللغة أولاً
-            document.getElementById('langSelect').value = currentLang;   // sync dropdown
+        loadLanguage();
+        document.getElementById('langSelect').value = currentLang;
         loadTheme();
         loadCollapsedState();
+        loadTagsExpandState();        // إضافة: تحميل حالة توسيع الوسوم
         renderTagsBar();
         renderAllSections();
         updateStats();
