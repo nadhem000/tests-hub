@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رباعيات الأضلاع – قواعد عامة 2 | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0, 0, 0, 0.35);
+            --canvas-bg: #ffffff;
+            --canvas-shadow: rgba(0, 0, 0, 0.08);
+            --text-color-canvas: #0b3b4f;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-quad: #8b5cf6;
+            --highlight-quad-light: rgba(139, 92, 246, 0.08);
+            --section-accent-quad: #8b5cf6;
+            --section-bg-quad: rgba(139, 92, 246, 0.05);
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0, 0, 0, 0.55);
+            --canvas-bg: #1a2332;
+            --canvas-shadow: rgba(0, 0, 0, 0.3);
+            --text-color-canvas: #e2e8f0;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-quad: #a78bfa;
+            --highlight-quad-light: rgba(167, 139, 250, 0.12);
+            --section-accent-quad: #a78bfa;
+            --section-bg-quad: rgba(167, 139, 250, 0.08);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--highlight-quad);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        canvas {
+            background: var(--canvas-bg);
+            border-radius: 28px;
+            box-shadow: 0 8px 20px var(--canvas-shadow);
+            border: 1px solid var(--border);
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+        }
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 18px 20px;
+            border-radius: 28px;
+            line-height: 2.2;
+            border: 1px solid var(--border);
+        }
+        .scenario-banner {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 28px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+            animation: pulse-note 2s infinite;
+        }
+        @keyframes pulse-note {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+            border-right: 4px solid var(--section-accent-quad);
+            background: var(--section-bg-quad);
+        }
+        [data-theme="dark"] .section-card {
+            border-right: 4px solid var(--section-accent-quad);
+            background: var(--section-bg-quad);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+            color: var(--section-accent-quad);
+            background: var(--highlight-quad-light);
+        }
+        .formula-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 6px 0;
+            direction: ltr;
+            font-size: 1.35rem;
+            font-weight: 700;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 8px 18px;
+        }
+        .formula-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 4px;
+        }
+        .formula-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.25rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 4px;
+            width: 4em;
+            min-width: 70px;
+            max-width: 130px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44, 110, 158, 0.2);
+        }
+        .inline-input-wide {
+            width: 7em;
+            min-width: 120px;
+            max-width: 200px;
+        }
+        .percent-sign {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-left: 2px;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 6px;
+            text-align: center;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .start-note {
+            display: inline-block;
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            color: white;
+            font-weight: 700;
+            padding: 10px 32px;
+            border-radius: 50px;
+            animation: pulse-note 2s infinite;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        }
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1.05rem;
+                padding: 12px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 3.5em;
+                min-width: 60px;
+            }
+            .inline-input-wide {
+                width: 6em;
+                min-width: 100px;
+            }
+            .formula-line {
+                font-size: 1.1rem;
+                padding: 6px 10px;
+                border-radius: 30px;
+            }
+            .formula-line .operator {
+                font-size: 1.2rem;
+            }
+            .stats {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
+            .section-label {
+                font-size: 0.95rem;
+            }
+            .scenario-banner {
+                font-size: 0.95rem;
+                padding: 8px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>🔷</span> <span data-i18n="exercise_heading">رباعيات الأضلاع – قواعد عامة 2</span> <span>🔶</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">استنتاج نوع الرباعي من مشكلات عملية – خطوة بخطوة</div>
+
+        <div class="canvas-container">
+            <canvas id="quadCanvas" width="600" height="380" aria-label="رسم الشكل الرباعي"></canvas>
+        </div>
+
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div style="text-align:center;">
+            <span class="start-note" data-i18n="click_new_to_start">👆 اضغط على "سؤال جديد" للبدء</span>
+        </div>
+        <div class="hint-text" data-i18n="hint">📌 أكمل الفراغات خطوة بخطوة ثم استنتج اسم الرباعي في الخانة الأخيرة</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const canvas = document.getElementById('quadCanvas');
+            const ctx = canvas.getContext('2d');
+            const questionContainer = document.getElementById('questionContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let currentQuestion = null;
+            let inputRefs = {};
+            let attempts = 0;
+            let score = 0;
+            let gameActive = true;
+            let isSwitchingRound = false;
+
+            // ══════════════ الترجمات ══════════════
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'رباعيات الأضلاع – قواعد عامة 2',
+                    exercise_subtitle: 'استنتاج نوع الرباعي من مشكلات عملية – خطوة بخطوة',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 أكمل الفراغات خطوة بخطوة ثم استنتج اسم الرباعي في الخانة الأخيرة',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة فقط',
+                    invalid_type_name: '❌ اسم الرباعي غير معروف. جرّب: مستطيل، مربع، معين، متوازي أضلاع',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ!',
+                    wrong_details: 'الإجابات الصحيحة: {details}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء',
+                    operator_plus: '+',
+                    operator_minus: '–',
+                    operator_equals: '=',
+                    type_rectangle: 'مستطيل',
+                    type_square: 'مربع',
+                    type_rhombus: 'معين',
+                    type_parallelogram: 'متوازي أضلاع',
+                    scenario_rectangle: '🚪 لدينا باب منزل مستطيل الشكل.',
+                    scenario_square: '🟫 لدينا طاولة مربعة الشكل.',
+                    scenario_rhombus: '💎 لدينا قطعة زجاج على شكل معين.',
+                    scenario_parallelogram: '🪧 لدينا لوحة إعلانات على شكل متوازي أضلاع.',
+                    step_angle_sum: 'مجموع زوايا أي رباعي = 360°',
+                    step_rectangle_angle: 'في المستطيل: جميع الزوايا قائمة (90°). استنتج الزاوية الرابعة:',
+                    step_rectangle_sides: 'في المستطيل: كل ضلعين متقابلين متقايسان. أكمل الأضلاع:',
+                    step_square_sides: 'في المربع: جميع الأضلاع الأربعة متقايسة. أكمل:',
+                    step_square_angles: 'في المربع: جميع الزوايا قائمة (90°).',
+                    step_rhombus_sides: 'في المعين: جميع الأضلاع الأربعة متقايسة. أكمل:',
+                    step_rhombus_opp_angles: 'في المعين: الزاويتان المتقابلتان متقايستان.',
+                    step_rhombus_cons_angles: 'في المعين: الزاويتان المتتاليتان متكاملتان (مجموعهما 180°).',
+                    step_para_sides: 'في متوازي الأضلاع: كل ضلعين متقابلين متقايسان.',
+                    step_para_opp_angles: 'في متوازي الأضلاع: الزاويتان المتقابلتان متقايستان.',
+                    step_para_cons_angles: 'في متوازي الأضلاع: الزاويتان المتتاليتان متكاملتان.',
+                    step_identify: '🧩 استنتاج: هذا الرباعي هو',
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Quadrilatères – Règles générales 2',
+                    exercise_subtitle: 'Déduire le type de quadrilatère à partir de problèmes pratiques – pas à pas',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez les champs pas à pas puis déduisez le nom du quadrilatère',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers uniquement',
+                    invalid_type_name: '❌ Nom du quadrilatère inconnu. Essayez : rectangle, carré, losange, parallélogramme',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux !',
+                    wrong_details: 'Réponses correctes : {details}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    click_new_to_start: '👆 Cliquez sur "Nouvelle question"',
+                    operator_plus: '+',
+                    operator_minus: '–',
+                    operator_equals: '=',
+                    type_rectangle: 'rectangle',
+                    type_square: 'carré',
+                    type_rhombus: 'losange',
+                    type_parallelogram: 'parallélogramme',
+                    scenario_rectangle: '🚪 Nous avons une porte de maison rectangulaire.',
+                    scenario_square: '🟫 Nous avons une table carrée.',
+                    scenario_rhombus: '💎 Nous avons un morceau de verre en forme de losange.',
+                    scenario_parallelogram: '🪧 Nous avons un panneau d\'affichage en forme de parallélogramme.',
+                    step_angle_sum: 'Somme des angles d\'un quadrilatère = 360°',
+                    step_rectangle_angle: 'Dans un rectangle : tous les angles sont droits (90°). Déduisez le 4e angle :',
+                    step_rectangle_sides: 'Dans un rectangle : côtés opposés égaux. Complétez :',
+                    step_square_sides: 'Dans un carré : les 4 côtés sont égaux. Complétez :',
+                    step_square_angles: 'Dans un carré : tous les angles sont droits (90°).',
+                    step_rhombus_sides: 'Dans un losange : les 4 côtés sont égaux. Complétez :',
+                    step_rhombus_opp_angles: 'Dans un losange : les angles opposés sont égaux.',
+                    step_rhombus_cons_angles: 'Dans un losange : les angles consécutifs sont supplémentaires (180°).',
+                    step_para_sides: 'Dans un parallélogramme : côtés opposés égaux.',
+                    step_para_opp_angles: 'Dans un parallélogramme : angles opposés égaux.',
+                    step_para_cons_angles: 'Dans un parallélogramme : angles consécutifs supplémentaires.',
+                    step_identify: '🧩 Conclusion : ce quadrilatère est un',
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Quadrilaterals – General Rules 2',
+                    exercise_subtitle: 'Deduce the quadrilateral type from practical problems – step by step',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill in the blanks step by step then deduce the quadrilateral name',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    fill_all: '⚠️ Please fill all fields',
+                    invalid_numbers: '❌ Integers only',
+                    invalid_type_name: '❌ Unknown quadrilateral name. Try: rectangle, square, rhombus, parallelogram',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong!',
+                    wrong_details: 'Correct answers: {details}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    click_new_to_start: '👆 Click "New Question"',
+                    operator_plus: '+',
+                    operator_minus: '–',
+                    operator_equals: '=',
+                    type_rectangle: 'rectangle',
+                    type_square: 'square',
+                    type_rhombus: 'rhombus',
+                    type_parallelogram: 'parallelogram',
+                    scenario_rectangle: '🚪 We have a rectangular house door.',
+                    scenario_square: '🟫 We have a square table.',
+                    scenario_rhombus: '💎 We have a piece of glass shaped like a rhombus.',
+                    scenario_parallelogram: '🪧 We have a billboard shaped like a parallelogram.',
+                    step_angle_sum: 'Sum of angles in any quadrilateral = 360°',
+                    step_rectangle_angle: 'In a rectangle: all angles are right (90°). Find the 4th angle:',
+                    step_rectangle_sides: 'In a rectangle: opposite sides are equal. Complete:',
+                    step_square_sides: 'In a square: all 4 sides are equal. Complete:',
+                    step_square_angles: 'In a square: all angles are right (90°).',
+                    step_rhombus_sides: 'In a rhombus: all 4 sides are equal. Complete:',
+                    step_rhombus_opp_angles: 'In a rhombus: opposite angles are equal.',
+                    step_rhombus_cons_angles: 'In a rhombus: consecutive angles are supplementary (180°).',
+                    step_para_sides: 'In a parallelogram: opposite sides are equal.',
+                    step_para_opp_angles: 'In a parallelogram: opposite angles are equal.',
+                    step_para_cons_angles: 'In a parallelogram: consecutive angles are supplementary.',
+                    step_identify: '🧩 Conclusion: this quadrilateral is a',
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`,
+                    'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t(
+                    'sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_quad2_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_quad2_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            // ════════ الصوت ════════
+            let soundEnabled = true;
+            let audioCtx = null;
+
+            function getAudioContext() {
+                if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_quad2_sound');
+                soundEnabled = saved !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_quad2_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            // ════════ الوضع الداكن ════════
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_quad2_theme', theme); } catch (e) {}
+            }
+
+            function toggleTheme() {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                const saved = localStorage.getItem('exercise_quad2_theme');
+                if (saved === 'dark' || saved === 'light') applyTheme(saved);
+                else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                else applyTheme('light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            // ══════════════ قبول أسماء الرباعيات بكل اللغات ══════════════
+            function getAllAcceptedTypeNames(typeKey) {
+                const map = {
+                    rectangle: ['مستطيل', 'rectangle', 'rectangle'],
+                    square: ['مربع', 'carré', 'carre', 'square'],
+                    rhombus: ['معين', 'losange', 'rhombus'],
+                    parallelogram: ['متوازي أضلاع', 'متوازي الاضلاع', 'متوازي', 'parallélogramme',
+                        'parallelogramme', 'parallelogram'
+                    ]
+                };
+                return map[typeKey] || [];
+            }
+
+            // ══════════════ أنواع الأسئلة وتوليدها ══════════════
+            const types = ['rectangle_scenario', 'square_scenario', 'rhombus_scenario', 'parallelogram_scenario'];
+
+            function generateRectangleScenario() {
+                let width = Math.floor(Math.random() * 8) + 4; // 4-11
+                let height = Math.floor(Math.random() * 10) + 8; // 8-17
+                while (height === width) height = Math.floor(Math.random() * 10) + 8;
+                return {
+                    type: 'rectangle_scenario',
+                    quadType: 'rectangle',
+                    AB: width,
+                    BC: height,
+                    vertices: [
+                        { x: 100, y: 300 },
+                        { x: 190, y: 300 },
+                        { x: 190, y: 110 },
+                        { x: 100, y: 110 }
+                    ]
+                };
+            }
+
+            function generateSquareScenario() {
+                let side = Math.floor(Math.random() * 9) + 5; // 5-13
+                return {
+                    type: 'square_scenario',
+                    quadType: 'square',
+                    side: side,
+                    vertices: [
+                        { x: 90, y: 290 },
+                        { x: 210, y: 290 },
+                        { x: 210, y: 140 },
+                        { x: 90, y: 140 }
+                    ]
+                };
+            }
+
+            function generateRhombusScenario() {
+                let side = Math.floor(Math.random() * 7) + 5; // 5-11
+                let angleA = Math.floor(Math.random() * 31) + 50; // 50°-80°
+                let angleB = 180 - angleA;
+                return {
+                    type: 'rhombus_scenario',
+                    quadType: 'rhombus',
+                    side: side,
+                    angleA: angleA,
+                    angleB: angleB,
+                    vertices: [
+                        { x: 250, y: 310 },
+                        { x: 350, y: 210 },
+                        { x: 250, y: 80 },
+                        { x: 150, y: 210 }
+                    ]
+                };
+            }
+
+            function generateParallelogramScenario() {
+                let AB = Math.floor(Math.random() * 8) + 5;
+                let BC = Math.floor(Math.random() * 8) + 5;
+                let angleA = Math.floor(Math.random() * 31) + 50;
+                let angleB = 180 - angleA;
+                return {
+                    type: 'parallelogram_scenario',
+                    quadType: 'parallelogram',
+                    AB: AB,
+                    BC: BC,
+                    angleA: angleA,
+                    angleB: angleB,
+                    vertices: [
+                        { x: 80, y: 280 },
+                        { x: 220, y: 280 },
+                        { x: 300, y: 120 },
+                        { x: 160, y: 120 }
+                    ]
+                };
+            }
+
+            function generateQuestion() {
+                let type = types[Math.floor(Math.random() * types.length)];
+                switch (type) {
+                    case 'rectangle_scenario':
+                        return generateRectangleScenario();
+                    case 'square_scenario':
+                        return generateSquareScenario();
+                    case 'rhombus_scenario':
+                        return generateRhombusScenario();
+                    case 'parallelogram_scenario':
+                        return generateParallelogramScenario();
+                }
+            }
+
+            // ══════════════ الرسم ══════════════
+            function drawFigure() {
+                canvas.width = 600;
+                canvas.height = 380;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const q = currentQuestion;
+                if (!q) return;
+
+                const v = q.vertices;
+                const style = getComputedStyle(document.documentElement);
+                const lineColor = style.getPropertyValue('--accent').trim() || '#2c6e9e';
+                const textColor = style.getPropertyValue('--text').trim() || '#0b2b3b';
+
+                // Draw quadrilateral
+                ctx.strokeStyle = lineColor;
+                ctx.lineWidth = 3.5;
+                ctx.beginPath();
+                ctx.moveTo(v[0].x, v[0].y);
+                for (let i = 1; i < 4; i++) ctx.lineTo(v[i].x, v[i].y);
+                ctx.closePath();
+                ctx.stroke();
+
+                // Vertex labels
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 18px "Segoe UI", "Arial"';
+                const labels = ['A', 'B', 'C', 'D'];
+                const offsets = [
+                    { x: -18, y: 16 },
+                    { x: 8, y: 16 },
+                    { x: 8, y: -10 },
+                    { x: -18, y: -10 }
+                ];
+                for (let i = 0; i < 4; i++) {
+                    ctx.fillText(labels[i], v[i].x + offsets[i].x, v[i].y + offsets[i].y);
+                    ctx.beginPath();
+                    ctx.arc(v[i].x, v[i].y, 3.5, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+
+                // Draw given values on edges / inside
+                ctx.font = 'bold 16px "Segoe UI", "Arial"';
+                ctx.fillStyle = '#1e4b6e';
+
+                if (q.type === 'rectangle_scenario') {
+                    // Width AB on bottom
+                    ctx.fillText(q.AB.toString(), (v[0].x + v[1].x) / 2 - 8, v[0].y + 22);
+                    // Height BC on right
+                    ctx.fillText(q.BC.toString(), v[1].x + 12, (v[1].y + v[2].y) / 2);
+                    // Right angle markers
+                    drawRightAngle(v[0], v[1], v[3]);
+                    drawRightAngle(v[1], v[2], v[0]);
+                    drawRightAngle(v[2], v[3], v[1]);
+                    // Mark ? for D angle
+                    ctx.fillText('?°', v[3].x - 28, v[3].y - 8);
+                    // Mark ? for CD and DA
+                    ctx.fillText('?', (v[2].x + v[3].x) / 2, v[2].y - 12);
+                    ctx.fillText('?', v[3].x - 28, (v[3].y + v[0].y) / 2 + 5);
+                } else if (q.type === 'square_scenario') {
+                    ctx.fillText(q.side.toString(), (v[0].x + v[1].x) / 2 - 8, v[0].y + 22);
+                    ctx.fillText('?', v[1].x + 12, (v[1].y + v[2].y) / 2);
+                    ctx.fillText('?', (v[2].x + v[3].x) / 2, v[2].y - 12);
+                    ctx.fillText('?', v[3].x - 24, (v[3].y + v[0].y) / 2);
+                    drawRightAngle(v[0], v[1], v[3]);
+                    drawRightAngle(v[1], v[2], v[0]);
+                } else if (q.type === 'rhombus_scenario') {
+                    ctx.fillText(q.side.toString(), (v[0].x + v[1].x) / 2, v[0].y + 22);
+                    ctx.fillText('?', (v[1].x + v[2].x) / 2 + 10, (v[1].y + v[2].y) / 2);
+                    ctx.fillText('?', (v[2].x + v[3].x) / 2 - 5, v[2].y - 14);
+                    ctx.fillText('?', (v[3].x + v[0].x) / 2 - 22, (v[3].y + v[0].y) / 2);
+                    ctx.fillText(q.angleA + '°', v[0].x - 28, v[0].y + 18);
+                    ctx.fillText('?°', v[2].x + 10, v[2].y - 14);
+                    ctx.fillText('?°', v[1].x + 14, v[1].y - 6);
+                } else if (q.type === 'parallelogram_scenario') {
+                    ctx.fillText(q.AB.toString(), (v[0].x + v[1].x) / 2, v[0].y + 22);
+                    ctx.fillText(q.BC.toString(), (v[1].x + v[2].x) / 2 + 12, (v[1].y + v[2].y) / 2);
+                    ctx.fillText('?', (v[2].x + v[3].x) / 2, v[2].y - 14);
+                    ctx.fillText('?', (v[3].x + v[0].x) / 2 - 22, (v[3].y + v[0].y) / 2);
+                    ctx.fillText(q.angleA + '°', v[0].x - 28, v[0].y + 18);
+                    ctx.fillText('?°', v[2].x + 10, v[2].y - 14);
+                    ctx.fillText('?°', v[1].x + 14, v[1].y - 6);
+                }
+            }
+
+            function drawRightAngle(pCorner, p1, p2) {
+                const size = 12;
+                const dx1 = p1.x - pCorner.x;
+                const dy1 = p1.y - pCorner.y;
+                const len1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+                const ux1 = dx1 / len1;
+                const uy1 = dy1 / len1;
+                const dx2 = p2.x - pCorner.x;
+                const dy2 = p2.y - pCorner.y;
+                const len2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+                const ux2 = dx2 / len2;
+                const uy2 = dy2 / len2;
+                const sx = pCorner.x + ux1 * size;
+                const sy = pCorner.y + uy1 * size;
+                const ex = pCorner.x + ux2 * size;
+                const ey = pCorner.y + uy2 * size;
+                const mx = sx + (ex - sx) + (pCorner.x - sx);
+                const my = sy + (ey - sy) + (pCorner.y - sy);
+                ctx.strokeStyle = '#1e4b6e';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(sx, sy);
+                ctx.lineTo(mx, my);
+                ctx.lineTo(ex, ey);
+                ctx.stroke();
+            }
+
+            // ════════ بناء واجهة السؤال ════════
+            function buildQuestionHTML() {
+                const q = currentQuestion;
+                const opPlus = t('operator_plus');
+                const opMinus = t('operator_minus');
+                const opEq = t('operator_equals');
+                let html = '';
+
+                // Scenario banner
+                let scenarioKey = 'scenario_' + q.quadType;
+                html += `<div class="scenario-banner">${t(scenarioKey)}</div>`;
+
+                if (q.type === 'rectangle_scenario') {
+                    let sum3 = 90 + 90 + 90;
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">📐 ${t('step_rectangle_angle')}</div>
+                        <div style="font-size:0.95rem;color:var(--text2);margin-bottom:4px;">${t('step_angle_sum')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span class="num-display">360</span><span class="operator">${opMinus}</span>
+                            <span class="num-display">${sum3}</span><span class="operator">${opEq}</span>
+                            <input type="text" id="inpAngleD" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span class="percent-sign">°</span>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_rectangle_sides')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>CD = AB =</span>
+                            <input type="text" id="inpCD" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span>, &nbsp; DA = BC =</span>
+                            <input type="text" id="inpDA" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                } else if (q.type === 'square_scenario') {
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_square_sides')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>BC = CD = DA = AB =</span>
+                            <input type="text" id="inpAllSides" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📐 ${t('step_square_angles')}</div>
+                        <div style="font-weight:bold;margin-bottom:4px;">A = B = C = D = ?°</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>كل زاوية =</span>
+                            <input type="text" id="inpAngle" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span class="percent-sign">°</span>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                } else if (q.type === 'rhombus_scenario') {
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_rhombus_sides')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>BC = CD = DA = AB =</span>
+                            <input type="text" id="inpAllSides" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📐 ${t('step_rhombus_opp_angles')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>C = A =</span>
+                            <input type="text" id="inpAngleC" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span class="percent-sign">°</span>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📐 ${t('step_rhombus_cons_angles')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span class="num-display">180</span><span class="operator">${opMinus}</span>
+                            <span class="num-display">${q.angleA}</span><span class="operator">${opEq}</span>
+                            <input type="text" id="inpAngleB" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span class="percent-sign">°</span>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                } else if (q.type === 'parallelogram_scenario') {
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_para_sides')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>CD = AB =</span>
+                            <input type="text" id="inpCD" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span>, &nbsp; DA = BC =</span>
+                            <input type="text" id="inpDA" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📐 ${t('step_para_opp_angles')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>C = A =</span>
+                            <input type="text" id="inpAngleC" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span class="percent-sign">°</span>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📐 ${t('step_para_cons_angles')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span class="num-display">180</span><span class="operator">${opMinus}</span>
+                            <span class="num-display">${q.angleA}</span><span class="operator">${opEq}</span>
+                            <input type="text" id="inpAngleB" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span class="percent-sign">°</span>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                }
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                const q = currentQuestion;
+                if (q.type === 'rectangle_scenario') {
+                    inputRefs.angleD = document.getElementById('inpAngleD');
+                    inputRefs.cd = document.getElementById('inpCD');
+                    inputRefs.da = document.getElementById('inpDA');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                } else if (q.type === 'square_scenario') {
+                    inputRefs.allSides = document.getElementById('inpAllSides');
+                    inputRefs.angle = document.getElementById('inpAngle');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                } else if (q.type === 'rhombus_scenario') {
+                    inputRefs.allSides = document.getElementById('inpAllSides');
+                    inputRefs.angleC = document.getElementById('inpAngleC');
+                    inputRefs.angleB = document.getElementById('inpAngleB');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                } else if (q.type === 'parallelogram_scenario') {
+                    inputRefs.cd = document.getElementById('inpCD');
+                    inputRefs.da = document.getElementById('inpDA');
+                    inputRefs.angleC = document.getElementById('inpAngleC');
+                    inputRefs.angleB = document.getElementById('inpAngleB');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                }
+            }
+
+            function clearInputs() {
+                for (let k in inputRefs) {
+                    if (inputRefs[k]) inputRefs[k].value = '';
+                }
+            }
+
+            function renderAll() {
+                drawFigure();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => focusFirstInput(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let k in inputRefs) {
+                    if (inputRefs[k]) inputRefs[k].disabled = disabled;
+                }
+            }
+
+            function focusFirstInput() {
+                const q = currentQuestion;
+                if (q.type === 'rectangle_scenario' && inputRefs.angleD) inputRefs.angleD.focus();
+                else if (q.type === 'square_scenario' && inputRefs.allSides) inputRefs.allSides.focus();
+                else if (q.type === 'rhombus_scenario' && inputRefs.allSides) inputRefs.allSides.focus();
+                else if (q.type === 'parallelogram_scenario' && inputRefs.cd) inputRefs.cd.focus();
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function normalizeTypeName(str) {
+                return str.trim().toLowerCase()
+                    .replace(/[éèêë]/g, 'e')
+                    .replace(/[àâä]/g, 'a')
+                    .replace(/[ùûü]/g, 'u')
+                    .replace(/[îï]/g, 'i')
+                    .replace(/[ôö]/g, 'o')
+                    .replace(/\s+/g, ' ')
+                    .replace(/[أإآ]/g, 'ا')
+                    .replace(/ة/g, 'ه')
+                    .replace(/[ىي]/g, 'ي');
+            }
+
+            function checkTypeName(userInput, quadType) {
+                const accepted = getAllAcceptedTypeNames(quadType);
+                const normalized = normalizeTypeName(userInput);
+                return accepted.some(a => normalizeTypeName(a) === normalized);
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const q = currentQuestion;
+                let allFilled = true;
+                let userValues = {};
+                let correctAnswers = {};
+                let allCorrect = true;
+
+                try {
+                    if (q.type === 'rectangle_scenario') {
+                        let vAngleD = inputRefs.angleD.value.trim();
+                        let vCD = inputRefs.cd.value.trim();
+                        let vDA = inputRefs.da.value.trim();
+                        let vType = inputRefs.typeName.value.trim();
+                        if (!vAngleD || !vCD || !vDA || !vType) allFilled = false;
+                        userValues.angleD = Number(vAngleD);
+                        userValues.cd = Number(vCD);
+                        userValues.da = Number(vDA);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.angleD) || !Number.isInteger(userValues.cd) || !Number
+                            .isInteger(userValues.da)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.angleD = 90;
+                        correctAnswers.cd = q.AB;
+                        correctAnswers.da = q.BC;
+                        if (userValues.angleD !== correctAnswers.angleD) allCorrect = false;
+                        if (userValues.cd !== correctAnswers.cd) allCorrect = false;
+                        if (userValues.da !== correctAnswers.da) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'rectangle')) {
+                            allCorrect = false;
+                            if (userValues.angleD === correctAnswers.angleD && userValues.cd === correctAnswers.cd &&
+                                userValues.da === correctAnswers.da) {
+                                messageEl.innerHTML = t('invalid_type_name');
+                                messageEl.style.color = 'var(--accent3)';
+                                return;
+                            }
+                        }
+                        if (!allCorrect) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `زاوية D = ${correctAnswers.angleD}°، CD = ${correctAnswers.cd}، DA = ${correctAnswers.da}، النوع = ${t('type_rectangle')}`
+                            });
+                        }
+                    } else if (q.type === 'square_scenario') {
+                        let vSides = inputRefs.allSides.value.trim();
+                        let vAngle = inputRefs.angle.value.trim();
+                        let vType = inputRefs.typeName.value.trim();
+                        if (!vSides || !vAngle || !vType) allFilled = false;
+                        userValues.allSides = Number(vSides);
+                        userValues.angle = Number(vAngle);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.allSides) || !Number.isInteger(userValues.angle)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.allSides = q.side;
+                        correctAnswers.angle = 90;
+                        if (userValues.allSides !== correctAnswers.allSides) allCorrect = false;
+                        if (userValues.angle !== correctAnswers.angle) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'square')) {
+                            allCorrect = false;
+                            if (userValues.allSides === correctAnswers.allSides && userValues.angle === correctAnswers
+                                .angle) {
+                                messageEl.innerHTML = t('invalid_type_name');
+                                messageEl.style.color = 'var(--accent3)';
+                                return;
+                            }
+                        }
+                        if (!allCorrect) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `الأضلاع = ${correctAnswers.allSides}، الزوايا = ${correctAnswers.angle}°، النوع = ${t('type_square')}`
+                            });
+                        }
+                    } else if (q.type === 'rhombus_scenario') {
+                        let vSides = inputRefs.allSides.value.trim();
+                        let vAngleC = inputRefs.angleC.value.trim();
+                        let vAngleB = inputRefs.angleB.value.trim();
+                        let vType = inputRefs.typeName.value.trim();
+                        if (!vSides || !vAngleC || !vAngleB || !vType) allFilled = false;
+                        userValues.allSides = Number(vSides);
+                        userValues.angleC = Number(vAngleC);
+                        userValues.angleB = Number(vAngleB);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.allSides) || !Number.isInteger(userValues.angleC) || !Number
+                            .isInteger(userValues.angleB)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.allSides = q.side;
+                        correctAnswers.angleC = q.angleA;
+                        correctAnswers.angleB = q.angleB;
+                        if (userValues.allSides !== correctAnswers.allSides) allCorrect = false;
+                        if (userValues.angleC !== correctAnswers.angleC) allCorrect = false;
+                        if (userValues.angleB !== correctAnswers.angleB) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'rhombus')) {
+                            allCorrect = false;
+                            if (userValues.allSides === correctAnswers.allSides && userValues.angleC === correctAnswers
+                                .angleC && userValues.angleB === correctAnswers.angleB) {
+                                messageEl.innerHTML = t('invalid_type_name');
+                                messageEl.style.color = 'var(--accent3)';
+                                return;
+                            }
+                        }
+                        if (!allCorrect) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `الأضلاع = ${correctAnswers.allSides}، C = ${correctAnswers.angleC}°، B = ${correctAnswers.angleB}°، النوع = ${t('type_rhombus')}`
+                            });
+                        }
+                    } else if (q.type === 'parallelogram_scenario') {
+                        let vCD = inputRefs.cd.value.trim();
+                        let vDA = inputRefs.da.value.trim();
+                        let vAngleC = inputRefs.angleC.value.trim();
+                        let vAngleB = inputRefs.angleB.value.trim();
+                        let vType = inputRefs.typeName.value.trim();
+                        if (!vCD || !vDA || !vAngleC || !vAngleB || !vType) allFilled = false;
+                        userValues.cd = Number(vCD);
+                        userValues.da = Number(vDA);
+                        userValues.angleC = Number(vAngleC);
+                        userValues.angleB = Number(vAngleB);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.cd) || !Number.isInteger(userValues.da) || !Number.isInteger(
+                                userValues.angleC) || !Number.isInteger(userValues.angleB)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.cd = q.AB;
+                        correctAnswers.da = q.BC;
+                        correctAnswers.angleC = q.angleA;
+                        correctAnswers.angleB = q.angleB;
+                        if (userValues.cd !== correctAnswers.cd) allCorrect = false;
+                        if (userValues.da !== correctAnswers.da) allCorrect = false;
+                        if (userValues.angleC !== correctAnswers.angleC) allCorrect = false;
+                        if (userValues.angleB !== correctAnswers.angleB) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'parallelogram')) {
+                            allCorrect = false;
+                            if (userValues.cd === correctAnswers.cd && userValues.da === correctAnswers.da && userValues
+                                .angleC === correctAnswers.angleC && userValues.angleB === correctAnswers.angleB) {
+                                messageEl.innerHTML = t('invalid_type_name');
+                                messageEl.style.color = 'var(--accent3)';
+                                return;
+                            }
+                        }
+                        if (!allCorrect) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `CD = ${correctAnswers.cd}، DA = ${correctAnswers.da}، C = ${correctAnswers.angleC}°، B = ${correctAnswers.angleB}°، النوع = ${t('type_parallelogram')}`
+                            });
+                        }
+                    }
+                } catch (e) {
+                    messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                if (!allFilled) {
+                    messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                attempts++;
+                if (allCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => focusFirstInput(), 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => {
+                    if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = '';
+                }, 1500);
+                setTimeout(() => focusFirstInput(), 40);
+            }
+
+            function generateNewQuestion() {
+                currentQuestion = generateQuestion();
+                renderAll();
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault();
+                    handleCheck();
+                }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage();
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => focusFirstInput(), 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

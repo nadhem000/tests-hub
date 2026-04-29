@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tests Hub - Devoir de Synthèse N°3 - Sciences Physiques</title>
+
+    <meta name="theme-color" content="#3B82F6">
+    <meta name="description" content="Devoir de Synthèse N°3 pour 1ère AS - Sciences Physiques">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Synthèse">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --primary-light: #60A5FA;
+            --accent: #EC4899;
+            --accent-light: #F472B6;
+            --bg-light-start: #F0F4FF;
+            --bg-light-end: #DBEAFE;
+            --section-bg: #FFFFFF;
+            --text-primary: #1E293B;
+            --text-secondary: #334155;
+            --border-light: #BFDBFE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F0F4FF 0%, #DBEAFE 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1E293B;
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #3B82F6, #60A5FA, #EC4899);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0F172A, #3B82F6, #EC4899);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1E293B;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F0F4FF;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1E293B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #334155;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #3B82F6, #60A5FA);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0F172A, #3B82F6);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1E293B;
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #3B82F6;
+            border-bottom: 2px solid #EC4899;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease, border-color 0.3s;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #F472B6;
+            border-bottom-color: #EC4899;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #60A5FA;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #EC4899;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F0F4FF;
+            padding: 1rem;
+            border-left: 4px solid #EC4899;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0F172A;
+            border-left-color: #EC4899;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        th,
+        td {
+            border: 1px solid #BFDBFE;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        th {
+            background: #3B82F6;
+            color: white;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-dark-theme th {
+            background: #0F172A;
+        }
+
+        tr:nth-child(even) {
+            background: #F8FAFC;
+        }
+
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #334155;
+        }
+
+        .Tests-Hub-dark-theme td {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-answer-textarea,
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-input,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #475569;
+            background-color: #1E293B;
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #3B82F6;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #F472B6;
+        }
+
+        .Tests-Hub-canvas-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #F8FAFC;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-canvas-container {
+            background: #334155;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #BFDBFE;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme canvas {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #64748B;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #94A3B8;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #3B82F6, #60A5FA);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #3B82F6, #3B82F6);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #F0F4FF;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #EC4899;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0F172A;
+            border-left-color: #EC4899;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #3B82F6;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #F472B6;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(59, 130, 246, 0.04);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #EC4899;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(236, 72, 153, 0.08);
+        }
+
+        .Tests-Hub-math-formula {
+            background: #F8FAFC;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-math-formula {
+            background: #1E293B;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.06), rgba(236, 72, 153, 0.08));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.4), rgba(236, 72, 153, 0.15));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #3B82F6, #60A5FA);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #60A5FA, #EC4899);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #EC4899, #F472B6);
+            color: #1E293B;
+        }
+
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #3B82F6, #60A5FA, #EC4899);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0F172A, #3B82F6, #EC4899);
+        }
+
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-column h3 {
+            color: #F472B6;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #F472B6;
+        }
+
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F472B6;
+        }
+
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+
+        .Tests-Hub-footer-link {
+            color: #F472B6;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .Tests-Hub-download-button {
+                width: 80%;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="Tests-Hub-header-container">
+    <div class="Tests-Hub-header-content">
+        <div class="Tests-Hub-header-left">
+            <img src="assets/icons/icon-96x96.png" alt="Logo" class="Tests-Hub-header-icon">
+            <div>
+                <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.test.title">Sciences Physiques - Devoir de Synthèse N°3</h1>
+                <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.test.subtitle">1ère Année Secondaire (2023-2024)</div>
+            </div>
+        </div>
+        <div class="Tests-Hub-header-controls">
+            <a href="index.html" class="Tests-Hub-back-button"><span>←</span><span data-i18n="TestsHub.test.back">Retour aux Tests</span></a>
+            <div class="Tests-Hub-language-selector">
+                <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.lang.current">Français</span><span>▼</span></button>
+                <div class="Tests-Hub-language-dropdown">
+                    <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                    <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                </div>
+            </div>
+            <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">Mode Sombre</span></button>
+        </div>
+    </div>
+</header>
+
+<main class="Tests-Hub-main-container">
+    <div class="Tests-Hub-test-header">
+        <h1>Devoir de Synthèse N°3 de Sciences Physiques</h1>
+        <p>D. R. - el Kef - 2023/2024</p>
+        <p>Classe : 1ère AS - Professeur : Mr Kalaï Abdelhamid</p>
+        <p>Durée : 1 heure</p>
+    </div>
+
+    <div class="Tests-Hub-test-section Tests-Hub-instructions">
+        <h3>Instructions générales</h3>
+        <ul>
+            <li>Le sujet comporte deux parties : Chimie (8 points) et Physique (12 points).</li>
+            <li>La qualité de la rédaction et la clarté des raisonnements seront prises en compte.</li>
+            <li>Toute réponse doit être justifiée.</li>
+        </ul>
+    </div>
+
+    <!-- ================= CHIMIE ================= -->
+    <div class="Tests-Hub-test-section">
+        <h2>Chimie (8 points)</h2>
+
+        <h3>Exercice N°1 (3 points)</h3>
+        <p>Parmi les types de groupes électrogènes est celui à gaz, qui est un appareil permettant de produire de l'électricité à partir de la combustion de gaz propane dont \(C_xH_{2x+2}\) est la forme de sa formule.</p>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)</span> Préciser si le propane est un hydrocarbure ou non.
+            <br><input type="text" id="chimie1_1" class="Tests-Hub-answer-textarea" style="width:300px;" placeholder="Réponse...">
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)</span> Montrer que la formule chimique du propane est \(C_3H_8\) sachant que \(M = 44\ \mathrm{g·mol}^{-1}\).
+            <br><textarea class="Tests-Hub-large-textarea" id="chimie1_2" placeholder="Démonstration..."></textarea>
+            Données : \(M(H) = 1\ \mathrm{g·mol}^{-1}\) ; \(M(C) = 12\ \mathrm{g·mol}^{-1}\).
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">3)</span> Écrire l'équation équilibrée de la combustion complète du propane dans le dioxygène.
+            <br><textarea class="Tests-Hub-large-textarea" id="chimie1_3" placeholder="Équation..."></textarea>
+        </div>
+
+        <h3>Exercice N°2 (5 points)</h3>
+        <p>On fait réagir \(10,8\ \mathrm{g}\) d'aluminium (Al) avec \(9,6\ \mathrm{L}\) de dioxygène \((O_2)\) pour former de l'oxyde d'aluminium \((Al_2O_3)\).</p>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)</span> Équilibrer l'équation de la réaction.
+            <br><input type="text" id="eq_Al" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="a"> Al +
+            <input type="text" id="eq_O2" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="b"> O<sub>2</sub> →
+            <input type="text" id="eq_Al2O3" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="c"> Al<sub>2</sub>O<sub>3</sub>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)</span> Calculer le nombre de moles de chaque réactif.
+            <br>\(n_{Al} =\) <input type="text" id="n_Al" class="Tests-Hub-answer-textarea" style="width:80px;"> mol
+            <br>\(n_{O_2} =\) <input type="text" id="n_O2" class="Tests-Hub-answer-textarea" style="width:80px;"> mol
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">3)</span> Montrer que le mélange n'est pas pris dans les proportions stœchiométriques.
+            <br><textarea class="Tests-Hub-large-textarea" id="chimie2_3" placeholder="Justification..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">4)</span> Déterminer le réactif limitant.
+            <br><input type="text" id="react_limit" class="Tests-Hub-answer-textarea" style="width:200px;" placeholder="Réactif limitant">
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">5)</span> Calculer le nombre de moles du produit formé et en déduire sa masse.
+            <br>\(n_{Al_2O_3} =\) <input type="text" id="n_prod" class="Tests-Hub-answer-textarea" style="width:80px;"> mol
+            <br>\(m_{Al_2O_3} =\) <input type="text" id="m_prod" class="Tests-Hub-answer-textarea" style="width:80px;"> g
+        </div>
+        <p>Données : \(M(Al) = 27\ \mathrm{g·mol}^{-1}\) ; \(M(O) = 16\ \mathrm{g·mol}^{-1}\) ; \(V_m = 24\ \mathrm{L·mol}^{-1}\).</p>
+    </div>
+
+    <!-- ================= PHYSIQUE ================= -->
+    <div class="Tests-Hub-test-section">
+        <h2>Physique (12 points)</h2>
+        <p>On prendra \(g = 10\ \mathrm{N·kg}^{-1}\).</p>
+
+        <h3>Exercice N°1 (6 points)</h3>
+        <p>Une brique parallélépipédique de dimensions \(L = 0,30\ \mathrm{m}\) ; \(l = 0,15\ \mathrm{m}\) ; \(h = 0,20\ \mathrm{m}\) est posée sur sa grande face \(S\ (L \times h)\). La pression subie par le sol est \(p = 875\ \mathrm{Pa}\).</p>
+       <div class="Tests-Hub-canvas-container" id="brickSoloContainer">
+    <canvas id="brickCanvasSolo" width="400" height="200" style="width:100%; max-width:400px;"></canvas>
+    <p class="Tests-Hub-image-caption">Schéma de la brique sur sa grande face (sans charge)</p>
+</div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)</span> Déterminer la surface pressée \(S\).
+            <br>\(S =\) <input type="text" id="S_pressee" class="Tests-Hub-answer-textarea" style="width:100px;"> m²
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)</span> Rappeler la relation entre la pression \(p\), la force pressante \(F\) et la surface \(S\).
+            <br><textarea class="Tests-Hub-large-textarea" id="relation_pFS" placeholder="Formule..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">3)</span> Déduire la valeur de la force pressante \(F\).
+            <br>\(F =\) <input type="text" id="F_pressee" class="Tests-Hub-answer-textarea" style="width:100px;"> N
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">4)</span> Déterminer la masse \(M\) de la brique (\(g = 10\ \mathrm{N·kg}^{-1}\)).
+            <br>\(M =\) <input type="text" id="M_brique" class="Tests-Hub-answer-textarea" style="width:100px;"> kg
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">5)</span> Calculer la pression \(p'\) lorsque la brique est posée sur sa plus petite surface \(S'\ (l \times L)\). Conclure.
+            <br>\(p' =\) <input type="text" id="p_prime" class="Tests-Hub-answer-textarea" style="width:100px;"> Pa
+            <br><textarea class="Tests-Hub-large-textarea" id="conclusion_p" placeholder="Conclusion..."></textarea>
+        </div>
+<div class="Tests-Hub-canvas-container" id="brickWithMassContainer" style="margin-top:1.5rem;">
+    <canvas id="brickCanvasWithMass" width="400" height="250" style="width:100%; max-width:400px;"></canvas>
+    <p class="Tests-Hub-image-caption">Schéma de la brique avec le corps C' ajouté</p>
+</div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">6)</span> On repose la brique sur sa grande face \(S\) et on ajoute un corps \(C'\) de masse \(M'\). La pression devient \(p'' = 1250\ \mathrm{Pa}\).
+            <br><strong>a)</strong> Calculer la nouvelle force pressante \(F'\).
+            <br>\(F' =\) <input type="text" id="F_prime" class="Tests-Hub-answer-textarea" style="width:100px;"> N
+            <br><strong>b)</strong> Calculer la masse \(M'\) du corps \(C\) (deux chiffres après la virgule).
+            <br>\(M' =\) <input type="text" id="M_prime" class="Tests-Hub-answer-textarea" style="width:100px;"> kg
+        </div>
+
+        <h3>Exercice N°2 (6 points)</h3>
+        <p>Un corps \(C\) de masse \(M\) est suspendu à un ressort de raideur \(K = 50\ \mathrm{N·m}^{-1}\) et de longueur à vide \(l_0 = 0,20\ \mathrm{m}\). À l'équilibre, la longueur du ressort est \(L = 0,25\ \mathrm{m}\).</p>
+        <div class="Tests-Hub-canvas-container">
+            <canvas id="springCanvas2" width="300" height="350" style="width:100%; max-width:300px;"></canvas>
+            <p class="Tests-Hub-image-caption">Figure : ressort et masse</p>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)</span> Classer les forces appliquées au corps (contact ou distance).
+            <br><textarea class="Tests-Hub-large-textarea" id="forces_class" placeholder="Classification..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)</span> Déterminer l'allongement \(\Delta l\) du ressort.
+            <br>\(\Delta l =\) <input type="text" id="delta_l" class="Tests-Hub-answer-textarea" style="width:80px;"> m
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">3)</span> Donner l'expression de la force \(T\) en fonction de \(K\) et \(\Delta l\).
+            <br><textarea class="Tests-Hub-large-textarea" id="T_expr" placeholder="Expression..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">4)a)</span> Écrire la relation entre \(P\) et \(T\) pour l'équilibre.
+            <br><textarea class="Tests-Hub-large-textarea" id="equilibre_relation" placeholder="Relation..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">4)b)</span> Montrer que la masse \(M\) du corps est \(0,25\ \mathrm{kg}\) (\(g = 10\ \mathrm{N·kg}^{-1}\)).
+            <br><textarea class="Tests-Hub-large-textarea" id="montrer_M" placeholder="Démonstration..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">5)</span> Dans un autre lieu, l'allongement devient \(\Delta l' = 0,049\ \mathrm{m}\).
+            <br><strong>a)</strong> Déterminer \(T'\) et \(P'\).
+            <br>\(T' =\) <input type="text" id="T_prime" class="Tests-Hub-answer-textarea" style="width:80px;"> N
+            <br>\(P' =\) <input type="text" id="P_prime" class="Tests-Hub-answer-textarea" style="width:80px;"> N
+            <br><strong>b)</strong> Donner la valeur de la masse en ce lieu et justifier.
+            <br><textarea class="Tests-Hub-large-textarea" id="masse_lieu" placeholder="Valeur et justification..."></textarea>
+            <br><strong>c)</strong> Calculer la nouvelle valeur de la grandeur physique responsable de la variation (intensité de pesanteur).
+            <br>\(g' =\) <input type="text" id="g_prime" class="Tests-Hub-answer-textarea" style="width:80px;"> N·kg⁻¹
+        </div>
+    </div>
+
+    <div class="Tests-Hub-correction-toggle-container">
+        <button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+    </div>
+
+    <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+        <h2>Correction détaillée – Sciences Physiques</h2>
+
+        <!-- CHIMIE – EXERCICE 1 -->
+        <h3>Chimie – Exercice 1 (3 points)</h3>
+        <div class="Tests-Hub-correction-answer">
+            <p><strong>1) Le propane est-il un hydrocarbure ?</strong><br>
+            Un <em>hydrocarbure</em> est une molécule constituée exclusivement d’atomes de carbone (C) et d’hydrogène (H).<br>
+            La formule générale donnée pour le propane est \(C_xH_{2x+2}\) ; elle ne contient que du carbone et de l’hydrogène, donc <strong>oui, le propane est un hydrocarbure</strong>.</p>
+
+            <p><strong>2) Détermination de la formule chimique \(C_3H_8\)</strong><br>
+            On exprime la masse molaire du propane en fonction de \(x\) :<br>
+            \(M = x \cdot M(C) + (2x+2) \cdot M(H)\)<br>
+            \(M = x \times 12 + (2x+2) \times 1 = 12x + 2x + 2 = 14x + 2\)<br>
+            On sait que \(M = 44\ \mathrm{g·mol}^{-1}\). On résout donc l’équation :<br>
+            \(14x + 2 = 44 \Rightarrow 14x = 42 \Rightarrow x = \dfrac{42}{14} = 3\).<br>
+            En remplaçant \(x\) par 3 dans la formule générale, on obtient \(C_3H_{2\times3+2} = C_3H_8\).<br>
+            <strong>La formule du propane est donc \(C_3H_8\).</strong></p>
+
+            <p><strong>3) Équation de combustion complète</strong><br>
+            La combustion complète d’un hydrocarbure dans le dioxygène produit du dioxyde de carbone et de l’eau.<br>
+            Équation non équilibrée : \(C_3H_8 + O_2 \rightarrow CO_2 + H_2O\).<br>
+            On équilibre en respectant la conservation des atomes :<br>
+            - 3 atomes de carbone à gauche → on place 3 devant \(CO_2\) : \(C_3H_8 + O_2 \rightarrow 3\,CO_2 + H_2O\)<br>
+            - 8 atomes d’hydrogène à gauche → on place 4 devant \(H_2O\) : \(C_3H_8 + O_2 \rightarrow 3\,CO_2 + 4\,H_2O\)<br>
+            - Total d’atomes d’oxygène à droite : \(3\times2 + 4\times1 = 10\), donc il faut \(5\,O_2\).<br>
+            <strong>Équation équilibrée :</strong> \(C_3H_8 + 5\,O_2 \rightarrow 3\,CO_2 + 4\,H_2O\).</p>
+        </div>
+
+        <!-- CHIMIE – EXERCICE 2 -->
+        <h3>Chimie – Exercice 2 (5 points)</h3>
+        <div class="Tests-Hub-correction-answer">
+            <p><strong>1) Équation équilibrée de la réaction</strong><br>
+            Réactifs : \(Al\) et \(O_2\) ; produit : \(Al_2O_3\).<br>
+            On écrit \(Al + O_2 \rightarrow Al_2O_3\).<br>
+            On équilibre les atomes d’aluminium : il en faut 2 dans le produit, donc on met 2 devant \(Al\) :<br>
+            \(2\,Al + O_2 \rightarrow Al_2O_3\).<br>
+            Les atomes d’oxygène : 3 dans le produit, 2 dans le réactif \(O_2\). Le plus petit commun multiple de 2 et 3 est 6.<br>
+            On met 3 devant \(O_2\) pour avoir 6 O à gauche, et 2 devant \(Al_2O_3\) pour avoir 6 O à droite :<br>
+            \(2\,Al + 3\,O_2 \rightarrow 2\,Al_2O_3\).<br>
+            On réajuste l’aluminium : à droite on a \(2\times2 = 4\) Al, donc on met 4 devant \(Al\) à gauche.<br>
+            <strong>Équation finale :</strong> \(4\,Al + 3\,O_2 \rightarrow 2\,Al_2O_3\).</p>
+
+            <p><strong>2) Quantités de matière des réactifs</strong><br>
+            Pour l’aluminium : \(n_{Al} = \dfrac{m_{Al}}{M(Al)} = \dfrac{10,8}{27} = 0,40\ \mathrm{mol}\).<br>
+            Pour le dioxygène (gaz, volume molaire \(V_m = 24\ \mathrm{L·mol}^{-1}\)) : \(n_{O_2} = \dfrac{V_{O_2}}{V_m} = \dfrac{9,6}{24} = 0,40\ \mathrm{mol}\).<br>
+            Donc \(n_{Al} = 0,40\ \mathrm{mol}\) et \(n_{O_2} = 0,40\ \mathrm{mol}\).</p>
+
+            <p><strong>3) Mélange non stœchiométrique</strong><br>
+            D’après l’équation, 4 moles d’aluminium réagissent avec 3 moles de dioxygène. Le rapport stœchiométrique est donc \(\dfrac{n_{Al}}{n_{O_2}} = \dfrac{4}{3} \approx 1,33\).<br>
+            Dans notre mélange, \(\dfrac{0,40}{0,40} = 1\), qui est différent de \(\dfrac{4}{3}\).<br>
+            Par conséquent, <strong>le mélange n’est pas dans les proportions stœchiométriques</strong>.</p>
+
+            <p><strong>4) Réactif limitant</strong><br>
+            On divise chaque quantité de matière par son coefficient stœchiométrique :<br>
+            - Pour \(Al\) : \(\dfrac{0,40}{4} = 0,10\)<br>
+            - Pour \(O_2\) : \(\dfrac{0,40}{3} \approx 0,133\)<br>
+            La plus petite valeur est 0,10, donc <strong>le réactif limitant est l’aluminium (Al)</strong>.</p>
+
+            <p><strong>5) Quantité de produit formé et masse</strong><br>
+            D’après l’équation, 4 moles d’aluminium produisent 2 moles d’oxyde d’aluminium, soit \(\dfrac{2}{4} = \dfrac{1}{2}\) fois la quantité d’aluminium.<br>
+            Donc \(n_{Al_2O_3} = \dfrac{1}{2} \times n_{Al} = \dfrac{1}{2} \times 0,40 = 0,20\ \mathrm{mol}\).<br>
+            Masse molaire de \(Al_2O_3\) : \(M(Al_2O_3) = 2 \times 27 + 3 \times 16 = 54 + 48 = 102\ \mathrm{g·mol}^{-1}\).<br>
+            Masse obtenue : \(m_{Al_2O_3} = n_{Al_2O_3} \times M(Al_2O_3) = 0,20 \times 102 = 20,4\ \mathrm{g}\).<br>
+            <strong>Il se forme donc 0,20 mol d’oxyde d’aluminium, soit 20,4 g.</strong></p>
+        </div>
+
+        <!-- PHYSIQUE – EXERCICE 1 -->
+        <h3>Physique – Exercice 1 (6 points)</h3>
+        <div class="Tests-Hub-correction-answer">
+            <p><strong>1) Surface pressée \(S\)</strong><br>
+            La brique est posée sur sa grande face de dimensions \(L\) et \(h\), donc<br>
+            \(S = L \times h = 0,30 \times 0,20 = 0,060\ \mathrm{m}^2\).</p>
+
+            <p><strong>2) Relation entre pression, force pressante et surface</strong><br>
+            La pression \(p\) est définie comme la force pressante \(F\) exercée perpendiculairement à une surface \(S\) divisée par cette surface :<br>
+            \(p = \dfrac{F}{S}\).</p>
+
+            <p><strong>3) Force pressante \(F\)</strong><br>
+            On en déduit \(F = p \times S = 875 \times 0,060 = 52,5\ \mathrm{N}\).<br>
+            Cette force est le poids de la brique.</p>
+
+            <p><strong>4) Masse \(M\) de la brique</strong><br>
+            Le poids est lié à la masse par \(P = M\,g\). Ici \(F = P\), donc<br>
+            \(M = \dfrac{F}{g} = \dfrac{52,5}{10} = 5,25\ \mathrm{kg}\).<br>
+            La masse de la brique est <strong>5,25 kg</strong>.</p>
+
+            <p><strong>5) Pression sur la plus petite surface</strong><br>
+            La plus petite surface a pour dimensions \(l\) et \(L\) : \(S' = l \times L = 0,15 \times 0,30 = 0,045\ \mathrm{m}^2\).<br>
+            La force pressante (le poids) ne change pas, donc<br>
+            \(p' = \dfrac{F}{S'} = \dfrac{52,5}{0,045} \approx 1166,7\ \mathrm{Pa}\).<br>
+            <strong>Conclusion :</strong> La pression est plus élevée lorsque la surface de contact est plus petite (1167 Pa au lieu de 875 Pa). Cela illustre que la pression est inversement proportionnelle à la surface pour une force donnée.</p>
+
+            <p><strong>6) Ajout d’un corps sur la brique</strong><br>
+            <strong>a)</strong> Nouvelle pression \(p'' = 1250\ \mathrm{Pa}\) sur la grande face \(S = 0,060\ \mathrm{m}^2\).<br>
+            Nouvelle force pressante \(F' = p'' \times S = 1250 \times 0,060 = 75\ \mathrm{N}\).<br>
+            <strong>b)</strong> Cette force est le poids total de l’ensemble (brique + corps C’) : \(F' = (M + M')\,g\).<br>
+            On isole \(M'\) : \(M' = \dfrac{F'}{g} - M = \dfrac{75}{10} - 5,25 = 7,5 - 5,25 = 2,25\ \mathrm{kg}\).<br>
+            La masse du corps ajouté est donc <strong>2,25 kg</strong>.</p>
+        </div>
+
+        <!-- PHYSIQUE – EXERCICE 2 -->
+        <h3>Physique – Exercice 2 (6 points)</h3>
+        <div class="Tests-Hub-correction-answer">
+            <p><strong>1) Classification des forces</strong><br>
+            - La <strong>tension \(\vec{T}\) du ressort</strong> est une force de <strong>contact</strong>, car le ressort touche le corps.<br>
+            - Le <strong>poids \(\vec{P}\)</strong> est une force à <strong>distance</strong> (attraction gravitationnelle de la Terre).</p>
+
+            <p><strong>2) Allongement \(\Delta l\) du ressort</strong><br>
+            L’allongement est la différence entre la longueur à l’équilibre et la longueur à vide :<br>
+            \(\Delta l = L - l_0 = 0,25 - 0,20 = 0,05\ \mathrm{m}\).</p>
+
+            <p><strong>3) Expression de la tension \(T\)</strong><br>
+            Pour un ressort linéaire (loi de Hooke), la tension est proportionnelle à l’allongement :<br>
+            \(T = K \cdot \Delta l\) où \(K\) est la raideur du ressort (en \(\mathrm{N·m}^{-1}\)).</p>
+
+            <p><strong>4)a) Condition d’équilibre</strong><br>
+            À l’équilibre, la somme vectorielle des forces appliquées au corps est nulle :<br>
+            \(\vec{P} + \vec{T} = \vec{0}\). Les deux forces ont la même direction mais des sens opposés, donc leurs intensités sont égales :<br>
+            <strong>\(P = T\).</strong></p>
+
+            <p><strong>4)b) Détermination de la masse \(M\)</strong><br>
+            Le poids s’écrit \(P = M\,g\), et la tension vaut \(T = K\,\Delta l = 50 \times 0,05 = 2,5\ \mathrm{N}\).<br>
+            Comme \(P = T\), on a \(M\,g = 2,5\) d’où \(M = \dfrac{2,5}{10} = 0,25\ \mathrm{kg}\).<br>
+            <strong>La masse du corps est bien 0,25 kg.</strong></p>
+
+            <p><strong>5) Changement de lieu</strong><br>
+            <strong>a)</strong> Nouvel allongement \(\Delta l' = 0,049\ \mathrm{m}\).<br>
+            Nouvelle tension : \(T' = K \cdot \Delta l' = 50 \times 0,049 = 2,45\ \mathrm{N}\).<br>
+            À l’équilibre, \(P' = T' = 2,45\ \mathrm{N}\).<br>
+            <strong>b)</strong> La masse d’un corps est une grandeur invariante, elle ne dépend pas du lieu. On a donc toujours \(M = 0,25\ \mathrm{kg}\).<br>
+            (Vérification : \(P' = M\,g' \Rightarrow g' = P'/M\) ; on retrouvera \(g'\) ci-dessous.)<br>
+            <strong>c)</strong> Nouvelle intensité de pesanteur :<br>
+            \(g' = \dfrac{P'}{M} = \dfrac{2,45}{0,25} = 9,8\ \mathrm{N·kg}^{-1}\).<br>
+            <strong>L’intensité de la pesanteur dans ce lieu est \(9,8\ \mathrm{N·kg}^{-1}\).</strong></p>
+        </div>
+    </div>
+
+    <div class="Tests-Hub-download-buttons">
+        <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+        <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+        <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+    </div>
+</main>
+
+<footer class="Tests-Hub-footer-container">
+    <div class="Tests-Hub-footer-content">
+        <div class="Tests-Hub-footer-columns">
+            <div class="Tests-Hub-footer-column">
+                <h3 data-i18n="TestsHub.footer.developer">Développeur</h3>
+                <p class="Tests-Hub-developer-name">زياد الماجري</p>
+            </div>
+            <div class="Tests-Hub-footer-column">
+                <h3 data-i18n="TestsHub.footer.version">Version</h3>
+                <p class="Tests-Hub-version-number">v2.0.6</p>
+            </div>
+            <div class="Tests-Hub-footer-column">
+                <h3 data-i18n="TestsHub.footer.links">Liens</h3>
+                <ul class="Tests-Hub-footer-links-list">
+                    <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let currentLanguage = 'fr';
+    let isDarkTheme = false;
+
+    function getCanvasBackgroundColor() {
+        return document.body.classList.contains('Tests-Hub-dark-theme') ? '#0F172A' : '#FFFFFF';
+    }
+    function getCanvasTextColor() {
+        return document.body.classList.contains('Tests-Hub-dark-theme') ? '#F1F5F9' : '#1E293B';
+    }
+
+    // ----- Helper: draw arrow -----
+    function drawArrow(ctx, fromX, fromY, toX, toY, color) {
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headLength = 8;
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headLength * Math.cos(angle - Math.PI/6), toY - headLength * Math.sin(angle - Math.PI/6));
+        ctx.lineTo(toX - headLength * Math.cos(angle + Math.PI/6), toY - headLength * Math.sin(angle + Math.PI/6));
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    // ----- 3D brick drawer (oblique cabinet projection) -----
+    function draw3DBrick(ctx, brickX, brickY, Lpx, hpx, lpx, withMass, massW, massH, massD) {
+        // brick dimensions in pixels: Lpx = 0.30m * 400 -> 120, hpx = 0.20m * 400 -> 80, lpx = 0.15m * 400 -> 60
+        // Oblique offset (cabinet: half depth, 30°)
+        const angle = 30 * Math.PI / 180;
+        const depthScale = 0.5;
+        const dx = lpx * Math.cos(angle) * depthScale;
+        const dy = -lpx * Math.sin(angle) * depthScale;  // upward
+
+        const frontX = brickX, frontY = brickY;
+        const backX = frontX + dx, backY = frontY + dy;
+
+        // Colors
+        const frontColor = '#DBEAFE';
+        const topColor = '#BFDBFE';
+        const sideColor = '#93C5FD';
+        const edgeColor = '#3B82F6';
+
+        // ---- brick front face (L × h) ----
+        ctx.fillStyle = frontColor;
+        ctx.fillRect(frontX, frontY, Lpx, hpx);
+        ctx.strokeStyle = edgeColor;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(frontX, frontY, Lpx, hpx);
+
+        // ---- brick side face (L × l) (right side, visible) ----
+        ctx.fillStyle = sideColor;
+        ctx.beginPath();
+        ctx.moveTo(frontX + Lpx, frontY);
+        ctx.lineTo(frontX + Lpx + dx, frontY + dy);
+        ctx.lineTo(frontX + Lpx + dx, frontY + dy + hpx);
+        ctx.lineTo(frontX + Lpx, frontY + hpx);
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = edgeColor;
+        ctx.stroke();
+
+        // ---- brick top face (h × l) (visible) ----
+        ctx.fillStyle = topColor;
+        ctx.beginPath();
+        ctx.moveTo(frontX, frontY);
+        ctx.lineTo(frontX + dx, frontY + dy);
+        ctx.lineTo(frontX + dx + Lpx, frontY + dy);
+        ctx.lineTo(frontX + Lpx, frontY);
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = edgeColor;
+        ctx.stroke();
+
+        // Dimension labels (given values, not answers)
+        ctx.fillStyle = getCanvasTextColor();
+        ctx.font = '13px "Segoe UI"';
+        // Label L (horizontal on the front face, bottom)
+        ctx.fillText('L = 0,30 m', frontX + Lpx/2 - 35, frontY + hpx + 18);
+        // Label h (vertical on the front face, right side or left)
+        ctx.fillText('h = 0,20 m', frontX + Lpx + 10, frontY + hpx/2 + 5);
+        // Label l (depth) on the top edge or depth line
+        ctx.fillText('l = 0,15 m', frontX + dx/2 + 10, frontY + dy/2 - 8);
+
+        // ---- if with added mass ----
+        if (withMass) {
+            // mass block C' placed on top of brick
+            // brick's top face is the parallelogram with corners at (frontX, frontY), (frontX+dx, frontY+dy), etc.
+            // We'll place a small box on the top face.
+            const massFrontX = frontX + dx + 10;   // on top, slightly inside
+            const massFrontY = frontY + dy - 5;   // shift up a bit to sit on surface
+            const massWpx = massW || 30;
+            const massHpx = massH || 20;
+            const massDpx = massD || 20;
+            const massDx = massDpx * Math.cos(angle) * depthScale;
+            const massDy = -massDpx * Math.sin(angle) * depthScale;
+
+            // mass front face (rectangle)
+            ctx.fillStyle = '#FDE68A';
+            ctx.fillRect(massFrontX, massFrontY, massWpx, massHpx);
+            ctx.strokeStyle = '#D97706';
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(massFrontX, massFrontY, massWpx, massHpx);
+
+            // mass side face (right)
+            ctx.fillStyle = '#FCD34D';
+            ctx.beginPath();
+            ctx.moveTo(massFrontX + massWpx, massFrontY);
+            ctx.lineTo(massFrontX + massWpx + massDx, massFrontY + massDy);
+            ctx.lineTo(massFrontX + massWpx + massDx, massFrontY + massDy + massHpx);
+            ctx.lineTo(massFrontX + massWpx, massFrontY + massHpx);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // mass top face
+            ctx.fillStyle = '#FBBF24';
+            ctx.beginPath();
+            ctx.moveTo(massFrontX, massFrontY);
+            ctx.lineTo(massFrontX + massDx, massFrontY + massDy);
+            ctx.lineTo(massFrontX + massDx + massWpx, massFrontY + massDy);
+            ctx.lineTo(massFrontX + massWpx, massFrontY);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // label body C'
+            ctx.fillStyle = getCanvasTextColor();
+            ctx.font = 'bold 12px "Segoe UI"';
+            ctx.fillText("C'", massFrontX + massWpx/2 - 8, massFrontY + massHpx/2 + 5);
+        }
+    }
+
+    function drawBrickSolo() {
+        const canvas = document.getElementById('brickCanvasSolo');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = getCanvasBackgroundColor();
+        ctx.fillRect(0, 0, w, h);
+
+        // brick dimensions in pixels: 0.30 m = 120px, 0.20 m = 80px, 0.15 m = 60px
+        draw3DBrick(ctx, 100, 60, 120, 80, 60, false);
+    }
+
+    function drawBrickWithMass() {
+        const canvas = document.getElementById('brickCanvasWithMass');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = getCanvasBackgroundColor();
+        ctx.fillRect(0, 0, w, h);
+
+        // same brick position, then draw a small block on top
+        draw3DBrick(ctx, 100, 80, 120, 80, 60, true, 30, 20, 20);
+    }
+
+    // ----- Spring canvas (unchanged) -----
+    function drawSpring2() {
+        const canvas = document.getElementById('springCanvas2');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = getCanvasBackgroundColor();
+        ctx.fillRect(0, 0, w, h);
+
+        const supportY = 40;
+        const springTopX = w/2, springTopY = supportY;
+        const massCenterX = w/2, massCenterY = 230;
+        const springLength = massCenterY - springTopY;
+
+        // Support
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(20, supportY);
+        ctx.lineTo(w-20, supportY);
+        ctx.stroke();
+
+        // Spring zigzag
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(springTopX, springTopY);
+        const coils = 10;
+        const coilWidth = 12;
+        for (let i = 0; i < coils; i++) {
+            const y1 = springTopY + (springLength / coils) * i;
+            const y2 = springTopY + (springLength / coils) * (i+1);
+            if (i % 2 === 0) {
+                ctx.lineTo(springTopX + coilWidth, y1 + (y2-y1)/2);
+                ctx.lineTo(springTopX - coilWidth, y2);
+            } else {
+                ctx.lineTo(springTopX - coilWidth, y1 + (y2-y1)/2);
+                ctx.lineTo(springTopX + coilWidth, y2);
+            }
+        }
+        ctx.stroke();
+
+        // Mass rectangle
+        ctx.fillStyle = '#DBEAFE';
+        ctx.fillRect(massCenterX-20, massCenterY-15, 40, 30);
+        ctx.strokeStyle = '#3B82F6';
+        ctx.strokeRect(massCenterX-20, massCenterY-15, 40, 30);
+
+        // Labels
+        ctx.fillStyle = getCanvasTextColor();
+        ctx.font = 'bold 12px "Segoe UI"';
+        ctx.fillText('l₀ = 0,20 m', 10, supportY+40);
+        ctx.fillText('L = 0,25 m', massCenterX+25, (springTopY+massCenterY)/2);
+    }
+
+    // --------------- translations, theme, main init ---------------
+    const translations = {
+        fr: {
+            TestsHub: {
+                test: { title: "Sciences Physiques - Devoir de Synthèse N°3", subtitle: "1ère Année Secondaire (2023-2024)", back: "Retour aux Tests",
+                    showCorrection: "Afficher la correction", hideCorrection: "Masquer la correction", comingSoon: "Bientôt disponible !" },
+                lang: { current: "Français" },
+                theme: { toggle: "Mode Sombre" },
+                footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité" }
+            }
+        },
+        en: {
+            TestsHub: {
+                test: { title: "Physics & Chemistry - Synthesis Test N°3", subtitle: "1st Year Secondary School (2023-2024)", back: "Back to Tests",
+                    showCorrection: "Show Correction", hideCorrection: "Hide Correction", comingSoon: "Coming soon!" },
+                lang: { current: "English" },
+                theme: { toggle: "Dark Mode" },
+                footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy" }
+            }
+        },
+        ar: {
+            TestsHub: {
+                test: { title: "علوم فيزيائية - اختبار تأليفي عدد 3", subtitle: "السنة الأولى ثانوي (2023-2024)", back: "العودة للاختبارات",
+                    showCorrection: "عرض التصحيح", hideCorrection: "إخفاء التصحيح", comingSoon: "قريبًا!" },
+                lang: { current: "العربية" },
+                theme: { toggle: "الوضع المظلم" },
+                footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية" }
+            }
+        }
+    };
+
+    function updateTextContent() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            let cur = translations[currentLanguage];
+            key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+            if (typeof cur === 'string') el.textContent = cur;
+        });
+        updateThemeToggleText();
+        updateCorrBtnText();
+    }
+
+    function updateThemeToggleText() {
+        const span = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+        const icon = document.getElementById('themeIcon');
+        if (span) span.textContent = isDarkTheme ? (currentLanguage=='fr'?'Mode Clair':(currentLanguage=='ar'?'الوضع الفاتح':'Light Mode')) : translations[currentLanguage].TestsHub.theme.toggle;
+        if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+    }
+
+    function updateCorrBtnText() {
+        const btn = document.getElementById('toggleCorrection');
+        const corr = document.getElementById('correction');
+        if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? translations[currentLanguage].TestsHub.test.showCorrection : translations[currentLanguage].TestsHub.test.hideCorrection;
+    }
+
+    function toggleTheme() {
+        isDarkTheme = !isDarkTheme;
+        document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+        localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        updateThemeToggleText();
+        drawBrickSolo();
+        drawBrickWithMass();
+        drawSpring2();
+    }
+
+    function changeLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLanguage = lang;
+        updateTextContent();
+        document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = translations[lang].TestsHub.lang.current;
+        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+        localStorage.setItem('testsHubLanguage', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('testsHubTheme') === 'dark') {
+            isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme');
+        }
+        const savedLang = localStorage.getItem('testsHubLanguage');
+        if (savedLang && translations[savedLang]) currentLanguage = savedLang;
+        if (currentLanguage === 'ar') { document.documentElement.dir = 'rtl'; document.documentElement.lang = 'ar'; }
+
+        updateTextContent();
+
+        renderMathInElement(document.body, {
+            delimiters: [{left:"$$", right:"$$", display:true},{left:"$", right:"$", display:false},{left:"\\(", right:"\\)", display:false}],
+            ignoredTags: ["script","noscript","style","textarea","pre"]
+        });
+
+        drawBrickSolo();
+        drawBrickWithMass();
+        drawSpring2();
+
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+            opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')));
+        });
+
+        const corrBtn = document.getElementById('toggleCorrection');
+        const corrDiv = document.getElementById('correction');
+        corrBtn.addEventListener('click', () => {
+            corrDiv.classList.toggle('Tests-Hub-hidden');
+            updateCorrBtnText();
+            if (!corrDiv.classList.contains('Tests-Hub-hidden')) {
+                renderMathInElement(corrDiv, { delimiters: [{left:"$$", right:"$$", display:true},{left:"$", right:"$", display:false}] });
+            }
+        });
+
+        ['Pdf','Odt','Png'].forEach(type => {
+            document.getElementById('download'+type).addEventListener('click', ()=>alert(translations[currentLanguage].TestsHub.test.comingSoon));
+        });
+
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    });
+</script>
+</body>
+</html>

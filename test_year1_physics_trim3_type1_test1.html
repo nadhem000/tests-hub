@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tests Hub - Devoir de Contrôle N°3 - Sciences Physiques</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6D28D9">
+    <meta name="description" content="Devoir de Contrôle N°3 pour 1ère AS - Sciences Physiques">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Contrôle">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- KaTeX local -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #6D28D9;
+            --primary-light: #8B5CF6;
+            --accent: #F59E0B;
+            --accent-light: #FBBF24;
+            --bg-light-start: #F5F3FF;
+            --bg-light-end: #EDE9FE;
+            --section-bg: #FFFFFF;
+            --text-primary: #1E1B4B;
+            --text-secondary: #374151;
+            --border-light: #DDD6FE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1E1B4B;
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: #F1F5F9;
+        }
+
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #6D28D9, #8B5CF6, #F59E0B);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0F172A, #6D28D9, #F59E0B);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1E293B;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F5F3FF;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1E293B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #334155;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Main */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #6D28D9, #8B5CF6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0F172A, #6D28D9);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1E293B;
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #6D28D9;
+            border-bottom: 2px solid #F59E0B;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease, border-color 0.3s;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #FBBF24;
+            border-bottom-color: #F59E0B;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #8B5CF6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #F59E0B;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F5F3FF;
+            padding: 1rem;
+            border-left: 4px solid #F59E0B;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0F172A;
+            border-left-color: #F59E0B;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            border: 1px solid #DDD6FE;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        th {
+            background: #6D28D9;
+            color: white;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-dark-theme th {
+            background: #0F172A;
+        }
+
+        tr:nth-child(even) {
+            background: #F8FAFC;
+        }
+
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #334155;
+        }
+
+        .Tests-Hub-dark-theme td {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-answer-textarea,
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-input,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #475569;
+            background-color: #1E293B;
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #6D28D9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #FBBF24;
+        }
+
+        .Tests-Hub-canvas-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #F8FAFC;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-canvas-container {
+            background: #334155;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #DDD6FE;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme canvas {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #64748B;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #94A3B8;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #6D28D9, #8B5CF6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #6D28D9, #6D28D9);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #F5F3FF;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #F59E0B;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0F172A;
+            border-left-color: #F59E0B;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #6D28D9;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #FBBF24;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(109, 40, 217, 0.04);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #F59E0B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(245, 158, 11, 0.08);
+        }
+
+        .Tests-Hub-math-formula {
+            background: #F8FAFC;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-math-formula {
+            background: #1E293B;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(109, 40, 217, 0.06), rgba(245, 158, 11, 0.08));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.4), rgba(245, 158, 11, 0.15));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child { font-size: 2rem; margin-bottom: 8px; }
+        .Tests-Hub-download-button.pdf { background: linear-gradient(135deg, #6D28D9, #8B5CF6); color: white; }
+        .Tests-Hub-download-button.odt { background: linear-gradient(135deg, #8B5CF6, #F59E0B); color: white; }
+        .Tests-Hub-download-button.png { background: linear-gradient(135deg, #F59E0B, #FBBF24); color: #1E293B; }
+        .Tests-Hub-download-button:hover { transform: translateY(-5px); }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #6D28D9, #8B5CF6, #F59E0B);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0F172A, #6D28D9, #F59E0B);
+        }
+
+        .Tests-Hub-footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .Tests-Hub-footer-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .Tests-Hub-footer-column { text-align: center; }
+        .Tests-Hub-footer-column h3 { color: #FBBF24; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 600; }
+        .Tests-Hub-footer-column p { margin-bottom: 0.5rem; opacity: 0.9; }
+        .Tests-Hub-developer-name { font-weight: 600; color: #FBBF24; }
+        .Tests-Hub-version-number { font-weight: 600; color: #FBBF24; }
+        .Tests-Hub-footer-links-list { list-style: none; }
+        .Tests-Hub-footer-link { color: #FBBF24; text-decoration: none; display: inline-block; margin: 0.5rem 0; transition: color 0.3s; }
+        .Tests-Hub-footer-link:hover { color: white; text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content { flex-direction: column; text-align: center; }
+            .Tests-Hub-header-controls { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .Tests-Hub-footer-columns { grid-template-columns: 1fr; }
+            .Tests-Hub-download-buttons { flex-direction: column; align-items: center; }
+            .Tests-Hub-download-button { width: 80%; height: 80px; flex-direction: row; justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<header class="Tests-Hub-header-container">
+    <div class="Tests-Hub-header-content">
+        <div class="Tests-Hub-header-left">
+            <img src="assets/icons/icon-96x96.png" alt="Logo" class="Tests-Hub-header-icon">
+            <div>
+                <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.test.title">Sciences Physiques - Devoir de Contrôle N°3</h1>
+                <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.test.subtitle">1ère Année Secondaire (2024-2025)</div>
+            </div>
+        </div>
+        <div class="Tests-Hub-header-controls">
+            <a href="index.html" class="Tests-Hub-back-button"><span>←</span><span data-i18n="TestsHub.test.back">Retour aux Tests</span></a>
+            <div class="Tests-Hub-language-selector">
+                <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.lang.current">Français</span><span>▼</span></button>
+                <div class="Tests-Hub-language-dropdown">
+                    <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                    <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                </div>
+            </div>
+            <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">Mode Sombre</span></button>
+        </div>
+    </div>
+</header>
+
+<main class="Tests-Hub-main-container">
+    <div class="Tests-Hub-test-header">
+        <h1>Devoir de Contrôle N°3 de Sciences Physiques</h1>
+        <p>Lycée Ibnou-Sina M'saken - 2024/2025</p>
+        <p>Classe : 1ère S - Professeur : Mr Ben Abdeljelil Sami</p>
+        <p>Durée : 1h30</p>
+    </div>
+
+    <div class="Tests-Hub-test-section Tests-Hub-instructions">
+        <h3>Instructions générales</h3>
+        <ul>
+            <li>Le sujet comporte deux parties : Chimie (8 points) et Physique (12 points).</li>
+            <li>La qualité de la rédaction et la clarté des raisonnements seront prises en compte.</li>
+            <li>Toute réponse doit être justifiée.</li>
+        </ul>
+    </div>
+
+    <!-- ================= CHIMIE ================= -->
+    <div class="Tests-Hub-test-section">
+        <h2>Chimie (8 points)</h2>
+
+        <h3>Exercice N°1 (3 points)</h3>
+        <p>Équilibrer les équations chimiques suivantes :</p>
+        <div class="Tests-Hub-question">
+            <strong>a)</strong> H<sub>2</sub>S + O<sub>2</sub> → H<sub>2</sub>O + S<br>
+            <input type="text" id="eq1_H2S" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="a"> H<sub>2</sub>S +
+            <input type="text" id="eq1_O2" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="b"> O<sub>2</sub> →
+            <input type="text" id="eq1_H2O" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="c"> H<sub>2</sub>O +
+            <input type="text" id="eq1_S" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="d"> S
+        </div>
+        <div class="Tests-Hub-question">
+            <strong>b)</strong> N<sub>2</sub> + O<sub>2</sub> → NO<sub>2</sub><br>
+            <input type="text" id="eq2_N2" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="a"> N<sub>2</sub> +
+            <input type="text" id="eq2_O2" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="b"> O<sub>2</sub> →
+            <input type="text" id="eq2_NO2" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="c"> NO<sub>2</sub>
+        </div>
+        <div class="Tests-Hub-question">
+            <strong>c)</strong> CO + Fe<sub>3</sub>O<sub>4</sub> → CO<sub>2</sub> + Fe<br>
+            <input type="text" id="eq3_CO" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="a"> CO +
+            <input type="text" id="eq3_Fe3O4" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="b"> Fe<sub>3</sub>O<sub>4</sub> →
+            <input type="text" id="eq3_CO2" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="c"> CO<sub>2</sub> +
+            <input type="text" id="eq3_Fe" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="d"> Fe
+        </div>
+        <div class="Tests-Hub-question">
+            <strong>d)</strong> CaO + C → CaC<sub>2</sub> + CO<br>
+            <input type="text" id="eq4_CaO" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="a"> CaO +
+            <input type="text" id="eq4_C" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="b"> C →
+            <input type="text" id="eq4_CaC2" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="c"> CaC<sub>2</sub> +
+            <input type="text" id="eq4_CO" class="Tests-Hub-answer-textarea" style="width:40px;" placeholder="d"> CO
+        </div>
+
+        <h3>Exercice N°2 (5 points)</h3>
+        <p>On brûle une masse \(m_1 = 4,8\ \text{g}\) d’un composé A dans un volume \(V_2 = 2,4\ \text{L}\) de dioxygène gazeux \(O_2(g)\), il se forme immédiatement de l’oxyde de magnésium \(MgO\).</p>
+        <p>On donne : \(M(Mg)=24\ \text{g}\cdot\text{mol}^{-1}\) ; \(M(O)=16\ \text{g}\cdot\text{mol}^{-1}\) ; volume molaire \(V_M = 24\ \text{L}\cdot\text{mol}^{-1}\).</p>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)a)</span> Montrer que cette expérience est une réaction chimique.
+            <br><textarea class="Tests-Hub-large-textarea" id="chem2_1a" placeholder="Justification..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)b)</span> Cette réaction chimique est : <input type="text" id="chem2_1b" class="Tests-Hub-answer-textarea" style="width:200px;" placeholder="amorcée / spontanée / rapide / lente">
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)c)</span> Identifier, en justifiant, le composé A.
+            <br><input type="text" id="chem2_1c" class="Tests-Hub-answer-textarea" style="width:200px;" placeholder="Formule et justification">
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)a)</span> Écrire l’équation de la réaction chimique ainsi réalisée.
+            <br><textarea class="Tests-Hub-large-textarea" id="chem2_2a" placeholder="Équation..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)b)</span> Montrer que les deux réactifs sont limitants.
+            <br><textarea class="Tests-Hub-large-textarea" id="chem2_2b" placeholder="Démonstration..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)c)</span> Calculer par <strong>deux méthodes</strong> la masse \(m\) de \(MgO\) formée.
+            <br>Méthode 1 : <input type="text" id="chem2_2c_m1" class="Tests-Hub-answer-textarea" style="width:120px;" placeholder="m (g)">
+            <br>Méthode 2 : <input type="text" id="chem2_2c_m2" class="Tests-Hub-answer-textarea" style="width:120px;" placeholder="m (g)">
+        </div>
+    </div>
+
+    <!-- ================= PHYSIQUE ================= -->
+    <div class="Tests-Hub-test-section">
+        <h2>Physique (12 points)</h2>
+        <p>On prendra \(g = 10\ \text{N}\cdot\text{kg}^{-1}\).</p>
+
+        <h3>Exercice N°1 (6 points)</h3>
+        <p>Une lampe est suspendue au plafond d’une cuisine à l’aide d’un câble (voir figure). La valeur de son poids vaut \(25\ \text{N}\).</p>
+        <div class="Tests-Hub-canvas-container">
+            <canvas id="lampCanvas" width="300" height="300" style="width:100%; max-width:300px;"></canvas>
+            <p class="Tests-Hub-image-caption">Figure : lampe suspendue</p>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)</span> Quelles sont les forces exercées sur la lampe ?
+            <br><textarea class="Tests-Hub-large-textarea" id="phys1_1" placeholder="Forces..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)a)</span> Donner les caractéristiques du poids de la lampe :
+            <br>Direction : <input type="text" id="phys1_2a_dir" class="Tests-Hub-answer-textarea" style="width:200px;">
+            <br>Sens : <input type="text" id="phys1_2a_sens" class="Tests-Hub-answer-textarea" style="width:200px;">
+            <br>Origine : <input type="text" id="phys1_2a_orig" class="Tests-Hub-answer-textarea" style="width:200px;">
+            <br>Valeur : <input type="text" id="phys1_2a_val" class="Tests-Hub-answer-textarea" style="width:80px;"> N
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)b)</span> Écrire la condition d’équilibre de la lampe.
+            <br><textarea class="Tests-Hub-large-textarea" id="phys1_2b" placeholder="Condition..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)c)</span> Représenter à l’échelle \(1\ \text{cm}\) pour \(12,5\ \text{N}\) les forces exercées sur la lampe (sur le schéma ci-dessus ou sur votre copie).</div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">3)</span> Sur la Lune, on trouve un poids \(P = 4\ \text{N}\). Expliquer pourquoi la valeur du poids de la lampe a changé.
+            <br><textarea class="Tests-Hub-large-textarea" id="phys1_3" placeholder="Explication..."></textarea>
+        </div>
+
+        <h3>Exercice N°2 (6 points)</h3>
+        <p>Un corps \(S\) de masse \(m = 0,5\ \text{kg}\) est suspendu par son extrémité libre à un ressort (voir figure). Le ressort de constante de raideur \(k\) s’allonge à l’équilibre d’une longueur \(L = 27,5\ \text{cm}\) et sa longueur à vide est \(L_0 = 25\ \text{cm}\).</p>
+        <div class="Tests-Hub-canvas-container">
+            <canvas id="springCanvas" width="300" height="350" style="width:100%; max-width:300px;"></canvas>
+            <p class="Tests-Hub-image-caption">Figure : ressort et masse</p>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">1)</span> Quelles sont les forces exercées sur \(S\) ?
+            <br><textarea class="Tests-Hub-large-textarea" id="phys2_1" placeholder="Forces..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)a)</span> Calculer l’allongement \(\Delta L\) du ressort à l’équilibre.
+            <br>\(\Delta L =\) <input type="text" id="phys2_2a" class="Tests-Hub-answer-textarea" style="width:80px;"> cm
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)b)</span> En utilisant la condition d’équilibre de \(S\), montrer que \(k = \dfrac{m\,g}{\Delta L}\).
+            <br><textarea class="Tests-Hub-large-textarea" id="phys2_2b" placeholder="Démonstration..."></textarea>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">2)c)</span> Déduire la valeur de \(k\).
+            <br>\(k =\) <input type="text" id="phys2_2c" class="Tests-Hub-answer-textarea" style="width:80px;"> N·m<sup>–1</sup>
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">3)a)</span> On change le ressort par un autre de constante \(k' = 1000\ \text{N}\cdot\text{m}^{-1}\). Déterminer le nouvel allongement \(\Delta L'\).
+            <br>\(\Delta L' =\) <input type="text" id="phys2_3a" class="Tests-Hub-answer-textarea" style="width:80px;"> cm
+        </div>
+        <div class="Tests-Hub-question"><span class="Tests-Hub-question-number">3)b)</span> Déduire la nouvelle longueur \(L'\) du ressort.
+            <br>\(L' =\) <input type="text" id="phys2_3b" class="Tests-Hub-answer-textarea" style="width:80px;"> cm
+        </div>
+    </div>
+
+    <div class="Tests-Hub-correction-toggle-container">
+        <button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+    </div>
+
+    <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+    <h2>Correction détaillée – Sciences Physiques</h2>
+
+    <h3>Chimie – Exercice 1 (Équilibrer des équations chimiques)</h3>
+    <div class="Tests-Hub-correction-answer">
+        <p><strong>a) H<sub>2</sub>S + O<sub>2</sub> → H<sub>2</sub>O + S</strong></p>
+        <ol>
+            <li>On compte les atomes :<br>
+                Réactifs : H = 2, S = 1, O = 2<br>
+                Produits : H = 2, S = 1, O = 1</li>
+            <li>Le soufre et l’hydrogène sont déjà équilibrés. L’oxygène est en excès à gauche (2 contre 1).</li>
+            <li>On multiplie H<sub>2</sub>O par 2 pour obtenir 2 O à droite :<br>
+                H<sub>2</sub>S + O<sub>2</sub> → 2 H<sub>2</sub>O + S<br>
+                Maintenant H à droite vaut 4, donc on doit multiplier H<sub>2</sub>S par 2 : 2 H<sub>2</sub>S + O<sub>2</sub> → 2 H<sub>2</sub>O + S.</li>
+            <li>Pour le soufre : maintenant 2 S à gauche, 1 S à droite → on multiplie S par 2.<br>
+                Équation finale : <strong>2 H<sub>2</sub>S + O<sub>2</sub> → 2 H<sub>2</sub>O + 2 S</strong></li>
+        </ol>
+
+        <p><strong>b) N<sub>2</sub> + O<sub>2</sub> → NO<sub>2</sub></strong></p>
+        <ol>
+            <li>Réactifs : N = 2, O = 2 ; Produit : N = 1, O = 2.</li>
+            <li>On équilibre l’azote en mettant 2 NO<sub>2</sub> : N<sub>2</sub> + O<sub>2</sub> → 2 NO<sub>2</sub>.<br>
+                L’oxygène à droite passe à 2×2 = 4, alors qu’à gauche il est de 2.</li>
+            <li>On multiplie O<sub>2</sub> par 2 : <strong>N<sub>2</sub> + 2 O<sub>2</sub> → 2 NO<sub>2</sub></strong>. Vérification : N = 2↔2 ; O = 2×2 = 4↔4.</li>
+        </ol>
+
+        <p><strong>c) CO + Fe<sub>3</sub>O<sub>4</sub> → CO<sub>2</sub> + Fe</strong></p>
+        <ol>
+            <li>Fer : 3 à gauche, 1 à droite → on multiplie Fe par 3 :<br>
+                CO + Fe<sub>3</sub>O<sub>4</sub> → CO<sub>2</sub> + 3 Fe</li>
+            <li>Oxygène : à gauche : 1 (de CO) + 4 (de Fe<sub>3</sub>O<sub>4</sub>) = 5 ; à droite : 2 (de CO<sub>2</sub>). Déséquilibre.</li>
+            <li>On pose 𝑎 CO et 𝑏 CO<sub>2</sub> avec conservation du carbone : 𝑎 = 𝑏.<br>
+                Bilan oxygène : 𝑎 + 4 = 2𝑏 ⇒ 𝑎 + 4 = 2𝑎 ⇒ 𝑎 = 4.</li>
+            <li>Equation : <strong>4 CO + Fe<sub>3</sub>O<sub>4</sub> → 4 CO<sub>2</sub> + 3 Fe</strong>. Vérification : C = 4↔4 ; O = 4+4 = 8↔8 ; Fe = 3↔3.</li>
+        </ol>
+
+        <p><strong>d) CaO + C → CaC<sub>2</sub> + CO</strong></p>
+        <ol>
+            <li>Calcium : 1↔1 (OK). Oxygène : 1↔1 (OK). Carbone : gauche 1, droite 2 + 1 = 3.</li>
+            <li>On multiplie le carbone à gauche par 3 : <strong>CaO + 3 C → CaC<sub>2</sub> + CO</strong>.<br>
+                Vérification : Ca = 1↔1 ; O = 1↔1 ; C = 3↔3.</li>
+        </ol>
+    </div>
+
+    <h3>Chimie – Exercice 2 (Combustion du magnésium)</h3>
+    <div class="Tests-Hub-correction-answer">
+        <p><strong>1)a) Montrer qu’il s’agit d’une réaction chimique</strong></p>
+        <p>Étape 1 : Le composé A brûle dans le dioxygène, les réactifs disparaissent.<br>
+        Étape 2 : Un nouveau corps apparaît : l’oxyde de magnésium MgO, de nature différente des réactifs.<br>
+        Conclusion : Il y a une transformation chimique car la composition de la matière change.</p>
+
+        <p><strong>1)b) Nature de la réaction</strong></p>
+        <p>La réaction ne débute qu’après chauffage (amorçage). Elle se poursuit ensuite avec un vif éclat, très rapidement. Il s’agit d’une réaction <strong>amorcée et rapide</strong>.</p>
+
+        <p><strong>1)c) Identification du composé A</strong></p>
+        <p>D’après la loi de conservation des éléments (Lavoisier), le produit MgO contient Mg et O. Le dioxygène apporte O, donc le composé A doit contenir Mg. Il s’agit du <strong>magnésium Mg</strong>.</p>
+
+        <p><strong>2)a) Équation de la réaction</strong></p>
+        <p>Réactifs : Mg(s) + O<sub>2</sub>(g)<br>
+        Produit : MgO(s)<br>
+        Équation provisoire : Mg + O<sub>2</sub> → MgO<br>
+        Équilibrage : O : 2 ↔ 1 → on double MgO : Mg + O<sub>2</sub> → 2 MgO ; Mg devient 1 ↔ 2 → on double Mg.<br>
+        <strong>2 Mg + O<sub>2</sub> → 2 MgO</strong></p>
+
+        <p><strong>2)b) Montrer que les deux réactifs sont limitants</strong></p>
+        <p>Quantités de matière initiales :<br>
+        \(n_{\text{Mg}} = \dfrac{m_1}{M(\text{Mg})} = \dfrac{4,8\ \text{g}}{24\ \text{g·mol}^{-1}} = 0,20\ \text{mol}\)<br>
+        \(n_{\text{O}_2} = \dfrac{V_2}{V_M} = \dfrac{2,4\ \text{L}}{24\ \text{L·mol}^{-1}} = 0,10\ \text{mol}\)</p>
+        <p>L’équation donne un rapport stœchiométrique \( \dfrac{n_{\text{Mg}}}{n_{\text{O}_2}} = 2\).<br>
+        Rapport réel : \( \dfrac{0,20}{0,10} = 2\) → proportions exactes. Les deux réactifs disparaîtront totalement, ils sont <strong>tous les deux limitants</strong>.</p>
+
+        <p><strong>2)c) Masse d’oxyde de magnésium formée (deux méthodes)</strong></p>
+        <p>\(M(\text{MgO}) = 24 + 16 = 40\ \text{g·mol}^{-1}\).</p>
+        <p><u>Méthode 1 (quantité de matière) :</u><br>
+        \( n_{\text{MgO}} = n_{\text{Mg}} = 0,20\ \text{mol}\)<br>
+        \( m = 0,20 \times 40 = 8,0\ \text{g}\).</p>
+        <p><u>Méthode 2 (conservation de la masse) :</u><br>
+        Masse de O<sub>2</sub> : \( m_{\text{O}_2} = 0,10 \times 32 = 3,2\ \text{g}\)<br>
+        Masse totale des réactifs = 4,8 + 3,2 = 8,0 g → masse des produits = 8,0 g.<br>
+        <strong>m = 8,0 g</strong>.</p>
+    </div>
+
+    <h3>Physique – Exercice 1 (Lampe suspendue)</h3>
+    <div class="Tests-Hub-correction-answer">
+        <p><strong>1) Forces exercées sur la lampe</strong></p>
+        <ul>
+            <li>\(\vec{P}\) : poids de la lampe, action de la Terre, verticale vers le bas.</li>
+            <li>\(\vec{T}\) : tension du câble, action du câble sur la lampe, verticale vers le haut.</li>
+        </ul>
+
+        <p><strong>2)a) Caractéristiques du poids</strong></p>
+        <ul>
+            <li>Direction : verticale du lieu.</li>
+            <li>Sens : vers le bas.</li>
+            <li>Point d’application : centre de gravité G de la lampe.</li>
+            <li>Valeur : \(P = 25\ \text{N}\).</li>
+        </ul>
+
+        <p><strong>2)b) Condition d’équilibre</strong></p>
+        <p>La lampe est immobile, donc d’après le principe d’inertie : \(\vec{P} + \vec{T} = \vec{0}\).<br>
+        Cela implique que \(\vec{T}\) a la même direction, un sens opposé et la même norme que \(\vec{P}\), donc \(T = P = 25\ \text{N}\).</p>
+
+        <p><strong>2)c) Représentation à l’échelle</strong></p>
+        <p>Échelle : 1 cm ↔ 12,5 N. Les deux forces valent donc 2 cm. La figure ci‑dessous les montre appliquées en G (point orange).</p>
+        <div class="Tests-Hub-canvas-container">
+            <canvas id="corrLampCanvas" width="300" height="300" style="width:100%; max-width:300px;"></canvas>
+            <p class="Tests-Hub-image-caption">Forces sur la lampe à l'équilibre</p>
+        </div>
+
+        <p><strong>3) Poids sur la Lune</strong></p>
+        <p>La masse de la lampe est constante (\(m = \frac{P}{g} = \frac{25}{10} = 2,5\ \text{kg}\)).<br>
+        Le poids \(P = m\,g\) dépend de l’intensité de la pesanteur \(g\). Sur la Lune, \(g \approx 1,6\ \text{N·kg}^{-1}\), environ 6 fois plus faible que sur Terre, d’où un poids de \(2,5 \times 1,6 \approx 4\ \text{N}\).</p>
+    </div>
+
+    <h3>Physique – Exercice 2 (Ressort et masse)</h3>
+    <div class="Tests-Hub-correction-answer">
+        <p><strong>1) Forces sur le solide S</strong></p>
+        <ul>
+            <li>\(\vec{P}\) : poids, vertical vers le bas, \(P = m\,g = 0,5 \times 10 = 5\ \text{N}\).</li>
+            <li>\(\vec{T}\) : tension du ressort, verticale vers le haut.</li>
+        </ul>
+
+        <p><strong>2)a) Allongement du ressort</strong></p>
+        <p>\(\Delta L = L - L_0 = 27,5\ \text{cm} - 25\ \text{cm} = 2,5\ \text{cm} = 2,5 \times 10^{-2}\ \text{m}\).</p>
+
+        <p><strong>2)b) Démonstration de \(k = \dfrac{m\,g}{\Delta L}\)</strong></p>
+        <p>À l’équilibre : \(\vec{P} + \vec{T} = \vec{0}\) → \(T = P\).<br>
+        Loi de Hooke : \(T = k\,\Delta L\).<br>
+        D’où \(k\,\Delta L = m\,g\) → \(k = \dfrac{m\,g}{\Delta L}\).</p>
+
+        <p><strong>2)c) Valeur de \(k\)</strong></p>
+        <p>\(k = \dfrac{0,5 \times 10}{2,5 \times 10^{-2}} = \dfrac{5}{0,025} = 200\ \text{N·m}^{-1}\).</p>
+
+        <p><strong>3)a) Nouvel allongement avec \(k' = 1000\ \text{N·m}^{-1}\)</strong></p>
+        <p>\(\Delta L' = \dfrac{m\,g}{k'} = \dfrac{5}{1000} = 0,005\ \text{m} = 0,5\ \text{cm}\).</p>
+
+        <p><strong>3)b) Nouvelle longueur du ressort</strong></p>
+        <p>\(L' = L_0 + \Delta L' = 25 + 0,5 = 25,5\ \text{cm}\).</p>
+
+        <div class="Tests-Hub-canvas-container">
+            <canvas id="corrSpringCanvas" width="300" height="350" style="width:100%; max-width:300px;"></canvas>
+            <p class="Tests-Hub-image-caption">Forces sur le ressort à l'équilibre</p>
+        </div>
+    </div>
+</div>
+
+    <div class="Tests-Hub-download-buttons">
+        <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+        <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+        <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+    </div>
+</main>
+
+<footer class="Tests-Hub-footer-container">
+    <div class="Tests-Hub-footer-content">
+        <div class="Tests-Hub-footer-columns">
+            <div class="Tests-Hub-footer-column">
+                <h3 data-i18n="TestsHub.footer.developer">Développeur</h3>
+                <p class="Tests-Hub-developer-name">زياد الماجري</p>
+            </div>
+            <div class="Tests-Hub-footer-column">
+                <h3 data-i18n="TestsHub.footer.version">Version</h3>
+                <p class="Tests-Hub-version-number">v2.0.6</p>
+            </div>
+            <div class="Tests-Hub-footer-column">
+                <h3 data-i18n="TestsHub.footer.links">Liens</h3>
+                <ul class="Tests-Hub-footer-links-list">
+                    <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let currentLanguage = 'fr';
+    let isDarkTheme = false;
+
+    function getCanvasBackgroundColor() {
+        return document.body.classList.contains('Tests-Hub-dark-theme') ? '#0F172A' : '#FFFFFF';
+    }
+    function getCanvasTextColor() {
+        return document.body.classList.contains('Tests-Hub-dark-theme') ? '#F1F5F9' : '#1E1B4B';
+    }
+
+    // ----- Helper: draw arrow -----
+    function drawArrow(ctx, fromX, fromY, toX, toY, color) {
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const headLength = 8;
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headLength * Math.cos(angle - Math.PI/6), toY - headLength * Math.sin(angle - Math.PI/6));
+        ctx.lineTo(toX - headLength * Math.cos(angle + Math.PI/6), toY - headLength * Math.sin(angle + Math.PI/6));
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    // ----- Lamp canvas -----
+    function drawLamp(canvasId, showVectors) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = getCanvasBackgroundColor();
+        ctx.fillRect(0, 0, w, h);
+
+        const ceilingY = 50;
+        const cableTopX = w/2, cableTopY = ceilingY;
+        const lampCenterX = w/2, lampCenterY = 190;
+
+        // Plafond
+        ctx.strokeStyle = '#6D28D9';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(30, ceilingY);
+        ctx.lineTo(w-30, ceilingY);
+        ctx.stroke();
+
+        // Câble
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cableTopX, cableTopY);
+        ctx.lineTo(lampCenterX, lampCenterY);
+        ctx.stroke();
+
+        // Lampe (ellipse)
+        ctx.fillStyle = '#8B5CF6';
+        ctx.beginPath();
+        ctx.ellipse(lampCenterX, lampCenterY, 25, 35, 0, 0, 2*Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        // Point G
+        ctx.fillStyle = '#F59E0B';
+        ctx.beginPath();
+        ctx.arc(lampCenterX, lampCenterY, 4, 0, 2*Math.PI);
+        ctx.fill();
+        ctx.fillStyle = getCanvasTextColor();
+        ctx.font = 'bold 12px "Segoe UI"';
+        ctx.fillText('G', lampCenterX+12, lampCenterY-8);
+
+        if (showVectors) {
+            // Poids P vers le bas
+            drawArrow(ctx, lampCenterX, lampCenterY, lampCenterX, lampCenterY+70, '#F59E0B');
+            ctx.fillStyle = '#F59E0B';
+            ctx.fillText('P', lampCenterX+10, lampCenterY+50);
+            // Tension T vers le haut
+            drawArrow(ctx, lampCenterX, lampCenterY, lampCenterX, lampCenterY-70, '#6D28D9');
+            ctx.fillStyle = '#6D28D9';
+            ctx.fillText('T', lampCenterX+10, lampCenterY-40);
+        }
+    }
+
+    // ----- Spring canvas -----
+    function drawSpring(canvasId, showVectors) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = getCanvasBackgroundColor();
+        ctx.fillRect(0, 0, w, h);
+
+        const supportY = 40;
+        const springTopX = w/2, springTopY = supportY;
+        const massCenterX = w/2, massCenterY = 220;
+        const springLength = massCenterY - springTopY;
+
+        // Support
+        ctx.strokeStyle = '#6D28D9';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(20, supportY);
+        ctx.lineTo(w-20, supportY);
+        ctx.stroke();
+
+        // Ressort (zigzag)
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(springTopX, springTopY);
+        const coils = 10;
+        const coilWidth = 12;
+        for (let i = 0; i < coils; i++) {
+            const y1 = springTopY + (springLength / coils) * i;
+            const y2 = springTopY + (springLength / coils) * (i+1);
+            if (i % 2 === 0) {
+                ctx.lineTo(springTopX + coilWidth, y1 + (y2-y1)/2);
+                ctx.lineTo(springTopX - coilWidth, y2);
+            } else {
+                ctx.lineTo(springTopX - coilWidth, y1 + (y2-y1)/2);
+                ctx.lineTo(springTopX + coilWidth, y2);
+            }
+        }
+        ctx.stroke();
+
+        // Masse (rectangle)
+        ctx.fillStyle = '#8B5CF6';
+        ctx.fillRect(massCenterX-20, massCenterY-15, 40, 30);
+        ctx.strokeStyle = '#6D28D9';
+        ctx.strokeRect(massCenterX-20, massCenterY-15, 40, 30);
+
+        // Point G
+        ctx.fillStyle = '#F59E0B';
+        ctx.beginPath();
+        ctx.arc(massCenterX, massCenterY, 3, 0, 2*Math.PI);
+        ctx.fill();
+
+        // Labels
+        ctx.fillStyle = getCanvasTextColor();
+        ctx.font = 'bold 12px "Segoe UI"';
+        ctx.fillText('L₀ = 25 cm', 10, supportY+40);
+        ctx.fillText('L', massCenterX+25, (springTopY+massCenterY)/2);
+
+        if (showVectors) {
+            // Poids P vers le bas
+            drawArrow(ctx, massCenterX, massCenterY, massCenterX, massCenterY+50, '#F59E0B');
+            ctx.fillStyle = '#F59E0B';
+            ctx.fillText('P', massCenterX+15, massCenterY+35);
+            // Tension T vers le haut
+            drawArrow(ctx, massCenterX, massCenterY, massCenterX, massCenterY-50, '#6D28D9');
+            ctx.fillStyle = '#6D28D9';
+            ctx.fillText('T', massCenterX+15, massCenterY-30);
+        }
+    }
+
+    // Translations
+    const translations = {
+        fr: {
+            TestsHub: {
+                test: { title: "Sciences Physiques - Devoir de Contrôle N°3", subtitle: "1ère Année Secondaire (2024-2025)", back: "Retour aux Tests", showCorrection: "Afficher la correction", hideCorrection: "Masquer la correction", comingSoon: "Bientôt disponible !" },
+                lang: { current: "Français" },
+                theme: { toggle: "Mode Sombre" },
+                footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité" }
+            }
+        },
+        en: {
+            TestsHub: {
+                test: { title: "Physics & Chemistry - Control Test N°3", subtitle: "1st Year Secondary School (2024-2025)", back: "Back to Tests", showCorrection: "Show Correction", hideCorrection: "Hide Correction", comingSoon: "Coming soon!" },
+                lang: { current: "English" },
+                theme: { toggle: "Dark Mode" },
+                footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy" }
+            }
+        },
+        ar: {
+            TestsHub: {
+                test: { title: "الفيزياء والكيمياء - اختبار مراقبة عدد 3", subtitle: "السنة الأولى ثانوي (2024-2025)", back: "العودة للاختبارات", showCorrection: "عرض التصحيح", hideCorrection: "إخفاء التصحيح", comingSoon: "قريبًا!" },
+                lang: { current: "العربية" },
+                theme: { toggle: "الوضع المظلم" },
+                footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية" }
+            }
+        }
+    };
+
+    function updateTextContent() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            let cur = translations[currentLanguage];
+            key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+            if (typeof cur === 'string') el.textContent = cur;
+        });
+        updateThemeToggleText();
+        updateCorrBtnText();
+    }
+
+    function updateThemeToggleText() {
+        const span = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+        const icon = document.getElementById('themeIcon');
+        if (span) span.textContent = isDarkTheme ? (currentLanguage==='fr'?'Mode Clair':(currentLanguage==='ar'?'الوضع الفاتح':'Light Mode')) : translations[currentLanguage].TestsHub.theme.toggle;
+        if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+    }
+
+    function updateCorrBtnText() {
+        const btn = document.getElementById('toggleCorrection');
+        const corr = document.getElementById('correction');
+        if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? translations[currentLanguage].TestsHub.test.showCorrection : translations[currentLanguage].TestsHub.test.hideCorrection;
+    }
+
+    function toggleTheme() {
+        isDarkTheme = !isDarkTheme;
+        document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+        localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        updateThemeToggleText();
+        drawLamp('lampCanvas', false);
+        drawSpring('springCanvas', false);
+        drawLamp('corrLampCanvas', true);
+        drawSpring('corrSpringCanvas', true);
+    }
+
+    function changeLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLanguage = lang;
+        updateTextContent();
+        document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = translations[lang].TestsHub.lang.current;
+        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+        localStorage.setItem('testsHubLanguage', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('testsHubTheme') === 'dark') {
+            isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme');
+        }
+        const savedLang = localStorage.getItem('testsHubLanguage');
+        if (savedLang && translations[savedLang]) currentLanguage = savedLang;
+        if (currentLanguage === 'ar') { document.documentElement.dir = 'rtl'; document.documentElement.lang = 'ar'; }
+
+        updateTextContent();
+
+        renderMathInElement(document.body, {
+            delimiters: [{left:"$$", right:"$$", display:true},{left:"$", right:"$", display:false},{left:"\\(", right:"\\)", display:false}],
+            ignoredTags: ["script","noscript","style","textarea","pre"]
+        });
+
+        drawLamp('lampCanvas', false);
+        drawSpring('springCanvas', false);
+
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+            opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')));
+        });
+
+        const corrBtn = document.getElementById('toggleCorrection');
+        const corrDiv = document.getElementById('correction');
+        corrBtn.addEventListener('click', () => {
+            corrDiv.classList.toggle('Tests-Hub-hidden');
+            updateCorrBtnText();
+            if (!corrDiv.classList.contains('Tests-Hub-hidden')) {
+                drawLamp('corrLampCanvas', true);
+                drawSpring('corrSpringCanvas', true);
+                renderMathInElement(corrDiv, { delimiters: [{left:"$$", right:"$$", display:true},{left:"$", right:"$", display:false}] });
+            }
+        });
+
+        ['Pdf','Odt','Png'].forEach(type => {
+            document.getElementById('download'+type).addEventListener('click', ()=>alert(translations[currentLanguage].TestsHub.test.comingSoon));
+        });
+
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    });
+</script>
+</body>
+</html>

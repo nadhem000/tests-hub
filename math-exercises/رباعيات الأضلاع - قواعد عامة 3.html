@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رباعيات الأضلاع – قواعد عامة 3 | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0, 0, 0, 0.35);
+            --canvas-bg: #ffffff;
+            --canvas-shadow: rgba(0, 0, 0, 0.08);
+            --text-color-canvas: #0b3b4f;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-quad: #0891b2;
+            --highlight-quad-light: rgba(8, 145, 178, 0.08);
+            --section-accent-quad: #0891b2;
+            --section-bg-quad: rgba(8, 145, 178, 0.05);
+            --dash-color: #e07b3c;
+            --dash-color2: #b45389;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0, 0, 0, 0.55);
+            --canvas-bg: #1a2332;
+            --canvas-shadow: rgba(0, 0, 0, 0.3);
+            --text-color-canvas: #e2e8f0;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-quad: #22d3ee;
+            --highlight-quad-light: rgba(34, 211, 238, 0.12);
+            --section-accent-quad: #22d3ee;
+            --section-bg-quad: rgba(34, 211, 238, 0.08);
+            --dash-color: #f59e0b;
+            --dash-color2: #e879a0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--highlight-quad);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        canvas {
+            background: var(--canvas-bg);
+            border-radius: 28px;
+            box-shadow: 0 8px 20px var(--canvas-shadow);
+            border: 1px solid var(--border);
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+        }
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 18px 20px;
+            border-radius: 28px;
+            line-height: 2.2;
+            border: 1px solid var(--border);
+        }
+        .scenario-banner {
+            display: inline-block;
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 28px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 14px rgba(8, 145, 178, 0.35);
+            animation: pulse-note 2s infinite;
+        }
+        @keyframes pulse-note {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+            border-right: 4px solid var(--section-accent-quad);
+            background: var(--section-bg-quad);
+        }
+        [data-theme="dark"] .section-card {
+            border-right: 4px solid var(--section-accent-quad);
+            background: var(--section-bg-quad);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+            color: var(--section-accent-quad);
+            background: var(--highlight-quad-light);
+        }
+        .formula-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 6px 0;
+            direction: ltr;
+            font-size: 1.35rem;
+            font-weight: 700;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 8px 18px;
+        }
+        .formula-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 4px;
+        }
+        .formula-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.25rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 4px;
+            width: 4em;
+            min-width: 70px;
+            max-width: 130px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44, 110, 158, 0.2);
+        }
+        .inline-input-wide {
+            width: 7em;
+            min-width: 120px;
+            max-width: 200px;
+        }
+        .percent-sign {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-left: 2px;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 6px;
+            text-align: center;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .start-note {
+            display: inline-block;
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            color: white;
+            font-weight: 700;
+            padding: 10px 32px;
+            border-radius: 50px;
+            animation: pulse-note 2s infinite;
+            box-shadow: 0 4px 15px rgba(8, 145, 178, 0.4);
+        }
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1.05rem;
+                padding: 12px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 3.5em;
+                min-width: 60px;
+            }
+            .inline-input-wide {
+                width: 6em;
+                min-width: 100px;
+            }
+            .formula-line {
+                font-size: 1.1rem;
+                padding: 6px 10px;
+                border-radius: 30px;
+            }
+            .formula-line .operator {
+                font-size: 1.2rem;
+            }
+            .stats {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
+            .section-label {
+                font-size: 0.95rem;
+            }
+            .scenario-banner {
+                font-size: 0.95rem;
+                padding: 8px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>🧩</span> <span data-i18n="exercise_heading">رباعيات الأضلاع – قواعد عامة 3</span> <span>🧩</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">تحليل الأشكال المركبة خطوة بخطوة – استنتاج نوع الرباعي</div>
+
+        <div class="canvas-container">
+            <canvas id="quadCanvas" width="600" height="380" aria-label="رسم الشكل المركب"></canvas>
+        </div>
+
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div style="text-align:center;">
+            <span class="start-note" data-i18n="click_new_to_start">👆 اضغط على "سؤال جديد" للبدء</span>
+        </div>
+        <div class="hint-text" data-i18n="hint">📌 حلل الشكل المركب خطوة بخطوة: تعرّف على الأجزاء، طبق القواعد، ثم استنتج.</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const canvas = document.getElementById('quadCanvas');
+            const ctx = canvas.getContext('2d');
+            const questionContainer = document.getElementById('questionContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let currentQuestion = null;
+            let inputRefs = {};
+            let attempts = 0;
+            let score = 0;
+            let gameActive = true;
+            let isSwitchingRound = false;
+
+            // ══════════════ الترجمات ══════════════
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'رباعيات الأضلاع – قواعد عامة 3',
+                    exercise_subtitle: 'تحليل الأشكال المركبة خطوة بخطوة – استنتاج نوع الرباعي',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 حلل الشكل المركب خطوة بخطوة: تعرّف على الأجزاء، طبق القواعد، ثم استنتج.',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة فقط',
+                    invalid_type_name: '❌ اسم الرباعي غير معروف. جرّب: مستطيل، مربع، معين، متوازي أضلاع',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ!',
+                    wrong_details: 'الإجابات الصحيحة: {details}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء',
+                    operator_plus: '+',
+                    operator_minus: '–',
+                    operator_equals: '=',
+                    type_rectangle: 'مستطيل',
+                    type_square: 'مربع',
+                    scenario_two_squares: '🔲🔲 لدينا شكل مركب من مربعين متجاورين متطابقين.',
+                    scenario_square_on_rect: '🔲⬆️ لدينا شكل مركب من مستطيل يعلوه مربع.',
+                    scenario_four_squares: '🟫🟫 لدينا مربع كبير مكون من 4 مربعات صغيرة متطابقة.',
+                    scenario_two_rectangles: '⬜⬜ لدينا شكل مركب من مستطيلين صغيرين متطابقين متجاورين.',
+                    step_notice_components: '🔍 لاحظ مما يتكون الشكل:',
+                    step_square_side: 'في المربع: جميع الأضلاع الأربعة متقايسة. أكمل طول ضلع المربع:',
+                    step_combined_length: 'طول الشكل الكلي = ضلع المربع الأول + ضلع المربع الثاني:',
+                    step_combined_width: 'عرض الشكل الكلي = ضلع المربع (للمربعين نفس العرض):',
+                    step_identify_shape: '🧩 استنتاج: الشكل الكلي هو',
+                    step_rect_dimensions: 'في المستطيل السفلي: الأضلاع المتقابلة متقايسة. أكمل بعدي المستطيل:',
+                    step_square_top: 'المربع العلوي يشترك مع المستطيل في الضلع العلوي للمستطيل. أكمل ضلع المربع:',
+                    step_identify_square: '🧩 استنتاج: الجزء العلوي من الشكل هو',
+                    step_small_square_side: 'أكمل طول ضلع المربع الصغير الواحد:',
+                    step_large_square_side: 'ضلع المربع الكبير = ضلع صغير + ضلع صغير:',
+                    step_large_square_angles: 'في المربع الكبير: جميع الزوايا قائمة (90°).',
+                    step_identify_large: '🧩 استنتاج: الشكل الكلي هو',
+                    step_small_rect_dims: 'أكمل بعدي المستطيل الصغير الواحد:',
+                    step_large_width: 'عرض المستطيل الكبير = عرض الصغير + عرض الصغير:',
+                    step_large_height: 'طول المستطيل الكبير = طول المستطيل الصغير:',
+                    step_identify_large_rect: '🧩 استنتاج: الشكل الكلي هو',
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Quadrilatères – Règles générales 3',
+                    exercise_subtitle: 'Analyse de figures composées pas à pas – Déduire le type de quadrilatère',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Analysez la figure composée pas à pas : identifiez les parties, appliquez les règles, puis déduisez.',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers uniquement',
+                    invalid_type_name: '❌ Nom du quadrilatère inconnu. Essayez : rectangle, carré, losange, parallélogramme',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux !',
+                    wrong_details: 'Réponses correctes : {details}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    click_new_to_start: '👆 Cliquez sur "Nouvelle question"',
+                    operator_plus: '+',
+                    operator_minus: '–',
+                    operator_equals: '=',
+                    type_rectangle: 'rectangle',
+                    type_square: 'carré',
+                    scenario_two_squares: '🔲🔲 Figure composée de deux carrés identiques juxtaposés.',
+                    scenario_square_on_rect: '🔲⬆️ Figure composée d\'un rectangle surmonté d\'un carré.',
+                    scenario_four_squares: '🟫🟫 Grand carré formé de 4 petits carrés identiques.',
+                    scenario_two_rectangles: '⬜⬜ Figure composée de deux petits rectangles identiques juxtaposés.',
+                    step_notice_components: '🔍 Observez de quoi se compose la figure :',
+                    step_square_side: 'Dans un carré : les 4 côtés sont égaux. Complétez le côté du carré :',
+                    step_combined_length: 'Longueur totale = côté carré 1 + côté carré 2 :',
+                    step_combined_width: 'Largeur totale = côté du carré :',
+                    step_identify_shape: '🧩 Conclusion : la figure totale est un',
+                    step_rect_dimensions: 'Dans le rectangle du bas : côtés opposés égaux. Complétez :',
+                    step_square_top: 'Le carré du haut partage le côté supérieur du rectangle. Complétez :',
+                    step_identify_square: '🧩 Conclusion : la partie supérieure est un',
+                    step_small_square_side: 'Complétez le côté d\'un petit carré :',
+                    step_large_square_side: 'Côté du grand carré = petit côté + petit côté :',
+                    step_large_square_angles: 'Dans le grand carré : tous les angles sont droits (90°).',
+                    step_identify_large: '🧩 Conclusion : la figure totale est un',
+                    step_small_rect_dims: 'Complétez les dimensions du petit rectangle :',
+                    step_large_width: 'Largeur du grand rectangle = largeur petit + largeur petit :',
+                    step_large_height: 'Longueur du grand rectangle = longueur du petit :',
+                    step_identify_large_rect: '🧩 Conclusion : la figure totale est un',
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Quadrilaterals – General Rules 3',
+                    exercise_subtitle: 'Analyze composite shapes step by step – Deduce the quadrilateral type',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Analyze the composite shape step by step: identify parts, apply rules, then conclude.',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    fill_all: '⚠️ Please fill all fields',
+                    invalid_numbers: '❌ Integers only',
+                    invalid_type_name: '❌ Unknown quadrilateral name. Try: rectangle, square, rhombus, parallelogram',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong!',
+                    wrong_details: 'Correct answers: {details}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    click_new_to_start: '👆 Click "New Question"',
+                    operator_plus: '+',
+                    operator_minus: '–',
+                    operator_equals: '=',
+                    type_rectangle: 'rectangle',
+                    type_square: 'square',
+                    scenario_two_squares: '🔲🔲 A shape made of two identical squares placed side by side.',
+                    scenario_square_on_rect: '🔲⬆️ A shape made of a rectangle with a square on top.',
+                    scenario_four_squares: '🟫🟫 A large square made of 4 identical small squares.',
+                    scenario_two_rectangles: '⬜⬜ A shape made of two identical small rectangles placed side by side.',
+                    step_notice_components: '🔍 Notice what the shape is made of:',
+                    step_square_side: 'In a square: all 4 sides are equal. Complete the side length:',
+                    step_combined_length: 'Total length = side of square 1 + side of square 2:',
+                    step_combined_width: 'Total width = side of the square:',
+                    step_identify_shape: '🧩 Conclusion: the total shape is a',
+                    step_rect_dimensions: 'In the bottom rectangle: opposite sides are equal. Complete:',
+                    step_square_top: 'The top square shares the top side of the rectangle. Complete:',
+                    step_identify_square: '🧩 Conclusion: the top part is a',
+                    step_small_square_side: 'Complete the side of one small square:',
+                    step_large_square_side: 'Side of large square = small side + small side:',
+                    step_large_square_angles: 'In the large square: all angles are right (90°).',
+                    step_identify_large: '🧩 Conclusion: the total shape is a',
+                    step_small_rect_dims: 'Complete the dimensions of one small rectangle:',
+                    step_large_width: 'Width of large rectangle = small width + small width:',
+                    step_large_height: 'Length of large rectangle = length of small rectangle:',
+                    step_identify_large_rect: '🧩 Conclusion: the total shape is a',
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`,
+                    'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t(
+                    'sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_quad3_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_quad3_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            // ════════ الصوت ════════
+            let soundEnabled = true;
+            let audioCtx = null;
+
+            function getAudioContext() {
+                if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_quad3_sound');
+                soundEnabled = saved !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_quad3_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            // ════════ الوضع الداكن ════════
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_quad3_theme', theme); } catch (e) {}
+            }
+
+            function toggleTheme() {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                const saved = localStorage.getItem('exercise_quad3_theme');
+                if (saved === 'dark' || saved === 'light') applyTheme(saved);
+                else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                else applyTheme('light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            // ══════════════ قبول أسماء الرباعيات بكل اللغات ══════════════
+            function getAllAcceptedTypeNames(typeKey) {
+                const map = {
+                    rectangle: ['مستطيل', 'rectangle', 'rectangle'],
+                    square: ['مربع', 'carré', 'carre', 'square'],
+                    rhombus: ['معين', 'losange', 'rhombus'],
+                    parallelogram: ['متوازي أضلاع', 'متوازي الاضلاع', 'متوازي', 'parallélogramme',
+                        'parallelogramme', 'parallelogram'
+                    ]
+                };
+                return map[typeKey] || [];
+            }
+
+            function normalizeTypeName(str) {
+                return str.trim().toLowerCase()
+                    .replace(/[éèêë]/g, 'e')
+                    .replace(/[àâä]/g, 'a')
+                    .replace(/[ùûü]/g, 'u')
+                    .replace(/[îï]/g, 'i')
+                    .replace(/[ôö]/g, 'o')
+                    .replace(/\s+/g, ' ')
+                    .replace(/[أإآ]/g, 'ا')
+                    .replace(/ة/g, 'ه')
+                    .replace(/[ىي]/g, 'ي');
+            }
+
+            function checkTypeName(userInput, quadType) {
+                const accepted = getAllAcceptedTypeNames(quadType);
+                const normalized = normalizeTypeName(userInput);
+                return accepted.some(a => normalizeTypeName(a) === normalized);
+            }
+
+            // ══════════════ أنواع الأسئلة وتوليدها ══════════════
+            const types = ['two_squares_rectangle', 'square_on_rectangle', 'four_squares_large',
+            'two_rectangles_large'];
+
+            function generateTwoSquaresRectangle() {
+                let side = Math.floor(Math.random() * 8) + 4; // 4-11
+                return {
+                    type: 'two_squares_rectangle',
+                    targetType: 'rectangle',
+                    side: side,
+                    totalLength: side * 2,
+                    totalWidth: side,
+                    vertices: {
+                        outer: [{ x: 80, y: 300 }, { x: 260, y: 300 }, { x: 260, y: 160 }, { x: 80, y: 160 }],
+                        divider: [{ x: 170, y: 300 }, { x: 170, y: 160 }],
+                        square1: [{ x: 80, y: 300 }, { x: 170, y: 300 }, { x: 170, y: 160 }, { x: 80, y: 160 }],
+                        square2: [{ x: 170, y: 300 }, { x: 260, y: 300 }, { x: 260, y: 160 }, { x: 170, y: 160 }]
+                    }
+                };
+            }
+
+            function generateSquareOnRectangle() {
+                let rectWidth = Math.floor(Math.random() * 7) + 5; // 5-11 (also square side)
+                let rectHeight = Math.floor(Math.random() * 8) + 6; // 6-13
+                while (rectHeight === rectWidth) rectHeight = Math.floor(Math.random() * 8) + 6;
+                return {
+                    type: 'square_on_rectangle',
+                    targetType: 'square',
+                    rectWidth: rectWidth,
+                    rectHeight: rectHeight,
+                    squareSide: rectWidth,
+                    vertices: {
+                        outer: [{ x: 90, y: 340 }, { x: 250, y: 340 }, { x: 250, y: 220 }, { x: 90, y: 220 },
+                            { x: 90, y: 100 }, { x: 250, y: 100 }
+                        ],
+                        rect: [{ x: 90, y: 340 }, { x: 250, y: 340 }, { x: 250, y: 220 }, { x: 90, y: 220 }],
+                        square: [{ x: 90, y: 220 }, { x: 250, y: 220 }, { x: 250, y: 100 }, { x: 90, y: 100 }]
+                    }
+                };
+            }
+
+            function generateFourSquaresLarge() {
+                let smallSide = Math.floor(Math.random() * 6) + 3; // 3-8
+                return {
+                    type: 'four_squares_large',
+                    targetType: 'square',
+                    smallSide: smallSide,
+                    largeSide: smallSide * 2,
+                    vertices: {
+                        outer: [{ x: 100, y: 300 }, { x: 260, y: 300 }, { x: 260, y: 140 }, { x: 100, y: 140 }],
+                        dividerH: [{ x: 100, y: 220 }, { x: 260, y: 220 }],
+                        dividerV: [{ x: 180, y: 300 }, { x: 180, y: 140 }],
+                    }
+                };
+            }
+
+            function generateTwoRectanglesLarge() {
+                let smallWidth = Math.floor(Math.random() * 6) + 4; // 4-9
+                let smallHeight = Math.floor(Math.random() * 7) + 5; // 5-11
+                while (smallHeight === smallWidth) smallHeight = Math.floor(Math.random() * 7) + 5;
+                return {
+                    type: 'two_rectangles_large',
+                    targetType: 'rectangle',
+                    smallWidth: smallWidth,
+                    smallHeight: smallHeight,
+                    largeWidth: smallWidth * 2,
+                    largeHeight: smallHeight,
+                    vertices: {
+                        outer: [{ x: 70, y: 300 }, { x: 290, y: 300 }, { x: 290, y: 160 }, { x: 70, y: 160 }],
+                        divider: [{ x: 180, y: 300 }, { x: 180, y: 160 }],
+                        rect1: [{ x: 70, y: 300 }, { x: 180, y: 300 }, { x: 180, y: 160 }, { x: 70, y: 160 }],
+                        rect2: [{ x: 180, y: 300 }, { x: 290, y: 300 }, { x: 290, y: 160 }, { x: 180, y: 160 }]
+                    }
+                };
+            }
+
+            function generateQuestion() {
+                let type = types[Math.floor(Math.random() * types.length)];
+                switch (type) {
+                    case 'two_squares_rectangle':
+                        return generateTwoSquaresRectangle();
+                    case 'square_on_rectangle':
+                        return generateSquareOnRectangle();
+                    case 'four_squares_large':
+                        return generateFourSquaresLarge();
+                    case 'two_rectangles_large':
+                        return generateTwoRectanglesLarge();
+                }
+            }
+
+            // ══════════════ الرسم ══════════════
+            function drawFigure() {
+                canvas.width = 600;
+                canvas.height = 380;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const q = currentQuestion;
+                if (!q) return;
+
+                const style = getComputedStyle(document.documentElement);
+                const lineColor = style.getPropertyValue('--accent').trim() || '#2c6e9e';
+                const dashColor = style.getPropertyValue('--dash-color').trim() || '#e07b3c';
+                const textColor = style.getPropertyValue('--text').trim() || '#0b2b3b';
+
+                const v = q.vertices;
+
+                // Draw outer shape
+                ctx.strokeStyle = lineColor;
+                ctx.lineWidth = 3.5;
+                ctx.beginPath();
+                if (q.type === 'square_on_rectangle') {
+                    // Outer is a polygon with 6 vertices
+                    const ov = v.outer;
+                    ctx.moveTo(ov[0].x, ov[0].y);
+                    ctx.lineTo(ov[1].x, ov[1].y);
+                    ctx.lineTo(ov[2].x, ov[2].y);
+                    ctx.lineTo(ov[5].x, ov[5].y);
+                    ctx.lineTo(ov[4].x, ov[4].y);
+                    ctx.lineTo(ov[3].x, ov[3].y);
+                    ctx.closePath();
+                } else {
+                    const ov = v.outer;
+                    ctx.moveTo(ov[0].x, ov[0].y);
+                    for (let i = 1; i < ov.length; i++) ctx.lineTo(ov[i].x, ov[i].y);
+                    ctx.closePath();
+                }
+                ctx.stroke();
+
+                // Draw internal dividing lines (dashed)
+                ctx.strokeStyle = dashColor;
+                ctx.lineWidth = 2.5;
+                ctx.setLineDash([10, 7]);
+                if (q.type === 'two_squares_rectangle' || q.type === 'two_rectangles_large') {
+                    const d = v.divider;
+                    ctx.beginPath();
+                    ctx.moveTo(d[0].x, d[0].y);
+                    ctx.lineTo(d[1].x, d[1].y);
+                    ctx.stroke();
+                } else if (q.type === 'four_squares_large') {
+                    const dh = v.dividerH;
+                    const dv = v.dividerV;
+                    ctx.beginPath();
+                    ctx.moveTo(dh[0].x, dh[0].y);
+                    ctx.lineTo(dh[1].x, dh[1].y);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(dv[0].x, dv[0].y);
+                    ctx.lineTo(dv[1].x, dv[1].y);
+                    ctx.stroke();
+                } else if (q.type === 'square_on_rectangle') {
+                    // Dashed line separating square and rectangle
+                    ctx.beginPath();
+                    ctx.moveTo(v.square[0].x, v.square[0].y);
+                    ctx.lineTo(v.square[1].x, v.square[1].y);
+                    ctx.stroke();
+                }
+                ctx.setLineDash([]);
+
+                // Vertex labels
+                ctx.fillStyle = textColor;
+                ctx.font = 'bold 18px "Segoe UI", "Arial"';
+                const ov = (q.type === 'square_on_rectangle') ? [v.outer[0], v.outer[1], v.outer[2], v.outer[5], v
+                    .outer[4], v.outer[3]
+                ] : v.outer;
+                const labels = (q.type === 'square_on_rectangle') ? ['A', 'B', 'C', 'D', 'E', 'F'] : ['A', 'B', 'C',
+                    'D'
+                ];
+
+                for (let i = 0; i < ov.length; i++) {
+                    let offX, offY;
+                    if (q.type === 'square_on_rectangle') {
+                        const offsets6 = [
+                            { x: -20, y: 18 }, { x: 10, y: 18 }, { x: 10, y: 0 }, { x: 10, y: -12 },
+                            { x: -20, y: -12 }, { x: -20, y: 0 }
+                        ];
+                        offX = offsets6[i].x;
+                        offY = offsets6[i].y;
+                    } else {
+                        const offsets4 = [
+                            { x: -20, y: 18 }, { x: 10, y: 18 }, { x: 10, y: -12 }, { x: -20, y: -12 }
+                        ];
+                        offX = offsets4[i].x;
+                        offY = offsets4[i].y;
+                    }
+                    ctx.fillText(labels[i], ov[i].x + offX, ov[i].y + offY);
+                    ctx.beginPath();
+                    ctx.arc(ov[i].x, ov[i].y, 3.5, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+
+                // Draw given values and ? marks
+                ctx.font = 'bold 15px "Segoe UI", "Arial"';
+                ctx.fillStyle = '#1e4b6e';
+
+                if (q.type === 'two_squares_rectangle') {
+                    // Side of one square labeled on bottom edge of square1
+                    ctx.fillText(q.side.toString(), (v.square1[0].x + v.square1[1].x) / 2 - 8, v.square1[0].y + 22);
+                    // ? on total length
+                    ctx.fillText('?', (v.outer[0].x + v.outer[1].x) / 2, v.outer[0].y + 22);
+                    // ? on right side (width)
+                    ctx.fillText('?', v.outer[1].x + 12, (v.outer[1].y + v.outer[2].y) / 2);
+                } else if (q.type === 'square_on_rectangle') {
+                    // Rectangle dimensions
+                    ctx.fillText(q.rectWidth.toString(), (v.rect[0].x + v.rect[1].x) / 2 - 8, v.rect[0].y + 22);
+                    ctx.fillText(q.rectHeight.toString(), v.rect[1].x + 12, (v.rect[1].y + v.rect[2].y) / 2);
+                    // ? on square side
+                    ctx.fillText('?', (v.square[2].x + v.square[3].x) / 2, v.square[2].y + 22);
+                    ctx.fillText('?', v.square[1].x + 12, (v.square[1].y + v.square[2].y) / 2);
+                    // Label square and rectangle
+                    ctx.fillStyle = '#b45389';
+                    ctx.font = 'bold 14px "Segoe UI", "Arial"';
+                    ctx.fillText('مربع', (v.square[0].x + v.square[1].x) / 2 - 18, v.square[0].y - 6);
+                    ctx.fillText('مستطيل', (v.rect[0].x + v.rect[1].x) / 2 - 24, v.rect[2].y + 28);
+                } else if (q.type === 'four_squares_large') {
+                    // Small square side in one cell
+                    ctx.fillText(q.smallSide.toString(), (v.outer[0].x + 180) / 2 - 8, v.outer[0].y + 22);
+                    // ? on large square side
+                    ctx.fillText('?', (v.outer[0].x + v.outer[1].x) / 2, v.outer[0].y - 14);
+                    ctx.fillText('?', v.outer[1].x + 12, (v.outer[1].y + v.outer[2].y) / 2);
+                } else if (q.type === 'two_rectangles_large') {
+                    // Small rectangle dimensions
+                    ctx.fillText(q.smallWidth.toString(), (v.rect1[0].x + v.rect1[1].x) / 2 - 8, v.rect1[0].y + 22);
+                    ctx.fillText(q.smallHeight.toString(), v.rect1[1].x + 12, (v.rect1[1].y + v.rect1[2].y) / 2);
+                    // ? on large rectangle
+                    ctx.fillText('?', (v.outer[0].x + v.outer[1].x) / 2, v.outer[0].y - 14);
+                    ctx.fillText('?', v.outer[1].x + 12, (v.outer[1].y + v.outer[2].y) / 2);
+                }
+
+                // Right angle markers at corners
+                ctx.strokeStyle = '#1e4b6e';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([]);
+                if (q.type === 'square_on_rectangle') {
+                    drawRightAngle(v.outer[0], v.outer[1], v.outer[3]);
+                    drawRightAngle(v.outer[1], v.outer[2], v.outer[0]);
+                    drawRightAngle(v.outer[2], v.outer[5], v.outer[1]);
+                    drawRightAngle(v.outer[5], v.outer[4], v.outer[2]);
+                    drawRightAngle(v.outer[4], v.outer[3], v.outer[5]);
+                    drawRightAngle(v.outer[3], v.outer[0], v.outer[4]);
+                } else {
+                    for (let i = 0; i < v.outer.length; i++) {
+                        const curr = v.outer[i];
+                        const prev = v.outer[(i - 1 + v.outer.length) % v.outer.length];
+                        const next = v.outer[(i + 1) % v.outer.length];
+                        drawRightAngle(curr, prev, next);
+                    }
+                }
+            }
+
+            function drawRightAngle(pCorner, p1, p2) {
+                const size = 12;
+                const dx1 = p1.x - pCorner.x;
+                const dy1 = p1.y - pCorner.y;
+                const len1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+                if (len1 < 0.001) return;
+                const ux1 = dx1 / len1;
+                const uy1 = dy1 / len1;
+                const dx2 = p2.x - pCorner.x;
+                const dy2 = p2.y - pCorner.y;
+                const len2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+                if (len2 < 0.001) return;
+                const ux2 = dx2 / len2;
+                const uy2 = dy2 / len2;
+                const sx = pCorner.x + ux1 * size;
+                const sy = pCorner.y + uy1 * size;
+                const ex = pCorner.x + ux2 * size;
+                const ey = pCorner.y + uy2 * size;
+                const mx = sx + (ex - sx) + (pCorner.x - sx);
+                const my = sy + (ey - sy) + (pCorner.y - sy);
+                ctx.strokeStyle = '#1e4b6e';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([]);
+                ctx.beginPath();
+                ctx.moveTo(sx, sy);
+                ctx.lineTo(mx, my);
+                ctx.lineTo(ex, ey);
+                ctx.stroke();
+            }
+
+            // ════════ بناء واجهة السؤال ════════
+            function buildQuestionHTML() {
+                const q = currentQuestion;
+                const opPlus = t('operator_plus');
+                const opMinus = t('operator_minus');
+                const opEq = t('operator_equals');
+                let html = '';
+
+                let scenarioKey = 'scenario_' + q.type;
+                html += `<div class="scenario-banner">${t(scenarioKey)}</div>`;
+
+                if (q.type === 'two_squares_rectangle') {
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">🔍 ${t('step_notice_components')} مربعان متطابقان متجاوران.</div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_square_side')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>ضلع المربع =</span>
+                            <input type="text" id="inpSquareSide" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_combined_length')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span class="num-display">${q.side}</span><span class="operator">${opPlus}</span>
+                            <span class="num-display">${q.side}</span><span class="operator">${opEq}</span>
+                            <input type="text" id="inpTotalLength" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_combined_width')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>العرض =</span>
+                            <input type="text" id="inpTotalWidth" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify_shape')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                } else if (q.type === 'square_on_rectangle') {
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">🔍 ${t('step_notice_components')} مستطيل في الأسفل + مربع في الأعلى.</div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_rect_dimensions')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>عرض المستطيل =</span>
+                            <input type="text" id="inpRectWidth" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span>, &nbsp; طول المستطيل =</span>
+                            <input type="text" id="inpRectHeight" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_square_top')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>ضلع المربع = عرض المستطيل =</span>
+                            <input type="text" id="inpSquareTopSide" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify_square')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                } else if (q.type === 'four_squares_large') {
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">🔍 ${t('step_notice_components')} 4 مربعات صغيرة متطابقة (2×2).</div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_small_square_side')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>ضلع المربع الصغير =</span>
+                            <input type="text" id="inpSmallSide" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_large_square_side')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span class="num-display">${q.smallSide}</span><span class="operator">${opPlus}</span>
+                            <span class="num-display">${q.smallSide}</span><span class="operator">${opEq}</span>
+                            <input type="text" id="inpLargeSide" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify_large')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                } else if (q.type === 'two_rectangles_large') {
+                    html += `
+                    <div class="section-card">
+                        <div class="section-label">🔍 ${t('step_notice_components')} مستطيلان صغيران متطابقان متجاوران.</div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_small_rect_dims')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>العرض =</span>
+                            <input type="text" id="inpSmallWidth" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span>, &nbsp; الطول =</span>
+                            <input type="text" id="inpSmallHeight" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_large_width')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span class="num-display">${q.smallWidth}</span><span class="operator">${opPlus}</span>
+                            <span class="num-display">${q.smallWidth}</span><span class="operator">${opEq}</span>
+                            <input type="text" id="inpLargeWidth" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">📏 ${t('step_large_height')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>الطول =</span>
+                            <input type="text" id="inpLargeHeight" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">🧩 ${t('step_identify_large_rect')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <input type="text" id="inpTypeName" class="inline-input inline-input-wide" placeholder="?" dir="ltr" autocomplete="off">
+                        </div>
+                    </div>`;
+                }
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                const q = currentQuestion;
+                if (q.type === 'two_squares_rectangle') {
+                    inputRefs.squareSide = document.getElementById('inpSquareSide');
+                    inputRefs.totalLength = document.getElementById('inpTotalLength');
+                    inputRefs.totalWidth = document.getElementById('inpTotalWidth');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                } else if (q.type === 'square_on_rectangle') {
+                    inputRefs.rectWidth = document.getElementById('inpRectWidth');
+                    inputRefs.rectHeight = document.getElementById('inpRectHeight');
+                    inputRefs.squareTopSide = document.getElementById('inpSquareTopSide');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                } else if (q.type === 'four_squares_large') {
+                    inputRefs.smallSide = document.getElementById('inpSmallSide');
+                    inputRefs.largeSide = document.getElementById('inpLargeSide');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                } else if (q.type === 'two_rectangles_large') {
+                    inputRefs.smallWidth = document.getElementById('inpSmallWidth');
+                    inputRefs.smallHeight = document.getElementById('inpSmallHeight');
+                    inputRefs.largeWidth = document.getElementById('inpLargeWidth');
+                    inputRefs.largeHeight = document.getElementById('inpLargeHeight');
+                    inputRefs.typeName = document.getElementById('inpTypeName');
+                }
+            }
+
+            function clearInputs() {
+                for (let k in inputRefs) {
+                    if (inputRefs[k]) inputRefs[k].value = '';
+                }
+            }
+
+            function renderAll() {
+                drawFigure();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => focusFirstInput(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let k in inputRefs) {
+                    if (inputRefs[k]) inputRefs[k].disabled = disabled;
+                }
+            }
+
+            function focusFirstInput() {
+                const q = currentQuestion;
+                if (q.type === 'two_squares_rectangle' && inputRefs.squareSide) inputRefs.squareSide.focus();
+                else if (q.type === 'square_on_rectangle' && inputRefs.rectWidth) inputRefs.rectWidth.focus();
+                else if (q.type === 'four_squares_large' && inputRefs.smallSide) inputRefs.smallSide.focus();
+                else if (q.type === 'two_rectangles_large' && inputRefs.smallWidth) inputRefs.smallWidth.focus();
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const q = currentQuestion;
+                let allFilled = true;
+                let userValues = {};
+                let correctAnswers = {};
+                let allCorrect = true;
+                let typeNameCorrect = true;
+                let typeNameOnlyWrong = false;
+
+                try {
+                    if (q.type === 'two_squares_rectangle') {
+                        let vSide = inputRefs.squareSide?.value.trim();
+                        let vLen = inputRefs.totalLength?.value.trim();
+                        let vWid = inputRefs.totalWidth?.value.trim();
+                        let vType = inputRefs.typeName?.value.trim();
+                        if (!vSide || !vLen || !vWid || !vType) allFilled = false;
+                        userValues.side = Number(vSide);
+                        userValues.len = Number(vLen);
+                        userValues.wid = Number(vWid);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.side) || !Number.isInteger(userValues.len) || !Number.isInteger(
+                                userValues.wid)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.side = q.side;
+                        correctAnswers.len = q.totalLength;
+                        correctAnswers.wid = q.totalWidth;
+                        if (userValues.side !== correctAnswers.side) allCorrect = false;
+                        if (userValues.len !== correctAnswers.len) allCorrect = false;
+                        if (userValues.wid !== correctAnswers.wid) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'rectangle')) {
+                            allCorrect = false;
+                            typeNameCorrect = false;
+                            if (userValues.side === correctAnswers.side && userValues.len === correctAnswers.len &&
+                                userValues.wid === correctAnswers.wid) typeNameOnlyWrong = true;
+                        }
+                        if (!allCorrect && !typeNameOnlyWrong) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `ضلع المربع = ${correctAnswers.side}، الطول الكلي = ${correctAnswers.len}، العرض الكلي = ${correctAnswers.wid}، النوع = ${t('type_rectangle')}`
+                            });
+                        }
+                    } else if (q.type === 'square_on_rectangle') {
+                        let vRw = inputRefs.rectWidth?.value.trim();
+                        let vRh = inputRefs.rectHeight?.value.trim();
+                        let vSq = inputRefs.squareTopSide?.value.trim();
+                        let vType = inputRefs.typeName?.value.trim();
+                        if (!vRw || !vRh || !vSq || !vType) allFilled = false;
+                        userValues.rw = Number(vRw);
+                        userValues.rh = Number(vRh);
+                        userValues.sq = Number(vSq);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.rw) || !Number.isInteger(userValues.rh) || !Number.isInteger(
+                                userValues.sq)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.rw = q.rectWidth;
+                        correctAnswers.rh = q.rectHeight;
+                        correctAnswers.sq = q.squareSide;
+                        if (userValues.rw !== correctAnswers.rw) allCorrect = false;
+                        if (userValues.rh !== correctAnswers.rh) allCorrect = false;
+                        if (userValues.sq !== correctAnswers.sq) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'square')) {
+                            allCorrect = false;
+                            typeNameCorrect = false;
+                            if (userValues.rw === correctAnswers.rw && userValues.rh === correctAnswers.rh && userValues
+                                .sq === correctAnswers.sq) typeNameOnlyWrong = true;
+                        }
+                        if (!allCorrect && !typeNameOnlyWrong) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `عرض المستطيل = ${correctAnswers.rw}، طول المستطيل = ${correctAnswers.rh}، ضلع المربع = ${correctAnswers.sq}، النوع = ${t('type_square')}`
+                            });
+                        }
+                    } else if (q.type === 'four_squares_large') {
+                        let vSm = inputRefs.smallSide?.value.trim();
+                        let vLg = inputRefs.largeSide?.value.trim();
+                        let vType = inputRefs.typeName?.value.trim();
+                        if (!vSm || !vLg || !vType) allFilled = false;
+                        userValues.sm = Number(vSm);
+                        userValues.lg = Number(vLg);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.sm) || !Number.isInteger(userValues.lg)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.sm = q.smallSide;
+                        correctAnswers.lg = q.largeSide;
+                        if (userValues.sm !== correctAnswers.sm) allCorrect = false;
+                        if (userValues.lg !== correctAnswers.lg) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'square')) {
+                            allCorrect = false;
+                            typeNameCorrect = false;
+                            if (userValues.sm === correctAnswers.sm && userValues.lg === correctAnswers.lg)
+                                typeNameOnlyWrong = true;
+                        }
+                        if (!allCorrect && !typeNameOnlyWrong) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `ضلع المربع الصغير = ${correctAnswers.sm}، ضلع المربع الكبير = ${correctAnswers.lg}، النوع = ${t('type_square')}`
+                            });
+                        }
+                    } else if (q.type === 'two_rectangles_large') {
+                        let vSw = inputRefs.smallWidth?.value.trim();
+                        let vSh = inputRefs.smallHeight?.value.trim();
+                        let vLw = inputRefs.largeWidth?.value.trim();
+                        let vLh = inputRefs.largeHeight?.value.trim();
+                        let vType = inputRefs.typeName?.value.trim();
+                        if (!vSw || !vSh || !vLw || !vLh || !vType) allFilled = false;
+                        userValues.sw = Number(vSw);
+                        userValues.sh = Number(vSh);
+                        userValues.lw = Number(vLw);
+                        userValues.lh = Number(vLh);
+                        userValues.typeName = vType;
+                        if (!Number.isInteger(userValues.sw) || !Number.isInteger(userValues.sh) || !Number.isInteger(
+                                userValues.lw) || !Number.isInteger(userValues.lh)) {
+                            messageEl.innerHTML = t('invalid_numbers');
+                            messageEl.style.color = 'var(--accent3)';
+                            return;
+                        }
+                        correctAnswers.sw = q.smallWidth;
+                        correctAnswers.sh = q.smallHeight;
+                        correctAnswers.lw = q.largeWidth;
+                        correctAnswers.lh = q.largeHeight;
+                        if (userValues.sw !== correctAnswers.sw) allCorrect = false;
+                        if (userValues.sh !== correctAnswers.sh) allCorrect = false;
+                        if (userValues.lw !== correctAnswers.lw) allCorrect = false;
+                        if (userValues.lh !== correctAnswers.lh) allCorrect = false;
+                        if (!checkTypeName(userValues.typeName, 'rectangle')) {
+                            allCorrect = false;
+                            typeNameCorrect = false;
+                            if (userValues.sw === correctAnswers.sw && userValues.sh === correctAnswers.sh && userValues
+                                .lw === correctAnswers.lw && userValues.lh === correctAnswers.lh) typeNameOnlyWrong =
+                                true;
+                        }
+                        if (!allCorrect && !typeNameOnlyWrong) {
+                            messageEl.innerHTML = t('wrong') + '<br>' + t('wrong_details', {
+                                details: `عرض الصغير = ${correctAnswers.sw}، طول الصغير = ${correctAnswers.sh}، العرض الكبير = ${correctAnswers.lw}، الطول الكبير = ${correctAnswers.lh}، النوع = ${t('type_rectangle')}`
+                            });
+                        }
+                    }
+                } catch (e) {
+                    messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                if (!allFilled) {
+                    messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                if (typeNameOnlyWrong) {
+                    messageEl.innerHTML = t('invalid_type_name');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                attempts++;
+                if (allCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => focusFirstInput(), 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => {
+                    if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = '';
+                }, 1500);
+                setTimeout(() => focusFirstInput(), 40);
+            }
+
+            function generateNewQuestion() {
+                currentQuestion = generateQuestion();
+                renderAll();
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault();
+                    handleCheck();
+                }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage();
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => focusFirstInput(), 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>
