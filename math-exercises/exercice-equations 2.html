@@ -6,171 +6,594 @@
     <title>Équations avec parenthèses | Tableau d'exercices</title>
     <style>
         :root {
-            --bg: #eef2f7; --bg2: #d9e2ec; --surface: #ffffff; --surface2: #f4f7fb; --surface3: #e8eef6;
-            --text: #0b2b3b; --text2: #3a5a78; --text3: #5a7a98; --border: #cbdde9; --border2: #dce6ef;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04); --shadow: 0 4px 16px rgba(0,0,0,0.06);
-            --shadow-lg: 0 12px 32px rgba(0,0,0,0.10); --shadow-xl: 0 20px 48px rgba(0,0,0,0.13);
-            --accent: #3b82f6; --accent2: #10b981; --accent3: #ef4444;
-            --tag-bg: #e2eaf5; --tag-text: #1e3a4f; --input-bg: #fffef7; --input-border: #90a4c3;
-            --section-header-bg: #e9f0f9; --section-header-text: #1f3a4b;
-            --badge-easy-bg: #e6f4ea; --badge-easy-text: #1a6b3c;
-            --badge-medium-bg: #fef3e0; --badge-medium-text: #8a5c1a;
-            --badge-hard-bg: #fde8e8; --badge-hard-text: #8b1a1a;
-            --toggle-bg: #dce4f0; --scrollbar-thumb: #c1cddb; --scrollbar-track: transparent;
-            --card-accent-opacity: 0.18; --overlay: rgba(0,0,0,0.35);
-            --canvas-bg: #ffffff; --canvas-shadow: rgba(0,0,0,0.08); --text-color-canvas: #0b3b4f;
-            --table-border: #cbdde9; --table-header-bg: #e9f0f9; --table-cell-bg: #f4f7fb;
-            --table-stripe-bg: #eef2f7; --calc-line-bg: #fffef9; --calc-line-border: #bcc9da;
-            --highlight-eq: #3b82f6; --highlight-eq-light: rgba(59,130,246,0.08); --highlight-eq-badge: #2563eb;
-            --section-accent: #3b82f6; --section-bg: rgba(59,130,246,0.04);
-            --eq-box-bg: #f0f7ff; --eq-box-border: #93c5fd;
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+            --accent: #7c3aed;
+            --accent2: #10b981;
+            --accent3: #ef4444;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --badge-easy-bg: #e6f4ea;
+            --badge-easy-text: #1a6b3c;
+            --badge-medium-bg: #fef3e0;
+            --badge-medium-text: #8a5c1a;
+            --badge-hard-bg: #fde8e8;
+            --badge-hard-text: #8b1a1a;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --overlay: rgba(0, 0, 0, 0.35);
+            --canvas-bg: #ffffff;
+            --canvas-shadow: rgba(0, 0, 0, 0.08);
+            --text-color-canvas: #0b3b4f;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-eq: #7c3aed;
+            --highlight-eq-light: rgba(124, 58, 237, 0.08);
+            --highlight-eq-badge: #6d28d9;
+            --section-accent: #7c3aed;
+            --section-bg: rgba(124, 58, 237, 0.04);
+            --eq-box-bg: #f5f0ff;
+            --eq-box-border: #a78bfa;
         }
         [data-theme="dark"] {
-            --bg: #0f172a; --bg2: #1a2332; --surface: #1e293b; --surface2: #1a2332; --surface3: #243044;
-            --text: #e2e8f0; --text2: #bcc8d6; --text3: #8f9eb2; --border: #334155; --border2: #2d3a4a;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.2); --shadow: 0 4px 16px rgba(0,0,0,0.25);
-            --shadow-lg: 0 12px 32px rgba(0,0,0,0.35); --shadow-xl: 0 20px 48px rgba(0,0,0,0.4);
-            --accent: #60a5fa; --accent2: #4ade80; --accent3: #f87171;
-            --tag-bg: #243044; --tag-text: #bcc8d6; --input-bg: #1a2332; --input-border: #475569;
-            --section-header-bg: #1e293b; --section-header-text: #e2e8f0;
-            --badge-easy-bg: #1a3b2a; --badge-easy-text: #4ade80;
-            --badge-medium-bg: #3b2e1a; --badge-medium-text: #fbbf24;
-            --badge-hard-bg: #3b1a1a; --badge-hard-text: #f87171;
-            --toggle-bg: #334155; --scrollbar-thumb: #475569; --scrollbar-track: #1e293b;
-            --card-accent-opacity: 0.28; --overlay: rgba(0,0,0,0.55);
-            --canvas-bg: #1a2332; --canvas-shadow: rgba(0,0,0,0.3); --text-color-canvas: #e2e8f0;
-            --table-border: #334155; --table-header-bg: #1e293b; --table-cell-bg: #1a2332;
-            --table-stripe-bg: #141e2e; --calc-line-bg: #1a2332; --calc-line-border: #475569;
-            --highlight-eq: #60a5fa; --highlight-eq-light: rgba(96,165,250,0.12); --highlight-eq-badge: #3b82f6;
-            --section-accent: #60a5fa; --section-bg: rgba(96,165,250,0.06);
-            --eq-box-bg: #1e2a3a; --eq-box-border: #3b82f6;
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+            --accent: #a78bfa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --badge-easy-bg: #1a3b2a;
+            --badge-easy-text: #4ade80;
+            --badge-medium-bg: #3b2e1a;
+            --badge-medium-text: #fbbf24;
+            --badge-hard-bg: #3b1a1a;
+            --badge-hard-text: #f87171;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28;
+            --overlay: rgba(0, 0, 0, 0.55);
+            --canvas-bg: #1a2332;
+            --canvas-shadow: rgba(0, 0, 0, 0.3);
+            --text-color-canvas: #e2e8f0;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-eq: #a78bfa;
+            --highlight-eq-light: rgba(167, 139, 250, 0.12);
+            --highlight-eq-badge: #7c3aed;
+            --section-accent: #a78bfa;
+            --section-bg: rgba(167, 139, 250, 0.06);
+            --eq-box-bg: #1e1a2e;
+            --eq-box-border: #7c3aed;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; font-size: 16px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
-            color: var(--text); min-height: 100vh; padding: 16px;
-            transition: background 0.4s, color 0.35s; line-height: 1.6;
-            -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center;
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        ::-webkit-scrollbar { width: 7px; height: 7px; }
-        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
         .dashboard-header {
-            width: 100%; max-width: 1060px; margin: 0 auto 16px; background: var(--surface);
-            border-radius: 30px; padding: 14px 24px; box-shadow: var(--shadow); border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; transition: all 0.35s;
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
         }
-        .logo-area { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: var(--text); white-space: nowrap; }
-        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
         .btn-icon {
-            width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--border); background: var(--surface2);
-            cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s; color: var(--text); flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
         }
-        .btn-icon:hover { background: var(--surface3); border-color: var(--accent); box-shadow: var(--shadow-sm); }
-        .btn-icon:active { transform: scale(0.93); }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
         .lang-select {
-            padding: 7px 12px; border-radius: 50px; border: 2px solid var(--border); background: var(--surface2);
-            color: var(--text); font-family: inherit; font-weight: 600; font-size: 0.9rem; cursor: pointer;
-            outline: none; transition: 0.2s; min-width: 100px;
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
         }
-        .lang-select:hover { border-color: var(--accent); }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
         .exercise-wrapper {
-            width: 100%; max-width: 1060px; background: var(--surface); border-radius: 36px;
-            box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 28px 32px;
-            margin-bottom: 16px; transition: background 0.35s;
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
         }
         .exercise-title {
-            font-size: 1.7rem; font-weight: 800; color: var(--highlight-eq); text-align: center;
-            margin-bottom: 6px; letter-spacing: -0.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--highlight-eq);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         .exercise-subtitle {
-            text-align: center; color: var(--text2); margin-bottom: 24px; font-size: 1rem; font-weight: 500;
-            background: var(--section-header-bg); padding: 5px 20px; border-radius: 40px; display: inline-block;
-            width: fit-content; margin-left: auto; margin-right: auto;
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
         .equation-box {
-            text-align: center; margin-bottom: 20px; background: var(--eq-box-bg); border: 3px solid var(--eq-box-border);
-            border-radius: 24px; padding: 16px 24px; font-size: 1.8rem; font-weight: 800; letter-spacing: 1px;
-            direction: ltr; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
-            box-shadow: var(--shadow); color: var(--text);
+            text-align: center;
+            margin-bottom: 20px;
+            background: var(--eq-box-bg);
+            border: 3px solid var(--eq-box-border);
+            border-radius: 24px;
+            padding: 16px 24px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            direction: ltr;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: var(--shadow);
+            color: var(--text);
         }
-        .question-block { margin-top: 10px; font-size: 1.2rem; font-weight: 600; color: var(--text); background: var(--surface2); padding: 16px 18px; border-radius: 28px; line-height: 2.2; border: 1px solid var(--border); }
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2.2;
+            border: 1px solid var(--border);
+        }
         .section-card {
-            background: var(--surface); border-radius: 20px; padding: 16px 18px; margin: 14px 0;
-            border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
-            border-right: 4px solid var(--section-accent); background: var(--section-bg);
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 16px 18px;
+            margin: 14px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+            border-right: 4px solid var(--section-accent);
+            background: var(--section-bg);
         }
-        [data-theme="dark"] .section-card { border-right: 4px solid var(--section-accent); background: var(--section-bg); }
+        [data-theme="dark"] .section-card {
+            border-right: 4px solid var(--section-accent);
+            background: var(--section-bg);
+        }
         .section-label {
-            font-size: 1.05rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
-            padding: 4px 14px; border-radius: 30px; width: fit-content; color: var(--highlight-eq); background: var(--highlight-eq-light);
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+            color: var(--highlight-eq);
+            background: var(--highlight-eq-light);
         }
         .step-explanation {
-            font-size: 1rem; font-weight: 500; color: var(--text2); margin-bottom: 8px;
-            background: var(--surface3); padding: 4px 14px; border-radius: 20px; display: inline-block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text2);
+            margin-bottom: 8px;
+            background: var(--surface3);
+            padding: 4px 14px;
+            border-radius: 20px;
+            display: inline-block;
         }
         .formula-line {
-            display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px;
-            margin: 6px 0; direction: ltr; font-size: 1.35rem; font-weight: 700;
-            background: var(--calc-line-bg); border: 2px dashed var(--calc-line-border); border-radius: 40px; padding: 8px 18px;
-            width: fit-content; min-width: 200px; margin-left: auto; margin-right: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 6px 0;
+            direction: ltr;
+            font-size: 1.35rem;
+            font-weight: 700;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 8px 18px;
+            width: fit-content;
+            min-width: 200px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .formula-line .operator { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 0 4px; }
+        .formula-line .operator {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 4px;
+        }
         .formula-line .num-display {
-            font-weight: 800; background: var(--surface3); padding: 4px 12px; border-radius: 16px;
-            font-size: 1.2rem; color: var(--text);
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            color: var(--text);
+            margin: 0 2px;
+        }
+        .formula-line .var-display {
+            font-weight: 800;
+            font-style: italic;
+            color: var(--highlight-eq);
+            font-size: 1.35rem;
+            margin: 0 2px;
         }
         .inline-input {
-            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.25rem;
-            background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
-            text-align: center; padding: 3px 2px; margin: 0 4px; width: 3.5em; min-width: 62px; max-width: 110px;
-            outline: none; transition: all 0.15s; color: var(--text); box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.25rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 4px;
+            width: 3.5em;
+            min-width: 62px;
+            max-width: 110px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
         }
-        .inline-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59,130,246,0.25); }
-        .hint-text { font-size: 0.9rem; color: var(--text2); margin-top: 6px; text-align: center; font-weight: 500; }
-        .action-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0 8px; }
-        .btn { border: none; padding: 11px 28px; font-size: 1.1rem; font-weight: bold; border-radius: 60px; cursor: pointer; transition: 0.08s linear; font-family: inherit; box-shadow: 0 5px 0 rgba(0,0,0,0.2); color: white; }
-        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
-        .btn-generate { background: #1e3a5f; }
-        .btn-check { background: var(--accent2); }
-        .stats { display: flex; justify-content: space-between; margin-top: 18px; font-size: 1.2rem; color: var(--text); font-weight: 600; background: var(--surface2); padding: 12px 28px; border-radius: 60px; border: 1px solid var(--border); }
-        .message { margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500; text-align: center; background: var(--surface2); border-radius: 60px; padding: 10px 16px; transition: 0.1s; border: 1px solid var(--border); color: var(--text); line-height: 2; }
-        .start-note { display: inline-block; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; font-weight: 700; padding: 10px 32px; border-radius: 50px; animation: pulse-note 2s infinite; }
-        @keyframes pulse-note { 0%{transform:scale(1)} 50%{transform:scale(1.04)} 100%{transform:scale(1)} }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+        }
+        .inline-input.input-sm {
+            width: 2.8em;
+            min-width: 50px;
+            max-width: 80px;
+        }
+        .hint-text {
+            font-size: 0.9rem;
+            color: var(--text2);
+            margin-top: 6px;
+            text-align: center;
+            font-weight: 500;
+            background: var(--surface3);
+            padding: 3px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #3b1f6e;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .start-note {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+            font-weight: 700;
+            padding: 10px 32px;
+            border-radius: 50px;
+            animation: pulse-note 2s infinite;
+            box-shadow: 0 4px 15px rgba(109, 40, 217, 0.4);
+        }
+        @keyframes pulse-note {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.04);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
         .dashboard-footer {
-            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px; background: var(--surface);
-            border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); display: grid;
-            grid-template-columns: repeat(3, 1fr); gap: 20px; transition: background 0.35s; font-size: 0.9rem;
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
         }
-        .footer-col { display: flex; flex-direction: column; gap: 6px; }
-        .footer-col h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 3px; }
-        .footer-col a { color: var(--text2); text-decoration: none; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
-        .footer-col p { color: var(--text2); margin: 0; }
-        .host-info { font-size: 0.8rem; opacity: 0.8; }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
         @media (max-width: 768px) {
-            .dashboard-header { padding: 10px 14px; } .exercise-wrapper { padding: 18px 14px; }
-            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; } .footer-col { align-items: center; }
-            .question-block { font-size: 1.05rem; padding: 12px 8px; }
-            .inline-input { font-size: 1rem; width: 2.8em; min-width: 48px; }
-            .formula-line { font-size: 1.1rem; padding: 6px 10px; border-radius: 30px; }
-            .formula-line .operator { font-size: 1.2rem; } .stats { font-size: 1rem; padding: 10px 16px; }
-            .section-label { font-size: 0.95rem; } .equation-box { font-size: 1.4rem; padding: 12px 18px; }
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1.05rem;
+                padding: 12px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 2.8em;
+                min-width: 48px;
+            }
+            .formula-line {
+                font-size: 1.1rem;
+                padding: 6px 10px;
+                border-radius: 30px;
+            }
+            .formula-line .operator {
+                font-size: 1.2rem;
+            }
+            .stats {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
+            .section-label {
+                font-size: 0.95rem;
+            }
+            .equation-box {
+                font-size: 1.4rem;
+                padding: 12px 18px;
+            }
         }
     </style>
 </head>
 <body>
     <header class="dashboard-header">
-        <div class="logo-area"><span class="icon">⚖️</span><span data-i18n="app_title">Tableau d'exercices</span></div>
+        <div class="logo-area">
+            <span class="icon">⚖️</span>
+            <span data-i18n="app_title">Tableau d'exercices</span>
+        </div>
         <div class="header-controls">
-            <button class="btn-icon" id="btnSound" title="Son">🔊</button>
+            <button class="btn-icon" id="btnSound" title="Son" aria-label="Activer/désactiver le son">🔊</button>
             <select class="lang-select" id="langSelect" aria-label="Langue">
                 <option value="fr">Français</option>
                 <option value="ar">العربية</option>
@@ -182,10 +605,14 @@
     </header>
 
     <main class="exercise-wrapper">
-        <h1 class="exercise-title"><span>⚖️</span> <span data-i18n="exercise_heading">Équations avec parenthèses</span> <span>✖️</span></h1>
-        <div class="exercise-subtitle" data-i18n="exercise_subtitle">Résoudre a(bx + c) = d(ex + f) – étape par étape</div>
+        <h1 class="exercise-title">
+            <span>⚖️</span> <span data-i18n="exercise_heading">Équations avec parenthèses</span> <span>✖️</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">Résoudre a(bx + c) = d(ex + f) – 7 étapes</div>
 
-        <div style="text-align:center;"><div class="equation-box" id="equationDisplay"></div></div>
+        <div style="text-align:center;">
+            <div class="equation-box" id="equationDisplay"></div>
+        </div>
 
         <div class="question-block" id="questionContainer"></div>
 
@@ -194,8 +621,10 @@
             <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ Vérifier</button>
         </div>
 
-        <div style="text-align:center;"><span class="start-note" data-i18n="click_new_to_start">👆 Cliquez sur "Nouvelle question"</span></div>
-        <div class="hint-text" data-i18n="hint">📌 Remplissez chaque case après avoir effectué l'opération correspondante.</div>
+        <div style="text-align:center;">
+            <span class="start-note" data-i18n="click_new_to_start">👆 Cliquez sur "Nouvelle question" pour commencer</span>
+        </div>
+        <div class="hint-text" data-i18n="hint" style="display:block;width:auto;">📌 Remplissez chaque case après avoir effectué l'opération correspondante.</div>
         <div id="messageBox" class="message"></div>
 
         <div class="stats">
@@ -205,9 +634,22 @@
     </main>
 
     <footer class="dashboard-footer">
-        <div class="footer-col"><h4 data-i18n="footer_links">Liens</h4><ul><li><a href="#" data-i18n="footer_terms">Conditions</a></li><li><a href="#" data-i18n="footer_privacy">Confidentialité</a></li></ul></div>
-        <div class="footer-col"><h4 data-i18n="footer_version">Version</h4><p>v1.0</p></div>
-        <div class="footer-col"><h4 data-i18n="footer_dev">Développement</h4><p>Madjeri Ziad</p><p class="host-info" data-i18n="footer_host">Hébergé sur Netlify & GitHub</p></div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">Liens</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">Conditions d'utilisation</a></li>
+                <li><a href="#" data-i18n="footer_privacy">Politique de confidentialité</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">Version</h4>
+            <p>v1.2.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">Développement</h4>
+            <p>Madjeri Ziad</p>
+            <p class="host-info" data-i18n="footer_host">Hébergé sur Netlify & GitHub</p>
+        </div>
     </footer>
 
     <script>
@@ -227,156 +669,172 @@
             const btnBack = document.getElementById('btnBack');
 
             let eq = {};
-            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
             let inputRefs = {};
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
 
+            // ══════════════ Traductions ══════════════
             const translations = {
                 fr: {
                     app_title: "Tableau d'exercices",
                     exercise_heading: 'Équations avec parenthèses',
-                    exercise_subtitle: 'Résoudre une équation avec parenthèses pas à pas',
+                    exercise_subtitle: 'Résoudre a(bx + c) = d(ex + f) – 7 étapes',
                     new_question: '🔄 Nouvelle question',
                     check: '✓ Vérifier',
-                    hint: '📌 Remplissez chaque case après avoir effectué l’opération correspondante.',
+                    hint: "📌 Remplissez chaque case après avoir effectué l'opération correspondante.",
                     attempts_label: 'Essais',
                     score_label: 'Points',
                     step1_title: '1. Développer le membre gauche',
-                    step1_left_exp: 'Multiplier le nombre devant la parenthèse par chaque terme à l’intérieur.',
-                    step1_left_formula: 'a·(b x) + a·c = ...',
-                    step1_left_coeff_label: 'Terme en x',
-                    step1_left_const_label: 'Terme constant',
+                    step1_explain: 'On multiplie le nombre devant la parenthèse par chaque terme à l\'intérieur : {a}·({b}x) + {a}·({c}).',
+                    step1_coeff: 'Terme en x',
+                    step1_const: 'Terme constant',
                     step2_title: '2. Développer le membre droit',
-                    step2_right_exp: 'Même méthode pour le membre droit.',
-                    step2_right_formula: 'd·(e x) + d·f = ...',
-                    step2_right_coeff_label: 'Terme en x',
-                    step2_right_const_label: 'Terme constant',
-                    step3_title: '3. Regrouper les x à gauche et les constantes à droite',
-                    step3_explain: 'On soustrait (terme en x de droite) des deux côtés, puis on soustrait (constante de gauche) des deux côtés.',
-                    step3_formula: 'Après regroupement : (coeff)x = constante',
-                    step3_coeff_label: 'العامل المشترك لـ x (nouveau)',
-                    step3_const_label: 'Constante (à droite)',
-                    step4_title: '4. Calculer la valeur de x',
-                    step4_explain: 'x = constante ÷ العامل المشترك',
-                    step4_solution_label: 'x =',
+                    step2_explain: 'Même méthode pour le membre droit : {d}·({e}x) + {d}·({f}).',
+                    step2_coeff: 'Terme en x',
+                    step2_const: 'Terme constant',
+                    step3_title: '3. Regrouper les x à gauche',
+                    step3_explain: 'On soustrait {rx}x des deux côtés.',
+                    step3_instr: 'Nouveau coefficient de x : {lx} − {rx} = ? | Constante à droite : reste {rc}',
+                    step4_title: '4. Écrire la nouvelle équation',
+                    step4_explain: 'Recopiez l\'équation obtenue après regroupement des x.',
+                    step4_instr: 'Coefficient de x : {coeff} | Constante à gauche : {lc} | Constante à droite : {rc}',
+                    step5_title: '5. Isoler le terme en x',
+                    step5_explain: 'On soustrait {lc} des deux côtés pour isoler le terme en x.',
+                    step5_instr: 'Nouveau membre droit : {rc} − {lc} = ?',
+                    step6_title: '6. Écrire l\'équation simplifiée',
+                    step6_explain: 'Recopiez l\'équation sous la forme (coefficient)x = constante.',
+                    step6_instr: 'Coefficient : {coeff} | Constante : {cst}',
+                    step7_title: '7. Calculer la valeur de x',
+                    step7_explain: 'On divise les deux côtés par {coeff}.',
+                    step7_instr: 'x = {cst} ÷ {coeff} = ?',
                     fill_all: '⚠️ Veuillez remplir toutes les cases.',
                     invalid_numbers: '❌ Entrez uniquement des nombres entiers.',
                     correct: '✅ Bonne réponse ! +1 point',
-                    wrong: '❌ Faux ! La solution correcte est x = {sol}.',
-                    round_over: '🏁 Tour terminé ! Score : {score}/10',
-                    round_restart: '⏳ Nouveau tour...',
+                    wrong: '❌ Faux ! La solution est x = {sol}. Détail : gauche={lx}x+{lc}, droite={rx}x+{rc}, 3) {coeff}x+{lc}={rc}, 5) {coeff}x={cst}, 7) x={sol}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
                     figure_changed: '🔄 Nombres changés (essai non compté)',
                     footer_links: 'Liens',
-                    footer_terms: 'Conditions',
-                    footer_privacy: 'Confidentialité',
+                    footer_terms: "Conditions d'utilisation",
+                    footer_privacy: 'Politique de confidentialité',
                     footer_version: 'Version',
                     footer_dev: 'Développement',
                     footer_host: 'Hébergé sur Netlify & GitHub',
                     sound_on_title: 'Son (activé)',
                     sound_off_title: 'Son (désactivé)',
                     back_title: 'Retour au tableau',
-                    click_new_to_start: '👆 Cliquez sur "Nouvelle question" pour commencer',
-                    operator_times: '×',
                     operator_plus: '+',
                     operator_minus: '−',
-                    operator_equals: '='
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    click_new_to_start: '👆 Cliquez sur "Nouvelle question" pour commencer'
                 },
                 ar: {
                     app_title: 'لوحة التمارين',
-                    exercise_heading: 'المعادلات بالأقواس',
-                    exercise_subtitle: 'حل معادلة بأقواس خطوة بخطوة',
+                    exercise_heading: 'معادلات الدرجة الأولى – معادلات العوامل المشتركة',
+                    exercise_subtitle: 'حل معادلة بأقواس – 7 خطوات',
                     new_question: '🔄 سؤال جديد',
                     check: '✓ تحقق',
                     hint: '📌 املأ كل خانة بعد تنفيذ العملية المناسبة.',
                     attempts_label: 'المحاولات',
                     score_label: 'النقاط',
                     step1_title: '1. نشر الطرف الأيسر',
-                    step1_left_exp: 'اضرب العدد خارج القوس في كل حد داخل القوس.',
-                    step1_left_formula: 'a·(b س) + a·c = ...',
-                    step1_left_coeff_label: 'حد س',
-                    step1_left_const_label: 'الحد الثابت',
+                    step1_explain: 'نضرب العدد خارج القوس في كل حد داخل القوس : {a}·({b}x) + {a}·({c}).',
+                    step1_coeff: 'حد x',
+                    step1_const: 'الحد الثابت',
                     step2_title: '2. نشر الطرف الأيمن',
-                    step2_right_exp: 'نفس الطريقة للطرف الأيمن.',
-                    step2_right_formula: 'd·(e س) + d·f = ...',
-                    step2_right_coeff_label: 'حد س',
-                    step2_right_const_label: 'الحد الثابت',
-                    step3_title: '3. تجميع حدود س على اليسار والثوابت على اليمين',
-                    step3_explain: 'نطرح (حد س الأيمن) من الطرفين، ثم نطرح (الثابت الأيسر) من الطرفين.',
-                    step3_formula: 'بعد التجميع : (العامل المشترك) س = ثابت',
-                    step3_coeff_label: 'العامل المشترك لـ س',
-                    step3_const_label: 'الثابت (في الطرف الأيمن)',
-                    step4_title: '4. حساب قيمة س',
-                    step4_explain: 'س = الثابت ÷ العامل المشترك',
-                    step4_solution_label: 'س =',
-                    fill_all: '⚠️ أكمل جميع الخانات.',
-                    invalid_numbers: '❌ أدخل أعداداً صحيحة فقط.',
+                    step2_explain: 'نفس الطريقة للطرف الأيمن : {d}·({e}x) + {d}·({f}).',
+                    step2_coeff: 'حد x',
+                    step2_const: 'الحد الثابت',
+                    step3_title: '3. تجميع حدود x في اليسار',
+                    step3_explain: 'نطرح {rx}x من الطرفين.',
+                    step3_instr: 'العامل المشترك الجديد لـ x : {lx} − {rx} = ؟ | الثابت الأيمن : يبقى {rc}',
+                    step4_title: '4. كتابة المعادلة الجديدة',
+                    step4_explain: 'أعد كتابة المعادلة بعد تجميع حدود x.',
+                    step4_instr: 'العامل المشترك لـ x : {coeff} | الثابت الأيسر : {lc} | الثابت الأيمن : {rc}',
+                    step5_title: '5. عزل حد x',
+                    step5_explain: 'نطرح {lc} من الطرفين لعزل حد x.',
+                    step5_instr: 'الثابت الأيمن الجديد : {rc} − {lc} = ؟',
+                    step6_title: '6. كتابة المعادلة المبسطة',
+                    step6_explain: 'أعد كتابة المعادلة على الشكل (عامل مشترك)x = ثابت.',
+                    step6_instr: 'العامل المشترك : {coeff} | الثابت : {cst}',
+                    step7_title: '7. حساب قيمة x',
+                    step7_explain: 'نقسم الطرفين على {coeff}.',
+                    step7_instr: 'x = {cst} ÷ {coeff} = ؟',
+                    fill_all: '⚠️ الرجاء إكمال جميع الخانات.',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة فقط.',
                     correct: '✅ إجابة صحيحة! +1 نقطة',
-                    wrong: '❌ خطأ! الحل الصحيح هو س = {sol}.',
-                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10',
-                    round_restart: '⏳ جولة جديدة...',
-                    figure_changed: '🔄 تغيرت الأعداد (لا تحتسب محاولة)',
+                    wrong: '❌ خطأ! الحل هو x = {sol}. تفصيل: اليسار={lx}x+{lc}، اليمين={rx}x+{rc}، 3) {coeff}x+{lc}={rc}، 5) {coeff}x={cst}، 7) x={sol}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
                     footer_links: 'روابط',
-                    footer_terms: 'شروط',
-                    footer_privacy: 'خصوصية',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
                     footer_version: 'الإصدار',
                     footer_dev: 'تطوير',
                     footer_host: 'مستضاف على Netlify و GitHub',
                     sound_on_title: 'الصوت (مفعل)',
                     sound_off_title: 'الصوت (معطل)',
-                    back_title: 'عودة إلى لوحة التمارين',
-                    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء',
-                    operator_times: '×',
+                    back_title: 'العودة إلى لوحة التمارين',
                     operator_plus: '+',
                     operator_minus: '−',
-                    operator_equals: '='
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء'
                 },
                 en: {
                     app_title: 'Exercise Board',
-                    exercise_heading: 'Equations with Parentheses',
-                    exercise_subtitle: 'Solve an equation with parentheses step by step',
+                    exercise_heading: 'First-Degree Equations – Common Factor Equations',
+                    exercise_subtitle: 'Solve an equation with parentheses – 7 steps',
                     new_question: '🔄 New Question',
                     check: '✓ Check',
                     hint: '📌 Fill each blank after performing the corresponding operation.',
                     attempts_label: 'Attempts',
                     score_label: 'Score',
                     step1_title: '1. Expand the left side',
-                    step1_left_exp: 'Multiply the number outside by each term inside the parentheses.',
-                    step1_left_formula: 'a·(b x) + a·c = ...',
-                    step1_left_coeff_label: 'x term',
-                    step1_left_const_label: 'Constant term',
+                    step1_explain: 'Multiply the number outside by each term inside: {a}·({b}x) + {a}·({c}).',
+                    step1_coeff: 'x term',
+                    step1_const: 'Constant term',
                     step2_title: '2. Expand the right side',
-                    step2_right_exp: 'Same method for the right side.',
-                    step2_right_formula: 'd·(e x) + d·f = ...',
-                    step2_right_coeff_label: 'x term',
-                    step2_right_const_label: 'Constant term',
-                    step3_title: '3. Group x terms on the left, constants on the right',
-                    step3_explain: 'Subtract the right x term from both sides, then subtract the left constant from both sides.',
-                    step3_formula: 'After grouping : (coefficient) x = constant',
-                    step3_coeff_label: 'Coefficient of x',
-                    step3_const_label: 'Constant (right side)',
-                    step4_title: '4. Calculate x',
-                    step4_explain: 'x = constant ÷ coefficient',
-                    step4_solution_label: 'x =',
+                    step2_explain: 'Same method for the right side: {d}·({e}x) + {d}·({f}).',
+                    step2_coeff: 'x term',
+                    step2_const: 'Constant term',
+                    step3_title: '3. Group x terms on the left',
+                    step3_explain: 'Subtract {rx}x from both sides.',
+                    step3_instr: 'New coefficient of x: {lx} − {rx} = ? | Right constant: stays {rc}',
+                    step4_title: '4. Write the new equation',
+                    step4_explain: 'Copy the equation after grouping x terms.',
+                    step4_instr: 'Coefficient of x: {coeff} | Left constant: {lc} | Right constant: {rc}',
+                    step5_title: '5. Isolate the x term',
+                    step5_explain: 'Subtract {lc} from both sides to isolate the x term.',
+                    step5_instr: 'New right side: {rc} − {lc} = ?',
+                    step6_title: '6. Write the simplified equation',
+                    step6_explain: 'Copy the equation in the form (coefficient)x = constant.',
+                    step6_instr: 'Coefficient: {coeff} | Constant: {cst}',
+                    step7_title: '7. Calculate the value of x',
+                    step7_explain: 'Divide both sides by {coeff}.',
+                    step7_instr: 'x = {cst} ÷ {coeff} = ?',
                     fill_all: '⚠️ Please fill all blanks.',
-                    invalid_numbers: '❌ Integers only.',
+                    invalid_numbers: '❌ Please enter integers only.',
                     correct: '✅ Correct! +1 point',
-                    wrong: '❌ Wrong! The correct answer is x = {sol}.',
-                    round_over: '🏁 Round over! Score: {score}/10',
-                    round_restart: '⏳ New round...',
+                    wrong: '❌ Wrong! The solution is x = {sol}. Detail: left={lx}x+{lc}, right={rx}x+{rc}, 3) {coeff}x+{lc}={rc}, 5) {coeff}x={cst}, 7) x={sol}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
                     figure_changed: '🔄 Numbers changed (attempt not counted)',
                     footer_links: 'Links',
-                    footer_terms: 'Terms',
-                    footer_privacy: 'Privacy',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
                     footer_version: 'Version',
                     footer_dev: 'Development',
                     footer_host: 'Hosted on Netlify & GitHub',
                     sound_on_title: 'Sound (on)',
                     sound_off_title: 'Sound (off)',
                     back_title: 'Back to dashboard',
-                    click_new_to_start: '👆 Click "New Question" to start',
-                    operator_times: '×',
                     operator_plus: '+',
                     operator_minus: '−',
-                    operator_equals: '='
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    click_new_to_start: '👆 Click "New Question" to start'
                 }
             };
 
@@ -384,30 +842,24 @@
             function t(key, params = {}) {
                 const dict = translations[currentLang] || translations.fr;
                 let text = dict[key] || key;
-                Object.entries(params).forEach(([k,v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
                 return text;
             }
             function updateStaticI18n() {
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
-                });
+                document.querySelectorAll('[data-i18n]').forEach(el => { if (el.dataset.i18n) el.textContent = t(el.dataset.i18n); });
                 document.title = t('exercise_heading') + ' | ' + t('app_title');
                 document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
                 document.getElementById('btnBack').title = t('back_title');
             }
             function applyLanguage(lang) {
                 if (!translations[lang]) return;
-                currentLang = lang;
-                document.getElementById('langSelect').value = lang;
-                localStorage.setItem('eq2_lang', lang);
-                document.documentElement.lang = lang;
-                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-                updateStaticI18n();
-                renderAll();
-                messageEl.innerHTML = '';
+                currentLang = lang; document.getElementById('langSelect').value = lang;
+                localStorage.setItem('eq_par_lang', lang);
+                document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n(); renderAll(); messageEl.innerHTML = '';
             }
             function loadLanguage() {
-                const saved = localStorage.getItem('eq2_lang');
+                const saved = localStorage.getItem('eq_par_lang');
                 if (saved && translations[saved]) { applyLanguage(saved); return; }
                 const nav = navigator.language?.split('-')[0];
                 applyLanguage(nav && translations[nav] ? nav : 'fr');
@@ -424,42 +876,45 @@
                     else if (type === 'incorrect') { osc.type='square'; osc.frequency.setValueAtTime(200,now); gain.gain.setValueAtTime(0.2,now); gain.gain.linearRampToValueAtTime(0,now+0.3); osc.start(now); osc.stop(now+0.3); }
                 } catch(e) {}
             }
-            function loadSoundPref() { const saved = localStorage.getItem('eq2_sound'); soundEnabled = saved !== 'off'; btnSound.textContent = soundEnabled ? '🔊' : '🔇'; }
+            function loadSoundPref() { const saved = localStorage.getItem('eq_par_sound'); soundEnabled = saved !== 'off'; btnSound.textContent = soundEnabled ? '🔊' : '🔇'; }
             function toggleSound() {
-                soundEnabled = !soundEnabled; localStorage.setItem('eq2_sound', soundEnabled ? 'on' : 'off');
+                soundEnabled = !soundEnabled; localStorage.setItem('eq_par_sound', soundEnabled ? 'on' : 'off');
                 btnSound.textContent = soundEnabled ? '🔊' : '🔇';
                 btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
                 if (soundEnabled) playSound('correct');
             }
 
-            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙'; localStorage.setItem('eq2_theme', theme); }
+            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙'; localStorage.setItem('eq_par_theme', theme); }
             function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
             function loadTheme() {
-                const saved = localStorage.getItem('eq2_theme');
+                const saved = localStorage.getItem('eq_par_theme');
                 if (saved === 'dark' || saved === 'light') applyTheme(saved);
                 else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
                 else applyTheme('light');
             }
-            function goBack() { if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back(); else window.location.href = 'لوحة التمارين التفاعلية.html'; }
+            function goBack() { window.location.href = 'لوحة التمارين التفاعلية.html'; }
 
             function generateEquation() {
-                const a = [2,3][Math.floor(Math.random()*2)];
-                const b = [2,3][Math.floor(Math.random()*2)];
-                const c = [4,5,6,7,8][Math.floor(Math.random()*5)];
-                const d = [2,3][Math.floor(Math.random()*2)];
-                const e = [1,2,3][Math.floor(Math.random()*3)];
-                const x = Math.floor(Math.random()*4)+2;
-                const f = (a*b*x + a*c - d*e*x) / d;
-                if (!Number.isInteger(f) || f<1 || f>12) return generateEquation();
-                return {a,b,c,d,e,f,x};
+                const a = [2, 3][Math.floor(Math.random() * 2)];
+                const d = a === 2 ? 3 : 2; // toujours différent
+                const b = [2, 3][Math.floor(Math.random() * 2)];
+                const c = [4, 5, 6, 7, 8][Math.floor(Math.random() * 5)];
+                const e = [1, 2, 3][Math.floor(Math.random() * 3)];
+                const x = Math.floor(Math.random() * 4) + 2;
+                const ab = a * b, de = d * e, ac = a * c;
+                const coeffX = ab - de;
+                if (coeffX <= 0) return generateEquation();
+                const df = coeffX * x + ac;
+                if (df % d !== 0) return generateEquation();
+                const f = df / d;
+                if (f < 1 || f > 12 || !Number.isInteger(f)) return generateEquation();
+                return { a, b, c, d, e, f, x };
             }
 
             function generateNewQuestion() {
                 eq = generateEquation();
-                eq.leftX = eq.a * eq.b;
-                eq.leftC = eq.a * eq.c;
-                eq.rightX = eq.d * eq.e;
-                eq.rightC = eq.d * eq.f;
+                eq.leftX = eq.a * eq.b; eq.leftC = eq.a * eq.c;
+                eq.rightX = eq.d * eq.e; eq.rightC = eq.d * eq.f;
                 eq.coeffX = eq.leftX - eq.rightX;
                 eq.constRight = eq.rightC - eq.leftC;
                 renderAll();
@@ -470,86 +925,25 @@
             }
 
             function buildQuestionHTML() {
-                const tx = t('operator_times'), pl = t('operator_plus'), eqs = t('operator_equals');
-
-                const step1 = `
-                <div class="section-card">
-                    <div class="section-label">${t('step1_title')}</div>
-                    <div class="step-explanation">${t('step1_left_exp')}</div>
-                    <div class="formula-line" dir="ltr">
-                        <span class="num-display">${eq.a}</span><span class="operator">${tx}</span><span class="num-display">${eq.b}</span><span>x</span>
-                        <span class="operator">${pl}</span>
-                        <span class="num-display">${eq.a}</span><span class="operator">${tx}</span><span class="num-display">${eq.c}</span>
-                        <span class="operator">${eqs}</span>
-                        <input type="text" id="inpLX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric">
-                        <span class="operator">${pl}</span>
-                        <input type="text" id="inpLC" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
-                    </div>
-                    <div class="hint-text">${t('step1_left_coeff_label')} : ${eq.a}×${eq.b} = ?  |  ${t('step1_left_const_label')} : ${eq.a}×${eq.c} = ?</div>
-                </div>`;
-
-                const step2 = `
-                <div class="section-card">
-                    <div class="section-label">${t('step2_title')}</div>
-                    <div class="step-explanation">${t('step2_right_exp')}</div>
-                    <div class="formula-line" dir="ltr">
-                        <span class="num-display">${eq.d}</span><span class="operator">${tx}</span><span class="num-display">${eq.e}</span><span>x</span>
-                        <span class="operator">${pl}</span>
-                        <span class="num-display">${eq.d}</span><span class="operator">${tx}</span><span class="num-display">${eq.f}</span>
-                        <span class="operator">${eqs}</span>
-                        <input type="text" id="inpRX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric">
-                        <span class="operator">${pl}</span>
-                        <input type="text" id="inpRC" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
-                    </div>
-                    <div class="hint-text">${t('step2_right_coeff_label')} : ${eq.d}×${eq.e} = ?  |  ${t('step2_right_const_label')} : ${eq.d}×${eq.f} = ?</div>
-                </div>`;
-
-                const step3 = `
-                <div class="section-card">
-                    <div class="section-label">${t('step3_title')}</div>
-                    <div class="step-explanation">${t('step3_explain')}</div>
-                    <div class="formula-line" dir="ltr">
-                        <span class="num-display" id="leftXDisplay">${eq.leftX}</span><span>x</span>
-                        <span class="operator">${pl}</span>
-                        <span class="num-display">${eq.leftC}</span>
-                        <span class="operator">${eqs}</span>
-                        <span class="num-display">${eq.rightX}</span><span>x</span>
-                        <span class="operator">${pl}</span>
-                        <span class="num-display">${eq.rightC}</span>
-                    </div>
-                    <div class="formula-line" dir="ltr" style="margin-top:8px;">
-                        <span style="font-weight:700;">→</span>
-                        <input type="text" id="inpCoeff" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
-                        <span>x</span>
-                        <span class="operator">${eqs}</span>
-                        <input type="text" id="inpConst" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
-                    </div>
-                    <div class="hint-text">${t('step3_coeff_label')} = ${eq.leftX} − ${eq.rightX} &nbsp;|&nbsp; ${t('step3_const_label')} = ${eq.rightC} − ${eq.leftC}</div>
-                </div>`;
-
-                const step4 = `
-                <div class="section-card">
-                    <div class="section-label">${t('step4_title')}</div>
-                    <div class="step-explanation">${t('step4_explain')}</div>
-                    <div class="formula-line" dir="ltr">
-                        <span>x</span>
-                        <span class="operator">${eqs}</span>
-                        <input type="text" id="inpSol" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">
-                    </div>
-                    <div class="hint-text">${t('step4_solution_label')} ${eq.constRight} ÷ ${eq.coeffX} = ?</div>
-                </div>`;
-
-                return step1 + step2 + step3 + step4;
+                const pl = t('operator_plus'), eqs = t('operator_equals'), mn = t('operator_minus'), div = t('operator_divide');
+                const step1 = `<div class="section-card"><div class="section-label">${t('step1_title')}</div><div class="step-explanation">${t('step1_explain',{a:eq.a,b:eq.b,c:eq.c})}</div><div class="formula-line"><span class="num-display">${eq.a}</span><span class="operator">×</span><span class="num-display">${eq.b}</span><span class="var-display">x</span><span class="operator">${pl}</span><span class="num-display">${eq.a}</span><span class="operator">×</span><span class="num-display">${eq.c}</span><span class="operator">${eqs}</span><input type="text" id="inpLX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">${pl}</span><input type="text" id="inpLC" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div><div class="hint-text">📝 ${t('step1_coeff')} : ${eq.a}×${eq.b} = ? | ${t('step1_const')} : ${eq.a}×${eq.c} = ?</div></div>`;
+                const step2 = `<div class="section-card"><div class="section-label">${t('step2_title')}</div><div class="step-explanation">${t('step2_explain',{d:eq.d,e:eq.e,f:eq.f})}</div><div class="formula-line"><span class="num-display">${eq.d}</span><span class="operator">×</span><span class="num-display">${eq.e}</span><span class="var-display">x</span><span class="operator">${pl}</span><span class="num-display">${eq.d}</span><span class="operator">×</span><span class="num-display">${eq.f}</span><span class="operator">${eqs}</span><input type="text" id="inpRX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">${pl}</span><input type="text" id="inpRC" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div><div class="hint-text">📝 ${t('step2_coeff')} : ${eq.d}×${eq.e} = ? | ${t('step2_const')} : ${eq.d}×${eq.f} = ?</div></div>`;
+                const step3 = `<div class="section-card"><div class="section-label">${t('step3_title')}</div><div class="step-explanation">${t('step3_explain',{rx:eq.rightX})}</div><div class="formula-line"><span class="num-display">${eq.leftX}</span><span class="var-display">x</span><span class="operator">${pl}</span><span class="num-display">${eq.leftC}</span><span class="operator">${mn}</span><span class="num-display">${eq.rightX}</span><span class="var-display">x</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span></div><div class="formula-line"><span style="font-weight:700;">→</span><input type="text" id="inpCoeff3" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">${pl}</span><span class="num-display">${eq.leftC}</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span></div><div class="hint-text">📝 ${t('step3_instr',{lx:eq.leftX,rx:eq.rightX,rc:eq.rightC})}</div></div>`;
+                const step4 = `<div class="section-card"><div class="section-label">${t('step4_title')}</div><div class="step-explanation">${t('step4_explain')}</div><div class="formula-line"><input type="text" id="inpCoeff4" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">${pl}</span><input type="text" id="inpLc4" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="operator">${eqs}</span><input type="text" id="inpRc4" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div><div class="hint-text">📝 ${t('step4_instr',{coeff:eq.coeffX, lc:eq.leftC, rc:eq.rightC})}</div></div>`;
+                const step5 = `<div class="section-card"><div class="section-label">${t('step5_title')}</div><div class="step-explanation">${t('step5_explain',{lc:eq.leftC})}</div><div class="formula-line"><span class="num-display">${eq.coeffX}</span><span class="var-display">x</span><span class="operator">${pl}</span><span class="num-display">${eq.leftC}</span><span class="operator">${mn}</span><span class="num-display">${eq.leftC}</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span><span class="operator">${mn}</span><span class="num-display">${eq.leftC}</span></div><div class="formula-line"><span style="font-weight:700;">→</span><span class="num-display">${eq.coeffX}</span><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpNewRight5" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div><div class="hint-text">📝 ${t('step5_instr',{rc:eq.rightC, lc:eq.leftC})}</div></div>`;
+                const step6 = `<div class="section-card"><div class="section-label">${t('step6_title')}</div><div class="step-explanation">${t('step6_explain')}</div><div class="formula-line"><input type="text" id="inpCoeff6" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpNewRight6" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div><div class="hint-text">📝 ${t('step6_instr',{coeff:eq.coeffX, cst:eq.constRight})}</div></div>`;
+                const step7 = `<div class="section-card"><div class="section-label">${t('step7_title')}</div><div class="step-explanation">${t('step7_explain',{coeff:eq.coeffX})}</div><div class="formula-line"><span class="var-display">x</span><span class="operator">${eqs}</span><span class="num-display">${eq.constRight}</span><span class="operator">${div}</span><span class="num-display">${eq.coeffX}</span></div><div class="formula-line"><span style="font-weight:700;">→</span><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpSol" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div><div class="hint-text">📝 ${t('step7_instr',{cst:eq.constRight, coeff:eq.coeffX})}</div></div>`;
+                return step1 + step2 + step3 + step4 + step5 + step6 + step7;
             }
 
             function refreshInputRefs() {
                 inputRefs = {
-                    lx: document.getElementById('inpLX'),
-                    lc: document.getElementById('inpLC'),
-                    rx: document.getElementById('inpRX'),
-                    rc: document.getElementById('inpRC'),
-                    coeff: document.getElementById('inpCoeff'),
-                    constant: document.getElementById('inpConst'),
+                    lx: document.getElementById('inpLX'), lc: document.getElementById('inpLC'),
+                    rx: document.getElementById('inpRX'), rc: document.getElementById('inpRC'),
+                    coeff3: document.getElementById('inpCoeff3'),
+                    coeff4: document.getElementById('inpCoeff4'), lc4: document.getElementById('inpLc4'), rc4: document.getElementById('inpRc4'),
+                    newRight5: document.getElementById('inpNewRight5'),
+                    coeff6: document.getElementById('inpCoeff6'), newRight6: document.getElementById('inpNewRight6'),
                     sol: document.getElementById('inpSol')
                 };
             }
@@ -558,68 +952,57 @@
             function updateStatsUI() { attemptsSpan.textContent = attempts; scoreSpan.textContent = score; }
 
             function startNewFullRound() {
-                if (isSwitchingRound) return;
-                isSwitchingRound = true;
-                attempts = 0; score = 0; gameActive = true;
-                updateStatsUI();
-                generateNewQuestion();
+                if (isSwitchingRound) return; isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true; updateStatsUI(); generateNewQuestion();
                 messageEl.innerHTML = ''; messageEl.style.color = 'var(--text)';
-                setInputsDisabled(false); checkBtn.disabled = false;
-                isSwitchingRound = false;
+                setInputsDisabled(false); checkBtn.disabled = false; isSwitchingRound = false;
                 setTimeout(() => inputRefs.lx?.focus(), 60);
             }
             function setInputsDisabled(disabled) { for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].disabled = disabled; }
             function finishCurrentRound() {
-                if (!gameActive) return;
-                gameActive = false;
-                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
-                setInputsDisabled(true); checkBtn.disabled = true;
-                setTimeout(startNewFullRound, 2200);
+                if (!gameActive) return; gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true); checkBtn.disabled = true; setTimeout(startNewFullRound, 2200);
             }
 
             function handleCheck() {
                 if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
                 if (attempts >= 10) { finishCurrentRound(); return; }
 
-                const vals = {
-                    lx: inputRefs.lx?.value.trim()||'', lc: inputRefs.lc?.value.trim()||'',
-                    rx: inputRefs.rx?.value.trim()||'', rc: inputRefs.rc?.value.trim()||'',
-                    coeff: inputRefs.coeff?.value.trim()||'', constant: inputRefs.constant?.value.trim()||'',
-                    sol: inputRefs.sol?.value.trim()||''
-                };
-                if (Object.values(vals).some(v=>!v)) { messageEl.innerHTML = t('fill_all'); messageEl.style.color='var(--accent3)'; return; }
+                const vals = {};
+                for (let k in inputRefs) vals[k] = inputRefs[k]?.value.trim() || '';
+                if (Object.values(vals).some(v => !v)) { messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return; }
                 const nums = {};
-                for (let k in vals) { nums[k] = Number(vals[k]); if (!Number.isInteger(nums[k])) { messageEl.innerHTML = t('invalid_numbers'); messageEl.style.color='var(--accent3)'; return; } }
+                for (let k in vals) { nums[k] = Number(vals[k]); if (!Number.isInteger(nums[k])) { messageEl.innerHTML = t('invalid_numbers'); messageEl.style.color = 'var(--accent3)'; return; } }
 
                 const correct = {
-                    lx: eq.leftX, lc: eq.leftC,
-                    rx: eq.rightX, rc: eq.rightC,
-                    coeff: eq.coeffX, constant: eq.constRight,
+                    lx: eq.leftX, lc: eq.leftC, rx: eq.rightX, rc: eq.rightC,
+                    coeff3: eq.coeffX,
+                    coeff4: eq.coeffX, lc4: eq.leftC, rc4: eq.rightC,
+                    newRight5: eq.constRight,
+                    coeff6: eq.coeffX, newRight6: eq.constRight,
                     sol: eq.x
                 };
-
                 const isCorrect = Object.keys(correct).every(k => nums[k] === correct[k]);
 
                 attempts++;
-                if (isCorrect) { score++; messageEl.innerHTML=t('correct'); messageEl.style.color='var(--accent2)'; playSound('correct'); }
-                else { messageEl.innerHTML=t('wrong',{sol:correct.sol}); messageEl.style.color='var(--accent3)'; playSound('incorrect'); }
+                if (isCorrect) { score++; messageEl.innerHTML = t('correct'); messageEl.style.color = 'var(--accent2)'; playSound('correct'); }
+                else { messageEl.innerHTML = t('wrong', { sol: eq.x, lx: eq.leftX, lc: eq.leftC, rx: eq.rightX, rc: eq.rightC, coeff: eq.coeffX, cst: eq.constRight }); messageEl.style.color = 'var(--accent3)'; playSound('incorrect'); }
                 updateStatsUI();
                 if (attempts >= 10) { finishCurrentRound(); return; }
-                generateNewQuestion();
-                setTimeout(() => inputRefs.lx?.focus(), 40);
+                generateNewQuestion(); setTimeout(() => inputRefs.lx?.focus(), 40);
             }
 
             function onManualNewQuestion() {
                 if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
-                generateNewQuestion();
-                messageEl.innerHTML = t('figure_changed'); messageEl.style.color = 'var(--text)';
-                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML=''; }, 1500);
+                generateNewQuestion(); messageEl.innerHTML = t('figure_changed'); messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
                 setTimeout(() => inputRefs.lx?.focus(), 40);
             }
 
             checkBtn.addEventListener('click', handleCheck);
             generateBtn.addEventListener('click', onManualNewQuestion);
-            questionContainer.addEventListener('keypress', (e) => { if (e.key==='Enter' && e.target.classList.contains('inline-input')) { e.preventDefault(); handleCheck(); } });
+            questionContainer.addEventListener('keypress', (e) => { if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault(); handleCheck(); } });
             btnDarkMode.addEventListener('click', toggleTheme);
             btnSound.addEventListener('click', toggleSound);
             langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
@@ -627,8 +1010,8 @@
 
             loadLanguage(); document.getElementById('langSelect').value = currentLang;
             loadTheme(); loadSoundPref();
-            attempts=0; score=0; gameActive=true; isSwitchingRound=false;
-            generateNewQuestion(); updateStatsUI(); messageEl.innerHTML=''; checkBtn.disabled=false;
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion(); updateStatsUI(); messageEl.innerHTML = ''; checkBtn.disabled = false;
             setTimeout(() => inputRefs.lx?.focus(), 100);
             updateStaticI18n();
         })();

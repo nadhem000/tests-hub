@@ -931,8 +931,8 @@ const exercises = [
     id: 'ex-029',
     section: 'Équations',
     sectionIcon: '⚖️',
-    name: 'Équations – Parenthèses (simple)',
-    description: 'Résoudre une équation avec parenthèses du type a(bx+c)=d(ex+f) étape par étape, spécialement conçue pour les élèves en difficulté.',
+    name: 'Équations – facteur commun (simple)',
+    description: 'Résoudre une équation avec facteur commun du type a(bx+c)=d(ex+f) étape par étape.',
     difficulty: 'easy',
     class: '1ère année secondaire',
     cardColor: '#0ea5e9',
@@ -952,11 +952,110 @@ const exercises = [
     translations: {
         ar: {
             name: 'معادلات بأقواس (مبسطة)',
-            description: 'تمرين تفاعلي لحل معادلة بالأقواس خطوة بخطوة، مناسب للتلاميذ المتأخرين.'
+            description: 'تمرين تفاعلي لحل معادلة بالأقواس خطوة بخطوة، '
         },
         en: {
             name: 'Equations with Parentheses (simplified)',
-            description: 'Interactive exercise to solve equations with parentheses step by step, designed for struggling students.'
+            description: 'Interactive exercise to solve equations with common factor step by step.'
+        }
+    }
+},
+{
+    id: 'ex-030',
+    section: 'Équations',
+    sectionIcon: '⚖️',
+    name: 'Équations avec fractions simples',
+    description: 'Résoudre une équation avec fractions du type (ax+b)/c = (dx+e)/f étape par étape (8 étapes).',
+    difficulty: 'easy',
+    class: '1ère année secondaire',
+    cardColor: '#0ea5e9',
+    cardColorDark: '#38bdf8',
+    link: 'exercice-equations 3.html',
+    version: '1.0',
+    tags: ['معادلات', 'كسور', 'تبسيط', 'PPCM', 'نشر', 'جبر'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-04-30',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['équation', 'fractions', 'PPCM', 'dénominateur', 'premier degré', 'simple'],
+    thumbnail: '⚖️',
+    translations: {
+        ar: {
+            name: 'معادلات ذات كسور بسيطة',
+            description: 'تمرين تفاعلي لحل معادلة ذات كسور خطوة بخطوة (8 خطوات)، '
+        },
+        en: {
+            name: 'Equations with Simple Fractions',
+            description: 'Interactive exercise to solve fraction equations step by step (8 steps).'
+        }
+    }
+},
+{
+    id: 'ex-031',
+    section: 'Équations',
+    sectionIcon: '⚖️',
+    name: 'Équations avec racines carrées',
+    description: 'Résoudre une équation du premier degré avec racines carrées – 8 étapes détaillées. 10 essais avec points.',
+    difficulty: 'medium',
+    class: '1ère année secondaire',
+    cardColor: '#0d9488',
+    cardColorDark: '#2dd4bf',
+    link: 'exercice-equations 4.html',
+    version: '1.0',
+    tags: ['معادلات', 'جذور تربيعية', 'تبسيط', 'جبر', 'خطوات'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-04-30',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['équation', 'racine carrée', 'simplification', 'premier degré', 'radical'],
+    thumbnail: '⚖️',
+    translations: {
+        ar: {
+            name: 'معادلات ذات جذور تربيعية',
+            description: 'تمرين تفاعلي لحل معادلة من الدرجة الأولى تحتوي على جذور تربيعية – 8 خطوات. 10 محاولات مع نقاط.'
+        },
+        en: {
+            name: 'Equations with Square Roots',
+            description: 'Interactive exercise to solve first-degree equations with square roots – 8 detailed steps. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-032',
+    section: 'Équations',
+    sectionIcon: '⚖️',
+    name: 'Équations – Problèmes concrets',
+    description: 'Mets le problème en équation (choix aléatoire parmi 4 types) puis résous. 10 essais avec points.',
+    difficulty: 'medium',
+    class: '1ère année secondaire',
+    cardColor: '#0d9488',
+    cardColorDark: '#2dd4bf',
+    link: 'exercice-equations complete.html',
+    version: '1.0',
+    tags: ['معادلات', 'مسائل', 'واقعية', 'جبر', 'مشكل', 'خطوات'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-04-30',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['équation', 'problème concret', 'premier degré', 'mise en équation'],
+    thumbnail: '⚖️',
+    translations: {
+        ar: {
+            name: 'المعادلات – مسائل واقعية',
+            description: 'ضع المسألة في معادلة (اختيار عشوائي من 4 أنواع) ثم حلها. 10 محاولات مع نقاط.'
+        },
+        en: {
+            name: 'Equations – Real-life Problems',
+            description: 'Write the equation from the problem (randomly chosen among 4 types) then solve it. 10 attempts with points.'
         }
     }
 }

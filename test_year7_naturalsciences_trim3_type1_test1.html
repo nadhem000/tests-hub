@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tests Hub - فرض مراقبة عدد 3 - علوم الحياة والأرض - 7ème</title>
+
+    <meta name="theme-color" content="#8D3F2B">
+    <meta name="description" content="فرض مراقبة عدد 3 في علوم الحياة والأرض - السنة السابعة أساسي (2020-2021)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض مراقبة SVT">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #8D3F2B;
+            --primary-light: #A0522D;
+            --primary-lighter: #B8653A;
+            --accent: #00838F;
+            --accent-light: #00ACC1;
+            --accent-lighter: #26C6DA;
+            --bg-light-start: #FFF3E0;
+            --bg-light-end: #FFE0B2;
+            --section-bg: #FFFFFF;
+            --text-primary: #8D3F2B;
+            --text-secondary: #5D4037;
+            --border-light: #FFCC80;
+            --canvas-bg: #FFF8E1;
+            --canvas-text: #8D3F2B;
+            --highlight-bg: #E0F2F1;
+            --highlight-border: #00838F;
+            --correction-accent: #00695C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #5D4037;
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1A0D08 0%, #2D1810 100%);
+            color: #FFE0B2;
+        }
+
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #8D3F2B, #A0522D, #00838F);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #3E1A0D, #8D3F2B, #006064);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #5D4037;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #FFF3E0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2D1810;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #FFE0B2;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #1A0D08;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        /* Main */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #8D3F2B, #A0522D);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #3E1A0D, #8D3F2B);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #2D1810;
+            color: #FFE0B2;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #8D3F2B;
+            border-bottom: 2px solid #00838F;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease, border-color 0.3s;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #FFCC80;
+            border-bottom-color: #00ACC1;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #A0522D;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 1.15rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #FFAB91;
+        }
+
+        .Tests-Hub-instructions {
+            background: #FFF8E1;
+            padding: 1rem;
+            border-right: 4px solid #00838F;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1A0D08;
+            border-right-color: #00ACC1;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: #8D3F2B;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #A0522D;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            direction: rtl;
+        }
+
+        th,
+        td {
+            border: 1px solid #FFCC80;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        th {
+            background: #8D3F2B;
+            color: white;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-dark-theme th {
+            background: #3E1A0D;
+        }
+
+        tr:nth-child(even) {
+            background: #FFF3E0;
+        }
+
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #1A0D08;
+        }
+
+        .Tests-Hub-dark-theme td {
+            border-color: #A0522D;
+        }
+
+        .Tests-Hub-answer-textarea,
+        .Tests-Hub-table-input,
+        .Tests-Hub-select {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #FFCC80;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #FFCC80;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-input,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-select {
+            border-color: #A0522D;
+            background-color: #2D1810;
+            color: #FFE0B2;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-right: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #8D3F2B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #FFCC80;
+        }
+
+        .Tests-Hub-canvas-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #FFF8E1;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-canvas-container {
+            background: #1A0D08;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #FFCC80;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme canvas {
+            border-color: #A0522D;
+        }
+
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #8D6E63;
+            margin-top: 10px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #FFCC80;
+        }
+
+        .Tests-Hub-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(141, 63, 43, 0.03);
+            border-radius: 10px;
+            border: 1px dashed rgba(141, 63, 43, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: rgba(0, 131, 143, 0.04);
+            border-color: rgba(0, 131, 143, 0.2);
+        }
+
+        .Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #8D3F2B, #A0522D);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #3E1A0D, #8D3F2B);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #FFF8E1;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #00838F;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #1A0D08;
+            border-right-color: #00ACC1;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #8D3F2B;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #FFCC80;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(141, 63, 43, 0.04);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #00838F;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(0, 131, 143, 0.1);
+            border-right-color: #00ACC1;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-bold {
+            font-weight: 700;
+            color: #8D3F2B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-bold {
+            color: #FFCC80;
+        }
+
+        .Tests-Hub-text-explanation {
+            color: #6D4C41;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0.75rem 0;
+            padding-right: 1rem;
+            border-right: 3px solid #00838F;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-explanation {
+            color: #FFE0B2;
+            border-right-color: #00ACC1;
+        }
+
+        .Tests-Hub-text-correction {
+            color: #8D3F2B;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-correction {
+            color: #FFCC80;
+        }
+
+        .Tests-Hub-text-warning {
+            color: #8D3F2B;
+            font-weight: 600;
+            background: rgba(141, 63, 43, 0.08);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-right: 4px solid #8D3F2B;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-warning {
+            color: #FFAB91;
+            background: rgba(141, 63, 43, 0.15);
+            border-right-color: #FFAB91;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, #00838F, transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-divider {
+            background: linear-gradient(to left, transparent, #00ACC1, transparent);
+        }
+
+        .Tests-Hub-organized-list {
+            margin: 1rem 0;
+            padding-right: 1.5rem;
+        }
+
+        .Tests-Hub-organized-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-right: 1.2rem;
+        }
+
+        .Tests-Hub-organized-list li:before {
+            content: "•";
+            color: #00838F;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-organized-list li:before {
+            color: #00ACC1;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(141, 63, 43, 0.05), rgba(0, 131, 143, 0.08));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(62, 26, 13, 0.4), rgba(0, 96, 100, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #8D3F2B, #A0522D);
+            color: white;
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #A0522D, #00838F);
+            color: white;
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #00838F, #00ACC1);
+            color: white;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #8D3F2B, #A0522D, #00838F);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #3E1A0D, #8D3F2B, #006064);
+        }
+
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #FFE0B2;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FFE0B2;
+        }
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FFE0B2;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #FFE0B2;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #FFCC80;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme img {
+            border-color: #A0522D;
+        }
+
+        .Tests-Hub-text-highlight {
+            background: rgba(0, 131, 143, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            border-right: 2px solid #00838F;
+            display: inline-block;
+            margin: 0.3rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-highlight {
+            background: rgba(0, 172, 193, 0.15);
+            border-right-color: #00ACC1;
+        }
+
+        .Tests-Hub-inline-formula {
+            display: inline-block;
+            background: #FFF8E1;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 0.3rem 0;
+            border: 1px solid #FFCC80;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-inline-formula {
+            background: #2D1810;
+            border-color: #A0522D;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-left: 15px;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            table {
+                font-size: 0.9rem;
+            }
+            th,
+            td {
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-header-title {
+                font-size: 1.3rem;
+            }
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            .Tests-Hub-test-section h2 {
+                font-size: 1.15rem;
+            }
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.test.title">علوم الحياة والأرض - فرض مراقبة عدد 3</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.test.subtitle">السنة السابعة أساسي (2020-2021)</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button"><span>←</span><span data-i18n="TestsHub.test.back">العودة للاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.lang.current">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض مراقبة عدد 3 في علوم الحياة والأرض</h1>
+            <p>المستوى : السنة السابعة أساسي</p>
+            <p>الأستاذ : توفيق الحجري</p>
+            <p>السنة الدراسية : 2020 / 2021</p>
+            <p>التوقيت : نصف ساعة</p>
+            <p>العلامة : 20 نقطة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات عامة</h3>
+            <ul class="Tests-Hub-organized-list">
+                <li>أجب بدقة على الأسئلة المطروحة</li>
+                <li>اعتن بجودة الخط وتنظيم الإجابة</li>
+                <li>الرسوم والبيانات يجب أن تكون واضحة ومقروءة</li>
+                <li>انتبه إلى توزيع النقاط بين مختلف الأسئلة</li>
+            </ul>
+        </div>
+
+        <!-- التمرين الأول : 4.5 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الأول (4.5 نقاط)</h2>
+
+            <div class="Tests-Hub-question">
+                <p><strong class="Tests-Hub-text-bold">أصلح الخطأ بالجمل التالية إن وجد :</strong></p>
+
+                <div style="margin: 1.5rem 0;">
+                    <p><strong class="Tests-Hub-question-number">1.</strong> يمكن الترسيب من فصل مكوّنات التربة حسب <strong>شكلها</strong>. <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                    <p>التصحيح: <textarea class="Tests-Hub-table-input" style="width:80%;" placeholder="اكتب التصحيح هنا إن وجد خطأ..."></textarea></p>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <p><strong class="Tests-Hub-question-number">2.</strong> يرفع الدبال من إستبقائية التربة. <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                    <p>التصحيح: <textarea class="Tests-Hub-table-input" style="width:80%;" placeholder="اكتب التصحيح هنا إن وجد خطأ..."></textarea></p>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <p><strong class="Tests-Hub-question-number">3.</strong> الهواء الموجود بالتربة ناتج عن الحرث والعزق. <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                    <p>التصحيح: <textarea class="Tests-Hub-table-input" style="width:80%;" placeholder="اكتب التصحيح هنا إن وجد خطأ..."></textarea></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- التمرين الثاني : 8 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الثاني (8 نقاط)</h2>
+
+            <h3>1- أتأمّل التجربة التالية (4 نقاط)</h3>
+
+            <div class="Tests-Hub-image-container">
+                <img src="assets3/naturalsciences3/image22.png" alt="تجربة الكشف عن الكائنات الحية الدقيقة في التربة">
+                <p class="Tests-Hub-image-caption">الوثيقة : تجربة الكشف عن الكائنات الحية الدقيقة في التربة باستعمال ماء الجير</p>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong class="Tests-Hub-text-bold">أ-</strong> <span class="Tests-Hub-question-number">حلّل هذه التجربة.</span> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="تحليل التجربة..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong class="Tests-Hub-text-bold">ب-</strong> <span class="Tests-Hub-question-number">ماذا تستنتج ؟</span> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="الاستنتاج..."></textarea>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3>2- أتمم الجدول الموالي بما يناسب (4 نقاط)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:50%;">مكوّن التربة</th>
+                        <th style="width:50%;">مصدره</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الكلس</td>
+                        <td><textarea class="Tests-Hub-table-input" style="width:90%;" placeholder="..."></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><textarea class="Tests-Hub-table-input" style="width:90%;" placeholder="..."></textarea></td>
+                        <td>المطر والسّقي</td>
+                    </tr>
+                    <tr>
+                        <td>الرّمل</td>
+                        <td><textarea class="Tests-Hub-table-input" style="width:90%;" placeholder="..."></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><textarea class="Tests-Hub-table-input" style="width:90%;" placeholder="..."></textarea></td>
+                        <td>تحليل جثث الكائنات الحيّة</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- التمرين الثالث : 7.5 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الثالث (7.5 نقاط)</h2>
+
+            <div class="Tests-Hub-question">
+                <p><strong class="Tests-Hub-text-bold">1.</strong> <span class="Tests-Hub-question-number">أخذنا عينة من التربة وسكبنا عليها 120 مل من الماء وبعد 3 دقائق لاحظنا أن كمية الماء التي عبرتها هي 90 مل.</span> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p><strong>أحسب إستبقائية ونفاذية هذه التربة.</strong></p>
+                <div style="margin: 1rem 0;">
+                    <p>الاستبقائية = <textarea class="Tests-Hub-table-input" style="width:150px;" placeholder="..."></textarea></p>
+                    <p>النفاذية = <textarea class="Tests-Hub-table-input" style="width:150px;" placeholder="..."></textarea></p>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong class="Tests-Hub-text-bold">2.</strong> <span class="Tests-Hub-question-number">أضفنا لهذه التربة دبالا وسكبنا عليها 120 مل من الماء وبعد 3 دقائق عبرها 27 مل.</span> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p><strong>أحسب الاستبقائية والنفاذية.</strong></p>
+                <div style="margin: 1rem 0;">
+                    <p>الاستبقائية = <textarea class="Tests-Hub-table-input" style="width:150px;" placeholder="..."></textarea></p>
+                    <p>النفاذية = <textarea class="Tests-Hub-table-input" style="width:150px;" placeholder="..."></textarea></p>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong class="Tests-Hub-text-bold">3.</strong> <span class="Tests-Hub-question-number">استنتج دور الدبال في التربة.</span> <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="دور الدبال في التربة..."></textarea>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.test.showCorrection">عرض التصحيح المفصل</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>الإصلاح النموذجي المفصل</h2>
+
+            <!-- تصحيح التمرين الأول -->
+            <h3>التمرين الأول (4.5 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">1. تصحيح الجملة الأولى</strong> <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                <p class="Tests-Hub-text-correction">الجملة الأصلية: "يمكن الترسيب من فصل مكوّنات التربة حسب <strong>شكلها</strong>."</p>
+                <p><strong>الجملة خاطئة.</strong> التصحيح:</p>
+                <p class="Tests-Hub-text-highlight">يمكن الترسيب من فصل مكوّنات التربة حسب <strong>كتلتها</strong>.</p>
+                <p class="Tests-Hub-text-explanation"><strong>الشرح:</strong> الترسيب هو تقنية فصل مكوّنات التربة اعتماداً على <strong>الكتلة</strong> (الوزن) وليس الشكل. فالجزيئات الأثقل (مثل الحصى والرمل) تترسب أولاً في قاع الأنبوب، تليها الجزيئات الأخف (مثل الطين والدبال). أما الشكل فلا يلعب دوراً أساسياً في عملية الترسيب. <strong>التنقيط:</strong> 1.5 نقطة كاملة لمن يحدد الخطأ ويصححه بـ "كتلتها".</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">2. تصحيح الجملة الثانية</strong> <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                <p class="Tests-Hub-text-correction">الجملة الأصلية: "يرفع الدبال من إستبقائية التربة."</p>
+                <p><strong>الجملة صحيحة.</strong> لا يوجد خطأ.</p>
+                <p class="Tests-Hub-text-explanation"><strong>الشرح:</strong> الدبال مادة عضوية إسفنجية تمتص الماء وتحتفظ به داخل التربة، مما <strong>يرفع من استبقائيتها</strong> (قدرتها على الاحتفاظ بالماء). فكلما زادت نسبة الدبال في التربة، زادت كمية الماء التي تحتفظ بها. <strong>التنقيط:</strong> 1.5 نقطة كاملة لمن يذكر أن الجملة صحيحة ويشرح لماذا (أو يكتفي بذكر "صحيحة" مع تبرير مقنع).</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">3. تصحيح الجملة الثالثة</strong> <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                <p class="Tests-Hub-text-correction">الجملة الأصلية: "الهواء الموجود بالتربة ناتج عن الحرث والعزق."</p>
+                <p><strong>الجملة صحيحة.</strong> لا يوجد خطأ.</p>
+                <p class="Tests-Hub-text-explanation"><strong>الشرح:</strong> عمليات <strong>الحرث والعزق</strong> تؤدي إلى تفكيك التربة وتقليبها، مما يسمح بدخول الهواء إلى مسامات التربة وتجديد الأكسجين الضروري لتنفس جذور النباتات والكائنات الحية الدقيقة. كما أن الحرث يكسر القشرة السطحية الصلبة ويفتح مجاري هوائية. <strong>التنقيط:</strong> 1.5 نقطة كاملة لمن يذكر أن الجملة صحيحة مع تبرير.</p>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <!-- تصحيح التمرين الثاني -->
+            <h3>التمرين الثاني (8 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">1- تحليل التجربة والاستنتاج</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image22.png" alt="تجربة الكشف عن الكائنات الحية الدقيقة في التربة">
+                    <p class="Tests-Hub-image-caption">الوثيقة : تجربة الكشف عن الكائنات الحية الدقيقة في التربة</p>
+                </div>
+
+                <p class="Tests-Hub-text-correction">أ- تحليل التجربة (2 نقاط):</p>
+                <p>تتكوّن التجربة من أنبوبين: <strong>(أ1)</strong> يحتوي على تربة غير معقمة (طبيعية)، و<strong>(أ2)</strong> يحتوي على تربة معقمة (خالية من الكائنات الحية). يتصل كل أنبوب بوعاء يحتوي على <strong>ماء الجير</strong> (كاشف عن غاز ثنائي أكسيد الكربون CO₂) وبأنبوب يحتوي على <strong>ماء ملوّن</strong>.</p>
+                <p><strong>الملاحظة:</strong></p>
+                <ul class="Tests-Hub-organized-list">
+                    <li>في الأنبوب <strong>(أ1)</strong> (تربة غير معقمة): نلاحظ <strong>صعود الماء الملوّن</strong> داخل الأنبوب و<strong>تعكّر ماء الجير</strong>.</li>
+                    <li>في الأنبوب <strong>(أ2)</strong> (تربة معقمة): لا يحدث صعود للماء الملوّن ولا تعكّر لماء الجير.</li>
+                </ul>
+                <p><strong>التفسير:</strong> في التربة غير المعقمة، توجد <strong>كائنات حية دقيقة</strong> (بكتيريا، فطريات...) تقوم بعملية <strong>التنفس الخلوي</strong> فتستهلك <strong>الأكسجين</strong> الموجود في الأنبوب مما يسبب انخفاضاً في الضغط يؤدي إلى <strong>صعود الماء الملوّن</strong>. كما تطرح هذه الكائنات <strong>غاز ثنائي أكسيد الكربون (CO₂)</strong> الذي يتفاعل مع ماء الجير فيسبب <strong>تعكّره</strong>. أما التربة المعقمة فلا تحتوي على كائنات حية، لذا لا يحدث تنفس ولا تغير.</p>
+
+                <p class="Tests-Hub-text-correction">ب- الاستنتاج (2 نقاط):</p>
+                <p class="Tests-Hub-text-highlight">نستنتج أن <strong>التربة تحتوي على كائنات حية دقيقة</strong> (ميكروبات) تتنفس وتستهلك الأكسجين وتطرح ثنائي أكسيد الكربون.</p>
+                <p class="Tests-Hub-text-explanation"><strong>التنقيط:</strong> نقطتان للتحليل (وصف التجربة + تفسير الملاحظات) + نقطتان للاستنتاج الصحيح.</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">2- إكمال الجدول</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">الإجابة الصحيحة:</p>
+                <table>
+                    <thead>
+                        <tr><th>مكوّن التربة</th><th>مصدره</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>الكلس</td><td><strong>تفتت الصخور (الصخور الكلسية)</strong></td></tr>
+                        <tr><td><strong>الماء</strong></td><td>المطر والسّقي</td></tr>
+                        <tr><td>الرّمل</td><td><strong>تفتت الصخور (الصخور الرملية كالكوارتز)</strong></td></tr>
+                        <tr><td><strong>الأملاح المعدنية</strong></td><td>تحليل جثث الكائنات الحيّة (تفكيك المادة العضوية)</td></tr>
+                    </tbody>
+                </table>
+                <p class="Tests-Hub-text-explanation"><strong>الشرح:</strong> الكلس والرمل مصدرهما <strong>تفتت الصخور</strong> (التجوية الفيزيائية والكيميائية للصخور). الماء مصدره <strong>الأمطار والري</strong>. الأملاح المعدنية تنتج عن <strong>تحليل جثث الكائنات الحية</strong> بواسطة الكائنات المحللة (البكتيريا والفطريات) التي تحوّل المادة العضوية إلى أملاح معدنية قابلة للامتصاص من قبل النباتات. <strong>التنقيط:</strong> نقطة واحدة لكل خلية مملوءة بشكل صحيح.</p>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <!-- تصحيح التمرين الثالث -->
+            <h3>التمرين الثالث (7.5 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">1. حساب الاستبقائية والنفاذية للتربة الأصلية</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">المعطيات: كمية الماء المسكوبة = 120 مل، كمية الماء التي عبرت = 90 مل، المدة = 3 دقائق.</p>
+                <div style="padding: 1rem; border-radius: 8px; margin: 1rem 0;" class="Tests-Hub-dark-theme-dark-bg">
+                    <p><strong>الاستبقائية</strong> = كمية الماء المسكوبة − كمية الماء التي عبرت</p>
+                    <p>الاستبقائية = 120 مل − 90 مل = <strong>30 مل</strong></p>
+                    <p><strong>النفاذية</strong> = كمية الماء التي عبرت ÷ المدة الزمنية</p>
+                    <p>النفاذية = 90 مل ÷ 3 دقائق = <strong>30 مل/دقيقة</strong></p>
+                </div>
+                <p class="Tests-Hub-text-explanation"><strong>التنقيط:</strong> 1.5 نقطة لكل عملية حسابية صحيحة مع الوحدة المناسبة.</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">2. حساب الاستبقائية والنفاذية بعد إضافة الدبال</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-correction">المعطيات: كمية الماء المسكوبة = 120 مل، كمية الماء التي عبرت = 27 مل، المدة = 3 دقائق.</p>
+                <div style="padding: 1rem; border-radius: 8px; margin: 1rem 0;" class="Tests-Hub-dark-theme-dark-bg">
+                    <p><strong>الاستبقائية</strong> = 120 مل − 27 مل = <strong>93 مل</strong></p>
+                    <p><strong>النفاذية</strong> = 27 مل ÷ 3 دقائق = <strong>9 مل/دقيقة</strong></p>
+                </div>
+                <p class="Tests-Hub-text-explanation"><strong>التنقيط:</strong> 1.5 نقطة لكل عملية حسابية صحيحة مع الوحدة.</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong class="Tests-Hub-text-bold">3. استنتاج دور الدبال في التربة</strong> <span class="Tests-Hub-points-badge">1.5 نقطة</span></p>
+                <p class="Tests-Hub-text-correction">الإجابة الصحيحة:</p>
+                <p>بمقارنة النتائج قبل وبعد إضافة الدبال، نلاحظ أن:</p>
+                <ul class="Tests-Hub-organized-list">
+                    <li><strong>الاستبقائية ارتفعت</strong> من 30 مل إلى 93 مل (تضاعفت 3 مرات تقريباً).</li>
+                    <li><strong>النفاذية انخفضت</strong> من 30 مل/دقيقة إلى 9 مل/دقيقة (انخفضت إلى الثلث).</li>
+                </ul>
+                <p class="Tests-Hub-text-highlight">دور الدبال في التربة: <strong>يرفع الدبال من استبقائية التربة</strong> (يزيد قدرتها على الاحتفاظ بالماء) و<strong>يخفض من نفاذيتها</strong> (يبطئ تسرب الماء)، مما يجعل التربة أكثر <strong>خصوبة وصلاحية للزراعة</strong>. إضافة إلى ذلك، يثري الدبال التربة <strong>بالأملاح المعدنية</strong> الناتجة عن تحلله.</p>
+                <p class="Tests-Hub-text-explanation"><strong>التنقيط:</strong> 1.5 نقطة كاملة لمن يستنتج أن الدبال يرفع الاستبقائية ويخفض النفاذية ويزيد من خصوبة التربة. تُقبل الإجابات التي تذكر دورين على الأقل من هذه الأدوار الثلاثة.</p>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <p class="Tests-Hub-text-warning">
+                <strong>ملاحظة عامة:</strong> هذا التصحيح إرشادي، وقد تختلف إجابات التلاميذ مع الحفاظ على المعايير الأساسية. المهم هو الفهم العميق للسؤال، والتحليل المنطقي، واستخدام لغة علمية سليمة، وتقديم حجج متماسكة مدعومة بالمعطيات العلمية المناسبة. يجب مراعاة الدقة في المصطلحات العلمية (الاستبقائية، النفاذية، الترسيب، الدبال، إلخ) وجودة التعبير.
+            </p>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.2.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const translations = {
+            ar: {
+                TestsHub: {
+                    test: {
+                        title: "علوم الحياة والأرض - فرض مراقبة عدد 3",
+                        subtitle: "السنة السابعة أساسي (2020-2021)",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح المفصل",
+                        hideCorrection: "إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    lang: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    test: {
+                        title: "SVT - Devoir de Contrôle N°3",
+                        subtitle: "7ème Année (2020-2021)",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction détaillée",
+                        hideCorrection: "Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    lang: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    test: {
+                        title: "Natural Sciences - Control Test N°3",
+                        subtitle: "7th Grade (2020-2021)",
+                        back: "Back to Tests",
+                        showCorrection: "Show Detailed Correction",
+                        hideCorrection: "Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    lang: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrBtnText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) span.textContent = isDarkTheme ?
+                (currentLanguage === 'fr' ? 'Mode Clair' : (currentLanguage === 'ar' ? 'الوضع الفاتح' : 'Light Mode')) :
+                translations[currentLanguage].TestsHub.theme.toggle;
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrBtnText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ?
+                translations[currentLanguage].TestsHub.test.showCorrection :
+                translations[currentLanguage].TestsHub.test.hideCorrection;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            updateThemeToggleText();
+        }
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = translations[lang]
+                .TestsHub.lang.current;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = (currentLanguage === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$",
+                        display: false }],
+                    ignoredTags: ["script", "noscript", "style", "textarea", "pre"]
+                });
+            }
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')));
+            });
+
+            const corrBtn = document.getElementById('toggleCorrection');
+            const corrDiv = document.getElementById('correction');
+            corrBtn.addEventListener('click', () => {
+                corrDiv.classList.toggle('Tests-Hub-hidden');
+                updateCorrBtnText();
+            });
+
+            ['Pdf', 'Odt', 'Png'].forEach(type => {
+                document.getElementById('download' + type).addEventListener('click', () => alert(
+                    translations[currentLanguage].TestsHub.test.comingSoon));
+            });
+
+            if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+    </script>
+</body>
+</html>

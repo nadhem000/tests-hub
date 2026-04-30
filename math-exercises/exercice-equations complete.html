@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Équations – Problèmes concrets | Tableau d'exercices</title>
+    <style>
+        :root {
+            --bg: #eef2f7; --bg2: #d9e2ec; --surface: #ffffff; --surface2: #f4f7fb; --surface3: #e8eef6;
+            --text: #0b2b3b; --text2: #3a5a78; --text3: #5a7a98; --border: #cbdde9; --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04); --shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.10); --accent: #0d9488; --accent2: #10b981;
+            --accent3: #ef4444; --tag-bg: #e2eaf5; --tag-text: #1e3a4f; --input-bg: #fffef7;
+            --input-border: #90a4c3; --section-header-bg: #e9f0f9; --section-header-text: #1f3a4b;
+            --badge-easy-bg: #e6f4ea; --badge-easy-text: #1a6b3c; --badge-medium-bg: #fef3e0;
+            --badge-medium-text: #8a5c1a; --badge-hard-bg: #fde8e8; --badge-hard-text: #8b1a1a;
+            --toggle-bg: #dce4f0; --scrollbar-thumb: #c1cddb; --scrollbar-track: transparent;
+            --card-accent-opacity:0.18; --overlay:rgba(0,0,0,0.35); --canvas-bg:#ffffff;
+            --table-border:#cbdde9; --table-header-bg:#e9f0f9; --table-cell-bg:#f4f7fb;
+            --table-stripe-bg:#eef2f7; --calc-line-bg: #fffef9; --calc-line-border: #bcc9da;
+            --highlight-eq: #0d9488; --highlight-eq-light: rgba(13,148,136,0.08); --highlight-eq-badge: #0f766e;
+            --section-accent: #0d9488; --section-bg: rgba(13,148,136,0.04); --eq-box-bg: #f0fdfa;
+            --eq-box-border: #5eead4; --radical-color: #0d9488; --fraction-bar: #0d9488;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a; --bg2: #1a2332; --surface: #1e293b; --surface2: #1a2332;
+            --surface3: #243044; --text: #e2e8f0; --text2: #bcc8d6; --text3: #8f9eb2;
+            --border: #334155; --border2: #2d3a4a; --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+            --shadow: 0 4px 16px rgba(0,0,0,0.25); --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+            --accent: #2dd4bf; --accent2: #4ade80; --accent3: #f87171; --tag-bg: #243044;
+            --tag-text: #bcc8d6; --input-bg: #1a2332; --input-border: #475569;
+            --section-header-bg: #1e293b; --section-header-text: #e2e8f0;
+            --badge-easy-bg: #1a3b2a; --badge-easy-text: #4ade80; --badge-medium-bg: #3b2e1a;
+            --badge-medium-text: #fbbf24; --badge-hard-bg: #3b1a1a; --badge-hard-text: #f87171;
+            --toggle-bg: #334155; --scrollbar-thumb: #475569; --scrollbar-track: #1e293b;
+            --card-accent-opacity: 0.28; --overlay: rgba(0,0,0,0.55); --canvas-bg: #1a2332;
+            --table-border: #334155; --table-header-bg: #1e293b; --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e; --calc-line-bg: #1a2332; --calc-line-border: #475569;
+            --highlight-eq: #2dd4bf; --highlight-eq-light: rgba(45,212,191,0.12); --highlight-eq-badge: #0d9488;
+            --section-accent: #2dd4bf; --section-bg: rgba(45,212,191,0.06); --eq-box-bg: #0f2a2a;
+            --eq-box-border: #0d9488; --radical-color: #2dd4bf; --fraction-bar: #2dd4bf;
+        }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        html{scroll-behavior:smooth;font-size:16px;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 70%,var(--bg) 100%); color:var(--text);min-height:100vh;padding:16px; transition:background 0.4s,color 0.35s;line-height:1.6; -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;align-items:center;}
+        ::-webkit-scrollbar{width:7px;height:7px;} ::-webkit-scrollbar-track{background:var(--scrollbar-track);border-radius:10px;} ::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:10px;}
+        .dashboard-header{width:100%;max-width:1060px;margin:0 auto 16px;background:var(--surface); border-radius:30px;padding:14px 24px;box-shadow:var(--shadow); border:1px solid var(--border);display:flex;align-items:center; justify-content:space-between;flex-wrap:wrap;gap:12px;transition:all 0.35s;}
+        .logo-area{display:flex;align-items:center;gap:8px;font-size:1.3rem;font-weight:800;color:var(--text);white-space:nowrap;}
+        .logo-area .icon{font-size:2rem;animation:float 3s ease-in-out infinite;} @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+        .header-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+        .btn-icon{width:42px;height:42px;border-radius:50%;border:2px solid var(--border); background:var(--surface2);cursor:pointer;font-size:1.2rem; display:flex;align-items:center;justify-content:center;transition:all 0.2s; color:var(--text);flex-shrink:0;}
+        .btn-icon:hover{background:var(--surface3);border-color:var(--accent);box-shadow:var(--shadow-sm);} .btn-icon:active{transform:scale(0.93);}
+        .lang-select{padding:7px 12px;border-radius:50px;border:2px solid var(--border); background:var(--surface2);color:var(--text);font-family:inherit; font-weight:600;font-size:0.9rem;cursor:pointer;outline:none;transition:0.2s;min-width:100px;} .lang-select:hover{border-color:var(--accent);}
+        .exercise-wrapper{width:100%;max-width:1060px;background:var(--surface);border-radius:36px; box-shadow:var(--shadow-lg);border:1px solid var(--border);padding:28px 32px; margin-bottom:16px;transition:background 0.35s;}
+        .exercise-title{font-size:1.7rem;font-weight:800;color:var(--highlight-eq);text-align:center; margin-bottom:6px;letter-spacing:-0.5px;display:flex;align-items:center; justify-content:center;gap:8px;}
+        .exercise-subtitle{text-align:center;color:var(--text2);margin-bottom:24px;font-size:1rem; font-weight:500;background:var(--section-header-bg);padding:5px 20px; border-radius:40px;display:inline-block;width:fit-content;margin-left:auto;margin-right:auto;}
+        .problem-box{background:var(--surface2);border:2px solid var(--accent);border-radius:28px; padding:16px 20px;margin-bottom:20px;font-size:1.2rem;font-weight:600; text-align:center;line-height:1.8;color:var(--text);}
+        .question-block{margin-top:10px;font-size:1.2rem;font-weight:600;color:var(--text); background:var(--surface2);padding:16px 18px;border-radius:28px; line-height:2.2;border:1px solid var(--border);}
+        .section-card{background:var(--surface);border-radius:20px;padding:16px 18px;margin:14px 0; border:1px solid var(--border2);box-shadow:var(--shadow-sm);transition:background 0.35s; border-right:4px solid var(--section-accent);background:var(--section-bg);}
+        [data-theme="dark"] .section-card{border-right:4px solid var(--section-accent);background:var(--section-bg);}
+        .section-label{font-size:1.05rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center; gap:6px;padding:4px 14px;border-radius:30px;width:fit-content; color:var(--highlight-eq);background:var(--highlight-eq-light);}
+        .step-explanation{font-size:1rem;font-weight:500;color:var(--text2);margin-bottom:8px; background:var(--surface3);padding:4px 14px;border-radius:20px;display:inline-block;}
+        .formula-line{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px; margin:6px 0;direction:ltr;font-size:1.35rem;font-weight:700; background:var(--calc-line-bg);border:2px dashed var(--calc-line-border); border-radius:40px;padding:8px 18px;width:fit-content;min-width:200px; margin-left:auto;margin-right:auto;}
+        .formula-line .operator{font-size:1.5rem;font-weight:800;color:var(--accent);margin:0 4px;}
+        .formula-line .num-display{font-weight:800;background:var(--surface3);padding:4px 12px;border-radius:16px; font-size:1.2rem;color:var(--text);margin:0 2px;}
+        .formula-line .var-display{font-weight:800;font-style:italic;color:var(--highlight-eq);font-size:1.35rem;margin:0 2px;}
+        .formula-line .radical-inline{display:inline-flex;align-items:baseline;margin:0 2px;}
+        .formula-line .radical-inline .radicand-inline{text-decoration:overline;padding:0 4px;font-weight:800;color:var(--radical-color);}
+        .frac-inline{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;line-height:1.1;}
+        .frac-inline .frac-num{border-bottom:2px solid var(--fraction-bar);padding:0 6px;font-size:1.1rem;font-weight:800;} .frac-inline .frac-den{padding:0 6px;font-size:1.1rem;font-weight:800;}
+        .inline-input{font-family:'Courier New',monospace;font-weight:bold;font-size:1.25rem; background:var(--input-bg);border:2px solid var(--input-border);border-radius:32px; text-align:center;padding:3px 2px;margin:0 4px;width:3.5em;min-width:62px; max-width:110px;outline:none;transition:all 0.15s;color:var(--text); box-shadow:inset 0 1px 3px rgba(0,0,0,0.03);line-height:1.4;}
+        .inline-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(13,148,136,0.25);} .inline-input.input-sm{width:2.8em;min-width:50px;max-width:80px;}
+        .hint-text{font-size:0.9rem;color:var(--text2);margin-top:6px;text-align:center; font-weight:500;background:var(--surface3);padding:3px 14px;border-radius:20px; display:inline-block;width:fit-content;margin-left:auto;margin-right:auto;}
+        .action-row{display:flex;justify-content:center;gap:12px;margin:20px 0 8px;}
+        .btn{border:none;padding:11px 28px;font-size:1.1rem;font-weight:bold; border-radius:60px;cursor:pointer;transition:0.08s linear;font-family:inherit; box-shadow:0 5px 0 rgba(0,0,0,0.2);color:white;}
+        .btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,0.2);} .btn-generate{background:#0f5e5a;} .btn-check{background:var(--accent2);}
+        .stats{display:flex;justify-content:space-between;margin-top:18px;font-size:1.2rem; color:var(--text);font-weight:600;background:var(--surface2); padding:12px 28px;border-radius:60px;border:1px solid var(--border);}
+        .message{margin-top:16px;font-size:1.05rem;min-height:50px;font-weight:500; text-align:center;background:var(--surface2);border-radius:60px; padding:10px 16px;transition:0.1s;border:1px solid var(--border); color:var(--text);line-height:2;}
+        .start-note{display:inline-block;background:linear-gradient(135deg,#0d9488,#0f766e); color:white;font-weight:700;padding:10px 32px;border-radius:50px; animation:pulse-note 2s infinite;box-shadow:0 4px 15px rgba(15,118,110,0.4);} @keyframes pulse-note{0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}
+        .dashboard-footer{width:100%;max-width:1060px;margin:8px auto 8px;padding:18px 20px; background:var(--surface);border-radius:24px;border:1px solid var(--border); box-shadow:var(--shadow-sm);display:grid;grid-template-columns:repeat(3,1fr); gap:20px;transition:background 0.35s;font-size:0.9rem;}
+        .footer-col{display:flex;flex-direction:column;gap:6px;} .footer-col h4{font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:2px;} .footer-col ul{list-style:none;padding:0;margin:0;} .footer-col ul li{margin-bottom:3px;} .footer-col a{color:var(--text2);text-decoration:none;transition:color 0.2s;} .footer-col a:hover{color:var(--accent);text-decoration:underline;} .footer-col p{color:var(--text2);margin:0;} .host-info{font-size:0.8rem;opacity:0.8;}
+        @media (max-width:768px){.dashboard-header{padding:10px 14px;} .exercise-wrapper{padding:18px 14px;} .dashboard-footer{grid-template-columns:1fr;text-align:center;gap:12px;} .footer-col{align-items:center;} .question-block{font-size:1.05rem;padding:12px 8px;} .inline-input{font-size:1rem;width:2.8em;min-width:48px;} .formula-line{font-size:1.1rem;padding:6px 10px;border-radius:30px;} .stats{font-size:1rem;padding:10px 16px;} .section-label{font-size:0.95rem;}}
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area"><span class="icon">⚖️</span><span data-i18n="app_title">Tableau d'exercices</span></div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="Son" aria-label="Son">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="Langue"><option value="fr">Français</option><option value="ar">العربية</option><option value="en">English</option></select>
+            <button class="btn-icon" id="btnDarkMode" title="Mode sombre / clair">🌙</button>
+            <button class="btn-icon" id="btnBack" title="Retour au tableau">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title"><span>⚖️</span> <span data-i18n="exercise_heading">Équations – Problèmes concrets</span> <span>✅</span></h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">Mets le problème en équation, puis résous – 10 essais</div>
+
+        <div class="problem-box" id="problemStatement"></div>
+
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 Nouvelle question</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ Vérifier</button>
+        </div>
+
+        <div style="text-align:center;"><span class="start-note" data-i18n="click_new_to_start">👆 Clique sur « Nouvelle question » pour commencer</span></div>
+        <div class="hint-text" data-i18n="hint" style="display:block;width:auto;">📌 Écris d'abord l'équation du problème, puis résous-la. Toutes les cases sont obligatoires.</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">Essais</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">Points</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col"><h4 data-i18n="footer_links">Liens</h4><ul><li><a href="#" data-i18n="footer_terms">Conditions d'utilisation</a></li><li><a href="#" data-i18n="footer_privacy">Politique de confidentialité</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="footer_version">Version</h4><p>v1.0.0</p></div>
+        <div class="footer-col"><h4 data-i18n="footer_dev">Développement</h4><p>Madjeri Ziad</p><p class="host-info" data-i18n="footer_host">Hébergé sur Netlify & GitHub</p></div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const problemStatement = document.getElementById('problemStatement');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let eq = {};
+            let inputRefs = {};
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
+
+            const translations = {
+                fr: {
+                    app_title: "Tableau d'exercices",
+                    exercise_heading: "Équations – Problèmes concrets",
+                    exercise_subtitle: "Mets le problème en équation, puis résous – 10 essais",
+                    new_question: "🔄 Nouvelle question",
+                    check: "✓ Vérifier",
+                    hint: "📌 Écris d'abord l'équation du problème, puis résous-la. Toutes les cases sont obligatoires.",
+                    attempts_label: "Essais", score_label: "Points",
+                    fill_all: "⚠️ Remplis toutes les cases.",
+                    invalid_numbers: "❌ Entre uniquement des nombres entiers.",
+                    correct: "✅ Bonne réponse ! +1 point",
+                    wrong: "❌ Faux. Vérifie ton équation et les étapes.",
+                    round_over: "🏁 Tour terminé ! Score : {score}/10 🏁",
+                    round_restart: "⏳ Tour terminé, nouveau tour à venir...",
+                    figure_changed: "🔄 Problème changé (essai non compté)",
+                    footer_links: "Liens", footer_terms: "Conditions d'utilisation", footer_privacy: "Politique de confidentialité",
+                    footer_version: "Version", footer_dev: "Développement", footer_host: "Hébergé sur Netlify & GitHub",
+                    sound_on_title: "Son (activé)", sound_off_title: "Son (désactivé)", back_title: "Retour au tableau",
+                    operator_plus: "+", operator_minus: "−", operator_equals: "=", operator_times: "×", operator_divide: "÷",
+                    click_new_to_start: "👆 Clique sur « Nouvelle question » pour commencer",
+                    problem_simp: "Location de voiture : agence A → {b}€ de frais fixes + {a}€ par km. Agence B → {d}€ de frais fixes + {c}€ par km. Pour quelle distance x (en km) les deux prix sont-ils égaux ?",
+                    problem_par: "Un artisan compare deux lots : lot A → {a} boîtes contenant chacune {b} vis et {c} écrous. Lot B → {d} boîtes contenant chacune {e} vis et {f} écrous. Le nombre total de vis est le même. Soit x le nombre de vis par boîte inconnu. Écris l'égalité.",
+                    problem_frac: "Deux coureurs : le premier parcourt {a}x + {b} km en {c} heures. Le second parcourt {d}x + {e} km en {f} heures. Ils ont la même vitesse moyenne (v = distance / temps). Détermine x.",
+                    problem_sqrt: "Deux points sont reliés par un chemin modélisé par {a}x + {b}√{c} = {d}x + {e}√{f}. Trouve la valeur de x.",
+                    step0_title_simp: "0. Écrire l'équation du problème",
+                    step0_explain_simp: "Complète l'équation sous la forme : (prix agence A) = (prix agence B)",
+                    step0_instr_simp: "Coefficient de x à gauche : ? | Constante gauche : ? | Coefficient droit : ? | Constante droite : ?",
+                    step0_title_par: "0. Écrire l'équation du problème",
+                    step0_explain_par: "Écris l'égalité entre le nombre total de vis du lot A et celui du lot B.",
+                    step0_instr_par: "a = ? | b = ? | c = ? | d = ? | e = ? | f = ?",
+                    step0_title_frac: "0. Écrire l'équation du problème",
+                    step0_explain_frac: "Écris l'égalité des vitesses : distance / temps (même dénominateur).",
+                    step0_instr_frac: "Numérateur gauche : a x + b ? | Dénom. gauche : c ? | Num. droit : d x + e ? | Dénom. droit : f ?",
+                    step0_title_sqrt: "0. Écrire l'équation du problème",
+                    step0_explain_sqrt: "Recopie l'équation donnée.",
+                    step0_instr_sqrt: "Coefficient gauche : ? | Constante gauche : ? | Sous la racine gauche : ? | Coefficient droit : ? | Constante droite : ? | Sous la racine droite : ?",
+                    step1_simp_title: "1. Regrouper les x à gauche",
+                    step1_simp_explain: "Soustraire {c}x des deux côtés.",
+                    step1_simp_instr: "Nouveau coeff. de x : {a} − {c} = ? | Constante à droite : reste {d}",
+                    step2_simp_title: "2. Isoler le terme en x",
+                    step2_simp_explain: "Soustraire {b} des deux côtés.",
+                    step2_simp_instr: "Nouveau membre droit : {d} − {b} = ?",
+                    step3_simp_title: "3. Calculer x",
+                    step3_simp_explain: "Diviser par le coefficient de x.",
+                    step3_simp_instr: "x = ( {d} − {b} ) ÷ ( {a} − {c} ) = ?",
+                    step1_par_title: "1. Développer le membre gauche",
+                    step1_par_explain: "Multiplier {a} par chaque terme de ({b}x+{c}).",
+                    step1_par_instr: "x : {a}×{b} = ? | constante : {a}×{c} = ?",
+                    step2_par_title: "2. Développer le membre droit",
+                    step2_par_explain: "Multiplier {d} par chaque terme de ({e}x+{f}).",
+                    step2_par_instr: "x : {d}×{e} = ? | constante : {d}×{f} = ?",
+                    step3_par_title: "3. Regrouper les x à gauche",
+                    step3_par_explain: "Soustraire {rx}x des deux côtés.",
+                    step3_par_instr: "{lx} − {rx} = ? (coeff. x)",
+                    step4_par_title: "4. Écrire la nouvelle équation",
+                    step4_par_explain: "Recopier l'équation (coeff.x + gauche = droite).",
+                    step4_par_instr: "Coeff : {coeff} | constante gauche : {lc} | constante droite : {rc}",
+                    step5_par_title: "5. Isoler le terme en x",
+                    step5_par_explain: "Soustraire {lc} des deux côtés.",
+                    step5_par_instr: "{rc} − {lc} = ?",
+                    step6_par_title: "6. Écrire l'équation simplifiée",
+                    step6_par_explain: "Sous la forme coeff.x = constante.",
+                    step6_par_instr: "Coeff : {coeff} | constante : {cst}",
+                    step7_par_title: "7. Calculer x",
+                    step7_par_explain: "Diviser par le coefficient.",
+                    step7_par_instr: "x = {cst} ÷ {coeff} = ?",
+                    step1_frac_title: "1. Trouver le PPCM des dénominateurs",
+                    step1_frac_explain: "PPCM( {c} , {f} ) = ?",
+                    step1_frac_instr: "PPCM = ?",
+                    step2_frac_title: "2. Multiplier par le PPCM",
+                    step2_frac_explain: "Multiplier chaque fraction par {ppcm}.",
+                    step2_frac_instr: "Gauche : {ppcm}÷{c}=? | Droite : {ppcm}÷{f}=?",
+                    step3_frac_title: "3. Développer le membre gauche",
+                    step3_frac_explain: "{lm}×({a}x+{b})",
+                    step3_frac_instr: "x : {lm}×{a}=? | constante : {lm}×{b}=?",
+                    step4_frac_title: "4. Développer le membre droit",
+                    step4_frac_explain: "{rm}×({d}x+{e})",
+                    step4_frac_instr: "x : {rm}×{d}=? | constante : {rm}×{e}=?",
+                    step5_frac_title: "5. Écrire l'équation sans parenthèses",
+                    step5_frac_explain: "Recopier les deux développements.",
+                    step5_frac_instr: "Gauche : {lx}x+{lc} | Droite : {rx}x+{rc}",
+                    step6_frac_title: "6. Regrouper les x à gauche",
+                    step6_frac_explain: "Soustraire {rx}x des deux côtés.",
+                    step6_frac_instr: "{lx} − {rx} = ? (coeff. x)",
+                    step7_frac_title: "7. Isoler le terme en x",
+                    step7_frac_explain: "Soustraire {lc} des deux côtés.",
+                    step7_frac_instr: "{rc} − {lc} = ?",
+                    step8_frac_title: "8. Calculer x",
+                    step8_frac_explain: "Diviser par le coefficient.",
+                    step8_frac_instr: "x = {cst} ÷ {coeff} = ?",
+                    step1_sqrt_title: "1. Simplifier √{c}",
+                    step1_sqrt_explain: "Décomposer {c} en carré parfait × facteur : {c} = {r}² × {k}",
+                    step1_sqrt_instr: "√{c} = ? √ ?",
+                    step2_sqrt_title: "2. Simplifier √{f}",
+                    step2_sqrt_explain: "{f} = {s}² × {k}",
+                    step2_sqrt_instr: "√{f} = ? √ ?",
+                    step3_sqrt_title: "3. Équation avec radicaux simplifiés",
+                    step3_sqrt_explain: "Remplacer √{c} par {r}√{k} et √{f} par {s}√{k}.",
+                    step3_sqrt_instr: "Constante gauche = {b}×{r} = ? | constante droite = {e}×{s} = ?",
+                    step4_sqrt_title: "4. Diviser par √{k}",
+                    step4_sqrt_explain: "On peut diviser les deux membres par √{k}.",
+                    step4_sqrt_instr: "Recopie les mêmes constantes.",
+                    step5_sqrt_title: "5. Regrouper les x à gauche",
+                    step5_sqrt_explain: "Soustraire {d}x des deux côtés.",
+                    step5_sqrt_instr: "{a} − {d} = ? (coeff. x)",
+                    step6_sqrt_title: "6. Isoler le terme en x",
+                    step6_sqrt_explain: "Soustraire {B} des deux côtés.",
+                    step6_sqrt_instr: "{D} − {B} = ?",
+                    step7_sqrt_title: "7. Calculer x",
+                    step7_sqrt_explain: "Diviser par le coefficient.",
+                    step7_sqrt_instr: "x = {cst} ÷ {coeff} = ?",
+                    step8_sqrt_title: "8. Vérification",
+                    step8_sqrt_explain: "Remplacer x par {sol} dans l'équation sans radical.",
+                    step8_sqrt_instr: "Membre gauche = {a}×{sol}+{B} = ? | Membre droit = {d}×{sol}+{D} = ?"
+                },
+                ar: {
+                    app_title: "لوحة التمارين",
+                    exercise_heading: "المعادلات – مسائل واقعية",
+                    exercise_subtitle: "ضع المسألة في معادلة ثم حلها – 10 محاولات",
+                    new_question: "🔄 سؤال جديد",
+                    check: "✓ تحقق",
+                    hint: "📌 اكتب أولاً معادلة المسألة ثم حلها. كل الخانات إجبارية.",
+                    attempts_label: "المحاولات", score_label: "النقاط",
+                    fill_all: "⚠️ أتمم كل الخانات.",
+                    invalid_numbers: "❌ أدخل أعداداً صحيحة فقط.",
+                    correct: "✅ إجابة صحيحة! +1 نقطة",
+                    wrong: "❌ خطأ. تأكد من المعادلة والخطوات.",
+                    round_over: "🏁 انتهت الجولة! النتيجة: {score}/10 🏁",
+                    round_restart: "⏳ الجولة انتهت، جولة جديدة قادمة...",
+                    figure_changed: "🔄 تم تغيير المسألة (لا تحتسب محاولة)",
+                    footer_links: "روابط", footer_terms: "شروط الاستخدام", footer_privacy: "سياسة الخصوصية",
+                    footer_version: "الإصدار", footer_dev: "تطوير", footer_host: "مستضاف على Netlify و GitHub",
+                    sound_on_title: "الصوت (مفعل)", sound_off_title: "الصوت (معطل)", back_title: "العودة إلى اللوحة",
+                    operator_plus: "+", operator_minus: "−", operator_equals: "=", operator_times: "×", operator_divide: "÷",
+                    click_new_to_start: "👆 اضغط على « سؤال جديد » للبدء",
+                    problem_simp: "كراء سيارة : وكالة أ → {b}€ رسوم ثابتة + {a}€ لكل كم. وكالة ب → {d}€ رسوم ثابتة + {c}€ لكل كم. لأي مسافة x (بالكم) يتساوى الثمنان ؟",
+                    problem_par: "يقارن حرفي صندوقين : الصندوق أ به {a} علبة، كل علبة بها {b} برغي و {c} صامولة. الصندوق ب به {d} علبة، كل علبة بها {e} برغي و {f} صامولة. عدد البراغي الكلي متساوٍ. ليكن x عدد البراغي في العلبة المجهولة. اكتب المساواة.",
+                    problem_frac: "عدّاءان : الأول يقطع {a}x + {b} كم في {c} ساعات. الثاني يقطع {d}x + {e} كم في {f} ساعات. لهما نفس السرعة المتوسطة. جد x.",
+                    problem_sqrt: "نقطتان ترتبطان بمسار تمثله المعادلة {a}x + {b}√{c} = {d}x + {e}√{f}. جد قيمة x.",
+                    step0_title_simp: "0. كتابة معادلة المسألة",
+                    step0_explain_simp: "أكمل المعادلة على الشكل : (ثمن الوكالة أ) = (ثمن الوكالة ب)",
+                    step0_instr_simp: "معامل x يساراً : ؟ | ثابت يساراً : ؟ | معامل x يميناً : ؟ | ثابت يميناً : ؟",
+                    step0_title_par: "0. كتابة معادلة المسألة",
+                    step0_explain_par: "اكتب مساواة عدد البراغي بين الصندوقين.",
+                    step0_instr_par: "a = ؟ | b = ؟ | c = ؟ | d = ؟ | e = ؟ | f = ؟",
+                    step0_title_frac: "0. كتابة معادلة المسألة",
+                    step0_explain_frac: "اكتب تساوي السرعتين : مسافة / زمن.",
+                    step0_instr_frac: "بسط اليسار : a x + b ؟ | مقام اليسار : c ؟ | بسط اليمين : d x + e ؟ | مقام اليمين : f ؟",
+                    step0_title_sqrt: "0. كتابة معادلة المسألة",
+                    step0_explain_sqrt: "انسخ المعادلة المعطاة.",
+                    step0_instr_sqrt: "معامل x يساراً : ؟ | ثابت يساراً : ؟ | داخل الجذر يساراً : ؟ | معامل x يميناً : ؟ | ثابت يميناً : ؟ | داخل الجذر يميناً : ؟",
+                    step1_simp_title: "1. تجميع حدود x في اليسار",
+                    step1_simp_explain: "نطرح {c}x من الطرفين.",
+                    step1_simp_instr: "معامل x الجديد : {a} − {c} = ؟ | الثابت الأيمن : يبقى {d}",
+                    step2_simp_title: "2. عزل حد x",
+                    step2_simp_explain: "نطرح {b} من الطرفين.",
+                    step2_simp_instr: "الطرف الأيمن الجديد : {d} − {b} = ؟",
+                    step3_simp_title: "3. حساب x",
+                    step3_simp_explain: "نقسم على معامل x.",
+                    step3_simp_instr: "x = ( {d} − {b} ) ÷ ( {a} − {c} ) = ؟",
+                    step1_par_title: "1. نشر الطرف الأيسر",
+                    step1_par_explain: "نضرب {a} في كل حد من ({b}x+{c}).",
+                    step1_par_instr: "x : {a}×{b} = ؟ | ثابت : {a}×{c} = ؟",
+                    step2_par_title: "2. نشر الطرف الأيمن",
+                    step2_par_explain: "نضرب {d} في كل حد من ({e}x+{f}).",
+                    step2_par_instr: "x : {d}×{e} = ؟ | ثابت : {d}×{f} = ؟",
+                    step3_par_title: "3. تجميع حدود x في اليسار",
+                    step3_par_explain: "نطرح {rx}x من الطرفين.",
+                    step3_par_instr: "{lx} − {rx} = ؟ (معامل x)",
+                    step4_par_title: "4. كتابة المعادلة الجديدة",
+                    step4_par_explain: "أعد كتابة المعادلة (معامل x + ثابت يسار = ثابت يمين).",
+                    step4_par_instr: "معامل : {coeff} | ثابت يسار : {lc} | ثابت يمين : {rc}",
+                    step5_par_title: "5. عزل حد x",
+                    step5_par_explain: "نطرح {lc} من الطرفين.",
+                    step5_par_instr: "{rc} − {lc} = ؟",
+                    step6_par_title: "6. كتابة المعادلة المبسطة",
+                    step6_par_explain: "على شكل معامل x = ثابت.",
+                    step6_par_instr: "معامل : {coeff} | ثابت : {cst}",
+                    step7_par_title: "7. حساب x",
+                    step7_par_explain: "نقسم على المعامل.",
+                    step7_par_instr: "x = {cst} ÷ {coeff} = ؟",
+                    step1_frac_title: "1. إيجاد المضاعف المشترك الأصغر",
+                    step1_frac_explain: "PPCM( {c} , {f} ) = ؟",
+                    step1_frac_instr: "PPCM = ؟",
+                    step2_frac_title: "2. الضرب في PPCM",
+                    step2_frac_explain: "نضرب كل كسر في {ppcm}.",
+                    step2_frac_instr: "معامل اليسار : {ppcm}÷{c}=؟ | معامل اليمين : {ppcm}÷{f}=؟",
+                    step3_frac_title: "3. نشر الطرف الأيسر",
+                    step3_frac_explain: "{lm}×({a}x+{b})",
+                    step3_frac_instr: "x : {lm}×{a}=؟ | ثابت : {lm}×{b}=؟",
+                    step4_frac_title: "4. نشر الطرف الأيمن",
+                    step4_frac_explain: "{rm}×({d}x+{e})",
+                    step4_frac_instr: "x : {rm}×{d}=؟ | ثابت : {rm}×{e}=؟",
+                    step5_frac_title: "5. كتابة المعادلة بدون أقواس",
+                    step5_frac_explain: "نكتب ناتجي النشر.",
+                    step5_frac_instr: "اليسار : {lx}x+{lc} | اليمين : {rx}x+{rc}",
+                    step6_frac_title: "6. تجميع حدود x في اليسار",
+                    step6_frac_explain: "نطرح {rx}x من الطرفين.",
+                    step6_frac_instr: "{lx} − {rx} = ؟ (معامل x)",
+                    step7_frac_title: "7. عزل حد x",
+                    step7_frac_explain: "نطرح {lc} من الطرفين.",
+                    step7_frac_instr: "{rc} − {lc} = ؟",
+                    step8_frac_title: "8. حساب x",
+                    step8_frac_explain: "نقسم على المعامل.",
+                    step8_frac_instr: "x = {cst} ÷ {coeff} = ؟",
+                    step1_sqrt_title: "1. تبسيط √{c}",
+                    step1_sqrt_explain: "تحليل {c} = {r}² × {k}",
+                    step1_sqrt_instr: "√{c} = ؟ √ ؟",
+                    step2_sqrt_title: "2. تبسيط √{f}",
+                    step2_sqrt_explain: "{f} = {s}² × {k}",
+                    step2_sqrt_instr: "√{f} = ؟ √ ؟",
+                    step3_sqrt_title: "3. المعادلة بجذور مبسطة",
+                    step3_sqrt_explain: "نعوض √{c} بـ {r}√{k} و √{f} بـ {s}√{k}.",
+                    step3_sqrt_instr: "ثابت اليسار = {b}×{r} = ؟ | ثابت اليمين = {e}×{s} = ؟",
+                    step4_sqrt_title: "4. القسمة على √{k}",
+                    step4_sqrt_explain: "نقسم الطرفين على √{k}.",
+                    step4_sqrt_instr: "أعد كتابة نفس الثوابت.",
+                    step5_sqrt_title: "5. تجميع حدود x في اليسار",
+                    step5_sqrt_explain: "نطرح {d}x من الطرفين.",
+                    step5_sqrt_instr: "{a} − {d} = ؟ (معامل x)",
+                    step6_sqrt_title: "6. عزل حد x",
+                    step6_sqrt_explain: "نطرح {B} من الطرفين.",
+                    step6_sqrt_instr: "{D} − {B} = ؟",
+                    step7_sqrt_title: "7. حساب x",
+                    step7_sqrt_explain: "نقسم على المعامل.",
+                    step7_sqrt_instr: "x = {cst} ÷ {coeff} = ؟",
+                    step8_sqrt_title: "8. التحقق",
+                    step8_sqrt_explain: "نعوض x={sol} في المعادلة بدون جذر.",
+                    step8_sqrt_instr: "الطرف الأيسر = {a}×{sol}+{B} = ؟ | الطرف الأيمن = {d}×{sol}+{D} = ؟"
+                },
+                en: {
+                    app_title: "Exercise Board",
+                    exercise_heading: "Equations – Real-life Problems",
+                    exercise_subtitle: "Write the equation from the problem, then solve it – 10 attempts",
+                    new_question: "🔄 New Question",
+                    check: "✓ Check",
+                    hint: "📌 First write the equation of the problem, then solve it. All blanks are required.",
+                    attempts_label: "Attempts", score_label: "Score",
+                    fill_all: "⚠️ Fill all blanks.",
+                    invalid_numbers: "❌ Please enter integers only.",
+                    correct: "✅ Correct! +1 point",
+                    wrong: "❌ Wrong. Check your equation and steps.",
+                    round_over: "🏁 Round over! Score: {score}/10 🏁",
+                    round_restart: "⏳ Round finished, new round starting...",
+                    figure_changed: "🔄 Problem changed (attempt not counted)",
+                    footer_links: "Links", footer_terms: "Terms of use", footer_privacy: "Privacy policy",
+                    footer_version: "Version", footer_dev: "Development", footer_host: "Hosted on Netlify & GitHub",
+                    sound_on_title: "Sound (on)", sound_off_title: "Sound (off)", back_title: "Back to dashboard",
+                    operator_plus: "+", operator_minus: "−", operator_equals: "=", operator_times: "×", operator_divide: "÷",
+                    click_new_to_start: "👆 Click « New Question » to start",
+                    problem_simp: "Car rental: agency A → ${b} fixed fee + ${a} per km. Agency B → ${d} fixed fee + ${c} per km. For which distance x (km) are both prices equal?",
+                    problem_par: "A craftsman compares two boxes: box A contains {a} packs, each with {b} screws and {c} nuts. Box B contains {d} packs, each with {e} screws and {f} nuts. The total number of screws is the same. Write the equality.",
+                    problem_frac: "Two runners: the first runs {a}x + {b} km in {c} hours. The second runs {d}x + {e} km in {f} hours. They have the same average speed. Find x.",
+                    problem_sqrt: "Two points are connected by a path modelled by {a}x + {b}√{c} = {d}x + {e}√{f}. Compute x.",
+                    step0_title_simp: "0. Write the equation of the problem",
+                    step0_explain_simp: "Complete the equation: (cost A) = (cost B)",
+                    step0_instr_simp: "Left x coefficient: ? | Left constant: ? | Right x coefficient: ? | Right constant: ?",
+                    step0_title_par: "0. Write the equation of the problem",
+                    step0_explain_par: "Write the equality between the total number of screws.",
+                    step0_instr_par: "a = ? | b = ? | c = ? | d = ? | e = ? | f = ?",
+                    step0_title_frac: "0. Write the equation of the problem",
+                    step0_explain_frac: "Write the equality of speeds: distance / time.",
+                    step0_instr_frac: "Left numerator: a x + b ? | Left denominator: c ? | Right numerator: d x + e ? | Right denominator: f ?",
+                    step0_title_sqrt: "0. Write the equation of the problem",
+                    step0_explain_sqrt: "Copy the given equation.",
+                    step0_instr_sqrt: "Left coefficient: ? | Left constant: ? | Left radicand: ? | Right coefficient: ? | Right constant: ? | Right radicand: ?",
+                    step1_simp_title: "1. Group x terms on the left",
+                    step1_simp_explain: "Subtract {c}x from both sides.",
+                    step1_simp_instr: "New x coeff.: {a} − {c} = ? | Right constant: remains {d}",
+                    step2_simp_title: "2. Isolate the x term",
+                    step2_simp_explain: "Subtract {b} from both sides.",
+                    step2_simp_instr: "New right side: {d} − {b} = ?",
+                    step3_simp_title: "3. Compute x",
+                    step3_simp_explain: "Divide by the coefficient of x.",
+                    step3_simp_instr: "x = ( {d} − {b} ) ÷ ( {a} − {c} ) = ?",
+                    step1_par_title: "1. Expand left side",
+                    step1_par_explain: "Multiply {a} by each term in ({b}x+{c}).",
+                    step1_par_instr: "x: {a}×{b} = ? | constant: {a}×{c} = ?",
+                    step2_par_title: "2. Expand right side",
+                    step2_par_explain: "Multiply {d} by each term in ({e}x+{f}).",
+                    step2_par_instr: "x: {d}×{e} = ? | constant: {d}×{f} = ?",
+                    step3_par_title: "3. Group x terms on the left",
+                    step3_par_explain: "Subtract {rx}x from both sides.",
+                    step3_par_instr: "{lx} − {rx} = ? (coeff. x)",
+                    step4_par_title: "4. Write the new equation",
+                    step4_par_explain: "Copy the equation (coeff x + left const = right const).",
+                    step4_par_instr: "Coeff: {coeff} | left const: {lc} | right const: {rc}",
+                    step5_par_title: "5. Isolate the x term",
+                    step5_par_explain: "Subtract {lc} from both sides.",
+                    step5_par_instr: "{rc} − {lc} = ?",
+                    step6_par_title: "6. Write the simplified equation",
+                    step6_par_explain: "In the form coeff x = constant.",
+                    step6_par_instr: "Coeff: {coeff} | constant: {cst}",
+                    step7_par_title: "7. Compute x",
+                    step7_par_explain: "Divide by the coefficient.",
+                    step7_par_instr: "x = {cst} ÷ {coeff} = ?",
+                    step1_frac_title: "1. Find the LCM of the denominators",
+                    step1_frac_explain: "LCM( {c} , {f} ) = ?",
+                    step1_frac_instr: "LCM = ?",
+                    step2_frac_title: "2. Multiply by the LCM",
+                    step2_frac_explain: "Multiply each fraction by {ppcm}.",
+                    step2_frac_instr: "Left mult.: {ppcm}÷{c}=? | Right mult.: {ppcm}÷{f}=?",
+                    step3_frac_title: "3. Expand left side",
+                    step3_frac_explain: "{lm}×({a}x+{b})",
+                    step3_frac_instr: "x: {lm}×{a}=? | constant: {lm}×{b}=?",
+                    step4_frac_title: "4. Expand right side",
+                    step4_frac_explain: "{rm}×({d}x+{e})",
+                    step4_frac_instr: "x: {rm}×{d}=? | constant: {rm}×{e}=?",
+                    step5_frac_title: "5. Write the equation without parentheses",
+                    step5_frac_explain: "Copy both expanded forms.",
+                    step5_frac_instr: "Left: {lx}x+{lc} | Right: {rx}x+{rc}",
+                    step6_frac_title: "6. Group x terms on the left",
+                    step6_frac_explain: "Subtract {rx}x from both sides.",
+                    step6_frac_instr: "{lx} − {rx} = ? (coeff. x)",
+                    step7_frac_title: "7. Isolate the x term",
+                    step7_frac_explain: "Subtract {lc} from both sides.",
+                    step7_frac_instr: "{rc} − {lc} = ?",
+                    step8_frac_title: "8. Compute x",
+                    step8_frac_explain: "Divide by the coefficient.",
+                    step8_frac_instr: "x = {cst} ÷ {coeff} = ?",
+                    step1_sqrt_title: "1. Simplify √{c}",
+                    step1_sqrt_explain: "Decompose {c} as {r}² × {k}",
+                    step1_sqrt_instr: "√{c} = ? √ ?",
+                    step2_sqrt_title: "2. Simplify √{f}",
+                    step2_sqrt_explain: "{f} = {s}² × {k}",
+                    step2_sqrt_instr: "√{f} = ? √ ?",
+                    step3_sqrt_title: "3. Equation with simplified radicals",
+                    step3_sqrt_explain: "Replace √{c} by {r}√{k} and √{f} by {s}√{k}.",
+                    step3_sqrt_instr: "Left constant = {b}×{r} = ? | Right constant = {e}×{s} = ?",
+                    step4_sqrt_title: "4. Divide by √{k}",
+                    step4_sqrt_explain: "Divide both sides by √{k}.",
+                    step4_sqrt_instr: "Copy the same constants.",
+                    step5_sqrt_title: "5. Group x terms on the left",
+                    step5_sqrt_explain: "Subtract {d}x from both sides.",
+                    step5_sqrt_instr: "{a} − {d} = ? (coeff. x)",
+                    step6_sqrt_title: "6. Isolate the x term",
+                    step6_sqrt_explain: "Subtract {B} from both sides.",
+                    step6_sqrt_instr: "{D} − {B} = ?",
+                    step7_sqrt_title: "7. Compute x",
+                    step7_sqrt_explain: "Divide by the coefficient.",
+                    step7_sqrt_instr: "x = {cst} ÷ {coeff} = ?",
+                    step8_sqrt_title: "8. Verification",
+                    step8_sqrt_explain: "Substitute x={sol} into the equation without radical.",
+                    step8_sqrt_instr: "Left side = {a}×{sol}+{B} = ? | Right side = {d}×{sol}+{D} = ?"
+                }
+            };
+
+            let currentLang = 'fr';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.fr;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k,v]) => text = text.replace(new RegExp(`\\{${k}\\}`,'g'), v));
+                return text;
+            }
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => { if (el.dataset.i18n) el.textContent = t(el.dataset.i18n); });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang; document.getElementById('langSelect').value = lang;
+                localStorage.setItem('eq_comp_lang', lang);
+                document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n(); renderAll(); messageEl.innerHTML = '';
+            }
+            function loadLanguage() {
+                const saved = localStorage.getItem('eq_comp_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'fr');
+            }
+
+            let soundEnabled = true, audioCtx = null;
+            function getAudioContext() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext(); const osc = ctx.createOscillator(); const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination); const now = ctx.currentTime;
+                    if (type === 'correct') { osc.type='sine'; osc.frequency.setValueAtTime(523.25,now); osc.frequency.setValueAtTime(659.25,now+0.1); gain.gain.setValueAtTime(0.3,now); gain.gain.linearRampToValueAtTime(0,now+0.25); osc.start(now); osc.stop(now+0.25); }
+                    else if (type === 'incorrect') { osc.type='square'; osc.frequency.setValueAtTime(200,now); gain.gain.setValueAtTime(0.2,now); gain.gain.linearRampToValueAtTime(0,now+0.3); osc.start(now); osc.stop(now+0.3); }
+                } catch(e) {}
+            }
+            function loadSoundPref() { const saved = localStorage.getItem('eq_comp_sound'); soundEnabled = saved !== 'off'; btnSound.textContent = soundEnabled ? '🔊' : '🔇'; }
+            function toggleSound() {
+                soundEnabled = !soundEnabled; localStorage.setItem('eq_comp_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙'; localStorage.setItem('eq_comp_theme', theme); }
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+            function loadTheme() {
+                const saved = localStorage.getItem('eq_comp_theme');
+                if (saved === 'dark' || saved === 'light') applyTheme(saved);
+                else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                else applyTheme('light');
+            }
+            function goBack() { window.location.href = 'لوحة التمارين التفاعلية.html'; }
+
+            function generateSimp() {
+                const a = [3,4,5][Math.floor(Math.random()*3)];
+                const c = [1,2][Math.floor(Math.random()*2)];
+                const x = Math.floor(Math.random()*6)+1;
+                const b = Math.floor(Math.random()*9)+1;
+                const d = (a-c)*x + b;
+                if (d < b || d > 20) return generateSimp();
+                return { type:'simp', a,b,c,d,x, coeffX:a-c, constRight:d-b };
+            }
+            function generatePar() {
+                const a = [2,3][Math.floor(Math.random()*2)];
+                const d = a===2?3:2;
+                const b = [2,3][Math.floor(Math.random()*2)];
+                const c = [4,5,6,7,8][Math.floor(Math.random()*5)];
+                const e = [1,2,3][Math.floor(Math.random()*3)];
+                const x = Math.floor(Math.random()*4)+2;
+                const ab = a*b, de = d*e, ac = a*c;
+                const coeffX = ab - de;
+                if (coeffX <= 0) return generatePar();
+                const df = coeffX*x + ac;
+                if (df % d !== 0) return generatePar();
+                const f = df/d;
+                if (f<1||f>12||!Number.isInteger(f)) return generatePar();
+                const leftX = a*b, leftC = a*c, rightX = d*e, rightC = d*f;
+                return { type:'par', a,b,c,d,e,f,x, leftX,leftC,rightX,rightC, coeffX, constRight:rightC-leftC };
+            }
+            function gcd(a,b){ return b===0?a:gcd(b,a%b); }
+            function lcm(a,b){ return (a*b)/gcd(a,b); }
+            function generateFrac() {
+                const c = [2,3][Math.floor(Math.random()*2)];
+                const f = c===2?3:2;
+                const a = Math.floor(Math.random()*3)+2;
+                const d = Math.floor(Math.random()*2)+1;
+                const x = Math.floor(Math.random()*5)+2;
+                const b = Math.floor(Math.random()*6)+2;
+                const leftVal = f*(a*x+b);
+                const e = (leftVal/c) - d*x;
+                if (!Number.isInteger(e)||e<1||e>12) return generateFrac();
+                const ppcm = lcm(c,f);
+                const leftMult = ppcm/c, rightMult = ppcm/f;
+                const leftX = leftMult*a, leftC = leftMult*b;
+                const rightX = rightMult*d, rightC = rightMult*e;
+                const coeffX = leftX - rightX;
+                const constRight = rightC - leftC;
+                if (coeffX<=0||constRight%coeffX!==0) return generateFrac();
+                return { type:'frac', a,b,c,d,e,f,x, ppcm,leftMult,rightMult,leftX,leftC,rightX,rightC,coeffX,constRight };
+            }
+            function generateSqrt() {
+                const k = [2,3,5][Math.floor(Math.random()*3)];
+                const r = Math.floor(Math.random()*3)+1;
+                const s = (r%3)+1;
+                const c = k*r*r, f = k*s*s;
+                const delta = Math.floor(Math.random()*2)+1;
+                const d = Math.floor(Math.random()*3)+1;
+                const a = d+delta;
+                const x = Math.floor(Math.random()*4)+2;
+                const targetDiff = delta*x;
+                let bCand = Math.floor(Math.random()*3)+1, eCand = Math.floor(Math.random()*4)+2;
+                let B = bCand*r, D = eCand*s;
+                while (D-B !== targetDiff) {
+                    if (D-B<targetDiff) eCand++; else eCand--;
+                    if (eCand<1) { eCand=2; bCand++; }
+                    D = eCand*s; B = bCand*r;
+                }
+                return { type:'sqrt', k,r,s,c,f,a,b:bCand,d,e:eCand,x, B, D, coeffX:delta, constRight:targetDiff };
+            }
+
+            function generateNewQuestion() {
+                const types = ['simp','par','frac','sqrt'];
+                const type = types[Math.floor(Math.random()*4)];
+                if (type==='simp') eq = generateSimp();
+                else if (type==='par') eq = generatePar();
+                else if (type==='frac') eq = generateFrac();
+                else eq = generateSqrt();
+                renderAll();
+            }
+
+            function renderProblem() {
+                if (eq.type==='simp') problemStatement.textContent = t('problem_simp',{a:eq.a,b:eq.b,c:eq.c,d:eq.d});
+                else if (eq.type==='par') problemStatement.textContent = t('problem_par',{a:eq.a,b:eq.b,c:eq.c,d:eq.d,e:eq.e,f:eq.f});
+                else if (eq.type==='frac') problemStatement.textContent = t('problem_frac',{a:eq.a,b:eq.b,c:eq.c,d:eq.d,e:eq.e,f:eq.f});
+                else problemStatement.textContent = t('problem_sqrt',{a:eq.a,b:eq.b,c:eq.c,d:eq.d,e:eq.e,f:eq.f});
+            }
+
+            function buildQuestionHTML() {
+                const pl = t('operator_plus'), eqs = t('operator_equals'), mn = t('operator_minus'),
+                      ti = t('operator_times'), dv = t('operator_divide');
+                let html = '';
+                if (eq.type==='simp') {
+                    html += `<div class="section-card"><div class="section-label">${t('step0_title_simp')}</div><div class="step-explanation">${t('step0_explain_simp')}</div>
+                        <div class="formula-line"><input type="text" id="inpEqA" class="inline-input input-sm" placeholder="a" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqB" class="inline-input input-sm" placeholder="b" autocomplete="off" inputmode="numeric"><span class="operator">${eqs}</span><input type="text" id="inpEqC" class="inline-input input-sm" placeholder="c" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqD" class="inline-input input-sm" placeholder="d" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step0_instr_simp')}</div></div>`;
+                    html += `<div class="section-card"><div class="section-label">${t('step1_simp_title')}</div><div class="step-explanation">${t('step1_simp_explain',{c:eq.c})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.a}x</span><span class="operator">${mn}</span><span class="num-display">${eq.c}x</span><span class="operator">+</span><span class="num-display">${eq.b}</span><span class="operator">${eqs}</span><span class="num-display">${eq.d}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><input type="text" id="inpCoeffX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.b}</span><span class="operator">${eqs}</span><input type="text" id="inpConstRight" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step1_simp_instr',{a:eq.a,c:eq.c,d:eq.d})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_simp_title')}</div><div class="step-explanation">${t('step2_simp_explain',{b:eq.b})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.coeffX}x</span><span class="operator">+</span><span class="num-display">${eq.b}</span><span class="operator">${mn}</span><span class="num-display">${eq.b}</span><span class="operator">${eqs}</span><span class="num-display">${eq.d}</span><span class="operator">${mn}</span><span class="num-display">${eq.b}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="num-display">${eq.coeffX}x</span><span class="operator">${eqs}</span><input type="text" id="inpRightSide" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step2_simp_instr',{d:eq.d,b:eq.b})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step3_simp_title')}</div><div class="step-explanation">${t('step3_simp_explain')}</div>
+                        <div class="formula-line"><span class="var-display">x</span><span class="operator">${eqs}</span><span class="num-display">${eq.constRight}</span><span class="operator">${dv}</span><span class="num-display">${eq.coeffX}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpSolution" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step3_simp_instr',{d:eq.d,b:eq.b,a:eq.a,c:eq.c})}</div></div>`;
+                } else if (eq.type==='par') {
+                    html += `<div class="section-card"><div class="section-label">${t('step0_title_par')}</div><div class="step-explanation">${t('step0_explain_par')}</div>
+                        <div class="formula-line"><input type="text" id="inpEqA" class="inline-input input-sm" placeholder="a" autocomplete="off" inputmode="numeric"><span class="operator">(</span><input type="text" id="inpEqB" class="inline-input input-sm" placeholder="b" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqC" class="inline-input input-sm" placeholder="c" autocomplete="off" inputmode="numeric"><span class="operator">)</span><span class="operator">${eqs}</span><input type="text" id="inpEqD" class="inline-input input-sm" placeholder="d" autocomplete="off" inputmode="numeric"><span class="operator">(</span><input type="text" id="inpEqE" class="inline-input input-sm" placeholder="e" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqF" class="inline-input input-sm" placeholder="f" autocomplete="off" inputmode="numeric"><span class="operator">)</span></div>
+                        <div class="hint-text">${t('step0_instr_par')}</div></div>`;
+                    html += `<div class="section-card"><div class="section-label">${t('step1_par_title')}</div><div class="step-explanation">${t('step1_par_explain',{a:eq.a,b:eq.b,c:eq.c})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.a}</span><span class="operator">×</span><span class="num-display">${eq.b}</span><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.a}</span><span class="operator">×</span><span class="num-display">${eq.c}</span><span class="operator">${eqs}</span><input type="text" id="inpLX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpLC" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step1_par_instr',{a:eq.a,b:eq.b,c:eq.c})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_par_title')}</div><div class="step-explanation">${t('step2_par_explain',{d:eq.d,e:eq.e,f:eq.f})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.d}</span><span class="operator">×</span><span class="num-display">${eq.e}</span><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.d}</span><span class="operator">×</span><span class="num-display">${eq.f}</span><span class="operator">${eqs}</span><input type="text" id="inpRX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpRC" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step2_par_instr',{d:eq.d,e:eq.e,f:eq.f})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step3_par_title')}</div><div class="step-explanation">${t('step3_par_explain',{rx:eq.rightX})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.leftX}x</span><span class="operator">+</span><span class="num-display">${eq.leftC}</span><span class="operator">${mn}</span><span class="num-display">${eq.rightX}x</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><input type="text" id="inpCoeff3" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.leftC}</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span></div>
+                        <div class="hint-text">${t('step3_par_instr',{lx:eq.leftX,rx:eq.rightX})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step4_par_title')}</div><div class="step-explanation">${t('step4_par_explain')}</div>
+                        <div class="formula-line"><input type="text" id="inpCoeff4" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpLc4" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="operator">${eqs}</span><input type="text" id="inpRc4" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step4_par_instr',{coeff:eq.coeffX,lc:eq.leftC,rc:eq.rightC})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step5_par_title')}</div><div class="step-explanation">${t('step5_par_explain',{lc:eq.leftC})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.coeffX}x</span><span class="operator">+</span><span class="num-display">${eq.leftC}</span><span class="operator">${mn}</span><span class="num-display">${eq.leftC}</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span><span class="operator">${mn}</span><span class="num-display">${eq.leftC}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="num-display">${eq.coeffX}x</span><span class="operator">${eqs}</span><input type="text" id="inpNewRight5" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step5_par_instr',{rc:eq.rightC,lc:eq.leftC})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step6_par_title')}</div><div class="step-explanation">${t('step6_par_explain')}</div>
+                        <div class="formula-line"><input type="text" id="inpCoeff6" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpNewRight6" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step6_par_instr',{coeff:eq.coeffX,cst:eq.constRight})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step7_par_title')}</div><div class="step-explanation">${t('step7_par_explain')}</div>
+                        <div class="formula-line"><span class="var-display">x</span><span class="operator">${eqs}</span><span class="num-display">${eq.constRight}</span><span class="operator">${dv}</span><span class="num-display">${eq.coeffX}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpSol" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step7_par_instr',{cst:eq.constRight,coeff:eq.coeffX})}</div></div>`;
+                } else if (eq.type==='frac') {
+                    html += `<div class="section-card"><div class="section-label">${t('step0_title_frac')}</div><div class="step-explanation">${t('step0_explain_frac')}</div>
+                        <div class="formula-line"><span class="frac-inline"><span class="frac-num"><input type="text" id="inpEqA" class="inline-input input-sm" placeholder="a" autocomplete="off" inputmode="numeric">x + <input type="text" id="inpEqB" class="inline-input input-sm" placeholder="b" autocomplete="off" inputmode="numeric"></span><span class="frac-den"><input type="text" id="inpEqC" class="inline-input input-sm" placeholder="c" autocomplete="off" inputmode="numeric"></span></span><span class="operator">${eqs}</span><span class="frac-inline"><span class="frac-num"><input type="text" id="inpEqD" class="inline-input input-sm" placeholder="d" autocomplete="off" inputmode="numeric">x + <input type="text" id="inpEqE" class="inline-input input-sm" placeholder="e" autocomplete="off" inputmode="numeric"></span><span class="frac-den"><input type="text" id="inpEqF" class="inline-input input-sm" placeholder="f" autocomplete="off" inputmode="numeric"></span></span></div>
+                        <div class="hint-text">${t('step0_instr_frac')}</div></div>`;
+                    html += `<div class="section-card"><div class="section-label">${t('step1_frac_title')}</div><div class="step-explanation">${t('step1_frac_explain',{c:eq.c,f:eq.f})}</div>
+                        <div class="formula-line"><span class="num-display">PPCM</span><span class="operator">${eqs}</span><input type="text" id="inpPPCM" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step1_frac_instr',{c:eq.c,f:eq.f})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_frac_title')}</div><div class="step-explanation">${t('step2_frac_explain',{ppcm:eq.ppcm})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.ppcm}</span><span class="operator">${ti}</span><span class="frac-inline"><span class="frac-num">${eq.a}x+${eq.b}</span><span class="frac-den">${eq.c}</span></span><span class="operator">${eqs}</span><span class="num-display">${eq.ppcm}</span><span class="operator">${ti}</span><span class="frac-inline"><span class="frac-num">${eq.d}x+${eq.e}</span><span class="frac-den">${eq.f}</span></span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><input type="text" id="inpLeftMult" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="operator">(</span><span class="num-display">${eq.a}x+${eq.b}</span><span class="operator">)</span><span class="operator">${eqs}</span><input type="text" id="inpRightMult" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="operator">(</span><span class="num-display">${eq.d}x+${eq.e}</span><span class="operator">)</span></div>
+                        <div class="hint-text">${t('step2_frac_instr',{ppcm:eq.ppcm,c:eq.c,f:eq.f})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step3_frac_title')}</div><div class="step-explanation">${t('step3_frac_explain',{lm:eq.leftMult,a:eq.a,b:eq.b})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.leftMult}</span><span class="operator">${ti}</span><span class="num-display">${eq.a}</span><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.leftMult}</span><span class="operator">${ti}</span><span class="num-display">${eq.b}</span><span class="operator">${eqs}</span><input type="text" id="inpLX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpLC" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step3_frac_instr',{lm:eq.leftMult,a:eq.a,b:eq.b})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step4_frac_title')}</div><div class="step-explanation">${t('step4_frac_explain',{rm:eq.rightMult,d:eq.d,e:eq.e})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.rightMult}</span><span class="operator">${ti}</span><span class="num-display">${eq.d}</span><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.rightMult}</span><span class="operator">${ti}</span><span class="num-display">${eq.e}</span><span class="operator">${eqs}</span><input type="text" id="inpRX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpRC" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step4_frac_instr',{rm:eq.rightMult,d:eq.d,e:eq.e})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step5_frac_title')}</div><div class="step-explanation">${t('step5_frac_explain')}</div>
+                        <div class="formula-line"><input type="text" id="inpEqLX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqLC" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="operator">${eqs}</span><input type="text" id="inpEqRX" class="inline-input" placeholder="?x" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqRC" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step5_frac_instr',{lx:eq.leftX,lc:eq.leftC,rx:eq.rightX,rc:eq.rightC})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step6_frac_title')}</div><div class="step-explanation">${t('step6_frac_explain',{rx:eq.rightX})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.leftX}x</span><span class="operator">+</span><span class="num-display">${eq.leftC}</span><span class="operator">${mn}</span><span class="num-display">${eq.rightX}x</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><input type="text" id="inpCoeff6" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.leftC}</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span></div>
+                        <div class="hint-text">${t('step6_frac_instr',{lx:eq.leftX,rx:eq.rightX})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step7_frac_title')}</div><div class="step-explanation">${t('step7_frac_explain',{lc:eq.leftC})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.coeffX}x</span><span class="operator">+</span><span class="num-display">${eq.leftC}</span><span class="operator">${mn}</span><span class="num-display">${eq.leftC}</span><span class="operator">${eqs}</span><span class="num-display">${eq.rightC}</span><span class="operator">${mn}</span><span class="num-display">${eq.leftC}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="num-display">${eq.coeffX}x</span><span class="operator">${eqs}</span><input type="text" id="inpNewRight7" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step7_frac_instr',{rc:eq.rightC,lc:eq.leftC})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step8_frac_title')}</div><div class="step-explanation">${t('step8_frac_explain')}</div>
+                        <div class="formula-line"><span class="var-display">x</span><span class="operator">${eqs}</span><span class="num-display">${eq.constRight}</span><span class="operator">${dv}</span><span class="num-display">${eq.coeffX}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpSol" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step8_frac_instr',{cst:eq.constRight,coeff:eq.coeffX})}</div></div>`;
+                } else { // sqrt
+                    html += `<div class="section-card"><div class="section-label">${t('step0_title_sqrt')}</div><div class="step-explanation">${t('step0_explain_sqrt')}</div>
+                        <div class="formula-line"><input type="text" id="inpEqA" class="inline-input input-sm" placeholder="a" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqB" class="inline-input input-sm" placeholder="b" autocomplete="off" inputmode="numeric"><span class="radical-inline"><span class="radicand-inline">√<input type="text" id="inpEqC" class="inline-input input-sm" placeholder="c" autocomplete="off" inputmode="numeric"></span></span><span class="operator">${eqs}</span><input type="text" id="inpEqD" class="inline-input input-sm" placeholder="d" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><input type="text" id="inpEqE" class="inline-input input-sm" placeholder="e" autocomplete="off" inputmode="numeric"><span class="radical-inline"><span class="radicand-inline">√<input type="text" id="inpEqF" class="inline-input input-sm" placeholder="f" autocomplete="off" inputmode="numeric"></span></span></div>
+                        <div class="hint-text">${t('step0_instr_sqrt')}</div></div>`;
+                    html += `<div class="section-card"><div class="section-label">${t('step1_sqrt_title',{c:eq.c})}</div><div class="step-explanation">${t('step1_sqrt_explain',{c:eq.c,r:eq.r,k:eq.k})}</div>
+                        <div class="formula-line"><span class="radical-inline"><span class="radicand-inline">√${eq.c}</span></span><span class="operator">${eqs}</span><input type="text" id="inpR1" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="radical-inline"><span class="radicand-inline">√</span></span><input type="text" id="inpK1" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step1_sqrt_instr',{c:eq.c})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_sqrt_title',{f:eq.f})}</div><div class="step-explanation">${t('step2_sqrt_explain',{f:eq.f,s:eq.s,k:eq.k})}</div>
+                        <div class="formula-line"><span class="radical-inline"><span class="radicand-inline">√${eq.f}</span></span><span class="operator">${eqs}</span><input type="text" id="inpS2" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="radical-inline"><span class="radicand-inline">√</span></span><input type="text" id="inpK2" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step2_sqrt_instr',{f:eq.f})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step3_sqrt_title')}</div><div class="step-explanation">${t('step3_sqrt_explain',{c:eq.c,r:eq.r,f:eq.f,s:eq.s,k:eq.k})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.a}x</span><span class="operator">+</span><input type="text" id="inpConstL3" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="radical-inline"><span class="radicand-inline">√${eq.k}</span></span><span class="operator">${eqs}</span><span class="num-display">${eq.d}x</span><span class="operator">+</span><input type="text" id="inpConstR3" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="radical-inline"><span class="radicand-inline">√${eq.k}</span></span></div>
+                        <div class="hint-text">${t('step3_sqrt_instr',{b:eq.b,r:eq.r,e:eq.e,s:eq.s})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step4_sqrt_title')}</div><div class="step-explanation">${t('step4_sqrt_explain',{k:eq.k})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.a}x</span><span class="operator">+</span><input type="text" id="inpConstL4" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="operator">${eqs}</span><span class="num-display">${eq.d}x</span><span class="operator">+</span><input type="text" id="inpConstR4" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step4_sqrt_instr')}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step5_sqrt_title')}</div><div class="step-explanation">${t('step5_sqrt_explain',{d:eq.d})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.a}x</span><span class="operator">${mn}</span><span class="num-display">${eq.d}x</span><span class="operator">+</span><span class="num-display">${eq.B}</span><span class="operator">${eqs}</span><span class="num-display">${eq.D}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><input type="text" id="inpCoeff5" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"><span class="var-display">x</span><span class="operator">+</span><span class="num-display">${eq.B}</span><span class="operator">${eqs}</span><span class="num-display">${eq.D}</span></div>
+                        <div class="hint-text">${t('step5_sqrt_instr',{a:eq.a,d:eq.d})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step6_sqrt_title')}</div><div class="step-explanation">${t('step6_sqrt_explain',{B:eq.B})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.coeffX}x</span><span class="operator">+</span><span class="num-display">${eq.B}</span><span class="operator">${mn}</span><span class="num-display">${eq.B}</span><span class="operator">${eqs}</span><span class="num-display">${eq.D}</span><span class="operator">${mn}</span><span class="num-display">${eq.B}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="num-display">${eq.coeffX}x</span><span class="operator">${eqs}</span><input type="text" id="inpCst6" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step6_sqrt_instr',{D:eq.D,B:eq.B})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step7_sqrt_title')}</div><div class="step-explanation">${t('step7_sqrt_explain',{coeff:eq.coeffX})}</div>
+                        <div class="formula-line"><span class="var-display">x</span><span class="operator">${eqs}</span><span class="num-display">${eq.constRight}</span><span class="operator">${dv}</span><span class="num-display">${eq.coeffX}</span></div>
+                        <div class="formula-line"><span style="font-weight:700;">→</span><span class="var-display">x</span><span class="operator">${eqs}</span><input type="text" id="inpSol7" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step7_sqrt_instr',{cst:eq.constRight,coeff:eq.coeffX})}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step8_sqrt_title')}</div><div class="step-explanation">${t('step8_sqrt_explain',{sol:eq.x})}</div>
+                        <div class="formula-line"><span class="num-display">${eq.a}×${eq.x}+${eq.B}</span><span class="operator">${eqs}</span><input type="text" id="inpVerifL8" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="formula-line"><span class="num-display">${eq.d}×${eq.x}+${eq.D}</span><span class="operator">${eqs}</span><input type="text" id="inpVerifR8" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric"></div>
+                        <div class="hint-text">${t('step8_sqrt_instr',{a:eq.a,d:eq.d,sol:eq.x,B:eq.B,D:eq.D})}</div></div>`;
+                }
+                return html;
+            }
+
+            function refreshInputRefs() {
+                if (eq.type==='simp') {
+                    inputRefs = {
+                        eqA: document.getElementById('inpEqA'), eqB: document.getElementById('inpEqB'),
+                        eqC: document.getElementById('inpEqC'), eqD: document.getElementById('inpEqD'),
+                        coeffX: document.getElementById('inpCoeffX'), constRight: document.getElementById('inpConstRight'),
+                        rightSide: document.getElementById('inpRightSide'), solution: document.getElementById('inpSolution')
+                    };
+                } else if (eq.type==='par') {
+                    inputRefs = {
+                        eqA: document.getElementById('inpEqA'), eqB: document.getElementById('inpEqB'), eqC: document.getElementById('inpEqC'),
+                        eqD: document.getElementById('inpEqD'), eqE: document.getElementById('inpEqE'), eqF: document.getElementById('inpEqF'),
+                        lx: document.getElementById('inpLX'), lc: document.getElementById('inpLC'),
+                        rx: document.getElementById('inpRX'), rc: document.getElementById('inpRC'),
+                        coeff3: document.getElementById('inpCoeff3'),
+                        coeff4: document.getElementById('inpCoeff4'), lc4: document.getElementById('inpLc4'), rc4: document.getElementById('inpRc4'),
+                        newRight5: document.getElementById('inpNewRight5'),
+                        coeff6: document.getElementById('inpCoeff6'), newRight6: document.getElementById('inpNewRight6'),
+                        sol: document.getElementById('inpSol')
+                    };
+                } else if (eq.type==='frac') {
+                    inputRefs = {
+                        eqA: document.getElementById('inpEqA'), eqB: document.getElementById('inpEqB'), eqC: document.getElementById('inpEqC'),
+                        eqD: document.getElementById('inpEqD'), eqE: document.getElementById('inpEqE'), eqF: document.getElementById('inpEqF'),
+                        ppcm: document.getElementById('inpPPCM'),
+                        leftMult: document.getElementById('inpLeftMult'), rightMult: document.getElementById('inpRightMult'),
+                        lx: document.getElementById('inpLX'), lc: document.getElementById('inpLC'),
+                        rx: document.getElementById('inpRX'), rc: document.getElementById('inpRC'),
+                        eqLX: document.getElementById('inpEqLX'), eqLC: document.getElementById('inpEqLC'),
+                        eqRX: document.getElementById('inpEqRX'), eqRC: document.getElementById('inpEqRC'),
+                        coeff6: document.getElementById('inpCoeff6'), newRight7: document.getElementById('inpNewRight7'),
+                        sol: document.getElementById('inpSol')
+                    };
+                } else {
+                    inputRefs = {
+                        eqA: document.getElementById('inpEqA'), eqB: document.getElementById('inpEqB'), eqC: document.getElementById('inpEqC'),
+                        eqD: document.getElementById('inpEqD'), eqE: document.getElementById('inpEqE'), eqF: document.getElementById('inpEqF'),
+                        r1: document.getElementById('inpR1'), k1: document.getElementById('inpK1'),
+                        s2: document.getElementById('inpS2'), k2: document.getElementById('inpK2'),
+                        constL3: document.getElementById('inpConstL3'), constR3: document.getElementById('inpConstR3'),
+                        constL4: document.getElementById('inpConstL4'), constR4: document.getElementById('inpConstR4'),
+                        coeff5: document.getElementById('inpCoeff5'),
+                        cst6: document.getElementById('inpCst6'),
+                        sol7: document.getElementById('inpSol7'),
+                        verifL8: document.getElementById('inpVerifL8'), verifR8: document.getElementById('inpVerifR8')
+                    };
+                }
+            }
+            function clearInputs() { for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].value = ''; }
+            function renderAll() { renderProblem(); questionContainer.innerHTML = buildQuestionHTML(); refreshInputRefs(); clearInputs(); }
+            function updateStatsUI() { attemptsSpan.textContent = attempts; scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return; isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true; updateStatsUI(); generateNewQuestion();
+                messageEl.innerHTML = ''; messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false); checkBtn.disabled = false; isSwitchingRound = false;
+                setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 60);
+            }
+            function setInputsDisabled(disabled) { for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].disabled = disabled; }
+            function finishCurrentRound() {
+                if (!gameActive) return; gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true); checkBtn.disabled = true; setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const vals = {};
+                for (let k in inputRefs) vals[k] = inputRefs[k]?.value.trim() || '';
+                if (Object.values(vals).some(v => !v)) { messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return; }
+                const nums = {};
+                for (let k in vals) { nums[k] = Number(vals[k]); if (!Number.isInteger(nums[k])) { messageEl.innerHTML = t('invalid_numbers'); messageEl.style.color = 'var(--accent3)'; return; } }
+
+                let correct = {};
+                if (eq.type==='simp') {
+                    correct = {
+                        eqA: eq.a, eqB: eq.b, eqC: eq.c, eqD: eq.d,
+                        coeffX: eq.coeffX, constRight: eq.d,
+                        rightSide: eq.constRight, solution: eq.x
+                    };
+                } else if (eq.type==='par') {
+                    correct = {
+                        eqA: eq.a, eqB: eq.b, eqC: eq.c, eqD: eq.d, eqE: eq.e, eqF: eq.f,
+                        lx: eq.leftX, lc: eq.leftC, rx: eq.rightX, rc: eq.rightC,
+                        coeff3: eq.coeffX,
+                        coeff4: eq.coeffX, lc4: eq.leftC, rc4: eq.rightC,
+                        newRight5: eq.constRight,
+                        coeff6: eq.coeffX, newRight6: eq.constRight,
+                        sol: eq.x
+                    };
+                } else if (eq.type==='frac') {
+                    correct = {
+                        eqA: eq.a, eqB: eq.b, eqC: eq.c, eqD: eq.d, eqE: eq.e, eqF: eq.f,
+                        ppcm: eq.ppcm,
+                        leftMult: eq.leftMult, rightMult: eq.rightMult,
+                        lx: eq.leftX, lc: eq.leftC, rx: eq.rightX, rc: eq.rightC,
+                        eqLX: eq.leftX, eqLC: eq.leftC, eqRX: eq.rightX, eqRC: eq.rightC,
+                        coeff6: eq.coeffX, newRight7: eq.constRight, sol: eq.x
+                    };
+                } else {
+                    correct = {
+                        eqA: eq.a, eqB: eq.b, eqC: eq.c, eqD: eq.d, eqE: eq.e, eqF: eq.f,
+                        r1: eq.r, k1: eq.k,
+                        s2: eq.s, k2: eq.k,
+                        constL3: eq.B, constR3: eq.D,
+                        constL4: eq.B, constR4: eq.D,
+                        coeff5: eq.coeffX,
+                        cst6: eq.constRight,
+                        sol7: eq.x,
+                        verifL8: eq.a*eq.x + eq.B,
+                        verifR8: eq.d*eq.x + eq.D
+                    };
+                }
+
+                const isCorrect = Object.keys(correct).every(k => nums[k] === correct[k]);
+                attempts++;
+                if (isCorrect) { score++; messageEl.innerHTML = t('correct'); messageEl.style.color = 'var(--accent2)'; playSound('correct'); }
+                else { messageEl.innerHTML = t('wrong'); messageEl.style.color = 'var(--accent3)'; playSound('incorrect'); }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion(); messageEl.innerHTML = t('figure_changed'); messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => { if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault(); handleCheck(); } });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage(); document.getElementById('langSelect').value = currentLang;
+            loadTheme(); loadSoundPref();
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion(); updateStatsUI(); messageEl.innerHTML = ''; checkBtn.disabled = false;
+            setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>
