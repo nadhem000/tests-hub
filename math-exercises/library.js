@@ -1058,6 +1058,105 @@ const exercises = [
             description: 'Write the equation from the problem (randomly chosen among 4 types) then solve it. 10 attempts with points.'
         }
     }
+},
+{
+    id: 'ex-033',
+    section: 'Équations',
+    sectionIcon: '⚖️',
+    name: 'Équations – Mise en équation (problèmes)',
+    description: 'Traduire un problème concret en équation du premier degré. Trois types de problèmes (location, âges, cinéma). 10 essais avec points.',
+    difficulty: 'easy',
+    class: '1ère année secondaire',
+    cardColor: '#ec4899',
+    cardColorDark: '#f472b6',
+    link: 'exercice-equations 5.html',
+    version: '1.0',
+    tags: ['معادلات', 'مسائل', 'واقعية', 'تحويل', 'جبر', 'مجهول'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-04-30',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['équation', 'problème concret', 'mise en équation', 'premier degré'],
+    thumbnail: '⚖️',
+    translations: {
+        ar: {
+            name: 'صياغة المعادلات – مسائل',
+            description: 'ترجمة مسألة واقعية إلى معادلة من الدرجة الأولى. ثلاثة أنواع من المسائل. 10 محاولات مع نقاط.'
+        },
+        en: {
+            name: 'Setting Up Equations – Problems',
+            description: 'Translate a real-life problem into a first-degree equation. Three problem types. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-034',
+    section: 'الجبر',
+    sectionIcon: '➕➖',
+    name: 'المقارنة في ℚ',
+    description: 'تمرين تفاعلي لمقارنة عددين كسريين خطوة بخطوة حسب القاعدة (نفس المقام، نفس البسط، إشارتان مختلفتان، أو جداءات). 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'الثامنة أساسي',
+    cardColor: '#8b5cf6',
+    cardColorDark: '#a78bfa',
+    link: 'الجبر - المقارنة في Q.html',
+    version: '1.0',
+    tags: ['جبر', 'مقارنة', 'أعداد كسرية', 'ℚ', 'قواعد', 'جداءات', 'تبسيط'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-01',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['مقارنة', 'كسر', 'عدد كسري', 'نفس المقام', 'نفس البسط', 'جداء', 'ℚ'],
+    thumbnail: '⚖️',
+    translations: {
+        fr: {
+            name: 'Comparaison dans ℚ',
+            description: 'Exercice interactif pour comparer deux nombres rationnels étape par étape selon la règle. 10 essais avec points.'
+        },
+        en: {
+            name: 'Comparing in ℚ',
+            description: 'Interactive exercise to compare two rational numbers step by step using the appropriate rule. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-035',
+    section: 'الجبر',
+    sectionIcon: '➕➖',
+    name: 'المتراجحات في ℝ',
+    description: 'تمرين تفاعلي لحل متراجحات من الدرجة الأولى بمجهول واحد خطوة بخطوة. يتناول نقل الحدود والقسمة على معامل x مع مراعاة انعكاس الإشارة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'التاسعة أساسي',
+    cardColor: '#8b5cf6',
+    cardColorDark: '#a78bfa',
+    link: 'المعادلات - المتراجحات في R.html',
+    version: '1.0',
+    tags: ['متراجحات', 'درجة أولى', 'جبر', 'مجهول', 'مجال', 'أكبر', 'أصغر'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-01',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['متراجحة', 'حل', 'مجال', 'مجموعة الحلول', 'ℝ', 'معامل', 'إشارة'],
+    thumbnail: '⚖️',
+    translations: {
+        fr: {
+            name: 'Inéquations dans ℝ',
+            description: 'Exercice interactif pour résoudre des inéquations du premier degré étape par étape. Transposition, division en tenant compte du signe du coefficient. 10 essais avec points.'
+        },
+        en: {
+            name: 'Inequalities in ℝ',
+            description: 'Interactive exercise to solve first-degree inequalities step by step. Includes moving terms, dividing by the coefficient, and sign reversal. 10 attempts with points.'
+        }
+    }
 }
 ];
 
@@ -1070,7 +1169,8 @@ const sectionTranslations = {
 		'الإحصاء': 'الإحصاء',
 		'Équations': 'المعادلات',
 		'رباعيات الأضلاع': 'رباعيات الأضلاع',
-        'الأحجام': 'الأحجام'   
+        'الأحجام': 'الأحجام',
+        'الجبر': 'الجبر'
 	},
 	fr: {
 		'الزوايا': 'Les angles',
@@ -1079,7 +1179,8 @@ const sectionTranslations = {
 		'الإحصاء': 'Statistiques',
 		'Équations': 'Équations',
 		'رباعيات الأضلاع': 'Quadrilatères',
-        'الأحجام': 'Volumes'   
+        'الأحجام': 'Volumes',
+        'الجبر': 'Algèbre'
 	},
 	en: {
 		'الزوايا': 'Angles',
@@ -1088,26 +1189,30 @@ const sectionTranslations = {
 		'الإحصاء': 'Statistics',
 		'Équations': 'Equations',
 		'رباعيات الأضلاع': 'Quadrilaterals',
-        'الأحجام': 'Volumes'   
+        'الأحجام': 'Volumes',
+        'الجبر': 'Algebra'
 	}
 };
 
 const classTranslations = {
-	ar: {
-		'السابعة أساسي': 'السابعة أساسي',
-		'الثامنة أساسي': 'الثامنة أساسي',
-		'1ère année secondaire': 'الأولى ثانوي' // ← إضافة ترجمة الصف الجديد
-	},
-	fr: {
-		'السابعة أساسي': '7ème année',
-		'الثامنة أساسي': '8ème année',
-		'1ère année secondaire': '1ère année secondaire' // ← مطابق للأصل
-	},
-	en: {
-		'السابعة أساسي': '7th Grade',
-		'الثامنة أساسي': '8th Grade',
-		'1ère année secondaire': '10th Grade / First Year Secondary' // ← إضافة
-	}
+    ar: {
+        'السابعة أساسي': 'السابعة أساسي',
+        'الثامنة أساسي': 'الثامنة أساسي',
+        'التاسعة أساسي': 'التاسعة أساسي',
+        '1ère année secondaire': 'الأولى ثانوي'
+    },
+    fr: {
+        'السابعة أساسي': '7ème année',
+        'الثامنة أساسي': '8ème année',
+        'التاسعة أساسي': '9ème année',
+        '1ère année secondaire': '1ère année secondaire'
+    },
+    en: {
+        'السابعة أساسي': '7th Grade',
+        'الثامنة أساسي': '8th Grade',
+        'التاسعة أساسي': '9th Grade',
+        '1ère année secondaire': '10th Grade / First Year Secondary'
+    }
 };
 
 // تصدير للمتصفح

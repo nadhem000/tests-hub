@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المقارنة في Q | لوحة التمارين</title>
+    <style>
+        /* المتغيرات والأنماط كما هي دون تغيير */
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.10);
+            --shadow-xl: 0 20px 48px rgba(0,0,0,0.13);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --badge-easy-bg: #e6f4ea;
+            --badge-easy-text: #1a6b3c;
+            --badge-medium-bg: #fef3e0;
+            --badge-medium-text: #8a5c1a;
+            --badge-hard-bg: #fde8e8;
+            --badge-hard-text: #8b1a1a;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --card-accent-opacity: 0.18;
+            --highlight-accent: #8b5cf6;
+            --highlight-accent-light: rgba(139,92,246,0.08);
+            --section-accent: #8b5cf6;
+            --section-bg: rgba(139,92,246,0.04);
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+            --shadow: 0 4px 16px rgba(0,0,0,0.25);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+            --shadow-xl: 0 20px 48px rgba(0,0,0,0.4);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --badge-easy-bg: #1a3b2a;
+            --badge-easy-text: #4ade80;
+            --badge-medium-bg: #3b2e1a;
+            --badge-medium-text: #fbbf24;
+            --badge-hard-bg: #3b1a1a;
+            --badge-hard-text: #f87171;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --highlight-accent: #a78bfa;
+            --highlight-accent-light: rgba(167,139,250,0.12);
+            --section-accent: #a78bfa;
+            --section-bg: rgba(167,139,250,0.06);
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        .dashboard-header {
+            width: 100%; max-width: 1060px; margin: 0 auto 16px;
+            background: var(--surface); border-radius: 30px; padding: 14px 24px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px; transition: all 0.35s;
+        }
+        .logo-area { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: var(--text); white-space: nowrap; }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .btn-icon {
+            width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--border);
+            background: var(--surface2); cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+            color: var(--text); flex-shrink: 0;
+        }
+        .btn-icon:hover { background: var(--surface3); border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px; border-radius: 50px; border: 2px solid var(--border);
+            background: var(--surface2); color: var(--text); font-family: inherit; font-weight: 600;
+            font-size: 0.9rem; cursor: pointer; outline: none; transition: 0.2s; min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+        .exercise-wrapper {
+            width: 100%; max-width: 1060px; background: var(--surface); border-radius: 36px;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 28px 32px;
+            margin-bottom: 16px; transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem; font-weight: 800; color: var(--highlight-accent); text-align: center;
+            margin-bottom: 6px; letter-spacing: -0.5px; display: flex; align-items: center;
+            justify-content: center; gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center; color: var(--text2); margin-bottom: 24px; font-size: 1rem;
+            font-weight: 500; background: var(--section-header-bg); padding: 5px 20px;
+            border-radius: 40px; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+        }
+        .fractions-display {
+            display: flex; justify-content: center; align-items: center; gap: 24px;
+            font-size: 2rem; font-weight: 800; margin: 16px 0 20px;
+            background: var(--surface2); padding: 16px 32px; border-radius: 40px;
+            border: 2px solid var(--section-accent); flex-wrap: wrap;
+        }
+        .fraction-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 16px;
+    background: var(--surface);
+    border-radius: 24px;
+    box-shadow: var(--shadow-sm);
+    direction: ltr;            /* ← أضف هذا السطر لإجبار الأرقام على الاتجاه اليساري */
+}
+        .frac-line { width: 100%; height: 3px; background: var(--text); margin: 4px 0; border-radius: 2px; }
+        .comparison-question {
+            text-align: center; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;
+            color: var(--text);
+        }
+        .rule-box {
+            background: rgba(139,92,246,0.08); border-right: 4px solid var(--section-accent);
+            padding: 12px 18px; border-radius: 20px; margin-bottom: 18px; font-weight: 600;
+            white-space: pre-line;
+        }
+        .section-card {
+            background: var(--surface); border-radius: 20px; padding: 14px 18px; margin: 10px 0;
+            border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
+            border-right: 4px solid var(--section-accent); background: var(--section-bg);
+        }
+        .section-label {
+            font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center;
+            gap: 6px; padding: 4px 14px; border-radius: 30px; width: fit-content;
+            color: var(--highlight-accent); background: var(--highlight-accent-light);
+        }
+        .math-line {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px;
+            margin: 6px 0; font-size: 1.3rem; font-weight: 700;
+            background: var(--calc-line-bg); border: 2px dashed var(--calc-line-border);
+            border-radius: 40px; padding: 8px 18px;
+            direction: ltr;  /* جميع العبارات العددية من اليسار لليمين */
+        }
+        .math-line .operator { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 0 4px; }
+        .math-line .num-display {
+            font-weight: 800; background: var(--surface3); padding: 4px 12px; border-radius: 16px;
+            font-size: 1.25rem; color: var(--text);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.25rem;
+            background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
+            text-align: center; padding: 3px 2px; margin: 0 4px; width: 5em; min-width: 80px;
+            max-width: 160px; outline: none; transition: all 0.15s; color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+        }
+        .inline-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,110,158,0.2); }
+        .conclusion-select {
+            font-family: inherit; font-size: 1.1rem; font-weight: 600; padding: 6px 14px;
+            border-radius: 30px; border: 2px solid var(--input-border); background: var(--input-bg);
+            color: var(--text); cursor: pointer; outline: none; min-width: 200px;
+        }
+        .action-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0 8px; }
+        .btn {
+            border: none; padding: 11px 28px; font-size: 1.1rem; font-weight: bold;
+            border-radius: 60px; cursor: pointer; transition: 0.08s linear; font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2); color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #2c3e66; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex; justify-content: space-between; margin-top: 18px; font-size: 1.2rem;
+            color: var(--text); font-weight: 600; background: var(--surface2); padding: 12px 28px;
+            border-radius: 60px; border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500;
+            text-align: center; background: var(--surface2); border-radius: 60px; padding: 10px 16px;
+            transition: 0.1s; border: 1px solid var(--border); color: var(--text); line-height: 2;
+        }
+        .start-note {
+            display: inline-block; background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            color: white; font-weight: 700; padding: 10px 32px; border-radius: 50px;
+            animation: pulse-note 2s infinite; box-shadow: 0 4px 15px rgba(139,92,246,0.4);
+        }
+        @keyframes pulse-note {
+            0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); }
+        }
+        .dashboard-footer {
+            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px;
+            background: var(--surface); border-radius: 24px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px; transition: background 0.35s; font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a { color: var(--text2); text-decoration: none; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .footer-col { align-items: center; }
+            .fractions-display { font-size: 1.5rem; padding: 12px 16px; direction: rtl; }
+            .math-line { font-size: 1.1rem; padding: 6px 10px; border-radius: 30px; }
+            .math-line .operator { font-size: 1.2rem; }
+            .inline-input { font-size: 1rem; width: 4em; min-width: 60px; }
+            .conclusion-select { min-width: 160px; font-size: 1rem; }
+            .stats { font-size: 1rem; padding: 10px 16px; }
+            .section-label { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>➕➖</span> <span data-i18n="exercise_heading">المقارنة في ℚ</span> <span>⚖️</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">مقارنة عددين كسريين خطوة بخطوة</div>
+
+        <div class="fractions-display" id="fractionsDisplay"></div>
+        <div class="comparison-question" data-i18n="compare_question">قارن بين العددين</div>
+
+        <div id="stepsContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div style="text-align:center;">
+            <span class="start-note" data-i18n="click_new_to_start">👆 اضغط على "سؤال جديد" للبدء</span>
+        </div>
+        <div class="hint-text" style="text-align:center;color:var(--text2);margin-top:8px;" data-i18n="hint">📌 اتبع القاعدة المناسبة واملأ الفراغات ثم اختر النتيجة</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const stepsContainer = document.getElementById('stepsContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const fractionsDisplay = document.getElementById('fractionsDisplay');
+
+            let currentNum1 = 0, currentDen1 = 0, currentNum2 = 0, currentDen2 = 0;
+            let currentCase = ''; 
+            let correctComparisonSymbol = '';
+            let correctConclusionKey = ''; 
+            let correctProduct1 = 0, correctProduct2 = 0;
+
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
+            let dynamicInputs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'المقارنة في ℚ',
+                    exercise_subtitle: 'مقارنة عددين كسريين خطوة بخطوة',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 اتبع القاعدة المناسبة واملأ الفراغات ثم اختر النتيجة',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    compare_question: 'قارن بين العددين',
+                    rule_same_den: 'القاعدة: للمقامين المتساويين، نقارن البسطين مباشرة.',
+                    rule_same_num: 'القاعدة: للبسطين المتساويين، نقارن المقامين عكسياً (الأكبر مقاماً هو الأصغر).',
+                    rule_diff_sign: 'القاعدة: العدد الموجب دائماً أكبر من العدد السالب.',
+                    rule_generic: 'القاعدة: يمكن المقارنة بطريقتين:\n1) الجداءات المتقاطعة: نقارن a×d و c×b.\n2) الطرح: a/b - c/d = (a×d - c×b)/b×d، وإشارة البسط تحدد الأكبر.',
+                    step1_den: 'قارن البسطين',
+                    step1_den_desc: 'بسط الأول ({n1}) ؟ بسط الثاني ({n2})',
+                    step1_num: 'قارن المقامين',
+                    step1_num_desc: 'مقام الأول ({d1}) ؟ مقام الثاني ({d2})',
+                    step_conclusion: 'النتيجة',
+                    conclusion_options: {
+                        greater: 'العدد الأول أكبر',
+                        less: 'العدد الأول أصغر',
+                        equal: 'العددان متساويان'
+                    },
+                    cross1_label: 'جداء الطرفين',
+                    cross2_label: 'جداء الوسطين',
+                    compare_products_label: 'قارن الناتجين',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات',
+                    invalid_number: '❌ يجب إدخال أعداد صحيحة',
+                    invalid_symbol: '❌ استعمل الرموز > أو < أو = فقط',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ!',
+                    wrong_details: 'الإجابة الصحيحة: {correct}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Comparaison dans ℚ',
+                    exercise_subtitle: 'Comparer deux nombres rationnels étape par étape',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Suivez la règle, remplissez les champs puis choisissez la conclusion',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    compare_question: 'Comparez les deux nombres',
+                    rule_same_den: 'Règle : mêmes dénominateurs → on compare les numérateurs.',
+                    rule_same_num: 'Règle : mêmes numérateurs → on compare les dénominateurs (le plus grand dénominateur donne la plus petite fraction).',
+                    rule_diff_sign: 'Règle : un nombre positif est toujours plus grand qu\'un nombre négatif.',
+                    rule_generic: 'Règle : deux méthodes :\n1) Produits en croix : comparer a×d et c×b.\n2) Soustraction : a/b - c/d = (a×d - c×b)/b×d, le signe du numérateur donne l\'ordre.',
+                    step1_den: 'Comparez les numérateurs',
+                    step1_den_desc: 'Numérateur 1 ({n1}) ? Numérateur 2 ({n2})',
+                    step1_num: 'Comparez les dénominateurs',
+                    step1_num_desc: 'Dénominateur 1 ({d1}) ? Dénominateur 2 ({d2})',
+                    step_conclusion: 'Conclusion',
+                    conclusion_options: {
+                        greater: 'Le premier est plus grand',
+                        less: 'Le premier est plus petit',
+                        equal: 'Ils sont égaux'
+                    },
+                    cross1_label: 'Produit en croix (a×d)',
+                    cross2_label: 'Produit en croix (c×b)',
+                    compare_products_label: 'Comparez les produits',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_number: '❌ Entrez des nombres entiers',
+                    invalid_symbol: '❌ Utilisez >, < ou =',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux !',
+                    wrong_details: 'Réponse correcte : {correct}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    click_new_to_start: '👆 Cliquez sur "Nouvelle question"'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Comparing in ℚ',
+                    exercise_subtitle: 'Comparing two rational numbers step by step',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Follow the rule, fill in the blanks, then choose the conclusion',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    compare_question: 'Compare the two numbers',
+                    rule_same_den: 'Rule: same denominators → compare numerators.',
+                    rule_same_num: 'Rule: same numerators → compare denominators (the larger denominator gives the smaller fraction).',
+                    rule_diff_sign: 'Rule: a positive number is always greater than a negative number.',
+                    rule_generic: 'Rule: two methods:\n1) Cross-multiplication: compare a×d and c×b.\n2) Subtraction: a/b - c/d = (a×d - c×b)/b×d, the sign of the numerator tells which is larger.',
+                    step1_den: 'Compare the numerators',
+                    step1_den_desc: 'Numerator 1 ({n1}) ? Numerator 2 ({n2})',
+                    step1_num: 'Compare the denominators',
+                    step1_num_desc: 'Denominator 1 ({d1}) ? Denominator 2 ({d2})',
+                    step_conclusion: 'Conclusion',
+                    conclusion_options: {
+                        greater: 'First is greater',
+                        less: 'First is smaller',
+                        equal: 'They are equal'
+                    },
+                    cross1_label: 'Cross product (a×d)',
+                    cross2_label: 'Cross product (c×b)',
+                    compare_products_label: 'Compare the products',
+                    fill_all: '⚠️ Please fill all fields',
+                    invalid_number: '❌ Enter integers only',
+                    invalid_symbol: '❌ Use >, < or =',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong!',
+                    wrong_details: 'Correct answer: {correct}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    click_new_to_start: '👆 Click "New Question"'
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_compareQ_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_compareQ_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true, audioCtx = null;
+            function getAudioContext() {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now+0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now+0.25);
+                        osc.start(now); osc.stop(now+0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now+0.3);
+                        osc.start(now); osc.stop(now+0.3);
+                    }
+                } catch(e) {}
+            }
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_compareQ_sound');
+                soundEnabled = saved !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+            }
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_compareQ_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('exercise_compareQ_theme', theme); } catch(e) {}
+            }
+            function toggleTheme() {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            }
+            function loadTheme() {
+                const saved = localStorage.getItem('exercise_compareQ_theme');
+                if (saved === 'dark' || saved === 'light') applyTheme(saved);
+                else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                else applyTheme('light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            function randomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function generateNumbers() {
+                const r = Math.random();
+                if (r < 0.25) {
+                    const den = randomInt(2, 10);
+                    let n1 = randomInt(-8, 8);
+                    let n2 = randomInt(-8, 8);
+                    while (n1 === n2) n2 = randomInt(-8, 8);
+                    return { num1: n1, den1: den, num2: n2, den2: den, caseType: 'same_den' };
+                } else if (r < 0.5) {
+                    let num = randomInt(1, 8) * (Math.random() < 0.5 ? 1 : -1);
+                    let d1 = randomInt(2, 10);
+                    let d2 = randomInt(2, 10);
+                    while (d1 === d2) d2 = randomInt(2, 10);
+                    return { num1: num, den1: d1, num2: num, den2: d2, caseType: 'same_num' };
+                } else if (r < 0.75) {
+                    let n1 = randomInt(1, 8);
+                    let n2 = -randomInt(1, 8);
+                    let d1 = randomInt(2, 10);
+                    let d2 = randomInt(2, 10);
+                    return { num1: n1, den1: d1, num2: n2, den2: d2, caseType: 'diff_sign' };
+                } else {
+                    let n1 = randomInt(-8, 8);
+                    let n2 = randomInt(-8, 8);
+                    let d1 = randomInt(2, 10);
+                    let d2 = randomInt(2, 10);
+                    while (d1 === d2 && n1 === n2) { n2 = randomInt(-8, 8); }
+                    return { num1: n1, den1: d1, num2: n2, den2: d2, caseType: 'generic' };
+                }
+            }
+
+            function determineComparison() {
+                const num1=currentNum1, den1=currentDen1, num2=currentNum2, den2=currentDen2;
+                if (currentCase === 'same_den') {
+                    if (num1 > num2) return { symbol: '>', conclusion: 'greater' };
+                    else if (num1 < num2) return { symbol: '<', conclusion: 'less' };
+                    else return { symbol: '=', conclusion: 'equal' };
+                } else if (currentCase === 'same_num') {
+                    if (den1 > den2) return { symbol: '<', conclusion: 'less' };
+                    else if (den1 < den2) return { symbol: '>', conclusion: 'greater' };
+                    else return { symbol: '=', conclusion: 'equal' };
+                } else if (currentCase === 'diff_sign') {
+                    return num1 > 0 ? { symbol: '>', conclusion: 'greater' } : { symbol: '<', conclusion: 'less' };
+                } else {
+                    const prod1 = num1 * den2;
+                    const prod2 = num2 * den1;
+                    if (prod1 > prod2) return { symbol: '>', conclusion: 'greater', prod1, prod2 };
+                    else if (prod1 < prod2) return { symbol: '<', conclusion: 'less', prod1, prod2 };
+                    else return { symbol: '=', conclusion: 'equal', prod1, prod2 };
+                }
+            }
+
+            function renderFractions() {
+    const fracHTML = (num, den) => `
+        <div class="fraction-box" dir="ltr">
+            <span dir="ltr">${num}</span>
+            <div class="frac-line"></div>
+            <span dir="ltr">${den}</span>
+        </div>`;
+    fractionsDisplay.innerHTML = `
+        ${fracHTML(currentNum1, currentDen1)}
+        <span style="font-size:2.5rem;">?</span>
+        ${fracHTML(currentNum2, currentDen2)}`;
+}
+
+            function buildStepsHTML() {
+                const comp = determineComparison();
+                correctComparisonSymbol = comp.symbol;
+                correctConclusionKey = comp.conclusion;
+                correctProduct1 = comp.prod1 !== undefined ? comp.prod1 : 0;
+                correctProduct2 = comp.prod2 !== undefined ? comp.prod2 : 0;
+
+                let html = '';
+                if (currentCase === 'same_den') {
+                    html += `<div class="rule-box">📐 ${t('rule_same_den')}</div>`;
+                    html += `<div class="section-card">
+                        <div class="section-label">${t('step1_den')}</div>
+                        <div class="math-line">
+                            <span class="num-display">${currentNum1}</span>
+                            <span class="operator">?</span>
+                            <span class="num-display">${currentNum2}</span>
+                        </div>
+                        <div style="text-align:center;margin-top:6px;">${t('step1_den_desc', {n1: currentNum1, n2: currentNum2})}</div>
+                        <input type="text" id="inpDenComp" class="inline-input" placeholder="< or > or =" dir="ltr" autocomplete="off" style="width:5em;">
+                    </div>`;
+                } else if (currentCase === 'same_num') {
+                    html += `<div class="rule-box">📐 ${t('rule_same_num')}</div>`;
+                    html += `<div class="section-card">
+                        <div class="section-label">${t('step1_num')}</div>
+                        <div class="math-line">
+                            <span class="num-display">${currentDen1}</span>
+                            <span class="operator">?</span>
+                            <span class="num-display">${currentDen2}</span>
+                        </div>
+                        <div style="text-align:center;margin-top:6px;">${t('step1_num_desc', {d1: currentDen1, d2: currentDen2})}</div>
+                        <input type="text" id="inpNumComp" class="inline-input" placeholder="< or > or =" dir="ltr" autocomplete="off" style="width:5em;">
+                    </div>`;
+                } else if (currentCase === 'diff_sign') {
+                    html += `<div class="rule-box">📐 ${t('rule_diff_sign')}</div>`;
+                } else {
+                    html += `<div class="rule-box">📐 ${t('rule_generic')}</div>`;
+                    // جدا منفصل: العنوان العربي ثم السطر العددي LTR
+                    html += `<div class="section-card">
+                        <div class="section-label">${t('cross1_label')}</div>
+                        <div class="math-line">
+                            <span class="num-display">${currentNum1}</span>
+                            <span class="operator">×</span>
+                            <span class="num-display">${currentDen2}</span>
+                            <span class="operator">=</span>
+                            <input type="text" id="inpProd1" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>`;
+                    html += `<div class="section-card">
+                        <div class="section-label">${t('cross2_label')}</div>
+                        <div class="math-line">
+                            <span class="num-display">${currentNum2}</span>
+                            <span class="operator">×</span>
+                            <span class="num-display">${currentDen1}</span>
+                            <span class="operator">=</span>
+                            <input type="text" id="inpProd2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>`;
+                    html += `<div class="section-card">
+                        <div class="section-label">${t('compare_products_label')}</div>
+                        <div class="math-line">
+                            <span class="num-display">${correctProduct1}</span>
+                            <span class="operator">?</span>
+                            <span class="num-display">${correctProduct2}</span>
+                        </div>
+                        <input type="text" id="inpProdComp" class="inline-input" placeholder="< or > or =" dir="ltr" autocomplete="off" style="width:5em;">
+                    </div>`;
+                }
+
+                const options = t('conclusion_options');
+                html += `<div class="section-card">
+                    <div class="section-label">${t('step_conclusion')}</div>
+                    <select id="selConclusion" class="conclusion-select">
+                        <option value="">--</option>
+                        <option value="greater">${options.greater}</option>
+                        <option value="less">${options.less}</option>
+                        <option value="equal">${options.equal}</option>
+                    </select>
+                </div>`;
+
+                stepsContainer.innerHTML = html;
+                dynamicInputs = {};
+                ['inpDenComp','inpNumComp','inpProd1','inpProd2','inpProdComp'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) dynamicInputs[id] = el;
+                });
+                const sel = document.getElementById('selConclusion');
+                if (sel) dynamicInputs['selConclusion'] = sel;
+            }
+
+            function clearInputs() {
+                for (let key in dynamicInputs) {
+                    if (dynamicInputs[key]) {
+                        if (dynamicInputs[key].tagName === 'SELECT') dynamicInputs[key].selectedIndex = 0;
+                        else dynamicInputs[key].value = '';
+                    }
+                }
+            }
+
+            function renderAll() {
+                renderFractions();
+                buildStepsHTML();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateNumbers();
+                currentNum1 = data.num1; currentDen1 = data.den1;
+                currentNum2 = data.num2; currentDen2 = data.den2;
+                currentCase = data.caseType;
+                renderAll();
+            }
+
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => focusFirstInput(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let key in dynamicInputs) {
+                    if (dynamicInputs[key]) dynamicInputs[key].disabled = disabled;
+                }
+            }
+
+            function focusFirstInput() {
+                const ids = ['inpDenComp','inpNumComp','inpProd1','inpProd2','inpProdComp'];
+                for (let id of ids) {
+                    if (dynamicInputs[id]) {
+                        dynamicInputs[id].focus();
+                        break;
+                    }
+                }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                let compInput = '';
+                let hasMissing = false;
+                if (currentCase === 'same_den') {
+                    if (dynamicInputs['inpDenComp']) compInput = dynamicInputs['inpDenComp'].value.trim();
+                } else if (currentCase === 'same_num') {
+                    if (dynamicInputs['inpNumComp']) compInput = dynamicInputs['inpNumComp'].value.trim();
+                } else if (currentCase === 'generic') {
+                    const v1 = dynamicInputs['inpProd1']?.value.trim() || '';
+                    const v2 = dynamicInputs['inpProd2']?.value.trim() || '';
+                    compInput = dynamicInputs['inpProdComp']?.value.trim() || '';
+                    if (!v1 || !v2 || !compInput) hasMissing = true;
+                    else {
+                        const n1 = Number(v1), n2 = Number(v2);
+                        if (!Number.isInteger(n1) || !Number.isInteger(n2) || n1!==correctProduct1 || n2!==correctProduct2) {
+                            messageEl.innerHTML = t('wrong_details', {correct: `${correctProduct1} و ${correctProduct2}`});
+                            messageEl.style.color = 'var(--accent3)'; playSound('incorrect');
+                            attempts++; updateStatsUI(); if(attempts>=10) finishCurrentRound(); else generateNewQuestion();
+                            return;
+                        }
+                    }
+                } else if (currentCase === 'diff_sign') {
+                    compInput = ''; // لا يوجد حقل مقارنة
+                }
+
+                if (currentCase !== 'diff_sign') {
+                    if (!compInput || (currentCase!=='generic' && !'<>= '.includes(compInput))) {
+                        messageEl.innerHTML = t('invalid_symbol'); messageEl.style.color = 'var(--accent3)'; return;
+                    }
+                    if (hasMissing) {
+                        messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return;
+                    }
+                    if (compInput !== correctComparisonSymbol) {
+                        messageEl.innerHTML = t('wrong_details', {correct: `${correctComparisonSymbol} (${t('conclusion_options')[correctConclusionKey]})`});
+                        messageEl.style.color = 'var(--accent3)'; playSound('incorrect');
+                        attempts++; updateStatsUI(); if(attempts>=10) finishCurrentRound(); else generateNewQuestion();
+                        return;
+                    }
+                }
+
+                const sel = dynamicInputs['selConclusion'];
+                if (!sel || sel.value === '') {
+                    messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return;
+                }
+                if (sel.value !== correctConclusionKey) {
+                    messageEl.innerHTML = t('wrong_details', {correct: t('conclusion_options')[correctConclusionKey]});
+                    messageEl.style.color = 'var(--accent3)'; playSound('incorrect');
+                    attempts++; updateStatsUI(); if(attempts>=10) finishCurrentRound(); else generateNewQuestion();
+                    return;
+                }
+
+                score++;
+                messageEl.innerHTML = t('correct');
+                messageEl.style.color = 'var(--accent2)';
+                playSound('correct');
+                attempts++;
+                updateStatsUI();
+                if (attempts >= 10) finishCurrentRound();
+                else generateNewQuestion();
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => focusFirstInput(), 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            stepsContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault();
+                    handleCheck();
+                }
+            });
+
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => focusFirstInput(), 100);
+
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

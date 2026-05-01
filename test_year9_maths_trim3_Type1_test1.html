@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة عدد 5 - رياضيات (9ème Année)</title>
+
+    <meta name="theme-color" content="#0f766e">
+    <meta name="description" content="فرض مراقبة عدد 5 للسنة التاسعة أساسي - رياضيات">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض مراقبة 5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #1a2e2b;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+            color: #ccfbf1;
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #0f766e, #0d9488, #14b8a6);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #042f2e, #134e4a, #0f766e);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1a2e2b;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #f0fdfa;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #134e4a;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #ccfbf1;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #0f766e;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #0f766e, #0d9488, #14b8a6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #042f2e, #134e4a);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #134e4a;
+            color: #ccfbf1;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #0f766e;
+            border-bottom: 2px solid #14b8a6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease, border-color 0.3s;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #5eead4;
+            border-bottom-color: #2dd4bf;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #0d9488;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #99f6e4;
+        }
+
+        .Tests-Hub-instructions {
+            background: #f0fdfa;
+            padding: 1rem;
+            border-right: 4px solid #0f766e;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease, border-right-color 0.3s;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #042f2e;
+            border-right-color: #14b8a6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        th {
+            background: #0f766e;
+            color: white;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-dark-theme th {
+            background: #042f2e;
+        }
+
+        tr:nth-child(even) {
+            background: #f0fdfa;
+        }
+
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #0f766e;
+        }
+
+        .Tests-Hub-dark-theme td {
+            border-color: #2dd4bf;
+        }
+
+        .Tests-Hub-answer-input,
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            vertical-align: middle;
+            direction: ltr !important;
+            text-align: left !important;
+            unicode-bidi: embed !important;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+            direction: ltr !important;
+            text-align: left !important;
+            unicode-bidi: embed !important;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input,
+        .Tests-Hub-dark-theme .Tests-Hub-table-input,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2dd4bf;
+            background-color: #042f2e;
+            color: #ccfbf1;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-right: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #0f766e;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #5eead4;
+        }
+
+        .Tests-Hub-math-formula {
+            background: #f0fdfa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            transition: background 0.3s ease;
+            overflow-x: auto;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-math-formula {
+            background: #042f2e;
+        }
+
+        .math-expression,
+        .katex,
+        .katex *,
+        [dir="ltr"] {
+            direction: ltr !important;
+            text-align: left !important;
+            unicode-bidi: embed !important;
+        }
+
+        .katex {
+            font-size: 1.1em !important;
+        }
+
+        .Tests-Hub-diagram-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(15, 118, 110, 0.05);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-container {
+            background: rgba(94, 234, 212, 0.05);
+        }
+
+        .Tests-Hub-diagram-canvas {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-canvas {
+            border-color: #2dd4bf;
+            background: #021a14;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #0f766e, #0d9488, #14b8a6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #f0fdfa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #0f766e;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #042f2e;
+            border-right-color: #14b8a6;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #0f766e;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #5eead4;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(15, 118, 110, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #0f766e;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(94, 234, 212, 0.08);
+            border-right-color: #2dd4bf;
+        }
+
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #555;
+            margin: 0.5rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #99f6e4;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0f766e, #0d9488, #14b8a6);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #042f2e, #134e4a, #0f766e);
+        }
+
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-column h3 {
+            color: #ccfbf1;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #ccfbf1;
+        }
+
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #ccfbf1;
+        }
+
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+
+        .Tests-Hub-footer-link {
+            color: #ccfbf1;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(15, 118, 110, 0.1), rgba(20, 184, 166, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to left, rgba(4, 47, 46, 0.3), rgba(19, 78, 74, 0.3));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #0f766e, #0d9488);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+        }
+
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #115e59, #0f766e);
+        }
+
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            table {
+                font-size: 0.85rem;
+            }
+            th,
+            td {
+                padding: 8px 8px;
+            }
+            .Tests-Hub-answer-input,
+            .Tests-Hub-table-input {
+                height: 25px;
+                font-size: 12px;
+                min-width: 55px;
+            }
+            .Tests-Hub-large-textarea {
+                min-height: 70px;
+                font-size: 12px;
+            }
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-left: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.synthesisTest.title">الرياضيات - فرض مراقبة عدد 5</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.synthesisTest.subtitle">التاسعة أساسي</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.synthesisTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض مراقبة عدد 5 في الرياضيات</h1>
+            <p>المؤسسة: المدرسة الإعدادية علي الدوعاجي – قبلاط – باجة</p>
+            <p>الأستاذ: رضا الغربي</p>
+            <p>القسم: 9 أساسي</p>
+            <p>السنة الدراسية: 2024-2025</p>
+            <p>المدة: 60 دقيقة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات عامة</h3>
+            <ul>
+                <li>يحتوي الموضوع على 4 تمارين</li>
+                <li>يسمح باستعمال الآلة الحاسبة ويمنع استعمال الهاتف الجوال</li>
+                <li>جودة التحرير ووضوح المنطق سوف يؤخذان بعين الاعتبار</li>
+                <li>يجب تبرير كل الإجابات</li>
+            </ul>
+        </div>
+
+        <!-- التمرين 1 -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 1 (5 نقاط)</h2>
+            <p><strong>ضع دائرة حول الإجابة الصحيحة الوحيدة لكل سؤال:</strong></p>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> إذا كان \(ABCDEFGH\) مكعباً، فإن المثلث \(OBF\) (حيث \(O\) مركز الوجه \(ABCD\)):</p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="ex1CubeCanvas" class="Tests-Hub-diagram-canvas" width="350" height="260"></canvas>
+                </div>
+                <div style="margin-right:20px;">
+                    <label><input type="radio" name="q1_1" value="a"> أ) قائم في \(O\)</label><br>
+                    <label><input type="radio" name="q1_1" value="b"> ب) قائم في \(B\)</label><br>
+                    <label><input type="radio" name="q1_1" value="c"> ج) قائم في \(F\)</label>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> مجموعة حلول المعادلة \(x^2 + 4 = 0\) في \(\mathbb{R}\) هي:</p>
+                <div style="margin-right:20px;">
+                    <label><input type="radio" name="q1_2" value="a"> أ) \(\{2 ; -2\}\)</label><br>
+                    <label><input type="radio" name="q1_2" value="b"> ب) \(\{-2\}\)</label><br>
+                    <label><input type="radio" name="q1_2" value="c"> ج) \(\varnothing\)</label>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3)</span> العدد \(-3\) هو حل للمعادلة \(x^2 - 6x + 9 = 0\):</p>
+                <div style="margin-right:20px;">
+                    <label><input type="radio" name="q1_3" value="a"> أ) صواب</label><br>
+                    <label><input type="radio" name="q1_3" value="b"> ب) خطأ</label>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4)</span> إذا كان \(-1 < x < 1\) وكانت العبارة \(A = |x+1| - |x-1|\)، فإن \(A\) تساوي:</p>
+                <div style="margin-right:20px;">
+                    <label><input type="radio" name="q1_4" value="a"> أ) \(2x\)</label><br>
+                    <label><input type="radio" name="q1_4" value="b"> ب) \(x^2\)</label><br>
+                    <label><input type="radio" name="q1_4" value="c"> ج) \(2\)</label>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">5)</span> إذا كان \(SABCD\) هرماً قاعدته المستطيل \(ABCD\)، حيث \((SD) \perp (AD)\) و \((SD) \perp (DC)\)، فإن:</p>
+                <div style="margin-right:20px;">
+                    <label><input type="radio" name="q1_5" value="a"> أ) \((SD) \perp (ABC)\)</label><br>
+                    <label><input type="radio" name="q1_5" value="b"> ب) \((SD) \perp (SAB)\)</label><br>
+                    <label><input type="radio" name="q1_5" value="c"> ج) \((SD) \perp (SBC)\)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- التمرين 2 -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 2 (4 نقاط)</h2>
+            <p>ليكن \(x\) و \(y\) عددين حقيقيين حيث: \(-3 \le y \le 5\) و \(-1 < x < 1\).</p>
+            <p><strong>1)</strong> أوجد حصراً لكل من:</p>
+            <p><strong>أ)</strong> \(x - y\) : <input type="text" class="Tests-Hub-answer-input" style="width:200px;" placeholder="حصر x - y ..."></p>
+            <p><strong>ب)</strong> \(2 - x\) : <input type="text" class="Tests-Hub-answer-input" style="width:200px;" placeholder="حصر 2 - x ..."></p>
+            <p><strong>2)</strong> استنتج حصراً لكل من:</p>
+            <p><strong>أ)</strong> \(xy - y^2\) :</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="حصر xy - y² مع التبرير..."></textarea>
+            <p><strong>ب)</strong> \(4x^2 - 2x + 4\) :</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="حصر 4x² - 2x + 4 مع التبرير..."></textarea>
+        </div>
+
+        <!-- التمرين 3 -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 3 (5 نقاط)</h2>
+            <p><strong>1)</strong> حل في \(\mathbb{R}\) المعادلتين:</p>
+            <p><strong>أ)</strong> \(2x - 1 = 3x + 1\): \(S =\) <input type="text" class="Tests-Hub-answer-input" style="width:150px;" placeholder="..."></p>
+            <p><strong>ب)</strong> \((5x - 1)^2 = 9x^2\): \(S =\) <input type="text" class="Tests-Hub-answer-input" style="width:150px;" placeholder="..."></p>
+            <p><strong>2)</strong> لتكن العبارة \(A = (x - 1)(2x + 3)\) حيث \(x\) عدد حقيقي.</p>
+            <p><strong>أ)</strong> بيّن أن \(A = 2x^2 + x - 3\).</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="النشر..."></textarea>
+            <p><strong>ب)</strong> حل في \(\mathbb{R}\) المعادلة \(A = 0\).</p>
+            <p>\(S =\) <input type="text" class="Tests-Hub-answer-input" style="width:150px;" placeholder="..."></p>
+            <p><strong>ج)</strong> حل في \(\mathbb{R}\) المعادلة \(A = -3\).</p>
+            <p>\(S =\) <input type="text" class="Tests-Hub-answer-input" style="width:150px;" placeholder="..."></p>
+        </div>
+
+        <!-- التمرين 4 -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين 4 (6 نقاط)</h2>
+            <p>يمثل الشكل المصاحب مكعباً \(ABCDEFGH\) طول حرفه \(AB = 5\).</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex4CubeCanvas" class="Tests-Hub-diagram-canvas" width="420" height="340"></canvas>
+                <p><em>الشكل: المكعب \(ABCDEFGH\)</em></p>
+            </div>
+            <p><strong>1)</strong></p>
+            <p><strong>أ)</strong> بيّن أن \((CG) \perp (ABC)\).</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="البرهان..."></textarea>
+            <p><strong>ب)</strong> استنتج أن المثلث \(ACG\) قائم.</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="الاستنتاج..."></textarea>
+            <p><strong>2)</strong></p>
+            <p><strong>أ)</strong> احسب \(AC\).</p>
+            <p>\(AC =\) <input type="text" class="Tests-Hub-answer-input" style="width:120px;" placeholder="..."></p>
+            <p><strong>ب)</strong> احسب \(AG\).</p>
+            <p>\(AG =\) <input type="text" class="Tests-Hub-answer-input" style="width:120px;" placeholder="..."></p>
+            <p><strong>3)</strong> نعتبر النقطة \(M\) من القطعة \([AG]\) حيث \(AM = 3\)، ولتكن \(N\) المسقط العمودي لـ \(M\) على المستقيم \((AC)\).</p>
+            <p><strong>أ)</strong> بيّن أن \((MN) \parallel (CG)\).</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="البرهان..."></textarea>
+            <p><strong>ب)</strong> بيّن أن \(MN = \sqrt{3}\).</p>
+            <textarea class="Tests-Hub-large-textarea" placeholder="الحساب..."></textarea>
+            <p><strong>4)</strong> لتكن \(I\) منتصف \([MG]\) و \(J\) منتصف \([NC]\). احسب المسافة \(IJ\).</p>
+            <p>\(IJ =\) <input type="text" class="Tests-Hub-answer-input" style="width:150px;" placeholder="..."></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">عرض التصحيح</button>
+        </div>
+
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>تصحيح الفرض – تحليل مفصّل</h2>
+
+            <h3>التمرين 1 (5 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) الإجابة الصحيحة: ب) قائم في \(B\).</strong></p>
+                <p>في المكعب، \(O\) مركز الوجه \(ABCD\). المستقيم \((BF)\) عمودي على المستوى \((ABC)\) لأنه حرف جانبي في المكعب. وبالتالي \((BF) \perp (OB)\) لأن \((OB)\) محتوى في \((ABC)\). إذن الزاوية \(\widehat{OBF}\) قائمة في \(B\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2) الإجابة الصحيحة: ج) \(\varnothing\).</strong></p>
+                <p>\(x^2 + 4 = 0 \Rightarrow x^2 = -4\). لا يوجد عدد حقيقي مربعه سالب. إذن مجموعة الحلول فارغة: \(S = \varnothing\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3) الإجابة الصحيحة: ب) خطأ.</strong></p>
+                <p>بالتعويض: \((-3)^2 - 6(-3) + 9 = 9 + 18 + 9 = 36 \neq 0\). إذن \(-3\) ليس حلاً للمعادلة. (الحل الحقيقي هو \(x=3\) لأن \(x^2-6x+9=(x-3)^2\).)</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>4) الإجابة الصحيحة: أ) \(2x\).</strong></p>
+                <p>بما أن \(-1 < x < 1\): فإن \(x+1 > 0\) و \(x-1 < 0\). إذن \(|x+1| = x+1\) و \(|x-1| = -(x-1) = 1-x\).<br>
+                    \(A = (x+1) - (1-x) = x+1-1+x = 2x\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>5) الإجابة الصحيحة: أ) \((SD) \perp (ABC)\).</strong></p>
+                <p>لدينا \((SD) \perp (AD)\) و \((SD) \perp (DC)\). المستقيمان \((AD)\) و\((DC)\) متقاطعان في \(D\) ويحددان المستوى \((ABC)\) (قاعدة الهرم). إذن \((SD)\) عمودي على مستقيمين غير متوازيين من المستوى \((ABC)\)، فهو عمودي على المستوى بأكمله.</p>
+            </div>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="corrEx1CubeCanvas" class="Tests-Hub-diagram-canvas" width="350" height="260"></canvas>
+                <p><em>المكعب مع الزاوية القائمة \(\widehat{OBF}\)</em></p>
+            </div>
+
+            <h3>التمرين 2 (4 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) أ) حصر \(x - y\):</strong></p>
+                <p>لدينا \(-3 \le y \le 5\) و \(-1 < x < 1\).</p>
+                <p>أصغر قيمة لـ \(x-y\): \(x\) الأصغر \((-1^+)\) ناقص \(y\) الأكبر \((5)\) يعطي \(-6^+\) (أي أكبر من \(-6\) بقليل).</p>
+                <p>أكبر قيمة: \(x\) الأكبر \((1^-)\) ناقص \(y\) الأصغر \((-3)\) يعطي \(4^-\).</p>
+                <p>إذن: \(-6 < x - y < 4\).</p>
+                <p><strong>ب) حصر \(2 - x\):</strong></p>
+                <p>\(-1 < x < 1 \Rightarrow -1 < -x < 1 \Rightarrow 1 < 2-x < 3\).</p>
+                <p>إذن: \(1 < 2 - x < 3\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2) أ) حصر \(xy - y^2 = y(x-y)\):</strong></p>
+                <p>نحلل: \(y \in [-3, 5]\) و \((x-y) \in (-6, 4)\).</p>
+                <p>ندرس الإشارات: عندما \(y \ge 0\): \(y(x-y)\) محصور بين \(y \times (-6)\) و \(y \times 4\). عندما \(y < 0\): الضرب يعكس المتراجحة.</p>
+                <p>بالدراسة المنهجية على المستطيل \([-3,5] \times (-6,4)\): القيمة الدنيا \(-30^+\) (عندما \(y \to 5\) و \(x \to -1^+\))، القيمة القصوى \(20^-\) (عندما \(y \to 5\) و \(x \to 1^-\) لكن هذا غير ممكن لأن \(x-y\) عند \(y=5\) محصور بين \(-6\) و \(-4\) مما يعطي ضرباً بين \(-30\) و \(-20\)).</p>
+                <p>النتيجة المُحكمة: \(-30 < xy - y^2 < 18\). (الحد الأعلى \(18\) يتحقق عندما \(y=-3\) و \(x-y \to 4^-\) أي \(x \to 1^-\)).</p>
+                <p class="Tests-Hub-correction-note">ملاحظة: يمكن للتلميذ تقديم حصر تقريبي مقبول \(-30 < xy-y^2 < 20\) مع تبرير معقول.</p>
+                <p><strong>ب) حصر \(4x^2 - 2x + 4\):</strong></p>
+                <p>نكتب \(f(x) = 4x^2 - 2x + 4 = 4\left(x - \frac{1}{4}\right)^2 + \frac{15}{4}\).</p>
+                <p>على \((-1, 1)\): الحد الأدنى عند \(x = \frac{1}{4}\) حيث \(f = \frac{15}{4} = 3.75\). عند \(x \to -1^+\): \(f \to 4+2+4=10\). عند \(x \to 1^-\): \(f \to 4-2+4=6\).</p>
+                <p>إذن: \(\frac{15}{4} \le 4x^2 - 2x + 4 < 10\). أي \([3.75\;;\; 10[\).</p>
+            </div>
+
+            <h3>التمرين 3 (5 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) أ)</strong> \(2x - 1 = 3x + 1 \Rightarrow -1 - 1 = 3x - 2x \Rightarrow -2 = x\). إذن \(S = \{-2\}\).</p>
+                <p><strong>ب)</strong> \((5x-1)^2 = 9x^2 \Rightarrow (5x-1)^2 - (3x)^2 = 0 \Rightarrow [(5x-1)-3x][(5x-1)+3x] = 0 \Rightarrow (2x-1)(8x-1) = 0\).</p>
+                <p>إذن \(2x-1=0\) أي \(x=\frac{1}{2}\)، أو \(8x-1=0\) أي \(x=\frac{1}{8}\). \(S = \left\{\frac{1}{8}; \frac{1}{2}\right\}\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2) أ)</strong> \(A = (x-1)(2x+3) = x(2x+3) - 1(2x+3) = 2x^2 + 3x - 2x - 3 = 2x^2 + x - 3\). ✓</p>
+                <p><strong>ب)</strong> \(A = 0 \Leftrightarrow (x-1)(2x+3) = 0 \Leftrightarrow x-1=0 \text{ أو } 2x+3=0 \Leftrightarrow x=1 \text{ أو } x=-\frac{3}{2}\). \(S = \left\{-\frac{3}{2}; 1\right\}\).</p>
+                <p><strong>ج)</strong> \(A = -3 \Leftrightarrow 2x^2 + x - 3 = -3 \Leftrightarrow 2x^2 + x = 0 \Leftrightarrow x(2x+1) = 0 \Leftrightarrow x=0 \text{ أو } x=-\frac{1}{2}\). \(S = \left\{-\frac{1}{2}; 0\right\}\).</p>
+            </div>
+
+            <h3>التمرين 4 (6 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) أ)</strong> في المكعب، \((CG)\) حرف جانبي. \((CG) \perp (BC)\) و \((CG) \perp (CD)\) لأن الوجوه مربعات. \((BC)\) و\((CD)\) متقاطعان في \(C\) ويحددان المستوى \((ABC)\). إذن \((CG) \perp (ABC)\).</p>
+                <p><strong>ب)</strong> بما أن \((CG) \perp (ABC)\)، فإن \((CG)\) عمودي على كل مستقيم من \((ABC)\) يمر من \(C\)، وخاصة \((AC)\). إذن \((CG) \perp (AC)\) والمثلث \(ACG\) قائم في \(C\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2) أ)</strong> \(AC\) قطر المربع \(ABCD\): \(AC = AB\sqrt{2} = 5\sqrt{2}\).</p>
+                <p><strong>ب)</strong> في المثلث \(ACG\) القائم في \(C\): \(AG^2 = AC^2 + CG^2 = (5\sqrt{2})^2 + 5^2 = 50 + 25 = 75\). إذن \(AG = \sqrt{75} = 5\sqrt{3}\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3) أ)</strong> \(N\) المسقط العمودي لـ \(M\) على \((AC)\) يعني \((MN) \perp (AC)\). وقد بيّنا أن \((CG) \perp (AC)\). في المستوي \((ACG)\)، المستقيمان \((MN)\) و\((CG)\) عموديان على نفس المستقيم \((AC)\)، إذن \((MN) \parallel (CG)\).</p>
+                <p><strong>ب)</strong> في المثلث \(ACG\): \(M \in [AG]\)، \(N \in [AC]\)، و \((MN) \parallel (CG)\). حسب مبرهنة طالس: \(\frac{MN}{CG} = \frac{AM}{AG}\).</p>
+                <p>\(MN = CG \times \frac{AM}{AG} = 5 \times \frac{3}{5\sqrt{3}} = \frac{3}{\sqrt{3}} = \sqrt{3}\).</p>
+                <p class="Tests-Hub-correction-note">ملاحظة: تُبسط \(\frac{3}{\sqrt{3}}\) بضرب البسط والمقام في \(\sqrt{3}\): \(\frac{3\sqrt{3}}{3} = \sqrt{3}\).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>4)</strong> حساب \(IJ\) حيث \(I\) منتصف \([MG]\) و \(J\) منتصف \([NC]\).</p>
+                <p>نعتمد نظام إحداثيات: \(A(0,0,0)\)، \(B(5,0,0)\)، \(C(5,5,0)\)، \(D(0,5,0)\)، \(E(0,0,5)\)، \(F(5,0,5)\)، \(G(5,5,5)\)، \(H(0,5,5)\).</p>
+                <p>\(AG = (5,5,5)\). \(M\) على \([AG]\) حيث \(AM = 3\): \(M = A + \frac{3}{5\sqrt{3}}(5,5,5) = (\sqrt{3}, \sqrt{3}, \sqrt{3})\).</p>
+                <p>\(N\) مسقط \(M\) على \((AC)\): \(AC = (5,5,0)\). \(N = \frac{M \cdot AC}{|AC|^2} AC = \frac{5\sqrt{3}+5\sqrt{3}+0}{50}(5,5,0) = (\sqrt{3}, \sqrt{3}, 0)\).</p>
+                <p>\(I = \frac{M+G}{2} = \left(\frac{5+\sqrt{3}}{2}, \frac{5+\sqrt{3}}{2}, \frac{5+\sqrt{3}}{2}\right)\).</p>
+                <p>\(J = \frac{N+C}{2} = \left(\frac{5+\sqrt{3}}{2}, \frac{5+\sqrt{3}}{2}, 0\right)\).</p>
+                <p>\(IJ = |J - I| = \left| \left(0, 0, -\frac{5+\sqrt{3}}{2}\right) \right| = \frac{5+\sqrt{3}}{2}\).</p>
+                <p class="Tests-Hub-correction-note">تحليل هندسي: \(IJ\) هو متوسط في شبه منحرف \(MGCN\) حيث القاعدتان متوازيتان. يمكن أيضاً استخدام مبرهنة midsegment في الفضاء.</p>
+            </div>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="corrEx4CubeCanvas" class="Tests-Hub-diagram-canvas" width="420" height="340"></canvas>
+                <p><em>المكعب الكامل مع النقط \(M, N, I, J\) والأطوال</em></p>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.0.6</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        function getCanvasBg() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#021a14' : '#ffffff';
+        }
+
+        function getCanvasStroke() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#5eead4' : '#0f766e';
+        }
+
+        function getCanvasText() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#ccfbf1' : '#1a2e2b';
+        }
+
+        function getCanvasGrid() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#2dd4bf' : '#c4c4c4';
+        }
+
+        function getCanvasAccent() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#2dd4bf' : '#0d9488';
+        }
+
+        function getCanvasFill() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? 'rgba(13,148,136,0.15)' : 'rgba(13,148,136,0.06)';
+        }
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "الرياضيات - فرض مراقبة عدد 5",
+                        subtitle: "التاسعة أساسي",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية" }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "Mathématiques - Devoir de Contrôle N°5",
+                        subtitle: "9ème Année de Base",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    synthesisTest: {
+                        title: "Mathematics - Control Test N°5",
+                        subtitle: "9th Grade Basic",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms of Use",
+                        privacy: "Privacy Policy" }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let current = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (current) current = current[k]; });
+                if (typeof current === 'string') el.textContent = current;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeToggle) themeToggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع الفاتح' :
+                currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub
+                .theme.toggle;
+            if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[
+                currentLanguage].TestsHub.synthesisTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub
+                .synthesisTest.hideCorrection;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            redrawAllDiagrams();
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = TestsHub_translations[
+                lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || "Coming soon");
+        }
+
+        // ========== DIAGRAM: Cube Ex1 (with O center of ABCD, triangle OBF) ==========
+        function drawCubeEx1(canvasId, showDetails = false) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width,
+                h = canvas.height;
+            ctx.fillStyle = getCanvasBg();
+            ctx.fillRect(0, 0, w, h);
+            const strokeC = getCanvasStroke();
+            const textC = getCanvasText();
+            const accentC = getCanvasAccent();
+
+            const front = [
+                [80, 180],
+                [220, 180],
+                [220, 100],
+                [80, 100]
+            ];
+            const back = [
+                [130, 140],
+                [270, 140],
+                [270, 60],
+                [130, 60]
+            ];
+            const O = [(front[0][0] + front[1][0]) / 2, (front[0][1] + front[3][1]) / 2];
+
+            function drawPoly(pts) {
+                ctx.beginPath();
+                pts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
+                ctx.closePath();
+                ctx.strokeStyle = strokeC;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            drawPoly(front);
+            drawPoly(back);
+            for (let i = 0; i < 4; i++) {
+                ctx.beginPath();
+                ctx.strokeStyle = strokeC;
+                ctx.lineWidth = 2;
+                ctx.moveTo(front[i][0], front[i][1]);
+                ctx.lineTo(back[i][0], back[i][1]);
+                ctx.stroke();
+            }
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.strokeStyle = strokeC;
+            ctx.lineWidth = 2;
+            ctx.moveTo(back[0][0], back[0][1]);
+            ctx.lineTo(back[1][0], back[1][1]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            const labels = [
+                [front[3][0] - 16, front[3][1] - 4, 'A'],
+                [front[2][0] - 16, front[2][1] - 4, 'B'],
+                [front[1][0] + 6, front[1][1] - 4, 'C'],
+                [front[0][0] - 16, front[0][1] + 16, 'D'],
+                [back[3][0] - 16, back[3][1] - 4, 'E'],
+                [back[2][0] - 16, back[2][1] - 16, 'F'],
+                [back[1][0] + 6, back[1][1] - 4, 'G'],
+                [back[0][0] - 16, back[0][1] + 6, 'H']
+            ];
+            ctx.fillStyle = textC;
+            ctx.font = 'bold 13px Arial';
+            labels.forEach(l => ctx.fillText(l[2], l[0], l[1]));
+
+            // Point O
+            ctx.beginPath();
+            ctx.arc(O[0], O[1], 4.5, 0, 2 * Math.PI);
+            ctx.fillStyle = accentC;
+            ctx.fill();
+            ctx.fillStyle = textC;
+            ctx.font = 'bold 13px Arial';
+            ctx.fillText('O', O[0] + 8, O[1] - 8);
+
+            // Triangle OBF (dashed to show)
+            const Bf = front[2];
+            const Ff = back[2];
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            ctx.moveTo(O[0], O[1]);
+            ctx.lineTo(Bf[0], Bf[1]);
+            ctx.lineTo(Ff[0], Ff[1]);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            if (showDetails) {
+                ctx.fillStyle = '#dc2626';
+                ctx.font = '11px Arial';
+                ctx.fillText('△OBF قائم في B', 20, h - 15);
+                ctx.fillText('(BF)⟂(ABC)', 130, h - 15);
+                ctx.fillText('∠OBF = 90°', 250, h - 15);
+                // Right angle mark at B
+                ctx.strokeStyle = '#dc2626';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                const bx = Bf[0],
+                    by = Bf[1];
+                ctx.moveTo(bx - 12, by);
+                ctx.lineTo(bx - 12, by - 12);
+                ctx.lineTo(bx, by - 12);
+                ctx.stroke();
+            }
+        }
+
+        // ========== DIAGRAM: Cube Ex4 (full cube with M,N,I,J) ==========
+        function drawCubeEx4(canvasId, showDetails = false) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width,
+                h = canvas.height;
+            ctx.fillStyle = getCanvasBg();
+            ctx.fillRect(0, 0, w, h);
+            const strokeC = getCanvasStroke();
+            const textC = getCanvasText();
+            const accentC = getCanvasAccent();
+
+            const front = [
+                [90, 240],
+                [260, 240],
+                [260, 130],
+                [90, 130]
+            ];
+            const back = [
+                [145, 190],
+                [315, 190],
+                [315, 80],
+                [145, 80]
+            ];
+
+            function drawPoly(pts) {
+                ctx.beginPath();
+                pts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
+                ctx.closePath();
+                ctx.strokeStyle = strokeC;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            drawPoly(front);
+            drawPoly(back);
+            for (let i = 0; i < 4; i++) {
+                ctx.beginPath();
+                ctx.strokeStyle = strokeC;
+                ctx.lineWidth = 2;
+                ctx.moveTo(front[i][0], front[i][1]);
+                ctx.lineTo(back[i][0], back[i][1]);
+                ctx.stroke();
+            }
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.strokeStyle = strokeC;
+            ctx.lineWidth = 2;
+            ctx.moveTo(back[0][0], back[0][1]);
+            ctx.lineTo(back[1][0], back[1][1]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            const labels = [
+                [front[3][0] - 16, front[3][1] + 4, 'A'],
+                [front[2][0] - 16, front[2][1] - 4, 'B'],
+                [front[1][0] + 6, front[1][1] + 4, 'C'],
+                [front[0][0] - 16, front[0][1] + 16, 'D'],
+                [back[3][0] - 16, back[3][1] - 4, 'E'],
+                [back[2][0] - 16, back[2][1] - 16, 'F'],
+                [back[1][0] + 6, back[1][1] - 4, 'G'],
+                [back[0][0] - 16, back[0][1] + 6, 'H']
+            ];
+            ctx.fillStyle = textC;
+            ctx.font = 'bold 13px Arial';
+            labels.forEach(l => ctx.fillText(l[2], l[0], l[1]));
+
+            // Diagonals AC and AG (for reference in correction)
+            if (showDetails) {
+                ctx.setLineDash([4, 5]);
+                ctx.beginPath();
+                ctx.strokeStyle = '#d97706';
+                ctx.lineWidth = 1.5;
+                ctx.moveTo(front[3][0], front[3][1]);
+                ctx.lineTo(front[1][0], front[1][1]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                // AG
+                ctx.setLineDash([3, 6]);
+                ctx.beginPath();
+                ctx.strokeStyle = '#7c3aed';
+                ctx.lineWidth = 1.8;
+                ctx.moveTo(front[3][0], front[3][1]);
+                ctx.lineTo(back[1][0], back[1][1]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // Points M, N (only in correction)
+            if (showDetails) {
+                const A = [front[3][0], front[3][1]];
+                const G = [back[1][0], back[1][1]];
+                const C = [front[1][0], front[1][1]];
+                const Mx = A[0] + (G[0] - A[0]) * (3 / (5 * Math.sqrt(3))) * 5 / 5;
+                const My = A[1] + (G[1] - A[1]) * (3 / (5 * Math.sqrt(3))) * 5 / 5;
+                const ratio = 3 / (5 * Math.sqrt(3));
+                const M = [A[0] + (G[0] - A[0]) * ratio, A[1] + (G[1] - A[1]) * ratio];
+                const N = [A[0] + (C[0] - A[0]) * ratio, A[1] + (C[1] - A[1]) * ratio];
+                const Ipt = [(M[0] + G[0]) / 2, (M[1] + G[1]) / 2];
+                const Jpt = [(N[0] + C[0]) / 2, (N[1] + C[1]) / 2];
+
+                function drawPoint(p, label, color, offX, offY) {
+                    ctx.beginPath();
+                    ctx.arc(p[0], p[1], 4, 0, 2 * Math.PI);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                    ctx.fillStyle = textC;
+                    ctx.font = 'bold 12px Arial';
+                    ctx.fillText(label, p[0] + offX, p[1] + offY);
+                }
+                drawPoint(M, 'M', '#dc2626', 8, -6);
+                drawPoint(N, 'N', '#059669', -18, 14);
+                drawPoint(Ipt, 'I', '#7c3aed', 8, -6);
+                drawPoint(Jpt, 'J', '#d97706', -18, 14);
+
+                // Dashed lines MN, IJ
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.strokeStyle = '#dc2626';
+                ctx.lineWidth = 1.5;
+                ctx.moveTo(M[0], M[1]);
+                ctx.lineTo(N[0], N[1]);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.strokeStyle = '#7c3aed';
+                ctx.lineWidth = 1.5;
+                ctx.moveTo(Ipt[0], Ipt[1]);
+                ctx.lineTo(Jpt[0], Jpt[1]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Labels for lengths
+                ctx.fillStyle = textC;
+                ctx.font = '10px Arial';
+                ctx.fillText('AC=5√2', front[1][0] + 10, (front[3][1] + front[1][1]) / 2);
+                ctx.fillText('AG=5√3', back[1][0] - 40, (front[3][1] + back[1][1]) / 2 - 10);
+                ctx.fillText('MN=√3', M[0] - 55, (M[1] + N[1]) / 2);
+                ctx.fillText('IJ=(5+√3)/2', Ipt[0] - 60, (Ipt[1] + Jpt[1]) / 2 + 20);
+                ctx.fillText('CG=5', back[1][0] + 10, (front[1][1] + back[1][1]) / 2);
+            }
+
+            if (!showDetails) {
+                ctx.fillStyle = textC;
+                ctx.font = '10px Arial';
+                ctx.fillText('AB = 5', 200, h - 10);
+            }
+        }
+
+        function redrawAllDiagrams() {
+            drawCubeEx1('ex1CubeCanvas', false);
+            drawCubeEx4('ex4CubeCanvas', false);
+            const corr = document.getElementById('correction');
+            if (!corr.classList.contains('Tests-Hub-hidden')) {
+                drawCubeEx1('corrEx1CubeCanvas', true);
+                drawCubeEx4('corrEx4CubeCanvas', true);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+            if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+            else document.documentElement.dir = 'ltr';
+
+            updateTextContent();
+            redrawAllDiagrams();
+
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true }
+                ],
+                throwOnError: false
+            });
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() { changeLanguage(this.getAttribute(
+                        'data-language')); });
+            });
+            document.getElementById('downloadPdf').addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt').addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng').addEventListener('click', downloadAlert);
+
+            const correctionBtn = document.getElementById('toggleCorrection');
+            correctionBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                if (!corr.classList.contains('Tests-Hub-hidden')) {
+                    drawCubeEx1('corrEx1CubeCanvas', true);
+                    drawCubeEx4('corrEx4CubeCanvas', true);
+                    renderMathInElement(corr, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false }
+                        ],
+                        throwOnError: false
+                    });
+                }
+            });
+
+            window.addEventListener('resize', redrawAllDiagrams);
+        });
+    </script>
+</body>
+</html>

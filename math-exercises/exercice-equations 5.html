@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mise en équation – Problèmes concrets | Tableau d'exercices</title>
+    <style>
+        :root {
+            --bg: #eef2f7; --bg2: #d9e2ec; --surface: #ffffff; --surface2: #f4f7fb; --surface3: #e8eef6;
+            --text: #0b2b3b; --text2: #3a5a78; --text3: #5a7a98; --border: #cbdde9; --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04); --shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.10); --accent: #ec4899; --accent2: #10b981;
+            --accent3: #ef4444; --tag-bg: #e2eaf5; --tag-text: #1e3a4f; --input-bg: #fffef7;
+            --input-border: #90a4c3; --section-header-bg: #e9f0f9; --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0; --scrollbar-thumb: #c1cddb; --scrollbar-track: transparent;
+            --calc-line-bg: #fffef9; --calc-line-border: #bcc9da; --highlight-eq: #ec4899;
+            --highlight-eq-light: rgba(236,72,153,0.08); --highlight-eq-badge: #db2777;
+            --section-accent: #ec4899; --section-bg: rgba(236,72,153,0.04); --eq-box-bg: #fdf2f8;
+            --eq-box-border: #f9a8d4; --radical-color: #ec4899; --fraction-bar: #ec4899;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a; --bg2: #1a2332; --surface: #1e293b; --surface2: #1a2332;
+            --surface3: #243044; --text: #e2e8f0; --text2: #bcc8d6; --text3: #8f9eb2;
+            --border: #334155; --border2: #2d3a4a; --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+            --shadow: 0 4px 16px rgba(0,0,0,0.25); --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+            --accent: #f472b6; --accent2: #4ade80; --accent3: #f87171; --tag-bg: #243044;
+            --tag-text: #bcc8d6; --input-bg: #1a2332; --input-border: #475569;
+            --section-header-bg: #1e293b; --section-header-text: #e2e8f0;
+            --toggle-bg: #334155; --scrollbar-thumb: #475569; --scrollbar-track: #1e293b;
+            --calc-line-bg: #1a2332; --calc-line-border: #475569; --highlight-eq: #f472b6;
+            --highlight-eq-light: rgba(244,114,182,0.12); --highlight-eq-badge: #ec4899;
+            --section-accent: #f472b6; --section-bg: rgba(244,114,182,0.06); --eq-box-bg: #2d1e2a;
+            --eq-box-border: #db2777; --radical-color: #f472b6; --fraction-bar: #f472b6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text); min-height: 100vh; padding: 16px;
+            transition: background 0.4s, color 0.35s; line-height: 1.6;
+            -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center;
+        }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        .dashboard-header {
+            width: 100%; max-width: 1060px; margin: 0 auto 16px; background: var(--surface);
+            border-radius: 30px; padding: 14px 24px; box-shadow: var(--shadow);
+            border: 1px solid var(--border); display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap; gap: 12px; transition: all 0.35s;
+        }
+        .logo-area { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: var(--text); }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .btn-icon {
+            width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--border);
+            background: var(--surface2); cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+            color: var(--text); flex-shrink: 0;
+        }
+        .btn-icon:hover { background: var(--surface3); border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px; border-radius: 50px; border: 2px solid var(--border);
+            background: var(--surface2); color: var(--text); font-family: inherit;
+            font-weight: 600; font-size: 0.9rem; cursor: pointer; outline: none; transition: 0.2s; min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+        .exercise-wrapper {
+            width: 100%; max-width: 1060px; background: var(--surface); border-radius: 36px;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 28px 32px;
+            margin-bottom: 16px; transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem; font-weight: 800; color: var(--highlight-eq); text-align: center;
+            margin-bottom: 6px; letter-spacing: -0.5px; display: flex; align-items: center;
+            justify-content: center; gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center; color: var(--text2); margin-bottom: 24px; font-size: 1rem;
+            font-weight: 500; background: var(--section-header-bg); padding: 5px 20px;
+            border-radius: 40px; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+        }
+        .problem-box {
+            background: var(--eq-box-bg); border: 3px solid var(--eq-box-border); border-radius: 24px;
+            padding: 18px 22px; margin-bottom: 20px; font-size: 1.15rem; font-weight: 600;
+            text-align: center; line-height: 1.8; color: var(--text);
+        }
+        .question-block {
+            margin-top: 10px; font-size: 1.1rem; font-weight: 600; color: var(--text);
+            background: var(--surface2); padding: 16px 18px; border-radius: 28px;
+            line-height: 2; border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface); border-radius: 20px; padding: 16px 18px; margin: 14px 0;
+            border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
+            border-right: 4px solid var(--section-accent); background: var(--section-bg);
+        }
+        .section-label {
+            font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center;
+            gap: 6px; padding: 4px 14px; border-radius: 30px; width: fit-content;
+            color: var(--highlight-eq); background: var(--highlight-eq-light);
+        }
+        .step-explanation {
+            font-size: 0.95rem; font-weight: 500; color: var(--text2); margin-bottom: 8px;
+            background: var(--surface3); padding: 4px 14px; border-radius: 20px; display: inline-block;
+        }
+        .formula-line {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px;
+            margin: 6px 0; direction: ltr; font-size: 1.35rem; font-weight: 700;
+            background: var(--calc-line-bg); border: 2px dashed var(--calc-line-border);
+            border-radius: 40px; padding: 8px 18px; width: fit-content; min-width: 200px;
+            margin-left: auto; margin-right: auto;
+        }
+        .formula-line .operator { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 0 4px; }
+        .formula-line .num-display {
+            font-weight: 800; background: var(--surface3); padding: 4px 12px; border-radius: 16px;
+            font-size: 1.2rem; color: var(--text); margin: 0 2px;
+        }
+        .formula-line .var-display { font-weight: 800; font-style: italic; color: var(--highlight-eq); font-size: 1.35rem; margin: 0 2px; }
+        .frac-inline {
+            display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 2px; line-height: 1.1;
+        }
+        .frac-inline .frac-num { border-bottom: 2px solid var(--fraction-bar); padding: 0 6px; font-size: 1.1rem; font-weight: 800; }
+        .frac-inline .frac-den { padding: 0 6px; font-size: 1.1rem; font-weight: 800; }
+        .radical-inline { display: inline-flex; align-items: baseline; margin: 0 2px; }
+        .radical-inline .radicand-inline { text-decoration: overline; padding: 0 4px; font-weight: 800; color: var(--radical-color); }
+        .inline-input {
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.25rem;
+            background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
+            text-align: center; padding: 3px 2px; margin: 0 4px; width: 3.2em; min-width: 58px;
+            max-width: 100px; outline: none; transition: all 0.15s; color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+        }
+        .inline-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(236,72,153,0.25); }
+        .inline-input.input-sm { width: 2.8em; min-width: 50px; max-width: 80px; }
+        .hint-text {
+            font-size: 0.85rem; color: var(--text2); margin-top: 6px; text-align: center;
+            font-weight: 500; background: var(--surface3); padding: 3px 14px; border-radius: 20px;
+            display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+        }
+        .action-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0 8px; }
+        .btn {
+            border: none; padding: 11px 28px; font-size: 1.1rem; font-weight: bold;
+            border-radius: 60px; cursor: pointer; transition: 0.08s linear; font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2); color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #9d174d; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex; justify-content: space-between; margin-top: 18px; font-size: 1.2rem;
+            color: var(--text); font-weight: 600; background: var(--surface2);
+            padding: 12px 28px; border-radius: 60px; border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500;
+            text-align: center; background: var(--surface2); border-radius: 60px;
+            padding: 10px 16px; transition: 0.1s; border: 1px solid var(--border);
+            color: var(--text); line-height: 2;
+        }
+        .start-note {
+            display: inline-block; background: linear-gradient(135deg, #ec4899, #db2777);
+            color: white; font-weight: 700; padding: 10px 32px; border-radius: 50px;
+            animation: pulse-note 2s infinite; box-shadow: 0 4px 15px rgba(219,39,119,0.4);
+        }
+        @keyframes pulse-note { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
+        .dashboard-footer {
+            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px;
+            background: var(--surface); border-radius: 24px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(3,1fr);
+            gap: 20px; transition: background 0.35s; font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a { color: var(--text2); text-decoration: none; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .question-block { font-size: 1rem; padding: 12px 8px; }
+            .inline-input { font-size: 1rem; width: 2.8em; min-width: 48px; }
+            .formula-line { font-size: 1.1rem; padding: 6px 10px; border-radius: 30px; }
+            .stats { font-size: 1rem; padding: 10px 16px; }
+            .section-label { font-size: 0.95rem; }
+            .problem-box { font-size: 1rem; padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area"><span class="icon">⚖️</span><span data-i18n="app_title">Tableau d'exercices</span></div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="Son" aria-label="Son">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="Langue">
+                <option value="fr">Français</option>
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="Mode sombre / clair">🌙</button>
+            <button class="btn-icon" id="btnBack" title="Retour au tableau">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title"><span>⚖️</span> <span data-i18n="exercise_heading">Mise en équation – Problèmes concrets</span> <span>📝</span></h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">Traduire une situation réelle en équation du premier degré – 10 essais</div>
+
+        <div class="problem-box" id="problemStatement"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 Nouvelle question</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ Vérifier</button>
+        </div>
+
+        <div style="text-align:center;"><span class="start-note" data-i18n="click_new_to_start">👆 Clique sur « Nouvelle question » pour commencer</span></div>
+        <div class="hint-text" data-i18n="hint" style="display:block;width:auto;">📌 Complète toutes les étapes, y compris la forme finale ax+b = cx+d.</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">Essais</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">Points</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col"><h4 data-i18n="footer_links">Liens</h4><ul><li><a href="#" data-i18n="footer_terms">Conditions d'utilisation</a></li><li><a href="#" data-i18n="footer_privacy">Politique de confidentialité</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="footer_version">Version</h4><p>v2.1.0</p></div>
+        <div class="footer-col"><h4 data-i18n="footer_dev">Développement</h4><p>Madjeri Ziad</p><p class="host-info" data-i18n="footer_host">Hébergé sur Netlify & GitHub</p></div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const problemStatement = document.getElementById('problemStatement');
+            const questionContainer = document.getElementById('questionContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let currentProblem = {};
+            let inputRefs = {};
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
+
+            // ══════════════ TRADUCTIONS COMPLÈTES ══════════════
+            const translations = {
+                fr: {
+                    app_title: "Tableau d'exercices",
+                    exercise_heading: 'Mise en équation – Problèmes concrets',
+                    exercise_subtitle: 'Traduire une situation réelle en équation – 10 essais',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Complète toutes les étapes, y compris la forme finale ax+b = cx+d.',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    step0_title: '🧠 Choix de l\'inconnue',
+                    step0_text: 'Soit <strong>x</strong> la {unknownText}.',
+
+                    // Étape directe (car, age, cinema)
+                    step1_title_direct: '1. Premier membre (situation 1)',
+                    step1_explain_direct: 'Écris l\'expression correspondant à {situation1}.',
+                    step2_title_direct: '2. Deuxième membre (situation 2)',
+                    step2_explain_direct: 'Écris l\'expression correspondant à {situation2}.',
+                    hint_step_direct: 'Coefficient de x | Constante',
+
+                    // Factor
+                    step1_title_factor: '1. Expression gauche (avec parenthèses)',
+                    step1_explain_factor: 'Gauche : {a} lots de {bx}x + {bc} articles.',
+                    step2_title_factor: '2. Expression droite (avec parenthèses)',
+                    step2_explain_factor: 'Droite : {d} lots de {ex}x + {fc} articles.',
+                    hint_step_factor_left: 'Nombre de lots | Terme en x | Constante',
+                    hint_step_factor_right: 'Nombre de lots | Terme en x | Constante',
+
+                    // Division
+                    step1_title_div: '1. Expression gauche (fraction)',
+                    step1_explain_div: '{coeff}x + {b}, le tout divisé par {den}.',
+                    step2_title_div: '2. Expression droite (constante)',
+                    step2_explain_div: 'Le résultat est égal à {cst}.',
+                    hint_step_div_left: 'Coefficient de x | Constante | Dénominateur',
+                    hint_step_div_right: 'Résultat',
+
+                    // Racine
+                    step1_title_sqrt: '1. Simplifier la racine carrée',
+                    step1_explain_sqrt: 'Calcule √{rad} = {val}.',
+                    step2_title_sqrt: '2. Écrire les membres simplifiés',
+                    step2_explain_sqrt: 'Gauche : {a}x + {b}×{val}  |  Droite : {c}x + {d}×{val}.',
+                    hint_step_sqrt_val: 'Valeur de la racine',
+                    hint_step_sqrt_eq: 'Coeff gauche | Constante gauche | Coeff droit | Constante droite',
+
+                    // Puissance
+                    step1_title_pow: '1. Calculer la partie géométrique',
+                    step1_explain_pow: 'L\'aire du carré de côté {side} est {side}² = {sq}.',
+                    step2_title_pow: '2. Écrire l\'égalité',
+                    step2_explain_pow: 'Périmètre (4x) = Aire ({sq}).',
+                    hint_step_pow_sq: 'Aire ({side}²)',
+                    hint_step_pow_eq: 'Coeff gauche | Constante gauche | Coeff droit | Constante droite',
+
+                    // Finale
+                    step_final_title: '📐 Étape finale – Forme ax + b = cx + d',
+                    step_final_explain: 'Transforme ton équation pour obtenir la forme <strong>ax + b = cx + d</strong>.',
+                    step_final_instr: 'Coefficient a : ? | Constante b : ? | Coefficient c : ? | Constante d : ?',
+
+                    fill_all: '⚠️ Remplis toutes les cases.',
+                    invalid_numbers: '❌ Entre uniquement des nombres entiers.',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux. Équation finale attendue : {right}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
+                    figure_changed: '🔄 Problème changé (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: "Conditions d'utilisation",
+                    footer_privacy: 'Politique de confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (activé)',
+                    sound_off_title: 'Son (désactivé)',
+                    back_title: 'Retour au tableau',
+                    operator_plus: '+',
+                    operator_equals: '=',
+                    operator_times: '×',
+                    operator_divide: '÷',
+                    click_new_to_start: '👆 Clique sur « Nouvelle question » pour commencer',
+
+                    // Inconnues
+                    unknown_distance: 'distance parcourue (en km)',
+                    unknown_age: 'âge actuel (en années)',
+                    unknown_price: 'nombre de places de cinéma',
+                    unknown_articles: "nombre d'articles par paquet inconnu",
+                    unknown_number: 'le nombre cherché',
+                    unknown_side: 'le côté du carré (en cm)',
+
+                    // Situations concrètes
+                    situation_carA: "l'agence A (frais fixes + coût au km)",
+                    situation_carB: "l'agence B (frais fixes + coût au km)",
+                    situation_ageA: "l'âge de Paul dans le futur",
+                    situation_ageB: "le double de l'âge futur de Marie",
+                    situation_cinemaA: "la formule A (abonnement + prix par place)",
+                    situation_cinemaB: "la formule B (abonnement + prix par place)",
+                    situation_factor_left: "le premier commerçant",
+                    situation_factor_right: "le deuxième commerçant",
+                    situation_div: "le calcul demandé",
+                    situation_sqrt: "l'équation après simplification de la racine",
+                    situation_pow: "l'égalité géométrique",
+
+                    // Modèles d'énoncés
+                    template_car: "Agence A : {b}€ fixes + {a}€ par km.<br>Agence B : {d}€ fixes + {c}€ par km.<br>Pour quelle distance les prix sont-ils égaux ?",
+                    template_age: "Dans {y} ans, l'âge de Paul (actuellement x) sera le double de celui de Marie (actuellement {m} ans).<br>Écris l'équation correspondante.",
+                    template_cinema: "Formule A : {b}€ d'abonnement + {a}€ par place.<br>Formule B : {d}€ d'abonnement + {c}€ par place.<br>Pour combien de places le prix est-il le même ?",
+                    template_factor: "Un commerçant achète {a} sacs contenant chacun {bx}x + {bc} bonbons.<br>Un autre commerçant achète {d} sacs contenant chacun {ex}x + {fc} bonbons.<br>Ils obtiennent le même nombre total de bonbons.",
+                    template_div: "On choisit un nombre x, on le multiplie par {coeff}, on ajoute {b}, puis on divise le tout par {den}.<br>Le résultat obtenu est {cst}. Traduis cette situation par une équation.",
+                    template_sqrt: "Deux tiges métalliques de longueurs respectives {a}x + {b}√{rad} cm et {c}x + {d}√{rad} cm.<br>Elles ont la même longueur. Écris l'équation correspondante.",
+                    template_pow: "Le périmètre d'un carré de côté x (en cm) est égal à l'aire d'un carré de côté {side} cm.<br>Écris l'équation qui modélise cette situation.",
+                },
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'صياغة المعادلات – مسائل واقعية',
+                    exercise_subtitle: 'ترجمة وضعية حقيقية إلى معادلة – 10 محاولات',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 أكمل كل الخطوات ثم الصيغة النهائية ax+b = cx+d.',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    step0_title: '🧠 اختيار المجهول',
+                    step0_text: 'ليكن <strong>x</strong> هو {unknownText}.',
+
+                    step1_title_direct: '1. الطرف الأول (الوضعية 1)',
+                    step1_explain_direct: 'اكتب العبارة الموافقة لـ {situation1}.',
+                    step2_title_direct: '2. الطرف الثاني (الوضعية 2)',
+                    step2_explain_direct: 'اكتب العبارة الموافقة لـ {situation2}.',
+                    hint_step_direct: 'معامل x | ثابت',
+
+                    step1_title_factor: '1. الطرف الأيسر (مع أقواس)',
+                    step1_explain_factor: 'اليسار : {a} أكياس، في كل كيس {bx}x + {bc} قطعة.',
+                    step2_title_factor: '2. الطرف الأيمن (مع أقواس)',
+                    step2_explain_factor: 'اليمين : {d} أكياس، في كل كيس {ex}x + {fc} قطعة.',
+                    hint_step_factor_left: 'عدد الأكياس | حد x | ثابت',
+                    hint_step_factor_right: 'عدد الأكياس | حد x | ثابت',
+
+                    step1_title_div: '1. الطرف الأيسر (كسر)',
+                    step1_explain_div: '{coeff}x + {b}، الكل مقسوم على {den}.',
+                    step2_title_div: '2. الطرف الأيمن (ثابت)',
+                    step2_explain_div: 'الناتج يساوي {cst}.',
+                    hint_step_div_left: 'معامل x | ثابت | مقام',
+                    hint_step_div_right: 'الناتج',
+
+                    step1_title_sqrt: '1. تبسيط الجذر التربيعي',
+                    step1_explain_sqrt: 'احسب √{rad} = {val}.',
+                    step2_title_sqrt: '2. كتابة الأطراف المبسطة',
+                    step2_explain_sqrt: 'اليسار : {a}x + {b}×{val}  |  اليمين : {c}x + {d}×{val}.',
+                    hint_step_sqrt_val: 'قيمة الجذر',
+                    hint_step_sqrt_eq: 'معامل x الأيسر | ثابت أيسر | معامل x الأيمن | ثابت أيمن',
+
+                    step1_title_pow: '1. حساب الجزء الهندسي',
+                    step1_explain_pow: 'مساحة مربع ضلعه {side} هي {side}² = {sq}.',
+                    step2_title_pow: '2. كتابة المساواة',
+                    step2_explain_pow: 'المحيط (4x) = المساحة ({sq}).',
+                    hint_step_pow_sq: 'المساحة ({side}²)',
+                    hint_step_pow_eq: 'معامل x الأيسر | ثابت أيسر | معامل x الأيمن | ثابت أيمن',
+
+                    step_final_title: '📐 الخطوة الأخيرة – الصيغة ax + b = cx + d',
+                    step_final_explain: 'حول معادلتك إلى الشكل <strong>ax + b = cx + d</strong>. أكمل الخانات الأربع.',
+                    step_final_instr: 'المعامل a : ؟ | الثابت b : ؟ | المعامل c : ؟ | الثابت d : ؟',
+
+                    fill_all: '⚠️ أتمم كل الخانات.',
+                    invalid_numbers: '❌ أدخل أعداداً صحيحة فقط.',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ. المعادلة الصحيحة هي : {right}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير المسألة (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_equals: '=',
+                    operator_times: '×',
+                    operator_divide: '÷',
+                    click_new_to_start: '👆 اضغط على « سؤال جديد » للبدء',
+
+                    unknown_distance: 'المسافة المقطوعة (بالكلم)',
+                    unknown_age: 'العمر الحالي (بالسنوات)',
+                    unknown_price: 'عدد تذاكر السينما',
+                    unknown_articles: 'عدد القطع في الكيس المجهول',
+                    unknown_number: 'العدد المطلوب',
+                    unknown_side: 'ضلع المربع (بالسنتمتر)',
+
+                    situation_carA: 'الوكالة أ (رسم ثابت + تكلفة الكلم)',
+                    situation_carB: 'الوكالة ب (رسم ثابت + تكلفة الكلم)',
+                    situation_ageA: 'عمر بول في المستقبل',
+                    situation_ageB: 'ضعف عمر ماري في المستقبل',
+                    situation_cinemaA: 'الصيغة أ (اشتراك + سعر التذكرة)',
+                    situation_cinemaB: 'الصيغة ب (اشتراك + سعر التذكرة)',
+                    situation_factor_left: 'التاجر الأول',
+                    situation_factor_right: 'التاجر الثاني',
+                    situation_div: 'العملية الحسابية',
+                    situation_sqrt: 'المعادلة بعد تبسيط الجذر',
+                    situation_pow: 'المساواة الهندسية',
+
+                    template_car: "وكالة أ : {b}€ رسم ثابت + {a}€ لكل كلم.<br>وكالة ب : {d}€ رسم ثابت + {c}€ لكل كلم.<br>لأي مسافة يتساوى الثمنان ؟",
+                    template_age: "بعد {y} سنوات، سيكون عمر بول (حالياً x) ضعف عمر ماري (حالياً {m} سنة).<br>اكتب المعادلة المناسبة.",
+                    template_cinema: "الصيغة أ : {b}€ اشتراك + {a}€ للتذكرة.<br>الصيغة ب : {d}€ اشتراك + {c}€ للتذكرة.<br>كم تذكرة يلزم ليتساوى الثمن ؟",
+                    template_factor: "تاجر يشتري {a} أكياس، في كل كيس {bx}x + {bc} حلوى.<br>تاجر آخر يشتري {d} أكياس، في كل كيس {ex}x + {fc} حلوى.<br>العدد الكلي للحلوى متساوٍ.",
+                    template_div: "نختار عدداً x، نضربه في {coeff}، نضيف {b}، ثم نقسم الكل على {den}.<br>النتيجة هي {cst}. ترجم هذه الوضعية إلى معادلة.",
+                    template_sqrt: "قضيبان معدنيان طولاهما {a}x + {b}√{rad} سم و {c}x + {d}√{rad} سم.<br>لهما نفس الطول. اكتب المعادلة الموافقة.",
+                    template_pow: "محيط مربع ضلعه x (بالسنتمتر) يساوي مساحة مربع ضلعه {side} سم.<br>اكتب المعادلة التي تمثل هذه الوضعية.",
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Setting Up Equations – Real-life Problems',
+                    exercise_subtitle: 'Translate a real situation into an equation – 10 attempts',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Complete all steps, including the final form ax+b = cx+d.',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    step0_title: '🧠 Choose the unknown',
+                    step0_text: 'Let <strong>x</strong> be the {unknownText}.',
+
+                    step1_title_direct: '1. Left side (situation 1)',
+                    step1_explain_direct: 'Write the expression for {situation1}.',
+                    step2_title_direct: '2. Right side (situation 2)',
+                    step2_explain_direct: 'Write the expression for {situation2}.',
+                    hint_step_direct: 'x coefficient | Constant',
+
+                    step1_title_factor: '1. Left expression (with parentheses)',
+                    step1_explain_factor: 'Left: {a} bags of {bx}x + {bc} candies.',
+                    step2_title_factor: '2. Right expression (with parentheses)',
+                    step2_explain_factor: 'Right: {d} bags of {ex}x + {fc} candies.',
+                    hint_step_factor_left: 'Bags | x term | Constant',
+                    hint_step_factor_right: 'Bags | x term | Constant',
+
+                    step1_title_div: '1. Left expression (fraction)',
+                    step1_explain_div: '{coeff}x + {b}, all divided by {den}.',
+                    step2_title_div: '2. Right expression (constant)',
+                    step2_explain_div: 'The result equals {cst}.',
+                    hint_step_div_left: 'x coefficient | Constant | Denominator',
+                    hint_step_div_right: 'Result',
+
+                    step1_title_sqrt: '1. Simplify the square root',
+                    step1_explain_sqrt: 'Compute √{rad} = {val}.',
+                    step2_title_sqrt: '2. Write the simplified sides',
+                    step2_explain_sqrt: 'Left: {a}x + {b}×{val}  |  Right: {c}x + {d}×{val}.',
+                    hint_step_sqrt_val: 'Square root value',
+                    hint_step_sqrt_eq: 'Left coeff | Left constant | Right coeff | Right constant',
+
+                    step1_title_pow: '1. Calculate the geometric part',
+                    step1_explain_pow: 'Area of the square of side {side} is {side}² = {sq}.',
+                    step2_title_pow: '2. Write the equality',
+                    step2_explain_pow: 'Perimeter (4x) = Area ({sq}).',
+                    hint_step_pow_sq: 'Area ({side}²)',
+                    hint_step_pow_eq: 'Left coeff | Left constant | Right coeff | Right constant',
+
+                    step_final_title: '📐 Final step – Form ax + b = cx + d',
+                    step_final_explain: 'Transform your equation into the form <strong>ax + b = cx + d</strong>.',
+                    step_final_instr: 'Coefficient a: ? | Constant b: ? | Coefficient c: ? | Constant d: ?',
+
+                    fill_all: '⚠️ Fill all blanks.',
+                    invalid_numbers: '❌ Please enter integers only.',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong. The correct final equation is: {right}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
+                    figure_changed: '🔄 Problem changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back to dashboard',
+                    operator_plus: '+',
+                    operator_equals: '=',
+                    operator_times: '×',
+                    operator_divide: '÷',
+                    click_new_to_start: '👆 Click "New Question" to start',
+
+                    unknown_distance: 'distance travelled (in km)',
+                    unknown_age: 'current age (in years)',
+                    unknown_price: 'number of movie tickets',
+                    unknown_articles: 'number of items per unknown bag',
+                    unknown_number: 'the unknown number',
+                    unknown_side: 'the side of the square (in cm)',
+
+                    situation_carA: 'agency A (fixed fee + cost per km)',
+                    situation_carB: 'agency B (fixed fee + cost per km)',
+                    situation_ageA: "Paul's age in the future",
+                    situation_ageB: "twice Marie's future age",
+                    situation_cinemaA: 'formula A (subscription + price per ticket)',
+                    situation_cinemaB: 'formula B (subscription + price per ticket)',
+                    situation_factor_left: 'the first merchant',
+                    situation_factor_right: 'the second merchant',
+                    situation_div: 'the described calculation',
+                    situation_sqrt: 'the simplified root equation',
+                    situation_pow: 'the geometric equality',
+
+                    template_car: "Agency A: ${b} fixed fee + ${a} per km.<br>Agency B: ${d} fixed fee + ${c} per km.<br>For what distance are both prices equal?",
+                    template_age: "In {y} years, Paul's age (now x) will be twice Marie's age (now {m}).<br>Write the corresponding equation.",
+                    template_cinema: "Formula A: ${b} subscription + ${a} per ticket.<br>Formula B: ${d} subscription + ${c} per ticket.<br>For how many tickets is the price the same?",
+                    template_factor: "A merchant buys {a} bags, each containing {bx}x + {bc} candies.<br>Another merchant buys {d} bags, each containing {ex}x + {fc} candies.<br>They get the same total number of candies.",
+                    template_div: "Pick a number x, multiply it by {coeff}, add {b}, then divide everything by {den}.<br>The result is {cst}. Translate this situation into an equation.",
+                    template_sqrt: "Two metal rods of lengths {a}x + {b}√{rad} cm and {c}x + {d}√{rad} cm.<br>They have the same length. Write the corresponding equation.",
+                    template_pow: "The perimeter of a square of side x (in cm) equals the area of a square of side {side} cm.<br>Write the equation that models this situation.",
+                }
+            };
+
+            let currentLang = 'fr';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.fr;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => { if (el.dataset.i18n) el.textContent = t(el.dataset.i18n); });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang; document.getElementById('langSelect').value = lang;
+                localStorage.setItem('eq_mise_eq_lang', lang);
+                document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n(); renderAll(); messageEl.innerHTML = '';
+            }
+            function loadLanguage() {
+                const saved = localStorage.getItem('eq_mise_eq_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'fr');
+            }
+
+            let soundEnabled = true, audioCtx = null;
+            function getAudioContext() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext(); const osc = ctx.createOscillator(); const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination); const now = ctx.currentTime;
+                    if (type === 'correct') { osc.type='sine'; osc.frequency.setValueAtTime(523.25,now); osc.frequency.setValueAtTime(659.25,now+0.1); gain.gain.setValueAtTime(0.3,now); gain.gain.linearRampToValueAtTime(0,now+0.25); osc.start(now); osc.stop(now+0.25); }
+                    else if (type === 'incorrect') { osc.type='square'; osc.frequency.setValueAtTime(200,now); gain.gain.setValueAtTime(0.2,now); gain.gain.linearRampToValueAtTime(0,now+0.3); osc.start(now); osc.stop(now+0.3); }
+                } catch(e) {}
+            }
+            function loadSoundPref() { const saved = localStorage.getItem('eq_mise_eq_sound'); soundEnabled = saved !== 'off'; btnSound.textContent = soundEnabled ? '🔊' : '🔇'; }
+            function toggleSound() {
+                soundEnabled = !soundEnabled; localStorage.setItem('eq_mise_eq_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙'; localStorage.setItem('eq_mise_eq_theme', theme); }
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+            function loadTheme() {
+                const saved = localStorage.getItem('eq_mise_eq_theme');
+                if (saved === 'dark' || saved === 'light') applyTheme(saved);
+                else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                else applyTheme('light');
+            }
+            function goBack() { window.location.href = 'لوحة التمارين التفاعلية.html'; }
+
+            // ════════ GÉNÉRATION DES PROBLÈMES ════════
+            function generateCarProblem() {
+                let a, c, b, d;
+                do {
+                    a = Math.floor(Math.random() * 3) + 3;   // 3..5
+                    c = Math.floor(Math.random() * 2) + 1;   // 1..2
+                    const x = Math.floor(Math.random() * 5) + 2;
+                    b = Math.floor(Math.random() * 10) + 5;
+                    d = (a - c) * x + b;
+                } while (d <= b || d > 25);
+                return { type: 'car', coeff1: a, const1: b, coeff2: c, const2: d, unknown: 'unknown_distance',
+                         situation1Key: 'situation_carA', situation2Key: 'situation_carB' };
+            }
+            function generateAgeProblem() {
+                let m, y;
+                do {
+                    m = Math.floor(Math.random() * 8) + 5;   // 5..12
+                    y = Math.floor(Math.random() * 4) + 1;    // 1..4
+                } while (2*m + 2*y > 30);
+                return { type: 'age', coeff1: 1, const1: y, coeff2: 0, const2: 2*m + 2*y, unknown: 'unknown_age',
+                         situation1Key: 'situation_ageA', situation2Key: 'situation_ageB', y: y, m: m };
+            }
+            function generateCinemaProblem() {
+                let a, c, b, d;
+                do {
+                    a = Math.floor(Math.random() * 3) + 2;   // 2..4
+                    c = Math.floor(Math.random() * 2) + 1;   // 1..2
+                    const x = Math.floor(Math.random() * 4) + 2;
+                    b = Math.floor(Math.random() * 8) + 3;
+                    d = (a - c) * x + b;
+                } while (d <= b || d > 20);
+                return { type: 'cinema', coeff1: a, const1: b, coeff2: c, const2: d, unknown: 'unknown_price',
+                         situation1Key: 'situation_cinemaA', situation2Key: 'situation_cinemaB' };
+            }
+            function generateFactorProblem() {
+                const a = Math.floor(Math.random() * 2) + 2;   // 2..3
+                const d = a === 2 ? 3 : 2;
+                const b = Math.floor(Math.random() * 2) + 2;   // 2..3
+                const c = Math.floor(Math.random() * 4) + 3;   // 3..6
+                const e = Math.floor(Math.random() * 2) + 1;   // 1..2
+                const f = Math.floor(Math.random() * 5) + 3;   // 3..7
+                return {
+                    type: 'factor', a, b, c, d, e, f,
+                    coeff1: a*b, const1: a*c, coeff2: d*e, const2: d*f,
+                    unknown: 'unknown_articles',
+                    situation1Key: 'situation_factor_left', situation2Key: 'situation_factor_right',
+                    leftOutside: a, leftInsideX: b, leftInsideConst: c,
+                    rightOutside: d, rightInsideX: e, rightInsideConst: f
+                };
+            }
+            function generateDivProblem() {
+                const coeff = Math.floor(Math.random() * 3) + 2;   // 2..4
+                const b = Math.floor(Math.random() * 5) + 2;        // 2..6
+                const den = Math.floor(Math.random() * 2) + 2;      // 2..3
+                const cst = Math.floor(Math.random() * 8) + 3;      // 3..10
+                return {
+                    type: 'div', coeff1: coeff, const1: b, den, const2: cst*den,
+                    coeff2: 0, const2final: cst*den,
+                    unknown: 'unknown_number',
+                    situation1Key: 'situation_div', situation2Key: null,
+                    rawRight: cst
+                };
+            }
+            function generateSqrtProblem() {
+                const rad = [4,9,16][Math.floor(Math.random()*3)];
+                const val = Math.sqrt(rad);
+                const a = Math.floor(Math.random()*3)+1; // 1..3
+                const b = Math.floor(Math.random()*3)+1;
+                const c = Math.floor(Math.random()*3)+1;
+                const d = Math.floor(Math.random()*3)+1;
+                const coeff1 = a, const1 = b*val, coeff2 = c, const2 = d*val;
+                return {
+                    type: 'sqrt', coeff1, const1, coeff2, const2, rad, val,
+                    unknown: 'unknown_number',
+                    situation1Key: 'situation_sqrt', situation2Key: null,
+                    a, b, c, d
+                };
+            }
+            function generatePowProblem() {
+                const side = Math.floor(Math.random()*5)+3; // 3..7
+                const sq = side*side;
+                return {
+                    type: 'pow', coeff1: 4, const1: 0, coeff2: 0, const2: sq,
+                    unknown: 'unknown_side',
+                    situation1Key: 'situation_pow', situation2Key: null,
+                    side, sq
+                };
+            }
+
+            function generateNewQuestion() {
+                const types = ['car','age','cinema','factor','div','sqrt','pow'];
+                const type = types[Math.floor(Math.random() * types.length)];
+                if (type === 'car') currentProblem = generateCarProblem();
+                else if (type === 'age') currentProblem = generateAgeProblem();
+                else if (type === 'cinema') currentProblem = generateCinemaProblem();
+                else if (type === 'factor') currentProblem = generateFactorProblem();
+                else if (type === 'div') currentProblem = generateDivProblem();
+                else if (type === 'sqrt') currentProblem = generateSqrtProblem();
+                else currentProblem = generatePowProblem();
+                renderAll();
+            }
+
+            function renderProblemStatement() {
+                const p = currentProblem;
+                if (p.type === 'car') problemStatement.innerHTML = t('template_car', {a:p.coeff1, b:p.const1, c:p.coeff2, d:p.const2});
+                else if (p.type === 'age') problemStatement.innerHTML = t('template_age', {y:p.y, m:p.m});
+                else if (p.type === 'cinema') problemStatement.innerHTML = t('template_cinema', {a:p.coeff1, b:p.const1, c:p.coeff2, d:p.const2});
+                else if (p.type === 'factor') problemStatement.innerHTML = t('template_factor', {a:p.leftOutside, bx:p.leftInsideX, bc:p.leftInsideConst, d:p.rightOutside, ex:p.rightInsideX, fc:p.rightInsideConst});
+                else if (p.type === 'div') problemStatement.innerHTML = t('template_div', {coeff:p.coeff1, b:p.const1, den:p.den, cst:p.rawRight});
+                else if (p.type === 'sqrt') problemStatement.innerHTML = t('template_sqrt', {a:p.a, b:p.b, rad:p.rad, c:p.c, d:p.d});
+                else if (p.type === 'pow') problemStatement.innerHTML = t('template_pow', {side:p.side, sq:p.sq});
+            }
+
+            function buildQuestionHTML() {
+                const pl = t('operator_plus'), eq = t('operator_equals'), dv = t('operator_divide');
+                const p = currentProblem;
+                let html = '';
+
+                // Étape 0 : inconnue
+                html += `<div class="section-card"><div class="section-label">${t('step0_title')}</div>
+                    <div class="step-explanation">${t('step0_text', {unknownText: t(p.unknown)})}</div></div>`;
+
+                // Étapes spécifiques selon le type
+                if (p.type === 'car' || p.type === 'cinema' || p.type === 'age') {
+                    const sit1 = t(p.situation1Key), sit2 = t(p.situation2Key);
+                    html += `<div class="section-card"><div class="section-label">${t('step1_title_direct')}</div>
+                        <div class="step-explanation">${t('step1_explain_direct', {situation1: sit1})}</div>
+                        <div class="formula-line"><input type="text" id="inpCoeff1" class="inline-input input-sm"> <span class="var-display">x</span> <span class="operator">${pl}</span> <input type="text" id="inpConst1" class="inline-input input-sm"></div>
+                        <div class="hint-text">${t('hint_step_direct')}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_title_direct')}</div>
+                        <div class="step-explanation">${t('step2_explain_direct', {situation2: sit2})}</div>
+                        <div class="formula-line"><input type="text" id="inpCoeff2" class="inline-input input-sm"> <span class="var-display">x</span> <span class="operator">${pl}</span> <input type="text" id="inpConst2" class="inline-input input-sm"></div>
+                        <div class="hint-text">${t('hint_step_direct')}</div></div>`;
+                } else if (p.type === 'factor') {
+                    html += `<div class="section-card"><div class="section-label">${t('step1_title_factor')}</div>
+                        <div class="step-explanation">${t('step1_explain_factor', {a:p.leftOutside, bx:p.leftInsideX, bc:p.leftInsideConst})}</div>
+                        <div class="formula-line"><input type="text" id="inpFactAO" class="inline-input input-sm"> ( <input type="text" id="inpFactAX" class="inline-input input-sm"> x + <input type="text" id="inpFactAC" class="inline-input input-sm"> )</div>
+                        <div class="hint-text">${t('hint_step_factor_left')}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_title_factor')}</div>
+                        <div class="step-explanation">${t('step2_explain_factor', {d:p.rightOutside, ex:p.rightInsideX, fc:p.rightInsideConst})}</div>
+                        <div class="formula-line"><input type="text" id="inpFactDO" class="inline-input input-sm"> ( <input type="text" id="inpFactDX" class="inline-input input-sm"> x + <input type="text" id="inpFactDC" class="inline-input input-sm"> )</div>
+                        <div class="hint-text">${t('hint_step_factor_right')}</div></div>`;
+                } else if (p.type === 'div') {
+                    html += `<div class="section-card"><div class="section-label">${t('step1_title_div')}</div>
+                        <div class="step-explanation">${t('step1_explain_div', {coeff:p.coeff1, b:p.const1, den:p.den})}</div>
+                        <div class="formula-line"><span class="frac-inline"><span class="frac-num"><input type="text" id="inpDivCoeff" class="inline-input input-sm"> x + <input type="text" id="inpDivConst" class="inline-input input-sm"></span><span class="frac-den"><input type="text" id="inpDivDen" class="inline-input input-sm"></span></span></div>
+                        <div class="hint-text">${t('hint_step_div_left')}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_title_div')}</div>
+                        <div class="step-explanation">${t('step2_explain_div', {cst:p.rawRight})}</div>
+                        <div class="formula-line"><input type="text" id="inpDivRight" class="inline-input input-sm"></div>
+                        <div class="hint-text">${t('hint_step_div_right')}</div></div>`;
+                } else if (p.type === 'sqrt') {
+                    html += `<div class="section-card"><div class="section-label">${t('step1_title_sqrt')}</div>
+                        <div class="step-explanation">${t('step1_explain_sqrt', {rad:p.rad, val:p.val})}</div>
+                        <div class="formula-line">√${p.rad} = <input type="text" id="inpSqrtVal" class="inline-input input-sm"></div>
+                        <div class="hint-text">${t('hint_step_sqrt_val')}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_title_sqrt')}</div>
+                        <div class="step-explanation">${t('step2_explain_sqrt', {a:p.a, b:p.b, val:p.val, c:p.c, d:p.d})}</div>
+                        <div class="formula-line"><input type="text" id="inpSqrtLeftCoeff" class="inline-input input-sm"> x + <input type="text" id="inpSqrtLeftConst" class="inline-input input-sm"> = <input type="text" id="inpSqrtRightCoeff" class="inline-input input-sm"> x + <input type="text" id="inpSqrtRightConst" class="inline-input input-sm"></div>
+                        <div class="hint-text">${t('hint_step_sqrt_eq')}</div></div>`;
+                } else if (p.type === 'pow') {
+                    html += `<div class="section-card"><div class="section-label">${t('step1_title_pow')}</div>
+                        <div class="step-explanation">${t('step1_explain_pow', {side:p.side, sq:p.sq})}</div>
+                        <div class="formula-line">${p.side}² = <input type="text" id="inpPowSquare" class="inline-input input-sm"></div>
+                        <div class="hint-text">${t('hint_step_pow_sq')}</div></div>
+                        <div class="section-card"><div class="section-label">${t('step2_title_pow')}</div>
+                        <div class="step-explanation">${t('step2_explain_pow', {sq:p.sq})}</div>
+                        <div class="formula-line"><input type="text" id="inpPowLeft" class="inline-input input-sm"> x + <input type="text" id="inpPowLeftConst" class="inline-input input-sm"> = <input type="text" id="inpPowRight" class="inline-input input-sm"> x + <input type="text" id="inpPowRightConst" class="inline-input input-sm"></div>
+                        <div class="hint-text">${t('hint_step_pow_eq')}</div></div>`;
+                }
+
+                // Étape finale
+                html += `<div class="section-card"><div class="section-label">${t('step_final_title')}</div>
+                    <div class="step-explanation">${t('step_final_explain')}</div>
+                    <div class="formula-line"><input type="text" id="inpFinalA" class="inline-input input-sm"> x + <input type="text" id="inpFinalB" class="inline-input input-sm"> = <input type="text" id="inpFinalC" class="inline-input input-sm"> x + <input type="text" id="inpFinalD" class="inline-input input-sm"></div>
+                    <div class="hint-text">${t('step_final_instr')}</div></div>`;
+
+                return html;
+            }
+
+            function refreshInputRefs() {
+                const p = currentProblem;
+                const ids = [];
+                if (p.type === 'car' || p.type === 'cinema' || p.type === 'age') {
+                    ids.push('inpCoeff1','inpConst1','inpCoeff2','inpConst2');
+                } else if (p.type === 'factor') {
+                    ids.push('inpFactAO','inpFactAX','inpFactAC','inpFactDO','inpFactDX','inpFactDC');
+                } else if (p.type === 'div') {
+                    ids.push('inpDivCoeff','inpDivConst','inpDivDen','inpDivRight');
+                } else if (p.type === 'sqrt') {
+                    ids.push('inpSqrtVal','inpSqrtLeftCoeff','inpSqrtLeftConst','inpSqrtRightCoeff','inpSqrtRightConst');
+                } else if (p.type === 'pow') {
+                    ids.push('inpPowSquare','inpPowLeft','inpPowLeftConst','inpPowRight','inpPowRightConst');
+                }
+                ids.push('inpFinalA','inpFinalB','inpFinalC','inpFinalD');
+                inputRefs = {};
+                ids.forEach(id => { const el = document.getElementById(id); if (el) inputRefs[id] = el; });
+            }
+
+            function clearInputs() { for (let k in inputRefs) inputRefs[k].value = ''; }
+            function renderAll() { renderProblemStatement(); questionContainer.innerHTML = buildQuestionHTML(); refreshInputRefs(); clearInputs(); }
+            function updateStatsUI() { attemptsSpan.textContent = attempts; scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return; isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true; updateStatsUI(); generateNewQuestion();
+                messageEl.innerHTML = ''; setInputsDisabled(false); checkBtn.disabled = false; isSwitchingRound = false;
+                setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 60);
+            }
+            function setInputsDisabled(disabled) { for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].disabled = disabled; }
+            function finishCurrentRound() {
+                if (!gameActive) return; gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true); checkBtn.disabled = true; setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const vals = {};
+                for (let k in inputRefs) vals[k] = inputRefs[k]?.value.trim() || '';
+                if (Object.values(vals).some(v => !v)) { messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return; }
+                const nums = {};
+                for (let k in vals) { nums[k] = Number(vals[k]); if (!Number.isInteger(nums[k])) { messageEl.innerHTML = t('invalid_numbers'); messageEl.style.color = 'var(--accent3)'; return; } }
+
+                const p = currentProblem;
+                let stepCorrect = true;
+
+                if (p.type === 'car' || p.type === 'cinema' || p.type === 'age') {
+                    stepCorrect = nums.inpCoeff1 === p.coeff1 && nums.inpConst1 === p.const1 &&
+                                  nums.inpCoeff2 === p.coeff2 && nums.inpConst2 === p.const2;
+                } else if (p.type === 'factor') {
+                    stepCorrect = nums.inpFactAO === p.leftOutside && nums.inpFactAX === p.leftInsideX && nums.inpFactAC === p.leftInsideConst &&
+                                  nums.inpFactDO === p.rightOutside && nums.inpFactDX === p.rightInsideX && nums.inpFactDC === p.rightInsideConst;
+                } else if (p.type === 'div') {
+                    stepCorrect = nums.inpDivCoeff === p.coeff1 && nums.inpDivConst === p.const1 && nums.inpDivDen === p.den && nums.inpDivRight === p.rawRight;
+                } else if (p.type === 'sqrt') {
+                    stepCorrect = nums.inpSqrtVal === p.val &&
+                                  nums.inpSqrtLeftCoeff === p.coeff1 && nums.inpSqrtLeftConst === p.const1 &&
+                                  nums.inpSqrtRightCoeff === p.coeff2 && nums.inpSqrtRightConst === p.const2;
+                } else if (p.type === 'pow') {
+                    stepCorrect = nums.inpPowSquare === p.sq &&
+                                  nums.inpPowLeft === 4 && nums.inpPowLeftConst === 0 &&
+                                  nums.inpPowRight === 0 && nums.inpPowRightConst === p.sq;
+                }
+
+                const finalCorrect = nums.inpFinalA === p.coeff1 && nums.inpFinalB === p.const1 &&
+                                     nums.inpFinalC === p.coeff2 && nums.inpFinalD === p.const2;
+
+                const isCorrect = stepCorrect && finalCorrect;
+                attempts++;
+                if (isCorrect) {
+                    score++; messageEl.innerHTML = t('correct'); messageEl.style.color = 'var(--accent2)'; playSound('correct');
+                } else {
+                    const rightEq = `${p.coeff1}x + ${p.const1} = ${p.coeff2}x + ${p.const2}`;
+                    messageEl.innerHTML = t('wrong', { right: rightEq }); messageEl.style.color = 'var(--accent3)'; playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion(); messageEl.innerHTML = t('figure_changed'); messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => { if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault(); handleCheck(); } });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage(); document.getElementById('langSelect').value = currentLang;
+            loadTheme(); loadSoundPref();
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion(); updateStatsUI(); messageEl.innerHTML = ''; checkBtn.disabled = false;
+            setTimeout(() => { for (let k in inputRefs) { inputRefs[k]?.focus(); break; } }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

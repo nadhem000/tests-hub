@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتراجحات في ℝ | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #8b5cf6;
+            --accent2: #10b981;
+            --accent3: #ef4444;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-accent: #8b5cf6;
+            --highlight-accent-light: rgba(139, 92, 246, 0.08);
+            --section-accent: #8b5cf6;
+            --section-bg: rgba(139, 92, 246, 0.04);
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #a78bfa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-accent: #a78bfa;
+            --highlight-accent-light: rgba(167, 139, 250, 0.12);
+            --section-accent: #a78bfa;
+            --section-bg: rgba(167, 139, 250, 0.06);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: var(--text); white-space: nowrap; }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .btn-icon {
+            width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--border);
+            background: var(--surface2); cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+            color: var(--text); flex-shrink: 0;
+        }
+        .btn-icon:hover { background: var(--surface3); border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px; border-radius: 50px; border: 2px solid var(--border);
+            background: var(--surface2); color: var(--text); font-family: inherit; font-weight: 600;
+            font-size: 0.9rem; cursor: pointer; outline: none; transition: 0.2s; min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+        .exercise-wrapper {
+            width: 100%; max-width: 1060px; background: var(--surface); border-radius: 36px;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 28px 32px;
+            margin-bottom: 16px; transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem; font-weight: 800; color: var(--highlight-accent); text-align: center;
+            margin-bottom: 6px; letter-spacing: -0.5px; display: flex; align-items: center;
+            justify-content: center; gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center; color: var(--text2); margin-bottom: 24px; font-size: 1rem;
+            font-weight: 500; background: var(--section-header-bg); padding: 5px 20px;
+            border-radius: 40px; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+        }
+        .problem-statement {
+            text-align: center; font-size: 1.4rem; font-weight: 700; margin: 16px 0 8px;
+            background: var(--surface2); padding: 12px 24px; border-radius: 40px;
+            border: 2px solid var(--section-accent);
+            direction: ltr;
+        }
+        .rule-box {
+            background: var(--highlight-accent-light); border-right: 4px solid var(--highlight-accent);
+            padding: 12px 18px; border-radius: 20px; margin-bottom: 18px; font-weight: 600;
+            white-space: normal; text-align: center;
+        }
+        .section-card {
+            background: var(--surface); border-radius: 20px; padding: 14px 18px; margin: 10px 0;
+            border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
+            border-right: 4px solid var(--section-accent); background: var(--section-bg);
+        }
+        .section-label {
+            font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center;
+            gap: 6px; padding: 4px 14px; border-radius: 30px; width: fit-content;
+            color: var(--highlight-accent); background: var(--highlight-accent-light);
+        }
+        .math-line {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px;
+            margin: 6px 0; font-size: 1.3rem; font-weight: 700;
+            background: var(--calc-line-bg); border: 2px dashed var(--calc-line-border);
+            border-radius: 40px; padding: 8px 18px;
+            direction: ltr;
+        }
+        .math-line .operator { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 0 4px; }
+        .math-line .num-display {
+            font-weight: 800; background: var(--surface3); padding: 4px 12px; border-radius: 16px;
+            font-size: 1.2rem; color: var(--text);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.25rem;
+            background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
+            text-align: center; padding: 3px 2px; margin: 0 4px; width: 4em; min-width: 70px;
+            max-width: 120px; outline: none; transition: all 0.15s; color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+        }
+        .inline-input:focus { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
+        .action-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0 8px; }
+        .btn {
+            border: none; padding: 11px 28px; font-size: 1.1rem; font-weight: bold;
+            border-radius: 60px; cursor: pointer; transition: 0.08s linear; font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2); color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #4f46e5; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex; justify-content: space-between; margin-top: 18px; font-size: 1.2rem;
+            color: var(--text); font-weight: 600; background: var(--surface2);
+            padding: 12px 28px; border-radius: 60px; border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500;
+            text-align: center; background: var(--surface2); border-radius: 60px;
+            padding: 10px 16px; transition: 0.1s; border: 1px solid var(--border);
+            color: var(--text); line-height: 2;
+        }
+        .start-note {
+            display: inline-block; background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            color: white; font-weight: 700; padding: 10px 32px; border-radius: 50px;
+            animation: pulse-note 2s infinite; box-shadow: 0 4px 15px rgba(139,92,246,0.4);
+        }
+        @keyframes pulse-note {
+            0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); }
+        }
+        .dashboard-footer {
+            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px;
+            background: var(--surface); border-radius: 24px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px; transition: background 0.35s; font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a { color: var(--text2); text-decoration: none; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .footer-col { align-items: center; }
+            .math-line { font-size: 1.1rem; padding: 6px 10px; border-radius: 30px; }
+            .inline-input { font-size: 1rem; width: 3em; min-width: 60px; }
+            .stats { font-size: 1rem; padding: 10px 16px; }
+            .section-label { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">📐</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📈</span> <span data-i18n="exercise_heading">المتراجحات في ℝ</span> <span>📉</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">حل متراجحة من الدرجة الأولى بمجهول واحد خطوة بخطوة</div>
+
+        <!-- عرض المسألة -->
+        <div class="problem-statement" id="problemDisplay"></div>
+
+        <!-- قاعدة ثابتة (ستُعرض كـ HTML) -->
+        <div class="rule-box" data-i18n="rule_text">
+            📏 القاعدة: ننقل العدد الثابت إلى الطرف الآخر، ثم نقسم على معامل <strong>x</strong>. بما أن المعامل <strong>موجب</strong> فإن جهة المتراجحة <strong>لا تتغير</strong>.
+        </div>
+
+        <!-- مكان الخطوات -->
+        <div id="stepsContainer"></div>
+
+        <!-- أزرار التحكم -->
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <!-- ملاحظات -->
+        <div style="text-align:center;">
+            <span class="start-note" data-i18n="click_new_to_start">👆 اضغط على "سؤال جديد" للبدء</span>
+        </div>
+        <div class="hint-text" style="text-align:center;color:var(--text2);margin-top:8px;" data-i18n="hint">📌 اتبع القاعدة وأكمل الفراغات. الأعداد كلها صحيحة.</div>
+        <div id="messageBox" class="message"></div>
+
+        <!-- الإحصائيات -->
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ---------- عناصر DOM ----------
+            const stepsContainer = document.getElementById('stepsContainer');
+            const problemDisplay = document.getElementById('problemDisplay');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            // ---------- حالات المتغيرات ----------
+            let currentA = 0, currentB = 0, currentV = 0; // a > 0, v = -b/a
+            let currentInequality = ''; // أحد الرموز: '>' , '<' , '>=' , '<='
+            let inputRefs = {};
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
+
+            // ✅ تعريف currentQuestion قبل أي دالة تستخدمه (حل مشكلة ReferenceError)
+            let currentQuestion = {};
+
+            // ---------- الترجمة ----------
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'المتراجحات في ℝ',
+                    exercise_subtitle: 'حل متراجحة من الدرجة الأولى بمجهول واحد خطوة بخطوة',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 اتبع القاعدة وأكمل الفراغات. الأعداد كلها صحيحة.',
+                    rule_text: '📏 القاعدة: ننقل العدد الثابت إلى الطرف الآخر، ثم نقسم على معامل <strong>x</strong>. بما أن المعامل <strong>موجب</strong> فإن جهة المتراجحة <strong>لا تتغير</strong>.',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    step1_title: '1. ننقل العدد الثابت',
+                    step1_desc: 'انقل b إلى الطرف الآخر (يصبح معاكساً).',
+                    step2_title: '2. نقسم على a',
+                    step2_desc: 'بما أن a > 0، تبقى جهة المتراجحة كما هي.',
+                    step3_title: '3. مجموعة الحلول (SR)',
+                    step3_desc: 'اكتب العدد في الفراغ المناسب.',
+                    fill_all: '⚠️ الرجاء ملء جميع الفراغات.',
+                    invalid_number: '❌ يجب إدخال أعداد صحيحة فقط.',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! الإجابة الصحيحة: {correct}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    click_new_to_start: '👆 اضغط على "سؤال جديد" للبدء',
+                    solve_inequality: 'حل المتراجحة التالية في ℝ:'
+                },
+                fr: {
+                    app_title: "Tableau d'exercices",
+                    exercise_heading: 'Inéquations dans ℝ',
+                    exercise_subtitle: 'Résoudre une inéquation du premier degré étape par étape',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Suivez la règle et remplissez les champs. Nombres entiers uniquement.',
+                    rule_text: "📏 Règle : On isole le terme en x, puis on divise par le coefficient (positif). Le sens de l'inégalité ne change pas.",
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    step1_title: '1. Transposer le terme constant',
+                    step1_desc: "Déplacer b de l'autre côté (en changeant son signe).",
+                    step2_title: '2. Diviser par a',
+                    step2_desc: "Comme a > 0, le sens de l'inégalité reste le même.",
+                    step3_title: '3. Ensemble solution (SR)',
+                    step3_desc: 'Écrivez le nombre dans le champ.',
+                    fill_all: '⚠️ Veuillez remplir tous les champs.',
+                    invalid_number: '❌ Entrez uniquement des nombres entiers.',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux. Réponse correcte : {correct}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour à venir...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: "Conditions d'utilisation",
+                    footer_privacy: 'Politique de confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (activé)',
+                    sound_off_title: 'Son (désactivé)',
+                    back_title: 'Retour au tableau',
+                    click_new_to_start: '👆 Cliquez sur "Nouvelle question" pour commencer',
+                    solve_inequality: 'Résoudre dans ℝ :'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Inequalities in ℝ',
+                    exercise_subtitle: 'Solve a first-degree inequality step by step',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Follow the rule and fill in the blanks. Integers only.',
+                    rule_text: '📏 Rule: Move the constant term, then divide by the coefficient of x (positive). The inequality direction stays the same.',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    step1_title: '1. Move the constant term',
+                    step1_desc: 'Move b to the other side (change its sign).',
+                    step2_title: '2. Divide by a',
+                    step2_desc: 'Since a > 0, the inequality direction stays the same.',
+                    step3_title: '3. Solution set (SR)',
+                    step3_desc: 'Write the number in the blank.',
+                    fill_all: '⚠️ Please fill all blanks.',
+                    invalid_number: '❌ Enter integers only.',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong! Correct answer: {correct}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round starting...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms of use',
+                    footer_privacy: 'Privacy policy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back to dashboard',
+                    click_new_to_start: '👆 Click "New Question" to start',
+                    solve_inequality: 'Solve the following inequality in ℝ:'
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (key) {
+                        // استخدام innerHTML للقاعدة فقط ليظهر التنسيق
+                        if (key === 'rule_text') {
+                            el.innerHTML = t(key);
+                        } else {
+                            el.textContent = t(key);
+                        }
+                    }
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('inequality_1d_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('inequality_1d_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            // ---------- الصوت ----------
+            let soundEnabled = true, audioCtx = null;
+            function getAudioContext() {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                return audioCtx;
+            }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now+0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now+0.25);
+                        osc.start(now); osc.stop(now+0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now+0.3);
+                        osc.start(now); osc.stop(now+0.3);
+                    }
+                } catch(e) {}
+            }
+            function loadSoundPref() {
+                const saved = localStorage.getItem('inequality_1d_sound');
+                soundEnabled = saved !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+            }
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('inequality_1d_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            // ---------- الوضع الداكن ----------
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                try { localStorage.setItem('inequality_1d_theme', theme); } catch(e) {}
+            }
+            function toggleTheme() {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            }
+            function loadTheme() {
+                const saved = localStorage.getItem('inequality_1d_theme');
+                if (saved === 'dark' || saved === 'light') applyTheme(saved);
+                else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                else applyTheme('light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) {
+                    window.history.back();
+                } else {
+                    window.location.href = 'لوحة التمارين التفاعلية.html';
+                }
+            }
+
+            // ---------- توليد السؤال ----------
+            function randomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            // ينتج a>0 و b بحيث يكون v = -b/a عدداً صحيحاً
+            function generateQuestion() {
+                const a = randomInt(1, 5);
+                let k = 0;
+                while (k === 0) k = randomInt(-4, 4);
+                const b = a * k;
+                const v = -k; // x = v هو الحل
+                const signs = ['>', '<', '>=', '<='];
+                const sign = signs[randomInt(0, 3)];
+                return { a, b, v, sign };
+            }
+
+            // عرض المسألة في الصندوق العلوي
+            function renderProblem() {
+                const { a, b, sign } = currentQuestion;
+                // صياغة المتراجحة: a x + b > 0  (مع إشارة)
+                let signText = sign;
+                problemDisplay.innerHTML = `${t('solve_inequality')} <span dir="ltr">${a}x ${b >= 0 ? '+' : ''}${b} ${signText} 0</span>`;
+            }
+
+            // بناء خطوات الحل (ثلاثة أقسام)
+            function buildStepsHTML() {
+                const { a, b, v, sign } = currentQuestion;
+                const rightSide1 = -b; // ناتج نقل b
+
+                // الخطوة 1: a x > -b
+                const step1HTML = `
+                    <div class="section-card">
+                        <div class="section-label">${t('step1_title')}</div>
+                        <div class="step-explanation">${t('step1_desc')}</div>
+                        <div class="math-line">
+                            <span class="num-display">${a}x</span>
+                            <span class="operator">${sign}</span>
+                            <input type="text" id="inpStep1" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>`;
+
+                // الخطوة 2: x > v
+                const step2HTML = `
+                    <div class="section-card">
+                        <div class="section-label">${t('step2_title')}</div>
+                        <div class="step-explanation">${t('step2_desc')}</div>
+                        <div class="math-line">
+                            <span class="num-display">x</span>
+                            <span class="operator">${sign}</span>
+                            <input type="text" id="inpStep2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                        </div>
+                    </div>`;
+
+                // الخطوة 3: مجموعة الحلول (مع قوسين حسب if/else)
+                let intervalHTML = '';
+                if (sign === '>' || sign === '>=') {
+                    // الحل على اليمين: ]v , +∞[   أو   [v , +∞[
+                    const leftBracket = sign === '>' ? ']' : '[';
+                    intervalHTML = `
+                        <div class="math-line">
+                            <span>S = ${leftBracket}</span>
+                            <input type="text" id="inpStep3" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span>; +∞ [</span>
+                        </div>`;
+                } else { // '<' أو '<='
+                    const rightBracket = sign === '<' ? '[' : ']';
+                    intervalHTML = `
+                        <div class="math-line">
+                            <span>S = ] -∞ ;</span>
+                            <input type="text" id="inpStep3" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">
+                            <span> ${rightBracket}</span>
+                        </div>`;
+                }
+
+                const step3HTML = `
+                    <div class="section-card">
+                        <div class="section-label">${t('step3_title')}</div>
+                        <div class="step-explanation">${t('step3_desc')}</div>
+                        ${intervalHTML}
+                    </div>`;
+
+                stepsContainer.innerHTML = step1HTML + step2HTML + step3HTML;
+                inputRefs = {
+                    step1: document.getElementById('inpStep1'),
+                    step2: document.getElementById('inpStep2'),
+                    step3: document.getElementById('inpStep3')
+                };
+            }
+
+            function clearInputs() {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].value = '';
+                }
+            }
+
+            function renderAll() {
+                renderProblem();
+                buildStepsHTML();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                currentQuestion = generateQuestion();
+                currentA = currentQuestion.a;
+                currentB = currentQuestion.b;
+                currentV = currentQuestion.v;
+                currentInequality = currentQuestion.sign;
+                renderAll();
+            }
+
+            // ---------- الإحصائيات ونظام الجولة ----------
+            function updateStatsUI() {
+                attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score;
+            }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => inputRefs.step1?.focus(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let key in inputRefs) {
+                    if (inputRefs[key]) inputRefs[key].disabled = disabled;
+                }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            // ---------- التحقق من الإجابات ----------
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const v1 = inputRefs.step1.value.trim();
+                const v2 = inputRefs.step2.value.trim();
+                const v3 = inputRefs.step3.value.trim();
+                if (!v1 || !v2 || !v3) {
+                    messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+                const n1 = Number(v1), n2 = Number(v2), n3 = Number(v3);
+                if (!Number.isInteger(n1) || !Number.isInteger(n2) || !Number.isInteger(n3)) {
+                    messageEl.innerHTML = t('invalid_number');
+                    messageEl.style.color = 'var(--accent3)';
+                    return;
+                }
+
+                const correct = (n1 === -currentB && n2 === currentV && n3 === currentV);
+                attempts++;
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    const sign = currentInequality;
+                    const v = currentV;
+                    let correctText = '';
+                    if (sign === '>' || sign === '>=') {
+                        const leftBr = sign === '>' ? ']' : '[';
+                        correctText = `S = ${leftBr}${v} ; +∞[`;
+                    } else {
+                        const rightBr = sign === '<' ? '[' : ']';
+                        correctText = `S = ]-∞ ; ${v}${rightBr}`;
+                    }
+                    messageEl.innerHTML = t('wrong', { correct: correctText });
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => inputRefs.step1?.focus(), 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => inputRefs.step1?.focus(), 40);
+            }
+
+            // ---------- ربط الأحداث ----------
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            stepsContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) {
+                    e.preventDefault();
+                    handleCheck();
+                }
+            });
+
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            // ---------- بدء التشغيل ----------
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => inputRefs.step1?.focus(), 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>
