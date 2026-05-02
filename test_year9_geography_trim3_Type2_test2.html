@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 3 - جغرافيا - 9 أساسي</title>
+
+    <meta name="theme-color" content="#5C1F5C">
+    <meta name="description" content="فرض تأليفي عدد 3 في الجغرافيا - السنة التاسعة أساسي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض جغرافيا 9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #5C1F5C;
+            --secondary: #8E3B8E;
+            --accent: #F0A050;
+            --accent2: #D4783C;
+            --light-bg: #FDF8FC;
+            --light-section: #FFFFFF;
+            --text-light: #1E0A2E;
+            --text-light-secondary: #3D1A4A;
+            --border-light: #D8C8DC;
+            --shadow-light: rgba(30, 10, 46, 0.07);
+            --header-light: linear-gradient(to left, #2D0A3A, #5C1F5C, #8E3B8E);
+            --canvas-bg: #FDF8FC;
+            --canvas-stroke: #5C1F5C;
+            --canvas-text: #1E0A2E;
+            --canvas-grid: #C0A8C8;
+            --canvas-accent: #F0A050;
+            --canvas-fill: rgba(240, 160, 80, 0.07);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #C9A0DC;
+            --secondary: #B088C8;
+            --accent: #F4B860;
+            --accent2: #E89850;
+            --light-bg: #1A0A24;
+            --light-section: #2D1A3A;
+            --text-light: #F8F0FC;
+            --text-light-secondary: #D8C8E8;
+            --border-light: #3D2A4A;
+            --shadow-light: rgba(0, 0, 0, 0.35);
+            --header-light: linear-gradient(to left, #0D0018, #2D0A3A, #5C1F5C);
+            --canvas-bg: #1A0A24;
+            --canvas-stroke: #C9A0DC;
+            --canvas-text: #F8F0FC;
+            --canvas-grid: #3D2A4A;
+            --canvas-accent: #F4B860;
+            --canvas-fill: rgba(244, 184, 96, 0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FDF8FC 0%, #F5EDF8 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1A0A24 0%, #0D0018 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F8F0FC;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(248, 240, 252, 0.10);
+            color: #F8F0FC;
+            border: 1px solid rgba(248, 240, 252, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(248, 240, 252, 0.20);
+            border-color: rgba(248, 240, 252, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #FDF8FC;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1E0A2E;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F5EDF8;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2D1A3A;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F8F0FC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3D2A4A;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #F8F0FC;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #0D0018, #2D0A3A, #5C1F5C);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #FDF8FC;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1A0A24;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1E0A2E;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #B87020;
+            color: #F8F0FC;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #C0A8C8;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1E0A2E;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(240, 160, 80, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #3D2A4A;
+            background: #1A0A24;
+            color: #F8F0FC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(244, 184, 96, 0.16);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #C0A8C8;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1E0A2E;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(240, 160, 80, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #3D2A4A;
+            background: #1A0A24;
+            color: #F8F0FC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(244, 184, 96, 0.16);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #D8C8DC;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #5C1F5C;
+            color: #F8F0FC;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #2D1A3A;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #3D2A4A;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(92, 31, 92, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(248, 240, 252, 0.02);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #5C1F5C, #8E3B8E, var(--accent));
+            color: #1E0A2E;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #FDF8FC 0%, #F5EDF8 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(240, 160, 80, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #2D1A3A, #1A0A24);
+            border-color: rgba(244, 184, 96, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(253, 248, 252, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(26, 10, 36, 0.7);
+            border-right-color: #F4B860;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #5C1F5C;
+            background: rgba(240, 160, 80, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #F4B860;
+            background: rgba(244, 184, 96, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(92, 31, 92, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #3D1A4A;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(244, 184, 96, 0.08);
+            color: #F8F0FC;
+            border-right-color: #E89850;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #7B2D7B;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #C9A0DC;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1E0A2E;
+            background: rgba(240, 160, 80, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F8F0FC;
+            background: rgba(244, 184, 96, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(92, 31, 92, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #3D1A4A;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(142, 59, 142, 0.08);
+            color: #D8C8E8;
+            border-right-color: #B088C8;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(92, 31, 92, 0.05), rgba(240, 160, 80, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #7B1F3D, #A32F4F);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #5C1F5C, #8E3B8E);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #F0A050, #F4B860);
+            color: #1E0A2E;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #2D0A3A, #5C1F5C, #8E3B8E);
+            color: #F8F0FC;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0D0018, #1A0A24, #2D1A3A);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #F4B860;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F4B860;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #F4B860;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.geographyTest.title">فرض تأليفي عدد 3 - جغرافيا - 9 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.geographyTest.subtitle">السنة الدراسية 2008-2009</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.geographyTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الاختبار التأليفي الثالث في الجغرافيا</h1>
+            <p>القسم: التاسعة أساسي | السنة الدراسية: 2008-2009</p>
+            <p>المدة: ساعتان</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>الصياغة والتنظيم: 1 نقطة.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 6 نقاط | القسم الثالث: 7 نقاط | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول: تعريفات - 6 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – تعريف المفاهيم <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <div class="Tests-Hub-question">
+                <p><strong>1. عرّف ما يلي:</strong></p>
+                <p style="margin-top:0.8rem;"><strong>أ) الميزان التجاري الغذائي:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:70px;" placeholder="اذكر تعريف الميزان التجاري الغذائي..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong>ب) نسبة إعالة صغار السن:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:70px;" placeholder="اذكر تعريف نسبة إعالة صغار السن..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong>ج) الحصيلة الهجرية:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:70px;" placeholder="اذكر تعريف الحصيلة الهجرية..."></textarea>
+            </div>
+        </div>
+
+        <!-- القسم الثاني: إصلاح الأوضاع العقارية - 6 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – الإصلاح العقاري <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <div class="Tests-Hub-question">
+                <p><strong>2. اشرح الإجراءات التي قامت بها البلاد التونسية من أجل إصلاح الأوضاع العقارية.</strong></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:180px;" placeholder="اشرح الإجراءات الكبرى التي اتخذتها تونس لإصلاح الأوضاع العقارية (أربع إجراءات على الأقل مع الشرح)..."></textarea>
+            </div>
+        </div>
+
+        <!-- القسم الثالث: التحرير - 7 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثالث – التحرير <span class="Tests-Hub-points-badge">7 نقاط</span></h2>
+
+            <p><strong>الموضوع:</strong> عرفت التجربة التنموية الفلاحية التونسية محاولات للإصلاح والتعصير.</p>
+            <p>أنجز تحريراً متماسكاً (مقدمة - جوهر - خاتمة) مستعيناً بالأسئلة التالية:</p>
+            <ol style="margin-top:0.5rem; padding-right:1.5rem;">
+                <li>بيّن مظاهر تعصير الفلاحة التونسية.</li>
+                <li>بيّن انعكاسات ذلك على الإنتاج الفلاحي والمجال الفلاحي.</li>
+            </ol>
+            <textarea class="Tests-Hub-large-textarea" style="min-height:260px;" placeholder="اكتب تحريراً منظمّاً يشمل المقدمة والعرض (المحورين) والخاتمة..."></textarea>
+
+            <p style="font-size:0.85rem;margin-top:1rem;color:var(--secondary);"><em>تنقيط إضافي: صياغة وحسن تنظيم (1ن)</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل جغرافي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح التعريفات (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>أ) الميزان التجاري الغذائي:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الميزان التجاري الغذائي</strong> هو الفرق بين قيمة <strong>الصادرات الغذائية</strong> (زيت الزيتون، التمور، الحوامض، منتجات البحر) وقيمة <strong>الواردات الغذائية</strong> (الحبوب، الزيوت النباتية، السكر، مشتقات الحليب) خلال سنة محددة. يكون <strong>عاجزاً</strong> عندما تفوق قيمة الواردات الغذائية قيمة الصادرات الغذائية، وهو وضع مزمن في تونس حيث بلغ العجز الغذائي حوالي <strong>1.2 مليار دينار سنة 2008</strong> (المصدر: المعهد الوطني للإحصاء، تقرير التجارة الخارجية 2008)، وذلك بسبب الاعتماد الكبير على استيراد الحبوب (تغطي الواردات حوالي <strong>60% من الحاجيات الوطنية من القمح</strong> – المصدر: وزارة الفلاحة، 2008).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> يُعبّر العجز المزمن للميزان التجاري الغذائي التونسي عن إشكالية <strong>الأمن الغذائي</strong> التي تواجهها البلاد. فرغم تطوّر الصادرات الفلاحية (خاصة زيت الزيتون الذي بلغت صادراته 180 ألف طن سنة 2008 بقيمة تجاوزت 700 مليون دينار – المصدر: الديوان الوطني للزيت، 2008)، تظل تونس عاجزة عن تحقيق اكتفاء ذاتي في الحبوب الأساسية بسبب محدودية المساحات المروية (حوالي 8% من الأراضي الصالحة للزراعة فقط) وتذبذب التساقطات. وتستهلك واردات القمح وحده ما يناهز 400 مليون دينار سنوياً (المصدر: INS، 2008).
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>ب) نسبة إعالة صغار السن:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>نسبة إعالة صغار السن</strong> هي مؤشر ديموغرافي يُحتسب بقسمة عدد السكان الذين تقل أعمارهم عن <strong>15 سنة</strong> على عدد السكان في <strong>سن النشاط (15-64 سنة)</strong>، مضروباً في 100. تُعبّر هذه النسبة عن <strong>العبء الاقتصادي</strong> الذي يتحمله السكان النشيطون لإعالة الفئة غير المنتجة من صغار السن. في تونس، بلغت هذه النسبة حوالي <strong>42% سنة 2008</strong> (المصدر: المعهد الوطني للإحصاء، إسقاطات سكانية 2008)، منخفضةً من حوالي 65% سنة 1984، مما يعكس <strong>تحولاً ديموغرافياً</strong> نحو انخفاض الخصوبة (معدل الخصوبة: 2.0 طفل لكل امرأة سنة 2008 – المصدر: البنك الدولي، 2008).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل:</strong> يُعتبر تراجع نسبة إعالة صغار السن مؤشراً إيجابياً يُخفف الضغط على الخدمات الاجتماعية (التعليم، الصحة)، ويُحرر جزءاً من دخل الأسر للاستثمار والادخار. وتُعرف هذه الظاهرة بـ <strong>"النافذة الديموغرافية"</strong> التي يمكن أن تُعزز النمو الاقتصادي إذا ما ترافقت مع سياسات تشغيل فعالة.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>ج) الحصيلة الهجرية:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الحصيلة الهجرية</strong> (أو <strong>صافي الهجرة</strong>) هي الفرق بين عدد <strong>الوافدين</strong> (المهاجرين الداخلين إلى البلاد) وعدد <strong>المغادرين</strong> (المهاجرين الخارجين منها) خلال فترة زمنية محددة، عادة سنة. تكون الحصيلة <strong>موجبة</strong> إذا فاق عدد الوافدين عدد المغادرين، و<strong>سالبة</strong> في الحالة المعاكسة. بالنسبة لتونس، تُقدّر الحصيلة الهجرية السنوية بحوالي <strong>-25,000 إلى -30,000</strong> مهاجر سنوياً خلال الفترة 2005-2008 (المصدر: ديوان التونسيين بالخارج، تقرير 2008)، مما يعني أن عدد المغادرين يفوق عدد الوافدين، وهو ما يُغذي <strong>الجالية التونسية بالخارج</strong> التي بلغ تعدادها حوالي <strong>1,056,000 شخص سنة 2008</strong> (المصدر: OTE، 2008).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل:</strong> تُساهم التحويلات المالية للمهاجرين التونسيين في تغطية جزء مهم من العجز التجاري، حيث بلغت هذه التحويلات حوالي <strong>1.5 مليار دينار سنة 2008</strong> أي ما يعادل <strong>5% من الناتج المحلي الإجمالي</strong> (المصدر: البنك المركزي التونسي، 2008). غير أن الحصيلة الهجرية السالبة تعكس استمرار <strong>نزيف الكفاءات</strong> وهجرة الشباب خاصة نحو أوروبا.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – تصحيح الإصلاح العقاري (6 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ الإجراءات التي قامت بها البلاد التونسية لإصلاح الأوضاع العقارية:</strong> <span class="Tests-Hub-points-badge">6 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الإجراء الأول – إلغاء نظام الأحباس (1956-1957):</strong> صدر المرسوم المؤرخ في <strong>31 ماي 1956</strong> والقانون الصادر في <strong>18 جويلية 1957</strong> القاضيان بإلغاء نظام <strong>الأحباس</strong> (العمومية والخصوصية) الذي كان يُجمّد مساحات شاسعة من الأراضي الزراعية والعقارية. وقد أدى هذا الإجراء إلى <strong>تحرير حوالي 80,000 هكتار</strong> من الأراضي الفلاحية وإدماجها في الدورة الاقتصادية (المصدر: وزارة أملاك الدولة، 1958).<br><br>
+                    <strong>الإجراء الثاني – قانون الإصلاح الزراعي (1958):</strong> صدر القانون عدد <strong>58-91 المؤرخ في 20 سبتمبر 1958</strong> الذي نص على <strong>تحديد ملكية الأراضي الفلاحية</strong> ووضع سقف للملكية الزراعية (لا يتجاوز 50 هكتاراً من الأراضي المروية). وهدف القانون إلى <strong>تفتيت الملكيات الكبرى</strong> وتوزيع الأراضي على صغار الفلاحين، وقد مست عملية الإصلاح حوالي <strong>300,000 هكتار</strong> (المصدر: كتابة الدولة للفلاحة، 1962).<br><br>
+                    <strong>الإجراء الثالث – إصدار مجلة الحقوق العينية (1965):</strong> صدر القانون عدد <strong>65-5 المؤرخ في 12 فيفري 1965</strong> المتعلق بـ <strong>مجلة الحقوق العينية</strong>، والتي وحّدت النظام العقاري التونسي وكرّست مبدأ <strong>الملكية الفردية</strong>، ونظمت أساليب اكتساب الملكية ونقلها، وأرست نظام <strong>الشهر العقاري</strong> (التسجيل الرسمي للملكية). وتُعتبر هذه المجلة نقلة نوعية في تحديث المنظومة العقارية التونسية وعصرنتها (المصدر: الرائد الرسمي للجمهورية التونسية، 1965).<br><br>
+                    <strong>الإجراء الرابع – المسح العقاري وتوطيد الملكية:</strong> قامت الدولة التونسية منذ الستينات بحملة واسعة لـ <strong>مسح الأراضي</strong> وتحديد حدود الملكيات وضبط <strong>السجل العقاري</strong> الوطني. وقد أنشأت <strong>ديوان المسح العقاري</strong> (OTD) الذي تولى مهمة تسجيل العقارات ومسحها. وبحلول سنة 2008، كان قد تم تسجيل حوالي <strong>60% من الأراضي الفلاحية</strong> في السجل العقاري (المصدر: OTD، تقرير 2008). كما ساهمت <strong>الوكالة العقارية الفلاحية</strong> (AFAD) منذ إحداثها في تنظيم عمليات بيع وشراء الأراضي الفلاحية وتأهيلها.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> مثلت إصلاحات الأوضاع العقارية في تونس بعد الاستقلال ركيزة أساسية لبناء الدولة الوطنية وتصفية إرث الحقبة الاستعمارية ونظام الملكية التقليدي. فإلغاء الأحباس حرّر أراضي كانت مجمدة اقتصادياً، والإصلاح الزراعي أعاد توزيع الثروة العقارية، ومجلة الحقوق العينية أرست نظاماً قانونياً عصرياً شفافاً. كما أن تصفية <strong>الأراضي الجماعية والمشاعية</strong> في المناطق القبلية ساهمت في تعزيز الملكية الفردية وتمكين الفلاحين من الحصول على قروض بنكية بضمان الملكية العقارية. غير أن هذه الإصلاحات واجهت تحديات منها <strong>تفتت الملكيات</strong> بسبب الإرث (متوسط مساحة الملكية الفلاحية تراجع إلى حوالي 10 هكتارات سنة 2008 – المصدر: وزارة الفلاحة، 2008) و<strong>تباطؤ التسجيل العقاري</strong> في بعض المناطق الداخلية.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثالث – التحرير النموذجي (7 نقاط)</h3>
+
+            <!-- مخطط توجيهي للتلميذ -->
+            <div style="background: rgba(92,31,92,0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-right: 4px solid var(--accent);">
+                <strong>✏️ تخطيط التحرير المطلوب:</strong>
+                <ul style="margin-top: 0.5rem; padding-right: 1.5rem;">
+                    <li><strong>مقدمة:</strong> تحديد مفهوم التعصير الفلاحي وإبراز مكانة القطاع الفلاحي في تونس.</li>
+                    <li><strong>الجوهر (مقسّم إلى محورين):</strong>
+                        <ul>
+                            <li><strong>المحور الأول:</strong> مظاهر تعصير الفلاحة التونسية (الميكنة، الري، الأسمدة، البذور المحسنة، الهياكل).</li>
+                            <li><strong>المحور الثاني:</strong> انعكاسات التعصير على الإنتاج الفلاحي (المردودية، التنوع) وعلى المجال الفلاحي (توسع المساحات، تحول المشهد).</li>
+                        </ul>
+                    </li>
+                    <li><strong>خاتمة:</strong> استنتاج حول حصيلة التجربة التنموية الفلاحية ورهاناتها المستقبلية.</li>
+                </ul>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p class="Tests-Hub-text-model" style="font-weight: normal;">
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 مقدمة:</strong><br>
+                    يُقصد بـ <strong>التعصير الفلاحي</strong> مجموع الإجراءات التقنية والتنظيمية الهادفة إلى تطوير القطاع الفلاحي ورفع إنتاجيته عبر إدخال الوسائل الحديثة (الميكنة، الري، المدخلات الكيميائية، البذور المحسّنة). وقد أولت تونس منذ الاستقلال أهمية خاصة لقطاع الفلاحة الذي يُساهم بحوالي <strong>11.5% من الناتج المحلي الإجمالي</strong> ويُشغّل قرابة <strong>18% من اليد العاملة النشطة</strong> سنة 2008 (المصدر: INS، الحسابات الوطنية 2008). فما هي مظاهر هذا التعصير؟ وما انعكاساته على الإنتاج الفلاحي والمجال الفلاحي التونسي؟
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 الجوهر – المحور الأول: مظاهر تعصير الفلاحة التونسية:</strong><br><br>
+                    <strong>1. الميكنة الزراعية:</strong> شهدت الفلاحة التونسية توسعاً كبيراً في استخدام الآلات الزراعية الحديثة. فارتفع عدد <strong>الجرارات</strong> من حوالي 7,200 جرار سنة 1980 إلى <strong>38,500 جرار سنة 2008</strong> (المصدر: وزارة الفلاحة والموارد المائية، إحصائيات 2008)، وانتشرت <strong>آلات الحصاد</strong> والحفر والبذر الميكانيكي في المناطق الكبرى المنتجة للحبوب خاصة في الشمال (باجة، جندوبة، الكاف).<br><br>
+                    <strong>2. تطوير الري والمساحات المسقية:</strong> توسّعت المساحات المروية من حوالي <strong>65,000 هكتار</strong> سنة 1956 إلى ما يناهز <strong>420,000 هكتار سنة 2008</strong> (المصدر: وزارة الفلاحة، 2008)، بفضل إنجاز <strong>السدود الكبرى</strong> (أكثر من 30 سداً بطاقة تخزين 2.6 مليار متر مكعب) والبحيرات الجبلية (أكثر من 1000 بحيرة). وقد استفادت زراعات الحوامض والخضر والتمور من هذا التوسع في الري.<br><br>
+                    <strong>3. استخدام الأسمدة والمبيدات:</strong> تُعتبر تونس من أكثر البلدان الإفريقية استهلاكاً للأسمدة الكيميائية بمعدل <strong>40 كلغ/هكتار</strong> سنوياً (المصدر: منظمة الأغذية والزراعة – FAO، 2008). وقد ساهم الاستخدام المكثف للأسمدة الفوسفاتية والآزوتية (المُنتجة محلياً في قابس) في تعويض فقر التربة في العديد من المناطق. كما انتشرت <strong>المبيدات الحشرية</strong> والفطرية لحماية المحاصيل.<br><br>
+                    <strong>4. إدخال البذور المحسّنة والتجديد البيولوجي:</strong> اعتمدت تونس برامج <strong>تحسين البذور</strong> عبر المعهد الوطني للبحوث الزراعية (INRAT) الذي استنبط أصنافاً محسّنة من القمح الصلب (مثل صنف "كريم" و"رزاق") والزيتون والخضر. وغطت <strong>البذور الممتازة</strong> حوالي 25% من المساحات المزروعة حبوباً سنة 2008 (المصدر: INRAT، 2008).<br><br>
+                    <strong>5. تطوير هياكل الإرشاد والتمويل:</strong> أُحدثت <strong>وكالة الإرشاد والتكوين الفلاحي</strong> (AVFA) لنشر التقنيات الحديثة بين الفلاحين، كما وفر <strong>البنك الوطني الفلاحي</strong> (BNA) قروضاً موسمية واستثمارية ميسرة لتشجيع الفلاحين على اقتناء المعدات العصرية.
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 الجوهر – المحور الثاني: انعكاسات التعصير على الإنتاج والمجال الفلاحي:</strong><br><br>
+                    <strong>أولاً – على الإنتاج الفلاحي:</strong><br>
+                    • <strong>ارتفاع المردودية:</strong> تضاعف مردود القمح من حوالي 0.9 طن/هكتار في الثمانينات إلى <strong>1.65 طن/هكتار سنة 2008</strong> (المصدر: وزارة الفلاحة، 2008)، كما ارتفع مردود الزيتون والبندورة والبطاطا بفضل الري والأسمدة.<br>
+                    • <strong>تنوع الإنتاج:</strong> تطوّرت زراعات جديدة موجهة للتصدير مثل <strong>الفراولة</strong> (في الوطن القبلي) و<strong>الأزهار</strong> و<strong>النباتات الطبية والعطرية</strong>. كما تنوع إنتاج الخضر البدرية بفضل <strong>البيوت المحمية</strong> (الأنفاق البلاستيكية) التي تجاوزت مساحتها 10,000 هكتار سنة 2008.<br>
+                    • <strong>ارتفاع قيمة الصادرات الفلاحية:</strong> بلغت صادرات زيت الزيتون التونسي سنة 2008 حوالي <strong>180,000 طن</strong> بقيمة فاقت 700 مليون دينار، مما جعل تونس <strong>رابع مصدّر عالمي لزيت الزيتون</strong> (المصدر: المجلس الدولي للزيتون، 2008). كما تطورت صادرات التمور (دقلة النور خصوصاً) والحوامض نحو الأسواق الأوروبية.<br><br>
+                    <strong>ثانياً – على المجال الفلاحي:</strong><br>
+                    • <strong>توسع المساحات الزراعية المكثفة:</strong> تحولت مناطق بكاملها إلى <strong>أقطاب إنتاج متخصصة</strong>: زيت الزيتون في صفاقس وسوسة والقيروان، الحوامض في الوطن القبلي، التمور في الجريد (قابس، توزر، قبلي)، الخضر البدرية في الساحل (المنستير، المهدية).<br>
+                    • <strong>تحول المشهد الفلاحي:</strong> حلّت <strong>الضيعات العصرية</strong> المزودة بأنظمة الري بالتنقيط (تجاوزت 250,000 هكتار سنة 2008) والبيوت المحمية محل الزراعات التقليدية البعلية في العديد من المناطق الساحلية. كما انتشرت <strong>غراسات الزيتون الكثيف</strong> (400 شجرة/هكتار عوضاً عن 100) مما غيّر المشهد النباتي.<br>
+                    • <strong>تدهور بعض النظم البيئية:</strong> أدى الاستعمال المفرط للأسمدة والمبيدات في بعض الجهات إلى <strong>تلوث الفرشات المائية</strong> (خاصة في الساحل ووادي مجردة)، كما تسبب <strong>الاستغلال المكثف للتربة</strong> في تآكلها وانجرافها في مناطق الشمال الغربي.<br>
+                    • <strong>تراجع المساحات الرعوية:</strong> أدى توسع المساحات المزروعة على حساب <strong>المراعي الطبيعية</strong> في المناطق شبه الجافة (الوسط والجنوب) إلى تراجع نشاط <strong>الرعي التقليدي</strong> وتقلص الغطاء النباتي الطبيعي.
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 خاتمة:</strong><br>
+                    أسهم التعصير الفلاحي في تحقيق <strong>طفرة إنتاجية</strong> مكّنت تونس من تطوير صادراتها الفلاحية وتنويع منتوجاتها، غير أنه أحدث <strong>تفاوتاً مجاليّاً</strong> بين المناطق الساحلية المستفيدة من التجهيزات الحديثة والمناطق الداخلية التي ظلت تعتمد أساليب تقليدية. كما يطرح <strong>تحدياً بيئياً</strong> يتمثل في ضرورة التوفيق بين <strong>تطوير الإنتاج</strong> و<strong>الحفاظ على الموارد الطبيعية</strong> (التربة، المياه، التنوع البيولوجي). وتظل الرهانات المستقبلية للفلاحة التونسية مرتبطة بـ <strong>التحكم في تكنولوجيات الري المقتصدة للماء</strong>، وتطوير <strong>الفلاحة البيولوجية</strong> (التي بلغت مساحتها حوالي 200,000 هكتار سنة 2008 – المصدر: وزارة الفلاحة)، و<strong>تأهيل صغار الفلاحين</strong> لمواكبة متطلبات الأسواق العالمية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل إضافي وإحصائيات مُوثّقة:</strong><br>
+                    - حسب <strong>تقرير البنك الدولي 2008</strong>، بلغت القيمة المضافة الفلاحية في تونس 3.2 مليار دولار، مما يجعل الفلاحة قطاعاً استراتيجياً في الاقتصاد الوطني.<br>
+                    - <strong>المصدر: المعهد الوطني للإحصاء (INS)، الحسابات الوطنية 2008:</strong> شكّلت الصناعات الغذائية 18% من القيمة المضافة الصناعية، مما يعكس ترابط الفلاحة بالصناعة التحويلية.<br>
+                    - <strong>المصدر: وزارة الفلاحة والموارد المائية، 2008:</strong> بلغ عدد الآبار السطحية والعميقة المجهزة 5,500 بئر، مما يُغذي شبكة الري في المناطق الداخلية.<br>
+                    - <strong>المصدر: منظمة الأغذية والزراعة (FAO)، 2008:</strong> احتلت تونس المرتبة الثانية إفريقياً في إنتاج زيت الزيتون بعد المغرب، والمرتبة الأولى في صادرات التمور (دقلة النور).
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">معايير تنقيط التحرير (7 نقاط + 1 صياغة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    • <strong>منهجية التحرير (2ن):</strong> وجود مقدمة وجوهر وخاتمة، وتماسك منطقي بين العناصر، واحترام التقسيم إلى محورين.<br>
+                    • <strong>المحتوى المعرفي – المحور الأول (2ن):</strong> ذكر مظاهر التعصير: الميكنة، الري، الأسمدة، البذور المحسّنة، الهياكل، مع أرقام أو أمثلة دقيقة.<br>
+                    • <strong>المحتوى المعرفي – المحور الثاني (2ن):</strong> ذكر انعكاسات على الإنتاج (المردودية، التنوع، الصادرات) وعلى المجال (توسع المساحات، التخصص، المشهد، التدهور البيئي).<br>
+                    • <strong>سلامة اللغة وجودة الصياغة (1ن إضافية):</strong> خلو النص من الأخطاء الإملائية والنحوية، ودقة المصطلحات الجغرافية والفلاحية، وحسن استخدام علامات الترقيم.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "فرض تأليفي عدد 3 - جغرافيا - 9 أساسي",
+                        subtitle: "السنة الدراسية 2008-2009",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "Devoir de Synthèse N°3 - Géographie - 9ème",
+                        subtitle: "Année scolaire 2008-2009",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "Synthesis Test N°3 - Geography - 9th Grade",
+                        subtitle: "School Year 2008-2009",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

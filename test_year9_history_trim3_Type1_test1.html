@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة عدد 3 - تاريخ - 9 أساسي (2023-2024)</title>
+
+    <meta name="theme-color" content="#1C3144">
+    <meta name="description" content="فرض مراقبة عدد 3 في التاريخ - السنة التاسعة أساسي - 2023-2024">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض تاريخ 9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #1C3144;
+            --secondary: #3D6A8C;
+            --accent: #C8823E;
+            --accent2: #D9643B;
+            --light-bg: #F7F4F1;
+            --light-section: #FFFFFF;
+            --text-light: #1A1D22;
+            --text-light-secondary: #2C3A44;
+            --border-light: #D4CFC8;
+            --shadow-light: rgba(26, 29, 34, 0.06);
+            --header-light: linear-gradient(to left, #101D2A, #1C3144, #2C4A5E);
+            --arrow-shaft: #2C3A44;
+            --timeline-accent: #C8823E;
+            --canvas-bg: #F7F4F1;
+            --canvas-stroke: #1C3144;
+            --canvas-text: #1A1D22;
+            --canvas-grid: #C4BEB6;
+            --canvas-accent: #C8823E;
+            --canvas-fill: rgba(200, 130, 62, 0.06);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #D4CFC8;
+            --secondary: #8CA8BC;
+            --accent: #D99850;
+            --accent2: #E8805A;
+            --light-bg: #0D1115;
+            --light-section: #171E25;
+            --text-light: #EAE7E3;
+            --text-light-secondary: #B8B4AE;
+            --border-light: #2C3A44;
+            --shadow-light: rgba(0, 0, 0, 0.32);
+            --header-light: linear-gradient(to left, #080E13, #0D1115, #171E25);
+            --arrow-shaft: #8CA8BC;
+            --timeline-accent: #D99850;
+            --canvas-bg: #0D1115;
+            --canvas-stroke: #D4CFC8;
+            --canvas-text: #EAE7E3;
+            --canvas-grid: #2C3A44;
+            --canvas-accent: #D99850;
+            --canvas-fill: rgba(217, 152, 80, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F7F4F1 0%, #EDE8E3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0D1115 0%, #080B0F 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #EAE7E3;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(234, 231, 227, 0.10);
+            color: #EAE7E3;
+            border: 1px solid rgba(234, 231, 227, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(234, 231, 227, 0.20);
+            border-color: rgba(234, 231, 227, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F7F4F1;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1A1D22;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #EDE8E3;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #171E25;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #EAE7E3;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2C3A44;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #101D2A, #1C3144, #2C4A5E);
+            color: #EAE7E3;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #080E13, #0D1115, #171E25);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F7F4F1;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0D1115;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #A06A2A;
+            color: #EAE7E3;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #C4BEB6;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1A1D22;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(200, 130, 62, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #2C3A44;
+            background: #0D1115;
+            color: #EAE7E3;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(217, 152, 80, 0.14);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #C4BEB6;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1A1D22;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(200, 130, 62, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2C3A44;
+            background: #0D1115;
+            color: #EAE7E3;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(217, 152, 80, 0.14);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #D4CFC8;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #1C3144;
+            color: #EAE7E3;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #171E25;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #2C3A44;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(28, 49, 68, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(234, 231, 227, 0.02);
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #C4BEB6;
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 90%;
+            background: #FFF;
+            color: #1A1D22;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #2C3A44;
+            background: #0D1115;
+            color: #EAE7E3;
+        }
+
+        /* Inline fill-blank inputs */
+        .Tests-Hub-inline-input {
+            display: inline-block;
+            min-width: 130px;
+            border: 1px solid #C4BEB6;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1A1D22;
+            margin: 2px 4px;
+        }
+
+        .Tests-Hub-inline-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(200, 130, 62, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-inline-input {
+            border-color: #2C3A44;
+            background: #0D1115;
+            color: #EAE7E3;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(217, 152, 80, 0.14);
+        }
+
+        /* Chrono Arrow Timeline */
+        .Tests-Hub-timeline-container {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            margin: 2rem auto;
+            height: 220px;
+            background: transparent;
+            border-radius: 8px;
+        }
+
+        .Tests-Hub-timeline-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .Tests-Hub-timeline-input {
+            position: absolute;
+            width: 160px;
+            height: 42px;
+            border: 2px dashed var(--accent);
+            border-radius: 8px;
+            background: rgba(247, 244, 241, 0.88);
+            text-align: center;
+            font-family: inherit;
+            font-size: 13px;
+            color: #1A1D22;
+            padding: 4px 8px;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .Tests-Hub-timeline-input:focus {
+            border-style: solid;
+            border-color: var(--accent);
+            background: #FFF;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(200, 130, 62, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-timeline-input {
+            background: rgba(13, 17, 21, 0.9);
+            color: #EAE7E3;
+            border-color: #D99850;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-timeline-input:focus {
+            background: #171E25;
+            border-color: #D99850;
+            box-shadow: 0 0 0 4px rgba(217, 152, 80, 0.18);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #1C3144, #3D6A8C, var(--accent));
+            color: #FFF;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F7F4F1 0%, #EDE8E3 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(200, 130, 62, 0.20);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #171E25, #0D1115);
+            border-color: rgba(217, 152, 80, 0.24);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(247, 244, 241, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(13, 17, 21, 0.7);
+            border-right-color: #D99850;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #1C3144;
+            background: rgba(200, 130, 62, 0.08);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #D99850;
+            background: rgba(217, 152, 80, 0.14);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(28, 49, 68, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2C3A44;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(217, 152, 80, 0.07);
+            color: #EAE7E3;
+            border-right-color: #E8805A;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #2E6B3A;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #7CB88A;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1A1D22;
+            background: rgba(200, 130, 62, 0.06);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #EAE7E3;
+            background: rgba(217, 152, 80, 0.06);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(28, 49, 68, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #2C3A44;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(61, 106, 140, 0.07);
+            color: #B8B4AE;
+            border-right-color: #8CA8BC;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-fill-blank-paragraph {
+            font-size: 1.05rem;
+            line-height: 2.4;
+            margin: 1.2rem 0;
+            padding: 1rem;
+            background: rgba(247, 244, 241, 0.5);
+            border-radius: 10px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-fill-blank-paragraph {
+            background: rgba(13, 17, 21, 0.5);
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(28, 49, 68, 0.05), rgba(200, 130, 62, 0.05));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #8B1A1A, #B82828);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #1C3144, #3D6A8C);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #C8823E, #D99850);
+            color: #1A1D22;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #101D2A, #1C3144, #2C4A5E);
+            color: #EAE7E3;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #080B0F, #0D1115, #171E25);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #D99850;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #D99850;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #D99850;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-timeline-container {
+                height: 200px;
+                max-width: 100%;
+            }
+            .Tests-Hub-timeline-input {
+                width: 110px;
+                font-size: 11px;
+                height: 36px;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+            .Tests-Hub-inline-input {
+                min-width: 100px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.historyTest.title">فرض مراقبة عدد 3 - تاريخ - 9 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.historyTest.subtitle">السنة الدراسية 2023-2024</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.historyTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض المراقبة الثالث في التاريخ</h1>
+            <p>السنة الدراسية: 2023-2024 | القسم: التاسعة أساسي</p>
+            <p>المدة: ساعة واحدة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>اكتب المعلومات التاريخية بأمانة علمية.</li>
+                <li>القسم الأول: 7 نقاط | القسم الثاني: 11 نقطة (+2 للصياغة) | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول: 7 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – التاريخ <span class="Tests-Hub-points-badge">7 نقاط</span></h2>
+
+            <!-- السؤال 1: السلم الزمني -->
+            <h3>1/ أضع أمام كل تاريخ الحدث المناسب: <span class="Tests-Hub-points-badge">3 نقاط</span></h3>
+            <p style="margin-bottom:0.5rem;">الأحداث المقترحة: <em>اندلاع الحرب العالمية الثانية – الحرب العربية الإسرائيلية الثانية (العدوان الثلاثي) – اتفاقية أوسلو</em></p>
+
+            <div class="Tests-Hub-timeline-container" id="timelineContainer">
+                <canvas id="timelineCanvas" class="Tests-Hub-timeline-canvas" width="750" height="220"></canvas>
+                <input type="text" class="Tests-Hub-timeline-input" id="timelineInput1" placeholder="الحدث..." style="left:14%;top:28px;">
+                <input type="text" class="Tests-Hub-timeline-input" id="timelineInput2" placeholder="الحدث..." style="left:43%;top:28px;">
+                <input type="text" class="Tests-Hub-timeline-input" id="timelineInput3" placeholder="الحدث..." style="left:70%;top:28px;">
+            </div>
+            <p style="text-align:center;font-size:0.9rem;margin-top:0.5rem;"><em>السلم الزمني: 1 سبتمبر 1939 – 29 أكتوبر 1956 – 13 سبتمبر 1993</em></p>
+
+            <!-- السؤال 2: اكمال الفراغ -->
+            <h3>2/ أكمل الفراغ بما يناسب: <span class="Tests-Hub-points-badge">4 نقاط</span></h3>
+            <div class="Tests-Hub-fill-blank-paragraph">
+                <p>تأسست <strong>منظمة التحرير الفلسطينية</strong> سنة
+                    <input type="text" class="Tests-Hub-inline-input" placeholder="السنة..." style="width:100px;">
+                    وقد ضمَّت
+                    <input type="text" class="Tests-Hub-inline-input" placeholder="الفصائل..." style="width:180px;">
+                    وكان من أبرز مؤسسيها
+                    <input type="text" class="Tests-Hub-inline-input" placeholder="الاسم..." style="width:160px;">
+                    وقد آمنت في تلك الفترة بأنَّ
+                    <input type="text" class="Tests-Hub-inline-input" placeholder="السبيل..." style="width:180px;">
+                    هو السبيل الوحيد لتحرير فلسطين.</p>
+            </div>
+        </div>
+
+        <!-- القسم الثاني: المقال -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – التحرير المسترسل <span class="Tests-Hub-points-badge">11 نقطة</span></h2>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">الموضوع:</span> <strong>أنجز تحريراً مسترسلاً تُبرز فيه مساهمة الأنظمة الفاشية في اندلاع الحرب العالمية الثانية.</strong></p>
+                <p style="margin-top:0.5rem;color:var(--secondary);">المطلوب: تحليل منظم لأدوار الأنظمة الفاشية (إيطاليا الفاشية، ألمانيا النازية، اليابان العسكرية) وسياساتها التوسعية التي أدت إلى اندلاع الحرب.</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:300px;" placeholder="اكتب تحريرك المسترسل هنا..."></textarea>
+                <p style="font-size:0.85rem;margin-top:0.5rem;color:var(--secondary);"><em>تنقيط: سلامة المنهجية (3ن) – المضمون التاريخي (6ن) – جودة التحرير (2ن) – صياغة وحسن تنظيم (2ن إضافية)</em></p>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل تاريخي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح الأسئلة (7 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ السلم الزمني – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>1 سبتمبر 1939:</strong> <strong>اندلاع الحرب العالمية الثانية</strong> (غزو ألمانيا النازية لبولندا بقيادة هتلر، مما دفع بريطانيا وفرنسا لإعلان الحرب على ألمانيا يوم 3 سبتمبر 1939).<br>
+                    • <strong>29 أكتوبر 1956:</strong> <strong>الحرب العربية الإسرائيلية الثانية – العدوان الثلاثي على مصر</strong> (هجوم منسق شنته إسرائيل بالتعاون مع فرنسا وبريطانيا على مصر بعد تأميم قناة السويس من طرف جمال عبد الناصر).<br>
+                    • <strong>13 سبتمبر 1993:</strong> <strong>اتفاقية أوسلو</strong> (اتفاق سلام وقّعته منظمة التحرير الفلسطينية وإسرائيل برعاية أمريكية في البيت الأبيض، نصّ على اعتراف متبادل وإقامة سلطة حكم ذاتي فلسطينية مؤقتة).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> تُشكّل هذه التواريخ الثلاثة محطات مفصلية في تاريخ العلاقات الدولية والصراع العربي-الإسرائيلي. فاندلاع الحرب العالمية الثانية (1 سبتمبر 1939) بتوجيه من ألمانيا النازية مثّل تتويجاً لسياسات الفاشية التوسعية التي زعزعت النظام الدولي طوال الثلاثينات، وأسفرت الحرب عن إعادة تشكيل خريطة العالم ونشوء الأمم المتحدة. أما العدوان الثلاثي (29 أكتوبر 1956) فقد جسّد استمرار الأطماع الاستعمارية القديمة (بريطانيا وفرنسا) إلى جانب الدولة العبرية الناشئة، وكان اختباراً لمدى قدرة العالم العربي على الصمود في وجه التهديدات المركبة. وفي الطرف الآخر من المسار، مثّلت اتفاقية أوسلو (13 سبتمبر 1993) تحولاً جذرياً في الخطاب الفلسطيني الرسمي من منطق الكفاح المسلح إلى منطق التسوية السياسية، وهو ما أثار جدلاً عميقاً داخل البيت الفلسطيني والعربي حول جدوى الاعتراف بإسرائيل مقابل حكم ذاتي محدود.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ إكمال الفراغ – الإجابة النموذجية:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    تأسست <strong>منظمة التحرير الفلسطينية</strong> سنة <strong>1964</strong> (بقرار من مؤتمر القمة العربي الأول المنعقد في القاهرة)، وقد ضمَّت <strong>مختلف الفصائل الفلسطينية (فتح، الجبهة الشعبية، الجبهة الديمقراطية، الصاعقة...)</strong>، وكان من أبرز مؤسسيها <strong>أحمد الشقيري</strong> (أول رئيس للمنظمة بتكليف من القمة العربية)، وقد آمنت في تلك الفترة بأنَّ <strong>الكفاح المسلح / العمل الفدائي</strong> هو السبيل الوحيد لتحرير فلسطين.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> شكّل تأسيس منظمة التحرير الفلسطينية سنة 1964 نقلة نوعية في مسار القضية الفلسطينية، إذ انتقلت من مجرد قضية لاجئين تُناقش في أروقة الأمم المتحدة إلى كيان سياسي يُمثّل الشعب الفلسطيني ويُناضل باسمه. انبثقت المنظمة عن قرار القمة العربية الأولى (القاهرة، جانفي 1964) التي جمعت ملوكاً ورؤساء عرباً لأول مرة، وعيّنت أحمد الشقيري – وهو محامٍ ودبلوماسي فلسطيني مخضرم مثّل فلسطين في الأمم المتحدة – لرئاستها. ضمّت المنظمة في البداية فصائل متعددة أبرزها حركة فتح (التي انطلقت عملياتها الفدائية سنة 1965)، ثم توسّعت لاحقاً بانضمام الجبهة الشعبية بقيادة جورج حبش والجبهة الديمقراطية بقيادة نايف حواتمة. وقد كرّس الميثاق القومي للمنظمة (1964) مبدأ الكفاح المسلح كاستراتيجية وحيدة لتحرير فلسطين، وهو ما ظل سارياً إلى أن مهّدت اتفاقية أوسلو (1993) لتحول استراتيجي نحو التسوية السياسية، وهو تحول أثار انقسامات عميقة داخل المنظمة لا تزال ماثلة إلى اليوم.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – التحرير المسترسل (11 نقطة + 2 للصياغة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>الموضوع: مساهمة الأنظمة الفاشية في اندلاع الحرب العالمية الثانية</strong></p>
+
+                <h4 style="color:#1C3144;margin-top:1rem;">📝 الإطار المنهجي المقترح</h4>
+                <p><strong>المقدمة:</strong> وضع السياق العام (أزمة الثلاثينات – فشل عصبة الأمم – صعود الأنظمة الشمولية). طرح الإشكالية: كيف ساهمت الأنظمة الفاشية – بأبعادها الإيديولوجية والعسكرية والدبلوماسية – في إشعال الحرب العالمية الثانية؟</p>
+                <p><strong>الجوهر:</strong> ثلاثة محاور أساسية: (1) إيطاليا الفاشية وسياسة التوسع الإمبريالي، (2) ألمانيا النازية ونقض النظام الأوروبي، (3) اليابان العسكرية والتوسع في آسيا والمحيط الهادئ.</p>
+                <p><strong>الخاتمة:</strong> استخلاص كيف شكلت هذه الأنظمة مجتمعةً المحرك الأساسي للحرب، مع الإشارة إلى مسؤولية سياسة التهدئة الغربية.</p>
+
+                <h4 style="color:#1C3144;margin-top:1.2rem;">📝 نموذج تحرير مسترسل مقترح</h4>
+                <div class="Tests-Hub-text-model">
+                    <p><strong>مقدمة:</strong> شهدت فترة الثلاثينات من القرن العشرين تصاعداً خطيراً للأنظمة الفاشية في أوروبا وآسيا، وهي أنظمة قامت على مبادئ القومية المتطرفة والتوسع الإمبريالي ورفض النظام الدولي القائم. فبعد الحرب العالمية الأولى، ورغم آمال السلام التي علّقتها الشعوب على عصبة الأمم، مهّدت الأزمة الاقتصادية العالمية (1929) الطريق لصعود هذه الأنظمة التي حوّلت العالم إلى ساحة حرب كونية ثانية (1939-1945). فكيف ساهمت الأنظمة الفاشية – في إيطاليا وألمانيا واليابان – في اندلاع هذه الحرب المدمرة؟</p>
+
+                    <p><strong>أولاً: إيطاليا الفاشية وسياسة التوسع الإمبريالي بقيادة موسوليني</strong><br>
+                    • تولى بينيتو موسوليني السلطة في إيطاليا سنة 1922 مؤسساً أول نظام فاشي في أوروبا. قامت إيديولوجيته على تمجيد الدولة القومية وإحياء "المجد الروماني" القديم.<br>
+                    • في سنة 1935، غزت إيطاليا الفاشية إثيوبيا (الحبشة) – الدولة الإفريقية الوحيدة المستقلة آنذاك – في تحدٍّ صارخ لعصبة الأمم التي عجزت عن ردع هذا العدوان رغم فرض عقوبات محدودة. مثّل غزو إثيوبيا أول اختراق كبير للنظام الدولي بعد الحرب العالمية الأولى، وشجّع هتلر على اختبار ردود الفعل الغربية.<br>
+                    • تحالف موسوليني مع هتلر في "محور روما-برلين" (1936)، ثم انضم إليهما في "الميثاق الثلاثي" (1940) ليشكلا جبهة موحدة ضد الحلفاء. كما تدخلت إيطاليا عسكرياً في الحرب الأهلية الإسبانية (1936-1939) دعماً للجنرال فرانكو، مما حوّل إسبانيا إلى ساحة تجربة للأسلحة والتكتيكات الفاشية.</p>
+
+                    <p><strong>ثانياً: ألمانيا النازية والنقض المنهجي للنظام الأوروبي بقيادة هتلر</strong><br>
+                    • وصل أدولف هتلر إلى السلطة سنة 1933، وسرعان ما أرسى نظاماً شمولياً يقوم على النظرية النازية (تفوّق العرق الآري، توسيع "المجال الحيوي" Lebensraum نحو أوروبا الشرقية، معاداة السامية والشيوعية).<br>
+                    • بدأ هتلر سلسلة من الخروقات المتعمدة لمعاهدة فرساي (1919): أعاد تسليح راينلاند المنزوعة السلاح (مارس 1936)، وضم النمسا في عملية "الأنشلوس" (مارس 1938)، ثم طالب بمنطقة السوديت التشيكوسلوفاكية التي يسكنها الألمان. مؤتمر ميونيخ (سبتمبر 1938) الذي جمع هتلر بموسوليني وتشامبرلين (بريطانيا) ودالادييه (فرنسا) مثّل ذروة سياسة "التهدئة" الغربية، حيث تنازلوا لهتلر عن السوديت مقابل وعود بالسلام. لكن هتلر نقض وعده بسرعة واحتل كامل تشيكوسلوفاكيا في مارس 1939.<br>
+                    • الحدث الفاصل كان توقيع "الميثاق الألماني-السوفياتي" (اتفاقية عدم اعتداء) في 23 أوت 1939 بين هتلر وستالين، وهو ما أمنّ ظهر ألمانيا في الشرق وأطلق يدها لغزو بولندا في 1 سبتمبر 1939 – وهو الحدث الذي أشعل فتيل الحرب العالمية الثانية مباشرة بإعلان بريطانيا وفرنسا الحرب على ألمانيا.</p>
+
+                    <p><strong>ثالثاً: اليابان العسكرية والتوسع في آسيا والمحيط الهادئ</strong><br>
+                    • سيطر العسكريون المتطرفون على الحكومة اليابانية منذ أوائل الثلاثينات، وتبنّوا إيديولوجية قومية توسعية تهدف إلى بناء "منطقة الازدهار المشترك لآسيا الكبرى" تحت الهيمنة اليابانية.<br>
+                    • غزت اليابان منشوريا الصينية سنة 1931 وأقامت دولة دمية (مانشوكو)، ثم شنت حرباً شاملة على الصين سنة 1937 ارتكبت خلالها مجازر مروّعة (أبرزها مجزرة نانجينغ أواخر 1937). انسحبت اليابان من عصبة الأمم سنة 1933 بعد إدانتها للعدوان على منشوريا، في سابقة عززت ثقافة الإفلات من العقاب.<br>
+                    • بلغ التوسع الياباني ذروته بالهجوم المباغت على قاعدة بيرل هاربور الأمريكية في هاواي (7 ديسمبر 1941)، مما أدخل الولايات المتحدة رسمياً في الحرب العالمية الثانية. كان هذا الهجوم تتويجاً لعقيدة عسكرية يابانية رأت في الحرب السبيل الوحيد لتأمين موارد الطاقة (النفط) التي حُرمت منها بسبب العقوبات الغربية.</p>
+
+                    <p><strong>خاتمة:</strong> يتضح مما سبق أن الأنظمة الفاشية – برغم اختلاف سياقاتها الوطنية – اشتركت في مسؤولية جرّ العالم إلى الحرب العالمية الثانية. فقد تبنّت إيديولوجيات توسعية عدوانية، ورفضت النظام الدولي القائم، واستغلت ضعف عصبة الأمم وسياسة التهدئة الغربية لتحقيق مكاسب متتالية. إيطاليا موسوليني فتحت الباب بالتحدي الإثيوبي، وألمانيا هتلر نسفت معاهدة فرساي وضمّت أراضي أوروبية، واليابان العسكرية أشعلت الحرب في آسيا قبل أوروبا. وقد أثبتت الحرب العالمية الثانية أن سياسة استرضاء الدكتاتوريات لا تؤدي إلا إلى مزيد من العدوان، وأن السلام العالمي لا يصان إلا بردع قوي وإطار دولي فعّال، وهو ما تجسّد لاحقاً في تأسيس الأمم المتحدة سنة 1945.</p>
+                </div>
+                <div class="correction-explanation">
+                    <strong>✔ معايير التنقيط التفصيلية:</strong><br>
+                    • <strong>المنهجية (3ن):</strong> مقدمة واضحة بإشكالية – تقسيم محاور منطقي (إيطاليا، ألمانيا، اليابان) – خاتمة استخلاصية تُركّب الأفكار.<br>
+                    • <strong>المضمون التاريخي (6ن):</strong> ذكر دقيق للأحداث والتواريخ (غزو إثيوبيا 1935، إعادة تسليح راينلاند 1936، الأنشلوس 1938، ميونيخ 1938، غزو تشيكوسلوفاكيا 1939، الميثاق النازي-السوفياتي 23 أوت 1939، غزو بولندا 1 سبتمبر 1939، بيرل هاربور 1941). ذكر القادة (موسوليني، هتلر) والسياسات التوسعية بوضوح.<br>
+                    • <strong>جودة التحرير (2ن):</strong> سلامة اللغة العربية – خلو النص من الأخطاء الإملائية والنحوية – تسلسل منطقي للأفكار.<br>
+                    • <strong>الصياغة وحسن التنظيم (2ن إضافية):</strong> علامات ترقيم سليمة – فقرات متوازنة – استخدام مصطلحات تاريخية دقيقة – جمالية الأسلوب.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        function getCanvasTheme() {
+            const isDark = document.body.classList.contains('Tests-Hub-dark-theme');
+            return {
+                bg: isDark ? '#0D1115' : '#F7F4F1',
+                stroke: isDark ? '#D4CFC8' : '#1C3144',
+                text: isDark ? '#EAE7E3' : '#1A1D22',
+                grid: isDark ? '#2C3A44' : '#C4BEB6',
+                accent: isDark ? '#D99850' : '#C8823E',
+                fill: isDark ? 'rgba(217,152,80,0.08)' : 'rgba(200,130,62,0.06)',
+                shaftFill: isDark ? '#2C3A44' : '#2C3A44',
+                boxFill: isDark ? 'rgba(13,17,21,0.9)' : 'rgba(247,244,241,0.88)',
+            };
+        }
+
+        function drawTimeline() {
+            const canvas = document.getElementById('timelineCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width;
+            const H = canvas.height;
+            const t = getCanvasTheme();
+
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = t.bg;
+            ctx.fillRect(0, 0, W, H);
+
+            // Arrow shaft - من اليمين لليسار (RTL)
+            const shaftY = 85;
+            const startX = W - 50;
+            const endX = 50;
+            const shaftH = 16;
+            const shaftLength = startX - endX;
+
+            // Shaft rectangle
+            ctx.fillStyle = t.shaftFill;
+            ctx.beginPath();
+            ctx.roundRect(endX, shaftY - shaftH / 2, shaftLength, shaftH, 8);
+            ctx.fill();
+
+            // Arrowhead عند اليسار (endX)
+            ctx.beginPath();
+            ctx.moveTo(endX + 35, shaftY - shaftH / 2 - 12);
+            ctx.lineTo(endX, shaftY);
+            ctx.lineTo(endX + 35, shaftY + shaftH / 2 + 12);
+            ctx.fillStyle = t.accent;
+            ctx.fill();
+
+            // المواضع: من اليمين (1939) إلى اليسار (1993)
+            const positions = [
+                { x: W - 185, date: '1 سبتمبر 1939' },
+                { x: 375, date: '29 أكتوبر 1956' },
+                { x: 185, date: '13 سبتمبر 1993' }
+            ];
+
+            positions.forEach((p) => {
+                // Tick mark
+                ctx.beginPath();
+                ctx.strokeStyle = t.accent;
+                ctx.lineWidth = 2.5;
+                ctx.moveTo(p.x, shaftY - shaftH / 2 - 6);
+                ctx.lineTo(p.x, shaftY + shaftH / 2 + 6);
+                ctx.stroke();
+
+                // Circle on tick
+                ctx.beginPath();
+                ctx.arc(p.x, shaftY, 8, 0, 2 * Math.PI);
+                ctx.fillStyle = t.accent;
+                ctx.fill();
+
+                // Inner circle
+                ctx.beginPath();
+                ctx.arc(p.x, shaftY, 4, 0, 2 * Math.PI);
+                ctx.fillStyle = t.bg;
+                ctx.fill();
+
+                // Box outline for input
+                const boxW = 155;
+                const boxH = 42;
+                const boxX = p.x - boxW / 2;
+                const boxY = shaftY - shaftH / 2 - boxH - 18;
+                ctx.setLineDash([5, 3]);
+                ctx.strokeStyle = t.accent;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.roundRect(boxX, boxY, boxW, boxH, 8);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Date label below shaft
+                ctx.fillStyle = t.text;
+                ctx.font = 'bold 15px "Traditional Arabic", "Segoe UI", Tahoma, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(p.date, p.x, shaftY + shaftH / 2 + 28);
+            });
+
+            // Title above
+            ctx.fillStyle = t.text;
+            ctx.font = 'bold 19px "Traditional Arabic", "Segoe UI", Tahoma, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('السلم الزمني', W / 2, 18);
+        }
+
+        function updateTimelineInputPositions() {
+            const container = document.getElementById('timelineContainer');
+            const canvas = document.getElementById('timelineCanvas');
+            if (!container || !canvas) return;
+            const W = canvas.width;
+            const shaftY = 85;
+            const shaftH = 16;
+            const boxH = 42;
+            const boxW = 155;
+            const positions = [W - 185, 375, 185];
+            const inputs = [
+                document.getElementById('timelineInput1'),
+                document.getElementById('timelineInput2'),
+                document.getElementById('timelineInput3'),
+            ];
+
+            inputs.forEach((inp, i) => {
+                if (!inp) return;
+                const px = positions[i];
+                const boxX = px - boxW / 2;
+                const boxY = shaftY - shaftH / 2 - boxH - 18;
+                inp.style.left = (boxX / W * 100) + '%';
+                inp.style.top = boxY + 'px';
+                inp.style.width = boxW + 'px';
+                inp.style.height = boxH + 'px';
+            });
+        }
+
+        function redrawAll() {
+            drawTimeline();
+            updateTimelineInputPositions();
+        }
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    historyTest: {
+                        title: "فرض مراقبة عدد 3 - تاريخ - 9 أساسي",
+                        subtitle: "السنة الدراسية 2023-2024",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    historyTest: {
+                        title: "Devoir de Contrôle N°3 - Histoire - 9ème",
+                        subtitle: "Année scolaire 2023-2024",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    historyTest: {
+                        title: "Control Test N°3 - History - 9th Grade",
+                        subtitle: "Academic Year 2023-2024",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            redrawAll();
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.historyTest?.comingSoon ||
+                "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+            redrawAll();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            window.addEventListener('resize', () => {
+                updateTimelineInputPositions();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

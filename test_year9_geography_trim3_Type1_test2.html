@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة عدد 3 - جغرافيا - 9 أساسي</title>
+    <meta name="theme-color" content="#0D9488">
+    <meta name="description" content="فرض مراقبة عدد 3 في الجغرافيا - السنة التاسعة أساسي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض جغرافيا 9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #0D9488;
+            --secondary: #14B8A6;
+            --accent: #F97316;
+            --accent2: #EA580C;
+            --light-bg: #F0FDFA;
+            --light-section: #FFFFFF;
+            --text-light: #042F2E;
+            --text-light-secondary: #115E59;
+            --border-light: #CCFBF1;
+            --shadow-light: rgba(4, 47, 46, 0.07);
+            --header-light: linear-gradient(to left, #042F2E, #0D9488, #14B8A6);
+            --canvas-bg: #F0FDFA;
+            --canvas-stroke: #0D9488;
+            --canvas-text: #042F2E;
+            --canvas-grid: #99F6E4;
+            --canvas-accent: #F97316;
+            --canvas-fill: rgba(249, 115, 22, 0.07);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #5EEAD4;
+            --secondary: #99F6E4;
+            --accent: #FB923C;
+            --accent2: #F97316;
+            --light-bg: #042F2E;
+            --light-section: #134E4A;
+            --text-light: #F0FDFA;
+            --text-light-secondary: #CCFBF1;
+            --border-light: #115E59;
+            --shadow-light: rgba(0, 0, 0, 0.35);
+            --header-light: linear-gradient(to left, #022C22, #0D9488, #0F766E);
+            --canvas-bg: #042F2E;
+            --canvas-stroke: #5EEAD4;
+            --canvas-text: #F0FDFA;
+            --canvas-grid: #115E59;
+            --canvas-accent: #FB923C;
+            --canvas-fill: rgba(251, 146, 60, 0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F0FDFA 0%, #E6FFFA 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #042F2E 0%, #022C22 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F0FDFA;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(240, 253, 250, 0.10);
+            color: #F0FDFA;
+            border: 1px solid rgba(240, 253, 250, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(240, 253, 250, 0.20);
+            border-color: rgba(240, 253, 250, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F0FDFA;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #042F2E;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #E6FFFA;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #134E4A;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F0FDFA;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #115E59;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #F0FDFA;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #022C22, #0D9488, #0F766E);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F0FDFA;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #042F2E;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #042F2E;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #C2410C;
+            color: #F0FDFA;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #99F6E4;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #042F2E;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #115E59;
+            background: #042F2E;
+            color: #F0FDFA;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.16);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #99F6E4;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #042F2E;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #115E59;
+            background: #042F2E;
+            color: #F0FDFA;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.16);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #CCFBF1;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #0D9488;
+            color: #F0FDFA;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #134E4A;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #115E59;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(13, 148, 136, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(240, 253, 250, 0.02);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #0D9488, #14B8A6, var(--accent));
+            color: #042F2E;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F0FDFA 0%, #E6FFFA 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(249, 115, 22, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #134E4A, #042F2E);
+            border-color: rgba(251, 146, 60, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(240, 253, 250, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(4, 47, 46, 0.7);
+            border-right-color: #FB923C;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #0D9488;
+            background: rgba(249, 115, 22, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #FB923C;
+            background: rgba(251, 146, 60, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(13, 148, 136, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #115E59;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(251, 146, 60, 0.08);
+            color: #F0FDFA;
+            border-right-color: #F97316;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #0F766E;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #5EEAD4;
+        }
+
+        .Tests-Hub-text-model {
+            color: #042F2E;
+            background: rgba(249, 115, 22, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F0FDFA;
+            background: rgba(251, 146, 60, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(13, 148, 136, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #115E59;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(20, 184, 166, 0.08);
+            color: #CCFBF1;
+            border-right-color: #99F6E4;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(13, 148, 136, 0.05), rgba(249, 115, 22, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #991B1B, #DC2626);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #0D9488, #14B8A6);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #F97316, #FB923C);
+            color: #042F2E;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #042F2E, #0D9488, #0F766E);
+            color: #F0FDFA;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #022C22, #042F2E, #134E4A);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #FB923C;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FB923C;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #FB923C;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.geographyTest.title">فرض مراقبة عدد 3 - جغرافيا - 9 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.geographyTest.subtitle">السنة الدراسية 2023-2024</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.geographyTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض مراقبة عدد 3 في الجغرافيا</h1>
+            <p>المستوى: التاسعة أساسي | السنة الدراسية: 2023-2024</p>
+            <p>المدة: ساعتان</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 12 نقطة | المجموع: 18 نقطة (يُحتسب على 20).</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول: 6 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – المعارف والمصطلحات <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <h3>1) أضع الحدث المناسب أمام كل تاريخ: <span class="Tests-Hub-points-badge">3 نقاط</span></h3>
+            <div class="Tests-Hub-question">
+                <p><strong>15 فيفري 1965:</strong> <input type="text" class="Tests-Hub-answer-input" style="width:260px;" placeholder="........................................"></p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><strong>17 جويلية 1995:</strong> <input type="text" class="Tests-Hub-answer-input" style="width:260px;" placeholder="........................................"></p>
+            </div>
+
+            <h3>2) أكمل الفراغ بما يناسب: <span class="Tests-Hub-points-badge">3 نقاط</span></h3>
+            <div class="Tests-Hub-question">
+                <p><strong>الكهرباء:</strong> تنتج تونس معظم الكهرباء من <input type="text" class="Tests-Hub-answer-input" style="width:200px;" placeholder="..................."> (مصدر الطاقة).</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><strong>الصناعات الكيميائية:</strong> تعتمد بشكل رئيسي على <input type="text" class="Tests-Hub-answer-input" style="width:200px;" placeholder="..................."> وتحويله إلى أسمدة وحمض فوسفوري.</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><strong>الصناعات الثقيلة:</strong> تتمثل خصوصا في <input type="text" class="Tests-Hub-answer-input" style="width:200px;" placeholder="..................."> (فرع صناعي) وتتركز بمنطقة منزل بورقيبة.</p>
+            </div>
+        </div>
+
+        <!-- القسم الثاني: التحرير 12 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – التحرير <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+
+            <p><strong>الموضوع:</strong> بذلت الدولة التونسية جهودا كبيرة لدفع التصنيع منذ الاستقلال إلى اليوم.</p>
+            <p>حرّر فقرة متماسكة تبرز فيها مجهودات الدولة في التصنيع، مبرزا مراحله الأساسية وأهم نتائجه.</p>
+            <textarea class="Tests-Hub-large-textarea" style="min-height:260px;" placeholder="اكتب تحريراً منظمّاً يشمل المقدمة والعرض (المراحل) والخاتمة..."></textarea>
+
+            <p style="font-size:0.85rem;margin-top:1rem;color:var(--secondary);"><em>تنقيط إضافي: صياغة وحسن تنظيم (1ن)</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل جغرافي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح الأسئلة (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ الأحداث المناسبة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>• 15 فيفري 1965:</strong> صدور <strong>مجلة الحقوق العينية</strong> (القانون عدد 65-5) التي أرست منظومة قانونية عصرية للملكية العقارية، وهو ما سهّل توطين المناطق الصناعية وتأمين ملكية الأراضي الصناعية. (المصدر: الرائد الرسمي للجمهورية التونسية، 1965)<br><br>
+                    <strong>• 17 جويلية 1995:</strong> صدور <strong>قانون تشجيع الاستثمارات عدد 95-100</strong> الذي منح حوافز هامة للاستثمار الصناعي (إعفاءات جبائية، مناطق تنمية جهوية) وساهم في تسريع نسق التصنيع. (المصدر: وزارة الصناعة، مجموعة القوانين الاستثمارية، 1995)
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> مجلة الحقوق العينية مثّلت قطيعة مع النظام العقاري التقليدي ومهّدت لإقامة مشاريع صناعية كبرى على أراضٍ واضحة الملكية. أما قانون 1995 فقد صاحب مرحلة الانفتاح الاقتصادي وجذب الاستثمارات العربية والأجنبية نحو القطاعات الصناعية ذات القيمة المضافة.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ إتمام الفراغات – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>الكهرباء:</strong> تنتج تونس معظم الكهرباء من <strong><u>الغاز الطبيعي</u></strong> (97% من الإنتاج الوطني للكهرباء سنة 2023 – المصدر: STEG، تقرير 2023).<br>
+                    • <strong>الصناعات الكيميائية:</strong> تعتمد بشكل رئيسي على <strong><u>الفوسفات</u></strong> وتحويله إلى أسمدة وحمض فوسفوري (يمثل إقليم قابس أكبر قطب، ويوفر 15% من الصادرات الصناعية سنة 2023 – المصدر: INS، 2023).<br>
+                    • <strong>الصناعات الثقيلة:</strong> تتمثل خصوصا في <strong><u>الحديد والصلب</u></strong> وتتركز بمنطقة منزل بورقيبة (تنتج حوالي 200 ألف طن سنويا من الفولاذ – المصدر: مجمع "الفولاذ" التونسي، 2023).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل:</strong> تعكس هذه العناصر البنية الصناعية التونسية: قطاع طاقي أحادي المصدر (الغاز)، صناعات تحويلية كثيفة الموارد (الفوسفات)، وصناعة ثقيلة محدودة لكنها استراتيجية. ويطرح الاعتماد المفرط على الغاز المستورد (من الجزائر) إشكالية الأمن الطاقي (المصدر: وزارة الطاقة، 2023).
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – التحرير النموذجي (12 نقطة)</h3>
+
+            <!-- مخطط توجيهي للتلميذ -->
+            <div style="background: rgba(13,148,136,0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-right: 4px solid var(--accent);">
+                <strong>✏️ تخطيط التحرير المطلوب:</strong>
+                <ul style="margin-top: 0.5rem; padding-right: 1.5rem;">
+                    <li><strong>مقدمة:</strong> تعريف التصنيع وإبراز أهميته في التنمية الاقتصادية التونسية.</li>
+                    <li><strong>الجوهر (مراحل أساسية):</strong>
+                        <ul>
+                            <li>المرحلة الأولى (1960-1972): التصنيع عبر القطاع العمومي وسياسة إحلال الواردات.</li>
+                            <li>المرحلة الثانية (1972-1990): الانفتاح على الاستثمار الخارجي وتطوير الصناعات التصديرية (قانون 1972).</li>
+                            <li>المرحلة الثالثة (1990-2011): الخوصصة، المناطق الحرّة، وتنويع القاعدة الصناعية.</li>
+                            <li>المرحلة الرابعة (2011-الآن): الصناعات التكنولوجية، الطاقات المتجددة، ودعم المؤسسات الناشئة.</li>
+                        </ul>
+                    </li>
+                    <li><strong>خاتمة:</strong> حصيلة المجهود الوطني وأهم التحديات الراهنة للقطاع الصناعي.</li>
+                </ul>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p class="Tests-Hub-text-model" style="font-weight: normal;">
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 مقدمة:</strong><br>
+                    يُقصد بـ <strong>التصنيع</strong> عملية تحويل المواد الأولية إلى منتجات مصنّعة باستخدام التكنولوجيا والطاقة، وهو ركيزة أساسية لتحقيق التنمية الاقتصادية والاجتماعية. ومنذ الاستقلال، أولت الدولة التونسية أهمية خاصة للقطاع الصناعي الذي أصبح يساهم بـ <strong>24% من الناتج المحلي الإجمالي</strong> ويُشغّل حوالي <strong>34% من اليد العاملة</strong> سنة 2023 (المصدر: INS، الحسابات الوطنية 2023). فكيف تطوّرت السياسة الصناعية التونسية وما هي أبرز مراحلها ونتائجها؟
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 الجوهر – المراحل الأساسية لجهود التصنيع:</strong><br><br>
+                    <strong>1. مرحلة التصنيع العمومي (1960-1972):</strong> تبنّت الدولة سياسة إحلال الواردات عبر إنشاء مؤسسات عمومية كبرى مثل <strong>المجمع الكيميائي التونسي</strong> (GCT) بقابس لتحويل الفوسفات، وشركة <strong>الفولاذ</strong> بمنزل بورقيبة، والشركة التونسية للكهرباء والغاز (STEG). كما تم إحداث <strong>أقطاب صناعية جهوية</strong> (صفاقس، سوسة، تونس الكبرى) بهدف تحقيق التوازن الجهوي. في هذه الفترة، بلغت الاستثمارات الصناعية حوالي 30% من إجمالي الاستثمار العمومي (المصدر: وزارة الاقتصاد، 1970).
+                    <br><br>
+                    <strong>2. الانفتاح على الصناعات التصديرية (1972-1990):</strong> شكّل <strong>قانون 27 أفريل 1972</strong> (عدد 72-38) المتعلق بالصناعات الموجهة للتصدير (نظام "الأوف شور") منعرجا حاسما، حيث سمح بإقامة مؤسسات أجنبية كليا للتصدير معفاة من الأداءات. وقد تضاعف عدد المؤسسات الصناعية المصدرة من حوالي 200 سنة 1975 إلى أكثر من <strong>1200 مؤسسة سنة 1990</strong> (المصدر: وكالة النهوض بالصناعة API، 1990). وبرزت صناعات النسيج والملابس (أكثر من 50% من الصادرات الصناعية آنذاك) والصناعات الميكانيكية والكهربائية.
+                    <br><br>
+                    <strong>3. الخوصصة والمناطق الحرة (1990-2011):</strong> مع برنامج الإصلاح الهيكلي، تمت <strong>خوصصة جزء من المؤسسات العمومية</strong> (مثل مصانع الإسمنت والصناعات الغذائية) وتحرير الأسعار. كما أنشئت <strong>مناطق حرة</strong> ببنزرت وجرجيس وزغوان (المصدر: وزارة الصناعة، 2010). وقد ارتفعت صادرات الصناعات الميكانيكية والكهربائية لتحتل المرتبة الأولى (28% من مجموع الصادرات سنة 2010). وبرزت الصناعات الدوائية وتكنولوجيا المعلومات.
+                    <br><br>
+                    <strong>4. التصنيع التكنولوجي والطاقات المتجددة (2011-2024):</strong> تركز الجهود حاليا على <strong>الصناعات الذكية</strong> (السيارات الكهربائية، مكونات الطائرات) من خلال القطب التكنولوجي بالفحص (المصدر: وزارة الصناعة، 2023). كما تم إطلاق مشاريع كبيرة في <strong>الطاقات المتجددة</strong> (هدف الوصول إلى 35% من إنتاج الكهرباء من مصادر متجددة سنة 2030). وبلغت قيمة الصادرات الصناعية سنة 2023 نحو <strong>38 مليار دينار</strong> (المصدر: INS، 2023)، بفضل تنوع الشركاء (الاتحاد الأوروبي 70%، إفريقيا 15%، آسيا 10%).
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 خاتمة:</strong><br>
+                    رغم هذه الإنجازات، يواجه التصنيع التونسي تحديات كبرى مثل <strong>الاعتماد على الخارج</strong> في المواد الأولية والتكنولوجيا، وضعف التكامل بين القطاعات، وتمركز الصناعات في الشريط الساحلي (الساحل والوطن القبلي) الذي يستأثر بـ 80% من الوظائف الصناعية (المصدر: المندوبية العامة للتنمية الجهوية، 2022). لذا يظل الرهان اليوم هو <strong>تعميق التصنيع</strong> نحو الداخل، وتطوير البحث والتجديد، وملاءمة التكوين المهني مع حاجيات الصناعات الجديدة.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل إضافي وإحصائيات مُوثّقة:</strong><br>
+                    - حسب <strong>تقرير البنك الدولي 2023</strong>، بلغت القيمة المضافة الصناعية 24% من الناتج المحلي، لكن مساهمة الصناعات التحويلية وحدها 16% فقط.<br>
+                    - <strong>المصدر: INS، 2023</strong>: مثّلت الصادرات الصناعية 85% من مجموع الصادرات التونسية، مما يؤكد انفتاح الاقتصاد.<br>
+                    - <strong>وزارة الصناعة (2024)</strong>: تم إحداث أكثر من 50 منطقة صناعية جديدة بين 2017 و2023، خاصة في القيروان وقفصة وسيدي بوزيد.<br>
+                    - <strong>معهد الإحصاء 2023</strong>: بلغ عدد العاملين في الصناعة 680 ألف شخص، 45% منهم في قطاع النسيج والملابس والميكانيك والكهرباء.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">معايير تنقيط التحرير (12 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    • <strong>منهجية التحرير (3ن):</strong> وجود مقدمة وعرض (مراحل) وخاتمة، وتماسك منطقي.<br>
+                    • <strong>المحتوى المعرفي (7ن):</strong> ذكر المراحل الأربع مع إجراءات محددة (القوانين، المؤسسات) وإحصائيات دالة.<br>
+                    • <strong>سلامة اللغة ودقة المصطلحات (2ن إضافية):</strong> خلو النص من الأخطاء الإملائية والنحوية، واستخدام مفردات جغرافية واقتصادية دقيقة.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "فرض مراقبة عدد 3 - جغرافيا - 9 أساسي",
+                        subtitle: "السنة الدراسية 2023-2024",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "Devoir de Contrôle N°3 - Géographie - 9ème",
+                        subtitle: "Année scolaire 2023-2024",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "Control Test N°3 - Geography - 9th Grade",
+                        subtitle: "School Year 2023-2024",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

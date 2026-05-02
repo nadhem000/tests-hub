@@ -1127,8 +1127,8 @@ const exercises = [
 },
 {
     id: 'ex-035',
-    section: 'الجبر',
-    sectionIcon: '➕➖',
+    section: 'المتراجحات',
+    sectionIcon: '📉',
     name: 'المتراجحات في ℝ',
     description: 'تمرين تفاعلي لحل متراجحات من الدرجة الأولى بمجهول واحد خطوة بخطوة. يتناول نقل الحدود والقسمة على معامل x مع مراعاة انعكاس الإشارة. 10 محاولات مع نقاط.',
     difficulty: 'easy',
@@ -1157,6 +1157,138 @@ const exercises = [
             description: 'Interactive exercise to solve first-degree inequalities step by step. Includes moving terms, dividing by the coefficient, and sign reversal. 10 attempts with points.'
         }
     }
+},
+{
+    id: 'ex-036',
+    section: 'الجبر',
+    sectionIcon: '➕➖',
+    name: 'العبارات الحرفية',
+    description: 'تمرين تفاعلي لتبسيط العبارات الحرفية (جمع وطرح الحدود المتشابهة) خطوة بخطوة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#7c3aed',
+    cardColorDark: '#a78bfa',
+    link: 'الجبر - العبارات الحرفية.html',
+    version: '1.0',
+    tags: ['جبر', 'عبارات حرفية', 'تبسيط', 'حدود متشابهة', 'خطوات'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-01',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['عبارة حرفية', 'تبسيط', 'حدود متشابهة', 'جمع', 'طرح', 'متغير a'],
+    thumbnail: '➕➖',
+    translations: {
+        fr: {
+            name: 'Expressions littérales',
+            description: 'Exercice interactif pour simplifier des expressions littérales pas à pas. 10 essais avec points.'
+        },
+        en: {
+            name: 'Literal Expressions',
+            description: 'Interactive exercise to simplify literal expressions step by step. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-037',
+    section: 'الجبر',
+    sectionIcon: '➕➖',
+    name: 'العبارات الحرفية 2',
+    description: 'تمرين تفاعلي لنشر واختزال العبارات الحرفية (نشر الأقواس ثم جمع الحدود المتشابهة) خطوة بخطوة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#7e22ce',
+    cardColorDark: '#a78bfa',
+    link: 'الجبر - العبارات الحرفية 2.html',
+    version: '1.0',
+    tags: ['جبر', 'عبارات حرفية', 'نشر', 'اختزال', 'أقواس', 'خطوات'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-01',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['نشر', 'اختزال', 'عبارة حرفية', 'أقواس', 'تبسيط', 'حدود متشابهة', 'متغير a'],
+    thumbnail: '➕➖',
+    translations: {
+        fr: {
+            name: 'Expressions littérales 2',
+            description: 'Exercice interactif pour développer et réduire des expressions littérales pas à pas. 10 essais avec points.'
+        },
+        en: {
+            name: 'Literal Expressions 2',
+            description: 'Interactive exercise to expand and simplify literal expressions step by step. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-038',
+    section: 'الجبر',
+    sectionIcon: '➕➖',
+    name: 'العبارات الحرفية 3',
+    description: 'تمرين تفاعلي لاختزال عبارة حرفية إلى جداء عوامل باستعمال القاسم المشترك الأكبر خطوة بخطوة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#7c3aed',
+    cardColorDark: '#a78bfa',
+    link: 'الجبر - العبارات الحرفية 3.html',
+    version: '1.0',
+    tags: ['جبر', 'عبارات حرفية', 'اختزال', 'جداء عوامل', 'قاسم مشترك', 'تبسيط'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-02',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['اختزال', 'جداء عوامل', 'عامل مشترك', 'قاسم مشترك أكبر', 'عبارة حرفية', 'جبر'],
+    thumbnail: '🧩',
+    translations: {
+        fr: {
+            name: 'Expressions littérales 3',
+            description: 'Exercice interactif pour factoriser une expression littérale en produit de facteurs en utilisant le PGCD, étape par étape. 10 essais avec points.'
+        },
+        en: {
+            name: 'Literal Expressions 3',
+            description: 'Interactive exercise to factor a linear expression into a product using the GCD, step by step. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-039',
+    section: 'الجبر',
+    sectionIcon: '🧩',
+    name: 'توحيد المقامات',
+    description: 'تمرين تفاعلي لتعلم توحيد مقامات عددين كسريين خطوة بخطوة حسب كل حالة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#0891b2',
+    cardColorDark: '#22d3ee',
+    link: 'الجبر - توحيد المقامات.html',
+    version: '2.0',
+    tags: ['جبر', 'كسور', 'توحيد المقامات', 'مضاعف مشترك', 'تبسيط', 'خطوات'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-02',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['توحيد المقامات', 'كسر', 'مضاعف مشترك أصغر', 'تبسيط', 'بسط', 'مقام', 'جبر'],
+    thumbnail: '🧩',
+    translations: {
+        fr: {
+            name: 'Unification des dénominateurs',
+            description: 'Exercice interactif pour apprendre à unifier les dénominateurs de deux fractions étape par étape selon chaque cas. 10 essais avec points.'
+        },
+        en: {
+            name: 'Unifying Denominators',
+            description: 'Interactive exercise to learn unifying denominators of two fractions step by step according to each case. 10 attempts with points.'
+        }
+    }
 }
 ];
 
@@ -1170,7 +1302,8 @@ const sectionTranslations = {
 		'Équations': 'المعادلات',
 		'رباعيات الأضلاع': 'رباعيات الأضلاع',
         'الأحجام': 'الأحجام',
-        'الجبر': 'الجبر'
+        'الجبر': 'الجبر',
+        'المتراجحات': 'المتراجحات'
 	},
 	fr: {
 		'الزوايا': 'Les angles',
@@ -1180,7 +1313,8 @@ const sectionTranslations = {
 		'Équations': 'Équations',
 		'رباعيات الأضلاع': 'Quadrilatères',
         'الأحجام': 'Volumes',
-        'الجبر': 'Algèbre'
+        'الجبر': 'Algèbre',
+        'المتراجحات': 'Inéquations'
 	},
 	en: {
 		'الزوايا': 'Angles',
@@ -1190,7 +1324,8 @@ const sectionTranslations = {
 		'Équations': 'Equations',
 		'رباعيات الأضلاع': 'Quadrilaterals',
         'الأحجام': 'Volumes',
-        'الجبر': 'Algebra'
+        'الجبر': 'Algebra',
+        'المتراجحات': 'Inequalities'
 	}
 };
 

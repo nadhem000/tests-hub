@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 2 - تربية مسرحية - 8 أساسي (2013)</title>
+
+    <meta name="theme-color" content="#6A1B4A">
+    <meta name="description" content="فرض تأليفي عدد 2 في التربية المسرحية - الثامنة أساسي - 2013 - الأستاذة هالة - المدرسة الإعدادية حي الزياتين بحفوز">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض مسرح 8 - 2013">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #6A1B4A;
+            --secondary: #9B3A6A;
+            --accent: #F0B030;
+            --accent2: #D4883C;
+            --light-bg: #FDF6FA;
+            --light-section: #FFFFFF;
+            --text-light: #1E0A18;
+            --text-light-secondary: #3D1A30;
+            --border-light: #D8C0D0;
+            --shadow-light: rgba(106, 27, 74, 0.06);
+            --header-light: linear-gradient(to left, #2D0A20, #6A1B4A, #9B3A6A);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #D8A0C0;
+            --secondary: #B878A0;
+            --accent: #F8D068;
+            --accent2: #E8A850;
+            --light-bg: #1A0A14;
+            --light-section: #2D1A24;
+            --text-light: #F8F0F4;
+            --text-light-secondary: #D0C0C8;
+            --border-light: #4A2A3A;
+            --shadow-light: rgba(0, 0, 0, 0.4);
+            --header-light: linear-gradient(to left, #05000A, #1A0A14, #2D1A24);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FDF6FA 0%, #F5EAF2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1A0A14 0%, #0D0008 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F8F0F4;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(248, 240, 244, 0.10);
+            color: #F8F0F4;
+            border: 1px solid rgba(248, 240, 244, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(248, 240, 244, 0.20);
+            border-color: rgba(248, 240, 244, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #FDF6FA;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1E0A18;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F5EAF2;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2D1A24;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F8F0F4;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #4A2A3A;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #F8F0F4;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #05000A, #1A0A14, #2D1A24);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #FDF6FA;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1A0A14;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1E0A18;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #B87828;
+            color: #F8F0F4;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #D8C0D0;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1E0A18;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(240, 176, 48, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #4A2A3A;
+            background: #1A0A14;
+            color: #F8F0F4;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(248, 208, 104, 0.16);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #D8C0D0;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #6A1B4A;
+            color: #F8F0F4;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #2D1A24;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #4A2A3A;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(106, 27, 74, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(248, 240, 244, 0.02);
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #D8C0D0;
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 90%;
+            background: #FFF;
+            color: #1E0A18;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #4A2A3A;
+            background: #1A0A14;
+            color: #F8F0F4;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #6A1B4A, #9B3A6A, var(--accent));
+            color: #1E0A18;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #FDF6FA 0%, #F5EAF2 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(240, 176, 48, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #2D1A24, #1A0A14);
+            border-color: rgba(248, 208, 104, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(253, 246, 250, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(26, 10, 20, 0.7);
+            border-right-color: #F8D068;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #6A1B4A;
+            background: rgba(240, 176, 48, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #F8D068;
+            background: rgba(248, 208, 104, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(106, 27, 74, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #3D1A30;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(248, 208, 104, 0.08);
+            color: #F8F0F4;
+            border-right-color: #E8A850;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #6A1B4A;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #D8A0C0;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1E0A18;
+            background: rgba(240, 176, 48, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F8F0F4;
+            background: rgba(248, 208, 104, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(106, 27, 74, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #3D1A30;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(155, 58, 106, 0.08);
+            color: #D0C0C8;
+            border-right-color: #B878A0;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(106, 27, 74, 0.05), rgba(240, 176, 48, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #6A1B4A, #9B3A6A);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #4A1B3A, #6A2B5A);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #E0A030, #F0B040);
+            color: #1E0A18;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #2D0A20, #6A1B4A, #9B3A6A);
+            color: #F8F0F4;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #05000A, #1A0A14, #2D1A24);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #F8D068;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F8D068;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #F8D068;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.dramaTest2.title">فرض تأليفي عدد 2 - تربية مسرحية - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.dramaTest2.subtitle">2013 | الأستاذة هالة | المدرسة الإعدادية حي الزياتين بحفوز</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.dramaTest2.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الاختبار التأليفي الثاني في التربية المسرحية</h1>
+            <p>المؤسسة: المدرسة الإعدادية حي الزياتين بحفوز | السنة الدراسية: 2013 | الأستاذة: هالة</p>
+            <p>المدة: ساعة واحدة | القسم: الثامنة أساسي</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة وإبداع.</li>
+                <li>جودة التحرير وسلامة اللغة والإبداع المسرحي تؤخذ بعين الاعتبار.</li>
+                <li>الأسئلة الكتابية: 6 نقاط | السؤال التأليفي: 14 نقطة | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>أ / الأسئلة الكتابية <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> <strong>عرف البعد الاجتماعي للشخصية المسرحية.</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:90px;" placeholder="اذكر تعريفاً دقيقاً للبعد الاجتماعي للشخصية المسرحية..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> <strong>أشطب الإجابة الخاطئة.</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p><strong>يشمل البعد النفسي للشخصية المسرحية:</strong></p>
+                <div style="margin:1rem 0; padding-right:1rem;">
+                    <label style="display:block; margin-bottom: 10px;">
+                        <input type="checkbox" class="wrong-option" value="1"> السلوك والدوافع الكامنة وراء التصرف السليم أو المنحرف.
+                    </label>
+                    <label style="display:block; margin-bottom: 10px;">
+                        <input type="checkbox" class="wrong-option" value="2"> المعايير الأخلاقية والميولات وأهداف الحياة.
+                    </label>
+                    <label style="display:block; margin-bottom: 10px;">
+                        <input type="checkbox" class="wrong-option" value="3"> مرتبة الشخصية وطبيعة جنسها.
+                    </label>
+                </div>
+                <p style="color:var(--secondary); font-size:0.9rem;">علّم على الخيار الخاطئ الذي لا ينتمي إلى البعد النفسي.</p>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3)</span> <strong>ما هو الفرق بين الشخص والشخصية المسرحية؟</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:100px;" placeholder="وضح الفرق الجوهري بين مفهوم الشخص في الواقع ومفهوم الشخصية المسرحية في العمل الدرامي..."></textarea>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>ب / السؤال التأليفي <span class="Tests-Hub-points-badge">14 نقطة</span></h2>
+
+            <div class="Tests-Hub-quote-block">
+                <p>استمتعت <strong>"بيضاء الثلج"</strong> مع ثلة من الشخصيات التي التقتها بالغابة بعد إخلاء الصياد سبيلها.</p>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong>أدر حواراً لا يخلو من الإضحاك والإمتاع بين هذه الشخصيات، واضعاً نهاية جديدة للحكاية.</strong> <span class="Tests-Hub-points-badge">14 نقطة</span></p>
+                <p style="margin-bottom:0.8rem; color:var(--secondary);">يمكنك الاستعانة بشخصيات الحكاية الأصلية (الأقزام السبعة، الحيوانات، الصياد...) أو ابتكار شخصيات جديدة تلتقيها بيضاء الثلج في الغابة. يجب أن يتضمن الحوار مواقف مضحكة ونهاية مبتكرة.</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:300px;" placeholder="اكتب حواراً مسرحياً متكاملاً: حدد الشخصيات المشاركة، صف المكان بإيجاز، اكتب الحوارات مع الإرشادات المسرحية بين قوسين، واختم بنهاية جديدة طريفة..."></textarea>
+            </div>
+            <p style="font-size:0.85rem; margin-top:1rem; color:var(--secondary);"><em>تنقيط إضافي: الإبداع وجودة الحوار الكوميدي وأصالة النهاية (2ن)</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل مسرحي معمّق</h2>
+
+            <h3 style="color:var(--accent);">أ / تصحيح الأسئلة الكتابية (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ تعريف البعد الاجتماعي للشخصية المسرحية:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>البعد الاجتماعي للشخصية المسرحية</strong> هو مجموع <strong>العلاقات والروابط</strong> التي تُحدد موقع الشخصية داخل المجتمع الذي تنتمي إليه في العمل المسرحي. ويشمل: <strong>الطبقة الاجتماعية</strong> (فقيرة، غنية، متوسطة)، <strong>المهنة أو الحرفة</strong> التي تمارسها، <strong>المكانة الاجتماعية</strong> (محترمة، منبوذة، ذات نفوذ)، <strong>العلاقات الأسرية</strong> (أب، أم، ابن، يتيم)، و<strong>الانتماء إلى الجماعة</strong> (قبلية، حزبية، دينية). يُؤثّر هذا البعد في <strong>سلوك الشخصية ومواقفها وقراراتها</strong>، وهو الذي يُحدد كيفية تفاعلها مع الشخصيات الأخرى ومع الأحداث في سياق المسرحية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل مسرحي معمّق:</strong> يختلف البعد الاجتماعي عن <strong>البعد النفسي</strong> (الذي يتعلق بالمشاعر والدوافع الداخلية) وعن <strong>البعد الجسدي</strong> (الذي يتعلق بالهيئة والحركة). فشخصية مثل "البخيل" في مسرحية موليير تتحدد اجتماعياً بكونها <strong>غنية وبخيلة</strong>، مما يُحدد علاقاتها المتوترة مع أبنائها وخدمها. وقد طوّر المسرحي الألماني <strong>برتولت بريشت</strong> (Bertolt Brecht) مفهوم <strong>"الجستوس الاجتماعي" (Gestus Social)</strong> الذي يُلخّص العلاقات الاجتماعية في الإيماءة المسرحية الواحدة. إن تحديد البعد الاجتماعي للشخصية يسمح للممثل بفهم <strong>كيف يتكلم ولماذا يتصرف بهذه الطريقة</strong>، لأن كلامنا وسلوكنا مرتبطان أشد الارتباط بموقعنا الاجتماعي.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ الإجابة الخاطئة – البعد النفسي:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الإجابة الخاطئة التي يجب شطبها هي:</strong><br>
+                    <strong style="text-decoration: line-through;">❌ "مرتبة الشخصية وطبيعة جنسها."</strong><br><br>
+                    <strong>الخيارات الصحيحة التي تندرج ضمن البعد النفسي هي:</strong><br>
+                    ✔ السلوك والدوافع الكامنة وراء التصرف السليم أو المنحرف.<br>
+                    ✔ المعايير الأخلاقية والميولات وأهداف الحياة.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق:</strong> <strong>مرتبة الشخصية وطبيعة جنسها</strong> (أي كونها أنثى أو ذكراً، كبيرة أم صغيرة في العمر) تندرج ضمن <strong>البعد الاجتماعي أو البيولوجي</strong> للشخصية، وليس ضمن البعد النفسي. أما <strong>البعد النفسي</strong> فيرتبط حصراً بـ <strong>العالم الداخلي</strong> للشخصية: ما الذي تُفكّر فيه؟ ما الذي تخاف منه؟ ما الذي ترغب فيه؟ ما هي صراعاتها الداخلية؟ وقد طوّر <strong>قسطنطين ستانيسلافسكي</strong> (Konstantin Stanislavski) منهجاً كاملاً لتحليل البعد النفسي للشخصية يقوم على تحديد <strong>"الهدف الأعلى" (Super-objective)</strong> الذي يُحرّك كل تصرفاتها طوال المسرحية. فمثلاً، الهدف الأعلى لشخصية <strong>هاملت</strong> هو "الانتقام من عمه"، وهذا الهدف النفسي هو الذي يُفسر كل أفعاله وتردده وشكوكه.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3/ الفرق بين الشخص والشخصية المسرحية:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الشخص (Person)</strong> هو <strong>إنسان حقيقي</strong> من لحم ودم، يعيش في العالم الواقعي، له حياة كاملة غير قابلة للتحكم فيها من طرف كاتب أو مخرج. أما <strong>الشخصية المسرحية (Dramatic Character)</strong> فهي <strong>كيان فني خيالي</strong> يبتكره الكاتب المسرحي لخدمة العمل الدرامي، ويُؤدي دورها الممثل على الخشبة. الفروق الجوهرية:<br>
+                    • الشخص <strong>حقيقي ومعقّد بالكامل</strong>؛ الشخصية المسرحية <strong>مُختزلة ومُنتقاة</strong> (لا نعرف عنها إلا ما يُقدّمه النص).<br>
+                    • الشخص <strong>يعيش حياة مفتوحة غير محدودة الزمن</strong>؛ الشخصية المسرحية <strong>محصورة في زمن المسرحية ومكانها</strong>.<br>
+                    • الشخص <strong>حرّ الإرادة</strong> (نسبياً)؛ الشخصية المسرحية <strong>مُسيّرة بحتمية النص</strong> وبالهدف الدرامي.<br>
+                    • الشخص يُمكن أن يكون <strong>مملاً أو عادياً</strong>؛ الشخصية المسرحية ينبغي أن تكون <strong>مثيرة للاهتمام درامياً</strong>، حتى في مللها.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل فلسفي:</strong> يُعبّر الفيلسوف <strong>دوني ديدرو</strong> (Denis Diderot) في كتابه <strong>"مفارقة الممثل" (Le Paradoxe du comédien)</strong> عن هذه الفكرة بقوله إن الممثل العظيم لا يعيش عواطف الشخصية الحقيقية، بل يُقلّدها عن وعي كامل. فالشخصية المسرحية ليست شخصاً حقيقياً، بل <strong>"نموذجاً مثالياً"</strong> للإنسانية يبنيها الممثل بذكائه. وهذا ما يُمكّننا من تصديق أن الممثل نفسه يُمكن أن يلعب دور <strong>هاملت</strong> اليوم و<strong>البخيل</strong> غداً، لأنه لا يصبح الشخصيات حقيقة بل يُؤديها. أما في الحياة الواقعية، فلا يمكن للشخص أن يغيّر شخصيته كما يُغيّر الممثل دوره.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">ب / تصحيح السؤال التأليفي (14 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>نموذج للحوار المطلوب – "بيضاء الثلج والأقزام يلتقون بحطّاب مُفلس":</strong> <span class="Tests-Hub-points-badge">14 نقطة</span></p>
+                <p class="Tests-Hub-text-model" style="font-weight: normal;">
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">🎭 المشهد: "الكنز الذي لم يكن"</strong><br><br>
+                    <strong>الشخصيات:</strong><br>
+                    • <strong>بيضاء الثلج:</strong> لطيفة، ساذجة بعض الشيء.<br>
+                    • <strong>القزم غضبان:</strong> شديد التشاؤم، يرتدي نظارة سوداء حتى في الغابة.<br>
+                    • <strong>القزم أستاذ:</strong> يدّعي العلم بكل شيء، يحمل كتاباً ضخماً.<br>
+                    • <strong>الحطّاب المفلس:</strong> رجل بائس، فقد فأسه، يلبس ملابس ممزقة.<br><br>
+                    <strong>المكان:</strong> غابة كثيفة، شجرة كبيرة، جذع شجرة مقطوعة يجلس عليه الحطاب.<br><br>
+                    <strong>الحوار:</strong><br>
+                    <em>(تدخل بيضاء الثلج برفقة غضبان وأستاذ. الحطاب جالس على الجذع يبكي.)</em><br><br>
+                    <strong>بيضاء الثلج:</strong> (بشفقة) أيها الرجل الطيب، لماذا تبكي وحدك في هذه الغابة المخيفة؟<br><br>
+                    <strong>الحطاب:</strong> (ينظر إليها بعيون دامعة) لقد أرسلتني زوجتي لأبيع البقرة في السوق، فاشتريتُ بدلاً منها... هذا! (يُخرج من جيبه حبة فول يابسة)<br><br>
+                    <strong>غضبان:</strong> (يضحك بسخرية) صفقة رابحة! على الأقل لن تحتاج إلى حلبها كل صباح.<br><br>
+                    <strong>أستاذ:</strong> (يفتح كتابه الضخم) دعني أفحص هذه الحبة... (يُحدّق فيها بعدسته المكبرة) حسب موسوعتي، هذه ليست حبة فول عادية! إنها من فصيلة "الفول السحري النادر" الذي لم يعد موجوداً إلا في كتب الأساطير!<br><br>
+                    <strong>بيضاء الثلج:</strong> (بفضول) حقاً؟ وماذا تفعل هذه الحبة؟<br><br>
+                    <strong>أستاذ:</strong> (يواصل التقليب في كتابه) تقول الأسطورة إن من يزرعها ستنبت له شجرة تصل إلى السماء، وفي أعلاها... كنز لا يُقدّر بثمن!<br><br>
+                    <strong>غضبان:</strong> (بتهكم) بالطبع! وأنا أملك جزيرة في المريخ. هذه مجرد حبة فول يا أستاذ!<br><br>
+                    <strong>الحطاب:</strong> (بحماس مفاجئ) كنز؟! سأزرعها فوراً! (يحفر حفرة في الأرض بيديه ويزرع الحبة)<br><br>
+                    <strong>بيضاء الثلج:</strong> ربما يجب أن نرويها بالماء أولاً.<br><br>
+                    <strong>غضبان:</strong> (يُخرج قارورة ماء من حقيبته) تفضّلي. لكني أحذّرك، لو نبتت شجرة من ذهب، سأطالب بنسبة 30% من الأرباح.<br><br>
+                    <em>(الجميع يُحدّق في الحفرة. صمت طويل. لا شيء يحدث.)</em><br><br>
+                    <strong>الحطاب:</strong> (بعد دقيقة من الانتظار) كم من الوقت تحتاج شجرة الكنز لتنبت؟<br><br>
+                    <strong>أستاذ:</strong> (محرجاً) الموسوعة لم تذكر هذه التفصيلة بالضبط... ربما... مئة سنة؟<br><br>
+                    <strong>غضبان:</strong> (يضحك بصوت عالٍ) مئة سنة! سيكون حفيد حفيدك هو من يصعد إلى السماء!<br><br>
+                    <strong>بيضاء الثلج:</strong> (تُفكّر ثم تبتسم) لحظة! لدي فكرة. بدل أن ننتظر الشجرة، لماذا لا نقول لزوجتك إن البقرة تحولت إلى حبة سحرية، ثم نصنع لها حساء فول لذيذاً ونُقنعها بأنه "حساء الكنز"؟<br><br>
+                    <strong>الحطاب:</strong> (مندهشاً) حساء الكنز؟!<br><br>
+                    <strong>بيضاء الثلج:</strong> نعم! سأُحضّر الوصفة بنفسي. وفي المساء، تخبر زوجتك أنك عدتَ بثروة خيالية... من النكهة!<br><br>
+                    <strong>غضبان:</strong> (يضحك رغماً عنه) هذه أول فكرة ذكية أسمعها اليوم!<br><br>
+                    <strong>أستاذ:</strong> (يُغلق كتابه باستسلام) حسناً، الطعام حلّ لكثير من المشاكل. وهذا مُثبت علمياً!<br><br>
+                    <strong>الحطاب:</strong> (ينهض مفعماً بالأمل) فلنذهب! سأقول لزوجتي: "يا امرأة، بِعْتُ البقرة واشتريتُ سعادة المعدة!"<br><br>
+                    <strong>بيضاء الثلج:</strong> (تضحك) وهذا يا صديقي أثمن كنز على الإطلاق!<br><br>
+                    <strong>غضبان:</strong> (للجمهور) والآن، من منكم يرغب في تجربة "حساء الكنز"؟ (يُحدّق في الصف الأمامي) أنتم تبدون جائعين!<br><br>
+                    <em>(يضحك الجميع. الستار.)</em>
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل العناصر المسرحية والكوميدية:</strong><br>
+                    <strong>1. احترام خيط الحكاية الأصلية مع تحريف كوميدي:</strong> الحطاب الذي باع البقرة بحبة فول هو إحالة ساخرة إلى حكاية "جاك ونبتة الفاصولياء" (Jack and the Beanstalk)، مما يُضفي بُعداً تناصياً (Intertextual) ذكياً. أما بيضاء الثلج فتُحافظ على شخصيتها الطيبة والمبتكرة.<br>
+                    <strong>2. كوميديا الشخصيات المتناقضة:</strong> تفاؤل بيضاء الثلج الساذج يقابل تشاؤم غضبان الساخر، وادعاء أستاذ العلم يُقابل جهله العملي. هذا التضاد يُولّد مواقف مضحكة بشكل طبيعي (Comic Contrast).<br>
+                    <strong>3. النهاية الجديدة للحكاية:</strong> بدل النهاية التقليدية (الأمير، الزفاف)، اختار المشهد نهاية <strong>واقعية ساخرة</strong> حيث "الكنز" الحقيقي هو <strong>الطعام المُشبع</strong> وليس الذهب. هذه نهاية تحمل <strong>قيمة أخلاقية</strong> دون وعظ مباشر.<br>
+                    <strong>4. كسر الجدار الرابع:</strong> في آخر المشهد، يُخاطب غضبان الجمهور مباشرة، مما يُضفي جواً من <strong>المشاركة والألفة</strong>، وهي تقنية مسرحية عريقة تعود إلى الكوميديا الارتجالية (Commedia dell'arte).<br><br>
+                    <strong>✔ معايير التنقيط:</strong> جودة الحوار وطرافته وإضحاكه (5ن)، وضوح الشخصيات وتمايزها (3ن)، أصالة النهاية الجديدة (4ن)، سلامة اللغة والصياغة المسرحية (2ن إضافية).
+                </div>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    dramaTest2: {
+                        title: "فرض تأليفي عدد 2 - تربية مسرحية - 8 أساسي",
+                        subtitle: "2013 | الأستاذة هالة | المدرسة الإعدادية حي الزياتين بحفوز",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    dramaTest2: {
+                        title: "Devoir de Synthèse N°2 - Théâtre - 8ème",
+                        subtitle: "2013 | Mme Hala | École Préparatoire Hay Zitouna – Hafouz",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    dramaTest2: {
+                        title: "Synthesis Test N°2 - Drama Education - 8th Grade",
+                        subtitle: "2013 | Ms. Hala | Hay Zitouna Preparatory School – Hafouz",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.dramaTest2.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.dramaTest2.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.dramaTest2?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>
