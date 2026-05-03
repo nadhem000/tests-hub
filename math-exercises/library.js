@@ -1289,6 +1289,39 @@ const exercises = [
             description: 'Interactive exercise to learn unifying denominators of two fractions step by step according to each case. 10 attempts with points.'
         }
     }
+},
+{
+    id: 'ex-040',
+    section: 'الجبر',
+    sectionIcon: '🧩',
+    name: 'المضاعف المشترك الأصغر',
+    description: 'تمرين تفاعلي لإيجاد المضاعف المشترك الأصغر لعددين بطريقتين: كتابة المضاعفات والتفكيك إلى عوامل أولية، خطوة بخطوة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#0891b2',
+    cardColorDark: '#22d3ee',
+    link: 'الجبر - المضاعف المشترك الأصغر.html',
+    version: '1.0',
+    tags: ['جبر', 'المضاعف المشترك الأصغر', 'مضاعفات', 'عوامل أولية', 'LCM', 'قاسم مشترك أكبر'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-03',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['المضاعف المشترك الأصغر', 'LCM', 'مضاعفات', 'تفكيك', 'عوامل أولية', 'قاسم مشترك أكبر', 'سابعة أساسي'],
+    thumbnail: '🔢',
+    translations: {
+        fr: {
+            name: 'Plus Petit Commun Multiple (PPCM)',
+            description: 'Exercice interactif pour trouver le PPCM de deux nombres par deux méthodes : multiples et facteurs premiers, étape par étape. 10 essais avec points.'
+        },
+        en: {
+            name: 'Least Common Multiple (LCM)',
+            description: 'Interactive exercise to find the LCM of two numbers using two methods: multiples and prime factorization, step by step. 10 attempts with points.'
+        }
+    }
 }
 ];
 
