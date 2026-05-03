@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 1 - تربية مسرحية - 7 أساسي (2015-2016)</title>
+
+    <meta name="theme-color" content="#4A1A5C">
+    <meta name="description" content="فرض تأليفي عدد 1 في التربية المسرحية - السابعة أساسي - 2015-2016 - الأستاذة سميرة المحمودي - المدرسة الإعدادية جندوبة الجنوبية">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض مسرح 7 - 2016">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #4A1A5C;
+            --secondary: #7A3A8C;
+            --accent: #E8A840;
+            --accent2: #D07830;
+            --light-bg: #F8F4FA;
+            --light-section: #FFFFFF;
+            --text-light: #1A0A2A;
+            --text-light-secondary: #3A1A4A;
+            --border-light: #D0C0E0;
+            --shadow-light: rgba(74, 26, 92, 0.06);
+            --header-light: linear-gradient(to left, #2A0A3A, #4A1A5C, #7A3A8C);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #C0A0D8;
+            --secondary: #A080C0;
+            --accent: #F8D068;
+            --accent2: #E8A850;
+            --light-bg: #1A0A2A;
+            --light-section: #2A1A3A;
+            --text-light: #F8F0F8;
+            --text-light-secondary: #D0C0D8;
+            --border-light: #4A2A6A;
+            --shadow-light: rgba(0, 0, 0, 0.4);
+            --header-light: linear-gradient(to left, #05000A, #1A0A2A, #2A1A3A);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F8F4FA 0%, #F0E8F4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1A0A2A 0%, #0D000A 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F8F0F8;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(248, 240, 248, 0.10);
+            color: #F8F0F8;
+            border: 1px solid rgba(248, 240, 248, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(248, 240, 248, 0.20);
+            border-color: rgba(248, 240, 248, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F8F4FA;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1A0A2A;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F0E8F4;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2A1A3A;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F8F0F8;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #4A2A6A;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #F8F0F8;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #05000A, #1A0A2A, #2A1A3A);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F8F4FA;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #1A0A2A;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1A0A2A;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #B87828;
+            color: #F8F0F8;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #D0C0E0;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1A0A2A;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 168, 64, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #4A2A6A;
+            background: #1A0A2A;
+            color: #F8F0F8;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(248, 208, 104, 0.16);
+        }
+
+        .Tests-Hub-table-input {
+            padding: 0.5rem;
+            border: 1px solid #D0C0E0;
+            border-radius: 6px;
+            font-family: inherit;
+            background: #FFF;
+            color: #1A0A2A;
+            transition: all 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #4A2A6A;
+            background: #1A0A2A;
+            color: #F8F0F8;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #4A1A5C, #7A3A8C, var(--accent));
+            color: #1A0A2A;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F8F4FA 0%, #F0E8F4 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(232, 168, 64, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #2A1A3A, #1A0A2A);
+            border-color: rgba(248, 208, 104, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(248, 244, 250, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(26, 10, 42, 0.7);
+            border-right-color: #F8D068;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #4A1A5C;
+            background: rgba(232, 168, 64, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #F8D068;
+            background: rgba(248, 208, 104, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(74, 26, 92, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #3A1A4A;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(248, 208, 104, 0.08);
+            color: #F8F0F8;
+            border-right-color: #E8A850;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #4A1A5C;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #C0A0D8;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1A0A2A;
+            background: rgba(232, 168, 64, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F8F0F8;
+            background: rgba(248, 208, 104, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(74, 26, 92, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #3A1A4A;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(122, 58, 140, 0.08);
+            color: #D0C0D8;
+            border-right-color: #A080C0;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(74, 26, 92, 0.05), rgba(232, 168, 64, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #4A1A5C, #7A3A8C);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #3A1A4A, #5A2A6A);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #D88830, #E8A040);
+            color: #1A0A2A;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #2A0A3A, #4A1A5C, #7A3A8C);
+            color: #F8F0F8;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #05000A, #1A0A2A, #2A1A3A);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #F8D068;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F8D068;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #F8D068;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.dramaTestTrim1Test2.title">فرض تأليفي عدد 1 - تربية مسرحية - 7 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.dramaTestTrim1Test2.subtitle">2015-2016 | الأستاذة سميرة المحمودي | المدرسة الإعدادية جندوبة الجنوبية</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.dramaTestTrim1Test2.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض تأليفي عدد 1 في التربية المسرحية</h1>
+            <p>المؤسسة: المدرسة الإعدادية جندوبة الجنوبية | السنة الدراسية: 2015-2016 | الأستاذة: سميرة عبد الرزاق المحمودي</p>
+            <p>المدة: ساعة واحدة | القسم: السابعة أساسي</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة وإبداع.</li>
+                <li>جودة التحرير وسلامة اللغة والإبداع المسرحي تؤخذ بعين الاعتبار.</li>
+                <li>الأسئلة الموضوعية: 6 نقاط | الإنتاج الكتابي: 14 نقطة | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>أ / الأسئلة الموضوعية <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> <strong>حدد مهام العناصر التالية:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <div style="margin:1rem 0;">
+                    <label style="display:block; margin-bottom:0.8rem;"><strong>الممثل:</strong> <input type="text" class="Tests-Hub-table-input" style="width:80%;" placeholder="مهام الممثل..."></label>
+                    <label style="display:block; margin-bottom:0.8rem;"><strong>الكاتب:</strong> <input type="text" class="Tests-Hub-table-input" style="width:80%;" placeholder="مهام الكاتب..."></label>
+                    <label style="display:block;"><strong>المخرج:</strong> <input type="text" class="Tests-Hub-table-input" style="width:80%;" placeholder="مهام المخرج..."></label>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> <strong>عرف المصطلحات التالية:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <label style="display:block; margin:1rem 0;"><strong>المسرحية التراجيدية:</strong> <textarea class="Tests-Hub-large-textarea" style="min-height:80px;" placeholder="تعريف المسرحية التراجيدية..."></textarea></label>
+                <label style="display:block; margin:1rem 0;"><strong>المسرحية الكوميدية:</strong> <textarea class="Tests-Hub-large-textarea" style="min-height:80px;" placeholder="تعريف المسرحية الكوميدية..."></textarea></label>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>ب / الإنتاج الكتابي <span class="Tests-Hub-points-badge">14 نقطة</span></h2>
+
+            <div class="Tests-Hub-quote-block">
+                <p>ذات ليلة استشاطت فيها العواصف غضبا، عانق جفونك النعاس باكرا فرأيت في منامك أنك تتجول في المدينة البللورية ... وظف خيالك الخلاق في نسج أطوار هذه الرحلة العجيبة مستندا إلى العبارات التالية: (مخلوقات عجيبة - مغامرة ممتعة - الحصان الطائر - الريشة السحرية - المارد الطيب - الجبال الراقصة - الأماني المستحيلة تتحقق في سرعة البرق - مفتاح الخلاص)</p>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <textarea class="Tests-Hub-large-textarea" style="min-height:340px;" placeholder="اكتب قصة حلم متكاملة مستخدماً جميع العبارات المطلوبة..."></textarea>
+            </div>
+            <p style="font-size:0.85rem; margin-top:1rem; color:var(--secondary);"><em>تنقيط إضافي: الإبداع، تسلسل الأحداث، وتوظيف جميع العبارات (2ن)</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل مسرحي معمّق</h2>
+
+            <h3 style="color:var(--accent);">أ / تصحيح الأسئلة الموضوعية (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ مهام العناصر:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>الممثل:</strong> يجسّد الشخصية، ينطق الحوار، يؤدي الحركات والتعبيرات الجسدية، وينقل المشاعر للجمهور.<br>
+                    • <strong>الكاتب:</strong> يبتكر النص المسرحي (الحوار، الحبكة، الشخصيات)، ويحدد بناء المشاهد وتطور الأحداث.<br>
+                    • <strong>المخرج:</strong> القائد الفني للعرض؛ يفسر النص، يوزع الأدوار، يدير البروفات، وينسق بين السينوغرافيا والممثلين لخلق رؤية موحدة.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 نظرة أعمق:</strong> المخرج هو "المؤلف الثاني" بحسب <strong>جورج ميلييس</strong>، فهو يترجم المكتوب إلى لغة خشبة. الكاتب يبني العالم الافتراضي بينما الممثل يمنحه الروح. وقد صاغ <strong>برتولت بريخت</strong> علاقة جديدة حيث صار الممثل واعياً بدوره ولا يذوب كلياً في الشخصية.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ تعريف المصطلحات:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>المسرحية التراجيدية:</strong> مسرحية جادة تتناول صراعاً مصيرياً، تنتهي غالباً بكارثة أو موت البطل، وتهدف إلى إثارة الخوف والشفقة والتطهير (Catharsis). مثال: "أوديب ملكاً" لسوفوكليس.<br>
+                    • <strong>المسرحية الكوميدية:</strong> مسرحية تهدف إلى الإضحاك والتسلية، تعتمد على المواقف المضحكة، سوء الفهم، السخرية الاجتماعية، وتنتهي عادة بنهاية سعيدة. مثال: "الضفدع" لأريستوفانيس أو "طرطوف" لموليير.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 التمايز المسرحي:</strong> التراجيديا تُعلي من قيمة البطل الفرد الذي يسقط بسبب خطأ تراجيدي (Hamartia)، بينما الكوميديا تعتمد على الانحرافات الاجتماعية التي تُصلح في النهاية. وقد مزج شكسبير بينهما في مسرحياته كما في "تاجر البندقية". في المسرح التعليمي، تُستخدم الكوميديا لغرس القيم الأخلاقية.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">ب / تصحيح الإنتاج الكتابي – قصة الحلم العجيبة (14 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+    <p><strong>📋 التخطيط القصصي (عناصر الحكاية)</strong></p>
+    <div class="correction-explanation" style="margin-bottom:1.2rem;">
+        <strong>الإطار المكاني والزماني:</strong> ليلة عاصفة، الحلم، المدينة البلورية.  
+        <strong>الشخصيات:</strong> الحالم، المخلوقات العجيبة، الحصان الطائر، المارد الطيب، الملكة البلورية.  
+        <strong>وضع البداية:</strong> النوم العميق والانتقال المفاجئ إلى عالم البلور.  
+        <strong>سياق التحول:</strong> لقاء المخلوقات والحصان، الحصول على الريشة السحرية من المارد، خوض مغامرة تحقيق الأمنيات، السعي وراء مفتاح الخلاص لإنقاذ المدينة.  
+        <strong>وضع الختام:</strong> تحقيق المستحيل بالريشة، فتح بوابة النور، الفرحة العارمة، الاستيقاظ بابتسامة.
+    </div>
+                <p><strong>نموذج القصة (توظف جميع العبارات):</strong> <span class="Tests-Hub-points-badge">14 نقطة</span></p>
+               <p class="Tests-Hub-text-model" style="font-weight: normal; line-height: 2.2;">
+        في ليلة عاصفة هجرني النوم طويلاً، وحين غلبني النعاس راودني حلمٌ غريبٌ: وجدت نفسي واقفاً في وسط <strong>المدينة البلورية</strong> العجيبة، حيث كل شيء مصنوع من الزجاج الملوّن والأرض من حجر اللؤلؤ.  
+        فجأةً ظهرت أمامي <strong>مخلوقات عجيبة</strong> لها أجنحة فراشات شفافة ووجوه بريئة كوجوه الأطفال، قادتني عبر ممرٍّ مضيء إلى <strong>الحصان الطائر</strong> الذي كان يرفرف بجناحيه في سماء المدينة.  
+        صعدت على ظهره وبدأت رحلتنا المدهشة، فهبطنا عند <strong>الجبال الراقصة</strong> التي كانت تتمايل كأمواج البحر على أنغام غير مسموعة.  
+        هناك التقيت <strong>المارد الطيب</strong> الخارج من مصباح ضخم، وقدّم لي <strong>الريشة السحرية</strong> قائلاً: "كل ما تخطّه بهذه الريشة يصبح حقيقةً في الحال".  
+        بدأت <strong>مغامرة ممتعة</strong> لا تُنسى؛ تمنيت قصراً فظهر، تمنيت أن أصبح طائراً فحلّقت عالياً.  
+        ثم أخبرني المارد أن المدينة مهدّدة بظلام دامس، وأن <strong>مفتاح الخلاص</strong> موجود عند الملكة البلورية.  
+        طِرت بالحصان إلى قصر الملكة، وهناك كتبت بالريشة كلمة "النور"، فإذا <strong>الأماني المستحيلة تتحقق في سرعة البرق</strong>، وانطلق شعاعٌ عظيم بدّد الظلام.  
+        تسلّمت المفتاح من الملكة وفتحت به بوابة النور، فعادت الحياة إلى كل ركن في المدينة البلورية، ورقصت المخلوقات فرحاً.  
+        حين استيقظت من نومي، كانت ابتسامة عريضة تعلو وجهي، وكأن النور الذي حرّرته في الحلم أنار قلبي حقاً.
+    </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل سردي ومسرحي:</strong><br>
+                    • توظيف العبارات: كل عنصر يمثل محطة في البنية الثلاثية (الانطلاق، التحول، العودة).<br>
+                    • عناصر الخرافة: المارد، الريشة، الحصان الطائر تخلق جوّ "ألف ليلة وليلة".<br>
+                    • القوس الدرامي: البطل يمر من الواقع إلى عالم الحلم، يواجه تحدياً (الظلام)، يكتشف وسيلة سحرية (الريشة)، يحقق الهدف وينقذ المدينة.<br>
+                    يصلح هذا النص مباشرة لتحويله إلى عرض مسرحي للأطفال باستخدام الدمى والإسقاطات الضوئية.
+                </div>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    dramaTestTrim1Test2: {
+                        title: "فرض تأليفي عدد 1 - تربية مسرحية - 7 أساسي",
+                        subtitle: "2015-2016 | الأستاذة سميرة المحمودي | المدرسة الإعدادية جندوبة الجنوبية",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    dramaTestTrim1Test2: {
+                        title: "Devoir de Synthèse N°1 - Théâtre - 7ème",
+                        subtitle: "2015-2016 | Mme Samira Mahmoudi | Collège Jendouba Sud",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    dramaTestTrim1Test2: {
+                        title: "Synthesis Test N°1 - Drama Education - 7th Grade",
+                        subtitle: "2015-2016 | Ms. Samira Mahmoudi | Jendouba South Preparatory School",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.dramaTestTrim1Test2.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.dramaTestTrim1Test2.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.dramaTestTrim1Test2?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>
