@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tests Hub - Devoir de Synthèse N°3 - Mathématiques</title>
+
+    <meta name="theme-color" content="#7C3AED">
+    <meta name="description" content="Devoir de Synthèse N°3 pour 1ère AS - Mathématiques (Sfax 1998-1999)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Synthèse">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #7C3AED;
+            --primary-light: #8B5CF6;
+            --accent: #EC4899;
+            --accent-light: #F472B6;
+            --bg-light-start: #F5F3FF;
+            --bg-light-end: #EDE9FE;
+            --section-bg: #FFFFFF;
+            --text-primary: #1E1B4B;
+            --text-secondary: #374151;
+            --border-light: #C4B5FD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1E1B4B;
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0F0A1A 0%, #1E1B4B 100%);
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #7C3AED, #8B5CF6, #EC4899);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0F0A1A, #7C3AED, #EC4899);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1E293B;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F5F3FF;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1E1B4B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #374151;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #7C3AED, #8B5CF6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0F0A1A, #7C3AED);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1E1B4B;
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #7C3AED;
+            border-bottom: 2px solid #EC4899;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease, border-color 0.3s;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #F472B6;
+            border-bottom-color: #EC4899;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #8B5CF6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #EC4899;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F5F3FF;
+            padding: 1rem;
+            border-left: 4px solid #EC4899;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0F0A1A;
+            border-left-color: #EC4899;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        th,
+        td {
+            border: 1px solid #C4B5FD;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        th {
+            background: #7C3AED;
+            color: white;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-dark-theme th {
+            background: #0F0A1A;
+        }
+
+        tr:nth-child(even) {
+            background: #F8FAFC;
+        }
+
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #334155;
+        }
+
+        .Tests-Hub-dark-theme td {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-answer-textarea,
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-input,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #475569;
+            background-color: #1E1B4B;
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #7C3AED;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #F472B6;
+        }
+
+        .Tests-Hub-canvas-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #F8FAFC;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-canvas-container {
+            background: #334155;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #C4B5FD;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme canvas {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #64748B;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #94A3B8;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #7C3AED, #8B5CF6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #7C3AED, #7C3AED);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #F5F3FF;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #EC4899;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0F0A1A;
+            border-left-color: #EC4899;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #7C3AED;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #F472B6;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(124, 58, 237, 0.04);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #EC4899;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(236, 72, 153, 0.08);
+        }
+
+        .Tests-Hub-math-formula {
+            background: #F8FAFC;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-math-formula {
+            background: #1E1B4B;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(124, 58, 237, 0.06), rgba(236, 72, 153, 0.08));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(15, 10, 26, 0.4), rgba(236, 72, 153, 0.15));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #EC4899, #F472B6);
+            color: #1E1B4B;
+        }
+
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #7C3AED, #8B5CF6, #EC4899);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0F0A1A, #7C3AED, #EC4899);
+        }
+
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-column h3 {
+            color: #F472B6;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #F472B6;
+        }
+
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F472B6;
+        }
+
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+
+        .Tests-Hub-footer-link {
+            color: #F472B6;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .Tests-Hub-download-button {
+                width: 80%;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.test.title">Mathématiques - Devoir de Synthèse N°3</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.test.subtitle">1ère Année Secondaire (Sfax 1998-1999)</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button"><span>←</span><span data-i18n="TestsHub.test.back">Retour aux Tests</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.lang.current">Français</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">Mode Sombre</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>Devoir de Synthèse N°3 de Mathématiques</h1>
+            <p>Délégation régionale de Sfax - 1998/1999</p>
+            <p>Classe : 1ère AS</p>
+            <p>Durée : 1h30</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>Instructions générales</h3>
+            <ul>
+                <li>Le sujet comporte deux parties : Algèbre et Géométrie, avec des exercices indépendants.</li>
+                <li>La qualité de la rédaction et la clarté des raisonnements seront prises en compte.</li>
+                <li>Toute réponse doit être justifiée.</li>
+            </ul>
+        </div>
+
+        <!-- ===================== ALGÈBRE ===================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>Algèbre</h2>
+
+            <!-- Exercice 1 -->
+            <h3>Exercice n°1</h3>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">a)</span> Résoudre dans \(\mathbb{R}^2\) le système suivant :
+               
+                <p>\(\begin{cases} 3x - y - 11 = 0 & (1) \\ x + 2y + 9 = 0 & (2) \end{cases}\)</p>
+                \(x =\) <input type="text" id="alg1a_x" class="Tests-Hub-answer-textarea" style="width:80px;">
+                \(y =\) <input type="text" id="alg1a_y" class="Tests-Hub-answer-textarea" style="width:80px;">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">b)</span> En déduire les solutions dans \(\mathbb{R}^2\) de chacun des systèmes suivants :
+                <p><strong>Système (S₁) :</strong> \(\begin{cases} 3|x| - y - 11 = 0 \\ |x| + 2y + 9 = 0 \end{cases}\)</p>
+                <textarea class="Tests-Hub-large-textarea" id="alg1b_S1" placeholder="Solutions de (S₁)..."></textarea>
+                <p><strong>Système (S₂) :</strong> \(\begin{cases} 3x - |y| - 11 = 0 \\ x + 2|y| + 9 = 0 \end{cases}\)</p>
+                <textarea class="Tests-Hub-large-textarea" id="alg1b_S2" placeholder="Solutions de (S₂)..."></textarea>
+            </div>
+
+            <!-- Exercice 2 -->
+            <h3>Exercice n°2</h3>
+            <p>Soit \(x\) un réel tel que \(-2 < x < 1\).</p>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">1)</span> Chercher un encadrement pour chacun des réels :
+                <br>\(a = x + 3\) : <input type="text" id="alg2_enca" class="Tests-Hub-answer-textarea" style="width:200px;" placeholder="... < a < ...">
+                <br>\(b = \dfrac{3}{x+3}\) : <input type="text" id="alg2_encb" class="Tests-Hub-answer-textarea" style="width:200px;" placeholder="... < b < ...">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">2)</span> On donne \(y = \dfrac{2x+3}{x+3}\).
+                <br><strong>a)</strong> Montrer que \(y = 2 - \dfrac{3}{x+3}\).
+                <br><textarea class="Tests-Hub-large-textarea" id="alg2_2a" placeholder="Démonstration..."></textarea>
+                <br><strong>b)</strong> Donner un encadrement de \(y\).
+                <br><input type="text" id="alg2_ency" class="Tests-Hub-answer-textarea" style="width:200px;" placeholder="... < y < ...">
+            </div>
+
+            <!-- Exercice 3 -->
+            <h3>Exercice n°3</h3>
+            <p>Résoudre dans \(\mathbb{R}\) :</p>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">a)</span> \((2x+1) + \dfrac{x-1}{2} < x + \dfrac{1}{3}\)
+                <br>\(S_a =\) <input type="text" id="alg3a" class="Tests-Hub-answer-textarea" style="width:250px;" placeholder="Intervalle ou ensemble...">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">b)</span> \((3x+1)(-2x+4) + (2x-4)(x-5) \le 0\)
+                <br>\(S_b =\) <input type="text" id="alg3b" class="Tests-Hub-answer-textarea" style="width:250px;" placeholder="Intervalle ou ensemble...">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">c)</span> \(|3x+6| + 2x + 3 = 0\)
+                <br>\(S_c =\) <input type="text" id="alg3c" class="Tests-Hub-answer-textarea" style="width:250px;" placeholder="Valeurs de x...">
+            </div>
+        </div>
+
+        <!-- ===================== GÉOMÉTRIE ===================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>Géométrie</h2>
+
+            <!-- Exercice 1 -->
+            <h3>Exercice n°1</h3>
+            <p>On donne un triangle \(ABC\) vérifiant : \(BC = 6\text{ cm}\) ; \(\widehat{A} = 45^\circ\) et \(\widehat{B} = 60^\circ\).</p>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">1)</span> Évaluer l'angle \(\widehat{C}\) puis construire le triangle \(ABC\).
+                <br>\(\widehat{C} =\) <input type="text" id="geo1_C" class="Tests-Hub-answer-textarea" style="width:80px;">
+            </div>
+            <div class="Tests-Hub-canvas-container">
+                <canvas id="geo1Canvas" width="600" height="400" style="width:100%; max-width:600px;"></canvas>
+                <p class="Tests-Hub-image-caption">Figure : triangle ABC (à compléter)</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">2)</span> Soit \((\mathcal{C})\) le cercle circonscrit au triangle \(ABC\). On pose \(O\) le centre de \((\mathcal{C})\).
+                <br><strong>a)</strong> Construire \((\mathcal{C})\).
+                <br><strong>b)</strong> La droite \((OC)\) recoupe \((\mathcal{C})\) en \(C'\). Évaluer l'angle \(\widehat{CC'B}\). En déduire \(CC'\).
+                <br>\(\widehat{CC'B} =\) <input type="text" id="geo1_CCB" class="Tests-Hub-answer-textarea" style="width:80px;">
+                \(CC' =\) <input type="text" id="geo1_CCprime" class="Tests-Hub-answer-textarea" style="width:120px;">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">3)</span> Évaluer l'angle \(\widehat{ACC'}\) puis calculer \(AC\).
+                <br>\(\widehat{ACC'} =\) <input type="text" id="geo1_ACC" class="Tests-Hub-answer-textarea" style="width:80px;">
+                \(AC =\) <input type="text" id="geo1_AC" class="Tests-Hub-answer-textarea" style="width:120px;">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">4)</span> Soit \(H\) le projeté orthogonal de \(C\) sur \([AB]\). Calculer \(AH\) et \(BH\) ; en déduire \(AB\).
+                <br>\(AH =\) <input type="text" id="geo1_AH" class="Tests-Hub-answer-textarea" style="width:80px;">
+                \(BH =\) <input type="text" id="geo1_BH" class="Tests-Hub-answer-textarea" style="width:80px;">
+                \(AB =\) <input type="text" id="geo1_AB" class="Tests-Hub-answer-textarea" style="width:120px;">
+            </div>
+
+            <!-- Exercice 2 -->
+            <h3>Exercice n°2</h3>
+            <p>On donne un tétraèdre \(ABCD\) vérifiant \(AD = AC\) et \(BD = BC\). On pose \(I = A*C\) (milieu de \([AC]\)), \(J = A*D\), \(K = B*D\) et \(L = B*C\).</p>
+            <div class="Tests-Hub-canvas-container">
+                <canvas id="geo2Canvas" width="500" height="380" style="width:100%; max-width:500px;"></canvas>
+                <p class="Tests-Hub-image-caption">Tétraèdre ABCD avec les milieux I, J, K, L</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">1)</span> Faites un dessin et montrer que \(IJKL\) est un parallélogramme.
+                <br><textarea class="Tests-Hub-large-textarea" id="geo2_1" placeholder="Démonstration..."></textarea>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">2)</span> On pose \(O = D*C\) (milieu de \([DC]\)). Montrer que la droite \((DC)\) est perpendiculaire au plan \((AOB)\).
+                <br><textarea class="Tests-Hub-large-textarea" id="geo2_2" placeholder="Démonstration..."></textarea>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">3)</span> On pose \(H\) le projeté orthogonal de \(O\) sur la droite \((AB)\).
+                <br><strong>a)</strong> Montrer que les droites \((OH)\) et \((DC)\) sont perpendiculaires.
+                <br><textarea class="Tests-Hub-large-textarea" id="geo2_3a" placeholder="Preuve..."></textarea>
+                <br><strong>b)</strong> Montrer que la droite \((OH)\) est perpendiculaire au plan \((IJKL)\).
+                <br><textarea class="Tests-Hub-large-textarea" id="geo2_3b" placeholder="Preuve..."></textarea>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>Correction détaillée – analyse et développement</h2>
+
+            <h3>Algèbre - Exercice 1</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>a) Résolution du système :</strong></p>
+                <p>\(\begin{cases} 3x - y - 11 = 0 & (1) \\ x + 2y + 9 = 0 & (2) \end{cases}\)</p>
+                <p>De (1) : \(y = 3x - 11\). On substitue dans (2) :</p>
+                <p>\(x + 2(3x - 11) + 9 = 0 \Rightarrow x + 6x - 22 + 9 = 0 \Rightarrow 7x - 13 = 0 \Rightarrow x = \dfrac{13}{7}\).</p>
+                <p>Puis \(y = 3 \times \dfrac{13}{7} - 11 = \dfrac{39}{7} - \dfrac{77}{7} = -\dfrac{38}{7}\).</p>
+                <p><strong>Solution :</strong> \(S = \left\{\left(\dfrac{13}{7}\,;\,-\dfrac{38}{7}\right)\right\}\).</p>
+
+                <p><strong>b) Systèmes avec valeurs absolues :</strong></p>
+                <p><strong>(S₁) :</strong> On pose \(u = |x| \ge 0\). Le système devient \(\begin{cases} 3u - y - 11 = 0 \\ u + 2y + 9 = 0 \end{cases}\).</p>
+                <p>C'est exactement le système précédent avec \(u\) à la place de \(x\). Donc \(u = \dfrac{13}{7}\) et \(y = -\dfrac{38}{7}\).</p>
+                <p>\(u = |x| = \dfrac{13}{7} \Rightarrow x = \dfrac{13}{7}\) ou \(x = -\dfrac{13}{7}\).</p>
+                <p><strong>\(S_1 = \left\{\left(\dfrac{13}{7}\,;\,-\dfrac{38}{7}\right),\ \left(-\dfrac{13}{7}\,;\,-\dfrac{38}{7}\right)\right\}\).</strong></p>
+
+                <p><strong>(S₂) :</strong> On pose \(v = |y| \ge 0\). Le système devient \(\begin{cases} 3x - v - 11 = 0 \\ x + 2v + 9 = 0 \end{cases}\).</p>
+                <p>De la première : \(v = 3x - 11\). Dans la seconde : \(x + 2(3x - 11) + 9 = 0 \Rightarrow 7x - 13 = 0 \Rightarrow x = \dfrac{13}{7}\).</p>
+                <p>Alors \(v = 3 \times \dfrac{13}{7} - 11 = \dfrac{39}{7} - \dfrac{77}{7} = -\dfrac{38}{7}\).</p>
+                <p>Or \(v = |y| \ge 0\) et \(-\dfrac{38}{7} < 0\) : impossible.</p>
+                <p><strong>\(S_2 = \varnothing\) (aucune solution).</strong></p>
+            </div>
+
+            <h3>Algèbre - Exercice 2</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) Encadrements :</strong> On sait que \(-2 < x < 1\).</p>
+                <p>\(a = x + 3\) : \(-2 + 3 < x + 3 < 1 + 3 \Rightarrow \mathbf{1 < a < 4}\).</p>
+                <p>\(b = \dfrac{3}{x+3} = \dfrac{3}{a}\). La fonction \(t \mapsto \dfrac{3}{t}\) est décroissante sur \(]0;+\infty[\). Comme \(1 < a < 4\), on a :</p>
+                <p>\(\dfrac{3}{4} < b < 3\), soit \(\mathbf{0{,}75 < b < 3}\).</p>
+
+                <p><strong>2)a) Transformation de \(y\) :</strong></p>
+                <p>\(y = \dfrac{2x+3}{x+3} = \dfrac{2x+6-3}{x+3} = \dfrac{2(x+3)-3}{x+3} = 2 - \dfrac{3}{x+3} = 2 - b\). CQFD.</p>
+
+                <p><strong>2)b) Encadrement de \(y\) :</strong></p>
+                <p>\(y = 2 - b\) avec \(\dfrac{3}{4} < b < 3\).</p>
+                <p>\(2 - 3 < 2 - b < 2 - \dfrac{3}{4} \Rightarrow \mathbf{-1 < y < \dfrac{5}{4}}\).</p>
+            </div>
+
+            <h3>Algèbre - Exercice 3</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>a)</strong> \((2x+1) + \dfrac{x-1}{2} < x + \dfrac{1}{3}\)</p>
+                <p>\(\dfrac{4x+2}{2} + \dfrac{x-1}{2} < \dfrac{3x}{3} + \dfrac{1}{3}\) — mettons tout au même dénominateur 6 :</p>
+                <p>\(\dfrac{3(4x+2) + 3(x-1)}{6} < \dfrac{2(3x) + 2}{6}\)</p>
+                <p>\(12x+6 + 3x-3 < 6x+2 \Rightarrow 15x+3 < 6x+2 \Rightarrow 9x < -1 \Rightarrow x < -\dfrac{1}{9}\).</p>
+                <p><strong>\(S_a = \left]-\infty\,;\,-\dfrac{1}{9}\right[\).</strong></p>
+
+                <p><strong>b)</strong> \((3x+1)(-2x+4) + (2x-4)(x-5) \le 0\)</p>
+                <p>Factorisons : \((3x+1)(-2x+4) + (2x-4)(x-5) = -2(3x+1)(x-2) + 2(x-2)(x-5)\)</p>
+                <p>\(= 2(x-2)\big[-(3x+1) + (x-5)\big] = 2(x-2)(-2x-6) = -4(x-2)(x+3)\).</p>
+                <p>L'inéquation \(-4(x-2)(x+3) \le 0\) équivaut à \((x-2)(x+3) \ge 0\).</p>
+                <p>Tableau de signes : positif à l'extérieur des racines \(-3\) et \(2\).</p>
+                <p><strong>\(S_b = \left]-\infty\,;\,-3\right] \cup \left[2\,;\,+\infty\right[\).</strong></p>
+
+                <p><strong>c)</strong> \(|3x+6| + 2x + 3 = 0\)</p>
+                <p><em>Cas 1 :</em> \(3x+6 \ge 0 \Leftrightarrow x \ge -2\). L'équation devient \(3x+6+2x+3=0 \Rightarrow 5x+9=0 \Rightarrow x=-\dfrac{9}{5}\).</p>
+                <p>Vérification : \(-\dfrac{9}{5} = -1{,}8 \ge -2\) ✓.</p>
+                <p><em>Cas 2 :</em> \(3x+6 < 0 \Leftrightarrow x < -2\). L'équation devient \(-(3x+6)+2x+3=0 \Rightarrow -x-3=0 \Rightarrow x=-3\).</p>
+                <p>Vérification : \(-3 < -2\) ✓.</p>
+                <p><strong>\(S_c = \left\{-3\,;\,-\dfrac{9}{5}\right\}\).</strong></p>
+            </div>
+
+            <h3>Géométrie - Exercice 1</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) Angle \(\widehat{C}\) :</strong> \(\widehat{C} = 180^\circ - \widehat{A} - \widehat{B} = 180^\circ - 45^\circ - 60^\circ = \mathbf{75^\circ}\).</p>
+                <p>Construction : tracer \(BC = 6\text{ cm}\). En \(B\), construire un angle de \(60^\circ\) ; en \(C\), un angle de \(75^\circ\) du côté opposé. L'intersection donne \(A\).</p>
+
+                <p><strong>2) Cercle circonscrit :</strong></p>
+                <p><strong>a)</strong> Le centre \(O\) est l'intersection des médiatrices de \([BC]\) et \([AB]\) (ou \([AC]\)).</p>
+                <p><strong>b)</strong> \((OC)\) est un rayon ; \(C'\) est diamétralement opposé à \(C\), donc \([CC']\) est un diamètre.</p>
+                <p>\(\widehat{CC'B}\) est un angle inscrit interceptant l'arc \(\overset{\frown}{CB}\). L'angle au centre \(\widehat{COB} = 2\widehat{A} = 90^\circ\). Donc \(\widehat{CC'B} = \dfrac{1}{2}\widehat{COB} = \mathbf{45^\circ}\).</p>
+                <p>Loi des sinus : \(\dfrac{BC}{\sin\widehat{A}} = 2R \Rightarrow \dfrac{6}{\sin 45^\circ} = \dfrac{6}{\sqrt{2}/2} = \dfrac{12}{\sqrt{2}} = 6\sqrt{2}\).</p>
+                <p>Donc \(R = 3\sqrt{2}\text{ cm}\) et \(CC' = 2R = \mathbf{6\sqrt{2}\text{ cm}}\).</p>
+
+                <p><strong>3) Angle \(\widehat{ACC'}\) :</strong> \(\widehat{ACC'}\) intercepte l'arc \(\overset{\frown}{AC'}\). L'angle au centre \(\widehat{AOC'} = 2\widehat{B} = 120^\circ\). Donc \(\widehat{ACC'} = \dfrac{1}{2} \times 120^\circ = \mathbf{60^\circ}\).</p>
+                <p>Dans le triangle \(ACC'\), \([CC']\) est un diamètre donc \(\widehat{CAC'} = 90^\circ\).</p>
+                <p>\(\sin\widehat{ACC'} = \dfrac{AC}{CC'} \Rightarrow AC = CC' \times \sin 60^\circ = 6\sqrt{2} \times \dfrac{\sqrt{3}}{2} = \mathbf{3\sqrt{6}\text{ cm}}\).</p>
+
+                <p><strong>4) Projeté orthogonal \(H\) :</strong></p>
+                <p>Dans le triangle \(BCH\) rectangle en \(H\) : \(\widehat{B} = 60^\circ\), donc \(BH = BC \cos 60^\circ = 6 \times \dfrac{1}{2} = \mathbf{3\text{ cm}}\).</p>
+                <p>\(CH = BC \sin 60^\circ = 6 \times \dfrac{\sqrt{3}}{2} = 3\sqrt{3}\text{ cm}\).</p>
+                <p>Dans le triangle \(ACH\) rectangle en \(H\) : \(\widehat{A} = 45^\circ\), donc \(AH = \dfrac{CH}{\tan 45^\circ} = CH = 3\sqrt{3}\text{ cm}\).</p>
+                <p>Vérification : \(AC = \dfrac{CH}{\sin 45^\circ} = \dfrac{3\sqrt{3}}{\sqrt{2}/2} = 3\sqrt{6}\text{ cm}\) (cohérent).</p>
+                <p>\(AB = AH + HB = 3\sqrt{3} + 3 = \mathbf{3(\sqrt{3}+1)\text{ cm}}\).</p>
+            </div>
+            <div class="Tests-Hub-canvas-container">
+                <canvas id="corrGeo1Canvas" width="600" height="400" style="width:100%; max-width:600px;"></canvas>
+                <p class="Tests-Hub-image-caption">Figure de correction : triangle ABC, cercle circonscrit, points O, C', H</p>
+            </div>
+
+            <h3>Géométrie - Exercice 2</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1) \(IJKL\) est un parallélogramme :</strong></p>
+                <p>Dans le triangle \(ACD\), \(I\) et \(J\) sont les milieux de \([AC]\) et \([AD]\). Donc \(IJ \parallel CD\) et \(IJ = \dfrac{1}{2}CD\).</p>
+                <p>Dans le triangle \(BCD\), \(L\) et \(K\) sont les milieux de \([BC]\) et \([BD]\). Donc \(LK \parallel CD\) et \(LK = \dfrac{1}{2}CD\).</p>
+                <p>Ainsi \(IJ \parallel LK\) et \(IJ = LK\). De même, \(IL \parallel AB\) et \(JK \parallel AB\) avec \(IL = JK = \dfrac{1}{2}AB\).</p>
+                <p>Le quadrilatère \(IJKL\) a ses côtés opposés parallèles et égaux : c'est un <strong>parallélogramme</strong>.</p>
+
+                <p><strong>2) \((DC) \perp (AOB)\) :</strong></p>
+                <p>\(AD = AC\) donc le triangle \(ADC\) est isocèle en \(A\). \(O\) étant le milieu de \([DC]\), la médiane \((AO)\) est aussi hauteur : \(AO \perp DC\).</p>
+                <p>\(BD = BC\) donc le triangle \(BDC\) est isocèle en \(B\). De même, \(BO \perp DC\).</p>
+                <p>La droite \((DC)\) est orthogonale à deux droites sécantes \((AO)\) et \((BO)\) du plan \((AOB)\). Donc <strong>\((DC) \perp (AOB)\)</strong>.</p>
+
+                <p><strong>3)a) \((OH) \perp (DC)\) :</strong></p>
+                <p>\(H \in (AB)\) et \(O \in (AOB)\), donc \((OH) \subset (AOB)\). Comme \((DC) \perp (AOB)\), toute droite du plan \((AOB)\) est orthogonale à \((DC)\). En particulier, <strong>\((OH) \perp (DC)\)</strong>.</p>
+
+                <p><strong>3)b) \((OH) \perp (IJKL)\) :</strong></p>
+                <p>On a montré que \(IJ \parallel LK \parallel CD\) et \(IL \parallel JK \parallel AB\).</p>
+                <p>Par construction, \(H\) est le projeté orthogonal de \(O\) sur \((AB)\), donc \(OH \perp AB\). Ainsi \(OH\) est perpendiculaire à \(AB\), donc à \(IL\) et \(JK\) (parallèles à \(AB\)).</p>
+                <p>De plus, d'après 3)a), \(OH \perp DC\), donc \(OH \perp IJ\) et \(OH \perp LK\) (parallèles à \(CD\)).</p>
+                <p>\((OH)\) est orthogonale à deux directions non parallèles du plan \((IJKL)\) (celles de \(AB\) et de \(CD\)). Donc <strong>\((OH) \perp (IJKL)\)</strong>.</p>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">Développeur</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">Version</h3>
+                    <p class="Tests-Hub-version-number">v2.0.6</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">Liens</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Conditions d'utilisation</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+
+        function getCanvasBackgroundColor() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#0F0A1A' : '#FFFFFF';
+        }
+
+        function getCanvasTextColor() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#F1F5F9' : '#1E1B4B';
+        }
+
+        function getAxisColors() {
+            const dark = document.body.classList.contains('Tests-Hub-dark-theme');
+            return {
+                xAxis: dark ? '#8B5CF6' : '#7C3AED',
+                yAxis: dark ? '#EC4899' : '#7C3AED',
+                grid: dark ? '#334155' : '#C4B5FD'
+            };
+        }
+
+        // --- Géométrie Exercice 1 canvas (triangle ABC, empty for student) ---
+        function drawGeo1(canvasId, showDetails = false) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width,
+                h = canvas.height;
+            ctx.fillStyle = getCanvasBackgroundColor();
+            ctx.fillRect(0, 0, w, h);
+
+            const axisColors = getAxisColors();
+            const margin = 50;
+            const xMin = -1,
+                xMax = 10,
+                yMin = -1,
+                yMax = 9;
+            const mapX = x => margin + (x - xMin) / (xMax - xMin) * (w - 2 * margin);
+            const mapY = y => h - margin - (y - yMin) / (yMax - yMin) * (h - 2 * margin);
+
+            // Grid
+            ctx.strokeStyle = axisColors.grid;
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            for (let i = 0; i <= 9; i++) {
+                ctx.moveTo(mapX(i), mapY(yMin));
+                ctx.lineTo(mapX(i), mapY(yMax));
+            }
+            for (let j = 0; j <= 8; j++) {
+                ctx.moveTo(mapX(xMin), mapY(j));
+                ctx.lineTo(mapX(xMax), mapY(j));
+            }
+            ctx.stroke();
+
+            if (showDetails) {
+                // Triangle ABC with BC=6, Â=45°, B̂=60°
+                // B at (0,0), C at (6,0) in scaled coordinates
+                const B = { x: 0.5, y: 0.5 };
+                const C = { x: 6.5, y: 0.5 };
+                // A is intersection of ray from B at 60° and ray from C such that Â=45°
+                // Using computed values: AB ≈ 3(√3+1) ≈ 8.196, AC = 3√6 ≈ 7.348
+                // Height from C to AB: CH = 3√3 ≈ 5.196
+                // AH = 3√3 ≈ 5.196, BH = 3
+                const AB_len = 3 * (Math.sqrt(3) + 1);
+                const angleB_rad = 60 * Math.PI / 180;
+                const A = {
+                    x: B.x + AB_len * Math.cos(angleB_rad),
+                    y: B.y + AB_len * Math.sin(angleB_rad)
+                };
+
+                const drawPoint = (p, label, color, offX = 7, offY = -5) => {
+                    ctx.beginPath();
+                    ctx.arc(mapX(p.x), mapY(p.y), 5, 0, 2 * Math.PI);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                    ctx.fillStyle = getCanvasTextColor();
+                    ctx.font = 'bold 13px "Segoe UI"';
+                    ctx.fillText(label, mapX(p.x) + offX, mapY(p.y) + offY);
+                };
+
+                drawPoint(B, 'B', '#7C3AED', -20, 15);
+                drawPoint(C, 'C', '#7C3AED', 7, 15);
+                drawPoint(A, 'A', '#7C3AED', 7, -8);
+
+                // Triangle sides
+                ctx.strokeStyle = '#7C3AED';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(mapX(A.x), mapY(A.y));
+                ctx.lineTo(mapX(B.x), mapY(B.y));
+                ctx.lineTo(mapX(C.x), mapY(C.y));
+                ctx.closePath();
+                ctx.stroke();
+
+                // Circumcenter O
+                const O = {
+                    x: (B.x + C.x) / 2,
+                    y: (B.y + C.y) / 2 + (6 / Math.tan(45 * Math.PI / 180)) / 2
+                };
+                const R_circ = 3 * Math.sqrt(2);
+                const O_calc = {
+                    x: (B.x + C.x) / 2,
+                    y: B.y + R_circ * Math.cos(45 * Math.PI / 180)
+                };
+                const Ox = (B.x + C.x) / 2;
+                const Oy = B.y + Math.sqrt(R_circ * R_circ - 9);
+                const O_pt = { x: Ox, y: Oy };
+
+                drawPoint(O_pt, 'O', '#EC4899', -18, -6);
+
+                // Circumscribed circle
+                const radiusPix = R_circ * (w - 2 * margin) / (xMax - xMin);
+                ctx.beginPath();
+                ctx.arc(mapX(O_pt.x), mapY(O_pt.y), radiusPix, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#EC4899';
+                ctx.setLineDash([5, 5]);
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Point C' diametrically opposite C
+                const Cprime = {
+                    x: 2 * O_pt.x - C.x,
+                    y: 2 * O_pt.y - C.y
+                };
+                drawPoint(Cprime, "C'", '#F472B6', 7, -8);
+
+                // Line CC'
+                ctx.strokeStyle = '#F472B6';
+                ctx.setLineDash([3, 6]);
+                ctx.beginPath();
+                ctx.moveTo(mapX(C.x), mapY(C.y));
+                ctx.lineTo(mapX(Cprime.x), mapY(Cprime.y));
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Point H (projection of C onto AB)
+                const CH = 3 * Math.sqrt(3);
+                const BH_len = 3;
+                const H = {
+                    x: B.x + BH_len * Math.cos(angleB_rad),
+                    y: B.y + BH_len * Math.sin(angleB_rad)
+                };
+                drawPoint(H, 'H', '#10B981', 7, -5);
+
+                // Dashed CH
+                ctx.strokeStyle = '#10B981';
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.moveTo(mapX(C.x), mapY(C.y));
+                ctx.lineTo(mapX(H.x), mapY(H.y));
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Angle marks
+                ctx.fillStyle = getCanvasTextColor();
+                ctx.font = 'italic 12px "Segoe UI"';
+                ctx.fillText('45°', mapX(A.x) - 30, mapY(A.y) + 18);
+                ctx.fillText('60°', mapX(B.x) + 22, mapY(B.y) - 12);
+                ctx.fillText('75°', mapX(C.x) - 35, mapY(C.y) + 18);
+            }
+        }
+
+        // --- Tétraèdre canvas (Exercice 2 Géométrie) ---
+        function drawTetrahedron() {
+            const canvas = document.getElementById('geo2Canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width,
+                h = canvas.height;
+            ctx.fillStyle = getCanvasBackgroundColor();
+            ctx.fillRect(0, 0, w, h);
+
+            // 3D-like projection of tetrahedron ABCD
+            const cx = w / 2,
+                cy = h / 2;
+            const S3D = { x: cx, y: cy - 120 };
+            const A3D = { x: cx - 100, y: cy + 60 };
+            const B3D = { x: cx + 30, y: cy + 100 };
+            const C3D = { x: cx + 140, y: cy + 20 };
+            const D3D = { x: cx + 20, y: cy - 20 };
+
+            // Draw base BCD (dashed back edges)
+            ctx.strokeStyle = '#7C3AED';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 6]);
+            ctx.beginPath();
+            ctx.moveTo(B3D.x, B3D.y);
+            ctx.lineTo(D3D.x, D3D.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Solid edges
+            ctx.beginPath();
+            ctx.moveTo(B3D.x, B3D.y);
+            ctx.lineTo(C3D.x, C3D.y);
+            ctx.lineTo(D3D.x, D3D.y);
+            ctx.stroke();
+
+            // Lateral edges from A
+            ctx.beginPath();
+            ctx.moveTo(A3D.x, A3D.y);
+            ctx.lineTo(B3D.x, B3D.y);
+            ctx.moveTo(A3D.x, A3D.y);
+            ctx.lineTo(C3D.x, C3D.y);
+            ctx.moveTo(A3D.x, A3D.y);
+            ctx.lineTo(D3D.x, D3D.y);
+            ctx.stroke();
+
+            // Midpoints I, J, K, L
+            const mid = (p1, p2) => ({ x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 });
+            const I_pt = mid(A3D, C3D);
+            const J_pt = mid(A3D, D3D);
+            const K_pt = mid(B3D, D3D);
+            const L_pt = mid(B3D, C3D);
+            const O_pt = mid(D3D, C3D);
+
+            // Draw parallelogram IJKL
+            ctx.strokeStyle = '#EC4899';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(I_pt.x, I_pt.y);
+            ctx.lineTo(J_pt.x, J_pt.y);
+            ctx.lineTo(K_pt.x, K_pt.y);
+            ctx.lineTo(L_pt.x, L_pt.y);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Draw points
+            const drawPt = (p, label, color, offX, offY) => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 4, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.fillStyle = getCanvasTextColor();
+                ctx.font = 'bold 12px "Segoe UI"';
+                ctx.fillText(label, p.x + offX, p.y + offY);
+            };
+
+            drawPt(A3D, 'A', '#7C3AED', -18, -8);
+            drawPt(B3D, 'B', '#7C3AED', 8, 15);
+            drawPt(C3D, 'C', '#7C3AED', 8, -8);
+            drawPt(D3D, 'D', '#7C3AED', -8, -18);
+            drawPt(I_pt, 'I', '#EC4899', -18, -8);
+            drawPt(J_pt, 'J', '#EC4899', -18, -6);
+            drawPt(K_pt, 'K', '#EC4899', 8, 12);
+            drawPt(L_pt, 'L', '#EC4899', 8, -6);
+            drawPt(O_pt, 'O', '#F472B6', -18, 15);
+
+            // Dashed line AO and BO
+            ctx.strokeStyle = '#F472B6';
+            ctx.setLineDash([3, 5]);
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(A3D.x, A3D.y);
+            ctx.lineTo(O_pt.x, O_pt.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(B3D.x, B3D.y);
+            ctx.lineTo(O_pt.x, O_pt.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // H on AB
+            const H_pt = { x: (A3D.x + B3D.x) / 2, y: (A3D.y + B3D.y) / 2 };
+            drawPt(H_pt, 'H', '#10B981', 8, -6);
+            ctx.strokeStyle = '#10B981';
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(O_pt.x, O_pt.y);
+            ctx.lineTo(H_pt.x, H_pt.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        const translations = {
+            fr: {
+                TestsHub: {
+                    test: {
+                        title: "Mathématiques - Devoir de Synthèse N°3",
+                        subtitle: "1ère Année Secondaire (Sfax 1998-1999)",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    lang: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    test: {
+                        title: "Mathematics - Synthesis Test N°3",
+                        subtitle: "1st Year Secondary School (Sfax 1998-1999)",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    lang: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy" }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    test: {
+                        title: "الرياضيات - اختبار تأليفي عدد 3",
+                        subtitle: "السنة الأولى ثانوي (صفاقس 1998-1999)",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        comingSoon: "قريبًا!"
+                    },
+                    lang: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام",
+                    privacy: "سياسة الخصوصية" }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrBtnText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) span.textContent = isDarkTheme ? (currentLanguage === 'fr' ? 'Mode Clair' : (currentLanguage ===
+                'ar' ? 'الوضع الفاتح' : 'Light Mode')) : translations[currentLanguage].TestsHub.theme.toggle;
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrBtnText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? translations[currentLanguage].TestsHub
+                .test.showCorrection : translations[currentLanguage].TestsHub.test.hideCorrection;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            updateThemeToggleText();
+            drawGeo1('geo1Canvas', false);
+            drawGeo1('corrGeo1Canvas', true);
+            drawTetrahedron();
+        }
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = translations[lang].TestsHub
+                .lang.current;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('testsHubTheme') === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && translations[savedLang]) currentLanguage = savedLang;
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+
+            updateTextContent();
+
+            renderMathInElement(document.body, {
+                delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false }],
+                ignoredTags: ["script", "noscript", "style", "textarea", "pre"]
+            });
+
+            drawGeo1('geo1Canvas', false);
+            drawTetrahedron();
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')));
+            });
+
+            const corrBtn = document.getElementById('toggleCorrection');
+            const corrDiv = document.getElementById('correction');
+            corrBtn.addEventListener('click', () => {
+                corrDiv.classList.toggle('Tests-Hub-hidden');
+                updateCorrBtnText();
+                if (!corrDiv.classList.contains('Tests-Hub-hidden')) {
+                    drawGeo1('corrGeo1Canvas', true);
+                    renderMathInElement(corrDiv, { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$",
+                            right: "$", display: false }] });
+                }
+            });
+
+            ['Pdf', 'Odt', 'Png'].forEach(type => {
+                document.getElementById('download' + type).addEventListener('click', () => alert(translations[
+                    currentLanguage].TestsHub.test.comingSoon));
+            });
+
+            if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+    </script>
+</body>
+</html>

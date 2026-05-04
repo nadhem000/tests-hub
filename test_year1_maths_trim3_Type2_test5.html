@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tests Hub - Devoir de Synthèse N°3 - Mathématiques</title>
+
+    <meta name="theme-color" content="#2563EB">
+    <meta name="description" content="Devoir de Synthèse N°3 pour 1ère AS - Mathématiques (Lycée de l'environnement, 2010)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Synthèse">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-light: #3B82F6;
+            --accent: #F59E0B;
+            --accent-light: #FBBF24;
+            --bg-light-start: #EFF6FF;
+            --bg-light-end: #DBEAFE;
+            --section-bg: #FFFFFF;
+            --text-primary: #1E3A8A;
+            --text-secondary: #374151;
+            --border-light: #BFDBFE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1E3A8A;
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #2563EB, #3B82F6, #F59E0B);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0F172A, #2563EB, #F59E0B);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1E293B;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #EFF6FF;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1E293B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #334155;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #2563EB, #3B82F6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0F172A, #2563EB);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #1E293B;
+            color: #F1F5F9;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #2563EB;
+            border-bottom: 2px solid #F59E0B;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease, border-color 0.3s;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #FBBF24;
+            border-bottom-color: #F59E0B;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #3B82F6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #F59E0B;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #2563EB;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #FBBF24;
+        }
+
+        .Tests-Hub-answer-textarea,
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #94A3B8;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-input,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #475569;
+            background-color: #1E293B;
+            color: #F1F5F9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        th,
+        td {
+            border: 1px solid #BFDBFE;
+            padding: 12px 15px;
+            text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        th {
+            background: #2563EB;
+            color: white;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-dark-theme th {
+            background: #0F172A;
+        }
+
+        tr:nth-child(even) {
+            background: #F8FAFC;
+        }
+
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #334155;
+        }
+
+        .Tests-Hub-dark-theme td {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-canvas-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #F8FAFC;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-canvas-container {
+            background: #334155;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #BFDBFE;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme canvas {
+            border-color: #475569;
+        }
+
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #64748B;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #94A3B8;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #2563EB, #3B82F6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #2563EB, #2563EB);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #EFF6FF;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #F59E0B;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0F172A;
+            border-left-color: #F59E0B;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #2563EB;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #FBBF24;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(37, 99, 235, 0.04);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #F59E0B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(245, 158, 11, 0.08);
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(37, 99, 235, 0.06), rgba(245, 158, 11, 0.08));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.4), rgba(245, 158, 11, 0.15));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #2563EB, #3B82F6);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #3B82F6, #F59E0B);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #F59E0B, #FBBF24);
+            color: #1E3A8A;
+        }
+
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #2563EB, #3B82F6, #F59E0B);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0F172A, #2563EB, #F59E0B);
+        }
+
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-column h3 {
+            color: #FBBF24;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FBBF24;
+        }
+
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FBBF24;
+        }
+
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+
+        .Tests-Hub-footer-link {
+            color: #FBBF24;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .Tests-Hub-download-button {
+                width: 80%;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.test.title">Mathématiques - Devoir de Synthèse N°3</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.test.subtitle">1ère Année Secondaire (Lycée de l'environnement, 2010)</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button"><span>←</span><span data-i18n="TestsHub.test.back">Retour aux Tests</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.lang.current">Français</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">Mode Sombre</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>Devoir de Synthèse N°3 de Mathématiques</h1>
+            <p>Lycée secondaire de l'environnement – 02/06/2010</p>
+            <p>Classe : 1ère AS</p>
+            <p>Durée : 1h45</p>
+        </div>
+
+        <!-- ===================== STATISTIQUES ===================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>Statistiques</h2>
+
+            <!-- Exercice 1 -->
+            <h3>Exercice n°1</h3>
+            <p>Dans une population de 100 familles, on a recensé le nombre de garçons par famille :</p>
+            <table>
+                <tr><th>Nb garçons</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+                <tr><th>Nb familles</th><td>15</td><td>28</td><td>32</td><td>16</td><td>3</td><td>2</td><td>3</td><td>0</td><td>1</td></tr>
+            </table>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">1)</span> Représenter le diagramme en bâton de la série.
+                <div class="Tests-Hub-canvas-container">
+                    <canvas id="barChartCanvas" width="600" height="350" style="width:100%; max-width:600px;"></canvas>
+                    <p class="Tests-Hub-image-caption">Diagramme en bâtons (à compléter)</p>
+                </div>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">2)</span> Dresser le tableau des effectifs cumulés croissants et décroissants.
+                <br><em>Croissants :</em> <input type="text" id="ecc1" class="Tests-Hub-answer-textarea" style="width:350px;" placeholder="ex: 15, 43, ...">
+                <br><em>Décroissants :</em> <input type="text" id="ecd1" class="Tests-Hub-answer-textarea" style="width:350px;" placeholder="ex: 100, 85, ...">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">3)a)</span> Mode = <input type="text" id="mode1" class="Tests-Hub-answer-textarea" style="width:60px;">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">3)b)</span> Médiane = <input type="text" id="mediane1" class="Tests-Hub-answer-textarea" style="width:60px;">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">4)</span> Moyenne = <input type="text" id="moyenne1" class="Tests-Hub-answer-textarea" style="width:80px;">
+            </div>
+
+            <!-- Exercice 2 -->
+            <h3>Exercice n°2</h3>
+            <table>
+                <tr><th>Classe</th><th>[290,295[</th><th>[295,300[</th><th>[300,305[</th><th>[305,310[</th></tr>
+                <tr><td>Effectif</td><td>2</td><td>22</td><td>9</td><td>7</td></tr>
+            </table>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">1)</span> Classe modale = <input type="text" id="modale2" class="Tests-Hub-answer-textarea" style="width:120px;">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">2)</span> Effectifs cumulés croissants : <input type="text" id="ecc2" class="Tests-Hub-answer-textarea" style="width:250px;" placeholder="ex: 2, 24, ...">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">3)</span> Médiane = <input type="text" id="mediane2" class="Tests-Hub-answer-textarea" style="width:100px;">
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">4)</span> Moyenne \( \bar{x} \) = <input type="text" id="moyenne2" class="Tests-Hub-answer-textarea" style="width:100px;">
+            </div>
+        </div>
+
+        <!-- ===================== GÉOMÉTRIE ===================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>Géométrie</h2>
+
+            <!-- Exercice 3 -->
+            <h3>Exercice n°3</h3>
+            <p>Soit \(ABC\) un triangle comme indiqué ci‑dessous :</p>
+            <div class="Tests-Hub-canvas-container">
+                <canvas id="rotCanvas" width="500" height="400" style="width:100%; max-width:500px;"></canvas>
+                <p class="Tests-Hub-image-caption">Triangle ABC (figure initiale)</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">1)</span> Construire le point \(D\) image de \(A\) par le quart de tour direct de centre \(B\), puis le point \(E\) image de \(C\) par le même quart de tour.
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">2)a)</span> Construire \(F\) image de \(C\) par le quart de tour direct de centre \(A\).<br>
+                <span class="Tests-Hub-question-number">b)</span> Montrer que \(AF = DE\).<br>
+                <textarea class="Tests-Hub-large-textarea" id="geo3_2b" placeholder="Démonstration..."></textarea>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">3)</span> Montrer que \((AF)\) et \((DE)\) sont parallèles.<br>
+                <textarea class="Tests-Hub-large-textarea" id="geo3_3" placeholder="Démonstration..."></textarea>
+            </div>
+
+            <!-- Exercice 4 -->
+            <h3>Exercice n°4</h3>
+            <p>Soit \(ABCD\) un tétraèdre de base \(ABC\) tel que \(AD = 7\,\text{cm}\) et \((AD) \perp\) plan \(ABC\) ; l'aire du triangle \(ABC\) est \(15\,\text{cm}^2\).</p>
+            <div class="Tests-Hub-canvas-container">
+                <canvas id="tetraCanvas" width="400" height="350" style="width:100%; max-width:400px;"></canvas>
+                <p class="Tests-Hub-image-caption">Tétraèdre ABCD</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">1)</span> Volume du tétraèdre = <input type="text" id="vol4" class="Tests-Hub-answer-textarea" style="width:120px;"> cm³
+            </div>
+            <div class="Tests-Hub-question">
+                <span class="Tests-Hub-question-number">2)</span> La section par un plan parallèle à la base est un … <input type="text" id="section4" class="Tests-Hub-answer-textarea" style="width:200px;" placeholder="Nom de la figure">
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">Afficher la correction</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+    <h2>Correction détaillée – Devoir de Synthèse N°3</h2>
+
+    <!-- ==================== EXERCICE 1 ==================== -->
+    <h3>Statistiques – Exercice 1 (série discrète)</h3>
+    <div class="Tests-Hub-correction-answer">
+
+        <!-- Question 1 -->
+        <p><strong>1) Diagramme en bâtons</strong></p>
+        <p><em>Rappel :</em> Pour une série statistique discrète, le diagramme en bâtons représente chaque valeur du caractère (ici le nombre de garçons) par un bâton vertical dont la hauteur est proportionnelle à l’effectif correspondant.</p>
+        <ul>
+            <li>L’axe horizontal porte les valeurs du caractère (0, 1, 2, …, 8).</li>
+            <li>L’axe vertical porte les effectifs (nombre de familles).</li>
+            <li>On choisit une échelle : par exemple, 1 cm pour 1 garçon en abscisse et 1 cm pour 5 familles en ordonnée.</li>
+            <li>Pour chaque valeur, on trace un bâton de largeur constante et de hauteur égale à l’effectif de la valeur.</li>
+        </ul>
+        <p>Voir le diagramme corrigé ci‑dessous.</p>
+
+        <!-- Question 2 -->
+        <p><strong>2) Effectifs cumulés croissants et décroissants</strong></p>
+        <p><em>Rappel :</em></p>
+        <ul>
+            <li><strong>Effectifs cumulés croissants (ECC)</strong> d’une valeur \(x_i\) = somme des effectifs de toutes les valeurs inférieures ou égales à \(x_i\).</li>
+            <li><strong>Effectifs cumulés décroissants (ECD)</strong> d’une valeur \(x_i\) = somme des effectifs de toutes les valeurs supérieures ou égales à \(x_i\).</li>
+        </ul>
+        <p><em>Calcul pas à pas à partir du tableau :</em></p>
+        <table border="1" style="border-collapse:collapse; text-align:center;">
+            <tr><th>Nb garçons</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+            <tr><th>Effectif</th><td>15</td><td>28</td><td>32</td><td>16</td><td>3</td><td>2</td><td>3</td><td>0</td><td>1</td></tr>
+        </table>
+        <ul>
+            <li>Pour 0 garçon : \(\text{ECC}=15\) ; \(\text{ECD}=100\) (effectif total).</li>
+            <li>Pour 1 garçon : \(\text{ECC}=15+28=43\) ; \(\text{ECD}=100-15=85\).</li>
+            <li>Pour 2 garçons : \(\text{ECC}=43+32=75\) ; \(\text{ECD}=85-28=57\).</li>
+            <li>Pour 3 garçons : \(\text{ECC}=75+16=91\) ; \(\text{ECD}=57-32=25\).</li>
+            <li>Pour 4 garçons : \(\text{ECC}=91+3=94\) ; \(\text{ECD}=25-16=9\).</li>
+            <li>Pour 5 garçons : \(\text{ECC}=94+2=96\) ; \(\text{ECD}=9-3=6\).</li>
+            <li>Pour 6 garçons : \(\text{ECC}=96+3=99\) ; \(\text{ECD}=6-2=4\).</li>
+            <li>Pour 7 garçons : \(\text{ECC}=99+0=99\) ; \(\text{ECD}=4-3=1\).</li>
+            <li>Pour 8 garçons : \(\text{ECC}=99+1=100\) ; \(\text{ECD}=1-1=1\).</li>
+        </ul>
+        <p><strong>Réponses :</strong></p>
+        <p>Cumuls croissants : 15, 43, 75, 91, 94, 96, 99, 99, 100.</p>
+        <p>Cumuls décroissants : 100, 85, 57, 25, 9, 6, 4, 1, 1.</p>
+
+        <!-- Question 3a -->
+        <p><strong>3)a) Mode</strong></p>
+        <p><em>Rappel :</em> Le mode d’une série discrète est la valeur du caractère qui possède le plus grand effectif.</p>
+        <p>Ici, l’effectif maximal est 32, obtenu pour la valeur 2 garçons. Donc <strong>Mode = 2</strong>.</p>
+
+        <!-- Question 3b -->
+        <p><strong>3)b) Médiane</strong></p>
+        <p><em>Rappel :</em> La médiane \(M_e\) d’une série discrète partage la population en deux sous‑ensembles de même effectif. Si l’effectif total \(N\) est pair, on prend la moyenne des \(N/2\)-ème et \((N/2+1)\)-ème valeurs. Si \(N\) est impair, on prend la valeur du milieu.</p>
+        <p>Ici \(N = 100\) (pair). On cherche les 50<sup>e</sup> et 51<sup>e</sup> observations.</p>
+        <ul>
+            <li>D’après les ECC, les valeurs 0 et 1 regroupent en tout 43 familles → inférieur à 50.</li>
+            <li>La valeur 2 fait passer l’effectif cumulé à 75 → le 50<sup>e</sup> et le 51<sup>e</sup> individu se trouvent donc dans cette catégorie.</li>
+        </ul>
+        <p>Les deux observations centrales valent 2, donc <strong>Médiane = 2</strong>.</p>
+
+        <!-- Question 4 -->
+        <p><strong>4) Moyenne</strong></p>
+        <p><em>Rappel :</em> La moyenne arithmétique d’une série discrète est donnée par :</p>
+        \[
+        \bar{x} = \frac{n_1 x_1 + n_2 x_2 + \dots + n_k x_k}{N} = \frac{\sum n_i x_i}{N}.
+        \]
+        <p>Calcul du numérateur :</p>
+        \[
+        \begin{aligned}
+        \sum n_i x_i &= 0\times15 + 1\times28 + 2\times32 + 3\times16 + 4\times3 + 5\times2 + 6\times3 + 7\times0 + 8\times1 \\
+        &= 0 + 28 + 64 + 48 + 12 + 10 + 18 + 0 + 8 = 188.
+        \end{aligned}
+        \]
+        <p>Effectif total \(N = 100\).</p>
+        \[
+        \bar{x} = \frac{188}{100} = 1,\!88.
+        \]
+
+        <!-- Diagramme corrigé -->
+        <div class="Tests-Hub-canvas-container">
+            <canvas id="corrBarChartCanvas" width="600" height="350"></canvas>
+            <p class="Tests-Hub-image-caption">Diagramme en bâtons corrigé</p>
+        </div>
+    </div>
+
+    <!-- ==================== EXERCICE 2 ==================== -->
+    <h3>Statistiques – Exercice 2 (série continue par classes)</h3>
+    <div class="Tests-Hub-correction-answer">
+
+        <p><strong>Rappel du tableau :</strong></p>
+        <table border="1" style="border-collapse:collapse; text-align:center;">
+            <tr><th>Classe</th><th>[290, 295[</th><th>[295, 300[</th><th>[300, 305[</th><th>[305, 310[</th></tr>
+            <tr><td>Effectif</td><td>2</td><td>22</td><td>9</td><td>7</td></tr>
+        </table>
+
+        <!-- Question 1 -->
+        <p><strong>1) Classe modale</strong></p>
+        <p><em>Rappel :</em> Dans une série continue, la classe modale est la classe qui possède le plus grand effectif.</p>
+        <p>L’effectif le plus élevé est 22, correspondant à la classe \([295 \,;\, 300[\). C’est donc la <strong>classe modale</strong>.</p>
+
+        <!-- Question 2 -->
+        <p><strong>2) Effectifs cumulés croissants (ECC)</strong></p>
+        <p><em>Rappel :</em> On ajoute les effectifs classe après classe.</p>
+        <ul>
+            <li>\([290,295[\) : \(2\)</li>
+            <li>\([295,300[\) : \(2 + 22 = 24\)</li>
+            <li>\([300,305[\) : \(24 + 9 = 33\)</li>
+            <li>\([305,310[\) : \(33 + 7 = 40\)</li>
+        </ul>
+        <p>ECC : 2, 24, 33, 40.</p>
+
+        <!-- Question 3 -->
+        <p><strong>3) Médiane</strong></p>
+        <p><em>Rappel :</em> Pour une série continue, la médiane \(M_e\) est la valeur telle que la moitié de l’effectif total lui est inférieure. On utilise la formule d’interpolation linéaire :</p>
+        \[
+        M_e = L + \frac{\frac{N}{2} - ECC_{\text{précédente}}}{f_{\text{classe}}} \times a,
+        \]
+        <p>où :</p>
+        <ul>
+            <li>\(L\) = borne inférieure de la classe médiane,</li>
+            <li>\(N\) = effectif total,</li>
+            <li>\(ECC_{\text{précédente}}\) = effectif cumulé de la classe précédant la classe médiane,</li>
+            <li>\(f_{\text{classe}}\) = effectif de la classe médiane,</li>
+            <li>\(a\) = amplitude de la classe (ici \(5\)).</li>
+        </ul>
+        <p>On a \(N = 40\) donc \(\frac{N}{2} = 20\). La classe contenant le 20<sup>e</sup> individu est \([295,300[\) car son ECC est 24 et celui de la classe précédente est 2 (< 20).</p>
+        \[
+        M_e = 295 + \frac{20 - 2}{22} \times 5 = 295 + \frac{18}{22} \times 5 = 295 + \frac{90}{22} \approx 295 + 4,0909 \approx 299,\!09.
+        \]
+
+        <!-- Question 4 -->
+        <p><strong>4) Moyenne \(\bar{x}\)</strong></p>
+        <p><em>Rappel :</em> Pour une série continue, on remplace chaque classe par son centre \(c_i\) :</p>
+        \[
+        c_i = \frac{\text{borne inférieure} + \text{borne supérieure}}{2}.
+        \]
+        <p>Puis on calcule la moyenne pondérée : \(\displaystyle \bar{x} = \frac{\sum n_i c_i}{N}\).</p>
+        <p>Calcul des centres :</p>
+        <ul>
+            <li>\([290,295[\) : \(c_1 = \frac{290+295}{2} = 292,\!5\)</li>
+            <li>\([295,300[\) : \(c_2 = \frac{295+300}{2} = 297,\!5\)</li>
+            <li>\([300,305[\) : \(c_3 = \frac{300+305}{2} = 302,\!5\)</li>
+            <li>\([305,310[\) : \(c_4 = \frac{305+310}{2} = 307,\!5\)</li>
+        </ul>
+        <p>Somme pondérée :</p>
+        \[
+        \sum n_i c_i = 2 \times 292,\!5 + 22 \times 297,\!5 + 9 \times 302,\!5 + 7 \times 307,\!5.
+        \]
+        <p>Détail : \(2 \times 292,\!5 = 585\) ; \(22 \times 297,\!5 = 6\,545\) ; \(9 \times 302,\!5 = 2\,722,\!5\) ; \(7 \times 307,\!5 = 2\,152,\!5\).</p>
+        \[
+        \sum n_i c_i = 585 + 6\,545 + 2\,722,\!5 + 2\,152,\!5 = 12\,005.
+        \]
+        \[
+        \bar{x} = \frac{12\,005}{40} = 300,\!125.
+        \]
+    </div>
+
+    <!-- ==================== EXERCICE 3 ==================== -->
+    <h3>Géométrie – Exercice 3 (rotations et parallélisme)</h3>
+    <div class="Tests-Hub-correction-answer">
+
+        <p><em>Rappel :</em> Une <strong>rotation</strong> de centre \(O\) et d’angle orienté \(\theta\) (souvent notée \(r_{(O,\theta)}\)) transforme un point \(M\) en \(M'\) tel que :</p>
+        <ul>
+            <li>\(OM' = OM\) (conservation des distances),</li>
+            <li>l’angle orienté \((\overrightarrow{OM}, \overrightarrow{OM'}) = \theta\).</li>
+        </ul>
+        <p>Le <strong>quart de tour direct</strong> correspond à \(\theta = +90^\circ\) (sens inverse des aiguilles d’une montre).</p>
+
+        <!-- Q1 et Q2a -->
+        <p><strong>1) &amp; 2)a) Construction des points D, E, F</strong></p>
+        <p><em>D image de A par le quart de tour direct de centre B :</em></p>
+        <ul>
+            <li>On trace le segment \([BA]\).</li>
+            <li>On construit la demi-droite issue de \(B\) formant un angle de \(+90^\circ\) avec la demi-droite \([BA)\).</li>
+            <li>On reporte sur cette demi-droite la longueur \(BA\) : on obtient \(D\).</li>
+        </ul>
+        <p><em>E image de C par le même quart de tour direct de centre B :</em></p>
+        <ul>
+            <li>Même centre \(B\), même angle \(+90^\circ\).</li>
+            <li>On construit de la même façon le point \(E\) tel que \(BE = BC\) et l’angle \((\overrightarrow{BC}, \overrightarrow{BE}) = +90^\circ\).</li>
+        </ul>
+        <p><em>F image de C par le quart de tour direct de centre A :</em></p>
+        <ul>
+            <li>On trace \([AC]\),</li>
+            <li>on construit la demi-droite issue de \(A\) faisant \(+90^\circ\) avec \([AC)\),</li>
+            <li>on reporte \(AC\) pour obtenir \(F\).</li>
+        </ul>
+        <p>La construction finale est représentée sur la figure corrigée.</p>
+
+        <!-- Q2b -->
+        <p><strong>2)b) Montrer que \(AF = DE\).</strong></p>
+        <p><em>Propriétés utilisées :</em></p>
+        <ul>
+            <li>Une rotation conserve les distances, donc \(AF = AC\) et \(DE = \dots\) (cela ne suffit pas, il faut comparer \(AF\) et \(DE\)).</li>
+            <li>Deux rotations de même angle (indépendamment de leurs centres) produisent le même effet sur un vecteur : la <strong>rotation vectorielle</strong> associée ne dépend que de l’angle. Autrement dit, si \(r\) est la rotation vectorielle de \(+90^\circ\), alors pour tout point \(O\), l’image d’un vecteur \(\vec{u}\) par la rotation de centre \(O\) et d’angle \(+90^\circ\) est exactement \(r(\vec{u})\).</li>
+            <li>La rotation vectorielle est une application linéaire.</li>
+        </ul>
+        <p><em>Démonstration :</em></p>
+        <p>Notons \(r\) la rotation vectorielle de \(+90^\circ\).</p>
+        <p>D’après la définition des points :</p>
+        \[
+        \overrightarrow{AF} = r(\overrightarrow{AC}) \quad \text{(image de }\overrightarrow{AC}\text{ par la rotation de centre }A\text{)}.
+        \]
+        \[
+        \overrightarrow{BD} = r(\overrightarrow{BA}) \quad\text{et}\quad \overrightarrow{BE} = r(\overrightarrow{BC}) \quad\text{(rotation de centre }B\text{)}.
+        \]
+        <p>On en déduit :</p>
+        \[
+        \overrightarrow{DE} = \overrightarrow{BE} - \overrightarrow{BD} = r(\overrightarrow{BC}) - r(\overrightarrow{BA}) = r(\overrightarrow{BC} - \overrightarrow{BA}) = r(\overrightarrow{AC}).
+        \]
+        <p>(On a utilisé la relation de Chasles et la linéarité de \(r\).)</p>
+        <p>Par conséquent, \(\overrightarrow{AF} = \overrightarrow{DE}\). L’égalité des vecteurs implique l’égalité de leurs normes : \(AF = DE\).</p>
+
+        <!-- Q3 -->
+        <p><strong>3) Montrer que \((AF)\) et \((DE)\) sont parallèles.</strong></p>
+        <p>De l’égalité vectorielle \(\overrightarrow{AF} = \overrightarrow{DE}\), on déduit que les vecteurs directeurs des droites \((AF)\) et \((DE)\) sont colinéaires. Or deux droites dont les vecteurs directeurs sont colinéaires sont <strong>parallèles</strong>.</p>
+        <p>Donc \((AF) \parallel (DE)\).</p>
+        <p><em>Remarque :</em> Comme les vecteurs sont égaux (même direction, même sens, même norme), le quadrilatère \(AFED\) (ou \(AFDE\)) est un parallélogramme.</p>
+
+        <div class="Tests-Hub-canvas-container">
+            <canvas id="corrRotCanvas" width="500" height="400"></canvas>
+            <p class="Tests-Hub-image-caption">Figure corrigée : D, E, F et démonstration</p>
+        </div>
+    </div>
+
+    <!-- ==================== EXERCICE 4 ==================== -->
+    <h3>Géométrie – Exercice 4 (tétraèdre – volume et section plane)</h3>
+    <div class="Tests-Hub-correction-answer">
+
+        <p><em>Rappel :</em> Dans une pyramide (ou un tétraèdre), le volume \(V\) est donné par :</p>
+        \[
+        V = \frac{1}{3} \times \text{Aire de la base} \times \text{Hauteur}.
+        \]
+        <p>La hauteur est la distance entre le sommet et le plan contenant la base, mesurée perpendiculairement à ce plan.</p>
+
+        <!-- Q1 -->
+        <p><strong>1) Volume du tétraèdre \(ABCD\)</strong></p>
+        <p>Données :</p>
+        <ul>
+            <li>Aire de la base \(ABC = 15\,\text{cm}^2\),</li>
+            <li>\(AD = 7\,\text{cm}\) et \((AD)\) est perpendiculaire au plan \((ABC)\) → donc \(AD\) est la hauteur issue de \(D\).</li>
+        </ul>
+        <p>Application de la formule :</p>
+        \[
+        V = \frac{1}{3} \times 15 \times 7 = \frac{105}{3} = 35\,\text{cm}^3.
+        \]
+
+        <!-- Q2 -->
+        <p><strong>2) Nature de la section par un plan parallèle à la base</strong></p>
+        <p><em>Propriété du cours :</em> La section d’une pyramide par un plan parallèle à sa base est un polygone de même nature que la base et qui lui est homothétique. Dans un tétraèdre, la base est un triangle, donc la section est un <strong>triangle</strong>. Ses côtés sont parallèles à ceux de la base \(ABC\) et le rapport de réduction est le rapport de la distance du plan de section au sommet sur la hauteur totale.</p>
+        <p>Ainsi, la section obtenue est un <strong>triangle</strong>.</p>
+    </div>
+</div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">Développeur</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">Version</h3>
+                    <p class="Tests-Hub-version-number">v2.0.6</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">Liens</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">Conditions d'utilisation</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+
+        function getCanvasBackgroundColor() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#0F172A' : '#FFFFFF';
+        }
+        function getCanvasTextColor() {
+            return document.body.classList.contains('Tests-Hub-dark-theme') ? '#F1F5F9' : '#1E3A8A';
+        }
+        function getAxisColors() {
+            const dark = document.body.classList.contains('Tests-Hub-dark-theme');
+            return {
+                xAxis: dark ? '#3B82F6' : '#2563EB',
+                yAxis: dark ? '#F59E0B' : '#2563EB',
+                grid: dark ? '#334155' : '#BFDBFE'
+            };
+        }
+
+        // --- Bar chart drawing (Exercice 1) ---
+        function drawBarChart(canvasId, showBars = false) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.fillStyle = getCanvasBackgroundColor();
+            ctx.fillRect(0, 0, w, h);
+            const margin = { top: 30, right: 30, bottom: 50, left: 50 };
+            const plotW = w - margin.left - margin.right;
+            const plotH = h - margin.top - margin.bottom;
+
+            const labels = ['0','1','2','3','4','5','6','7','8'];
+            const frequencies = [15, 28, 32, 16, 3, 2, 3, 0, 1];
+            const maxFreq = 35;
+            const barWidth = plotW / 9 * 0.6;
+            const spacing = plotW / 9;
+
+            // Axes
+            ctx.strokeStyle = getAxisColors().grid;
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= maxFreq; i+=5) {
+                const y = margin.top + plotH - (i / maxFreq) * plotH;
+                ctx.beginPath();
+                ctx.moveTo(margin.left, y);
+                ctx.lineTo(w - margin.right, y);
+                ctx.stroke();
+                ctx.fillStyle = getCanvasTextColor();
+                ctx.font = '10px "Segoe UI"';
+                ctx.fillText(i, margin.left - 25, y + 4);
+            }
+            for (let i = 0; i < labels.length; i++) {
+                const x = margin.left + i * spacing + spacing/2 - barWidth/2;
+                ctx.fillStyle = getCanvasTextColor();
+                ctx.font = '11px "Segoe UI"';
+                ctx.fillText(labels[i], x + barWidth/2 - 4, h - margin.bottom + 20);
+            }
+            ctx.strokeStyle = getAxisColors().xAxis;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, h - margin.bottom);
+            ctx.lineTo(w - margin.right, h - margin.bottom);
+            ctx.stroke();
+
+            if (showBars) {
+                for (let i = 0; i < labels.length; i++) {
+                    const x = margin.left + i * spacing + spacing/2 - barWidth/2;
+                    const barH = (frequencies[i] / maxFreq) * plotH;
+                    const y = h - margin.bottom - barH;
+                    ctx.fillStyle = '#3B82F6';
+                    ctx.fillRect(x, y, barWidth, barH);
+                    ctx.strokeStyle = '#2563EB';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(x, y, barWidth, barH);
+                    // value label
+                    ctx.fillStyle = getCanvasTextColor();
+                    ctx.font = 'bold 11px "Segoe UI"';
+                    ctx.fillText(frequencies[i], x + barWidth/2 - 8, y - 5);
+                }
+            }
+            // axis labels
+            ctx.fillStyle = getCanvasTextColor();
+            ctx.font = 'bold 12px "Segoe UI"';
+            ctx.fillText('Nombre de garçons', w/2 - 50, h - 10);
+            ctx.save();
+            ctx.translate(15, h/2);
+            ctx.rotate(-Math.PI/2);
+            ctx.fillText('Nombre de familles', 0, 0);
+            ctx.restore();
+        }
+
+        // --- Rotation exercise canvas (Exercice 3) ---
+        function drawTriangleRotation(canvasId, showSolution = false) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.fillStyle = getCanvasBackgroundColor();
+            ctx.fillRect(0, 0, w, h);
+
+            const scale = 30;
+            const originX = w/2 - 20, originY = h/2 + 20;
+            function toCanvas(p) { return { x: originX + p.x * scale, y: originY - p.y * scale }; }
+
+            // Points initiaux (choisis pour un triangle quelconque)
+            const A = { x: -2, y: -3 };
+            const B = { x: 0, y: 0 };
+            const C = { x: 3, y: 2 };
+
+            const drawPoint = (p, label, color, offX=8, offY=-8) => {
+                const cp = toCanvas(p);
+                ctx.beginPath();
+                ctx.arc(cp.x, cp.y, 4, 0, 2*Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.fillStyle = getCanvasTextColor();
+                ctx.font = 'bold 13px "Segoe UI"';
+                ctx.fillText(label, cp.x + offX, cp.y + offY);
+            };
+
+            // Draw triangle ABC
+            ctx.strokeStyle = '#2563EB';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(toCanvas(A).x, toCanvas(A).y);
+            ctx.lineTo(toCanvas(B).x, toCanvas(B).y);
+            ctx.lineTo(toCanvas(C).x, toCanvas(C).y);
+            ctx.closePath();
+            ctx.stroke();
+            drawPoint(A, 'A', '#2563EB', -18, -6);
+            drawPoint(B, 'B', '#2563EB', 8, 12);
+            drawPoint(C, 'C', '#2563EB', 8, -8);
+
+            if (showSolution) {
+                // Rotation +90° autour de B : (x,y) -> (-y, x)
+                function rot90(p, center) {
+                    const dx = p.x - center.x, dy = p.y - center.y;
+                    return { x: center.x - dy, y: center.y + dx };
+                }
+                const D = rot90(A, B);
+                const E = rot90(C, B);
+                const F = rot90(C, A);
+
+                drawPoint(D, 'D', '#F59E0B', 8, -8);
+                drawPoint(E, 'E', '#F59E0B', 8, -8);
+                drawPoint(F, 'F', '#F59E0B', -18, -6);
+
+                // Segments DE et AF
+                ctx.strokeStyle = '#F59E0B';
+                ctx.setLineDash([5, 3]);
+                ctx.beginPath();
+                ctx.moveTo(toCanvas(D).x, toCanvas(D).y);
+                ctx.lineTo(toCanvas(E).x, toCanvas(E).y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(toCanvas(A).x, toCanvas(A).y);
+                ctx.lineTo(toCanvas(F).x, toCanvas(F).y);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Arc de rotation B
+                ctx.strokeStyle = '#3B82F6';
+                ctx.setLineDash([3,3]);
+                ctx.beginPath();
+                ctx.arc(toCanvas(B).x, toCanvas(B).y, 30, Math.atan2(A.y-B.y, A.x-B.x), Math.atan2(A.y-B.y, A.x-B.x) + Math.PI/2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+        }
+
+        // --- Tetrahedron canvas (Exercice 4) ---
+       function drawTetra(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+
+    // Fond
+    ctx.fillStyle = getCanvasBackgroundColor();
+    ctx.fillRect(0, 0, w, h);
+
+    // --- Définition des points en 3D (repère orthonormé) ---
+    // Base ABC (triangle équilatéral sur le plan z=0)
+    const a = 140;                          // côté du triangle
+    const baseH = Math.sqrt(3) / 2 * a;     // hauteur de la base ≈ 121.24
+    const A3 = { x: 0,   y: 0,          z: 0 };
+    const B3 = { x: a,   y: 0,          z: 0 };
+    const C3 = { x: a/2, y: baseH,      z: 0 };
+
+    // Sommet D (au‑dessus du centre de gravité de ABC)
+    const centroid = {
+        x: (A3.x + B3.x + C3.x) / 3,
+        y: (A3.y + B3.y + C3.y) / 3,
+        z: 0
+    };
+    const D3 = {
+        x: centroid.x,
+        y: centroid.y - 20,   // on décale légèrement pour éviter une symétrie trop parfaite
+        z: 100                 // hauteur choisie
+    };
+
+    // --- Projection oblique (cabinet) ---
+    function project(p) {
+        const factorX = 1;      // pas de déformation horizontale
+        const factorZ = 0.5;    // la profondeur s'ajoute horizontalement
+        return {
+            x: p.x + factorZ * p.z,
+            y: p.y + factorZ * p.z
+        };
+    }
+
+    // Convertir en coordonnées canvas (centrer + échelle)
+    const scale = 1.8;
+    const offsetX = w/2 - (project(B3).x * scale) / 2;
+    const offsetY = h/2 + 50;  // descendre un peu pour le cadrage
+
+    function toCanvas(p) {
+        const proj = project(p);
+        return {
+            x: offsetX + proj.x * scale,
+            y: offsetY - proj.y * scale
+        };
+    }
+
+    const A = toCanvas(A3);
+    const B = toCanvas(B3);
+    const C = toCanvas(C3);
+    const D = toCanvas(D3);
+    const centroid2D = toCanvas(centroid);
+
+    // --- Dessin de la base (triangle ABC) avec remplissage ---
+    ctx.fillStyle = isDarkTheme ? 'rgba(59,130,246,0.15)' : 'rgba(37,99,235,0.1)';
+    ctx.strokeStyle = '#2563EB';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(A.x, A.y);
+    ctx.lineTo(B.x, B.y);
+    ctx.lineTo(C.x, C.y);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // --- Arêtes du tétraèdre (toutes visibles si D au‑dessus) ---
+    ctx.strokeStyle = '#2563EB';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(D.x, D.y);
+    ctx.lineTo(A.x, A.y);
+    ctx.moveTo(D.x, D.y);
+    ctx.lineTo(B.x, B.y);
+    ctx.moveTo(D.x, D.y);
+    ctx.lineTo(C.x, C.y);
+    ctx.stroke();
+
+    // --- Hauteur AD en pointillés (donnée de l'énoncé) ---
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = '#F59E0B';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(A.x, A.y);
+    ctx.lineTo(D.x, D.y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // --- Étiquettes ---
+    ctx.fillStyle = '#2563EB';
+    ctx.font = 'bold 13px "Segoe UI"';
+    ctx.fillText('A', A.x - 18, A.y + 15);
+    ctx.fillText('B', B.x + 8,  B.y + 15);
+    ctx.fillText('C', C.x + 8,  C.y - 10);
+    ctx.fillText('D', D.x - 18, D.y - 10);
+}
+
+        // Translations
+        const translations = {
+            fr: {
+                TestsHub: {
+                    test: {
+                        title: "Mathématiques - Devoir de Synthèse N°3",
+                        subtitle: "1ère Année Secondaire (Lycée de l'environnement, 2010)",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    lang: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    test: {
+                        title: "Mathematics - Synthesis Test N°3",
+                        subtitle: "1st Year Secondary School (Environment High School, 2010)",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    lang: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy" }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    test: {
+                        title: "الرياضيات - اختبار تأليفي عدد 3",
+                        subtitle: "السنة الأولى ثانوي (معهد البيئة، 2010)",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        comingSoon: "قريبًا!"
+                    },
+                    lang: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام",
+                    privacy: "سياسة الخصوصية" }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrBtnText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) span.textContent = isDarkTheme ? (currentLanguage === 'fr' ? 'Mode Clair' : (currentLanguage === 'ar' ? 'الوضع الفاتح' : 'Light Mode')) : translations[currentLanguage].TestsHub.theme.toggle;
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrBtnText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? translations[currentLanguage].TestsHub.test.showCorrection : translations[currentLanguage].TestsHub.test.hideCorrection;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            updateThemeToggleText();
+            redrawAll();
+        }
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = translations[lang].TestsHub.lang.current;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function redrawAll() {
+            const corrShown = !document.getElementById('correction').classList.contains('Tests-Hub-hidden');
+            drawBarChart('barChartCanvas', false);
+            drawTriangleRotation('rotCanvas', false);
+            drawTetra('tetraCanvas');
+            if (corrShown) {
+                drawBarChart('corrBarChartCanvas', true);
+                drawTriangleRotation('corrRotCanvas', true);
+            }
+        }
+
+        function renderMathSafe(el) {
+            if (typeof renderMathInElement !== 'function') return;
+            const wasHidden = el.classList.contains('Tests-Hub-hidden');
+            if (wasHidden) { el.classList.remove('Tests-Hub-hidden'); el.style.display = 'block'; }
+            renderMathInElement(el, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true }
+                ],
+                ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
+                throwOnError: false
+            });
+            if (wasHidden) { el.style.display = ''; el.classList.add('Tests-Hub-hidden'); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('testsHubTheme') === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && translations[savedLang]) currentLanguage = savedLang;
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            }
+            updateTextContent();
+
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true }
+                ],
+                ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
+                throwOnError: false
+            });
+
+            // Dessin initial
+            drawBarChart('barChartCanvas', false);
+            drawTriangleRotation('rotCanvas', false);
+            drawTetra('tetraCanvas');
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')));
+            });
+
+            const corrBtn = document.getElementById('toggleCorrection');
+            const corrDiv = document.getElementById('correction');
+            corrBtn.addEventListener('click', () => {
+                corrDiv.classList.toggle('Tests-Hub-hidden');
+                updateCorrBtnText();
+                if (!corrDiv.classList.contains('Tests-Hub-hidden')) {
+                    drawBarChart('corrBarChartCanvas', true);
+                    drawTriangleRotation('corrRotCanvas', true);
+                    renderMathSafe(corrDiv);
+                }
+            });
+
+            ['Pdf','Odt','Png'].forEach(type => {
+                document.getElementById('download' + type).addEventListener('click', () => alert(translations[currentLanguage].TestsHub.test.comingSoon));
+            });
+
+            if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+    </script>
+</body>
+</html>

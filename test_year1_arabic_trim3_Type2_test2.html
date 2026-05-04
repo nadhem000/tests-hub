@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 3 - المقال الأدبي (1 ثانوي)</title>
+
+    <meta name="theme-color" content="#0d9488">
+    <meta name="description" content="الفرض التأليفي عدد 3 في المقال الأدبي - السنة الأولى ثانوي (2021-2022) - الأستاذ وديع الجدي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - مقال أدبي 1ث">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --teal-50: #f0fdfa;
+            --teal-100: #ccfbf1;
+            --teal-200: #99f6e4;
+            --teal-300: #5eead4;
+            --teal-400: #2dd4bf;
+            --teal-500: #14b8a6;
+            --teal-600: #0d9488;
+            --teal-700: #0f766e;
+            --teal-800: #115e59;
+            --teal-900: #134e4a;
+            --teal-950: #0f2d2b;
+            --amber-200: #fde68a;
+            --amber-300: #fcd34d;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #0f2d2b;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0f2d2b 0%, #134e4a 100%);
+            color: #d1f2eb;
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #0d9488, #14b8a6);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #0f2d2b, #0f766e, #0d9488);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #0f2d2b;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #ccfbf1;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #134e4a;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #d1f2eb;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #0f766e;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #0d9488, #14b8a6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #0f2d2b, #0f766e);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #134e4a;
+            color: #d1f2eb;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #0d9488;
+            border-bottom: 2px solid #14b8a6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #2dd4bf;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #0f766e;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #5eead4;
+        }
+
+        .Tests-Hub-instructions {
+            background: #f0fdfa;
+            padding: 1rem;
+            border-right: 4px solid #0d9488;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0f2d2b;
+            border-right-color: #14b8a6;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 350px;
+            border: 1px solid #99f6e4;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: inherit;
+            font-size: 16px;
+            resize: vertical;
+            margin-top: 10px;
+            line-height: 1.8;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #0f766e;
+            background-color: #134e4a;
+            color: #d1f2eb;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-right: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #0d9488;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #2dd4bf;
+        }
+
+        .Tests-Hub-topic-box {
+            background: #f0fdfa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-right: 4px solid #0d9488;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-topic-box {
+            background: #0f2d2b;
+            border-right-color: #14b8a6;
+        }
+
+        .Tests-Hub-arabic-text {
+            line-height: 1.9;
+            font-size: 18px;
+            text-align: right;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, #0d9488, transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #0d9488, #14b8a6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #f0fdfa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #0d9488;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0f2d2b;
+            border-right-color: #14b8a6;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #0d9488;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #2dd4bf;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(13, 148, 136, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid #0d9488;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(20, 184, 166, 0.1);
+            border-right-color: #14b8a6;
+        }
+
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #115e59;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #99f6e4;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(13, 148, 136, 0.1), rgba(20, 184, 166, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to left, rgba(15, 45, 43, 0.3), rgba(19, 78, 74, 0.3));
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #0d9488, #14b8a6);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            color: white;
+        }
+
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0d9488, #14b8a6);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0f2d2b, #0f766e, #0d9488);
+        }
+
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .Tests-Hub-footer-column h3 {
+            color: #fde68a;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #fde68a;
+        }
+
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+
+        .Tests-Hub-footer-link {
+            color: #fde68a;
+            text-decoration: none;
+        }
+
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-large-textarea {
+                min-height: 280px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.arabicTest.title">اللغة العربية - فرض تأليفي عدد 3 (المقال الأدبي)</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.arabicTest.subtitle">السنة الأولى ثانوي (2021-2022)</div>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.arabicTest.back">العودة للاختبارات</span>
+                </a>
+
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض تأليفي عدد 3 - المقال الأدبي</h1>
+            <p>المعهد: الثانوي الخاص الآفاق - بئر الحفي | الأستاذ: وديع الجدي</p>
+            <p>القسم: السنة الأولى ثانوي | السنة الدراسية: 2021-2022</p>
+            <p>المدة: ساعتان | المعامل: 2</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات</h3>
+            <ul>
+                <li>يُطلب منك تحليل القول معتمدا على شواهد دقيقة من قصائد أحمد شوقي الوطنية المدروسة.</li>
+                <li>ينبغي تنظيم المقال بمقدمة وجوهر وخاتمة، مع سلامة اللغة ووضوح الأسلوب.</li>
+                <li>يُمكن الاستشهاد بالأبيات المرفقة أو بغيرها مما درست.</li>
+                <li>الحرص على حسن الخط ومراعاة علامات الترقيم.</li>
+            </ul>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>الموضوع</h2>
+            <div class="Tests-Hub-topic-box">
+                <p>"غلبت على قصائد أحمد شوقي الوطنية النزعة المحلية والصبغة الوعظية وظلت تتحرك في فلك الموروث بين المباني والمعاني."</p>
+                <p>حلل هذا القول معتمدا شواهد دقيقة مما درست.</p>
+            </div>
+
+
+            <textarea class="Tests-Hub-large-textarea" placeholder="اكتب مقالك هنا (مقدمة، جوهر، خاتمة) مع الاستشهاد بالشواهد المناسبة..."></textarea>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">عرض نموذج الإصلاح</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>⏺ نموذج إصلاح المقال - التخطيط المنهجي</h2>
+
+            <h3>المقدمة / التمهيد</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p>يُعَدُّ أحمد شوقي (1868-1932) الملقب بـ"أمير الشعراء" من أبرز أعلام الشعر العربي الحديث، وقد شغل الوطني من شعره حيزاً كبيراً جعله أيقونة من أيقونات الأدب العربي في عصر النهضة. غير أن النقاد لاحظوا أن قصائده الوطنية غلبت عليها النزعة المحلية التي تحتفي بالرموز المصرية والعربية، والصبغة الوعظية التي تجعل من الشعر منبراً للإرشاد الأخلاقي، كما ظلت تتحرك في فلك الموروث الشعري العربي بين المباني التقليدية والمعاني المألوفة.</p>
+                <p class="Tests-Hub-correction-note"><strong>الإشكالية:</strong> فما تجليات النزعة المحلية في شعر شوقي الوطني؟ وكيف تتجسد الصبغة الوعظية في خطابه الشعري؟ وإلى أي مدى ظل شوقي أسير الموروث في مبانيه ومعانيه؟</p>
+            </div>
+
+            <h3>الجوهر (التحليل)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>المحور الأول: النزعة المحلية في شعر شوقي الوطني</strong></p>
+                <ul>
+                    <li><strong>تقديس رموز البيئة المحلية:</strong> يتجه شوقي إلى الأهرام وأبي الهول والنيل باعتبارها رموزاً خالدة للهوية المصرية. ففي قوله: <em>"قم إلى الأهرام واخشع واطَّرح ۩ فخِيلة الصِّيد وزهو الفاتحين"</em> يستحضر الهرم معلمًا محليًا خالدًا بمعجم تقليدي وصورة بلاغية مألوفة. وفي قوله: <em>"أَبا الهَولِ طالَ عَلَيكَ العُصُر ۩ وَبُلِّغتَ في الأَرضِ أَقصى العُمُر"</em> يجعل من أبي الهول حلقة وصل بين ماضي مصر المجيد وحاضرها.</li>
+                    <li><strong>ارتباط الوطنية بالمكان المحلي:</strong> تتعلق قصائده الوطنية بأمكنة محددة: النيل، وادي الملوك، دمشق، بردى. في قوله: <em>"سَلامٌ مِنْ صَبا بَرَدى أَرَقُّ ۩ وَدَمْعٌ لا يُكَفكَفُ يا دِمَشقُ"</em> تدور القصيدة حول المدينة المحلية بعاطفة شجية وموسيقى الموروث الشعري.</li>
+                    <li><strong>الحنين إلى الوطن بأسلوب الوجدان المحلي:</strong> يصوّر شوقي حبه لمصر وهو في المنفى على هيئة مناجاة وجدانية: <em>"وطَني لَو شُغِلتُ بالخُلدِ عَنهُ ۩ نازَعَتني إلَيهِ في الخُلدِ نَفسِي"</em> وهو تعبير فطري عن حب الوطن لا يتجاوز العاطفة المجردة.</li>
+                    <li><strong>استدعاء التاريخ الفرعوني:</strong> في قوله: <em>"مُلوكُ الدَهرِ بِالوادي أَقاموا ۩ عَلى وادي المُلوكِ مُحَجَّبينا"</em> يرتبط بالمكان والتراث المصري القديم لتمجيد الذات المحلية، في تقليد شعري يستلهم الرموز القديمة.</li>
+                </ul>
+
+                <p><strong>المحور الثاني: الصبغة الوعظية في شعر شوقي الوطني</strong></p>
+                <ul>
+                    <li><strong>الوعظ المباشر ببناء الأمم على الأخلاق:</strong> في قوله: <em>"إنّما الأُمَمُ الأخلاقُ ما بَقِيَتْ ۩ فإنْ هُمُ ذَهَبَتْ أخلاقُهُمْ ذَهَبُوا"</em> يقدم عظة صريحة في صلب الوطنية، تستند إلى حكمة عربية متوارثة تجعل الأخلاق عماد وجود الأمم.</li>
+                    <li><strong>العظة بدور العلم والتربية:</strong> في قوله: <em>"العِلمُ يَبني بُيوتًا لا عِمادَ لَها ۩ والجَهلُ يَهدِمُ بَيتَ العِزِّ والكَرَمِ"</em> وفي قوله: <em>"قُمْ للمُعَلِّمِ وَفِّهِ التَّبجيلا ۩ كادَ المُعَلِّمُ أنْ يَكونَ رَسولا"</em> دعوة وعظية لإصلاح المجتمع بأسلوب الحكمة التقليدية المباشرة.</li>
+                    <li><strong>الوعظ بالثبات على المبدأ:</strong> في قوله: <em>"قِفْ دونَ رأيِكَ في الحياةِ مُجاهِدًا ۩ إنّ الحياةَ عَقيدةٌ وجِهادُ"</em> موعظة أخلاقية في التضحية ونصرة الحق، بألفاظ القيم التقليدية (عقيدة، جهاد).</li>
+                    <li><strong>النزعة التعليمية الإرشادية:</strong> في قوله: <em>"صَلاحُ أَمرِكَ لِلأَخلاقِ مَرجِعُهُ ۩ فَقَوِّمِ النَفسَ بِالأَخلاقِ تَستَقِمِ"</em> يغلب على خطابه النفس التعليمي المباشر، حيث يتحول الشعر إلى منبر وعظي يوجه المتلقي.</li>
+                    <li><strong>الأم مدرسة المجتمع:</strong> في قوله: <em>"الأُمُ مَدرَسَةٌ إِذا أَعدَدتَها ۩ أَعدَدتَ شَعباً طَيِّبَ الأَعراقِ"</em> يربط نهضة الأمة بالمدرسة التراثية الأولى (الأم)، في إطار وعظي اجتماعي تقليدي.</li>
+                </ul>
+
+                <p><strong>المحور الثالث: التحرك في فلك الموروث بين المباني والمعاني</strong></p>
+                <ul>
+                    <li><strong>التمسك بالمبنى العمودي التقليدي:</strong> في زمن التجديد الشعري، ظل شوقي يستخدم الإطار الخليلي العمودي بقافيته الموحدة، كما في افتتاحية <em>"يا جارَةَ الوادي طَرِبتُ وَعادَني ۩ ما يُشبِهُ الأَحلامَ مِن ذِكراكِ"</em> حيث يصب حنينه إلى ربوع الوطن في القالب الموسيقي الموروث.</li>
+                    <li><strong>استدعاء صور الأطلال والبكاء على الديار:</strong> وظف شوقي افتتاحية بكائية على نهج القدماء: <em>"يا نائِحَ الطَلحِ أَشباهٌ عَوادينا ... نَشجى لِواديكَ أَم نَأسى لِوادينا"</em> ممتزجاً بالموروث الشعري الجاهلي والأموي.</li>
+                    <li><strong>الاستبسال في طلب الحرية بقيم الجهاد الموروثة:</strong> مزج شوقي بين الوطنية والنضال من خلال لغة العزة والكرامة الموروثة عن العرب: <em>"وَلِلحُرِّيَّةِ الحَمراءِ بابٌ ... بِكُلِّ يَدٍ مُضَرَّجَةٍ يُدَقُّ"</em>.</li>
+                    <li><strong>تمجيد الوطن بربطه بالنصوص الدينية الموروثة:</strong> أضفى شوقي على مصر هالة من القداسة بربطها بذكر الأنبياء: <em>"لَقِيَت طُهرَ بَقاياكِ كَما ۩ لَقِيَت يَثرِبٌ أُمَّ المُؤمِنين"</em> مما يمنح الوطنية سنداً من الموروث القرآني.</li>
+                    <li><strong>الاحتماء بالموروث اللغوي رمزاً للهوية:</strong> جعل شوقي من اللغة العربية الحصن الذي يلجأ إليه: <em>"إِنَّ الَّذي مَلأَ اللُّغاتِ مَحاسِنًا ... جَعَلَ الجَمالَ وَسِرَّهُ في الضّادِ"</em> مستعيداً فخر الأوائل بلغتهم.</li>
+                    <li><strong>ختم التأبين بدعاء تقليدي:</strong> يختم شوقي قصائده في رثاء زعماء الأمة بدعاء متوارث: <em>"اخلع على مصرٍ شبابَك عاليًا ۩ والبسْ شبابَ الحُورِ والوِلْدان"</em> ممتزجاً بصور الغيث والرحمة المستمدة من صميم البلاغة العربية.</li>
+                </ul>
+
+                <p><strong>التأليف (الربط):</strong> هكذا يتضح أن شعر شوقي الوطني، رغم صدق عاطفته وقوة تأثيره، يظل أسير رؤية محلية تحتفي بالرموز المصرية والعربية دون استشراف آفاق إنسانية أوسع، وتغلب عليه الصبغة الوعظية التي تجعل القصيدة أقرب إلى الخطبة منها إلى التأمل الشعري الحر، كما يظل مخلصاً للموروث الشعري العربي في شكله العمودي ومعجمه التقليدي وصوره البلاغية المألوفة.</p>
+            </div>
+
+            <h3>الخاتمة</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p>خلاصة القول إن شعر أحمد شوقي الوطني يمثل مرآة صادقة لمرحلة تاريخية كان الشاعر فيها لسان حال الأمة، غير أنه ظل وفيّاً للنزعة المحلية في ارتباطه الوثيق برموز البيئة المصرية والعربية، وملتزماً بالصبغة الوعظية التي تجعل الشعر رسالة أخلاقية قبل أن يكون تجربة فنية خالصة، ومتحركاً في فلك الموروث الشعري العربي بين المباني التقليدية والمعاني المألوفة. وهذا لا يقلل من قيمة شوقي بقدر ما يضعه في سياقه التاريخي والفني الصحيح، شاعراً عظيماً عكس روح عصره بكل تناقضاتها بين الأصالة والتجديد.</p>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h2>⏺ نموذج إصلاح المقال (تحرير موسع)</h2>
+
+            <h3>المقدمة</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p>يُعَدُّ أحمد شوقي (1868-1932) الملقب بـ"أمير الشعراء" من أبرز أعلام الشعر العربي الحديث، بل من أكثرهم إنتاجاً وتنوعاً في الموضوعات والأغراض. وقد شغل الوطني من شعره حيزاً كبيراً، حتى غدا شعره الوطني أيقونة من أيقونات الأدب العربي في عصر النهضة، يتردد في المحافل الوطنية والمدرسية، وتحفظه الأجيال. غير أن النقاد والدارسين تباينت مواقفهم من هذا الشعر؛ فمنهم من رأى فيه تعبيراً أصيلاً عن روح الأمة وضميرها الحي، ومنهم من لاحظ أن قصائد شوقي الوطنية، برغم جزالة أسلوبها وصدق عاطفتها، غلبت عليها النزعة المحلية التي تحتفي بالرموز المصرية والعربية احتفاءً يكاد يكون طقسياً، والصبغة الوعظية التي تجعل من الشعر منبراً للإرشاد الأخلاقي المباشر، كما أنها ظلت تتحرك في فلك الموروث الشعري العربي بين المباني التقليدية والمعاني المألوفة، دون أن تستشرف آفاقاً جديدة في الشكل أو المضمون على نحو ما فعل بعض معاصريه من شعراء المهجر أو الرابطة القلمية.</p>
+                <p>وهذا القول النقدي يدفعنا إلى طرح جملة من التساؤلات: فما تجليات النزعة المحلية في شعر شوقي الوطني؟ وكيف تتجسد الصبغة الوعظية في خطابه الشعري؟ وإلى أي مدى ظل شوقي أسير الموروث في مبانيه ومعانيه؟ وما الشواهد الشعرية التي تدعم هذا التحليل؟</p>
+            </div>
+
+            <h3>الجوهر</h3>
+            <div class="Tests-Hub-correction-answer">
+                <h4>المحور الأول: النزعة المحلية في شعر شوقي الوطني</h4>
+                <p>تتجلى النزعة المحلية في شعر شوقي الوطني من خلال احتفائه المتكرر والمركّز برموز البيئة المصرية والعربية، حتى لكأن الوطنية عنده مرادفة للارتباط العاطفي بالمكان المحلي ورموزه التاريخية. ويمكن رصد هذه النزعة في عدة مظاهر:</p>
+                <p><strong>أولاً: تقديس رموز البيئة المحلية (النيل والأهرام وأبي الهول):</strong> يتجه شوقي إلى الأهرام وأبي الهول والنيل باعتبارها رموزاً خالدة للهوية المصرية، ويضفي عليها هالة من القداسة والتوقير. ففي قوله مخاطباً الأهرام: <em>"قم إلى الأهرام واخشع واطَّرح ۩ فخِيلة الصِّيد وزهو الفاتحين"</em> يستحضر الهرم معلمًا محليًا خالدًا، داعياً إلى الخشوع أمامه، في صورة بلاغية تقوم على التشخيص والتجسيم. وفي قوله مخاطباً أبي الهول: <em>"أَبا الهَولِ طالَ عَلَيكَ العُصُر ۩ وَبُلِّغتَ في الأَرضِ أَقصى العُمُر"</em> يجعل من أبي الهول شخصية حية خالدة، حلقة وصل بين ماضي مصر المجيد وحاضرها، في تقليد شعري يستلهم الرموز القديمة ويضفي عليها طابعاً أسطورياً. كما يتخذ من النيل رمزاً محلياً للتطلع والعمل في قوله: <em>"وما نَيْلُ المطالبِ بالتّمنّي ۩ ولكنْ تُؤخَذُ الدّنيا غِلابا"</em> حيث يزاوج بين إيحاء لفظي بـ"النيل" كاسم للنهر المحبوب، وبين معنى النيل والبلوغ.</p>
+                <p><strong>ثانياً: ارتباط الوطنية بالمكان المحلي المحدد:</strong> لا تكاد قصائده الوطنية تنفصل عن أمكنة محددة ومحلية: النيل، وادي الملوك، دمشق، بردى، بيروت. ففي قوله: <em>"سَلامٌ مِنْ صَبا بَرَدى أَرَقُّ ۩ وَدَمْعٌ لا يُكَفكَفُ يا دِمَشقُ"</em> تدور القصيدة بأكملها حول مدينة دمشق، بعاطفة شجية وموسيقى الموروث الشعري العربي، دون أن تتجاوز حدود الإطار المحلي إلى رؤية قومية أوسع أو إنسانية أشمل. وفي قوله: <em>"يا جارَةَ الوادي طَرِبتُ وَعادَني ۩ ما يُشبِهُ الأَحلامَ مِن ذِكراكِ"</em> يظل الحنين محصوراً في إطار المكان المحلي (الوادي) والذكرى الشخصية.</p>
+                <p><strong>ثالثاً: استدعاء التاريخ الفرعوني لتمجيد الذات المحلية:</strong> يلجأ شوقي إلى استدعاء التاريخ الفرعوني القديم لتعزيز الفخر بالذات المصرية، في قوله: <em>"مُلوكُ الدَهرِ بِالوادي أَقاموا ۩ عَلى وادي المُلوكِ مُحَجَّبينا"</em> حيث يرتبط بالمكان والتراث المصري القديم، بأسلوب القصيدة العربية الفصيحة، مما يعكس نزعة محلية واضحة تحتفي بالموروث الحضاري المصري القديم كجزء من الهوية الوطنية.</p>
+                <p><strong>رابعاً: الاقتصار على العاطفة الوطنية المجرّدة:</strong> يعبر شوقي عن حبه للوطن بعاطفة وجدانية خالصة لا تتجاوز الإطار الفطري المألوف، في قوله: <em>"وطَني لَو شُغِلتُ بالخُلدِ عَنهُ ۩ نازَعَتني إلَيهِ في الخُلدِ نَفسِي"</em> فهو حب الوطن عفوي الطابع، يصاغ في إطار وجداني تراثي لا يتجاوز التعبير الفطري إلى تحليل أعمق لعلاقة المواطن بالدولة الحديثة أو لمفهوم المواطنة بمقوماتها السياسية والاجتماعية.</p>
+                <p>وهكذا، تظل وطنية شوقي محلية في جوهرها، تدور حول رموز المكان والتاريخ المصري والعربي، وتعبر عن نفسها بلغة عاطفية وجدانية لا تتجاوز الأفق المحلي إلى آفاق إنسانية أو كونية أوسع.</p>
+
+                <h4>المحور الثاني: الصبغة الوعظية في شعر شوقي الوطني</h4>
+                <p>إذا كانت النزعة المحلية تمثل الإطار المكاني والعاطفي لشعر شوقي الوطني، فإن الصبغة الوعظية تمثل جوهر رسالته ومضمون خطابه. فشوقي لا يكتفي بالتغني بالوطن ورموزه، بل يتخذ من الشعر منبراً للوعظ والإرشاد الأخلاقي المباشر، حتى تكاد قصائده الوطنية تتحول إلى خطب منظومة في الحكمة والتهذيب.</p>
+                <p><strong>أولاً: الوعظ المباشر ببناء الأمم على الأخلاق:</strong> في واحد من أشهر أبياته على الإطلاق، يقدم شوقي عظة صريحة لا لبس فيها: <em>"إنّما الأُمَمُ الأخلاقُ ما بَقِيَتْ ۩ فإنْ هُمُ ذَهَبَتْ أخلاقُهُمْ ذَهَبُوا"</em> فهذا البيت، برغم قيمته المعنوية العالية، يمثل خطاباً وعظياً مباشراً يستند إلى حكمة عربية متوارثة، ويجعل من الأخلاق عِماد وجود الأمم وبقائها، في صياغة تقريرية قاطعة تذكر بأسلوب الحكم والأمثال العربية القديمة. وفي الاتجاه نفسه يقول: <em>"صَلاحُ أَمرِكَ لِلأَخلاقِ مَرجِعُهُ ۩ فَقَوِّمِ النَفسَ بِالأَخلاقِ تَستَقِمِ"</em> حيث يغلب على الخطاب النفس التعليمي المباشر الذي يوجه المتلقي توجيهاً صريحاً.</p>
+                <p><strong>ثانياً: العظة بدور العلم والتربية في نهضة الوطن:</strong> يكرس شوقي جزءاً كبيراً من شعره الوطني للدعوة إلى العلم ونبذ الجهل، في قالب وعظي تعليمي واضح. ففي قوله: <em>"العِلمُ يَبني بُيوتًا لا عِمادَ لَها ۩ والجَهلُ يَهدِمُ بَيتَ العِزِّ والكَرَمِ"</em> نجد مقابلة وعظية بين العلم والجهل، في صورة بلاغية تقليدية تقوم على الطباق والتشبيه. وفي بيته الأشهر: <em>"قُمْ للمُعَلِّمِ وَفِّهِ التَّبجيلا ۩ كادَ المُعَلِّمُ أنْ يَكونَ رَسولا"</em> يبلغ الوعظ التربوي ذروته حين يرتقي بالمعلم إلى مقام النبوة تقريباً، في وصاية تعليمية صريحة تذكر بأسلوب المديح النبوي التقليدي. كما يربط نهضة الأمة بدور الأم في قوله: <em>"الأُمُ مَدرَسَةٌ إِذا أَعدَدتَها ۩ أَعدَدتَ شَعباً طَيِّبَ الأَعراقِ"</em> حيث يجعل من الأم المدرسة الأولى لصلاح المجتمع، في إطار وعظي اجتماعي تقليدي لا يخرج عن منظومة القيم الموروثة.</p>
+                <p><strong>ثالثاً: الوعظ بالثبات على المبدأ والتضحية:</strong> يتخذ شوقي من الشعر وسيلة للحث على التضحية والثبات، في قوله: <em>"قِفْ دونَ رأيِكَ في الحياةِ مُجاهِدًا ۩ إنّ الحياةَ عَقيدةٌ وجِهادُ"</em> وهي موعظة أخلاقية في التضحية ونصرة الحق، بألفاظ القيم التقليدية (عقيدة، جهاد، مجاهداً) التي تستدعي مخزوناً دينياً وأخلاقياً مألوفاً لدى المتلقي العربي. كما يقول في الحث على العمل الجاد: <em>"وَما نَيْلُ المطالبِ بالتّمنّي ۩ ولكنْ تُؤخَذُ الدّنيا غِلابا"</em> وهو درس وعظي في أن النجاح لا ينال بالأماني بل بالكفاح.</p>
+                <p><strong>رابعاً: غلبة النفس التعليمي الإرشادي على النفس التأملي:</strong> يتحول شوقي في كثير من قصائده الوطنية إلى معلم أخلاقي يوجه وينصح، مما يجعل شعره أقرب إلى الخطابة التعليمية منه إلى الشعر التأملي الفلسفي. فقصائده زاخرة بالأوامر والنواهي، والحكم والمواعظ، مما يمنحها طابعاً إرشادياً واضحاً قد يحد من عمق التجربة الشعورية وفرادتها.</p>
+
+                <h4>المحور الثالث: التحرك في فلك الموروث بين المباني والمعاني</h4>
+                <p>لا تقف ظاهرة المحافظة عند شوقي عند حدود المضمون الوطني أو النزعة الوعظية، بل تمتد لتشمل البنية الفنية لشعره برمتها. فشوقي ظل، حتى في أكثر قصائده حداثة من حيث الموضوع، مخلصاً للقالب الشعري العربي الموروث، شكلاً ومضموناً.</p>
+                <p><strong>أولاً: التمسك بالمبنى العمودي التقليدي:</strong> في زمن التجديد الشعري الذي قاده شعراء المهجر والرابطة القلمية، ظل شوقي يستخدم الإطار الخليلي العمودي بقافيته الموحدة، كما في افتتاحية <em>"يا جارَةَ الوادي طَرِبتُ وَعادَني ۩ ما يُشبِهُ الأَحلامَ مِن ذِكراكِ"</em> و<em>"يا نائِحَ الطَلحِ أَشباهٌ عَوادينا ... نَشجى لِواديكَ أَم نَأسى لِوادينا"</em> حيث يصب حنينه إلى ربوع الوطن في القالب الموسيقي الموروث عن الشعراء القدامى. فالقصيدة الشوقية تبدأ بمطلع غزلي أو بكائي على الديار، ثم تنتقل إلى الغرض الرئيسي، ثم تختم بحكمة أو دعاء، تماماً كما كانت تفعل القصيدة العربية منذ العصر الجاهلي.</p>
+                <p><strong>ثانياً: استدعاء الصور البلاغية الموروثة:</strong> يعتمد شوقي على مخزون الصور البلاغية العربية التقليدية: تشبيه، استعارة، كناية، طباق، جناس، بأسلوب لا يخرج عن دائرة ما هو مألوف في التراث البلاغي العربي. فهو يشبه، ويستعير، ويكني، على نحو ما فعل الشعراء العرب عبر العصور، دون أن يجرب أشكالاً جديدة من الصور أو الرموز التي بدأ يستخدمها معاصروه من الشعراء الرومانسيين والرمزيين. ففي قوله: <em>"اخلع على مصرٍ شبابَك عاليًا ۩ والبسْ شبابَ الحُورِ والوِلْدان"</em> نجد استعارة تقليدية تقوم على تشخيص مصر وإلباسها الشباب، في صورة بلاغية مألوفة في الشعر العربي القديم.</p>
+                <p><strong>ثالثاً: توظيف المعجم اللغوي التراثي:</strong> يظل معجم شوقي الشعري مخلصاً للغة العربية الفصيحة في أبهى تجلياتها التراثية. ففي قوله: <em>"إِنَّ الَّذي مَلأَ اللُّغاتِ مَحاسِنًا ... جَعَلَ الجَمالَ وَسِرَّهُ في الضّادِ"</em> يجعل من اللغة العربية رمز الهوية والحصن الذي يلجأ إليه في مواجهة ثقافة المحتل، مستعيداً فخر الأوائل بلغتهم، بألفاظ تراثية (محاسن، الجمال، سر، الضاد) لا تحيد عن المعجم الموروث. كما أن ألفاظه في السياقات الوطنية (عقيدة، جهاد، حرية، ملك، مجد) تظل حبيسة الدلالات التقليدية لا تتطور نحو دلالات حديثة.</p>
+                <p><strong>رابعاً: تمجيد الوطن بربطه بالنصوص الدينية الموروثة:</strong> أضفى شوقي على مصر هالة من القداسة عندما ربطها بذكر الأنبياء والقصص القرآني، كما في قوله: <em>"لَقِيَت طُهرَ بَقاياكِ كَما ۩ لَقِيَت يَثرِبٌ أُمَّ المُؤمِنين"</em> فمصر في هذا البيت تكتسب قداستها من اتصالها بالمدينة المنورة (يثرب) وبأم المؤمنين، مما يمنح الوطنية سنداً من الموروث القرآني والديني، في تقليد شعري قديم كان الشعراء يلجؤون فيه إلى توظيف النصوص الدينية لتعزيز مكانة الممدوح أو الموضوع.</p>
+                <p><strong>خامساً: ختم القصائد بأدعية تقليدية:</strong> يختم شوقي كثيراً من قصائده الوطنية والتأبينية بدعاء تقليدي متوارث، ممتزجاً بصور الغيث والرحمة المستمدة من صميم البلاغة العربية، كما في ختام رثائه لمصطفى كامل: <em>"اخلع على مصرٍ شبابَك عاليًا ۩ والبسْ شبابَ الحُورِ والوِلْدان"</em> أو في غيرها من المراثي الوطنية، مما يذكر بخواتم القصائد العربية القديمة التي كانت تختم بالدعاء للممدوح أو للموتى.</p>
+
+                <h4>التأليف والربط</h4>
+                <p>مما تقدم، يتبين أن شعر أحمد شوقي الوطني، برغم ما فيه من صدق العاطفة وقوة التأثير وجزالة الأسلوب، يظل أسير ثلاثة عناصر متداخلة: النزعة المحلية التي تجعل الوطنية مرادفة للارتباط برموز المكان والتاريخ المحلي، والصبغة الوعظية التي تجعل القصيدة أقرب إلى الخطبة الأخلاقية منها إلى التأمل الشعري الحر، والتحرك في فلك الموروث الشعري العربي بين المباني التقليدية (العمود، القافية الموحدة، الافتتاحيات البكائية) والمعاني المألوفة (الحكمة، الفخر، الرثاء). وهذه العناصر الثلاثة لا تنفصل عن سياق شوقي التاريخي والثقافي؛ فهو شاعر نشأ في كنف البلاط، وتثقف بثقافة عربية إسلامية تقليدية، وعاش مرحلة كانت الأمة فيها تبحث عن هويتها في مواجهة الاستعمار، مما جعل شعره الوطني تعبيراً أصيلاً عن روح عصره، وإن ظل بعيداً عن آفاق التجديد التي انفتح عليها شعراء آخرون من جيله أو من الأجيال اللاحقة.</p>
+                <p>غير أن هذا لا يقلل من قيمة شوقي ولا من مكانته كأمير للشعراء، بل يضعه في سياقه التاريخي والفني الصحيح: شاعراً كبيراً عكس روح عصره بكل تناقضاتها بين الأصالة والتجديد، وبين المحلي والإنساني، وبين الوعظي والتأملي، وبين الموروث والمبتكر. ويكفيه فخراً أن قصائده الوطنية ما زالت حية في وجدان الأمة، تتردد في المحافل، وتحفظها الأجيال، وتؤدي دورها في شحذ الهمم وإيقاظ الوعي.</p>
+            </div>
+
+            <h3>الخاتمة</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p>في النهاية، يمكن القول إن شعر أحمد شوقي الوطني يمثل مرآة صادقة لمرحلة تاريخية كان الشاعر فيها لسان حال الأمة وضميرها النابض. وقد تجلت فيه النزعة المحلية من خلال الاحتفاء المتكرر برموز البيئة المصرية والعربية كالنيل والأهرام وأبي الهول ودمشق، وتجسدت الصبغة الوعظية في الخطاب الأخلاقي المباشر الذي يجعل من العلم والأخلاق عماد نهضة الأمم، وظل الشعر يتحرك في فلك الموروث الشعري العربي شكلاً (العمود والقافية) ومضموناً (الحكمة والفخر والرثاء).</p>
+                <p>وهكذا يكون شوقي قد جسّد نموذج الشاعر العربي في طور الانتقال بين عصرين: مخلصاً في الوقت نفسه لتراثه الشعري العريق، ومعبراً عن هموم أمته وتطلعاتها. وإذا كان بعض النقاد قد أخذوا عليه محافظته وارتباطه بالموروث، فإن هذه المحافظة نفسها كانت جزءاً من رسالته الوطنية؛ إذ كان يريد أن يخاطب أمته بلغة تفهمها وتألفها، وبصور تستنهض ذاكرتها الجمعية، وبقيم تؤمن بها وتعتز بها. ولعل هذا هو سر خلود شعره الوطني وبقائه حياً في وجدان العرب حتى اليوم.</p>
+            </div>
+
+            <p class="Tests-Hub-correction-note"><strong>ملاحظة:</strong> هذا نموذج إصلاح مقترح، يمكن للمتعلم أن يصوغ إجابته بأسلوبه الخاص مع الاستناد إلى الشواهد المناسبة من قصائد شوقي المدروسة. كما يمكنه الاستعانة بشواهد إضافية غير تلك المذكورة في الموضوع.</p>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span data-i18n="TestsHub.arabicTest.download.pdf">PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span data-i18n="TestsHub.arabicTest.download.odt">ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span data-i18n="TestsHub.arabicTest.download.png">PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.0.6</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    arabicTest: {
+                        title: "اللغة العربية - فرض تأليفي عدد 3 (المقال الأدبي)",
+                        subtitle: "السنة الأولى ثانوي (2021-2022)",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض نموذج الإصلاح",
+                        hideCorrection: "إخفاء الإصلاح",
+                        download: { pdf: "PDF", odt: "ODT", png: "PNG" },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية" }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    arabicTest: {
+                        title: "Arabe - Devoir de Synthèse N°3 (Article littéraire)",
+                        subtitle: "1ère Année Secondaire (2021-2022)",
+                        back: "Retour aux Tests",
+                        showCorrection: "Voir le corrigé",
+                        hideCorrection: "Masquer le corrigé",
+                        download: { pdf: "PDF", odt: "ODT", png: "PNG" },
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    arabicTest: {
+                        title: "Arabic - Test N°3 (Literary Essay)",
+                        subtitle: "1st Year Secondary (2021-2022)",
+                        back: "Back to Tests",
+                        showCorrection: "Show Answer Key",
+                        hideCorrection: "Hide Answer Key",
+                        download: { pdf: "PDF", odt: "ODT", png: "PNG" },
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms of Use", privacy: "Privacy Policy" }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (cur && typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const toggleSpan = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (toggleSpan) {
+                toggleSpan.textContent = isDarkTheme
+                    ? (currentLanguage === 'fr' ? 'Mode Clair' : currentLanguage === 'ar' ? 'الوضع الفاتح' : 'Light Mode')
+                    : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = corr.classList.contains('Tests-Hub-hidden')
+                    ? TestsHub_translations[currentLanguage].TestsHub.arabicTest.showCorrection
+                    : TestsHub_translations[currentLanguage].TestsHub.arabicTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const langBtn = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (langBtn) langBtn.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.arabicTest?.comingSoon || "قريبًا");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+            updateTextContent();
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', () => changeLanguage(opt.dataset.language));
+            });
+            document.getElementById('downloadPdf').addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt').addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng').addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            toggleBtn.addEventListener('click', () => {
+                document.getElementById('correction').classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(e => console.log(e));
+            }
+        });
+    </script>
+</body>
+</html>

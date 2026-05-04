@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - Devoir de Contrôle N°3 - SVT - 1ère S</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#00838F">
+    <meta name="description" content="Devoir de Contrôle N°3 pour 1ère S - Sciences de la Vie et de la Terre">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - Devoir de Contrôle">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- KaTeX for mathematical formulas -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: #333;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0a1a1a 0%, #153535 100%);
+            color: #e0e0e0;
+        }
+
+        /* Header */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to right, #00838F, #006064);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to right, #0a1a1a, #00838F, #006064);
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-language-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #f0f0f0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #153535;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #e0e0e0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #1a4545;
+        }
+
+        .Tests-Hub-theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Back Button */
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Test Content Styling */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to right, #00838F, #006064);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to right, #0a1a1a, #00838F);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #153535;
+            color: #e0e0e0;
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: #00838F;
+            border-bottom: 2px solid #006064;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: #4DD0E1;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: #006064;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h3 {
+            color: #80DEEA;
+        }
+
+        .Tests-Hub-instructions {
+            background: #e0f7fa;
+            padding: 1rem;
+            border-left: 4px solid #00838F;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0a1a1a;
+            border-left-color: #006064;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        th {
+            background: #00838F;
+            color: white;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-dark-theme th {
+            background: #0a1a1a;
+        }
+
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        .Tests-Hub-dark-theme tr:nth-child(even) {
+            background: #1a4545;
+        }
+
+        .Tests-Hub-dark-theme td {
+            border-color: #2a5a5a;
+        }
+
+        .Tests-Hub-answer-textarea {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 5px;
+            height: 30px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-table-textarea {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-table-textarea,
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #666;
+            background-color: #153535;
+            color: #e0e0e0;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding-left: 10px;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #00838F;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #4DD0E1;
+        }
+
+        .Tests-Hub-multiple-choice {
+            margin: 10px 0 10px 20px;
+        }
+
+        .Tests-Hub-choice-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .Tests-Hub-choice-item input {
+            margin-right: 10px;
+        }
+
+        .Tests-Hub-image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-container {
+            background: #1a4545;
+        }
+
+        .Tests-Hub-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-image-caption {
+            color: #b0b0b0;
+        }
+
+        /* Graph Container */
+        .Tests-Hub-graph-container {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-graph-container {
+            background: #1a4545;
+            border-color: #2a5a5a;
+        }
+
+        .Tests-Hub-graph-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .Tests-Hub-graph-point {
+            height: 20px;
+            background: #00838F;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .Tests-Hub-graph-point.transpiration {
+            background: #00838F;
+        }
+
+        .Tests-Hub-graph-point.absorption {
+            background: #0097A7;
+        }
+
+        /* Correction Section */
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #00838F, #006064);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-correction-section {
+            background: #e0f7fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #006064;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #0a1a1a;
+            border-left-color: #00838F;
+        }
+
+        .Tests-Hub-correction-section h3 {
+            color: #006064;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: #4DD0E1;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(0, 131, 143, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #00838F;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(77, 208, 225, 0.1);
+            border-left-color: #4DD0E1;
+        }
+
+        .Tests-Hub-correction-note {
+            font-style: italic;
+            color: #666;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-note {
+            color: #ccc;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #00838F, #006064);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to right, #0a1a1a, #00838F, #006064);
+        }
+
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+
+        .Tests-Hub-footer-column h3 {
+            color: #FFD54F;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .Tests-Hub-footer-column p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-developer-name {
+            font-weight: 600;
+            color: #FFD54F;
+        }
+
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FFD54F;
+        }
+
+        /* Footer Links Styles */
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+
+        .Tests-Hub-footer-link {
+            color: #FFD54F;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-footer-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .Tests-Hub-header-title {
+                font-size: 1.5rem;
+            }
+
+            .Tests-Hub-header-controls {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th,
+            td {
+                padding: 8px 10px;
+            }
+
+            .Tests-Hub-answer-textarea,
+            .Tests-Hub-table-textarea {
+                height: 25px;
+                font-size: 12px;
+            }
+
+            .Tests-Hub-large-textarea {
+                min-height: 50px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-test-header h1 {
+                font-size: 1.2rem;
+            }
+
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+        }
+
+        /* Download Buttons Styles */
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(0, 131, 143, 0.1), rgba(0, 96, 100, 0.1));
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-download-buttons {
+            background: linear-gradient(to right, rgba(10, 26, 26, 0.2), rgba(0, 131, 143, 0.2));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #c62828, #d32f2f);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #00695C, #00897B);
+            color: white;
+        }
+
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #00838F, #00ACC1);
+            color: white;
+        }
+
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-download-button.pdf:hover {
+            background: linear-gradient(135deg, #b71c1c, #c62828);
+        }
+
+        .Tests-Hub-download-button.odt:hover {
+            background: linear-gradient(135deg, #004D40, #00695C);
+        }
+
+        .Tests-Hub-download-button.png:hover {
+            background: linear-gradient(135deg, #006064, #00838F);
+        }
+
+        .Tests-Hub-download-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive styles for download buttons */
+        @media (max-width: 768px) {
+            .Tests-Hub-download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 1rem;
+            }
+
+            .Tests-Hub-download-button {
+                width: 80%;
+                max-width: 250px;
+                height: 80px;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+            }
+
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.8rem;
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-download-buttons {
+                gap: 10px;
+            }
+
+            .Tests-Hub-download-button {
+                height: 70px;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+        }
+
+        /* Two-column image layout for side-by-side schemas */
+        .Tests-Hub-image-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .Tests-Hub-image-row .Tests-Hub-image-container {
+            flex: 1;
+            min-width: 280px;
+            max-width: 48%;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .Tests-Hub-image-row .Tests-Hub-image-container {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.svtTest.title">SVT - Devoir de Contrôle N°3</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.svtTest.subtitle">1ère Année Secondaire - Trimestre 3</div>
+                </div>
+            </div>
+
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button">
+                    <span>←</span>
+                    <span data-i18n="TestsHub.svtTest.back">Retour aux Tests</span>
+                </a>
+
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">Français</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="fr">
+                            <span>🌐</span> Français
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="en">
+                            <span>🌐</span> English
+                        </div>
+                        <div class="Tests-Hub-language-option" data-language="ar">
+                            <span>🌐</span> العربية
+                        </div>
+                    </div>
+                </div>
+
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">Mode Sombre</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="Tests-Hub-main-container">
+        <!-- Test Header -->
+        <div class="Tests-Hub-test-header">
+            <h1>Devoir de Contrôle N°3 de Sciences de la Vie et de la Terre</h1>
+            <p>Lycée Mahmoud El Messadi Nabeul</p>
+            <p>Classe : 1ère S6 - Professeur : Mzid Mourad</p>
+            <p>Année : 2014/2015 — Durée : 30 minutes</p>
+        </div>
+
+        <!-- Instructions -->
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>Instructions générales</h3>
+            <ul>
+                <li>Pour chaque item du QCM, il peut y avoir une ou deux réponses correctes.</li>
+                <li><strong>Toute réponse fausse annule la note attribuée à l'item considéré.</strong></li>
+                <li>Répondez précisément aux questions posées.</li>
+                <li>Soignez la présentation de vos réponses.</li>
+            </ul>
+        </div>
+
+        <!-- EXERCICE 1 : QCM -->
+        <div class="Tests-Hub-test-section">
+            <h2>EXERCICE 1 : QCM (4 points)</h2>
+            <p><strong>Pour chacun des items suivants il peut y avoir une ou deux réponse(s) exacte(s). Relever les lettres correspondant à la (ou aux) réponse(s) exacte(s).</strong></p>
+
+            <!-- Question 1 - Greffage -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> Le schéma ci-contre représente :</p>
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image38.png" alt="Schéma du greffage en écusson">
+                    <div class="Tests-Hub-image-caption">Schéma : technique de greffage — Élément ① et Élément ②</div>
+                </div>
+                <div class="Tests-Hub-multiple-choice">
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q1a" id="q1a">
+                        <label for="q1a">a) le greffage en fente.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q1b" id="q1b">
+                        <label for="q1b">b) le greffage en écusson.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q1c" id="q1c">
+                        <label for="q1c">c) l'élément ① représente le porte-greffe.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q1d" id="q1d">
+                        <label for="q1d">d) l'élément ① représente le greffon.</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 - Marcottage -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2-</span> La plante P2 :</p>
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image39.png" alt="Schéma du marcottage">
+                    <div class="Tests-Hub-image-caption">Schéma : technique de marcottage — Plante P1 (mère) et Plante P2 (marcotte)</div>
+                </div>
+                <div class="Tests-Hub-multiple-choice">
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q2a" id="q2a">
+                        <label for="q2a">a) Est obtenue par bouturage.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q2b" id="q2b">
+                        <label for="q2b">b) Est obtenue par marcottage.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q2c" id="q2c">
+                        <label for="q2c">c) Est différente de la plante P1.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q2d" id="q2d">
+                        <label for="q2d">d) Doit être coupée au niveau de C2.</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 - Staphylocoques -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3-</span> Les staphylocoques sont des bactéries formées :</p>
+                <div class="Tests-Hub-multiple-choice">
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q3a" id="q3a">
+                        <label for="q3a">a) de bacilles.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q3b" id="q3b">
+                        <label for="q3b">b) de 2 coques.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q3c" id="q3c">
+                        <label for="q3c">c) de chaîne de coques.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q3d" id="q3d">
+                        <label for="q3d">d) de coques en grappe.</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 - Levure de bière -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4-</span> La levure de bière :</p>
+                <div class="Tests-Hub-multiple-choice">
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q4a" id="q4a">
+                        <label for="q4a">a) est un champignon.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q4b" id="q4b">
+                        <label for="q4b">b) est une bactérie.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q4c" id="q4c">
+                        <label for="q4c">c) est utilisée dans la fabrication du pain.</label>
+                    </div>
+                    <div class="Tests-Hub-choice-item">
+                        <input type="checkbox" name="q4d" id="q4d">
+                        <label for="q4d">d) est utilisée dans la fabrication du lait.</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCICE 2 : Techniques de multiplication végétative -->
+        <div class="Tests-Hub-test-section">
+            <h2>EXERCICE 2 : (6 points)</h2>
+            <p>Le document suivant représente deux techniques (1 et 2) de la multiplication végétative chez la pomme de terre :</p>
+
+            <!-- Image des deux techniques -->
+            <div class="Tests-Hub-image-container">
+                <img src="assets3/naturalsciences3/image40.png" alt="Techniques de multiplication végétative : culture in vitro et bouturage">
+                <div class="Tests-Hub-image-caption">
+                    <strong>Technique 1 :</strong> Culture <em>in vitro</em> par microbouturage &nbsp;|&nbsp;
+                    <strong>Technique 2 :</strong> Bouturage classique
+                </div>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> Nommer ces deux techniques. <em>(2 points)</em></p>
+                <p>- Technique 1 : <textarea class="Tests-Hub-answer-textarea" style="width: 70%;" placeholder="Nom de la technique 1..."></textarea></p>
+                <p>- Technique 2 : <textarea class="Tests-Hub-answer-textarea" style="width: 70%;" placeholder="Nom de la technique 2..."></textarea></p>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> La technique 1 se fait selon les étapes suivantes (en désordre) :</p>
+                <p style="margin-left: 20px;">
+                    <strong>A.</strong> Plantation des plantes dans un champ.<br>
+                    <strong>B.</strong> Enracinement et développement des microboutures.<br>
+                    <strong>C.</strong> Implantation du bourgeon dans un milieu de culture.<br>
+                    <strong>D.</strong> Prélèvement d'une microbouture contenant un bourgeon à partir d'une jeune tige.<br>
+                    <strong>E.</strong> Développement d'un microplant après un mois.<br>
+                    <strong>F.</strong> Fragmentation de la tige en microboutures.
+                </p>
+                <p><strong>a)</strong> Mettre ces étapes selon leur ordre normal de déroulement. <em>(1 point)</em></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Ordre des étapes (ex : … → … → … → … → … → …)"></textarea>
+                <p><strong>b)</strong> Citer trois avantages de ce mode de reproduction. <em>(3 points)</em></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="1. &#10;2. &#10;3. "></textarea>
+            </div>
+        </div>
+
+        <!-- EXERCICE 4 : Définitions et microbes -->
+        <div class="Tests-Hub-test-section">
+            <h2>EXERCICE 4 : (10 points)</h2>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> Définir les mots suivants : <em>(3 points)</em></p>
+                <p>- <strong>Microbe :</strong></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre définition..."></textarea>
+                <p>- <strong>Coque :</strong></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre définition..."></textarea>
+                <p>- <strong>Eucaryote :</strong></p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Votre définition..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> Compléter le tableau suivant pour reconnaître certains microbes. <em>(5 points)</em></p>
+
+                <!-- Image des 4 micro-organismes -->
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image41.png" alt="Quatre micro-organismes à identifier : (1) VIH, (2) Levure de bière, (3) Amibe, (4) Streptocoque">
+                    <div class="Tests-Hub-image-caption">Document : quatre micro-organismes observés au microscope — (1), (2), (3) et (4)</div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Nom du microbe</th>
+                            <th>Type (Virus, Bactérie, Champignon, Protozoaire)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>(1) VIH</strong></td>
+                            <td><em>VIH (donné)</em></td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Type..."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><strong>(2)</strong></td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Nom du microbe..."></textarea></td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Type..."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><strong>(3)</strong></td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Nom du microbe..."></textarea></td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Type..."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><strong>(4) Streptocoque</strong></td>
+                            <td><em>Streptocoque (donné)</em></td>
+                            <td><textarea class="Tests-Hub-table-textarea" placeholder="Type..."></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3)</span> Le microbe en (3) provoque une maladie : <em>(2 points)</em></p>
+                <p><strong>a)</strong> Nommer cette maladie :</p>
+                <textarea class="Tests-Hub-answer-textarea" style="width: 60%;" placeholder="Nom de la maladie..."></textarea>
+                <p><strong>b)</strong> Rappeler ses effets sur l'organisme :</p>
+                <textarea class="Tests-Hub-large-textarea" placeholder="Effets sur l'organisme..."></textarea>
+            </div>
+        </div>
+
+        <!-- Correction Toggle -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection" data-i18n="TestsHub.svtTest.showCorrection">Afficher la correction</button>
+        </div>
+
+        <!-- Correction Section -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>Correction du Devoir de Contrôle N°3</h2>
+
+            <h3>EXERCICE 1 : QCM — Correction (4 points)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>Réponses :</strong></p>
+                <p><strong>1-</strong> <strong>b)</strong> le greffage en écusson <strong>et d)</strong> l'élément ① représente le greffon. &nbsp;→ <em>Réponse : b, d</em></p>
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image38.png" alt="Schéma du greffage en écusson (correction)">
+                    <div class="Tests-Hub-image-caption">① = Greffon (écusson) ; ② = Porte-greffe. Il s'agit bien du greffage en écusson.</div>
+                </div>
+                <p><strong>2-</strong> <strong>b)</strong> Est obtenue par marcottage <strong>et d)</strong> Doit être coupée au niveau de C2. &nbsp;→ <em>Réponse : b, d</em></p>
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image39.png" alt="Schéma du marcottage (correction)">
+                    <div class="Tests-Hub-image-caption">La plante P2 est une marcotte issue de la plante mère P1. Elle doit être sevrée par coupe en C2.</div>
+                </div>
+                <p><strong>3-</strong> <strong>d)</strong> de coques en grappe. &nbsp;→ <em>Réponse : d</em></p>
+                <p><strong>4-</strong> <strong>a)</strong> est un champignon <strong>et c)</strong> est utilisée dans la fabrication du pain. &nbsp;→ <em>Réponse : a, c</em></p>
+            </div>
+
+            <h3>EXERCICE 2 : Techniques de multiplication végétative — Correction (6 points)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1)</span> <strong>Nom des deux techniques :</strong></p>
+                <p>- <strong>Technique 1 :</strong> Culture <em>in vitro</em> par microbouturage.</p>
+                <p>- <strong>Technique 2 :</strong> Bouturage.</p>
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image40.png" alt="Techniques de multiplication végétative (correction)">
+                    <div class="Tests-Hub-image-caption">Technique 1 (gauche) : microbouturage <em>in vitro</em> — Technique 2 (droite) : bouturage classique en pot</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2)a)</span> <strong>Ordre normal des étapes :</strong></p>
+                <p style="text-align: center; font-size: 1.05rem; font-weight: 600; color: #00838F;">
+                    D → C → E → F → B → A
+                </p>
+                <p style="margin-top: 8px;">
+                    <strong>D.</strong> Prélèvement d'une microbouture contenant un bourgeon à partir d'une jeune tige.<br>
+                    <strong>C.</strong> Implantation du bourgeon dans un milieu de culture.<br>
+                    <strong>E.</strong> Développement d'un microplant après un mois.<br>
+                    <strong>F.</strong> Fragmentation de la tige en microboutures.<br>
+                    <strong>B.</strong> Enracinement et développement des microboutures.<br>
+                    <strong>A.</strong> Plantation des plantes dans un champ.
+                </p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2)b)</span> <strong>Trois avantages de ce mode de reproduction :</strong></p>
+                <ul>
+                    <li><strong>Rapidité de production</strong> : obtention d'un grand nombre de plants en peu de temps.</li>
+                    <li><strong>Multiplication massive</strong> des plantes performantes (à haut rendement).</li>
+                    <li><strong>Obtention de plantes saines</strong>, indemnes de toute maladie (plants certifiés).</li>
+                    <li><strong>Obtention d'un clone</strong> : plants génétiquement identiques à la plante mère.</li>
+                </ul>
+                <p class="Tests-Hub-correction-note">Note : On acceptera toute réponse pertinente parmi les quatre avantages ci-dessus (3 points = 1 point par avantage).</p>
+            </div>
+
+            <h3>EXERCICE 4 : Définitions et microbes — Correction (10 points)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1)</span> <strong>Définitions :</strong></p>
+                <p>- <strong>Microbe :</strong> est un organisme vivant, invisible à l'œil nu, qui ne peut être observé qu'à l'aide d'un microscope.</p>
+                <p>- <strong>Coque :</strong> bactérie en forme de granule, isolée ou associée en chaînette (streptocoque) ou en grappe (staphylocoque).</p>
+                <p>- <strong>Eucaryote :</strong> un être vivant constitué de cellule(s) contenant un véritable noyau (matériel génétique entouré d'une membrane nucléaire).</p>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2)</span> <strong>Tableau complété :</strong></p>
+                <div class="Tests-Hub-image-container">
+                    <img src="assets3/naturalsciences3/image42.png" alt="Quatre micro-organismes identifiés (correction)">
+                    <div class="Tests-Hub-image-caption">Identification des quatre micro-organismes : (1) VIH = Virus, (2) Levure de bière = Champignon, (3) Amibe = Protozoaire, (4) Streptocoque = Bactérie</div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Nom du microbe</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>(1) VIH</strong></td>
+                            <td>VIH (Virus de l'Immunodéficience Humaine)</td>
+                            <td><strong>Virus</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>(2)</strong></td>
+                            <td><strong>Levure de bière</strong></td>
+                            <td><strong>Champignon</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>(3)</strong></td>
+                            <td><strong>Amibe</strong></td>
+                            <td><strong>Protozoaire</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>(4) Streptocoque</strong></td>
+                            <td>Streptocoque</td>
+                            <td><strong>Bactérie</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3)</span> <strong>Le microbe (3) — l'Amibe :</strong></p>
+                <p><strong>a)</strong> Nom de la maladie : <strong>Dysenterie amibienne</strong> (ou simplement dysenterie).</p>
+                <p><strong>b)</strong> Effets sur l'organisme : <strong>diarrhées sévères, vomissements, douleurs abdominales, déshydratation.</strong></p>
+            </div>
+        </div>
+
+        <!-- Download Buttons -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf">
+                <span>📄</span>
+                <span data-i18n="TestsHub.svtTest.download.pdf">PDF</span>
+            </button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt">
+                <span>📝</span>
+                <span data-i18n="TestsHub.svtTest.download.odt">ODT</span>
+            </button>
+            <button class="Tests-Hub-download-button png" id="downloadPng">
+                <span>🖼️</span>
+                <span data-i18n="TestsHub.svtTest.download.png">PNG</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v2.0.7</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'fr';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            fr: {
+                TestsHub: {
+                    svtTest: {
+                        title: "SVT - Devoir de Contrôle N°3",
+                        subtitle: "1ère Année Secondaire - Trimestre 3",
+                        back: "Retour aux Tests",
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Bientôt disponible ! Cette fonctionnalité est en cours de développement."
+                    },
+                    language: {
+                        current: "Français"
+                    },
+                    theme: {
+                        toggle: "Mode Sombre"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    svtTest: {
+                        title: "Life Sciences - Control Test N°3",
+                        subtitle: "1st Year Secondary - Trimester 3",
+                        back: "Back to Tests",
+                        showCorrection: "Show Correction",
+                        hideCorrection: "Hide Correction",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "Coming soon! This feature is under development."
+                    },
+                    language: {
+                        current: "English"
+                    },
+                    theme: {
+                        toggle: "Dark Mode"
+                    },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            },
+            ar: {
+                TestsHub: {
+                    svtTest: {
+                        title: "علوم الحياة - اختبار المراقبة رقم 3",
+                        subtitle: "السنة الأولى ثانوي - الثلاثي الثالث",
+                        back: "العودة للاختبارات",
+                        showCorrection: "عرض التصحيح",
+                        hideCorrection: "إخفاء التصحيح",
+                        download: {
+                            pdf: "PDF",
+                            odt: "ODT",
+                            png: "PNG"
+                        },
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: {
+                        current: "العربية"
+                    },
+                    theme: {
+                        toggle: "الوضع المظلم"
+                    },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                let translation = null;
+                const keys = key.split('.');
+                let current = TestsHub_translations[currentLanguage];
+                for (const k of keys) {
+                    if (current && current[k] !== undefined) {
+                        current = current[k];
+                    } else {
+                        current = null;
+                        break;
+                    }
+                }
+                translation = current;
+                if (translation && typeof translation === 'string') {
+                    element.textContent = translation;
+                }
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const themeToggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeToggle) {
+                themeToggle.textContent = isDarkTheme
+                    ? (currentLanguage === 'fr' ? "Mode Clair" : currentLanguage === 'ar' ? "الوضع الفاتح" : "Light Mode")
+                    : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (themeIcon) {
+                themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+        }
+
+        function updateCorrectionButtonText() {
+            const correctionButton = document.getElementById('toggleCorrection');
+            const correctionSection = document.getElementById('correction');
+            if (correctionButton) {
+                correctionButton.textContent = correctionSection.classList.contains('Tests-Hub-hidden')
+                    ? TestsHub_translations[currentLanguage].TestsHub.svtTest.showCorrection
+                    : TestsHub_translations[currentLanguage].TestsHub.svtTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const languageButton = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+            if (languageButton) {
+                languageButton.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            }
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAsPDF() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.svtTest?.comingSoon ||
+                "Bientôt disponible ! Cette fonctionnalité est en cours de développement.");
+        }
+
+        function downloadAsODT() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.svtTest?.comingSoon ||
+                "Bientôt disponible ! Cette fonctionnalité est en cours de développement.");
+        }
+
+        function downloadAsPNG() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.svtTest?.comingSoon ||
+                "Bientôt disponible ! Cette fonctionnalité est en cours de développement.");
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+
+            const savedLanguage = localStorage.getItem('testsHubLanguage');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+
+            if (currentLanguage === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = currentLanguage;
+            }
+
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
+                    ignoredClasses: ["no-math"]
+                });
+            }
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    changeLanguage(this.getAttribute('data-language'));
+                });
+            });
+
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAsPDF);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAsODT);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAsPNG);
+
+            const correctionButton = document.getElementById('toggleCorrection');
+            if (correctionButton) {
+                correctionButton.addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction');
+                    correctionSection.classList.toggle('Tests-Hub-hidden');
+                    updateCorrectionButtonText();
+                    if (!correctionSection.classList.contains('Tests-Hub-hidden') && typeof
+                        renderMathInElement !== 'undefined') {
+                        renderMathInElement(correctionSection, {
+                            delimiters: [
+                                { left: "$$", right: "$$", display: true },
+                                { left: "$", right: "$", display: false },
+                                { left: "\\(", right: "\\)", display: false },
+                                { left: "\\[", right: "\\]", display: true }
+                            ],
+                            ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
+                            ignoredClasses: ["no-math"]
+                        });
+                    }
+                });
+            }
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered:', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            }
+        });
+    </script>
+</body>
+</html>
