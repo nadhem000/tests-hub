@@ -1322,6 +1322,39 @@ const exercises = [
             description: 'Interactive exercise to find the LCM of two numbers using two methods: multiples and prime factorization, step by step. 10 attempts with points.'
         }
     }
+},
+{
+    id: 'ex-041',
+    section: 'الجبر',
+    sectionIcon: '➕➖',
+    name: 'الجمع والطرح في Z',
+    description: 'تمرين تفاعلي لجمع وطرح أعداد موجبة وسالبة خطوة بخطوة باستعمال قاعدة الإشارات. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#0d9488',
+    cardColorDark: '#2dd4bf',
+    link: 'الجبر - الجمع والطرح في Z.html',
+    version: '1.0',
+    tags: ['جمع', 'طرح', 'أعداد صحيحة', 'Z', 'قاعدة الإشارات', 'جبر', 'خطوات', 'مبسط'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-04',
+    estimatedTime: '5-8 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['جمع', 'طرح', 'Z', 'إشارات', 'موجبة', 'سالب', 'سابعة أساسي', 'قاعدة الإشارات'],
+    thumbnail: '➕➖',
+    translations: {
+        fr: {
+            name: 'Addition et soustraction dans Z',
+            description: 'Exercice interactif pour additionner et soustraire des nombres positifs et négatifs étape par étape. 10 essais avec points.'
+        },
+        en: {
+            name: 'Addition & Subtraction in Z',
+            description: 'Interactive exercise to add and subtract positive and negative numbers step by step. 10 attempts with points.'
+        }
+    }
 }
 ];
 

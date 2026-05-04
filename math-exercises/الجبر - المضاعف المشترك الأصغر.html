@@ -81,14 +81,14 @@
             justify-content: center; gap: 8px;
         }
         .exercise-subtitle {
-            text-align: center; color: var(--text2); margin-bottom: 22px; font-size: 1rem;
+            text-align: center; color: var(--text2); margin: 0 auto 22px; font-size: 1rem;
             font-weight: 500; background: var(--section-header-bg); padding: 5px 20px;
-            border-radius: 40px; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+            border-radius: 40px; display: block; width: fit-content;
         }
         .numbers-display {
             text-align: center; margin: 0 auto 24px; background: var(--expr-bg); border: 3px solid var(--expr-border);
             border-radius: 24px; padding: 16px 28px; font-size: 1.6rem; font-weight: 800;
-            direction: ltr; display: inline-block; width: fit-content; min-width: 200px;
+            direction: rtl; display: block; width: fit-content; min-width: 200px;
             color: var(--text); box-shadow: var(--shadow); transition: all 0.35s;
         }
         .question-block { margin-top: 10px; font-size: 1.15rem; font-weight: 600; color: var(--text); line-height: 2.2; }
@@ -97,7 +97,6 @@
             border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
             border-right: 4px solid var(--section-accent); background: var(--section-bg);
         }
-        [data-theme="dark"] .section-card { border-right: 4px solid var(--section-accent); background: var(--section-bg); }
         .section-label {
             font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center;
             gap: 6px; padding: 4px 14px; border-radius: 30px; width: fit-content;
@@ -109,25 +108,31 @@
         }
         .formula-line {
             display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px;
-            margin: 8px 0; direction: ltr; font-size: 1.35rem; font-weight: 700;
+            margin: 8px 0; font-size: 1.35rem; font-weight: 700;
             background: var(--calc-line-bg); border: 2px dashed var(--calc-line-border);
             border-radius: 40px; padding: 10px 18px; color: var(--text);
         }
         .formula-line .operator { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 0 2px; }
-        .formula-line .num-display {
-            font-weight: 800; background: var(--surface3); padding: 4px 12px; border-radius: 16px;
-            font-size: 1.2rem; color: var(--text);
-        }
         .inline-input {
             font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.25rem;
             background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
             text-align: center; padding: 3px 2px; margin: 0 2px; width: 4em; min-width: 65px;
             max-width: 130px; outline: none; transition: all 0.15s; color: var(--text);
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+            direction: ltr;
         }
         .inline-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(13,148,136,0.2); }
         .input-small { width: 3.2em !important; min-width: 58px; }
         .input-wide { width: 5.5em !important; min-width: 85px; }
+        .exp-input {
+            width: 2em !important; min-width: 2em !important;
+            font-size: 0.75rem; padding: 1px 4px; line-height: 1;
+            vertical-align: super;
+        }
+        .exp-label {
+            font-size: 0.7em; color: var(--text3); font-weight: 400;
+            vertical-align: sub;
+        }
         .hint-text { font-size: 0.95rem; color: var(--text2); margin-top: 6px; text-align: center; }
         .action-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0 8px; }
         .btn {
@@ -147,6 +152,7 @@
             margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500;
             text-align: center; background: var(--surface2); border-radius: 60px; padding: 10px 16px;
             transition: 0.1s; border: 1px solid var(--border); color: var(--text); line-height: 2;
+            direction: rtl;
         }
         .start-note {
             display: inline-block; background: linear-gradient(135deg, #0d9488, #2dd4bf);
@@ -155,7 +161,7 @@
         }
         @keyframes pulse-note { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
         .dashboard-footer {
-            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px;
+            width: 100%; max-width: 1060px; margin: 8px auto; padding: 18px 20px;
             background: var(--surface); border-radius: 24px; border: 1px solid var(--border);
             box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(3, 1fr);
             gap: 20px; transition: background 0.35s; font-size: 0.9rem;
@@ -168,6 +174,59 @@
         .footer-col a:hover { color: var(--accent); text-decoration: underline; }
         .footer-col p { color: var(--text2); margin: 0; }
         .host-info { font-size: 0.8rem; opacity: 0.8; }
+
+        .rtl-text { direction: rtl; display: inline-block; }
+        .ltr-math { direction: ltr; display: inline-block; unicode-bidi: isolate; }
+
+        /* decomposition table styles – now LTR */
+        .decomp-table {
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            padding: 6px 10px;
+            width: fit-content;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+            margin-bottom: 6px;
+            direction: ltr; /* ensure left-to-right layout inside */
+        }
+        .decomp-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2px 0;
+            border-bottom: 1px dashed var(--border);
+            min-height: 32px;
+            /* NO direction override – follows parent (LTR) */
+        }
+        .decomp-row:last-child { border-bottom: none; }
+        .decomp-dividend {
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 40px;
+            text-align: right;
+            padding-right: 6px;
+            color: var(--text);
+        }
+        .decomp-sep {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0 4px;
+            color: var(--accent);
+        }
+        .decomp-input {
+            width: 2.8em !important;
+            min-width: 45px;
+            font-size: 1rem;
+            margin: 0 2px;
+        }
+        .two-col {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .two-col > div { flex: 1 1 280px; }
+
         @media (max-width: 768px) {
             .dashboard-header { padding: 10px 14px; }
             .exercise-wrapper { padding: 18px 14px; }
@@ -204,7 +263,7 @@
         <div class="exercise-subtitle" data-i18n="exercise_subtitle">إيجاد المضاعف المشترك الأصغر لعددين بطريقتين مختلفتين</div>
 
         <div style="text-align:center;">
-            <div class="numbers-display" id="numbersDisplay" dir="ltr">12 و 18</div>
+            <div class="numbers-display" id="numbersDisplay"></div>
         </div>
 
         <div class="question-block" id="questionContainer"></div>
@@ -269,8 +328,27 @@
             let isSwitchingRound = false;
 
             const PRIMES_UNDER_10 = [2, 3, 5, 7];
-            const SMALL_PAIRS = [[2,3],[3,4],[4,5],[5,6],[3,5],[4,6],[6,8],[8,10],[6,9],[8,12],[10,12],[9,12]];
+            const SMALL_PAIRS = [
+    [2,3],[3,4],[4,5],[6,7],   // [6,7] بدلاً من [5,6] (مضاعفاتهما تظهر ضمن الخمس الأولى)
+    [3,5],[4,6],[6,8],[8,10],
+    [6,9],[8,12],[10,12],[9,12]
+];
             const FACTOR_PAIRS = [[12,18],[18,24],[24,36],[20,30],[28,42],[30,45],[36,48],[40,60],[48,72],[56,84],[60,90],[72,96]];
+
+            function getSmallestPrimeDivisor(n) {
+                for (let p of [2,3,5,7]) if (n % p === 0) return p;
+                return n;
+            }
+            function getDecompositionSteps(num) {
+                const steps = [];
+                let cur = num;
+                while (cur > 1) {
+                    const d = getSmallestPrimeDivisor(cur);
+                    steps.push({ dividend: cur, divisor: d });
+                    cur /= d;
+                }
+                return steps;
+            }
 
             const translations = {
                 ar: {
@@ -286,6 +364,7 @@
                     invalid_numbers: '❌ أدخل أعداداً صحيحة فقط',
                     correct: '✅ إجابة صحيحة! +1 نقطة',
                     wrong: '❌ خطأ! راجع الإجابات الصحيحة.',
+                    wrong_detail: '❌ خطأ! التفكيك الصحيح:\n{correctDecomp}\nالمضاعف المشترك الأصغر = {lcm}',
                     round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
                     round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
                     figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
@@ -308,17 +387,21 @@
                     multiples_of: 'مضاعفات العدد',
                     common_multiples: 'المضاعفات المشتركة',
                     lcm_value: 'المضاعف المشترك الأصغر (م.م.أ) =',
-                    step_f1: 'الخطوة 1: حلل العدد الأول إلى جداء عوامل أولية',
-                    step_f2: 'الخطوة 2: حلل العدد الثاني إلى جداء عوامل أولية',
-                    step_f3: 'الخطوة 3: أكتب العوامل الأولية الظاهرة بأكبر أس',
-                    step_f4: 'الخطوة 4: أحسب الجداء (المضاعف المشترك الأصغر)',
+                    step_f1: 'الخطوة 1: فكك العدد الأول إلى جداء عوامل أولية',
+                    step_f2: 'الخطوة 2: فكك العدد الثاني إلى جداء عوامل أولية',
+                    step_f3: 'الخطوة 3: أكتب العوامل الأولية المشتركة بأكبر قوة',
+                    step_f4: 'الخطوة 4: أضف العوامل الأولية غير المشتركة',
+                    step_f5: 'الخطوة 5: أحسب الجداء (المضاعف المشترك الأصغر)',
                     factorization_of: 'تفكيك العدد',
-                    all_primes_label: 'العوامل الأولية الظاهرة (مع أكبر أس)',
+                    all_primes_label: 'العوامل الأولية المشتركة بأكبر قوة',
+                    non_common_label: 'العوامل غير المشتركة',
                     lcm_product: 'المضاعف المشترك الأصغر =',
                     equals: '=',
                     multiply: '×',
                     and: 'و',
-                    numbers_separator: ' و '
+                    exponent_label: 'قوة',
+                    decomp_table_title: 'جدول تفكيك {num}',
+                    number_equals: '{num} = '
                 },
                 fr: {
                     app_title: 'Tableau d\'exercices',
@@ -326,13 +409,14 @@
                     exercise_subtitle: 'Trouver le PPCM de deux nombres par deux méthodes',
                     new_question: '🔄 Nouvelle question',
                     check: '✓ Vérifier',
-                    hint: '📌 Remplissez tous les champs en suivant les étapes, que ce soit par multiples ou facteurs premiers.',
+                    hint: '📌 Remplissez tous les champs en suivant les étapes.',
                     attempts_label: 'Essais',
                     score_label: 'Points',
                     fill_all: '⚠️ Veuillez remplir tous les champs.',
                     invalid_numbers: '❌ Nombres entiers uniquement',
                     correct: '✅ Bonne réponse ! +1 point',
                     wrong: '❌ Faux ! Vérifiez les réponses correctes.',
+                    wrong_detail: '❌ Faux ! La bonne décomposition :\n{correctDecomp}\nPPCM = {lcm}',
                     round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
                     round_restart: '⏳ Tour terminé, nouveau tour...',
                     figure_changed: '🔄 Nombres changés (essai non compté)',
@@ -357,15 +441,19 @@
                     lcm_value: 'PPCM =',
                     step_f1: 'Étape 1 : Décompose le 1er nombre en facteurs premiers',
                     step_f2: 'Étape 2 : Décompose le 2e nombre en facteurs premiers',
-                    step_f3: 'Étape 3 : Écris les facteurs premiers avec le plus grand exposant',
-                    step_f4: 'Étape 4 : Calcule le produit (PPCM)',
+                    step_f3: 'Étape 3 : Écris les facteurs premiers communs avec le plus grand exposant',
+                    step_f4: 'Étape 4 : Ajoute les facteurs premiers non communs',
+                    step_f5: 'Étape 5 : Calcule le produit (PPCM)',
                     factorization_of: 'Décomposition de',
-                    all_primes_label: 'Facteurs premiers (plus grand exposant)',
+                    all_primes_label: 'Facteurs premiers communs (plus grand exposant)',
+                    non_common_label: 'Facteurs non communs',
                     lcm_product: 'PPCM =',
                     equals: '=',
                     multiply: '×',
                     and: 'et',
-                    numbers_separator: ' et '
+                    exponent_label: 'puissance',
+                    decomp_table_title: 'Tableau de décomposition de {num}',
+                    number_equals: '{num} = '
                 },
                 en: {
                     app_title: 'Exercise Board',
@@ -373,13 +461,14 @@
                     exercise_subtitle: 'Find the LCM of two numbers using two different methods',
                     new_question: '🔄 New Question',
                     check: '✓ Check',
-                    hint: '📌 Fill all blanks carefully: follow the steps, whether using multiples or prime factors.',
+                    hint: '📌 Fill all blanks carefully: follow the steps.',
                     attempts_label: 'Attempts',
                     score_label: 'Score',
                     fill_all: '⚠️ Please fill in all fields',
                     invalid_numbers: '❌ Integers only',
                     correct: '✅ Correct! +1 point',
                     wrong: '❌ Wrong! Check the correct values.',
+                    wrong_detail: '❌ Wrong! Correct decomposition:\n{correctDecomp}\nLCM = {lcm}',
                     round_over: '🏁 Round over! Score: {score}/10 🏁',
                     round_restart: '⏳ Round finished, new round...',
                     figure_changed: '🔄 Numbers changed (attempt not counted)',
@@ -404,15 +493,19 @@
                     lcm_value: 'LCM =',
                     step_f1: 'Step 1: Factor the 1st number into primes',
                     step_f2: 'Step 2: Factor the 2nd number into primes',
-                    step_f3: 'Step 3: Write the prime factors with the highest exponent',
-                    step_f4: 'Step 4: Calculate the product (LCM)',
+                    step_f3: 'Step 3: Write the common prime factors with the highest exponent',
+                    step_f4: 'Step 4: Add the non‑common prime factors',
+                    step_f5: 'Step 5: Calculate the product (LCM)',
                     factorization_of: 'Factorization of',
-                    all_primes_label: 'Prime factors (highest exponent)',
+                    all_primes_label: 'Common prime factors (highest exponent)',
+                    non_common_label: 'Non‑common factors',
                     lcm_product: 'LCM =',
                     equals: '=',
                     multiply: '×',
                     and: 'and',
-                    numbers_separator: ' and '
+                    exponent_label: 'power',
+                    decomp_table_title: 'Decomposition table for {num}',
+                    number_equals: '{num} = '
                 }
             };
 
@@ -505,12 +598,13 @@
 
             function factorize(num) {
                 const factors = {};
+                let n = num;
                 for (let p of PRIMES_UNDER_10) {
                     let count = 0;
-                    while (num % p === 0) { count++; num /= p; }
+                    while (n % p === 0) { count++; n /= p; }
                     if (count > 0) factors[p] = count;
                 }
-                if (num > 1) factors[num] = 1;
+                if (n > 1) factors[n] = 1;
                 return factors;
             }
 
@@ -523,7 +617,6 @@
             function generateQuestion() {
                 const useMultiplesMethod = Math.random() < 0.5;
                 let pair, num1, num2, lcm, method, data = {};
-
                 if (useMultiplesMethod) {
                     pair = SMALL_PAIRS[Math.floor(Math.random() * SMALL_PAIRS.length)];
                     num1 = pair[0]; num2 = pair[1];
@@ -537,12 +630,33 @@
                     pair = FACTOR_PAIRS[Math.floor(Math.random() * FACTOR_PAIRS.length)];
                     num1 = pair[0]; num2 = pair[1];
                     const f1 = factorize(num1), f2 = factorize(num2);
-                    const allPrimes = new Set([...Object.keys(f1), ...Object.keys(f2)].map(Number));
-                    const maxExp = {}; allPrimes.forEach(p => maxExp[p] = Math.max(f1[p]||0, f2[p]||0));
-                    lcm = Array.from(allPrimes).reduce((acc, p) => acc * Math.pow(p, maxExp[p]), 1);
+                    const primes1 = Object.keys(f1).map(Number);
+                    const primes2 = Object.keys(f2).map(Number);
+                    const commonPrimes = primes1.filter(p => primes2.includes(p));
+                    const nonCommonPrimes = primes1.concat(primes2).filter(p => !commonPrimes.includes(p)).filter((v,i,a)=>a.indexOf(v)===i);
+                    const maxExp = {};
+                    commonPrimes.forEach(p => maxExp[p] = Math.max(f1[p]||0, f2[p]||0));
+                    const nonCommonExp = {};
+                    nonCommonPrimes.forEach(p => {
+                        nonCommonExp[p] = f1[p] || f2[p];
+                    });
+                    lcm = 1;
+                    for (let p of commonPrimes) lcm *= Math.pow(p, maxExp[p]);
+                    for (let p of nonCommonPrimes) lcm *= Math.pow(p, nonCommonExp[p]);
                     method = 'factors';
-                    const primesSorted = Array.from(allPrimes).sort((a,b)=>a-b);
-                    data = { num1, num2, lcm, factors1: f1, factors2: f2, primesSorted, maxExp };
+                    const primesSorted = commonPrimes.sort((a,b)=>a-b);
+                    const nonCommonSorted = nonCommonPrimes.sort((a,b)=>a-b);
+                    const decomp1 = getDecompositionSteps(num1);
+                    const decomp2 = getDecompositionSteps(num2);
+                    data = {
+                        num1, num2, lcm,
+                        factors1: f1, factors2: f2,
+                        commonPrimes: primesSorted,
+                        maxExp,
+                        nonCommonPrimes: nonCommonSorted,
+                        nonCommonExp,
+                        decomp1, decomp2
+                    };
                 }
                 return { method, ...data };
             }
@@ -551,33 +665,36 @@
                 if (!currentData) return;
                 const d = currentData;
                 const opEq = t('equals'), opMul = t('multiply');
-                numbersDisplay.textContent = `${d.num1} ${t('and')} ${d.num2}`;
-                numbersDisplay.dir = 'ltr';
+                const isRTL = currentLang === 'ar';
+                const labelDir = isRTL ? 'rtl' : 'ltr';
+
+                numbersDisplay.innerHTML = `<span class="rtl-text">${d.num1}</span> ${t('and')} <span class="rtl-text">${d.num2}</span>`;
+                numbersDisplay.dir = 'rtl';
+
                 let html = '';
 
                 if (d.method === 'multiples') {
                     html += `<div class="section-card"><div class="section-label">📋 ${t('method_multiples')}</div>`;
-                    // Step 1
-                    html += `<div class="formula-sentence">${t('step_m1')} : <strong>${d.num1}</strong></div>`;
-                    html += `<div class="formula-line">${t('multiples_of')} ${d.num1} : `;
+                    html += `<div class="formula-sentence">${t('step_m1')} : <strong dir="ltr">${d.num1}</strong></div>`;
+                    html += `<div class="formula-line" dir="${isRTL ? 'rtl' : 'ltr'}">`;
+                    html += `<span class="rtl-text">${t('multiples_of')} ${d.num1} :</span> `;
                     for (let i=0; i<5; i++) html += `<input type="text" id="m1_${i}" class="inline-input input-small" placeholder="?" autocomplete="off" inputmode="numeric"> `;
                     html += `</div>`;
-                    // Step 2
-                    html += `<div class="formula-sentence">${t('step_m2')} : <strong>${d.num2}</strong></div>`;
-                    html += `<div class="formula-line">${t('multiples_of')} ${d.num2} : `;
+                    html += `<div class="formula-sentence">${t('step_m2')} : <strong dir="ltr">${d.num2}</strong></div>`;
+                    html += `<div class="formula-line" dir="${isRTL ? 'rtl' : 'ltr'}">`;
+                    html += `<span class="rtl-text">${t('multiples_of')} ${d.num2} :</span> `;
                     for (let i=0; i<5; i++) html += `<input type="text" id="m2_${i}" class="inline-input input-small" placeholder="?" autocomplete="off" inputmode="numeric"> `;
                     html += `</div>`;
-                    // Step 3
                     html += `<div class="formula-sentence">${t('step_m3')} :</div>`;
-                    html += `<div class="formula-line">${t('common_multiples')} : `;
+                    html += `<div class="formula-line" dir="${isRTL ? 'rtl' : 'ltr'}">`;
+                    html += `<span class="rtl-text">${t('common_multiples')} :</span> `;
                     const commonCount = d.commonMultiples.length;
                     for (let i=0; i<commonCount; i++) html += `<input type="text" id="cm_${i}" class="inline-input input-small" placeholder="?" autocomplete="off" inputmode="numeric"> `;
                     html += `</div>`;
-                    // Step 4
                     html += `<div class="formula-sentence">${t('step_m4')} :</div>`;
-                    html += `<div class="formula-line"><span>${t('lcm_value')}</span> <input type="text" id="lcmVal" class="inline-input input-wide" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
-                    html += `</div>`;
-
+                    html += `<div class="formula-line" dir="${isRTL ? 'rtl' : 'ltr'}">`;
+                    html += `<span class="rtl-text">${t('lcm_value')}</span> <input type="text" id="lcmVal" class="inline-input input-wide" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
                     inputDefs = [];
                     for (let i=0; i<5; i++) inputDefs.push({id:`m1_${i}`, expected: d.multiples1[i]});
                     for (let i=0; i<5; i++) inputDefs.push({id:`m2_${i}`, expected: d.multiples2[i]});
@@ -585,37 +702,88 @@
                     inputDefs.push({id:'lcmVal', expected: d.lcm});
                 } else {
                     html += `<div class="section-card"><div class="section-label">🧬 ${t('method_factors')}</div>`;
+                    html += `<div class="two-col">`;
+
                     // Step 1
-                    html += `<div class="formula-sentence">${t('step_f1')} : <strong>${d.num1}</strong></div>`;
-                    html += `<div class="formula-line">${d.num1} ${opEq} `;
+                    html += `<div>`;
+                    html += `<div class="formula-sentence">${t('step_f1')} : <strong dir="ltr">${d.num1}</strong></div>`;
+                    html += `<div style="font-weight:700; margin-bottom:6px;">${t('decomp_table_title', {num: d.num1})}</div>`;
+                    html += `<div class="decomp-table">`;
+                    d.decomp1.forEach((step, idx) => {
+                        html += `<div class="decomp-row"><span class="decomp-dividend">${step.dividend}</span><span class="decomp-sep">|</span><input type="text" id="div1_${idx}" class="inline-input input-small decomp-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                    });
+                    html += `<div class="decomp-row"><span class="decomp-dividend">1</span><span class="decomp-sep">|</span><span>.</span></div>`;
+                    html += `</div>`;
                     const primes1 = Object.keys(d.factors1).map(Number).sort((a,b)=>a-b);
-                    primes1.forEach((p,i)=>{ if(i>0) html += ` ${opMul} `; html += `${p}<sup><input type="text" id="f1_${p}" class="inline-input input-small" placeholder="?" autocomplete="off" inputmode="numeric"></sup>`; });
-                    html += `</div>`;
+                    html += `<div class="formula-line" dir="ltr" style="margin-top:6px;">${t('number_equals', {num: d.num1})}`;
+                    primes1.forEach((p,i) => {
+                        if(i>0) html += ` <span class="operator">${opMul}</span> `;
+                        html += `${p}<sup><input type="text" id="exp1_${p}" class="inline-input exp-input" placeholder="?" autocomplete="off" inputmode="numeric"></sup><sub class="exp-label" dir="${labelDir}">${t('exponent_label')}</sub>`;
+                    });
+                    html += `</div></div>`;
+
                     // Step 2
-                    html += `<div class="formula-sentence">${t('step_f2')} : <strong>${d.num2}</strong></div>`;
-                    html += `<div class="formula-line">${d.num2} ${opEq} `;
-                    const primes2 = Object.keys(d.factors2).map(Number).sort((a,b)=>a-b);
-                    primes2.forEach((p,i)=>{ if(i>0) html += ` ${opMul} `; html += `${p}<sup><input type="text" id="f2_${p}" class="inline-input input-small" placeholder="?" autocomplete="off" inputmode="numeric"></sup>`; });
+                    html += `<div>`;
+                    html += `<div class="formula-sentence">${t('step_f2')} : <strong dir="ltr">${d.num2}</strong></div>`;
+                    html += `<div style="font-weight:700; margin-bottom:6px;">${t('decomp_table_title', {num: d.num2})}</div>`;
+                    html += `<div class="decomp-table">`;
+                    d.decomp2.forEach((step, idx) => {
+                        html += `<div class="decomp-row"><span class="decomp-dividend">${step.dividend}</span><span class="decomp-sep">|</span><input type="text" id="div2_${idx}" class="inline-input input-small decomp-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                    });
+                    html += `<div class="decomp-row"><span class="decomp-dividend">1</span><span class="decomp-sep">|</span><span>.</span></div>`;
                     html += `</div>`;
+                    const primes2 = Object.keys(d.factors2).map(Number).sort((a,b)=>a-b);
+                    html += `<div class="formula-line" dir="ltr" style="margin-top:6px;">${t('number_equals', {num: d.num2})}`;
+                    primes2.forEach((p,i) => {
+                        if(i>0) html += ` <span class="operator">${opMul}</span> `;
+                        html += `${p}<sup><input type="text" id="exp2_${p}" class="inline-input exp-input" placeholder="?" autocomplete="off" inputmode="numeric"></sup><sub class="exp-label" dir="${labelDir}">${t('exponent_label')}</sub>`;
+                    });
+                    html += `</div></div>`;
+                    html += `</div>`; // two-col
+
                     // Step 3
                     html += `<div class="formula-sentence">${t('step_f3')} :</div>`;
-                    html += `<div class="formula-line">`;
-                    d.primesSorted.forEach((p,i)=>{ if(i>0) html += ` ${opMul} `; html += `${p}<sup><input type="text" id="max_${p}" class="inline-input input-small" placeholder="?" autocomplete="off" inputmode="numeric"></sup>`; });
-                    html += `</div>`;
+                    html += `<div class="formula-line" dir="ltr"><span class="ltr-math">`;
+                    d.commonPrimes.forEach((p,i) => {
+                        if(i>0) html += ` <span class="operator">${opMul}</span> `;
+                        html += `${p}<sup><input type="text" id="max_${p}" class="inline-input exp-input" placeholder="?" autocomplete="off" inputmode="numeric"></sup><sub class="exp-label" dir="${labelDir}">${t('exponent_label')}</sub>`;
+                    });
+                    html += `</span></div>`;
+
                     // Step 4
                     html += `<div class="formula-sentence">${t('step_f4')} :</div>`;
-                    html += `<div class="formula-line"><span>${t('lcm_product')}</span> <input type="text" id="lcmVal" class="inline-input input-wide" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
-                    html += `</div>`;
+                    html += `<div class="formula-line" dir="ltr"><span class="ltr-math">`;
+                    if (d.nonCommonPrimes.length > 0) {
+                        d.nonCommonPrimes.forEach((p,i) => {
+                            if(i>0) html += ` <span class="operator">${opMul}</span> `;
+                            html += `${p}<sup><input type="text" id="non_${p}" class="inline-input exp-input" placeholder="?" autocomplete="off" inputmode="numeric"></sup><sub class="exp-label" dir="${labelDir}">${t('exponent_label')}</sub>`;
+                        });
+                    } else {
+                        html += `<span>∅</span>`;
+                    }
+                    html += `</span></div>`;
+
+                    // Step 5
+                    html += `<div class="formula-sentence">${t('step_f5')} :</div>`;
+                    html += `<div class="formula-line" dir="${isRTL ? 'rtl' : 'ltr'}">`;
+                    html += `<span class="rtl-text">${t('lcm_product')}</span> <input type="text" id="lcmVal" class="inline-input input-wide" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
 
                     inputDefs = [];
-                    primes1.forEach(p => inputDefs.push({id:`f1_${p}`, expected: d.factors1[p]}));
-                    primes2.forEach(p => inputDefs.push({id:`f2_${p}`, expected: d.factors2[p]}));
-                    d.primesSorted.forEach(p => inputDefs.push({id:`max_${p}`, expected: d.maxExp[p]}));
+                    d.decomp1.forEach((step, idx) => inputDefs.push({id:`div1_${idx}`, expected: step.divisor}));
+                    d.decomp2.forEach((step, idx) => inputDefs.push({id:`div2_${idx}`, expected: step.divisor}));
+                    primes1.forEach(p => inputDefs.push({id:`exp1_${p}`, expected: d.factors1[p]}));
+                    primes2.forEach(p => inputDefs.push({id:`exp2_${p}`, expected: d.factors2[p]}));
+                    d.commonPrimes.forEach(p => inputDefs.push({id:`max_${p}`, expected: d.maxExp[p]}));
+                    d.nonCommonPrimes.forEach(p => inputDefs.push({id:`non_${p}`, expected: d.nonCommonExp[p]}));
                     inputDefs.push({id:'lcmVal', expected: d.lcm});
                 }
 
                 questionContainer.innerHTML = html;
-                inputDefs.forEach(def => { const el = document.getElementById(def.id); if(el) el.value = ''; });
+                inputDefs.forEach(def => {
+                    const el = document.getElementById(def.id);
+                    if(el) el.value = '';
+                });
             }
 
             function checkAnswers() {
@@ -649,7 +817,17 @@
                     messageEl.innerHTML = t('correct'); messageEl.style.color = 'var(--accent2)';
                     playSound('correct');
                 } else {
-                    messageEl.innerHTML = `<strong>${t('wrong')}</strong><br>${t('lcm_value')} ${currentData.lcm}`;
+                    let correctDecomp = '';
+                    if (currentData.method === 'factors') {
+                        const buildDecomp = (num, steps) => {
+                            let str = '';
+                            steps.forEach(s => { str += `${s.dividend}|${s.divisor}\n`; });
+                            str += `1|.`;
+                            return str;
+                        };
+                        correctDecomp = `${t('decomp_table_title', {num:currentData.num1})}:\n${buildDecomp(currentData.num1, currentData.decomp1)}\n\n${t('decomp_table_title', {num:currentData.num2})}:\n${buildDecomp(currentData.num2, currentData.decomp2)}`;
+                    }
+                    messageEl.innerHTML = t('wrong_detail', { correctDecomp: correctDecomp, lcm: currentData.lcm });
                     messageEl.style.color = 'var(--accent3)';
                     playSound('incorrect');
                 }
@@ -659,11 +837,7 @@
                 setTimeout(()=>{ const el = document.querySelector('.inline-input'); if(el) el.focus(); }, 40);
             }
 
-            function generateNewQuestion() {
-                currentData = generateQuestion();
-                renderAll();
-            }
-
+            function generateNewQuestion() { currentData = generateQuestion(); renderAll(); }
             function updateStatsUI() { attemptsSpan.textContent = attempts; scoreSpan.textContent = score; }
 
             function startNewFullRound() {
