@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 3 - تاريخ - 8 أساسي (2011-2012)</title>
+
+    <meta name="theme-color" content="#3B1F3D">
+    <meta name="description" content="فرض تأليفي عدد 3 إعدادي نموذجي في التاريخ - السنة الثامنة أساسي - 2011-2012 - الأستاذ عزيز">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض تاريخ 8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #3B1F3D;
+            --secondary: #6B3D6E;
+            --accent: #D9993A;
+            --accent2: #C5654A;
+            --light-bg: #F9F6F8;
+            --light-section: #FFFFFF;
+            --text-light: #1E1A24;
+            --text-light-secondary: #3A2E40;
+            --border-light: #D8CFD6;
+            --shadow-light: rgba(30, 26, 36, 0.06);
+            --header-light: linear-gradient(to left, #1F0E24, #3B1F3D, #6B3D6E);
+            --arrow-shaft: #3A2E40;
+            --timeline-accent: #D9993A;
+            --canvas-bg: #F9F6F8;
+            --canvas-stroke: #3B1F3D;
+            --canvas-text: #1E1A24;
+            --canvas-grid: #C8BDC6;
+            --canvas-accent: #D9993A;
+            --canvas-fill: rgba(217, 153, 58, 0.06);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #D8CFD6;
+            --secondary: #B8A8BC;
+            --accent: #E0A850;
+            --accent2: #D88060;
+            --light-bg: #120A14;
+            --light-section: #1E1420;
+            --text-light: #F0ECF2;
+            --text-light-secondary: #C8BCD0;
+            --border-light: #3A2E40;
+            --shadow-light: rgba(0, 0, 0, 0.38);
+            --header-light: linear-gradient(to left, #0A0510, #120A14, #1E1420);
+            --arrow-shaft: #B8A8BC;
+            --timeline-accent: #E0A850;
+            --canvas-bg: #120A14;
+            --canvas-stroke: #D8CFD6;
+            --canvas-text: #F0ECF2;
+            --canvas-grid: #3A2E40;
+            --canvas-accent: #E0A850;
+            --canvas-fill: rgba(224, 168, 80, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F9F6F8 0%, #F0EBF2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #120A14 0%, #0A0610 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F0ECF2;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.20);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(240, 236, 242, 0.10);
+            color: #F0ECF2;
+            border: 1px solid rgba(240, 236, 242, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(240, 236, 242, 0.20);
+            border-color: rgba(240, 236, 242, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F9F6F8;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1E1A24;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F0EBF2;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1E1420;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F0ECF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #3A2E40;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #1F0E24, #3B1F3D, #6B3D6E);
+            color: #F0ECF2;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #0A0510, #120A14, #1E1420);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F9F6F8;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #120A14;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #B88630;
+            color: #F0ECF2;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #C8BDC6;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1E1A24;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(217, 153, 58, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #3A2E40;
+            background: #120A14;
+            color: #F0ECF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 168, 80, 0.14);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #C8BDC6;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1E1A24;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(217, 153, 58, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #3A2E40;
+            background: #120A14;
+            color: #F0ECF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 168, 80, 0.14);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #D8CFD6;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #3B1F3D;
+            color: #F0ECF2;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #1E1420;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #3A2E40;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(59, 31, 61, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(240, 236, 242, 0.02);
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 140px;
+            border: 1px solid #C8BDC6;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 85%;
+            background: #FFF;
+            color: #1E1A24;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(217, 153, 58, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #3A2E40;
+            background: #120A14;
+            color: #F0ECF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 168, 80, 0.14);
+        }
+
+        /* Chrono Arrow Timeline */
+        .Tests-Hub-timeline-container {
+            position: relative;
+            width: 100%;
+            max-width: 780px;
+            margin: 2rem auto;
+            height: 240px;
+            background: transparent;
+            border-radius: 8px;
+        }
+
+        .Tests-Hub-timeline-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .Tests-Hub-timeline-input {
+            position: absolute;
+            width: 150px;
+            height: 42px;
+            border: 2px dashed var(--accent);
+            border-radius: 8px;
+            background: rgba(249, 246, 248, 0.88);
+            text-align: center;
+            font-family: inherit;
+            font-size: 13px;
+            color: #1E1A24;
+            padding: 4px 8px;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .Tests-Hub-timeline-input:focus {
+            border-style: solid;
+            border-color: var(--accent);
+            background: #FFF;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(217, 153, 58, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-timeline-input {
+            background: rgba(18, 10, 20, 0.9);
+            color: #F0ECF2;
+            border-color: #E0A850;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-timeline-input:focus {
+            background: #1E1420;
+            border-color: #E0A850;
+            box-shadow: 0 0 0 4px rgba(224, 168, 80, 0.18);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #3B1F3D, #6B3D6E, var(--accent));
+            color: #FFF;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F9F6F8 0%, #F0EBF2 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(217, 153, 58, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #1E1420, #120A14);
+            border-color: rgba(224, 168, 80, 0.26);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(249, 246, 248, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(18, 10, 20, 0.7);
+            border-right-color: #E0A850;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #3B1F3D;
+            background: rgba(217, 153, 58, 0.08);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #E0A850;
+            background: rgba(224, 168, 80, 0.14);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(59, 31, 61, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #3A2E40;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(224, 168, 80, 0.07);
+            color: #F0ECF2;
+            border-right-color: #D88060;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #5A3E6B;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #B8A8BC;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1E1A24;
+            background: rgba(217, 153, 58, 0.06);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F0ECF2;
+            background: rgba(224, 168, 80, 0.06);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(59, 31, 61, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #3A2E40;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(107, 61, 110, 0.07);
+            color: #C8BCD0;
+            border-right-color: #B8A8BC;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(59, 31, 61, 0.05), rgba(217, 153, 58, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #7A1C3D, #A32F55);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #3B1F3D, #6B3D6E);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #D9993A, #E0A850);
+            color: #1E1A24;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #1F0E24, #3B1F3D, #6B3D6E);
+            color: #F0ECF2;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0A0510, #120A14, #1E1420);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #E0A850;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #E0A850;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #E0A850;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        .Tests-Hub-protectorate-note {
+            text-align: center;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light-secondary);
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-protectorate-note input {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid #C8BDC6;
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1E1A24;
+            margin: 2px 6px;
+        }
+        .Tests-Hub-protectorate-note input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(217, 153, 58, 0.10);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-protectorate-note input {
+            border-color: #3A2E40;
+            background: #120A14;
+            color: #F0ECF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-protectorate-note input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 168, 80, 0.14);
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-timeline-container {
+                height: 210px;
+                max-width: 100%;
+            }
+            .Tests-Hub-timeline-input {
+                width: 110px;
+                font-size: 11px;
+                height: 36px;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+            .Tests-Hub-table-input {
+                min-width: 100px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.historyTest.title">فرض تأليفي عدد 3 - تاريخ - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.historyTest.subtitle">إعدادي نموذجي | الأستاذ عزيز | 2011-2012</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.historyTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الاختبار التأليفي الثالث في التاريخ</h1>
+            <p>إعدادي نموذجي | القسم: الثامنة أساسي | الأستاذ: عزيز</p>
+            <p>السنة الدراسية: 2011-2012 | المدة: 30 دقيقة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>اكتب المعلومات التاريخية بأمانة علمية.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 12 نقطة | التنظيم والصياغة: 2 نقطة | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول: 6 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – التاريخ <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <!-- السؤال 1: السلم الزمني -->
+            <h3>1/ أكمل السلم الزمني: <span class="Tests-Hub-points-badge">3 نقاط</span></h3>
+            <p style="margin-bottom:0.5rem;">ضع أمام كل تاريخ العهد أو الحدث المناسب من بين ما يلي: <em>عهد الباشاوات الحسينيين – عهد الدايات – عهد البايات المرادية – حكم إبراهيم الشريف</em></p>
+
+            <div class="Tests-Hub-timeline-container" id="timelineContainer">
+                <canvas id="timelineCanvas" class="Tests-Hub-timeline-canvas" width="780" height="240"></canvas>
+                <input type="text" class="Tests-Hub-timeline-input" id="timelineInput1" placeholder="العهد..." style="left:10%;top:28px;">
+                <input type="text" class="Tests-Hub-timeline-input" id="timelineInput2" placeholder="العهد..." style="left:31%;top:28px;">
+                <input type="text" class="Tests-Hub-timeline-input" id="timelineInput3" placeholder="العهد..." style="left:52%;top:28px;">
+                <input type="text" class="Tests-Hub-timeline-input" id="timelineInput4" placeholder="العهد..." style="left:73%;top:28px;">
+            </div>
+            <div class="Tests-Hub-protectorate-note">
+                <strong>انتصاب الحماية الفرنسية:</strong>
+                <input type="text" id="protectorateInput" placeholder="السنة..." style="width:110px;">
+            </div>
+
+            <!-- السؤال 2: إكمال الجدول -->
+            <h3>2/ أكمل الجدول بما يناسب: <span class="Tests-Hub-points-badge">3 نقاط</span></h3>
+            <table class="Tests-Hub-table">
+                <thead>
+                    <tr>
+                        <th style="width:55%;">العنوان / الوظيفة</th>
+                        <th style="width:45%;">المصطلح المناسب</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>قائد الجيش الإنكشاري</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="المصطلح..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>قائد فرقة عسكرية تتكون من 100 جندي</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="المصطلح..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>الوالي ممثل السلطان العثماني</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="المصطلح..."></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- القسم الثاني: التحرير المسترسل -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – التحرير المسترسل <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">الموضوع:</span> <strong>حدد النتائج الاجتماعية للثورة الصناعية.</strong></p>
+                <p style="margin-top:0.5rem;color:var(--secondary);">المطلوب: تحرير مسترسل يبرز التحولات الاجتماعية الكبرى التي أحدثتها الثورة الصناعية في المجتمعات الأوروبية خلال القرنين الثامن عشر والتاسع عشر.</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:320px;" placeholder="اكتب تحريرك المسترسل هنا..."></textarea>
+                <p style="font-size:0.85rem;margin-top:0.5rem;color:var(--secondary);"><em>تنقيط: المضمون التاريخي (8ن) – المنهجية والتنظيم (2ن) – جودة التحرير (2ن) | التنظيم والصياغة العامة: 2ن إضافية</em></p>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل تاريخي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح الأسئلة (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ السلم الزمني – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>1590:</strong> <strong>عهد الدايات</strong> — إثر ضعف السيطرة العثمانية المباشرة، استولى قادة الجيش الإنكشاري (الدايات) على الحكم الفعلي في تونس، وأسسوا نظاماً عسكرياً حكم البلاد طوال القرن السابع عشر. كان الداي يُنتخب من بين كبار ضباط الإنكشارية.<br>
+                    • <strong>1631:</strong> <strong>عهد البايات المرادية</strong> — أسسه مراد باي الأول الذي جمع بين السلطة العسكرية والمدنية، وأسس سلالة حكمت تونس قرابة سبعين سنة (1631-1702). تميز هذا العهد بتقوية الأسطول البحري وتوسيع نفوذ تونس في المتوسط.<br>
+                    • <strong>1702:</strong> <strong>حكم إبراهيم الشريف</strong> — فترة انتقالية قصيرة (1702-1705) أنهى فيها إبراهيم الشريف حكم البايات المرادية بعد صراع دموي، وتولى الحكم جامعاً بين لقبي الداي والباشا، قبل أن يُقتل في معركة ضد الجزائر سنة 1705.<br>
+                    • <strong>1705:</strong> <strong>عهد الباشاوات الحسينيين</strong> — أسسه حسين بن علي الترکي بعد انتصار الجند على إبراهيم الشريف، واستمرت هذه السلالة في حكم تونس أكثر من 250 سنة (1705-1957)، مروراً بفترة الحماية الفرنسية (1881-1956) وانتهاءً بإعلان الجمهورية.
+                </p>
+                <p class="Tests-Hub-text-success" style="margin-top:0.8rem;">
+                    • <strong>انتصاب الحماية الفرنسية:</strong> <strong>1881</strong> — إثر توقيع معاهدة باردو في 12 ماي 1881 بين الباي محمد الصادق والحكومة الفرنسية، والتي فرضت نظام الحماية على تونس وأفقدتها سيادتها الخارجية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> يعكس هذا السلم الزمني المراحل المتعاقبة للحكم العثماني في تونس، وهو مسار اتسم بالصراع المستمر بين مكونات السلطة العثمانية: الإنكشارية (الدايات)، والأعيان المحليين (البايات)، وممثلي الباب العالي (الباشوات). فمنذ 1574 (سقوط تونس في يد سنان باشا) وإلى غاية 1881، عرفت تونس تحولات عميقة في بنية الحكم. فقد بدأ عهد الدايات (1590) حين انتزع قادة الإنكشارية السلطة الفعلية وقلّصوا دور الباشا العثماني إلى مجرد واجهة شكلية، مما جعل تونس "جمهورية عسكرية" تحت السيادة الاسمية للسلطان. ثم جاء مراد باي (1631) ليؤسس سلالة محلية قوية استفادت من شرعية "البايلك" في جباية الضرائب وتنظيم الجيش، محوّلةً تونس إلى كيان شبه مستقل. أما إبراهيم الشريف (1702) فمثّل محاولة لاستعادة النموذج العسكري الصرف، لكنها باءت بالفشل السريع. وأخيراً، نجح حسين بن علي (1705) في تأسيس الدولة الحسينية التي راكمت شرعية تاريخية امتدت إلى منتصف القرن العشرين. ويُظهر إدراج "انتصاب الحماية الفرنسية" (1881) كيف أن هذه البنية السياسية العريقة انهارت أمام الضغط الاستعماري الأوروبي في أواخر القرن التاسع عشر.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ إكمال الجدول – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>قائد الجيش الإنكشاري:</strong> <strong>الآغا</strong> — وهو الضابط الأعلى الذي يقود فيلق الإنكشارية في تونس، ويتمتع بنفوذ عسكري وسياسي كبير، خاصة خلال عهد الدايات حيث كان الآغا أحد أبرز المرشحين لتولي منصب الداي.<br>
+                    • <strong>قائد فرقة عسكرية تتكون من 100 جندي:</strong> <strong>اليوزباشي</strong> — وهي رتبة عسكرية عثمانية (تعني حرفياً "رئيس المئة")، تشير إلى ضابط يقود سرية من مئة جندي في التشكيلات العسكرية العثمانية والإنكشارية بتونس.<br>
+                    • <strong>الوالي ممثل السلطان العثماني:</strong> <strong>الباشا</strong> — وهو الحاكم الأعلى الذي يعينه السلطان العثماني لتمثيله في الولاية التونسية، ويحمل لقب "باشا" الذي يخوّله السلطة الإدارية والعسكرية اسمياً، وإن تقلصت صلاحياته الفعلية لحساب الدايات ثم البايات.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> تعكس هذه المصطلحات الثلاثة البنية الهرمية للنظام العثماني في تونس، وهو نظام قام على توزيع السلطات بين ثلاث مؤسسات متداخلة ومتصارعة: <strong>الباشا</strong> (السلطة المدنية العليا المعينة من إسطنبول)، و<strong>الآغا</strong> (قيادة الفيلق الإنكشاري الذي يشكل النواة العسكرية للحامية التركية)، و<strong>اليوزباشي</strong> (ضباط الصف الذين يضمنون تماسك الوحدات القتالية). وقد مثّل الصراع بين هذه المكونات المحرك الأساسي للتطورات السياسية في تونس خلال العهد العثماني. فالآغا، الذي يقود آلاف الإنكشاريين، كان يمتلك القوة العسكرية الحقيقية، بينما ظل الباشا رمزاً للشرعية السلطانية. أما اليوزباشي فقد شكلوا العمود الفقري للضباط الذين ينفذون الأوامر ويضمنون ولاء الجنود. وقد ساهم فهم هذه الرتب في استيعاب آليات الحكم والصراع على السلطة في تونس العثمانية، خاصة خلال فترات الفراغ السياسي وغياب السلطة المركزية القوية.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – التحرير المسترسل (12 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>الموضوع: النتائج الاجتماعية للثورة الصناعية</strong></p>
+
+                <h4 style="color:#3B1F3D;margin-top:1rem;">📝 الإطار المنهجي المقترح</h4>
+                <p><strong>المقدمة:</strong> وضع السياق العام (انطلاق الثورة الصناعية في إنجلترا أواخر القرن 18، ثم انتشارها في أوروبا خلال القرن 19). طرح الإشكالية: ما هي أبرز التحولات الاجتماعية التي أحدثتها الثورة الصناعية في بنية المجتمعات الأوروبية وعلاقاتها الداخلية؟</p>
+                <p><strong>الجوهر:</strong> ثلاثة محاور أساسية: (1) ظهور طبقات اجتماعية جديدة وإعادة تشكيل البنية الطبقية، (2) التمدن والهجرة الريفية وما ترتب عنها من تحولات، (3) ظروف العمل والحركات الاجتماعية والنقابية.</p>
+                <p><strong>الخاتمة:</strong> استخلاص كيف غيّرت الثورة الصناعية وجه المجتمع الأوروبي جذرياً، مع الإشارة إلى استمرار تأثيراتها في العصر الحديث.</p>
+
+                <h4 style="color:#3B1F3D;margin-top:1.2rem;">📝 نموذج تحرير مسترسل مقترح</h4>
+                <div class="Tests-Hub-text-model">
+                    <p><strong>مقدمة:</strong> شكّلت الثورة الصناعية التي انطلقت في إنجلترا خلال النصف الثاني من القرن الثامن عشر (حوالي 1760) نقطة تحول كبرى في تاريخ البشرية. فإلى جانب آثارها الاقتصادية والتقنية الهائلة، أحدثت هذه الثورة تحولات اجتماعية عميقة أعادت تشكيل بنية المجتمعات الأوروبية برمتها، وخلقت واقعاً اجتماعياً جديداً يختلف جذرياً عن المجتمعات الزراعية التقليدية التي سبقتها. فما هي أبرز النتائج الاجتماعية التي ترتبت عن الثورة الصناعية؟</p>
+
+                    <p><strong>أولاً: ظهور طبقات اجتماعية جديدة وإعادة تشكيل البنية الطبقية</strong><br>
+                    • أفرزت الثورة الصناعية <strong>طبقتين اجتماعيتين رئيسيتين</strong> لم تكونا موجودتين من قبل في المجتمعات التقليدية: <strong>البرجوازية الصناعية</strong> (أصحاب المصانع ورؤوس الأموال) التي امتلكت وسائل الإنتاج وتراكمت لديها ثروات طائلة، و<strong>البروليتاريا</strong> (الطبقة العاملة) التي لا تملك سوى قوة عملها وتبيعها لقاء أجر.<br>
+                    • اتسعت الهوة بين الطبقتين بشكل حاد، فعاش العمال في فقر مدقع بينما راكمت البرجوازية أرباحاً هائلة، مما خلق <strong>تفاوتاً طبقياً غير مسبوق</strong> في التاريخ الأوروبي.<br>
+                    • تراجعت مكانة <strong>النبلاء الإقطاعيين</strong> (الأرستقراطية) تدريجياً لحساب البرجوازية الصاعدة التي أصبحت القوة الاقتصادية والسياسية المهيمنة بحلول أواخر القرن التاسع عشر.</p>
+
+                    <p><strong>ثانياً: التمدن السريع والهجرة الريفية</strong><br>
+                    • أدى تركز المصانع في المدن إلى <strong>نزوح ريفي هائل</strong>، حيث هجر ملايين الفلاحين الأرياف بحثاً عن فرص عمل في المراكز الصناعية الحضرية. فتضخمت مدن مثل مانشستر وبرمنغهام وليل وبرلين بشكل غير مسبوق.<br>
+                    • نشأت <strong>أحياء عمالية مكتظة</strong> تفتقر إلى أدنى شروط النظافة والصحة، وانتشرت الأمراض والأوبئة (مثل الكوليرا والتيفوئيد) في هذه التجمعات السكنية الفوضوية.<br>
+                    • تفككت <strong>الروابط الاجتماعية التقليدية</strong> التي كانت سائدة في الأرياف (كالأسرة الممتدة والقرابة والتكافل الجواري)، ونشأ مجتمع حضري أكثر فردانية وأقل تماسكاً.</p>
+
+                    <p><strong>ثالثاً: ظروف العمل القاسية ونشوء الحركات الاجتماعية</strong><br>
+                    • عانى العمال من <strong>ظروف عمل مروّعة</strong>: ساعات عمل تصل إلى 14-16 ساعة يومياً، وأجور متدنية لا تكفي لسد الرمق، وافتقار كامل للضمانات الاجتماعية أو التأمين الصحي، إضافة إلى تشغيل واسع للنساء والأطفال (بعضهم في سن الخامسة!) في المصانع والمناجم بأجور أقل من الرجال.<br>
+                    • في مواجهة هذا الواقع، بدأ العمال يتنظمون تدريجياً: ظهرت <strong>النقابات العمالية</strong> (Trade Unions) التي ناضلت من أجل تحسين شروط العمل ورفع الأجور وتقليص ساعات العمل، وانتشرت <strong>الإضرابات</strong> كوسيلة ضغط جماعية.<br>
+                    • كما ظهرت <strong>تيارات فكرية واجتماعية</strong> جديدة دافعت عن حقوق العمال، أبرزها <strong>الاشتراكية</strong> (بأشكالها المختلفة: الاشتراكية الطوباوية عند سان سيمون وشارل فورييه، والاشتراكية العلمية عند كارل ماركس وفريدريك إنجلز اللذين نشرا "البيان الشيوعي" سنة 1848). وقد طالبت هذه التيارات بإلغاء استغلال الإنسان للإنسان وإقامة مجتمع أكثر عدالة.</p>
+
+                    <p><strong>رابعاً: تحولات في بنية الأسرة والتعليم والصحة</strong><br>
+                    • تغيرت <strong>بنية الأسرة</strong>: مع خروج الرجال والنساء والأطفال للعمل خارج المنزل، تفكك نموذج الأسرة الريفية الممتدة، وظهرت الأسرة النووية الحضرية الصغيرة. كما أدى تشغيل النساء إلى بدايات مبكرة لتغير الأدوار التقليدية للجنسين.<br>
+                    • ازداد <strong>الاهتمام بالتعليم</strong> تدريجياً: أدركت الحكومات والبرجوازية الحاجة إلى عمال متعلمين قادرين على تشغيل الآلات المعقدة، فانتشرت المدارس الابتدائية الإجبارية في كثير من الدول الأوروبية خلال النصف الثاني من القرن التاسع عشر.<br>
+                    • رغم تدهور الأوضاع الصحية في البداية، إلا أن التقدم الطبي والعلمي (مثل اكتشافات لويس باستور في التعقيم واللقاحات) أدى إلى <strong>تحسن تدريجي في متوسط العمر المتوقع</strong> وانخفاض معدلات وفيات الأطفال مع نهاية القرن التاسع عشر.</p>
+
+                    <p><strong>خاتمة:</strong> يتضح مما سبق أن الثورة الصناعية لم تكن مجرد تحول تقني أو اقتصادي، بل كانت ثورة اجتماعية شاملة قلبت بنية المجتمعات الأوروبية رأساً على عقب. فقد خلقت طبقات جديدة (البرجوازية والبروليتاريا)، وأفرغت الأرياف لصالح مدن كبرى مكتظة، وفرضت ظروف عمل قاسية على ملايين البشر قبل أن تفرز حركات احتجاجية ونقابية غيرت موازين القوى الاجتماعية. وبالرغم من المعاناة الهائلة التي رافقت المراحل الأولى للتصنيع، فإن الثورة الصناعية مهدت أيضاً لتحسين لاحق في مستويات المعيشة والتعليم والصحة، وأرست أسس المجتمع الحديث الذي نعيش فيه اليوم. ويظل الدرس الأهم من هذه التجربة أن التقدم التقني لا يضمن وحده العدالة الاجتماعية، بل لا بد أن يرافقه نضال بشري لتحقيقها.</p>
+                </div>
+                <div class="correction-explanation">
+                    <strong>✔ معايير التنقيط التفصيلية:</strong><br>
+                    • <strong>المضمون التاريخي (8ن):</strong> ذكر الطبقتين الاجتماعيتين الجديدتين (البرجوازية والبروليتاريا) — التمدن والهجرة الريفية — ظروف العمل القاسية (الساعات، الأجور، تشغيل النساء والأطفال) — ظهور النقابات والإضرابات — التيارات الاشتراكية (ماركس، إنجلز، البيان الشيوعي 1848) — تحولات الأسرة والتعليم — تحسن الصحة مع نهاية القرن 19.<br>
+                    • <strong>المنهجية والتنظيم (2ن):</strong> مقدمة بإشكالية واضحة — تقسيم إلى محاور منطقية — خاتمة استخلاصية تُركّب الأفكار.<br>
+                    • <strong>جودة التحرير (2ن):</strong> سلامة اللغة العربية — دقة المصطلحات — خلو النص من الأخطاء الإملائية والنحوية.<br>
+                    • <strong>التنظيم والصياغة العامة (2ن إضافية):</strong> ترتيب منطقي — علامات ترقيم مناسبة — جمالية الأسلوب — توازن الفقرات.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">ملاحظات عامة حول التقييم</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    <strong>📌 توزيع النقاط الإجمالي (20 نقطة):</strong><br>
+                    • القسم الأول (السلم الزمني + الجدول): 6 نقاط (3+3)<br>
+                    • القسم الثاني (التحرير المسترسل): 12 نقطة (8 للمضمون + 2 للمنهجية + 2 للتحرير)<br>
+                    • التنظيم والصياغة العامة: 2 نقطة إضافية<br>
+                    <strong>🔑 تذكير:</strong> يُراعى في التقييم مدى تمكن التلميذ من توظيف المفاهيم التاريخية بدقة، وقدرته على الربط بين المعطيات واستخلاص النتائج، إضافة إلى جودة التعبير وسلامة اللغة العربية.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        function getCanvasTheme() {
+            const isDark = document.body.classList.contains('Tests-Hub-dark-theme');
+            return {
+                bg: isDark ? '#120A14' : '#F9F6F8',
+                stroke: isDark ? '#D8CFD6' : '#3B1F3D',
+                text: isDark ? '#F0ECF2' : '#1E1A24',
+                grid: isDark ? '#3A2E40' : '#C8BDC6',
+                accent: isDark ? '#E0A850' : '#D9993A',
+                fill: isDark ? 'rgba(224,168,80,0.08)' : 'rgba(217,153,58,0.06)',
+                shaftFill: isDark ? '#3A2E40' : '#3A2E40',
+                boxFill: isDark ? 'rgba(18,10,20,0.9)' : 'rgba(249,246,248,0.88)',
+            };
+        }
+
+        function drawTimeline() {
+            const canvas = document.getElementById('timelineCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width;
+            const H = canvas.height;
+            const t = getCanvasTheme();
+
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = t.bg;
+            ctx.fillRect(0, 0, W, H);
+
+            // Arrow shaft - من اليمين لليسار (RTL: اليمين أقدم = 1590، اليسار أحدث = 1705)
+            const shaftY = 90;
+            const startX = W - 55;
+            const endX = 45;
+            const shaftH = 16;
+            const shaftLength = startX - endX;
+
+            // Shaft rectangle
+            ctx.fillStyle = t.shaftFill;
+            ctx.beginPath();
+            ctx.roundRect(endX, shaftY - shaftH / 2, shaftLength, shaftH, 8);
+            ctx.fill();
+
+            // Arrowhead عند اليسار (endX)
+            ctx.beginPath();
+            ctx.moveTo(endX + 35, shaftY - shaftH / 2 - 12);
+            ctx.lineTo(endX, shaftY);
+            ctx.lineTo(endX + 35, shaftY + shaftH / 2 + 12);
+            ctx.fillStyle = t.accent;
+            ctx.fill();
+
+            // 4 مواضع من اليمين (1590) إلى اليسار (1705)
+            const positions = [
+                { x: W - 150, date: '1590' },
+                { x: W - 340, date: '1631' },
+                { x: W - 530, date: '1702' },
+                { x: W - 660, date: '1705' }
+            ];
+
+            const boxW = 148;
+            const boxH = 42;
+
+            positions.forEach((p) => {
+                // Tick mark
+                ctx.beginPath();
+                ctx.strokeStyle = t.accent;
+                ctx.lineWidth = 2.5;
+                ctx.moveTo(p.x, shaftY - shaftH / 2 - 6);
+                ctx.lineTo(p.x, shaftY + shaftH / 2 + 6);
+                ctx.stroke();
+
+                // Circle on tick
+                ctx.beginPath();
+                ctx.arc(p.x, shaftY, 8, 0, 2 * Math.PI);
+                ctx.fillStyle = t.accent;
+                ctx.fill();
+
+                // Inner circle
+                ctx.beginPath();
+                ctx.arc(p.x, shaftY, 4, 0, 2 * Math.PI);
+                ctx.fillStyle = t.bg;
+                ctx.fill();
+
+                // Box outline for input
+                const boxX = p.x - boxW / 2;
+                const boxY = shaftY - shaftH / 2 - boxH - 18;
+                ctx.setLineDash([5, 3]);
+                ctx.strokeStyle = t.accent;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.roundRect(boxX, boxY, boxW, boxH, 8);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Date label below shaft
+                ctx.fillStyle = t.text;
+                ctx.font = 'bold 16px "Traditional Arabic", "Segoe UI", Tahoma, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(p.date, p.x, shaftY + shaftH / 2 + 30);
+            });
+
+            // Title above
+            ctx.fillStyle = t.text;
+            ctx.font = 'bold 19px "Traditional Arabic", "Segoe UI", Tahoma, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('السلم الزمني', W / 2, 20);
+        }
+
+        function updateTimelineInputPositions() {
+            const container = document.getElementById('timelineContainer');
+            const canvas = document.getElementById('timelineCanvas');
+            if (!container || !canvas) return;
+            const W = canvas.width;
+            const shaftY = 90;
+            const shaftH = 16;
+            const boxH = 42;
+            const boxW = 148;
+            const positions = [W - 150, W - 340, W - 530, W - 660];
+            const inputs = [
+                document.getElementById('timelineInput1'),
+                document.getElementById('timelineInput2'),
+                document.getElementById('timelineInput3'),
+                document.getElementById('timelineInput4'),
+            ];
+
+            inputs.forEach((inp, i) => {
+                if (!inp) return;
+                const px = positions[i];
+                const boxX = px - boxW / 2;
+                const boxY = shaftY - shaftH / 2 - boxH - 18;
+                inp.style.left = (boxX / W * 100) + '%';
+                inp.style.top = boxY + 'px';
+                inp.style.width = boxW + 'px';
+                inp.style.height = boxH + 'px';
+            });
+        }
+
+        function redrawAll() {
+            drawTimeline();
+            updateTimelineInputPositions();
+        }
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    historyTest: {
+                        title: "فرض تأليفي عدد 3 - تاريخ - 8 أساسي",
+                        subtitle: "إعدادي نموذجي | الأستاذ عزيز | 2011-2012",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    historyTest: {
+                        title: "Devoir de Synthèse N°3 - Histoire - 8ème",
+                        subtitle: "Modèle | Prof. Aziz | 2011-2012",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    historyTest: {
+                        title: "Synthesis Test N°3 - History - 8th Grade",
+                        subtitle: "Model | Prof. Aziz | 2011-2012",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+            redrawAll();
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.historyTest?.comingSoon ||
+                "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+            redrawAll();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            window.addEventListener('resize', () => {
+                updateTimelineInputPositions();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

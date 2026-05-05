@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبارات - فرض مراقبة عدد 3 (9 أساسي) - فيزياء</title>
+
+    <!-- PWA Meta Tags (وردي قرمزي) -->
+    <meta name="theme-color" content="#e11d48">
+    <meta name="description" content="فرض مراقبة عدد 3 في الفيزياء - السنة التاسعة أساسي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - فرض فيزياء">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- KaTeX (local files, no CDN) -->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js">
+    </script>
+    <script defer src="katex/contrib/auto-render.min.js">
+    </script>
+
+    <style>
+        :root {
+            --primary: #e11d48;
+            --primary-deep: #be123c;
+            --primary-dark: #881337;
+            --primary-light: #fda4af;
+            --primary-bg-light: #ffe4e6;
+            --primary-bg-lighter: #fff1f2;
+            --text-light: #4c0519;
+            --text-dark: #fecdd3;
+            --section-bg-dark: #3f0d1a;
+            --header-dark-start: #3f0d1a;
+            --header-dark-mid: #881337;
+            --header-dark-end: #e11d48;
+            --accent-dark: #fda4af;
+            --accent-dark-border: #fb7185;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: var(--text-light);
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #3f0d1a 0%, #881337 100%);
+            color: var(--text-dark);
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid), var(--header-dark-end));
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-language-button,
+        .Tests-Hub-theme-toggle,
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-button:hover,
+        .Tests-Hub-theme-toggle:hover,
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-language-option:hover {
+            background: var(--primary-bg-light);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: var(--section-bg-dark);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: var(--text-dark);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: var(--primary);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid));
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: var(--section-bg-dark);
+            color: var(--text-dark);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-deep);
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: var(--accent-dark);
+            border-bottom-color: var(--accent-dark-border);
+        }
+
+        .Tests-Hub-instructions {
+            background: var(--primary-bg-light);
+            padding: 1rem;
+            border-right: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: var(--section-bg-dark);
+            border-right-color: var(--accent-dark);
+        }
+
+        .Tests-Hub-question {
+            margin: 1.5rem 0;
+            padding-right: 10px;
+        }
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: var(--accent-dark);
+        }
+
+        .katex {
+            direction: ltr !important;
+            unicode-bidi: isolate !important;
+            display: inline-block;
+        }
+        .katex * {
+            direction: ltr !important;
+        }
+
+        .Tests-Hub-question p {
+            font-size: 1.2em;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding-bottom: 5px;
+            margin: 10px 0;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar {
+            height: 6px;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        @media (max-width: 600px) {
+            .Tests-Hub-question p {
+                font-size: 1.1em;
+            }
+        }
+        .Tests-Hub-question p:not(:has(.katex)) {
+            white-space: normal;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-correction-section {
+            background: var(--primary-bg-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid var(--primary);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: var(--section-bg-dark);
+            border-right-color: var(--accent-dark);
+        }
+        .Tests-Hub-correction-section h3 {
+            color: var(--primary);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: var(--accent-dark);
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(225, 29, 72, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid var(--primary);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(253, 164, 175, 0.1);
+            border-right-color: var(--accent-dark);
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid), var(--header-dark-end));
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: var(--primary-light);
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(225, 29, 72, 0.1), rgba(190, 18, 60, 0.1));
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #e11d48, #be123c);
+            color: white;
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #be123c, #881337);
+            color: white;
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #881337, #4c0519);
+            color: white;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .Tests-Hub-diagram-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .Tests-Hub-diagram-canvas {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-canvas {
+            border-color: var(--accent-dark);
+            background: #3f0d1a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th,
+        td {
+            border: 1px solid var(--primary);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .Tests-Hub-dark-theme th,
+        .Tests-Hub-dark-theme td {
+            border-color: var(--accent-dark);
+        }
+        th {
+            background: var(--primary-bg-light);
+        }
+        .Tests-Hub-dark-theme th {
+            background: var(--section-bg-dark);
+        }
+
+        input.answer-radio,
+        input.answer-checkbox {
+            margin-left: 8px;
+            transform: scale(1.2);
+            vertical-align: middle;
+        }
+        input.answer-text,
+        textarea.answer-text {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            padding: 6px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            color: var(--text-light);
+        }
+        .Tests-Hub-dark-theme input.answer-text,
+        .Tests-Hub-dark-theme textarea.answer-text {
+            background: var(--section-bg-dark);
+            color: var(--text-dark);
+            border-color: var(--accent-dark);
+        }
+        td input.answer-text {
+            width: 100%;
+            min-width: 80px;
+        }
+        .answer-line {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">الفيزياء - فرض مراقبة عدد 3 (9 أساسي)</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">السنة التاسعة أساسي</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back">
+                    <span>←</span> <span>العودة إلى الاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span> <span data-i18n="TestsHub.header.language">العربية</span> <span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span> <span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض مراقبة عدد 3 - مادة العلوم الفيزيائية </h1>
+            <p>الأستاذ: غير محدد</p>
+            <p>المستوى : 9 أساسي</p>
+            <p>المؤسسة: غير محدد</p>
+            <p>السنة الدراسية: 2023-2024</p>
+            <p>المدة : 1 ساعة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات</h3>
+            <ul>
+                <li>اكتب بإتقان واذكر الصيغ المستعملة.</li>
+                <li>يجب تبرير الحسابات.</li>
+                <li>الأشكال تُكمل على الورقة.</li>
+            </ul>
+        </div>
+
+        <!-- ==================== التمرين الأول (اختيارات) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الأول : (6 نقاط)</h2>
+            <p>اختر المقترح الصحيح لتكون الجمل ذات معنى:</p>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> ينكسر الضوء عند انتقاله من وسط شفاف إلى وسط
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q1" class="answer-radio"> عاتم</label>
+                        <label><input type="radio" name="q1" class="answer-radio"> شاف</label>
+                        <label><input type="radio" name="q1" class="answer-radio"> شفاف</label>
+                    </span> آخر.</p>
+
+                <p><span class="Tests-Hub-question-number">2-</span> تساوي زاوية الانعكاس
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q2" class="answer-radio"> 90</label>
+                        <label><input type="radio" name="q2" class="answer-radio"> 180</label>
+                        <label><input type="radio" name="q2" class="answer-radio"> 0</label>
+                        <label><input type="radio" name="q2" class="answer-radio"> 45</label>
+                    </span> درجة إذا كان الشعاع الوارد في منحى قائم على المرآة.</p>
+
+                <p><span class="Tests-Hub-question-number">3-</span> تسمى نقطة التقاء الشعاع الوارد والسطح الصقيل
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q3" class="answer-radio"> نقطة الانعكاس</label>
+                        <label><input type="radio" name="q3" class="answer-radio"> نقطة الورود</label>
+                        <label><input type="radio" name="q3" class="answer-radio"> نقطة الانكسار</label>
+                    </span>.</p>
+
+                <p><span class="Tests-Hub-question-number">4-</span> عند مرور الضوء من الهواء إلى وسط شفاف
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q4" class="answer-radio"> تصغر</label>
+                        <label><input type="radio" name="q4" class="answer-radio"> تكبر</label>
+                        <label><input type="radio" name="q4" class="answer-radio"> تتساوي</label>
+                    </span> زاوية الانكسار.</p>
+
+                <p><span class="Tests-Hub-question-number">5-</span> عندما تصغر زاوية الانكسار يقترب الشعاع المنكسر من
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q5" class="answer-radio"> السطح الفاصل</label>
+                        <label><input type="radio" name="q5" class="answer-radio"> العمود القائم</label>
+                        <label><input type="radio" name="q5" class="answer-radio"> الشعاع الوارد</label>
+                    </span>.</p>
+
+                <p><span class="Tests-Hub-question-number">6-</span>
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q6" class="answer-radio"> ينتثر</label>
+                        <label><input type="radio" name="q6" class="answer-radio"> ينعكس</label>
+                        <label><input type="radio" name="q6" class="answer-radio"> ينكسر</label>
+                    </span> الضوء عند وروده على سطح عادي لجسم عاتم في عدة اتجاهات.</p>
+
+                <p><span class="Tests-Hub-question-number">7-</span> يسمى المستوي الحامل للشعاع الوارد والشعاع المنعكس
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q7" class="answer-radio"> مستوي الانعكاس</label>
+                        <label><input type="radio" name="q7" class="answer-radio"> مستوي الورود</label>
+                        <label><input type="radio" name="q7" class="answer-radio"> مستوي الانكسار</label>
+                    </span>.</p>
+
+                <p><span class="Tests-Hub-question-number">8-</span>
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q8" class="answer-radio"> ينتثر</label>
+                        <label><input type="radio" name="q8" class="answer-radio"> ينعكس</label>
+                        <label><input type="radio" name="q8" class="answer-radio"> ينكسر</label>
+                    </span> الضوء عند وروده على سطح صقيل في اتجاه وحيد ومعين.</p>
+
+                <p><span class="Tests-Hub-question-number">9-</span> يسمى الشعاع المتجه نحو السطح الصقيل
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q9" class="answer-radio"> شعاع منعكس</label>
+                        <label><input type="radio" name="q9" class="answer-radio"> شعاع وارد</label>
+                        <label><input type="radio" name="q9" class="answer-radio"> شعاع منكسر</label>
+                    </span>.</p>
+
+                <p><span class="Tests-Hub-question-number">10-</span>
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q10" class="answer-radio"> ينتثر</label>
+                        <label><input type="radio" name="q10" class="answer-radio"> ينعكس</label>
+                        <label><input type="radio" name="q10" class="answer-radio"> ينكسر</label>
+                    </span> الضوء عند وروده من وسط شفاف إلى وسط شفاف آخر.</p>
+
+                <p><span class="Tests-Hub-question-number">11-</span> يسمى الشعاع المرتد على مستوى السطح الصقيل
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q11" class="answer-radio"> شعاع منعكس</label>
+                        <label><input type="radio" name="q11" class="answer-radio"> شعاع وارد</label>
+                        <label><input type="radio" name="q11" class="answer-radio"> شعاع منكسر</label>
+                    </span>.</p>
+
+                <p><span class="Tests-Hub-question-number">12-</span> تكون صورة جسم حقيقي عبر مرآة
+                    <span style="display:inline-flex;gap:10px;margin:0 8px;">
+                        <label><input type="radio" name="q12" class="answer-radio"> افتراضية ومقلوبة</label>
+                        <label><input type="radio" name="q12" class="answer-radio"> متناظرة وحقيقية</label>
+                        <label><input type="radio" name="q12" class="answer-radio"> افتراضية ومتناظرة</label>
+                    </span> له.</p>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين الثاني (المرآة المسطحة) ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الثاني : (14 نقاط)</h2>
+            <p><strong>I-</strong> بعث أحد التلاميذ شعاع SI من مصدر ضوئي S نحو سطح المرآة (M).</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex2_mirror1" class="Tests-Hub-diagram-canvas" width="500" height="280"></canvas>
+                <p style="font-size:0.9rem; color:var(--primary);">الرسم 1 : مرآة مسطحة وشعاع ضوئي SI</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> أذكر اسم الشعاع الضوئي SI.</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="..."></div>
+                <p><span class="Tests-Hub-question-number">2-</span> حدد قيمة زاوية الورود.</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="..."></div>
+                <p><span class="Tests-Hub-question-number">3-</span> أكمل مسار الشعاع SI في الرسم 1.</p>
+                <p><span class="Tests-Hub-question-number">4-</span> أذكر اسم هذه الظاهرة المتحصل عليها.</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="..."></div>
+                <p><span class="Tests-Hub-question-number">5-</span> اذكر قانوني هذه الظاهرة.</p>
+                <div class="answer-line">القانون الأول: <input type="text" class="answer-text" placeholder="..." style="width:80%;"></div>
+                <div class="answer-line">القانون الثاني: <input type="text" class="answer-text" placeholder="..." style="width:80%;"></div>
+                <p><span class="Tests-Hub-question-number">6-</span> وضع التلميذ مرآة مسطحة أخرى كما يبينه الرسم.</p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="ex2_mirror2" class="Tests-Hub-diagram-canvas" width="550" height="300"></canvas>
+                    <p style="font-size:0.9rem; color:var(--primary);">الرسم 2 : مرآتان مسطحتان</p>
+                </div>
+                <p><strong>أ-</strong> أكمل على الرسم مسار الشعاع SI.</p>
+                <p><strong>ب-</strong> حدد في كل مرة زاوية الورود أو زاوية الانعكاس.</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+            </div>
+
+            <p><strong>II-</strong> وقف أحمد أمام مرآة مسطحة عمودية على مسافة 50cm.</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex2_ahmed" class="Tests-Hub-diagram-canvas" width="500" height="350"></canvas>
+                <p style="font-size:0.9rem; color:var(--primary);">الرسم 3 : أحمد أمام المرآة المسطحة</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> فسر سبب مشاهدة أحمد لصورته عبر المرآة المسطحة.</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+                <p><span class="Tests-Hub-question-number">2-</span> حدد المسافة التي تفصله عن صورته.</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="..."></div>
+                <p><span class="Tests-Hub-question-number">3-</span> أكمل الرسم للتحصل على صورة S عبر المرآة المسطحة M.</p>
+                <p><span class="Tests-Hub-question-number">4-</span> حدد طبيعة وجميع خصائص الصورة 'S.</p>
+                <div class="answer-line"><textarea class="answer-text" rows="3" placeholder="..."></textarea></div>
+            </div>
+        </div>
+
+        <!-- Bouton afficher/cacher correction -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">عرض الإصلاح</button>
+        </div>
+
+        <!-- ==================== SECTION CORRECTION DÉTAILLÉE ==================== -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>الإصلاح المفصّل</h2>
+
+            <!-- التمرين الأول -->
+            <div class="Tests-Hub-correction-answer">
+                <h3>التمرين الأول (6 نقاط):</h3>
+                <p><strong>الإجابات الصحيحة:</strong></p>
+                <table>
+                    <thead><tr><th>السؤال</th><th>الإجابة الصحيحة</th><th>التعليل</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>شفاف</strong></td><td>الانكسار يحدث عند الانتقال بين وسطين شفافين مختلفي الكثافة الضوئية (معامل الانكسار). الوسط العاتم يمتص أو يعكس الضوء ولا ينفذه.</td></tr>
+                        <tr><td>2</td><td><strong>0</strong></td><td>عندما يسقط الشعاع عمودياً على المرآة (في منحى العمود القائم)، تكون زاوية الورود = 0°، وبالتالي زاوية الانعكاس = 0° (ينعكس الشعاع على نفسه).</td></tr>
+                        <tr><td>3</td><td><strong>نقطة الورود</strong></td><td>نقطة الورود هي نقطة التقاء الشعاع الوارد بالسطح الفاصل (أو السطح الصقيل). عند هذه النقطة تنطبق أشعة الورود والانعكاس والانكسار.</td></tr>
+                        <tr><td>4</td><td><strong>تصغر</strong></td><td>عند انتقال الضوء من الهواء (وسط أقل كثافة) إلى وسط شفاف (أكثر كثافة)، ينحرف الشعاع نحو العمود القائم، فتصغر زاوية الانكسار عن زاوية الورود.</td></tr>
+                        <tr><td>5</td><td><strong>العمود القائم</strong></td><td>كلما صغرت زاوية الانكسار زاد اقتراب الشعاع المنكسر من العمود القائم، وهذا يدل على أن الوسط أكثر انكسارية.</td></tr>
+                        <tr><td>6</td><td><strong>ينتثر</strong></td><td>على سطح عادي (خشن) لجسم عاتم، ينتثر الضوء في جميع الاتجاهات نتيجة عدم انتظام السطح. هذه الظاهرة تسمى الانتشار أو التشتت السطحي.</td></tr>
+                        <tr><td>7</td><td><strong>مستوي الورود</strong></td><td>مستوي الورود هو المستوي الذي يحتوي على الشعاع الوارد والعمود القائم. قانون الانعكاس ينص على أن الشعاع المنعكس يقع في نفس هذا المستوي.</td></tr>
+                        <tr><td>8</td><td><strong>ينعكس</strong></td><td>على سطح صقيل (أملس) يخضع الضوء لانعكاس منتظم في اتجاه وحيد ومعين، عكس السطح الخشن حيث ينتثر.</td></tr>
+                        <tr><td>9</td><td><strong>شعاع وارد</strong></td><td>الشعاع الوارد هو الشعاع المتجه من المصدر الضوئي نحو السطح الفاصل أو الصقيل قبل حدوث الانعكاس أو الانكسار.</td></tr>
+                        <tr><td>10</td><td><strong>ينكسر</strong></td><td>الانكسار هو الظاهرة التي تحدث عند انتقال الضوء بين وسطين شفافين مختلفين، حيث يتغير اتجاه الشعاع بسبب تغير سرعته.</td></tr>
+                        <tr><td>11</td><td><strong>شعاع منعكس</strong></td><td>الشعاع المنعكس هو الشعاع المرتد عن السطح الصقيل إلى نفس الوسط الذي أتى منه، ويخضع لقانوني الانعكاس.</td></tr>
+                        <tr><td>12</td><td><strong>افتراضية ومتناظرة</strong></td><td>صورة الجسم الحقيقي عبر مرآة مسطحة تكون وهمية (لا تُستقبل على حائل)، معكوسة الجانب، مساوية للجسم، ومتناظرة معه بالنسبة للمرآة (تقع على نفس المسافة خلف المرآة).</td></tr>
+                    </tbody>
+                </table>
+                <p style="margin-top:10px;"><strong>ملاحظة:</strong> كل إجابة صحيحة تُمنح 0.5 نقطة (12 × 0.5 = 6 نقاط).</p>
+            </div>
+
+            <!-- التمرين الثاني -->
+            <div class="Tests-Hub-correction-answer">
+                <h3>التمرين الثاني (14 نقاط):</h3>
+
+                <!-- I- المرآة المسطحة الأولى -->
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx2_mirror1" class="Tests-Hub-diagram-canvas" width="500" height="280"></canvas>
+                </div>
+                <p><strong>I- المرآة المسطحة (الرسم 1):</strong></p>
+                <p><strong>1) اسم الشعاع SI:</strong> <span style="color:#e11d48;font-weight:bold;">الشعاع الوارد</span> (Rayon incident). هو الشعاع الضوئي المنبعث من المصدر S والمتجه نحو سطح المرآة عند نقطة الورود I.</p>
+                <p><strong>2) قيمة زاوية الورود:</strong> من الرسم، الشعاع SI يصنع زاوية 40° مع العمود القائم المقام عند نقطة الورود I. إذن <strong>زاوية الورود i = 40°</strong>.</p>
+                <p><strong>3) و 4) المسار والظاهرة:</strong> (أنظر الرسم أعلاه). الشعاع المنعكس IR ينطلق من I بحيث زاوية الانعكاس i' = 40° (تساوي زاوية الورود). الظاهرة هي <strong>الانعكاس</strong> (Réflexion).</p>
+                <p><strong>5) قانونا الانعكاس:</strong></p>
+                <ul>
+                    <li><strong>القانون الأول:</strong> الشعاع الوارد والشعاع المنعكس والعمود القائم المُقام عند نقطة الورود تقع في مستوى واحد يسمى <strong>مستوي الورود</strong>.</li>
+                    <li><strong>القانون الثاني:</strong> زاوية الورود (بين الشعاع الوارد والعمود القائم) <strong>تساوي</strong> زاوية الانعكاس (بين الشعاع المنعكس والعمود القائم). أي: i = i'.</li>
+                </ul>
+
+                <!-- I-6 المرآتان -->
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx2_mirror2" class="Tests-Hub-diagram-canvas" width="550" height="300"></canvas>
+                </div>
+                <p><strong>6) المرآتان (الرسم 2):</strong></p>
+                <p><strong>أ-</strong> الشعاع SI يسقط على المرآة الأولى M₁ بزاوية ورود 40°، فينعكس بزاوية انعكاس 40° نحو المرآة الثانية M₂. عند وصول الشعاع إلى M₂، يسقط بزاوية ورود جديدة (نحسبها من الرسم)، ثم ينعكس وفق قانون الانعكاس. (أنظر الرسم أعلاه).</p>
+                <p><strong>ب-</strong> في الانعكاس الأول على M₁: زاوية الورود = 40°، زاوية الانعكاس = 40°. وفي الانعكاس الثاني على M₂: تُحدد الزاوية حسب وضعية المرآة الثانية بالنسبة للشعاع الوارد عليها، وتكون زاوية الانعكاس مساوية لزاوية الورود الجديدة.</p>
+
+                <!-- II- أحمد أمام المرآة -->
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx2_ahmed" class="Tests-Hub-diagram-canvas" width="500" height="350"></canvas>
+                </div>
+                <p><strong>II- أحمد أمام المرآة المسطحة:</strong></p>
+                <p><strong>1) تفسير مشاهدة أحمد لصورته:</strong> يرى أحمد صورته عبر المرآة المسطحة بفضل ظاهرة <strong>الانعكاس</strong>. الأشعة الضوئية الصادرة عن أحمد (المضاء) تسقط على سطح المرآة المصقولة فتنعكس وفق قانوني الانعكاس. هذه الأشعة المنعكسة تصل إلى عين أحمد، فيراها كما لو كانت صادرة عن نقطة خلف المرآة، مما يُكوّن صورة وهمية له.</p>
+                <p><strong>2) المسافة بين أحمد وصورته:</strong> المسافة بين الجسم (أحمد) والمرآة = 50cm. الصورة 'S تقع خلف المرآة على نفس المسافة (50cm). إذن المسافة بين أحمد وصورته = 50cm + 50cm = <strong>100cm</strong>.</p>
+                <p><strong>3) إنشاء الصورة:</strong> (أنظر الرسم أعلاه). لرسم صورة النقطة S، نرسم عموداً من S على المرآة ونمده خلفها بنفس المسافة (50cm) فنحصل على 'S.</p>
+                <p><strong>4) طبيعة وخصائص الصورة 'S:</strong></p>
+                <ul>
+                    <li><strong>الطبيعة:</strong> صورة <strong>وهمية</strong> (افتراضية) - لا يمكن استقبالها على حائل، تتكون من امتدادات الأشعة المنعكسة.</li>
+                    <li><strong>الخصائص:</strong>
+                        <ul>
+                            <li><strong>معكوسة الجانب</strong> (اليمين يصبح يساراً والعكس).</li>
+                            <li><strong>مساوية للجسم</strong> من حيث الحجم (تكبير = 1).</li>
+                            <li><strong>متناظرة مع الجسم</strong> بالنسبة لمستوى المرآة (تبعد عن المرآة نفس بُعد الجسم: 50cm).</li>
+                            <li><strong>غير مقلوبة</strong> رأسياً (تظهر معتدلة).</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p style="margin-top:10px;"><strong>ملخص خصائص الصورة عبر مرآة مسطحة:</strong> وهمية، معكوسة الجانب، مساوية للجسم، متناظرة بالنسبة للمرآة.</p>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v2.5.0</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul><li><a href="#" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: { TestsHub: { header: { title: "الفيزياء - فرض مراقبة عدد 3 (9 أساسي)", subtitle: "السنة التاسعة أساسي", back: "العودة إلى الاختبارات", language: "العربية" }, theme: { toggle: "الوضع الليلي" }, footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v2.5.0" }, synthesisTest: { showCorrection: "عرض الإصلاح", hideCorrection: "إخفاء الإصلاح", comingSoon: "قريباً!" } } },
+            fr: { TestsHub: { header: { title: "Physique - Devoir de contrôle n°3 (9ème)", subtitle: "9ème année", back: "Retour aux examens", language: "Français" }, theme: { toggle: "Mode sombre" }, footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité", developerName: "Ziad Mejri", versionNumber: "v2.5.0" }, synthesisTest: { showCorrection: "Afficher la correction", hideCorrection: "Masquer la correction", comingSoon: "Bientôt disponible !" } } },
+            en: { TestsHub: { header: { title: "Physics - Test n°3 (Grade 9)", subtitle: "Grade 9", back: "Back to tests", language: "English" }, theme: { toggle: "Dark Mode" }, footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms of use", privacy: "Privacy policy", developerName: "Ziad Mejri", versionNumber: "v2.5.0" }, synthesisTest: { showCorrection: "Show Correction", hideCorrection: "Hide Correction", comingSoon: "Coming soon!" } } }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                let key = el.getAttribute('data-i18n');
+                let val = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (val) val = val[k]; });
+                if (typeof val === 'string') el.textContent = val;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const toggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (toggle) toggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[currentLanguage].TestsHub.synthesisTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub.synthesisTest.hideCorrection;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubThemeRose', isDarkTheme ? 'dark' : 'light');
+            redrawAllGraphs();
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguageRose', lang);
+        }
+
+        function getStrokeColor() { return isDarkTheme ? '#fda4af' : '#be123c'; }
+        function getFillColor() { return isDarkTheme ? '#fecdd3' : '#4c0519'; }
+        function dtor(deg) { return deg * Math.PI / 180; }
+
+        // ---------- الرسوم الفارغة ----------
+        function drawEx2Mirror1() {
+            const c = document.getElementById('ex2_mirror1'); if (!c) return;
+            const ctx = c.getContext('2d'); c.width = 500; c.height = 280;
+            ctx.clearRect(0, 0, 500, 280);
+            const sc = getStrokeColor(), fc = getFillColor();
+
+            // مرآة أفقية
+            ctx.strokeStyle = sc; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(40, 200); ctx.lineTo(460, 200); ctx.stroke();
+            for (let i = 50; i < 450; i += 14) {
+                ctx.beginPath(); ctx.moveTo(i, 200); ctx.lineTo(i + 8, 209); ctx.strokeStyle = sc; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillStyle = fc; ctx.font = 'bold 14px Arial'; ctx.fillText('M (مرآة)', 200, 225);
+
+            // مصدر ضوئي S
+            ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(80, 70, 6, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillStyle = fc; ctx.fillText('S', 90, 75);
+
+            // شعاع وارد SI
+            ctx.beginPath(); ctx.moveTo(80, 70); ctx.lineTo(240, 200);
+            ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillText('I', 245, 215);
+
+            // عمود قائم (متقطع)
+            ctx.beginPath(); ctx.moveTo(240, 200); ctx.lineTo(240, 60);
+            ctx.strokeStyle = '#aaa'; ctx.setLineDash([5, 5]); ctx.stroke(); ctx.setLineDash([]);
+
+            // زاوية الورود
+            ctx.fillStyle = fc; ctx.font = '14px Arial'; ctx.fillText('40°', 210, 175);
+            ctx.fillText('زاوية الورود i', 180, 160);
+        }
+
+        function drawEx2Mirror2() {
+            const c = document.getElementById('ex2_mirror2'); if (!c) return;
+            const ctx = c.getContext('2d'); c.width = 550; c.height = 300;
+            ctx.clearRect(0, 0, 550, 300);
+            const sc = getStrokeColor(), fc = getFillColor();
+
+            // مرآة أولى M1 أفقية
+            ctx.strokeStyle = sc; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(30, 180); ctx.lineTo(340, 180); ctx.stroke();
+            for (let i = 40; i < 330; i += 14) {
+                ctx.beginPath(); ctx.moveTo(i, 180); ctx.lineTo(i + 8, 189); ctx.strokeStyle = sc; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillStyle = fc; ctx.fillText('M₁', 180, 200);
+
+            // مرآة ثانية M2 مائلة (عمودية تقريباً)
+            ctx.strokeStyle = sc; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(400, 260); ctx.lineTo(400, 60); ctx.stroke();
+            for (let i = 70; i < 250; i += 14) {
+                ctx.beginPath(); ctx.moveTo(400, i); ctx.lineTo(410, i + 6); ctx.strokeStyle = sc; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillStyle = fc; ctx.fillText('M₂', 412, 80);
+
+            // مصدر S
+            ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(70, 60, 6, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillText('S', 80, 55);
+
+            // شعاع وارد SI على M1
+            ctx.beginPath(); ctx.moveTo(70, 60); ctx.lineTo(220, 180);
+            ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillText('I₁', 210, 195);
+
+            // عمود عند I1
+            ctx.beginPath(); ctx.moveTo(220, 180); ctx.lineTo(220, 50);
+            ctx.strokeStyle = '#aaa'; ctx.setLineDash([5, 5]); ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillText('40°', 195, 155);
+        }
+
+        function drawEx2Ahmed() {
+            const c = document.getElementById('ex2_ahmed'); if (!c) return;
+            const ctx = c.getContext('2d'); c.width = 500; c.height = 350;
+            ctx.clearRect(0, 0, 500, 350);
+            const sc = getStrokeColor(), fc = getFillColor();
+
+            // مرآة عمودية
+            ctx.strokeStyle = sc; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(250, 320); ctx.lineTo(250, 30); ctx.stroke();
+            for (let i = 40; i < 310; i += 14) {
+                ctx.beginPath(); ctx.moveTo(250, i); ctx.lineTo(260, i + 6); ctx.strokeStyle = sc; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillStyle = fc; ctx.font = 'bold 14px Arial'; ctx.fillText('M (مرآة)', 262, 50);
+
+            // نقطة S (أحمد)
+            ctx.fillStyle = '#e11d48'; ctx.beginPath(); ctx.arc(160, 200, 7, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillStyle = fc; ctx.fillText('S (أحمد)', 120, 185);
+
+            // خط المسافة
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath(); ctx.moveTo(160, 240); ctx.lineTo(250, 240);
+            ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1; ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = fc; ctx.fillText('50 cm', 190, 260);
+
+            // شخص بسيط (تمثيل أحمد)
+            ctx.fillStyle = '#e11d48';
+            ctx.beginPath(); ctx.arc(160, 160, 10, 0, Math.PI * 2); ctx.fill(); // رأس
+            ctx.fillRect(155, 170, 10, 30); // جسم
+            ctx.fillText('أحمد', 140, 140);
+        }
+
+        // ---------- رسوم الإصلاح ----------
+        function drawCorrectionEx2Mirror1() {
+            const c = document.getElementById('correctionEx2_mirror1'); if (!c) return;
+            const ctx = c.getContext('2d'); c.width = 500; c.height = 280;
+            ctx.clearRect(0, 0, 500, 280);
+
+            // مرآة
+            ctx.strokeStyle = '#be123c'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(40, 200); ctx.lineTo(460, 200); ctx.stroke();
+            for (let i = 50; i < 450; i += 14) {
+                ctx.beginPath(); ctx.moveTo(i, 200); ctx.lineTo(i + 8, 209); ctx.strokeStyle = '#be123c'; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillStyle = '#4c0519'; ctx.fillText('M', 230, 220);
+
+            // مصدر S
+            ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(80, 70, 6, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillText('S', 90, 75);
+
+            // شعاع وارد
+            ctx.beginPath(); ctx.moveTo(80, 70); ctx.lineTo(240, 200);
+            ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillText('I', 245, 215);
+
+            // شعاع منعكس (40° من الجانب الآخر)
+            ctx.beginPath(); ctx.moveTo(240, 200); ctx.lineTo(400, 70);
+            ctx.strokeStyle = '#f97316'; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillText('R', 405, 65);
+
+            // عمود
+            ctx.beginPath(); ctx.moveTo(240, 200); ctx.lineTo(240, 50);
+            ctx.strokeStyle = '#aaa'; ctx.setLineDash([5, 5]); ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillText('N (عمود)', 248, 60);
+
+            // تسميات الزوايا
+            ctx.fillStyle = '#4c0519'; ctx.font = '13px Arial';
+            ctx.fillText('i = 40°', 195, 170);
+            ctx.fillText("i' = 40°", 300, 170);
+            ctx.fillText('شعاع وارد', 130, 130);
+            ctx.fillText('شعاع منعكس', 330, 130);
+            ctx.fillText('زاوية الورود', 175, 155);
+            ctx.fillText('زاوية الانعكاس', 310, 155);
+
+            // قوس صغير للزاوية i
+            ctx.beginPath(); ctx.arc(240, 200, 30, -Math.PI / 2, -Math.PI / 2 + dtor(40), true);
+            ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 1.5; ctx.stroke();
+            // قوس صغير للزاوية i'
+            ctx.beginPath(); ctx.arc(240, 200, 30, -Math.PI / 2, -Math.PI / 2 - dtor(40), false);
+            ctx.strokeStyle = '#f97316'; ctx.lineWidth = 1.5; ctx.stroke();
+        }
+
+        function drawCorrectionEx2Mirror2() {
+            const c = document.getElementById('correctionEx2_mirror2'); if (!c) return;
+            const ctx = c.getContext('2d'); c.width = 550; c.height = 300;
+            ctx.clearRect(0, 0, 550, 300);
+
+            // M1
+            ctx.strokeStyle = '#be123c'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(30, 180); ctx.lineTo(340, 180); ctx.stroke();
+            for (let i = 40; i < 330; i += 14) {
+                ctx.beginPath(); ctx.moveTo(i, 180); ctx.lineTo(i + 8, 189); ctx.strokeStyle = '#be123c'; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillStyle = '#4c0519'; ctx.fillText('M₁', 180, 200);
+
+            // M2
+            ctx.strokeStyle = '#be123c'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(400, 260); ctx.lineTo(400, 60); ctx.stroke();
+            for (let i = 70; i < 250; i += 14) {
+                ctx.beginPath(); ctx.moveTo(400, i); ctx.lineTo(410, i + 6); ctx.strokeStyle = '#be123c'; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillText('M₂', 412, 80);
+
+            // مصدر S
+            ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(70, 60, 6, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillText('S', 80, 55);
+
+            // شعاع وارد على M1
+            ctx.beginPath(); ctx.moveTo(70, 60); ctx.lineTo(220, 180);
+            ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillText('I₁', 210, 195);
+
+            // عمود I1
+            ctx.beginPath(); ctx.moveTo(220, 180); ctx.lineTo(220, 50);
+            ctx.strokeStyle = '#aaa'; ctx.setLineDash([5, 5]); ctx.stroke(); ctx.setLineDash([]);
+
+            // شعاع منعكس من M1 نحو M2
+            const reflAngle = dtor(40);
+            const L1 = 200;
+            const rx = 220 + Math.sin(reflAngle) * L1;
+            const ry = 180 - Math.cos(reflAngle) * L1;
+            ctx.beginPath(); ctx.moveTo(220, 180); ctx.lineTo(rx, ry);
+            ctx.strokeStyle = '#f97316'; ctx.lineWidth = 2; ctx.stroke();
+
+            // اصطدامه بـ M2 عند x=400 تقريباً
+            const hitY = 180 - (400 - 220) * Math.cos(reflAngle) / Math.sin(reflAngle);
+            const clampedHitY = Math.max(70, Math.min(250, hitY));
+            ctx.fillText('I₂', 385, clampedHitY - 5);
+
+            // عمود I2
+            ctx.beginPath(); ctx.moveTo(400, clampedHitY); ctx.lineTo(370, clampedHitY);
+            ctx.strokeStyle = '#aaa'; ctx.setLineDash([5, 5]); ctx.stroke(); ctx.setLineDash([]);
+
+            // شعاع منعكس من M2
+            const incomingAngleToM2 = dtor(40);
+            ctx.beginPath(); ctx.moveTo(400, clampedHitY); ctx.lineTo(460, clampedHitY - 60);
+            ctx.strokeStyle = '#f97316'; ctx.lineWidth = 2; ctx.stroke();
+
+            ctx.fillStyle = '#4c0519'; ctx.font = '13px Arial';
+            ctx.fillText('40°', 195, 155);
+            ctx.fillText("40°", 260, 155);
+            ctx.fillText('انعكاس 1', 280, 130);
+            ctx.fillText('انعكاس 2', 440, clampedHitY - 70);
+        }
+
+        function drawCorrectionEx2Ahmed() {
+            const c = document.getElementById('correctionEx2_ahmed'); if (!c) return;
+            const ctx = c.getContext('2d'); c.width = 500; c.height = 350;
+            ctx.clearRect(0, 0, 500, 350);
+
+            // مرآة
+            ctx.strokeStyle = '#be123c'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(250, 320); ctx.lineTo(250, 30); ctx.stroke();
+            for (let i = 40; i < 310; i += 14) {
+                ctx.beginPath(); ctx.moveTo(250, i); ctx.lineTo(260, i + 6); ctx.strokeStyle = '#be123c'; ctx.lineWidth = 1; ctx.stroke();
+            }
+            ctx.fillStyle = '#4c0519'; ctx.fillText('M (مرآة)', 262, 50);
+
+            // نقطة S
+            ctx.fillStyle = '#e11d48'; ctx.beginPath(); ctx.arc(160, 200, 7, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillText('S (أحمد)', 120, 185);
+
+            // خط المسافة S إلى المرآة
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath(); ctx.moveTo(160, 240); ctx.lineTo(250, 240);
+            ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1; ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillText('50 cm', 190, 260);
+
+            // صورة S'
+            ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(340, 200, 7, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillText("S' (صورة)", 350, 185);
+
+            // خط المسافة من المرآة إلى S'
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath(); ctx.moveTo(250, 230); ctx.lineTo(340, 230);
+            ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 1; ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#3b82f6'; ctx.fillText('50 cm', 280, 250);
+
+            // خط وهمي يربط S بـ S'
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath(); ctx.moveTo(160, 200); ctx.lineTo(340, 200);
+            ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 1; ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillText('100 cm', 235, 195);
+
+            // شخص أحمد
+            ctx.fillStyle = '#e11d48';
+            ctx.beginPath(); ctx.arc(160, 150, 10, 0, Math.PI * 2); ctx.fill();
+            ctx.fillRect(155, 160, 10, 30);
+            ctx.fillText('أحمد', 135, 130);
+
+            // صورة أحمد (وهمية)
+            ctx.fillStyle = '#3b82f6';
+            ctx.beginPath(); ctx.arc(340, 150, 10, 0, Math.PI * 2); ctx.fill();
+            ctx.fillRect(335, 160, 10, 30);
+            ctx.fillText("صورة أحمد", 325, 130);
+            ctx.fillText('(وهمية)', 335, 115);
+        }
+
+        function redrawAllGraphs() {
+            drawEx2Mirror1();
+            drawEx2Mirror2();
+            drawEx2Ahmed();
+            if (!document.getElementById('correction').classList.contains('Tests-Hub-hidden')) {
+                drawCorrectionEx2Mirror1();
+                drawCorrectionEx2Mirror2();
+                drawCorrectionEx2Ahmed();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubThemeRose');
+            if (savedTheme === 'dark') { isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme'); }
+            const savedLanguage = localStorage.getItem('testsHubLanguageRose');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) { currentLanguage = savedLanguage; }
+            if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+            else document.documentElement.dir = 'ltr';
+            updateTextContent();
+
+            renderMathInElement(document.body, {
+                delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false }, { left: "\\(", right: "\\)", display: false }, { left: "\\[", right: "\\]", display: true }],
+                throwOnError: false
+            });
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); });
+            });
+            document.getElementById('downloadPdf').addEventListener('click', () => alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon));
+            document.getElementById('downloadOdt').addEventListener('click', () => alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon));
+            document.getElementById('downloadPng').addEventListener('click', () => alert(TestsHub_translations[currentLanguage]?.TestsHub?.synthesisTest?.comingSoon));
+
+            const correctionBtn = document.getElementById('toggleCorrection');
+            correctionBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                redrawAllGraphs();
+                renderMathInElement(corr, { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false }], throwOnError: false });
+            });
+            redrawAllGraphs();
+            window.addEventListener('resize', redrawAllGraphs);
+        });
+    </script>
+</body>
+</html>

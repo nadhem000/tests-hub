@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 3 - تاريخ - 8 أساسي (2008-2009)</title>
+
+    <meta name="theme-color" content="#2C3E50">
+    <meta name="description" content="فرض تأليفي عدد 3 إعدادي نموذجي في التاريخ - السنة الثامنة أساسي - 2008-2009">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض تاريخ 8 (ع3)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #2C3E50;
+            --secondary: #4A6FA5;
+            --accent: #E87D5E;
+            --accent2: #D4654A;
+            --light-bg: #F6F7F9;
+            --light-section: #FFFFFF;
+            --text-light: #1A1D20;
+            --text-light-secondary: #2B3035;
+            --border-light: #C8CDD3;
+            --shadow-light: rgba(26, 29, 32, 0.06);
+            --header-light: linear-gradient(to left, #1A2938, #2C3E50, #4A6FA5);
+            --canvas-bg: #F6F7F9;
+            --canvas-stroke: #2C3E50;
+            --canvas-text: #1A1D20;
+            --canvas-grid: #B8BEC5;
+            --canvas-accent: #E87D5E;
+            --canvas-fill: rgba(232, 125, 94, 0.06);
+            --match-reference-bg: #EDF0F4;
+            --definition-card-bg: rgba(44, 62, 80, 0.03);
+            --definition-card-border: #C8CDD3;
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #A8C8E0;
+            --secondary: #7AACC8;
+            --accent: #F0A080;
+            --accent2: #D88060;
+            --light-bg: #0D1418;
+            --light-section: #151D22;
+            --text-light: #E8EDF2;
+            --text-light-secondary: #B8C5D0;
+            --border-light: #2B353C;
+            --shadow-light: rgba(0, 0, 0, 0.38);
+            --header-light: linear-gradient(to left, #060D12, #0D1418, #151D22);
+            --canvas-bg: #0D1418;
+            --canvas-stroke: #A8C8E0;
+            --canvas-text: #E8EDF2;
+            --canvas-grid: #2B353C;
+            --canvas-accent: #F0A080;
+            --canvas-fill: rgba(240, 160, 128, 0.08);
+            --match-reference-bg: #1A2329;
+            --definition-card-bg: rgba(168, 200, 224, 0.04);
+            --definition-card-border: #2B353C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F6F7F9 0%, #EDF0F4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0D1418 0%, #080E12 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #E8EDF2;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.20);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(232, 237, 242, 0.10);
+            color: #E8EDF2;
+            border: 1px solid rgba(232, 237, 242, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(232, 237, 242, 0.20);
+            border-color: rgba(232, 237, 242, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F6F7F9;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1A1D20;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #EDF0F4;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #151D22;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #E8EDF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2B353C;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #1A2938, #2C3E50, #4A6FA5);
+            color: #E8EDF2;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #060D12, #0D1418, #151D22);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F6F7F9;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0D1418;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #C87850;
+            color: #E8EDF2;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #B8BEC5;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1A1D20;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 125, 94, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #2B353C;
+            background: #0D1418;
+            color: #E8EDF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 160, 128, 0.14);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #B8BEC5;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1A1D20;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 125, 94, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2B353C;
+            background: #0D1418;
+            color: #E8EDF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 160, 128, 0.14);
+        }
+
+        .Tests-Hub-definition-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-definition-card {
+            background: var(--definition-card-bg);
+            border: 1px dashed var(--definition-card-border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-definition-card label {
+            display: block;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-definition-card textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #B8BEC5;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 13px;
+            resize: vertical;
+            background: #FFF;
+            color: #1A1D20;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-definition-card textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 125, 94, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-definition-card textarea {
+            border-color: #2B353C;
+            background: #0D1418;
+            color: #E8EDF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-definition-card textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 160, 128, 0.14);
+        }
+
+        /* Matching section */
+        .Tests-Hub-match-reference {
+            background: var(--match-reference-bg);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-match-reference span {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin: 4px 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-match-reference span {
+            background: #C87850;
+        }
+
+        .Tests-Hub-match-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-match-table th,
+        .Tests-Hub-match-table td {
+            border: 1px solid #C8CDD3;
+            padding: 14px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-match-table th {
+            background: #2C3E50;
+            color: #E8EDF2;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-match-table th {
+            background: #151D22;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-match-table td {
+            border-color: #2B353C;
+        }
+        .Tests-Hub-match-table tr:nth-child(even) td {
+            background: rgba(44, 62, 80, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-match-table tr:nth-child(even) td {
+            background: rgba(232, 237, 242, 0.02);
+        }
+
+        .Tests-Hub-match-input {
+            display: inline-block;
+            min-width: 100px;
+            width: 70%;
+            border: 1px solid #B8BEC5;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            background: #FFF;
+            color: #1A1D20;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-match-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 125, 94, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-match-input {
+            border-color: #2B353C;
+            background: #0D1418;
+            color: #E8EDF2;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-match-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 160, 128, 0.14);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #2C3E50, #4A6FA5, var(--accent));
+            color: #FFF;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F6F7F9 0%, #EDF0F4 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(232, 125, 94, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #151D22, #0D1418);
+            border-color: rgba(240, 160, 128, 0.26);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(246, 247, 249, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(13, 20, 24, 0.7);
+            border-right-color: #F0A080;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #2C3E50;
+            background: rgba(232, 125, 94, 0.08);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #F0A080;
+            background: rgba(240, 160, 128, 0.14);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(44, 62, 80, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2B3035;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(240, 160, 128, 0.07);
+            color: #E8EDF2;
+            border-right-color: #D88060;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #2C3E50;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #A8C8E0;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1A1D20;
+            background: rgba(232, 125, 94, 0.06);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #E8EDF2;
+            background: rgba(240, 160, 128, 0.06);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(44, 62, 80, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #2B3035;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(74, 111, 165, 0.07);
+            color: #B8C5D0;
+            border-right-color: #7AACC8;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(44, 62, 80, 0.05), rgba(232, 125, 94, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #2C3E50, #4A6FA5);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #1A2938, #2C3E50);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #E87D5E, #F0A080);
+            color: #1A1D20;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #1A2938, #2C3E50, #4A6FA5);
+            color: #E8EDF2;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #060D12, #0D1418, #151D22);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #F0A080;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F0A080;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #F0A080;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        .Tests-Hub-small-note {
+            text-align: center;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light-secondary);
+            transition: color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-definition-grid {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+            .Tests-Hub-match-input {
+                min-width: 80px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            .Tests-Hub-test-header {
+                padding: 1.2rem;
+            }
+            .Tests-Hub-test-header h1 {
+                font-size: 1.3rem;
+            }
+            .Tests-Hub-download-button {
+                height: 70px;
+                min-width: 70px;
+                font-size: 0.85rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+            }
+            .Tests-Hub-definition-card textarea {
+                min-height: 65px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.historyTest3.title">فرض تأليفي عدد 3 - تاريخ - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.historyTest3.subtitle">إعدادي نموذجي | 2008-2009</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.historyTest3.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الاختبار التأليفي الثالث في التاريخ</h1>
+            <p>إعدادي نموذجي | القسم: الثامنة أساسي</p>
+            <p>السنة الدراسية: 2008-2009 | المدة: 30 دقيقة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>اكتب المعلومات التاريخية بأمانة علمية.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 12 نقطة | التنظيم والصياغة: 2 نقطة | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول: 6 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – التاريخ <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <!-- السؤال 1: تعريف المصطلحات -->
+            <h3>1/ عرّف ما يلي: <span class="Tests-Hub-points-badge">3 نقاط</span></h3>
+            <div class="Tests-Hub-definition-grid">
+                <div class="Tests-Hub-definition-card">
+                    <label for="defMurad">مرادكورسو:</label>
+                    <textarea id="defMurad" placeholder="اكتب التعريف هنا..."></textarea>
+                </div>
+                <div class="Tests-Hub-definition-card">
+                    <label for="defBey">الباي:</label>
+                    <textarea id="defBey" placeholder="اكتب التعريف هنا..."></textarea>
+                </div>
+                <div class="Tests-Hub-definition-card">
+                    <label for="defSinan">سنان باشا:</label>
+                    <textarea id="defSinan" placeholder="اكتب التعريف هنا..."></textarea>
+                </div>
+            </div>
+
+            <!-- السؤال 2: اربط بسهم -->
+            <h3>2/ اربط بسهم الجواب الصحيح: <span class="Tests-Hub-points-badge">3 نقاط</span></h3>
+            <p style="margin-bottom:0.8rem;color:var(--text-light-secondary);">المواضيع المتاحة: <strong>1574</strong> – <strong>1702</strong> – <strong>1705</strong> – <strong>1881</strong></p>
+            <div class="Tests-Hub-match-reference">
+                <span>1574</span>
+                <span>1702</span>
+                <span>1705</span>
+                <span>1881</span>
+            </div>
+            <table class="Tests-Hub-match-table">
+                <thead>
+                    <tr>
+                        <th style="width:60%;">الحدث</th>
+                        <th style="width:40%;">التاريخ المناسب</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>تأسيس الدولة الحسينية</strong></td>
+                        <td><input type="text" class="Tests-Hub-match-input" placeholder="السنة..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>انتصاب الحماية الفرنسية بتونس</strong></td>
+                        <td><input type="text" class="Tests-Hub-match-input" placeholder="السنة..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>إلحاق تونس بالإمبراطورية العثمانية</strong></td>
+                        <td><input type="text" class="Tests-Hub-match-input" placeholder="السنة..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>حكم إبراهيم الشريف</strong></td>
+                        <td><input type="text" class="Tests-Hub-match-input" placeholder="السنة..."></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- القسم الثاني: التحرير المسترسل -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – التحرير المسترسل <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">الموضوع:</span> <strong>اشرح مميزات عهد الدايات وعهد الدولة الحسينية.</strong></p>
+                <p style="margin-top:0.5rem;color:var(--secondary);">المطلوب: تحرير مسترسل يبرز خصائص كل عهد من حيث نظام الحكم، والمؤسسات، والاستقرار السياسي، والعلاقة بالسلطة العثمانية، مع إبراز أوجه الاختلاف بين العهدين.</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:340px;" placeholder="اكتب تحريرك المسترسل هنا..."></textarea>
+                <p class="Tests-Hub-small-note"><em>تنقيط: المضمون التاريخي (8ن) – المنهجية والتنظيم (2ن) – جودة التحرير (2ن) | التنظيم والصياغة العامة: 2ن إضافية</em></p>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل تاريخي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح الأسئلة (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ تعريف المصطلحات – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>مرادكورسو:</strong> هو قائد بحري عثماني من أصل كورسيكي (ومن هنا لقب "كورسو")، اعتنق الإسلام والتحق بالخدمة العثمانية في تونس خلال أواخر القرن السادس عشر. برز بوصفه قرصاناً مفوضاً (كورسير) وقائداً بحرياً نشطاً في البحر المتوسط. وقد تقلّد منصب الباي (حاكم) في تونس، وهو والد مراد باي الأول الذي أسس سلالة البايات المرادية سنة 1631. مهّد مرادكورسو – من خلال مكانته العسكرية ونفوذه المتصاعد – الطريق لابنه كي يؤسس أول سلالة محلية شبه مستقلة عن الباب العالي في تونس، مما جعله شخصية محورية في الانتقال من الحكم العثماني المباشر إلى الحكم المحلي.<br>
+                    • <strong>الباي:</strong> لقب إداري وعسكري عثماني يُطلق على الحاكم الإقليمي أو والي الولاية. في السياق التونسي خلال العهد العثماني، كان الباي في البداية مسؤولاً مكلفاً بجباية الضرائب وتنظيم الحملات العسكرية في المناطق الداخلية (البايلك). ومع مرور الزمن – خاصة مع تأسيس سلالة المراديين (1631) ثم الحسينيين (1705) – تحول منصب الباي إلى منصب الحاكم الفعلي للبلاد، وتطوّر ليصبح لقباً وراثياً يجمع بين السلطة المدنية والعسكرية، متجاوزاً سلطة الداي والباشا العثماني. استمرت مؤسسة الباي في تونس حتى إعلان الجمهورية سنة 1957.<br>
+                    • <strong>سنان باشا:</strong> قائد عسكري عثماني بارز من أصل ألباني (1506-1596)، تقلّد منصب الصدر الأعظم (رئيس الوزراء) في الدولة العثمانية خمس مرات في عهد السلطانين سليم الثاني ومراد الثالث. اشتهر في التاريخ التونسي بقيادته الحملة العثمانية الحاسمة التي استرجعت تونس من الإسبان سنة 1574، منهياً بذلك الوجود الإسباني نهائياً في البلاد وملحقاً تونس بالإمبراطورية العثمانية بصفة دائمة. مثّل فتحه لمدينة تونس وحصن حلق الوادي بداية الحكم العثماني المباشر الذي دام قرابة ثلاثة قرون.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> تجسّد هذه الشخصيات الثلاث (مرادكورسو، الباي، سنان باشا) المحطات المفصلية في تاريخ تونس الحديث: <strong>سنان باشا</strong> يرمز إلى لحظة الإدماج القسري في المنظومة العثمانية (1574) التي أنهت الحكم الحفصي وأبعدت الخطر الإسباني؛ <strong>مرادكورسو</strong> يمثّل بداية صعود العناصر المحلية وشبه المستقلة التي استفادت من ضعف الرقابة المركزية لإسطنبول لتأسيس قواعد حكم ذاتي؛ و<strong>الباي</strong> يعكس تطور المؤسسة الحاكمة في تونس من مجرد ممثل إداري للسلطان إلى كيان سياسي مستقل بذاته. ويكشف هذا المسار عن إحدى السمات الأساسية للعهد العثماني في الولايات العربية: التحول التدريجي من السيطرة المركزية المباشرة إلى حكم محلي يتمتع بشرعية مزدوجة (محلية وعثمانية)، وهو ما مهّد لاحقاً لظهور "الدولة القطرية" التونسية.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ الربط بين الأحداث والتواريخ – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>تأسيس الدولة الحسينية → 1705</strong> — أسس حسين بن علي الترکي الدولة الحسينية بعد انتصار الجند عليه إثر مقتل إبراهيم الشريف في معركة ضد الجزائر. استمرت هذه السلالة في حكم تونس أكثر من 250 سنة (1705-1957).<br>
+                    • <strong>انتصاب الحماية الفرنسية بتونس → 1881</strong> — بتوقيع معاهدة باردو في 12 ماي 1881 بين الباي محمد الصادق والحكومة الفرنسية، فُرض نظام الحماية على تونس الذي أفقدها سيادتها الخارجية وأخضعها للهيمنة الاستعمارية الفرنسية حتى الاستقلال سنة 1956.<br>
+                    • <strong>إلحاق تونس بالإمبراطورية العثمانية → 1574</strong> — قاد سنان باشا الحملة العثمانية التي استرجعت تونس من الإسبان وأنهت الوجود المسيحي في البلاد، لتُصبح تونس ولاية عثمانية كاملة تابعة للباب العالي في إسطنبول.<br>
+                    • <strong>حكم إبراهيم الشريف → 1702</strong> — فترة انتقالية قصيرة (1702-1705) أنهى فيها إبراهيم الشريف حكم البايات المرادية بعد صراع دموي، وجمع بين لقبي الداي والباشا، قبل أن يُقتل في معركة ضد الجزائر سنة 1705، مما فتح الطريق لصعود حسين بن علي وتأسيس الدولة الحسينية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> تشكل هذه التواريخ الأربعة العمود الفقري للتاريخ السياسي التونسي الحديث. فسنة <strong>1574</strong> تمثل نقطة الانطلاق الرسمية للحكم العثماني الذي دام ثلاثة قرون. وسنة <strong>1702</strong> تمثل لحظة انهيار النظام المرادي بعد 71 سنة من الحكم، وسنة <strong>1705</strong> تمثل ميلاد الدولة الحسينية التي أثبتت قدرة استثنائية على البقاء والتكيف عبر القرون. أما سنة <strong>1881</strong> فتمثل بداية الحقبة الاستعمارية التي أعادت تشكيل تونس الحديثة. والملاحظ أن المسافة الزمنية بين 1574 و1881 (حوالي 307 سنوات) تؤرخ لكامل "اللحظة العثمانية" في تونس، وهي لحظة اتسمت بتحول تدريجي من التبعية المباشرة لإسطنبول إلى بناء كيان سياسي محلي مستقل نسبياً، قبل أن ينهار هذا الكيان تحت وطأة الإمبريالية الأوروبية في أواخر القرن التاسع عشر.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – التحرير المسترسل (12 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>الموضوع: مميزات عهد الدايات وعهد الدولة الحسينية</strong></p>
+
+                <h4 style="color:#2C3E50;margin-top:1rem;">📝 الإطار المنهجي المقترح</h4>
+                <p><strong>المقدمة:</strong> وضع السياق العام (تونس خلال العهد العثماني، تعاقب أنظمة الحكم المختلفة). طرح الإشكالية: ما الخصائص المميزة لعهد الدايات من جهة، ولعهد الدولة الحسينية من جهة أخرى؟ وما أوجه الاختلاف الجوهرية بين العهدين من حيث طبيعة السلطة والاستقرار السياسي والعلاقة بالباب العالي؟</p>
+                <p><strong>الجوهر:</strong> محوران أساسيان: (1) مميزات عهد الدايات (1590-1631)، (2) مميزات عهد الدولة الحسينية (1705-1957)، مع مقارنة ضمنية بين العهدين.</p>
+                <p><strong>الخاتمة:</strong> استخلاص الدروس من التجربتين، وبيان كيف أن الانتقال من حكم الدايات العسكري غير المستقر إلى الحكم الحسيني الوراثي المستقر مثّل تحولاً بنيوياً في تاريخ تونس السياسي.</p>
+
+                <h4 style="color:#2C3E50;margin-top:1.2rem;">📝 نموذج تحرير مسترسل مقترح</h4>
+                <div class="Tests-Hub-text-model">
+                    <p><strong>مقدمة:</strong> شهدت تونس خلال العهد العثماني (1574-1881) تعاقب عدة أنظمة حكم، تميز كل منها بخصائص سياسية وإدارية مختلفة. ومن أبرز هذه الأنظمة عهد الدايات (1590-1631) الذي مثّل مرحلة الحكم العسكري المباشر، وعهد الدولة الحسينية (1705-1957) الذي شكّل أطول فترة حكم محلي مستقر في تاريخ تونس الحديث. فما هي أبرز مميزات كل عهد؟ وما الفروق الجوهرية بينهما؟</p>
+
+                    <p><strong>أولاً: مميزات عهد الدايات (1590-1631)</strong><br>
+                    • <strong>طبيعة الحكم العسكري:</strong> نشأ عهد الدايات من قلب المؤسسة العسكرية العثمانية، حيث استولى قادة فيلق الإنكشارية على السلطة الفعلية في تونس، وأسسوا نظاماً عسكرياً صرفاً. كان الداي يُنتخب من بين كبار ضباط الإنكشارية عن طريق "الديوان" (مجلس الضباط)، مما جعل الحكم أقرب إلى "جمهورية عسكرية" منه إلى ملكية تقليدية.<br>
+                    • <strong>ازدواجية السلطة:</strong> تميز هذا العهد بتقاسم فعلي للسلطة بين مؤسستين: الداي (الذي يمتلك القوة العسكرية ويسيطر على العاصمة والجيش) والباي (الذي يدير شؤون الأقاليم الداخلية ويقوم بجباية الضرائب وتنظيم الحملات). وقد تولد عن هذه الازدواجية تنافس وصراع دائم على النفوذ.<br>
+                    • <strong>عدم الاستقرار السياسي:</strong> عانى عهد الدايات من انقلابات متكررة واغتيالات سياسية، حيث لم يستمر معظم الدايات في الحكم لأكثر من بضع سنوات. فلم تكن هناك آلية واضحة لانتقال السلطة، مما جعل العنف السياسي هو الوسيلة الأساسية للتداول على الحكم.<br>
+                    • <strong>السيادة العثمانية الاسمية:</strong> رغم سيطرة الدايات على الحكم الفعلي، إلا أنهم حافظوا على ولاء اسمي للسلطان العثماني، وأبقوا على منصب الباشا كممثل رمزي للباب العالي في تونس.<br>
+                    • <strong>الاعتماد الاقتصادي على الجهاد البحري:</strong> استند اقتصاد العهد جزئياً إلى عائدات الغنائم البحرية (الكورسيرية) التي كانت تنشط في المتوسط، مما جعل الاقتصاد عرضة للتقلبات.</p>
+
+                    <p><strong>ثانياً: مميزات عهد الدولة الحسينية (1705-1957)</strong><br>
+                    • <strong>تأسيس نظام ملكي وراثي مستقر:</strong> على عكس عهد الدايات الذي قام على الانتخاب العسكري المضطرب، أسس حسين بن علي نظاماً ملكياً وراثياً ينتقل فيه الحكم من الأب إلى الابن وفق قواعد خلافة واضحة (نظام "البايلك")، مما كفل استقراراً سياسياً نادراً في المنطقة.<br>
+                    • <strong>مركزية الإدارة وتطوير المؤسسات:</strong> عمل البايات الحسينيون على بناء جهاز إداري مركزي قوي، وتطوير مؤسسات الدولة (القضاء، الجباية، الجيش النظامي)، مما وحّد البلاد سياسياً وإدارياً بشكل غير مسبوق.<br>
+                    • <strong>استمرارية استثنائية عبر القرون:</strong> صمدت الدولة الحسينية أمام التحولات الكبرى التي عصفت بالمنطقة، واستمرت أكثر من 250 سنة (1705-1957)، بما في ذلك فترة الحماية الفرنسية (1881-1956) التي أبقت على مؤسسة الباي شكلياً.<br>
+                    • <strong>انفتاح دبلوماسي على أوروبا:</strong> أقام البايات الحسينيون علاقات دبلوماسية وتجارية متنامية مع الدول الأوروبية (فرنسا، إيطاليا، بريطانيا)، مما أدخل تونس في شبكة العلاقات الدولية الحديثة، وإن كان هذا الانفتاح مهّد لاحقاً للتدخل الاستعماري.<br>
+                    • <strong>ازدهار ثقافي وعمراني:</strong> شهد القرن الثامن عشر وبداية القرن التاسع عشر نهضة معمارية وثقافية في تونس، حيث بُنيت المدارس والجوامع والقصور (مثل المدرسة الباشية وجامع صاحب الطابع)، ونشطت حركة التأليف والتدوين التاريخي (مثل كتابات ابن أبي الضياف).<br>
+                    • <strong>إصلاحات داخلية في القرن التاسع عشر:</strong> قاد البايات الحسينيون (خاصة أحمد باي 1837-1855 ومحمد الصادق باي) محاولات إصلاحية طموحة شملت إلغاء الرق (1846)، وتأسيس الجيش النظامي، وإصدار "عهد الأمان" (1857) ثم "الدستور" (1861)، وهي أولى الوثائق الدستورية في العالم الإسلامي.<br>
+                    • <strong>التكيف مع الحماية الفرنسية:</strong> على عكس ما حدث في الجزائر (حيث أُلغيت الدولة نهائياً)، تمكنت الدولة الحسينية من البقاء اسمياً طيلة فترة الحماية (1881-1956)، مما حفظ لتونس استمرارية رمزية ساعدت في بناء الدولة الوطنية بعد الاستقلال.</p>
+
+                    <p><strong>خاتمة:</strong> يتضح من هذه المقارنة أن عهد الدايات وعهد الدولة الحسينية يمثلان نموذجين متباينين للحكم في تونس العثمانية: الأول عسكري مضطرب قصير الأجل (41 سنة فقط)، والثاني مدني وراثي مستقر امتد لأكثر من قرنين ونصف. ويكشف الانتقال من النموذج الأول إلى الثاني عن نضج سياسي تدريجي في المجتمع التونسي، وعن قدرة النخب المحلية على بناء مؤسسات دولة مستقرة قادرة على الصمود أمام التحديات الداخلية والخارجية. وقد شكل الإرث الحسيني – بكل ما فيه من إنجازات وإخفاقات – الأساس الذي قامت عليه الدولة التونسية الحديثة بعد الاستقلال.</p>
+                </div>
+                <div class="correction-explanation">
+                    <strong>✔ معايير التنقيط التفصيلية:</strong><br>
+                    • <strong>المضمون التاريخي (8ن):</strong> ذكر الطبيعة العسكرية لعهد الدايات — انتخاب الداي من الديوان — ازدواجية السلطة (داي/باي) — عدم الاستقرار السياسي — تأسيس الدولة الحسينية سنة 1705 — نظام الحكم الوراثي — استمرارية السلالة — المركزية الإدارية — الإصلاحات (أحمد باي، عهد الأمان، الدستور) — العلاقة بالحماية الفرنسية — الازدهار الثقافي والعمراني.<br>
+                    • <strong>المنهجية والتنظيم (2ن):</strong> مقدمة بإشكالية واضحة — تقسيم إلى محورين (الدايات ثم الحسينيون) — خاتمة استخلاصية تقارن بين العهدين.<br>
+                    • <strong>جودة التحرير (2ن):</strong> سلامة اللغة العربية — دقة المصطلحات التاريخية — خلو النص من الأخطاء.<br>
+                    • <strong>التنظيم والصياغة العامة (2ن إضافية):</strong> ترتيب منطقي — علامات ترقيم مناسبة — جمالية الأسلوب — توازن الفقرات.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">ملاحظات عامة حول التقييم</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    <strong>📌 توزيع النقاط الإجمالي (20 نقطة):</strong><br>
+                    • القسم الأول (التعريفات + الربط): 6 نقاط (3+3)<br>
+                    • القسم الثاني (التحرير المسترسل): 12 نقطة (8 للمضمون + 2 للمنهجية + 2 للتحرير)<br>
+                    • التنظيم والصياغة العامة: 2 نقطة إضافية<br>
+                    <strong>🔑 تذكير:</strong> يُراعى في التقييم مدى تمكن التلميذ من توظيف المفاهيم التاريخية بدقة، وقدرته على المقارنة بين العهدين واستخلاص الفروق الجوهرية بينهما، إضافة إلى جودة التعبير وسلامة اللغة العربية. كما يُشجَّع التلميذ على إبراز روح التحليل النقدي والربط بين المعطيات التاريخية.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    historyTest3: {
+                        title: "فرض تأليفي عدد 3 - تاريخ - 8 أساسي",
+                        subtitle: "إعدادي نموذجي | 2008-2009",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    historyTest3: {
+                        title: "Devoir de Synthèse N°3 - Histoire - 8ème",
+                        subtitle: "Modèle | 2008-2009",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    historyTest3: {
+                        title: "Synthesis Test N°3 - History - 8th Grade",
+                        subtitle: "Model | 2008-2009",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest3.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest3.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.historyTest3?.comingSoon ||
+                "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

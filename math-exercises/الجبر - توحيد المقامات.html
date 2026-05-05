@@ -449,8 +449,12 @@
                 document.documentElement.lang = lang;
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                 updateStaticI18n();
-                renderAll();
-                messageEl.innerHTML = '';
+                // تجنب استدعاء renderAll إذا كانت الكسور فارغة
+                if (currentFractions && currentFractions.length > 0) {
+                    renderAll();
+                } else {
+                    messageEl.innerHTML = '';
+                }
             }
             function loadLanguage() {
                 const saved = localStorage.getItem('exercise_unify_lang');
@@ -530,7 +534,11 @@
 
             function getMultiples(n, limit = 60) {
                 const multiples = [];
-                for (let i=1; i*n <= limit; i++) multiples.push(i*n);
+                // حماية من القيم غير الصالحة (مثلاً n غير محددة أو سالبة)
+                if (!n || n <= 0) return multiples;
+                for (let i=1; i*n <= limit; i++) {
+                    multiples.push(i*n);
+                }
                 return multiples;
             }
 
@@ -561,6 +569,10 @@
             }
 
             function renderFractionsDisplay() {
+                if (!currentFractions || currentFractions.length === 0) {
+                    fractionsDisplay.innerHTML = '';
+                    return;
+                }
                 const sep = t('fraction_separator');
                 let html = '';
                 currentFractions.forEach((f, i) => {
@@ -571,6 +583,9 @@
             }
 
             function buildQuestionHTML() {
+                // حماية من استدعاء الدالة بدون كسور
+                if (!currentFractions || currentFractions.length === 0) return '';
+
                 const opDiv = t('operator_divide');
                 const opMul = t('operator_multiply');
                 const opEq = t('operator_equals');
@@ -598,6 +613,7 @@
 
                 // Step 2: LCM with visual multiples
                 const largestDen = Math.max(...currentFractions.map(f=>f.den));
+                // تأمين إضافي: لا نمرر قيمة غير صالحة
                 const multiples = getMultiples(largestDen, currentLcm*2 || 60);
                 const otherDens = currentFractions.map(f=>f.den).filter(d => d !== largestDen);
                 const otherDensStr = otherDens.join(', ');
@@ -782,11 +798,13 @@
             langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
             btnBack.addEventListener('click', goBack);
 
+            // التهيئة الأولية
             loadLanguage();
             document.getElementById('langSelect').value = currentLang;
             loadTheme();
             loadSoundPref();
             attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            // توليد سؤال أولي
             generateNewQuestion();
             updateStatsUI();
             messageEl.innerHTML = '';

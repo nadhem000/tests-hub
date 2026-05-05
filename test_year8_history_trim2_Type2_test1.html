@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 2 - تاريخ - 8 أساسي (2023-2024)</title>
+
+    <meta name="theme-color" content="#0B525B">
+    <meta name="description" content="فرض تأليفي عدد 2 إعدادي نموذجي في التاريخ - السنة الثامنة أساسي - 2023-2024">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض تاريخ 8 (ع2)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #0B525B;
+            --secondary: #148C8C;
+            --accent: #E8943A;
+            --accent2: #C56A3E;
+            --light-bg: #F4F8F7;
+            --light-section: #FFFFFF;
+            --text-light: #1A1D1C;
+            --text-light-secondary: #2B3533;
+            --border-light: #C8D5D3;
+            --shadow-light: rgba(26, 29, 28, 0.06);
+            --header-light: linear-gradient(to left, #063336, #0B525B, #148C8C);
+            --canvas-bg: #F4F8F7;
+            --canvas-stroke: #0B525B;
+            --canvas-text: #1A1D1C;
+            --canvas-grid: #B8C8C5;
+            --canvas-accent: #E8943A;
+            --canvas-fill: rgba(232, 148, 58, 0.06);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #8DD4D0;
+            --secondary: #5BBFB8;
+            --accent: #F0B850;
+            --accent2: #D88060;
+            --light-bg: #0A1413;
+            --light-section: #111D1C;
+            --text-light: #E8F0EF;
+            --text-light-secondary: #B8C8C5;
+            --border-light: #2B3533;
+            --shadow-light: rgba(0, 0, 0, 0.38);
+            --header-light: linear-gradient(to left, #031012, #0A1413, #111D1C);
+            --canvas-bg: #0A1413;
+            --canvas-stroke: #8DD4D0;
+            --canvas-text: #E8F0EF;
+            --canvas-grid: #2B3533;
+            --canvas-accent: #F0B850;
+            --canvas-fill: rgba(240, 184, 80, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F4F8F7 0%, #E8F0EF 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0A1413 0%, #051010 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #E8F0EF;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.20);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(232, 240, 239, 0.10);
+            color: #E8F0EF;
+            border: 1px solid rgba(232, 240, 239, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(232, 240, 239, 0.20);
+            border-color: rgba(232, 240, 239, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F4F8F7;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1A1D1C;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #E8F0EF;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #111D1C;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #E8F0EF;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2B3533;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #063336, #0B525B, #148C8C);
+            color: #E8F0EF;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #031012, #0A1413, #111D1C);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F4F8F7;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0A1413;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1A1D1C;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #C8892E;
+            color: #E8F0EF;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #B8C8C5;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1A1D1C;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 148, 58, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #2B3533;
+            background: #0A1413;
+            color: #E8F0EF;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 184, 80, 0.14);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #B8C8C5;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1A1D1C;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 148, 58, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2B3533;
+            background: #0A1413;
+            color: #E8F0EF;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 184, 80, 0.14);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #C8D5D3;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #0B525B;
+            color: #E8F0EF;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #111D1C;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #2B3533;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(11, 82, 91, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(232, 240, 239, 0.02);
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 140px;
+            border: 1px solid #B8C8C5;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 85%;
+            background: #FFF;
+            color: #1A1D1C;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 148, 58, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #2B3533;
+            background: #0A1413;
+            color: #E8F0EF;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 184, 80, 0.14);
+        }
+
+        /* Document Quote Card */
+        .Tests-Hub-document-card {
+            background: linear-gradient(135deg, #F4F8F7 0%, #E8F0EF 100%);
+            border-right: 5px solid var(--secondary);
+            padding: 1.5rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-document-card {
+            background: linear-gradient(135deg, #111D1C 0%, #0A1413 100%);
+            border-right-color: #5BBFB8;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-document-card blockquote {
+            font-size: 1.05rem;
+            line-height: 2;
+            text-align: right;
+            font-style: italic;
+            color: #2B3533;
+            margin: 0;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-document-card blockquote {
+            color: #C8D5D3;
+        }
+
+        .Tests-Hub-document-source {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-document-source {
+            color: #5BBFB8;
+        }
+
+        /* Date input row */
+        .Tests-Hub-date-row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-date-card {
+            flex: 1;
+            min-width: 220px;
+            background: rgba(11, 82, 91, 0.04);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border: 1px dashed var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-date-card {
+            background: rgba(141, 212, 208, 0.05);
+            border-color: #2B3533;
+        }
+
+        .Tests-Hub-date-card label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-date-card label {
+            color: #8DD4D0;
+        }
+
+        .Tests-Hub-date-input {
+            width: 100%;
+            border: 1px solid #B8C8C5;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 15px;
+            text-align: center;
+            background: #FFF;
+            color: #1A1D1C;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-date-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 148, 58, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-date-input {
+            border-color: #2B3533;
+            background: #0A1413;
+            color: #E8F0EF;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-date-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 184, 80, 0.14);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #0B525B, #148C8C, var(--accent));
+            color: #E8F0EF;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F4F8F7 0%, #E8F0EF 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(232, 148, 58, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #111D1C, #0A1413);
+            border-color: rgba(240, 184, 80, 0.26);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(244, 248, 247, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(10, 20, 19, 0.7);
+            border-right-color: #F0B850;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #0B525B;
+            background: rgba(232, 148, 58, 0.08);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #F0B850;
+            background: rgba(240, 184, 80, 0.14);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(11, 82, 91, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2B3533;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(240, 184, 80, 0.07);
+            color: #E8F0EF;
+            border-right-color: #D88060;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #0B525B;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #8DD4D0;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1A1D1C;
+            background: rgba(232, 148, 58, 0.06);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #E8F0EF;
+            background: rgba(240, 184, 80, 0.06);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(11, 82, 91, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #2B3533;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(20, 140, 140, 0.07);
+            color: #B8C8C5;
+            border-right-color: #5BBFB8;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(11, 82, 91, 0.05), rgba(232, 148, 58, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #0B525B, #148C8C);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #063336, #0B525B);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #E8943A, #F0B850);
+            color: #1A1D1C;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #063336, #0B525B, #148C8C);
+            color: #E8F0EF;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #031012, #0A1413, #111D1C);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #F0B850;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F0B850;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #F0B850;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        .Tests-Hub-small-note {
+            text-align: center;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light-secondary);
+            transition: color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-date-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .Tests-Hub-date-card {
+                min-width: auto;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+            .Tests-Hub-table-input {
+                min-width: 100px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            .Tests-Hub-test-header {
+                padding: 1.2rem;
+            }
+            .Tests-Hub-test-header h1 {
+                font-size: 1.3rem;
+            }
+            .Tests-Hub-download-button {
+                height: 70px;
+                min-width: 70px;
+                font-size: 0.85rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.historyTest2.title">فرض تأليفي عدد 2 - تاريخ - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.historyTest2.subtitle">إعدادي نموذجي | 2023-2024</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.historyTest2.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الاختبار التأليفي الثاني في التاريخ</h1>
+            <p>إعدادي نموذجي | القسم: الثامنة أساسي</p>
+            <p>السنة الدراسية: 2023-2024 | المدة: 30 دقيقة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>اكتب المعلومات التاريخية بأمانة علمية.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 12 نقطة | التنظيم والصياغة: 2 نقطة | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول: 6 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – التاريخ <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <!-- السؤال 1: أكتب أمام كل حدث تاريخه -->
+            <h3>1/ أكتب أمام كل حدث تاريخه: <span class="Tests-Hub-points-badge">2 نقاط</span></h3>
+            <div class="Tests-Hub-date-row">
+                <div class="Tests-Hub-date-card">
+                    <label for="dateFR">اندلاع الثورة الفرنسية:</label>
+                    <input type="text" class="Tests-Hub-date-input" id="dateFR" placeholder="السنة...">
+                </div>
+                <div class="Tests-Hub-date-card">
+                    <label for="dateIR">بداية الثورة الصناعية:</label>
+                    <input type="text" class="Tests-Hub-date-input" id="dateIR" placeholder="السنة...">
+                </div>
+            </div>
+
+            <!-- السؤال 2: إكمال الجدول -->
+            <h3>2/ أكمل ما يلي: <span class="Tests-Hub-points-badge">2 نقاط</span></h3>
+            <table class="Tests-Hub-table">
+                <thead>
+                    <tr>
+                        <th style="width:55%;">أهم الاختراعات</th>
+                        <th style="width:45%;">المخترع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>الديناميت</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="المخترع..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>السلم الحراري المئوي</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="المخترع..."></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- السؤال 3: مبادئ إعلان حقوق الإنسان والمواطن -->
+            <h3>3/ أذكر 2 من مبادئ إعلان حقوق الإنسان والمواطن: <span class="Tests-Hub-points-badge">2 نقاط</span></h3>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1 –</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:280px;width:70%;" placeholder="المبدأ الأول..."></p>
+                <p><span class="Tests-Hub-question-number">2 –</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:280px;width:70%;" placeholder="المبدأ الثاني..."></p>
+            </div>
+        </div>
+
+        <!-- القسم الثاني: شرح وثيقة -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – شرح وثيقة: "النار والبخار" <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+
+            <div class="Tests-Hub-document-card">
+                <blockquote>
+                    "باختراع الآلة البخارية تعلم الإنسان أن يحول الحرارة الكامنة في الفحم والشجر والفحم النباتي إلى حركة وعمل... لقد كانت الآلة البخارية إحدى النوادر في تاريخ الاختراعات، التي غيرت لوحة العالم تغييرا حادا، وأحدثت ثورة في الصناعة ووسائل النقل ومكنت من بناء القنوات والتجهيزات الضخمة وقدمت دفعا لانطلاقة جديدة للمعرفة العلمية..."
+                </blockquote>
+                <span class="Tests-Hub-document-source">المصدر: فلادمير كارتسيف "ألاف السنين من الطاقة" – عالم المعرفة عدد 187</span>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1/</span> <strong>قدم الوثيقة.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:100px;" placeholder="قدم الوثيقة (الطبيعة، المؤلف، المصدر، الموضوع، الإطار التاريخي)..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2/</span> <strong>استخرج من الوثيقة نتائج اختراع الآلة البخارية.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:110px;" placeholder="استخرج النتائج المذكورة في الوثيقة..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3/</span> <strong>حدد المشاكل الناتجة عن التغييرات الجديدة.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:110px;" placeholder="اذكر المشاكل الاجتماعية والاقتصادية الناتجة..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4/</span> <strong>اذكر بعض النتائج الاقتصادية للثورة الصناعية.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:110px;" placeholder="اذكر النتائج الاقتصادية..."></textarea>
+            </div>
+
+            <p class="Tests-Hub-small-note"><em>تنقيط القسم الثاني: التقديم (3ن) – استخراج النتائج (3ن) – تحديد المشاكل (3ن) – النتائج الاقتصادية (3ن) | التنظيم والصياغة العامة: 2ن إضافية</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل تاريخي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح الأسئلة (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ أكتب أمام كل حدث تاريخه – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>اندلاع الثورة الفرنسية:</strong> <strong>1789</strong> — انطلقت الثورة الفرنسية في 5 ماي 1789 مع انعقاد مجلس الطبقات العامة في فرساي، ثم تصاعدت الأحداث باقتحام سجن الباستيل في 14 يوليو 1789. شكلت الثورة قطيعة كبرى مع النظام الإقطاعي والملكية المطلقة في أوروبا، وأرست مبادئ الحرية والمساواة والأخوة التي ألهمت شعوب العالم.<br>
+                    • <strong>بداية الثورة الصناعية:</strong> <strong>حوالي 1760</strong> — انطلقت الثورة الصناعية في إنجلترا خلال النصف الثاني من القرن الثامن عشر (تقريباً 1760)، مع اختراع الآلة البخارية على يد جيمس واط (1769) وتطور صناعة النسيج والميكانيكا. شكلت هذه الثورة نقطة تحول كبرى في تاريخ البشرية، إذ نقلت المجتمعات من الاقتصاد الزراعي والحرفي إلى الاقتصاد الصناعي القائم على المصانع والطاقة البخارية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> يُعدّ التزامن الزمني بين الثورة الصناعية في إنجلترا (1760) والثورة الفرنسية (1789) من أبرز مفارقات أواخر القرن الثامن عشر. فبينما كانت إنجلترا تشهد تحولاً تقنياً واقتصادياً عميقاً ينقلها من المجتمع الزراعي إلى المجتمع الصناعي، كانت فرنسا على موعد مع ثورة سياسية واجتماعية أسقطت النظام القديم. وقد أثّر كل من الحدثين في الآخر: فالثورة الصناعية زوّدت البرجوازية الصاعدة بالثروة والنفوذ مما عزز مطالبها السياسية، في حين أن الثورة الفرنسية – بإعلانها حقوق الإنسان – هيأت الأرضية الفكرية لتحرير المبادرة الفردية والملكية الخاصة اللتين يقوم عليهما النظام الرأسمالي الصناعي. ويجمع المؤرخون على أن أواخر القرن الثامن عشر شكلت "عتبة العصر الحديث" التي تجاوزت فيها أوروبا نهائياً بنية العصور الوسطى.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ إكمال الجدول – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>الديناميت:</strong> <strong>ألفرد نوبل</strong> — الكيميائي والمهندس السويدي (1833-1896) الذي اخترع الديناميت سنة 1867. كان الهدف الأصلي من الاختراع هو تسهيل عمليات الحفر والبناء وإنشاء الأنفاق والقنوات، غير أن الديناميت استُخدم لاحقاً في الحروب. دفع شعوره بالذنب إزاء الاستخدامات العسكرية لاختراعه إلى تخصيص ثروته لإنشاء "جائزة نوبل" التي تكافئ المبدعين في السلام والعلوم.<br>
+                    • <strong>السلم الحراري المئوي:</strong> <strong>أندرس سلزيوس</strong> — عالم الفلك والفيزياء السويدي (1701-1744) الذي ابتكر سنة 1742 مقياس الحرارة المئوي (Celsius) الذي يحدد درجة تجمد الماء بـ0° ودرجة غليانه بـ100°. شكّل هذا الاختراع أساساً للقياس العلمي الموحد في الفيزياء والكيمياء والطب، وهو النظام المعتمد عالمياً اليوم.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> يمثل هذان الاختراعان وجهين متكاملين للثورة العلمية والتقنية التي رافقت الثورة الصناعية: فسلزيوس جسّد تقدّم العلم الأساسي (الفيزياء والقياس) الذي وفّر الأدوات الضرورية لتطوير الصناعة والبحث، بينما جسّد نوبل تطبيق الكيمياء في المجال العملي (الهندسة المدنية والعسكرية). وتكمن المفارقة التاريخية في أن نوبل، الذي أراد خدمة البناء والتعمير، أصبح اسمه مقترناً بالديناميت أداة التدمير، مما دفعه إلى استباق النقاش الأخلاقي الحديث حول مسؤولية العالم والمخترع إزاء الاستخدامات المدمّرة لاكتشافاته. أما سلزيوس فقدّم نموذجاً للعلم "المحايد" الذي يخدم البشرية جمعاء دون تمييز، إذ لا يخلو مختبر أو مستشفى في العالم اليوم من مقياس الحرارة المئوي.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3/ مبادئ إعلان حقوق الإنسان والمواطن – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    أعلنت الجمعية الوطنية الفرنسية "إعلان حقوق الإنسان والمواطن" في 26 أوت 1789، متضمناً 17 مادة. من أبرز مبادئه:<br>
+                    • <strong>1 – الحرية:</strong> "يولد الناس أحراراً متساوين في الحقوق" (المادة 1)، وتشمل حرية الرأي والتعبير وحرية الاعتقاد.<br>
+                    • <strong>2 – المساواة:</strong> المساواة أمام القانون في الحقوق والواجبات، وإلغاء الامتيازات الإقطاعية والطبقية (المادتان 1 و6).<br>
+                    • <strong>3 – الملكية:</strong> حق مقدس لا يجوز انتزاعه إلا للمنفعة العامة مع تعويض عادل (المادة 17).<br>
+                    • <strong>4 – مقاومة الاضطهاد:</strong> حق الشعوب في مقاومة الاستبداد والظلم (المادة 2).<br>
+                    • <strong>5 – السيادة الوطنية:</strong> مصدر السلطة هو الأمة لا الملك (المادة 3).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> شكّل "إعلان حقوق الإنسان والمواطن" وثيقة تأسيسية ليس فقط للثورة الفرنسية، بل للحداثة السياسية برمتها. وقد استلهم واضعوه أفكار فلاسفة الأنوار (جون جاك روسو، مونتسكيو، فولتير) والإعلان الأمريكي (1776). تكمن أهمية الإعلان في كونه أول وثيقة رسمية في التاريخ الأوروبي تعلن أن الحقوق "طبيعية" لا يمنحها الحاكم، بل تسبقه وتعلو عليه. وقد تجاوز تأثير الإعلان حدود فرنسا ليُلهم حركات التحرر في أوروبا وأمريكا اللاتينية والعالم العربي طوال القرنين التاسع عشر والعشرين. غير أن المؤرخين يشيرون إلى مفارقة جوهرية: أن هذه المبادئ الكونية ظلت محصورة زمنياً في الرجل الأوروبي الأبيض، إذ استُبعدت منها النساء (إلى غاية 1944 في فرنسا) والعبيد في المستعمرات.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – شرح وثيقة: "النار والبخار" (12 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ تقديم الوثيقة – نموذج الإجابة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الطبيعة:</strong> نص تاريخي تفسيري – تحليلي من كتاب "ألاف السنين من الطاقة".<br>
+                    <strong>المؤلف:</strong> فلادمير كارتسيف، باحث ومؤرخ علمي روسي متخصص في تاريخ الطاقة والتقنية.<br>
+                    <strong>المصدر:</strong> مجلة "عالم المعرفة" الكويتية، العدد 187، وهي سلسلة كتب ثقافية شهرية تصدر عن المجلس الوطني للثقافة والفنون والآداب بالكويت، تُعنى بنشر المعرفة العلمية المترجمة إلى العربية.<br>
+                    <strong>الموضوع:</strong> يتناول النص اختراع الآلة البخارية بوصفه اختراعاً محورياً في تاريخ البشرية، أحدث ثورة شاملة في الصناعة والنقل والمعرفة العلمية.<br>
+                    <strong>الإطار التاريخي:</strong> ينتمي النص إلى سياق الحديث عن الثورة الصناعية الأولى (أواخر القرن 18 – القرن 19) التي شكلت الآلة البخارية محركها الأساسي.
+                </p>
+                <div class="correction-explanation">
+                    <strong>✔ معايير التنقيط:</strong> نقطة لتحديد الطبيعة، نقطة لذكر المؤلف والمصدر، نقطة لصياغة الموضوع والإطار التاريخي. تُقبل كل صياغة دقيقة تستوفي عناصر التقديم المنهجي (طبيعة – مؤلف – مصدر – موضوع – إطار).
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ استخراج نتائج اختراع الآلة البخارية من الوثيقة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    يستخرج التلميذ من النص النتائج التالية:<br>
+                    • <strong>تحويل الحرارة إلى حركة وعمل:</strong> "تعلم الإنسان أن يحول الحرارة الكامنة في الفحم والشجر والفحم النباتي إلى حركة وعمل".<br>
+                    • <strong>تغيير لوحة العالم تغييراً حاداً:</strong> "غيرت لوحة العالم تغييرا حادا".<br>
+                    • <strong>ثورة في الصناعة:</strong> "أحدثت ثورة في الصناعة".<br>
+                    • <strong>ثورة في وسائل النقل:</strong> "أحدثت ثورة في... وسائل النقل".<br>
+                    • <strong>تمكين من بناء القنوات والتجهيزات الضخمة:</strong> "مكنت من بناء القنوات والتجهيزات الضخمة".<br>
+                    • <strong>دفع المعرفة العلمية:</strong> "قدمت دفعا لانطلاقة جديدة للمعرفة العلمية".
+                </p>
+                <div class="correction-explanation">
+                    <strong>✔ معايير التنقيط:</strong> يُمنح 0.5 نقطة عن كل نتيجة مستخرجة بدقة من النص مع ذكر العبارة الدالة عليها. يُشترط الاستشهاد بعبارات النص وليس مجرد السرد الحر. التركيز على: تحويل الطاقة، تغيير العالم، ثورة الصناعة، ثورة النقل، البنى التحتية الكبرى، تقدم المعرفة.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3/ تحديد المشاكل الناتجة عن التغييرات الجديدة:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>أولاً: المشاكل الاجتماعية:</strong><br>
+                    • <strong>استغلال العمال:</strong> ساعات عمل طويلة (14-16 ساعة يومياً)، أجور متدنية، تشغيل النساء والأطفال في ظروف خطرة داخل المصانع والمناجم.<br>
+                    • <strong>التمدن الفوضوي:</strong> نزوح ريفي هائل أدى إلى تضخم المدن الصناعية (مانشستر، برمنغهام، ليل) وظهور أحياء عمالية مكتظة تفتقر إلى النظافة والمياه الصالحة للشرب، فانتشرت الأوبئة كالكوليرا والتيفوئيد.<br>
+                    • <strong>التفاوت الطبقي الحاد:</strong> اتساع الهوة بين البرجوازية الصناعية الغنية والبروليتاريا الفقيرة، مما خلق توترات وصراعات طبقية عنيفة.<br>
+                    • <strong>تفكك الأسرة التقليدية:</strong> مع خروج جميع أفراد الأسرة للعمل، تفككت الروابط الأسرية الممتدة التي كانت سائدة في المجتمع الريفي.<br>
+                    <strong>ثانياً: المشاكل البيئية:</strong><br>
+                    • <strong>التلوث:</strong> أدى احتراق الفحم بكميات هائلة إلى تلوث الهواء في المدن الصناعية، مما تسبب في أمراض تنفسية مزمنة و"ضباب دخاني" قاتل.<br>
+                    • <strong>تشويه المناظر الطبيعية:</strong> بفعل إنشاء المصانع والمناجم والسكك الحديدية.<br>
+                    <strong>ثالثاً: المشاكل الاقتصادية:</strong><br>
+                    • <strong>البطالة الدورية:</strong> الأزمات الاقتصادية الدورية (أزمات فائض الإنتاج) كانت تتسبب في تسريح آلاف العمال وإغراقهم في الفقر المدقع.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> تكشف المشاكل الناتجة عن الثورة الصناعية عن الوجه المظلم للتقدم التقني حين يُترك دون ضوابط اجتماعية أو أخلاقية. ففي مدينة مانشستر وحدها، انخفض متوسط العمر المتوقع للعمال إلى 17 عاماً في أربعينيات القرن التاسع عشر، وعمل أطفال في سن الخامسة في المناجم 12 ساعة يومياً. وقد وثّق فريدريك إنجلز هذه الأوضاع المروّعة في كتابه "حالة الطبقة العاملة في إنجلترا" (1845). ولم تبدأ هذه المشاكل في التراجع إلا بعد نضالات نقابية وتشريعات اجتماعية (مثل قوانين المصانع البريطانية 1833-1847 التي حدّت من عمل الأطفال وخفّضت ساعات العمل) وانتشار الأفكار الاشتراكية التي طالبت بإعادة توزيع عادل لثمار التقدم الصناعي. وهكذا، فإن التاريخ يعلمنا أن التقدم التقني لا يحمل في ذاته ضماناً للعدالة الاجتماعية، بل لا بد من مرافقته بإصلاحات تشريعية ونضال اجتماعي.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>4/ النتائج الاقتصادية للثورة الصناعية:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>• تضاعف الإنتاجية:</strong> انتقل الإنتاج من النظام الحرفي اليدوي داخل الورشات الصغيرة إلى الإنتاج الآلي الواسع داخل المصانع الكبرى، مما ضاعف كميات السلع المنتجة بشكل غير مسبوق.<br>
+                    <strong>• تطور وسائل النقل:</strong> ظهور السكك الحديدية (منذ 1825) والسفن البخارية، مما سرّع نقل البضائع والمواد الأولية ووسّع الأسواق.<br>
+                    <strong>• نشوء النظام الرأسمالي الحديث:</strong> تركزت وسائل الإنتاج في أيدي البرجوازية الصناعية التي راكمت أرباحاً طائلة، وظهرت المؤسسات المالية الكبرى (البنوك، شركات المساهمة، البورصات).<br>
+                    <strong>• العولمة الاقتصادية المبكرة:</strong> اتسعت التجارة الدولية وازداد الطلب على المواد الأولية (القطن، الفحم، الحديد)، مما دفع بالاستعمار الأوروبي لإفريقيا وآسيا لتأمين الموارد والأسواق.<br>
+                    <strong>• تطور الزراعة:</strong> استفاد القطاع الزراعي من الآلات الجديدة (الحصادة الميكانيكية، المحراث الفولاذي) مما رفع الإنتاج الغذائي وحرر أيادي عاملة للصناعة.<br>
+                    <strong>• بروز مدن صناعية كبرى:</strong> تحولت مدن مثل مانشستر وبرمنغهام وليل وبرلين إلى مراكز صناعية واقتصادية عملاقة جذبت الاستثمارات والعمال.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل تاريخي معمّق:</strong> مثّلت الثورة الصناعية انتقالاً جذرياً في نمط الإنتاج البشري لم يسبق له مثيل منذ اختراع الزراعة قبل عشرة آلاف سنة. ففي غضون قرن واحد (1780-1880)، تضاعف إنتاج الفحم في بريطانيا 20 مرة، وإنتاج الحديد 30 مرة. وارتفعت نسبة سكان المدن في إنجلترا من 20% سنة 1750 إلى أكثر من 75% سنة 1900. وقد غيّر هذا التحول الاقتصادي موازين القوى العالمية: ففي سنة 1800 كانت أوروبا والغرب يمثلان حوالي 25% من الناتج العالمي، وبلغت هذه النسبة أكثر من 60% بحلول سنة 1900. وتظل الثورة الصناعية الأولى نموذجاً يُدرّس لكيفية تحويل التقدم التقني إلى ثروة اقتصادية، لكن مع ضرورة استخلاص الدروس من الثمن الاجتماعي الباهظ الذي دفعه ملايين العمال الذين كانوا وقود هذه الثورة قبل أن يكونوا مستفيدين منها.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">ملاحظات عامة حول التقييم</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    <strong>📌 توزيع النقاط الإجمالي (20 نقطة):</strong><br>
+                    • القسم الأول (التواريخ + الجدول + المبادئ): 6 نقاط (2+2+2)<br>
+                    • القسم الثاني (شرح الوثيقة): 12 نقطة (3+3+3+3)<br>
+                    • التنظيم والصياغة العامة: 2 نقطة إضافية<br>
+                    <strong>🔑 تذكير:</strong> يُراعى في التقييم مدى تمكن التلميذ من توظيف المفاهيم التاريخية بدقة، وقدرته على تقديم الوثيقة وفق المنهجية التاريخية السليمة، واستخراج المعطيات من النص بأمانة، وبناء حجاج متماسك عند تحليل المشاكل والنتائج، إضافة إلى جودة التعبير وسلامة اللغة العربية.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    historyTest2: {
+                        title: "فرض تأليفي عدد 2 - تاريخ - 8 أساسي",
+                        subtitle: "إعدادي نموذجي | 2023-2024",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    historyTest2: {
+                        title: "Devoir de Synthèse N°2 - Histoire - 8ème",
+                        subtitle: "Modèle | 2023-2024",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    historyTest2: {
+                        title: "Synthesis Test N°2 - History - 8th Grade",
+                        subtitle: "Model | 2023-2024",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest2.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.historyTest2.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.historyTest2?.comingSoon ||
+                "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1355,6 +1355,138 @@ const exercises = [
             description: 'Interactive exercise to add and subtract positive and negative numbers step by step. 10 attempts with points.'
         }
     }
+},
+{
+    id: 'ex-042',
+    section: 'الجبر',
+    sectionIcon: '✖️',
+    name: 'الضرب في Z',
+    description: 'تمرين تفاعلي لضرب أعداد صحيحة موجبة وسالبة خطوة بخطوة مع تطبيق قاعدة إشارات الضرب. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#6366f1',
+    cardColorDark: '#818cf8',
+    link: 'الجبر - الضرب في Z.html',
+    version: '1.0',
+    tags: ['ضرب', 'أعداد صحيحة', 'Z', 'قاعدة الإشارات', 'جبر', 'خطوات', 'مبسط'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-05',
+    estimatedTime: '5-8 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['ضرب', 'أعداد صحيحة', 'Z', 'موجب', 'سالب', 'قاعدة الإشارات', 'سابعة أساسي', 'جبر'],
+    thumbnail: '✖️',
+    translations: {
+        fr: {
+            name: 'Multiplication dans Z',
+            description: 'Exercice interactif pour multiplier des nombres entiers positifs et négatifs étape par étape. 10 essais avec points.'
+        },
+        en: {
+            name: 'Multiplication in Z',
+            description: 'Interactive exercise to multiply positive and negative integers step by step. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-043',
+    section: 'الجبر',
+    sectionIcon: '➗',
+    name: 'القسمة في Z',
+    description: 'تمرين تفاعلي لقسمة أعداد صحيحة موجبة وسالبة خطوة بخطوة مع تطبيق قاعدة إشارات القسمة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#d97706',
+    cardColorDark: '#fbbf24',
+    link: 'الجبر - القسمة في Z.html',
+    version: '1.0',
+    tags: ['قسمة', 'أعداد صحيحة', 'Z', 'قاعدة الإشارات', 'جبر', 'خطوات', 'مبسط'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-05',
+    estimatedTime: '5-8 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['قسمة', 'أعداد صحيحة', 'Z', 'موجب', 'سالب', 'قاعدة الإشارات', 'سابعة أساسي', 'جبر'],
+    thumbnail: '➗',
+    translations: {
+        fr: {
+            name: 'Division dans Z',
+            description: 'Exercice interactif pour diviser des nombres entiers positifs et négatifs étape par étape. 10 essais avec points.'
+        },
+        en: {
+            name: 'Division in Z',
+            description: 'Interactive exercise to divide positive and negative integers step by step. 10 attempts with points.'
+        }
+    }
+},
+	{
+		id: 'ex-044',
+		section: 'الجبر',
+		sectionIcon: '⚖️',
+		name: 'المقارنة في Z',
+		description: 'تمرين تفاعلي لمقارنة عددين صحيحين خطوة بخطوة مع تحليل الإشارات والقيم المطلقة وتطبيق القواعد. 10 محاولات مع نقاط.',
+		difficulty: 'easy',
+		class: 'السابعة أساسي',
+		cardColor: '#2563eb',
+		cardColorDark: '#60a5fa',
+		link: 'الجبر - المقارنة في Z.html',
+		version: '1.0',
+		tags: ['مقارنة', 'أعداد صحيحة', 'Z', 'قاعدة الإشارات', 'جبر', 'خطوات', 'مبسط'],
+		mainLanguage: 'العربية',
+		availableTranslations: ['العربية', 'Français', 'English'],
+		author: 'فريق الرياضيات',
+		dateAdded: '2026-05-05',
+		estimatedTime: '5-8 دقائق',
+		questionCount: 10,
+		curriculum: 'المرحلة الإعدادية',
+		keywords: ['مقارنة', 'أعداد صحيحة', 'Z', 'موجب', 'سالب', 'صفر', 'قيمة مطلقة', 'سابعة أساسي', 'جبر'],
+		thumbnail: '⚖️',
+		translations: {
+			fr: {
+				name: 'Comparaison dans Z',
+				description: 'Exercice interactif pour comparer deux entiers relatifs étape par étape en analysant les signes et les valeurs absolues. 10 essais avec points.'
+			},
+			en: {
+				name: 'Comparison in Z',
+				description: 'Interactive exercise to compare two integers step by step using sign analysis and absolute values. 10 attempts with points.'
+			}
+		}
+	},
+	{
+    id: 'ex-045',
+    section: 'الجبر',
+    sectionIcon: '➕➖',
+    name: 'الجمع والطرح في Q',
+    description: 'تمرين تفاعلي لجمع وطرح أعداد كسرية موجبة وسالبة خطوة بخطوة مع توحيد المقامات والاختزال. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#14b8a6',
+    cardColorDark: '#2dd4bf',
+    link: 'الجبر - الجمع والطرح في Q.html',
+    version: '1.0',
+    tags: ['جمع', 'طرح', 'كسور', 'أعداد كسرية', 'Q', 'توحيد المقامات', 'جبر', 'خطوات', 'مبسط'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-05',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['جمع', 'طرح', 'كسر', 'عدد كسري', 'توحيد المقامات', 'قاسم مشترك', 'اختزال', 'سابعة أساسي', 'جبر'],
+    thumbnail: '➕➖',
+    translations: {
+        fr: {
+            name: 'Addition et soustraction dans ℚ',
+            description: 'Exercice interactif pour additionner et soustraire des fractions positives et négatives pas à pas, avec unification des dénominateurs et simplification. 10 essais avec points.'
+        },
+        en: {
+            name: 'Addition & Subtraction in ℚ',
+            description: 'Interactive exercise to add and subtract positive and negative fractions step by step, including unifying denominators and simplifying. 10 attempts with points.'
+        }
+    }
 }
 ];
 

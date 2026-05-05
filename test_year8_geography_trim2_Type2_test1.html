@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 2 - جغرافيا - 8 أساسي (2023-2024)</title>
+
+    <meta name="theme-color" content="#1A4A3C">
+    <meta name="description" content="فرض تأليفي عدد 2 إعدادي نموذجي في الجغرافيا - السنة الثامنة أساسي - 2023-2024 - الاتحاد الأوروبي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض جغرافيا 8 (تأليفي 2)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #1A4A3C;
+            --secondary: #2E7A5A;
+            --accent: #C9A234;
+            --accent2: #A8572E;
+            --light-bg: #F7F9F8;
+            --light-section: #FFFFFF;
+            --text-light: #1D1F1E;
+            --text-light-secondary: #2B3532;
+            --border-light: #C8D2CE;
+            --shadow-light: rgba(29, 31, 30, 0.06);
+            --header-light: linear-gradient(to left, #0D2F24, #1A4A3C, #2E7A5A);
+            --canvas-bg: #F7F9F8;
+            --canvas-stroke: #1A4A3C;
+            --canvas-text: #1D1F1E;
+            --canvas-grid: #B8C4BF;
+            --canvas-accent: #C9A234;
+            --canvas-fill: rgba(201, 162, 52, 0.06);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #8DBAA5;
+            --secondary: #5E9C7A;
+            --accent: #E0B84C;
+            --accent2: #C87858;
+            --light-bg: #0A1210;
+            --light-section: #111D18;
+            --text-light: #E8F0EC;
+            --text-light-secondary: #B8C8C0;
+            --border-light: #2B3530;
+            --shadow-light: rgba(0, 0, 0, 0.38);
+            --header-light: linear-gradient(to left, #051210, #0A1210, #111D18);
+            --canvas-bg: #0A1210;
+            --canvas-stroke: #8DBAA5;
+            --canvas-text: #E8F0EC;
+            --canvas-grid: #2B3530;
+            --canvas-accent: #E0B84C;
+            --canvas-fill: rgba(224, 184, 76, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F7F9F8 0%, #EBF2EE 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0A1210 0%, #050E0C 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #E8F0EC;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.20);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(232, 240, 236, 0.10);
+            color: #E8F0EC;
+            border: 1px solid rgba(232, 240, 236, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(232, 240, 236, 0.20);
+            border-color: rgba(232, 240, 236, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F7F9F8;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1D1F1E;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #EBF2EE;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #111D18;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #E8F0EC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2B3530;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #0D2F24, #1A4A3C, #2E7A5A);
+            color: #E8F0EC;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #051210, #0A1210, #111D18);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F7F9F8;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0A1210;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1D1F1E;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #B58A28;
+            color: #E8F0EC;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #B8C4BF;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1D1F1E;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 162, 52, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #2B3530;
+            background: #0A1210;
+            color: #E8F0EC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 184, 76, 0.14);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #B8C4BF;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1D1F1E;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 162, 52, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2B3530;
+            background: #0A1210;
+            color: #E8F0EC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 184, 76, 0.14);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.92rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #C8D2CE;
+            padding: 10px 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #1A4A3C;
+            color: #E8F0EC;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #111D18;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #2B3530;
+        }
+        .Tests-Hub-table tbody tr:nth-child(even) td {
+            background: rgba(26, 74, 60, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tbody tr:nth-child(even) td {
+            background: rgba(232, 240, 236, 0.02);
+        }
+        .Tests-Hub-table td.highlight-cell {
+            background: rgba(201, 162, 52, 0.14);
+            font-weight: 700;
+            color: #1A4A3C;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td.highlight-cell {
+            background: rgba(224, 184, 76, 0.18);
+            color: #E0B84C;
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 130px;
+            border: 1px solid #B8C4BF;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 85%;
+            background: #FFF;
+            color: #1D1F1E;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 162, 52, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #2B3530;
+            background: #0A1210;
+            color: #E8F0EC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 184, 76, 0.14);
+        }
+
+        .Tests-Hub-document-card {
+            background: linear-gradient(135deg, #F7F9F8 0%, #EBF2EE 100%);
+            border-right: 5px solid var(--secondary);
+            padding: 1.5rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-document-card {
+            background: linear-gradient(135deg, #111D18 0%, #0A1210 100%);
+            border-right-color: #5E9C7A;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-document-source {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-document-source {
+            color: #5E9C7A;
+        }
+
+        .Tests-Hub-date-row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-date-card {
+            flex: 1;
+            min-width: 220px;
+            background: rgba(26, 74, 60, 0.04);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border: 1px dashed var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-date-card {
+            background: rgba(141, 186, 165, 0.05);
+            border-color: #2B3530;
+        }
+
+        .Tests-Hub-date-card label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-date-card label {
+            color: #8DBAA5;
+        }
+
+        .Tests-Hub-date-input {
+            width: 100%;
+            border: 1px solid #B8C4BF;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 15px;
+            text-align: center;
+            background: #FFF;
+            color: #1D1F1E;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-date-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 162, 52, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-date-input {
+            border-color: #2B3530;
+            background: #0A1210;
+            color: #E8F0EC;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-date-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 184, 76, 0.14);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #1A4A3C, #2E7A5A, var(--accent));
+            color: #E8F0EC;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F7F9F8 0%, #EBF2EE 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.14);
+            border: 2px solid rgba(201, 162, 52, 0.24);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #111D18, #0A1210);
+            border-color: rgba(224, 184, 76, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(247, 249, 248, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(10, 18, 16, 0.7);
+            border-right-color: #E0B84C;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #1A4A3C;
+            background: rgba(201, 162, 52, 0.08);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #E0B84C;
+            background: rgba(224, 184, 76, 0.14);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(26, 74, 60, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2B3532;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(224, 184, 76, 0.07);
+            color: #E8F0EC;
+            border-right-color: #C87858;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #1A4A3C;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #8DBAA5;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(26, 74, 60, 0.05), rgba(201, 162, 52, 0.07));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #1A4A3C, #2E7A5A);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #0D2F24, #1A4A3C);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #C9A234, #E0B84C);
+            color: #1D1F1E;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.20);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0D2F24, #1A4A3C, #2E7A5A);
+            color: #E8F0EC;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #051210, #0A1210, #111D18);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #E0B84C;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #E0B84C;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #E0B84C;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        .Tests-Hub-small-note {
+            text-align: center;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light-secondary);
+            transition: color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-date-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .Tests-Hub-date-card {
+                min-width: auto;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+            .Tests-Hub-table-input {
+                min-width: 100px;
+                font-size: 12px;
+            }
+            .Tests-Hub-table {
+                font-size: 0.78rem;
+            }
+            .Tests-Hub-table th,
+            .Tests-Hub-table td {
+                padding: 7px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            .Tests-Hub-test-header {
+                padding: 1.2rem;
+            }
+            .Tests-Hub-test-header h1 {
+                font-size: 1.3rem;
+            }
+            .Tests-Hub-download-button {
+                height: 70px;
+                min-width: 70px;
+                font-size: 0.85rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+            }
+            .Tests-Hub-table {
+                font-size: 0.68rem;
+            }
+            .Tests-Hub-table th,
+            .Tests-Hub-table td {
+                padding: 5px 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.geographyTest2.title">فرض تأليفي عدد 2 - جغرافيا - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.geographyTest2.subtitle">إعدادي نموذجي | الاتحاد الأوروبي | 2023-2024</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.geographyTest2.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الاختبار التأليفي الثاني في الجغرافيا</h1>
+            <p>إعدادي نموذجي | القسم: الثامنة أساسي | الموضوع: الاتحاد الأوروبي – قوة فلاحية وصناعية</p>
+            <p>السنة الدراسية: 2023-2024 | المدة: ساعة واحدة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح، معتمداً على مكتسباتك ومعطيات الوثائق.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 12 نقطة | الصياغة والتنظيم: نقطتان | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- ═══════════ SECTION 1 ═══════════ -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – الاتحاد الأوروبي <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <h3>1/ أكمل الفقرة التالية: <span class="Tests-Hub-points-badge">2 نقاط</span></h3>
+            <p style="line-height:2.2; font-size:1rem;">
+                تبلغ مساحة الاتحاد الأوروبي حوالي
+                <input type="text" class="Tests-Hub-answer-input" style="min-width:100px;" placeholder="....">
+                ، ويضم حوالي
+                <input type="text" class="Tests-Hub-answer-input" style="min-width:80px;" placeholder="....">
+                مليون نسمة يمثلون
+                <input type="text" class="Tests-Hub-answer-input" style="min-width:80px;" placeholder="....">
+                من سكان العالم سنة 2021.
+            </p>
+
+            <h3>2/ أكمل ما يلي: <span class="Tests-Hub-points-badge">4 نقاط</span></h3>
+            <p style="font-weight:700; margin-bottom:6px;">أكبر المنتجين الصناعيين في الاتحاد الأوروبي:</p>
+            <p style="line-height:2.1;">
+                <span class="Tests-Hub-question-number">①</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:160px;" placeholder="الدولة الأولى...">
+                <span class="Tests-Hub-question-number" style="margin-right:18px;">②</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:160px;" placeholder="الدولة الثانية...">
+                <span class="Tests-Hub-question-number" style="margin-right:18px;">③</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:160px;" placeholder="الدولة الثالثة...">
+            </p>
+
+            <p style="font-weight:700; margin-bottom:6px; margin-top:14px;">أهم البلدان السياحية في الاتحاد الأوروبي:</p>
+            <p style="line-height:2.1;">
+                <span class="Tests-Hub-question-number">①</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:160px;" placeholder="الدولة الأولى...">
+                <span class="Tests-Hub-question-number" style="margin-right:18px;">②</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:160px;" placeholder="الدولة الثانية...">
+                <span class="Tests-Hub-question-number" style="margin-right:18px;">③</span> <input type="text" class="Tests-Hub-answer-input" style="min-width:160px;" placeholder="الدولة الثالثة...">
+            </p>
+        </div>
+
+        <!-- ═══════════ SECTION 2 ═══════════ -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – شرح وثائق <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+
+            <h3>📄 وثيقة ع-22-دد: مؤشرات الإنتاج الفلاحي بالاتحاد الأوروبي (27 دولة)</h3>
+            <div style="overflow-x:auto;">
+                <table class="Tests-Hub-table">
+                    <thead>
+                        <tr>
+                            <th>المنتوجات</th><th>السنة</th><th>الإنتاج<br>(مليون طن)</th><th>الحصة من الإنتاج<br>العالمي %</th><th>المرتبة<br>العالمية</th><th>المردودية<br>طن/هك</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>الحبوب</td><td>2019</td><td>299.3</td><td>12.9</td><td>4</td><td>5.4</td></tr>
+                        <tr><td>القمح</td><td>2020</td><td>125.94</td><td class="highlight-cell">16.2</td><td>2</td><td>5.4</td></tr>
+                        <tr><td>الذرة</td><td>2020</td><td>64.47</td><td>5.8</td><td>4</td><td>7.1</td></tr>
+                        <tr><td>السكر</td><td>2020</td><td>14.4</td><td>7.1</td><td>3</td><td class="highlight-cell">72.2</td></tr>
+                        <tr><td>زيت الزيتون</td><td>2019</td><td>2</td><td class="highlight-cell">69</td><td class="highlight-cell">1</td><td>-</td></tr>
+                        <tr><td>لحوم الأبقار</td><td>2019</td><td>9.2</td><td>13</td><td>2</td><td>-</td></tr>
+                        <tr><td>حليب الأبقار</td><td>2019</td><td>167.6</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>لحم الخنازير</td><td>2019</td><td>24.1</td><td class="highlight-cell">25.5</td><td>2</td><td>-</td></tr>
+                        <tr><td>الدواجن</td><td>2019</td><td>15.6</td><td>11.8</td><td>4</td><td>1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="Tests-Hub-document-source" style="text-align:right;">المصدر: المعلومية الأوروبية (Eurostat)</p>
+
+            <h3 style="margin-top:1.8rem;">📄 وثيقة ع-23-حد: الاكتفاء الذاتي من المنتجات الفلاحية سنة 2019 (%)</h3>
+            <div style="overflow-x:auto;">
+                <table class="Tests-Hub-table">
+                    <thead>
+                        <tr>
+                            <th></th><th>لحوم بقر</th><th>لحم خنزير</th><th>دواجن</th><th>لحم غنم وماعز</th><th>بيض</th><th>قمح</th><th>شعير</th><th>سكر</th><th>ذرة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>الاكتفاء الذاتي</strong></td>
+                            <td>102</td><td class="highlight-cell">118</td><td>106</td><td>94</td>
+                            <td>103</td><td class="highlight-cell">123.7</td><td>120</td><td class="highlight-cell">125.3</td><td>80.2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>إجمالي</strong></td>
+                            <td colspan="4" style="text-align:center;font-weight:700;">102</td>
+                            <td colspan="5" style="text-align:center;font-weight:700;">108.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="Tests-Hub-document-source" style="text-align:right;">المصدر: Short-term outlook 2019/2020 – édition n° 25</p>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1/</span> <strong>قدّم الوثيقة ع-22-دد.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:95px;" placeholder="قدّم الوثيقة (الطبيعة، المصدر، الموضوع، الإطار الجغرافي)..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2/</span> <strong>استخرج من الوثيقة عدد 1 خصائص الإنتاج الفلاحي بالاتحاد الأوروبي.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:105px;" placeholder="استخرج الخصائص مدعماً إجابتك بأرقام من الجدول..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3/</span> <strong>بيّن من خلال الوثيقة عدد 2 أهمية الإنتاج الفلاحي الأوروبي.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:105px;" placeholder="بيّن أهمية الإنتاج الفلاحي انطلاقاً من نسب الاكتفاء الذاتي..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4/</span> <strong>اذكر بعض عوامل الإنتاج الفلاحي في الاتحاد الأوروبي.</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:105px;" placeholder="اذكر العوامل الطبيعية والبشرية والتقنية..."></textarea>
+            </div>
+
+            <p class="Tests-Hub-small-note"><em>تنقيط القسم الثاني: تقديم الوثيقة (3ن) – استخراج الخصائص (3ن) – بيان الأهمية (3ن) – ذكر العوامل (3ن) | الصياغة العامة: نقطتان إضافيتان</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- ═══════════ DETAILED CORRECTION ═══════════ -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل جغرافي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح الأسئلة (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ إكمال الفقرة – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">2 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • تبلغ مساحة الاتحاد الأوروبي حوالي <strong>4.2 مليون كم²</strong> (يُقبل 4.1 – 4.3)، ويضم حوالي <strong>447 مليون</strong> نسمة (445 – 450)، يمثلون <strong>5.6%</strong> من سكان العالم سنة 2021.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> رغم صغر المساحة نسبياً (المرتبة السابعة عالمياً)، يتميز الاتحاد الأوروبي بكثافة سكانية عالية (106 ن/كم²) ووزن اقتصادي هائل (15% من الناتج العالمي مقابل 5.6% من السكان)، مما يعكس إنتاجية استثنائية.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ أكبر المنتجين الصناعيين وأهم البلدان السياحية:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>أكبر المنتجين الصناعيين:</strong> ① ألمانيا – ② فرنسا – ③ إيطاليا.<br>
+                    <strong>أهم البلدان السياحية:</strong> ① فرنسا – ② إسبانيا – ③ إيطاليا.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> يمثل هذا التصنيف تكامل القطاعين الصناعي والسياحي في الاقتصاد الأوروبي. ألمانيا "مصنع أوروبا" (رائدة في السيارات والآلات)، بينما تتصدر فرنسا السياحة العالمية بفضل تراثها وبنيتها التحتية.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – شرح الوثائق (12 نقطة)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ تقديم الوثيقة ع-22-دد:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الطبيعة:</strong> جدول إحصائي (وثيقة اقتصادية – فلاحية).<br>
+                    <strong>المصدر:</strong> المعلومية الأوروبية (Eurostat)، الهيئة الرسمية لإحصاءات الاتحاد الأوروبي.<br>
+                    <strong>الموضوع:</strong> مؤشرات الإنتاج الفلاحي لـ 27 دولة (9 منتوجات استراتيجية، سنتي 2019-2020) من حيث حجم الإنتاج والحصة العالمية والمرتبة والمردودية.<br>
+                    <strong>الإطار الجغرافي:</strong> الاتحاد الأوروبي، أحد أهم القوى الفلاحية في العالم بفضل تنوع مناخاته وسياساته الداعمة.
+                </p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ خصائص الإنتاج الفلاحي الأوروبي:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • إنتاج ضخم ومتنوع (299.3 مليون طن حبوب، 167.6 مليون طن حليب).<br>
+                    • حصة عالمية مرتفعة (69% من زيت الزيتون، 25.5% من لحم الخنازير).<br>
+                    • مراتب عالمية متقدمة (الأولى في زيت الزيتون، الثانية في القمح والأبقار).<br>
+                    • مردودية عالية جداً (72.2 طن/هك للسكر، 5.4 طن/هك للقمح).
+                </p>
+                <div class="correction-explanation">
+                    <strong>✔ معايير التنقيط:</strong> يُمنح 0.75 نقطة عن كل خاصية مدعومة بأرقام من الجدول.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3/ أهمية الإنتاج الفلاحي من الوثيقة 2:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    • اكتفاء ذاتي يفوق 100% في أغلب المنتوجات (السكر 125.3%، القمح 123.7%، الشعير 120%) مما يعني فائضاً تصديرياً.<br>
+                    • إجمالي إيجابي للحوم (102%) والحبوب (108.5%)، أي قدرة على تحقيق الأمن الغذائي لـ 447 مليون نسمة.<br>
+                    • عجز محدود في الذرة (80.2%) ولحم الغنم (94%) يستوجب استيراداً جزئياً.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل:</strong> نسب الاكتفاء تؤكد مكانة الاتحاد كمصدّر صافٍ للمواد الغذائية، وهو موقع استراتيجي نادر بين التكتلات الكبرى.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>4/ عوامل الإنتاج الفلاحي الأوروبي:</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>طبيعية:</strong> مناخ معتدل ومتنوع، ترب خصبة (سهول اللوس)، شبكة مائية كثيفة، مساحات زراعية شاسعة (40% من المساحة).<br>
+                    <strong>تقنية وتنظيمية:</strong> السياسة الفلاحية المشتركة (PAC، 55 مليار يورو سنوياً)، ميكنة متطورة، بحث علمي (بذور محسّنة).<br>
+                    <strong>بشرية واقتصادية:</strong> سوق استهلاكية ضخمة (447 مليون)، بنية تحتية حديثة، يد عاملة مؤهلة.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق:</strong> النموذج الفلاحي الأوروبي يقوم على التكامل بين الدعم العمومي الضخم (PAC) والابتكار التقني، مما جعل منه أول قوة تصدير زراعي عالمياً رغم محدودية المساحة نسبياً.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+            <h3 style="color:var(--accent);">ملاحظات عامة حول التقييم</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    <strong>📌 توزيع النقاط (20 نقطة):</strong> القسم الأول 6 ن، القسم الثاني 12 ن، الصياغة 2 ن.<br>
+                    <strong>🔑 تذكير:</strong> تُثمّن الإجابات التي توظف المفاهيم الجغرافية بدقة وتستخرج المعطيات من الوثائق بأمانة علمية.
+                </div>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    geographyTest2: {
+                        title: "فرض تأليفي عدد 2 - جغرافيا - 8 أساسي",
+                        subtitle: "إعدادي نموذجي | الاتحاد الأوروبي | 2023-2024",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    geographyTest2: {
+                        title: "Devoir de Synthèse N°2 - Géographie - 8ème",
+                        subtitle: "Modèle | Union Européenne | 2023-2024",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    geographyTest2: {
+                        title: "Synthesis Test N°2 - Geography - 8th Grade",
+                        subtitle: "Model | European Union | 2023-2024",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest2.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest2.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest2?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>
