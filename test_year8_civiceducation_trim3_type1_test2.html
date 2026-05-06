@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة عدد 3 - تربية مدنية - 8 أساسي (2023-2024) - أ. شكري القبلي</title>
+
+    <meta name="theme-color" content="#0D47A1">
+    <meta name="description" content="فرض مراقبة عدد 3 في التربية المدنية - السنة الثامنة أساسي - 2023-2024 - الأستاذ شكري القبلي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض ت.مدنية 8 - 2024">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #0D47A1;
+            --secondary: #1565C0;
+            --accent: #FF8F00;
+            --accent2: #EF6C00;
+            --light-bg: #E8EAF6;
+            --light-section: #FFFFFF;
+            --text-light: #1B1B1B;
+            --text-light-secondary: #2E2E2E;
+            --border-light: #C5CAE9;
+            --shadow-light: rgba(13, 71, 161, 0.06);
+            --header-light: linear-gradient(to left, #0A1628, #0D47A1, #1565C0);
+            --canvas-bg: #E8EAF6;
+            --canvas-stroke: #0D47A1;
+            --canvas-text: #1B1B1B;
+            --canvas-grid: #9FA8DA;
+            --canvas-accent: #FF8F00;
+            --canvas-fill: rgba(255, 143, 0, 0.07);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #90CAF9;
+            --secondary: #64B5F6;
+            --accent: #FFB74D;
+            --accent2: #FFA726;
+            --light-bg: #121212;
+            --light-section: #1E1E1E;
+            --text-light: #F5F5F5;
+            --text-light-secondary: #E0E0E0;
+            --border-light: #37474F;
+            --shadow-light: rgba(0, 0, 0, 0.45);
+            --header-light: linear-gradient(to left, #000000, #0A1628, #121212);
+            --canvas-bg: #121212;
+            --canvas-stroke: #90CAF9;
+            --canvas-text: #F5F5F5;
+            --canvas-grid: #37474F;
+            --canvas-accent: #FFB74D;
+            --canvas-fill: rgba(255, 183, 77, 0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #121212 0%, #000000 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F5F5F5;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(248, 248, 248, 0.10);
+            color: #F5F5F5;
+            border: 1px solid rgba(248, 248, 248, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(248, 248, 248, 0.20);
+            border-color: rgba(248, 248, 248, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #E8EAF6;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1B1B1B;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #C5CAE9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1E1E1E;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F5F5F5;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #37474F;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #F5F5F5;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #000000, #0A1628, #121212);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #E8EAF6;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #121212;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1B1B1B;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #EF6C00;
+            color: #F5F5F5;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #9FA8DA;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1B1B1B;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 143, 0, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #37474F;
+            background: #121212;
+            color: #F5F5F5;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.16);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #9FA8DA;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1B1B1B;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 143, 0, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #37474F;
+            background: #121212;
+            color: #F5F5F5;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.16);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #C5CAE9;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #0D47A1;
+            color: #F5F5F5;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #1E1E1E;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #37474F;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(13, 71, 161, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #0D47A1, #1565C0, var(--accent));
+            color: #1B1B1B;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #E8EAF6 0%, #C5CAE9 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(255, 143, 0, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #1E1E1E, #121212);
+            border-color: rgba(255, 183, 77, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(232, 234, 246, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(18, 18, 18, 0.7);
+            border-right-color: #FFB74D;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #0D47A1;
+            background: rgba(255, 143, 0, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #FFB74D;
+            background: rgba(255, 183, 77, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(13, 71, 161, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2E2E2E;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(255, 183, 77, 0.08);
+            color: #F5F5F5;
+            border-right-color: #FFA726;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #0D47A1;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #90CAF9;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1B1B1B;
+            background: rgba(255, 143, 0, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F5F5F5;
+            background: rgba(255, 183, 77, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(13, 71, 161, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #2E2E2E;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(100, 181, 246, 0.08);
+            color: #E0E0E0;
+            border-right-color: #64B5F6;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(13, 71, 161, 0.05), rgba(255, 143, 0, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #5D1A3D, #8B2A52);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #0D47A1, #1565C0);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #FF8F00, #FFB74D);
+            color: #1B1B1B;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0A1628, #0D47A1, #1565C0);
+            color: #F5F5F5;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #000000, #0A1628, #121212);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #FFB74D;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FFB74D;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #FFB74D;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.civicEducationTest.title">فرض مراقبة عدد 3 - تربية مدنية - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.civicEducationTest.subtitle">2023-2024 | الأستاذ: شكري القبلي</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.civicEducationTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض مراقبة عدد 3 في التربية المدنية</h1>
+            <p>المستوى: 8 أساسي | السنة الدراسية: 2023-2024</p>
+            <p>الأستاذ: شكري القبلي | التوقيت: 30 دقيقة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>الوضعية</h2>
+            <div class="Tests-Hub-quote-block">
+                <p>دار حوار بين صديقين كالتالي:</p>
+                <p><strong>جلال:</strong> « يتجسد المبدأ الديمقراطي من خلال اعتماد مبدأ التداول السلمي على السلطة السياسية لفترات محددة سلفاً. »</p>
+                <p><strong>حليم:</strong> « بالعكس فإن المبدأ الديمقراطي لا يتجسد إلا حين ينفرد الحاكم بالسلطة مدى الحياة. »</p>
+                <p style="margin-top:1rem; font-size:0.85rem;"><em>فرض مراقبة عدد 3 – 8 أساسي – غير محدد المؤسسة – 2023-2024 – الأستاذ شكري القبلي</em></p>
+            </div>
+
+            <h3>التعليمة</h3>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1/</span> <strong>إلى أيّ موقف تميل؟ علّل جوابك.</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:110px;" placeholder="اختر موقفاً وعلل..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2/</span> <strong>لاحظ جلال أن حليم لا يعرف مفهوم التداول السلمي على السلطة فأراد أن يقدم له تعريفاً كالتالي:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p style="margin:10px 0; font-style:italic; color:var(--secondary);">« التداول السلمي على السلطة نعني به ............................................... »</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:100px;" placeholder="أكمل التعريف..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3/</span> <strong>اذكر لحليم أهمية التداول السلمي على السلطة.</strong> <span class="Tests-Hub-points-badge">6 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:160px;" placeholder="اذكر ستة جوانب للأهمية..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">4/</span> <strong>بيّن لحليم شروط تحقيق مبدأ التداول السلمي على السلطة السياسية.</strong> <span class="Tests-Hub-points-badge">6 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:160px;" placeholder="اذكر ستة شروط..."></textarea>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل مدني معمّق</h2>
+
+            <h3 style="color:var(--accent);">تصحيح الأسئلة (20 نقطة)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ الموقف المفضّل والتعليل (4 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>أميل إلى موقف جلال</strong> الذي يرى أن المبدأ الديمقراطي يتجسد من خلال التداول السلمي على السلطة السياسية لفترات محددة سلفاً.<br><br>
+                    <strong>التعليل:</strong><br>
+                    • لأن التداول السلمي يعكس <strong>إرادة الشعب الحقيقية</strong> ويتيح له فرصة اختيار حكامه وتجديدهم دورياً، وهو جوهر <strong>الديمقراطية التمثيلية</strong>.<br>
+                    • يمنع <strong>تركّز السلطة</strong> في يد فرد واحد، مما يحدّ من مخاطر الاستبداد والفساد السياسي.<br>
+                    • يضمن <strong>تداولاً سلمياً للأفكار والبرامج</strong>، فينعش الحياة السياسية ويدفع نحو الإصلاح والتنمية المستدامة.<br>
+                    • يتوافق مع <strong>المواثيق الدولية</strong> كالإعلان العالمي لحقوق الإنسان (المادة 21) التي تنص على حق المشاركة في الحكم عبر انتخابات دورية حقيقية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل مدني معمّق:</strong> يُعبّر هذا السؤال عن جدلية محورية في الفلسفة السياسية: هل الديمقراطية تعني تداول السلطة أم استمراريتها؟ يُجمع الفقه الدستوري المعاصر على أن <strong>التداول السلمي</strong> هو حجر الزاوية في أي نظام ديمقراطي حقيقي. فالديمقراطية لا تقوم فقط على وجود مؤسسات، بل على <strong>حركية السلطة</strong> وعدم تجميدها. أما فكرة "انفراد الحاكم مدى الحياة" التي يتبناها حليم فتنتمي إلى النماذج <strong>الاستبدادية والأوتوقراطية</strong> التي تبرر الجمود السياسي بالاستقرار المزعوم. وقد أثبتت التجارب التاريخية (مثل تجارب أوروبا الشرقية قبل 1989 وبعض أنظمة المنطقة العربية) أن أنظمة الحكم الدائم تنتهي غالباً إلى أزمات حادة لأنها تغلق أبواب التغيير السلمي. يُحسب للموقف الداعم للتداول أنه ينسجم مع <strong>مؤشرات الحكم الرشيد</strong> (Good Governance Indicators) للبنك الدولي التي تربط بين تداول السلطة وارتفاع مستوى الشفافية والمساءلة.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ تعريف التداول السلمي على السلطة (4 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>التداول السلمي على السلطة نعني به:</strong> انتقال الحكم والمسؤوليات السياسية من حزب أو شخص أو فريق حاكم إلى آخر، <strong>بطريقة سلمية ومنظمة</strong>، عبر <strong>انتخابات حرة ونزيهة ودورية</strong>، ووفق ما ينص عليه <strong>الدستور والقوانين</strong>، دون اللجوء إلى العنف أو القوة أو التوريث، مع ضمان احترام إرادة الناخبين وقبول نتائج الاقتراع من جميع الأطراف. وهو بذلك يُجسّد مبدأ <strong>سيادة الشعب</strong> ويُكرّس شرعية المؤسسات ويضمن <strong>تجديد النخب الحاكمة</strong> بشكل دوري وشفاف.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل مفاهيمي معمّق:</strong> يُعرّف علم السياسة التداول السلمي بأنه <strong>آلية مؤسساتية</strong> تسمح بانتقال الشرعية من حاكم لآخر دون انقطاع في سير الدولة. ويقوم هذا المفهوم على ثلاث ركائز أساسية: <strong>الشرعية الانتخابية</strong> (التفويض الشعبي)، <strong>الشرعية الدستورية</strong> (الالتزام بالإطار القانوني)، و<strong>الشرعية الأخلاقية</strong> (قبول الخصوم بالنتائج). وقد أشار <strong>صموئيل هنتنغتون</strong> في كتابه "الموجة الثالثة للديمقراطية" إلى أن اختبار التداول مرتين متتاليتين هو المعيار الحقيقي لترسيخ الديمقراطية. ويتميز هذا التعريف بشموليته لأنه لا يقتصر على الجانب الإجرائي (الانتخابات) بل يتعداه إلى <strong>الغايات</strong>: ضمان الحريات، ومنع الاستبداد، وتحقيق تداول الأفكار لا الأشخاص فقط.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3/ أهمية التداول السلمي على السلطة (6 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>• تجسيد مبدأ سيادة الشعب:</strong> فالشعب هو مصدر السلطات، والتداول يتيح له تجديد ممثليه دورياً مما يُشعره بأنه صاحب القرار الفعلي.<br><br>
+                    <strong>• منع الاستبداد والفساد:</strong> التغيير الدوري للحكام يحدّ من تركّز السلطة ويقلص فرص الفساد والمحسوبية التي تتراكم مع طول فترة الحكم.<br><br>
+                    <strong>• تجديد النخب السياسية:</strong> يتيح التداول بروز كفاءات جديدة وبرامج متطورة، مما يمنع الجمود الفكري ويضخ دماً جديداً في شرايين الدولة.<br><br>
+                    <strong>• تحقيق الاستقرار السياسي والاجتماعي:</strong> عندما يعرف الجميع أن التغيير ممكن عبر صناديق الاقتراع، يتناقص اللجوء إلى العنف والانقلابات وتتحول الخلافات إلى منافسة سلمية.<br><br>
+                    <strong>• تعزيز الثقة في المؤسسات:</strong> احترام نتائج الانتخابات والتداول السلمي يعزز مصداقية الدولة ويقوي شرعية مؤسساتها أمام المواطنين والمجتمع الدولي.<br><br>
+                    <strong>• ضمان الحريات والحقوق الأساسية:</strong> التداول يفرض على الحكام مراعاة الحقوق والحريات خوفاً من المحاسبة الانتخابية، مما يُنشئ مناخاً من المسؤولية والشفافية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل وظيفي معمّق:</strong> تتجاوز أهمية التداول السلمي الجانب الشكلي للديمقراطية لتلامس <strong>الاستقرار البنيوي</strong> للدولة. فحسب <strong>مؤشر "بيت الحرية" (Freedom House, 2023)</strong>، تسجل الدول التي تطبق تداولاً منتظماً للسلطة معدلات أعلى في الحريات المدنية (بمتوسط 85/100) مقارنة بالدول ذات الحكم الممتد (أقل من 35/100). كما أن <strong>منظمة الشفافية الدولية</strong> تربط بين غياب التداول وارتفاع مؤشرات الفساد؛ فالأنظمة التي استمر حكامها لأكثر من 15 عاماً سجلت مؤشرات فساد أعلى بنسبة 40%. على الصعيد الاجتماعي، يوفّر التداول <strong>صمّام أمان</strong> يمنع تراكم الاحتقان، إذ تتحول المعارضة من خيار المواجهة إلى أمل الوصول للحكم سلمياً، مما يحفظ النسيج الاجتماعي من التفكك.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>4/ شروط تحقيق مبدأ التداول السلمي على السلطة السياسية (6 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>• الشرط الأول: وجود دستور ديمقراطي</strong> يحدد بدقة صلاحيات السلطات ومدة الولايات الرئاسية والحكومية، ويضمن آلية واضحة لانتقال السلطة بشكل قانوني ومنظم.<br><br>
+                    <strong>• الشرط الثاني: تعددية سياسية حقيقية</strong> تسمح بوجود أحزاب وتيارات متعددة تتنافس على الحكم بشكل عادل، مما يثري الساحة السياسية ويمنح الناخبين خيارات حقيقية.<br><br>
+                    <strong>• الشرط الثالث: انتخابات دورية حرة ونزيهة وشفافة</strong> تجرى تحت إشراف هيئة مستقلة ومحايدة، مع ضمان نزاهة التصويت والفرز وقبول النتائج من جميع الأطراف.<br><br>
+                    <strong>• الشرط الرابع: فصل السلطات واستقلال القضاء</strong> لضمان التوازن بين السلطات التنفيذية والتشريعية والقضائية، ووجود قضاء مستقل يفصل في النزاعات الانتخابية بنزاهة.<br><br>
+                    <strong>• الشرط الخامس: حرية التعبير وإعلام حر ومستقل</strong> يضمن تداول المعلومات والأفكار ويكشف التجاوزات ويمكّن المواطنين من اتخاذ قرار انتخابي مستنير وواعٍ.<br><br>
+                    <strong>• الشرط السادس: ثقافة ديمقراطية ووعي سياسي لدى المواطنين</strong> تقوم على قبول الآخر واحترام نتائج الاقتراع ونبذ العنف، مع إيمان راسخ بأن التغيير السلمي هو الطريق الوحيد لتحقيق التطلعات.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل مؤسساتي معمّق:</strong> لا يمكن فصل شروط التداول عن <strong>المنظومة المؤسساتية</strong> الكاملة للدولة الديمقراطية. فحسب <strong>مؤشر "فاريتيز أوف ديموكراسي" (V-Dem, 2022)</strong>، فإن وجود نظام انتخابي تنافسي مع قضاء مستقل يرفع مستوى الديمقراطية بنسبة تفوق 40% مقارنة بالأنظمة الهجينة التي تجمع بين الشكل الديمقراطي والمضمون الاستبدادي. كما تؤكد <strong>تقارير الاتحاد الدولي للديمقراطية والمساعدة الانتخابية (IDEA, 2023)</strong> أن غياب أي شرط من هذه الشروط يؤدي إلى <strong>ديمقراطية شكلية</strong> أو "ديموقراطية واجهة" تُفرغ التداول من معناه الحقيقي. فالتعددية بدون انتخابات نزيهة سراب، والقضاء التابع يبطل مفعول الدستور، وغياب الوعي السياسي يجعل المواطن عرضة للتضليل. إن تكامل هذه الشروط هو ما يصنع <strong>الدورة الديمقراطية المتكاملة</strong>.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">معايير التنقيط والتقدير (20 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    • <strong>السؤال الأول (4ن):</strong> 2 نقطة لاختيار الموقف بوضوح وتحديد الانحياز لجلال، و2 نقطة للتعليل المبني على مفاهيم مدنية دقيقة (ذكر 4 تعليلات على الأقل).<br>
+                    • <strong>السؤال الثاني (4ن):</strong> 2 نقطة لصحة التعريف واكتمال عناصره الأساسية (الانتقال السلمي، الانتخابات، الدستور)، و2 نقطة لدقة الصياغة واللغة.<br>
+                    • <strong>السؤال الثالث (6ن):</strong> 1 نقطة لكل عنصر من عناصر الأهمية (ستة عناصر) مع شرح موجز لكل عنصر.<br>
+                    • <strong>السؤال الرابع (6ن):</strong> 1 نقطة لكل شرط مذكور (ستة شروط) مع توضيح مقتضب لدور كل شرط في تحقيق التداول السلمي.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    civicEducationTest: {
+                        title: "فرض مراقبة عدد 3 - تربية مدنية - 8 أساسي",
+                        subtitle: "2023-2024 | الأستاذ: شكري القبلي",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    civicEducationTest: {
+                        title: "Devoir de Contrôle N°3 - Éducation Civique - 8ème",
+                        subtitle: "2023-2024 | Prof.: Chokri El Kebli",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    civicEducationTest: {
+                        title: "Control Test N°3 - Civic Education - 8th Grade",
+                        subtitle: "2023-2024 | Teacher: Chokri El Kebli",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.civicEducationTest.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.civicEducationTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.civicEducationTest?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبارات - فرض تأليفي عدد 3 (8 أساسي) - فيزياء (زاوية الجديدي)</title>
+
+    <meta name="theme-color" content="#0d9488">
+    <meta name="description" content="فرض تأليفي عدد 3 في الفيزياء - السنة الثامنة أساسي - المدرسة الإعدادية بزاوية الجديدي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - فرض فيزياء 8 أساسي">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js">
+    </script>
+    <script defer src="katex/contrib/auto-render.min.js">
+    </script>
+
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-deep: #0f766e;
+            --primary-dark: #115e59;
+            --primary-light: #5eead4;
+            --primary-bg-light: #f0fdfa;
+            --primary-bg-lighter: #ccfbf1;
+            --text-light: #134e4a;
+            --text-dark: #ccfbf1;
+            --section-bg-dark: #134e4a;
+            --header-dark-start: #134e4a;
+            --header-dark-mid: #0f766e;
+            --header-dark-end: #0d9488;
+            --accent-dark: #5eead4;
+            --accent-dark-border: #2dd4bf;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --danger: #dc2626;
+            --success: #16a34a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: var(--text-light);
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #134e4a 0%, #115e59 100%);
+            color: var(--text-dark);
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid), var(--header-dark-end));
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-language-button,
+        .Tests-Hub-theme-toggle,
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-language-button:hover,
+        .Tests-Hub-theme-toggle:hover,
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-language-option:hover {
+            background: var(--primary-bg-lighter);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: var(--section-bg-dark);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: var(--text-dark);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: var(--primary);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid));
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: var(--section-bg-dark);
+            color: var(--text-dark);
+        }
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-deep);
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: var(--accent-dark);
+            border-bottom-color: var(--accent-dark-border);
+        }
+
+        .Tests-Hub-instructions {
+            background: var(--primary-bg-lighter);
+            padding: 1rem;
+            border-right: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: var(--section-bg-dark);
+            border-right-color: var(--accent-dark);
+        }
+
+        .Tests-Hub-question {
+            margin: 1.5rem 0;
+            padding-right: 10px;
+        }
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: var(--accent-dark);
+        }
+
+        .katex {
+            direction: ltr !important;
+            unicode-bidi: isolate !important;
+            display: inline-block;
+        }
+        .katex * {
+            direction: ltr !important;
+        }
+
+        .Tests-Hub-question p {
+            font-size: 1.15em;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding-bottom: 5px;
+            margin: 10px 0;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar {
+            height: 6px;
+        }
+        .Tests-Hub-question p::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        @media (max-width: 600px) {
+            .Tests-Hub-question p {
+                font-size: 1.05em;
+            }
+        }
+        .Tests-Hub-question p:not(:has(.katex)) {
+            white-space: normal;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-correction-section {
+            background: var(--primary-bg-lighter);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid var(--primary);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: var(--section-bg-dark);
+            border-right-color: var(--accent-dark);
+        }
+        .Tests-Hub-correction-section h2 {
+            color: var(--primary);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h2 {
+            color: var(--accent-dark);
+        }
+        .Tests-Hub-correction-section h3 {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: var(--accent-dark);
+        }
+        .Tests-Hub-correction-answer {
+            background: rgba(13, 148, 136, 0.06);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid var(--primary);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(94, 234, 212, 0.1);
+            border-right-color: var(--accent-dark);
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid), var(--header-dark-end));
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(13, 148, 136, 0.1), rgba(15, 118, 110, 0.1));
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #0d9488, #0f766e);
+            color: white;
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #0f766e, #115e59);
+            color: white;
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #115e59, #134e4a);
+            color: white;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .Tests-Hub-diagram-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .Tests-Hub-diagram-canvas {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+            max-width: 100%;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-canvas {
+            border-color: var(--accent-dark);
+            background: #1e1b4b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th,
+        td {
+            border: 1px solid var(--primary);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .Tests-Hub-dark-theme th,
+        .Tests-Hub-dark-theme td {
+            border-color: var(--accent-dark);
+        }
+        th {
+            background: var(--primary-bg-lighter);
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme th {
+            background: var(--section-bg-dark);
+        }
+
+        input.answer-text,
+        textarea.answer-text {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            color: var(--text-light);
+            font-family: inherit;
+        }
+        .Tests-Hub-dark-theme input.answer-text,
+        .Tests-Hub-dark-theme textarea.answer-text {
+            background: #0f3e3a;
+            color: var(--text-dark);
+            border-color: var(--accent-dark);
+        }
+        td input.answer-text {
+            width: 100%;
+            min-width: 70px;
+            text-align: center;
+        }
+        .answer-line {
+            margin: 10px 0;
+        }
+        .inline-blank {
+            display: inline-block;
+            width: 120px;
+            margin: 0 6px;
+            vertical-align: middle;
+        }
+        .blank-sm {
+            width: 90px;
+        }
+        .blank-lg {
+            width: 180px;
+        }
+        .fill-blank-paragraph {
+            line-height: 2.2;
+            font-size: 1.1em;
+            margin: 12px 0;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">الفيزياء - فرض تأليفي عدد 3 (8 أساسي)</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">المدرسة الإعدادية بزاوية الجديدي</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back">
+                    <span>←</span> <span>العودة إلى الاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span> <span data-i18n="TestsHub.header.language">العربية</span> <span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span> <span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض تأليفي عدد 3 - علوم فيزيائية - ثامنة أساسي (2023-2024)</h1>
+            <p>الأستاذ : م. التومي</p>
+            <p>المؤسسة : المدرسة الإعدادية بزاوية الجديدي</p>
+            <p>التاريخ : 2023/05/02 &nbsp;|&nbsp; المدة : ساعة واحدة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>تعليمات</h3>
+            <ul>
+                <li>اكتب بإتقان وأذكر التعريفات والمبادئ المستعملة.</li>
+                <li>يجب تبرير الإجابات عند الاقتضاء.</li>
+                <li>الأشكال والرسوم تُكمل على الورقة بدقة.</li>
+            </ul>
+        </div>
+
+        <!-- ==================== التمرين الأول : ملء الفراغات ==================== -->
+                <!-- ==================== التمرين الأول : ملء الفراغات ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الأول : (6 نقاط) &nbsp; العدد: 20/</h2>
+            <p style="font-size:1rem; color:var(--primary-deep); margin-bottom:1rem;">عَمِّر الفراغات فيما يلي بما يناسب من الكلمات:</p>
+
+            <div class="Tests-Hub-question">
+                <p class="fill-blank-paragraph" style="white-space: normal;">
+                    ■ ينتشر الضوء في الوسط الشفاف والمتجانس انطلاقا من مصدره على شكل خطوط 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    تعطي مساحات منيرة تسمى 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    ضوئية.
+                </p>
+                <p class="fill-blank-paragraph" style="white-space: normal;">
+                    ■ عندما تتقارب الأشعة الضوئية أثناء انتشار الضوء نحصل على حزمة ضوئية 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    أما إذا تباعدت هذه الأشعة فإننا نحصل على حزمة ضوئية 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder="..........">.
+                </p>
+                <p class="fill-blank-paragraph" style="white-space: normal;">
+                    ■ تصنف مصادر الضوء إلى نوعين: أجسام تنتج الضوء بذاتها تسمى أجسام 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    وأجسام تنثر جزءا من الضوء المسلط عليها من مصادر ضوئية أخرى تسمى أجسام 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder="..........">.
+                </p>
+                <p class="fill-blank-paragraph" style="white-space: normal;">
+                    ■ تنقسم مصادر الضوء من حيث أبعادها إلى نوعين: حيث تعتبر مصادر 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    إذا كانت صغيرة مقارنة بالوسط المحيط بها وتعتبر 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    في باقي الحالات الأخرى.
+                </p>
+                <p class="fill-blank-paragraph" style="white-space: normal;">
+                    ■ يمكن أن تصنف الأوساط البصرية إلى أوساط 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    تسمح بمرور الضوء وتمكننا من رؤية واضحة للأجسام من خلالها، وأوساط 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    تسمح بمرور جزء من الضوء وتمكننا من رؤية ضبابية للأجسام عبرها.
+                </p>
+                <p class="fill-blank-paragraph" style="white-space: normal;">
+                    ■ لتتمكن العين من رؤية ما حولها من أجسام، يشترط أن يكون الجسم 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    للضوء وأن 
+                    <input type="text" class="answer-text inline-blank" style="width:150px;" placeholder=".........."> 
+                    ذلك الضوء إلى العين.
+                </p>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين الثاني : الغرفة المظلمة ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الثاني : (7 نقاط) - الغرفة المظلمة</h2>
+            <p><strong>I-</strong> أمام ثقب T لغرفة مظلمة نضع مصدرا ضوئيا موسعا AB طوله 1cm على بعد مسافة d من الثقب كما هو مبين على الرسم.</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex2_pinhole1" class="Tests-Hub-diagram-canvas" width="620" height="320"></canvas>
+                <p style="font-size:0.9rem; color:var(--primary);">الشكل 1 : جسم AB على بعد d من الثقب T</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> أذكر مبدأ الانتشار المستقيمي للضوء.</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+                <p><span class="Tests-Hub-question-number">2-</span> بالاعتماد على هذا المبدأ:</p>
+                <p style="padding-right:20px;"><strong>أ)</strong> أرسم على الشاشة (E) الصورة A₁B₁ للمصدر الضوئي AB. <em>(يكمل على الرسم أعلاه)</em></p>
+                <p style="padding-right:20px;"><strong>ب)</strong> صف ما نشاهده على الشاشة (E).</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+                <p style="padding-right:20px;"><strong>جـ)</strong> حدد الطول L₁ للصورة A₁B₁ علما أن عمق الغرفة المظلمة (المسافة بين الثقب والشاشة) يساوي D.</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="L₁ = ..."></div>
+            </div>
+
+            <p style="margin-top:1.5rem;"><strong>II-</strong> نبعد الجسم المضيء AB عن الثقب T مسافة d' = 2d كما يبرزه الرسم.</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex2_pinhole2" class="Tests-Hub-diagram-canvas" width="620" height="320"></canvas>
+                <p style="font-size:0.9rem; color:var(--primary);">الشكل 2 : جسم AB على بعد d' = 2d من الثقب T</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1-</span> أرسم الصورة A₂B₂ للمصدر الضوئي AB. <em>(يكمل على الرسم أعلاه)</em></p>
+                <p><span class="Tests-Hub-question-number">2-</span> حدد الطول L₂ للصورة A₂B₂.</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="L₂ = ..."></div>
+                <p><span class="Tests-Hub-question-number">3-</span> قارن الطول L₁ بالطول L₂. ماذا يمكن أن تستنتج؟</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+                <p><span class="Tests-Hub-question-number">4-</span> صف ما يحدث على الشاشة (E) عند تحريك المصدر الضوئي AB بالنسبة للثقب T (تقريبا وإبعادا).</p>
+                <div class="answer-line"><textarea class="answer-text" rows="3" placeholder="..."></textarea></div>
+                <p><span class="Tests-Hub-question-number">5-</span> أذكر مثالا لجهاز يعتمد مبدأ الغرفة المظلمة في اشتغاله مبينا البعض من أجزائه.</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين الثالث : الظلال والكسوف والخسوف ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الثالث : (7 نقاط) - الظلال والكسوف والخسوف</h2>
+            <p><strong>I-</strong> نضع بين مصدر ضوئي نقطي S وشاشة بيضاء (E) كرة فولاذية كما هو مبين على الرسم.</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex3_ball" class="Tests-Hub-diagram-canvas" width="520" height="280"></canvas>
+                <p style="font-size:0.9rem; color:var(--primary);">الشكل : مصدر نقطي S، كرة فولاذية، وشاشة (E)</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> عرف الوسط الذي تنتمي إليه الكرة الفولاذية (من حيث مرور الضوء).</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="..."></div>
+                <p><span class="Tests-Hub-question-number">2)</span> سمِّ المنطقة المظلمة الظاهرة على الشاشة (E).</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="..."></div>
+                <p><span class="Tests-Hub-question-number">3)</span> بالاعتماد على مبدأ الانتشار المستقيمي للضوء:</p>
+                <p style="padding-right:20px;"><strong>أ)</strong> أرسم المنطقة المظلمة الظاهرة على الشاشة (E). <em>(يكمل على الرسم أعلاه)</em></p>
+                <p style="padding-right:20px;"><strong>ب)</strong> حدد شكل وأبعاد هذه المنطقة (بدلالة نصف قطر الكرة R والمسافات).</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+            </div>
+
+            <p style="margin-top:1.5rem;"><strong>II-</strong> ظاهرتا الكسوف والخسوف:</p>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> أذكر سبب حدوث ظاهرتي الكسوف والخسوف.</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+                <p><span class="Tests-Hub-question-number">2)</span> بيّن الفرق بين الكسوف والخسوف.</p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+                <p><span class="Tests-Hub-question-number">3)</span> أذكر في أي طور من أطوار القمر يحدث الكسوف.</p>
+                <div class="answer-line"><input type="text" class="answer-text" placeholder="..."></div>
+                <p><span class="Tests-Hub-question-number">4)</span> أنجز داخل الإطار رسما تفسر فيه ظاهرة الكسوف.</p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="ex3_eclipse" class="Tests-Hub-diagram-canvas" width="520" height="240"></canvas>
+                    <p style="font-size:0.9rem; color:var(--primary);">إطار الرسم : ظاهرة الكسوف</p>
+                </div>
+                <p><span class="Tests-Hub-question-number">5)</span> أكمل تعمير الجدول التالي:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>طبيعة الظاهرة</th>
+                            <th>خسوف كلي</th>
+                            <th>خسوف جزئي</th>
+                            <th>كسوف كلي</th>
+                            <th>كسوف جزئي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>وصف حدوث الظاهرة</strong></td>
+                            <td><textarea class="answer-text" rows="3" placeholder="..."></textarea></td>
+                            <td><textarea class="answer-text" rows="3" placeholder="..."></textarea></td>
+                            <td><textarea class="answer-text" rows="3" placeholder="..."></textarea></td>
+                            <td><textarea class="answer-text" rows="3" placeholder="..."></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- زر الإصلاح -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">عرض الإصلاح</button>
+        </div>
+
+        <!-- ==================== قسم الإصلاح ==================== -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>الإصلاح المفصّل</h2>
+
+            <div class="Tests-Hub-correction-answer">
+                <h3>التمرين الأول (6 نقاط):</h3>
+                <p><strong>الفراغات بالترتيب:</strong></p>
+                <ol>
+                    <li><strong>مستقيمة</strong> — <strong>حزمات</strong> (ينتشر الضوء في الوسط الشفاف والمتجانس على شكل خطوط <strong>مستقيمة</strong> تعطي مساحات منيرة تسمى <strong>حزمات</strong> ضوئية).</li>
+                    <li><strong>متقاربة</strong> — <strong>متباعدة</strong> (حزمة ضوئية <strong>متقاربة</strong> إذا تقاربت الأشعة، وحزمة ضوئية <strong>متباعدة</strong> إذا تباعدت).</li>
+                    <li><strong>مضيئة</strong> — <strong>مضاءة</strong> (أجسام تنتج الضوء بذاتها = <strong>مضيئة</strong> أو منيرة، وأجسام تنثر ضوء غيرها = <strong>مضاءة</strong>).</li>
+                    <li><strong>نقطية</strong> — <strong>ممتدة / موسعة</strong> (مصادر <strong>نقطية</strong> إذا كانت صغيرة جدا مقارنة بالوسط، ومصادر <strong>ممتدة</strong> أو موسعة في باقي الحالات).</li>
+                    <li><strong>شفافة</strong> — <strong>شبه شفافة</strong> (أوساط <strong>شفافة</strong> تسمح برؤية واضحة، وأوساط <strong>شبه شفافة</strong> تسمح برؤية ضبابية).</li>
+                    <li><strong>مضاءً</strong> — <strong>ينشر / يبعثر</strong> (يشترط أن يكون الجسم <strong>مضاءً</strong> للضوء وأن <strong>ينشر</strong> ذلك الضوء إلى العين).</li>
+                </ol>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <h3>التمرين الثاني (7 نقاط): الغرفة المظلمة</h3>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx2_pinhole1" class="Tests-Hub-diagram-canvas" width="620" height="320"></canvas>
+                </div>
+                <p><strong>1)</strong> <strong>مبدأ الانتشار المستقيمي للضوء:</strong> في الوسط الشفاف والمتجانس، ينتشر الضوء في جميع الاتجاهات وفق خطوط مستقيمة تسمى أشعة ضوئية.</p>
+                <p><strong>2أ) الرسم:</strong> (أنظر الرسم أعلاه) — الشعاع المنطلق من A يمر عبر الثقب T ليصل إلى الشاشة في A₁، والشعاع المنطلق من B يمر عبر T ليصل إلى B₁. الصورة A₁B₁ تكون <strong>مقلوبة</strong> (معكوسة) بالنسبة للجسم AB.</p>
+                <p><strong>2ب) الوصف:</strong> نشاهد على الشاشة (E) بقعة ضوئية على شكل سهم مقلوب (معكوس) بالنسبة للجسم AB، وهي صورة الجسم لكنها مقلوبة رأسا على عقب.</p>
+                <p><strong>2جـ) الطول L₁:</strong> بتطبيق التشابه (نظرية طالس): L₁ / AB = D / d ⇒ <strong>L₁ = AB × (D / d) = 1 × (D/d) = D/d سنتيمتر</strong>.</p>
+
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx2_pinhole2" class="Tests-Hub-diagram-canvas" width="620" height="320"></canvas>
+                </div>
+                <p><strong>II-1) الرسم:</strong> (أنظر الرسم أعلاه) — الجسم الآن على بعد d' = 2d. الأشعة تمر عبر T وتشكل صورة مقلوبة A₂B₂ على الشاشة.</p>
+                <p><strong>II-2) الطول L₂:</strong> L₂ = AB × (D / d') = 1 × (D / 2d) = <strong>D / (2d) سنتيمتر</strong>.</p>
+                <p><strong>II-3) المقارنة والاستنتاج:</strong> L₂ = L₁ / 2. <strong>الاستنتاج:</strong> كلما زادت المسافة بين الجسم والغرفة المظلمة (أي بعد الجسم عن الثقب)، صغر حجم الصورة المتكونة على الشاشة. حجم الصورة يتناسب عكسيا مع بعد الجسم عن الثقب.</p>
+                <p><strong>II-4) وصف ما يحدث عند التحريك:</strong> عند تقريب الجسم AB من الثقب T (تنقيص d)، تكبر الصورة على الشاشة. وعند إبعاده (زيادة d)، تصغر الصورة. تبقى الصورة مقلوبة دائما.</p>
+                <p><strong>II-5) مثال لجهاز:</strong> <strong>آلة التصوير الفوتوغرافية (الكاميرا)</strong> أو <strong>العين البشرية</strong>. الأجزاء: <strong>الغرفة المظلمة</strong> (جسم الكاميرا أو مقلة العين)، <strong>الثقب</strong> (العدسة أو الحدقة)، <strong>الشاشة</strong> (المستشعر الرقمي أو الشبكية).</p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <h3>التمرين الثالث (7 نقاط): الظلال والكسوف والخسوف</h3>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx3_ball" class="Tests-Hub-diagram-canvas" width="520" height="280"></canvas>
+                </div>
+                <p><strong>I-1)</strong> الكرة الفولاذية تنتمي إلى <strong>الأوساط المعتمة</strong> (Opaque)، لأنها لا تسمح بنفاذ الضوء عبرها.</p>
+                <p><strong>I-2)</strong> المنطقة المظلمة الظاهرة على الشاشة تسمى <strong>الظل التام</strong> (Umbra) أو ببساطة <strong>ظل الكرة</strong>.</p>
+                <p><strong>I-3أ) الرسم:</strong> (أنظر الرسم أعلاه) — نرسم شعاعين من S يمسان طرفي الكرة (أعلى وأسفل) ويمتدان حتى الشاشة. المنطقة المحصورة بينهما على الشاشة هي الظل التام.</p>
+                <p><strong>I-3ب) الشكل والأبعاد:</strong> الظل على الشاشة يأخذ شكل <strong>قرص دائري</strong> (إذا كانت الشاشة موازية للمقطع العرضي للكرة). نصف قطر الظل = <strong>R × (المسافة بين S والشاشة) / (المسافة بين S والكرة)</strong>.</p>
+
+                <p><strong>II-1) سبب الحدوث:</strong> ظاهرتا الكسوف والخسوف تنجمان عن <strong>الانتشار المستقيمي للضوء</strong> وتكون مناطق الظل خلف الأجرام السماوية المعتمة (القمر والأرض).</p>
+                <p><strong>II-2) الفرق:</strong></p>
+                <ul>
+                    <li><strong>كسوف الشمس:</strong> يحدث عندما يقع <strong>القمر بين الشمس والأرض</strong>، فيلقي بظله على جزء من سطح الأرض فتُحجب رؤية الشمس.</li>
+                    <li><strong>خسوف القمر:</strong> يحدث عندما تقع <strong>الأرض بين الشمس والقمر</strong>، فيدخل القمر في منطقة ظل الأرض فتُحجب عنه أشعة الشمس.</li>
+                </ul>
+                <p><strong>II-3) طور القمر:</strong> يحدث الكسوف في طور <strong>المحاق</strong> (القمر الجديد / New Moon).</p>
+
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx3_eclipse" class="Tests-Hub-diagram-canvas" width="520" height="240"></canvas>
+                </div>
+                <p><strong>II-4) رسم ظاهرة الكسوف:</strong> (أنظر الرسم أعلاه) — الشمس على اليسار، القمر في المنتصف، الأرض على اليمين. ظل القمر (الظل التام وشبه الظل) يسقط على جزء من سطح الأرض.</p>
+
+                <p><strong>II-5) تعمير الجدول:</strong></p>
+                <table>
+                    <thead>
+                        <tr><th>طبيعة الظاهرة</th><th>خسوف كلي</th><th>خسوف جزئي</th><th>كسوف كلي</th><th>كسوف جزئي</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>وصف حدوث الظاهرة</strong></td>
+                            <td>يدخل القمر بأكمله في منطقة ظل الأرض التام (الظلمة).</td>
+                            <td>يدخل جزء من القمر فقط في منطقة ظل الأرض التام، بينما يبقى الجزء الآخر مضاءً.</td>
+                            <td>يصل ظل القمر التام إلى سطح الأرض، فيحجب قرص الشمس كليا عن المشاهد في منطقة الظل.</td>
+                            <td>يصل شبه ظل القمر فقط إلى سطح الأرض، فيحجب جزء من قرص الشمس بينما يبقى الجزء الآخر مرئيا.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v2.5.0</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul><li><a href="#" style="color:#ccfbf1;" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" style="color:#ccfbf1;" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: { TestsHub: { header: { title: "الفيزياء - فرض تأليفي عدد 3 (8 أساسي)", subtitle: "المدرسة الإعدادية بزاوية الجديدي", back: "العودة إلى الاختبارات",
+                        language: "العربية" }, theme: { toggle: "الوضع الليلي" }, footer: { developer: "المطور", version: "الإصدار",
+                        links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري",
+                        versionNumber: "v2.5.0" }, synthesisTest: { showCorrection: "عرض الإصلاح", hideCorrection: "إخفاء الإصلاح",
+                        comingSoon: "قريباً!" } } },
+            fr: { TestsHub: { header: { title: "Physique - Devoir de synthèse n°3 (8ème)", subtitle: "Collège Zaouiet Jedidi",
+                        back: "Retour aux examens", language: "Français" }, theme: { toggle: "Mode sombre" }, footer: { developer: "Développeur",
+                        version: "Version", links: "Liens", terms: "Conditions d'utilisation", privacy: "Politique de confidentialité",
+                        developerName: "Ziad Mejri", versionNumber: "v2.5.0" }, synthesisTest: { showCorrection: "Afficher la correction",
+                        hideCorrection: "Masquer la correction", comingSoon: "Bientôt disponible !" } } },
+            en: { TestsHub: { header: { title: "Physics - Test n°3 (Grade 8)", subtitle: "Zaouiet Jedidi Middle School",
+                        back: "Back to tests", language: "English" }, theme: { toggle: "Dark Mode" }, footer: { developer: "Developer",
+                        version: "Version", links: "Links", terms: "Terms of use", privacy: "Privacy policy", developerName: "Ziad Mejri",
+                        versionNumber: "v2.5.0" }, synthesisTest: { showCorrection: "Show Correction", hideCorrection: "Hide Correction",
+                        comingSoon: "Coming soon!" } } }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                let key = el.getAttribute('data-i18n');
+                let val = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (val) val = val[k]; });
+                if (typeof val === 'string') el.textContent = val;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+        function updateThemeToggleText() {
+            const toggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (toggle) toggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage ===
+                'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[currentLanguage]
+                .TestsHub.synthesisTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub.synthesisTest
+                .hideCorrection;
+        }
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubThemeTeal', isDarkTheme ? 'dark' : 'light');
+            redrawAllGraphs();
+        }
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ? 'العربية' :
+                lang === 'fr' ? 'Français' : 'English';
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguageTeal', lang);
+        }
+
+        function getStrokeColor() { return isDarkTheme ? '#5eead4' : '#0d9488'; }
+        function getFillColor() { return isDarkTheme ? '#ccfbf1' : '#134e4a'; }
+        function getPinholeFill() { return isDarkTheme ? 'rgba(94,234,212,0.06)' : 'rgba(13,148,136,0.06)'; }
+
+        // ========== رسوم التمرين الثاني : الغرفة المظلمة ==========
+        function drawPinholeBase(canvasId, objectDistanceLabel, objectX) {
+            const c = document.getElementById(canvasId);
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 620;
+            const h = c.height = 320;
+            ctx.clearRect(0, 0, w, h);
+            const sc = getStrokeColor(),
+                fc = getFillColor();
+
+            // الغرفة المظلمة (صندوق)
+            const roomLeft = 280,
+                roomRight = 560,
+                roomTop = 60,
+                roomBottom = 270;
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 3;
+            ctx.strokeRect(roomLeft, roomTop, roomRight - roomLeft, roomBottom - roomTop);
+            ctx.fillStyle = getPinholeFill();
+            ctx.fillRect(roomLeft, roomTop, roomRight - roomLeft, roomBottom - roomTop);
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('غرفة مظلمة', 390, 85);
+
+            // الثقب T (نقطة صغيرة على الجدار الأيسر للغرفة، في المنتصف)
+            const Tx = roomLeft,
+                Ty = (roomTop + roomBottom) / 2;
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(Tx, Ty, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#b45309';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(Tx, Ty, 5, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('T', Tx - 20, Ty - 12);
+
+            // الشاشة (E) على الجدار الأيمن
+            ctx.strokeStyle = '#aaa';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 3]);
+            ctx.beginPath();
+            ctx.moveTo(roomRight, roomTop + 15);
+            ctx.lineTo(roomRight, roomBottom - 15);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = fc;
+            ctx.fillText('(E) شاشة', roomRight + 8, Ty);
+
+            // الجسم AB (سهم عمودي خارج الغرفة)
+            const arrowTopY = Ty - 60;
+            const arrowBottomY = Ty + 60;
+            const arrowX = objectX;
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(arrowX, arrowBottomY);
+            ctx.lineTo(arrowX, arrowTopY);
+            ctx.stroke();
+            // رأس السهم عند A (الأعلى)
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.moveTo(arrowX, arrowTopY);
+            ctx.lineTo(arrowX - 8, arrowTopY + 12);
+            ctx.lineTo(arrowX + 8, arrowTopY + 12);
+            ctx.closePath();
+            ctx.fill();
+            // قاعدة عند B (الأسفل)
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(arrowX, arrowBottomY, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('A', arrowX - 20, arrowTopY - 6);
+            ctx.fillText('B', arrowX - 20, arrowBottomY + 8);
+
+            // مسافة d
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(arrowX, Ty);
+            ctx.lineTo(Tx, Ty);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = '13px Arial';
+            ctx.fillText(objectDistanceLabel, (arrowX + Tx) / 2 - 15, Ty - 10);
+
+            // العمق D
+            ctx.strokeStyle = '#0ea5e9';
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(Tx + 2, Ty + 30);
+            ctx.lineTo(roomRight - 2, Ty + 30);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#0ea5e9';
+            ctx.fillText('D', (Tx + roomRight) / 2 - 10, Ty + 48);
+
+            return { ctx, w, h, roomLeft, roomRight, roomTop, roomBottom, Tx, Ty, arrowX, arrowTopY, arrowBottomY, sc, fc };
+        }
+
+        function drawEx2Pinhole1() { drawPinholeBase('ex2_pinhole1', 'd', 140); }
+
+        function drawEx2Pinhole2() { drawPinholeBase('ex2_pinhole2', "d' = 2d", 70); }
+
+        function drawCorrectionPinhole1() {
+            const info = drawPinholeBase('correctionEx2_pinhole1', 'd', 140);
+            if (!info) return;
+            const { ctx, Tx, Ty, roomRight, arrowX, arrowTopY, arrowBottomY, fc } = info;
+            // أشعة من A و B عبر T إلى الشاشة
+            const screenX = roomRight;
+            const A1y = Ty - (Ty - arrowTopY);
+            const B1y = Ty + (arrowBottomY - Ty);
+            // شعاع من A عبر T
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1.8;
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(arrowX, arrowTopY);
+            ctx.lineTo(Tx, Ty);
+            ctx.lineTo(screenX, A1y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            // شعاع من B عبر T
+            ctx.strokeStyle = '#f97316';
+            ctx.lineWidth = 1.8;
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(arrowX, arrowBottomY);
+            ctx.lineTo(Tx, Ty);
+            ctx.lineTo(screenX, B1y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            // الصورة A1B1 على الشاشة (مقلوبة)
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(screenX, B1y);
+            ctx.lineTo(screenX, A1y);
+            ctx.stroke();
+            ctx.fillStyle = '#3b82f6';
+            ctx.beginPath();
+            ctx.moveTo(screenX, A1y);
+            ctx.lineTo(screenX - 8, A1y + 12);
+            ctx.lineTo(screenX + 8, A1y + 12);
+            ctx.closePath();
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(screenX, B1y, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = fc;
+            ctx.fillText('A₁', screenX + 12, A1y + 2);
+            ctx.fillText('B₁', screenX + 12, B1y + 2);
+            ctx.fillText('صورة مقلوبة', screenX - 60, Ty + 80);
+        }
+
+        function drawCorrectionPinhole2() {
+            const info = drawPinholeBase('correctionEx2_pinhole2', "d' = 2d", 70);
+            if (!info) return;
+            const { ctx, Tx, Ty, roomRight, arrowX, arrowTopY, arrowBottomY, fc } = info;
+            const screenX = roomRight;
+            const A2y = Ty - (Ty - arrowTopY) * 0.5;
+            const B2y = Ty + (arrowBottomY - Ty) * 0.5;
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1.8;
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(arrowX, arrowTopY);
+            ctx.lineTo(Tx, Ty);
+            ctx.lineTo(screenX, A2y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.strokeStyle = '#f97316';
+            ctx.lineWidth = 1.8;
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(arrowX, arrowBottomY);
+            ctx.lineTo(Tx, Ty);
+            ctx.lineTo(screenX, B2y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(screenX, B2y);
+            ctx.lineTo(screenX, A2y);
+            ctx.stroke();
+            ctx.fillStyle = '#3b82f6';
+            ctx.beginPath();
+            ctx.moveTo(screenX, A2y);
+            ctx.lineTo(screenX - 8, A2y + 12);
+            ctx.lineTo(screenX + 8, A2y + 12);
+            ctx.closePath();
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(screenX, B2y, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = fc;
+            ctx.fillText('A₂', screenX + 12, A2y + 2);
+            ctx.fillText('B₂', screenX + 12, B2y + 2);
+            ctx.fillText('صورة أصغر', screenX - 60, Ty + 80);
+        }
+
+        // ========== رسوم التمرين الثالث : الكرة الفولاذية ==========
+        function drawEx3Ball() {
+            const c = document.getElementById('ex3_ball');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 520;
+            const h = c.height = 280;
+            ctx.clearRect(0, 0, w, h);
+            const sc = getStrokeColor(),
+                fc = getFillColor();
+
+            // مصدر نقطي S
+            const Sx = 60,
+                Sy = 140;
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(Sx, Sy, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#b45309';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(Sx, Sy, 8, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('S', Sx - 18, Sy - 14);
+
+            // كرة فولاذية
+            const ballCx = 220,
+                ballCy = 140,
+                ballR = 45;
+            ctx.fillStyle = '#9ca3af';
+            ctx.beginPath();
+            ctx.arc(ballCx, ballCy, ballR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#4b5563';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(ballCx, ballCy, ballR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.fillText('كرة فولاذية', ballCx - 35, ballCy - 55);
+
+            // شاشة E
+            const screenX = 440;
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(screenX, 30);
+            ctx.lineTo(screenX, 250);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.fillText('(E)', screenX + 8, 50);
+
+            // خط المحور
+            ctx.strokeStyle = '#aaa';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([8, 6]);
+            ctx.beginPath();
+            ctx.moveTo(Sx, Sy);
+            ctx.lineTo(screenX, Sy);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        function drawCorrectionEx3Ball() {
+            drawEx3Ball();
+            const c = document.getElementById('correctionEx3_ball');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const sc = getStrokeColor(),
+                fc = getFillColor();
+            const Sx = 60,
+                Sy = 140,
+                ballCx = 220,
+                ballCy = 140,
+                ballR = 45,
+                screenX = 440;
+
+            // أشعة من S تمس الكرة
+            const d1 = ballCx - Sx;
+            const halfAngle = Math.atan(ballR / d1);
+            const topY = Sy - Math.tan(halfAngle) * (screenX - Sx);
+            const bottomY = Sy + Math.tan(halfAngle) * (screenX - Sx);
+
+            // شعاع علوي
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1.8;
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(Sx, Sy);
+            ctx.lineTo(screenX, topY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            // شعاع سفلي
+            ctx.beginPath();
+            ctx.moveTo(Sx, Sy);
+            ctx.lineTo(screenX, bottomY);
+            ctx.setLineDash([5, 3]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // منطقة الظل على الشاشة
+            ctx.fillStyle = 'rgba(30,27,75,0.7)';
+            ctx.fillRect(screenX - 2, topY, 4, bottomY - topY);
+            ctx.fillStyle = fc;
+            ctx.fillText('ظل تام', screenX + 12, (topY + bottomY) / 2 + 5);
+
+            // أبعاد الظل
+            const shadowH = bottomY - topY;
+            ctx.fillText('الارتفاع = ' + shadowH.toFixed(0) + ' بكسل', screenX + 12, bottomY + 20);
+        }
+
+        // ========== رسم ظاهرة الكسوف ==========
+        function drawEx3Eclipse() {
+            const c = document.getElementById('ex3_eclipse');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 520;
+            const h = c.height = 240;
+            ctx.clearRect(0, 0, w, h);
+            const sc = getStrokeColor(),
+                fc = getFillColor();
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(20, 20, w - 40, h - 40);
+            ctx.fillStyle = fc;
+            ctx.font = '14px Arial';
+            ctx.fillText('إطار الرسم : ظاهرة الكسوف', 160, 18);
+        }
+
+        function drawCorrectionEx3Eclipse() {
+            const c = document.getElementById('correctionEx3_eclipse');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 520;
+            const h = c.height = 240;
+            ctx.clearRect(0, 0, w, h);
+            const fc = '#134e4a';
+            ctx.strokeStyle = '#0d9488';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(20, 20, w - 40, h - 40);
+
+            // الشمس (يسار)
+            const sunX = 80,
+                sunY = 130,
+                sunR = 40;
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('الشمس', sunX - 20, sunY - 48);
+
+            // القمر (وسط)
+            const moonX = 230,
+                moonY = 130,
+                moonR = 18;
+            ctx.fillStyle = '#6b7280';
+            ctx.beginPath();
+            ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#374151';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.fillText('القمر', moonX - 15, moonY - 28);
+
+            // الأرض (يمين)
+            const earthX = 420,
+                earthY = 130,
+                earthR = 32;
+            ctx.fillStyle = '#3b82f6';
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#1d4ed8';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.fillText('الأرض', earthX - 18, earthY - 40);
+
+            // أشعة من الشمس تظهر الظل
+            const dSM = moonX - sunX;
+            const moonHalfAngle = Math.atan(moonR / dSM);
+            const umbraTopY = moonY - Math.tan(moonHalfAngle) * (earthX - moonX);
+            const umbraBottomY = moonY + Math.tan(moonHalfAngle) * (earthX - moonX);
+
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1.3;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(sunX, sunY - sunR);
+            ctx.lineTo(moonX, moonY - moonR);
+            ctx.lineTo(earthX, umbraTopY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(sunX, sunY + sunR);
+            ctx.lineTo(moonX, moonY + moonR);
+            ctx.lineTo(earthX, umbraBottomY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // ظل القمر على الأرض
+            ctx.fillStyle = 'rgba(30,27,75,0.6)';
+            ctx.beginPath();
+            ctx.moveTo(earthX - earthR, umbraTopY);
+            ctx.lineTo(earthX + 5, umbraTopY);
+            ctx.lineTo(earthX + 5, umbraBottomY);
+            ctx.lineTo(earthX - earthR, umbraBottomY);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('ظل القمر', earthX - 60, umbraBottomY + 25);
+            ctx.fillText('منطقة الكسوف', earthX - 60, umbraBottomY + 42);
+        }
+
+        function redrawAllGraphs() {
+            drawEx2Pinhole1();
+            drawEx2Pinhole2();
+            drawEx3Ball();
+            drawEx3Eclipse();
+            if (!document.getElementById('correction').classList.contains('Tests-Hub-hidden')) {
+                drawCorrectionPinhole1();
+                drawCorrectionPinhole2();
+                drawCorrectionEx3Ball();
+                drawCorrectionEx3Eclipse();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubThemeTeal');
+            if (savedTheme === 'dark') { isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme'); }
+            const savedLanguage = localStorage.getItem('testsHubLanguageTeal');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) { currentLanguage = savedLanguage; }
+            if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+            else document.documentElement.dir = 'ltr';
+            updateTextContent();
+
+            renderMathInElement(document.body, {
+                delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }, { left: "\\[", right: "\\]", display: true }
+                ],
+                throwOnError: false
+            });
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); });
+            });
+            document.getElementById('downloadPdf').addEventListener('click', () => alert(TestsHub_translations[
+                currentLanguage]?.TestsHub?.synthesisTest?.comingSoon));
+            document.getElementById('downloadOdt').addEventListener('click', () => alert(TestsHub_translations[
+                currentLanguage]?.TestsHub?.synthesisTest?.comingSoon));
+            document.getElementById('downloadPng').addEventListener('click', () => alert(TestsHub_translations[
+                currentLanguage]?.TestsHub?.synthesisTest?.comingSoon));
+
+            const correctionBtn = document.getElementById('toggleCorrection');
+            correctionBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                redrawAllGraphs();
+                renderMathInElement(corr, { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$",
+                        right: "$", display: false }], throwOnError: false });
+            });
+            redrawAllGraphs();
+            window.addEventListener('resize', redrawAllGraphs);
+        });
+    </script>
+</body>
+</html>

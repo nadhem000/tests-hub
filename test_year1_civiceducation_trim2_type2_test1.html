@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 02 - تربية مدنية - أولى ثانوي</title>
+
+    <meta name="theme-color" content="#00695C">
+    <meta name="description" content="فرض تأليفي عدد 02 في التربية المدنية - السنة الأولى ثانوي - حق الاختلاف">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض ت.مدنية 1ث">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #00695C;
+            --secondary: #00897B;
+            --accent: #E64A19;
+            --accent2: #BF360C;
+            --light-bg: #E0F2F1;
+            --light-section: #FFFFFF;
+            --text-light: #1B1B1B;
+            --text-light-secondary: #2E2E2E;
+            --border-light: #B2DFDB;
+            --shadow-light: rgba(0, 105, 92, 0.06);
+            --header-light: linear-gradient(to left, #0A1F1C, #00695C, #00897B);
+            --canvas-bg: #E0F2F1;
+            --canvas-stroke: #00695C;
+            --canvas-text: #1B1B1B;
+            --canvas-grid: #80CBC4;
+            --canvas-accent: #E64A19;
+            --canvas-fill: rgba(230, 74, 25, 0.07);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #80CBC4;
+            --secondary: #4DB6AC;
+            --accent: #FF8A65;
+            --accent2: #FF7043;
+            --light-bg: #121212;
+            --light-section: #1E1E1E;
+            --text-light: #F5F5F5;
+            --text-light-secondary: #E0E0E0;
+            --border-light: #263238;
+            --shadow-light: rgba(0, 0, 0, 0.45);
+            --header-light: linear-gradient(to left, #000000, #0A1F1C, #121212);
+            --canvas-bg: #121212;
+            --canvas-stroke: #80CBC4;
+            --canvas-text: #F5F5F5;
+            --canvas-grid: #263238;
+            --canvas-accent: #FF8A65;
+            --canvas-fill: rgba(255, 138, 101, 0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #121212 0%, #000000 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F5F5F5;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(248, 248, 248, 0.10);
+            color: #F5F5F5;
+            border: 1px solid rgba(248, 248, 248, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(248, 248, 248, 0.20);
+            border-color: rgba(248, 248, 248, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #E0F2F1;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1B1B1B;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #B2DFDB;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1E1E1E;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F5F5F5;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #263238;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #F5F5F5;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #000000, #0A1F1C, #121212);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #E0F2F1;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #121212;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #BF360C;
+            color: #F5F5F5;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #80CBC4;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1B1B1B;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 74, 25, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #263238;
+            background: #121212;
+            color: #F5F5F5;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 138, 101, 0.16);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 140px;
+            border: 1px solid #80CBC4;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1B1B1B;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 74, 25, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #263238;
+            background: #121212;
+            color: #F5F5F5;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 138, 101, 0.16);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #B2DFDB;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #00695C;
+            color: #F5F5F5;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #1E1E1E;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #263238;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(0, 105, 92, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #00695C, #00897B, var(--accent));
+            color: #FFF;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #E0F2F1 0%, #B2DFDB 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(230, 74, 25, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #1E1E1E, #121212);
+            border-color: rgba(255, 138, 101, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(224, 242, 241, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(18, 18, 18, 0.7);
+            border-right-color: #FF8A65;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #00695C;
+            background: rgba(230, 74, 25, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #FF8A65;
+            background: rgba(255, 138, 101, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(0, 105, 92, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2E2E2E;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(255, 138, 101, 0.08);
+            color: #F5F5F5;
+            border-right-color: #FF7043;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #004D40;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #80CBC4;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1B1B1B;
+            background: rgba(230, 74, 25, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F5F5F5;
+            background: rgba(255, 138, 101, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(0, 105, 92, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #2E2E2E;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(77, 182, 172, 0.08);
+            color: #E0E0E0;
+            border-right-color: #4DB6AC;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(0, 105, 92, 0.05), rgba(230, 74, 25, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #4E1A3D, #8B2A52);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #00695C, #00897B);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #E64A19, #FF8A65);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0A1F1C, #00695C, #00897B);
+            color: #F5F5F5;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #000000, #0A1F1C, #121212);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #FF8A65;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #FF8A65;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #FF8A65;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.civicEducationTest.title">فرض تأليفي عدد 02 - تربية مدنية - أولى ثانوي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.civicEducationTest.subtitle">حق الاختلاف</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.civicEducationTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض تأليفي عدد 02 في التربية المدنية</h1>
+            <p>المستوى: أولى ثانوي | التوقيت: ساعتان</p>
+            <p>المؤسسة: غير محدد  | الأستاذ: غير محدد</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الموضوع بدقة ووضوح، مع احترام منهجية التحليل والتركيب.</li>
+                <li>جودة التحرير وسلامة اللغة ووضوح الخط تؤخذ بعين الاعتبار.</li>
+                <li>المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>✍️ الموضوع</h2>
+            <div class="Tests-Hub-quote-block">
+                <p>الاختلاف من الحقوق الأساسية التي كفلها الدستور ونظمتها القوانين النافذة، والاختلاف رحمة من الله بعباده الذين لا يطيقون الكبت الذي يؤدي إلى الانفجار، لكن الاختلاف في الرأي لا يعني الكراهية والحقد وما يترتب عليهما من الأضرار السياسية والاقتصادية والاجتماعية والثقافية المادية والمعنوية الجسيمة؛ لأن للاختلاف لغته وآدابه وقيمه ومثله الأخلاقية النابعة من حرص مسئول.</p>
+            </div>
+
+            <h3>التعليمة</h3>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">▸</span> <strong>حلل هذا الرأي مبينا كيف يمارس الفرد حقه في الاختلاف؟</strong> <span class="Tests-Hub-points-badge">20 نقطة</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:260px;" placeholder="اكتب تحليلك هنا مع الالتزام بمنهجية: مقدمة، جوهر (عدة محاور)، وخاتمة..."></textarea>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل مدني معمّق</h2>
+
+
+        <!-- وثيقة مرجعية مساعدة -->
+        <div class="Tests-Hub-test-section">
+            <h2>📎 وثيقة مرجعية مساعدة</h2>
+
+            <h3>تعريف حق الاختلاف</h3>
+            <div class="Tests-Hub-text-model">
+                <p><strong>لغة:</strong> هو التميز وعدم التطابق وهو تجسيد للتعددية في مختلف مجالاته.</p>
+                <p><strong>اصطلاحا:</strong> هو الإقرار والاعتراف المتبادل بين الأفراد والجماعات بالاختلاف بينهم كما يعني حق الفرد أن يكون مغايرا للآخرين ومتميزا عنهم.</p>
+            </div>
+
+            <h3>مجالات حق الاختلاف</h3>
+            <ul style="margin:1rem 1.5rem; line-height:2;">
+                <li><strong>المجال السياسي:</strong> وتتجلى مظاهره في الفكر، الانتماء، الرأي، الممارسات السياسية.</li>
+                <li><strong>المجال الاجتماعي:</strong> وتتجلى مظاهره في اللون، الدين، العادات والتقاليد.</li>
+                <li><strong>المجال الاقتصادي:</strong> وتتمثل مظاهره في الأجر، العمل، الإمكانيات المادية.</li>
+            </ul>
+
+            <h3>أهمية حق الاختلاف</h3>
+            <p><strong>بالنسبة للفرد:</strong> يضمن المشاركة في مختلف المجالات، ويضمن التمتع بجميع الحقوق والحريات، ويضمن الاستقلالية ويجنب الاستبداد بالرأي، ويجسد قدرة الإنسان على التميز والإضافة.</p>
+            <p style="margin-top:0.5rem;"><strong>بالنسبة للمجتمع:</strong> يكرس التعايش السلمي والتواصل بين أفراد المجتمع، ويجسد مبدأ النقاش والحوار ويجنب الانفراد بالرأي، ويضمن التوازن في المجتمع ويسمح بالمشاركة في بنائه، وباحترام حق الاختلاف يتم القضاء على مظاهر التعصب والعنف.</p>
+
+            <h3>واجب احترام حق الاختلاف</h3>
+            <p>ضرورة احترام هذا الحق لأنه في حالة عدم ذلك يؤدي إلى الفوضى والعنف والاعتداءات المتبادلة بين الأفراد. ويمكن أن يؤدي إلى الحروب الأهلية التي تدفع المجتمع إلى التأخر والتراجع في جميع المجالات. وعلى المواطن احترام حق غيره في الاختلاف وذلك بإعمال عقله والتخلي عن التعصب في الرأي أو الدين. ويجب أن يسود الاحترام والتفاهم والتسامح بين جميع الأطراف، وهو استعداد قائم على التعايش مع الآخرين رغم الاختلاف بينهم.</p>
+            <h3>**للامانة منقول**  
+`http://educ.forumactif.com/t2461-topic` [(educ.forumactif.com in Bing)](https://www.bing.com/search?q="http%3A%2F%2Feduc.forumactif.com%2Ft2461-topic")</h3>
+        </div>
+            <!-- القسم الأول: التخطيط -->
+            <h3 style="color:var(--accent);">🗂️ القسم الأول: التخطيط المفصّل (الخطة المنهجية)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>🔹 المقدمة (3 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    • <strong>التمهيد:</strong> الاختلاف سنة كونية وفطرة إنسانية، وهو من الحقوق الأساسية التي أقرتها الدساتير الحديثة والمواثيق الدولية.<br>
+                    • <strong>طرح الإشكالية:</strong> كيف يمارس الفرد حقه في الاختلاف في إطار المسؤولية الأخلاقية والقانونية؟ وما هي مجالات هذا الحق وأهميته للفرد والمجتمع؟<br>
+                    • <strong>تقسيم الموضوع:</strong> سنتناول بالتحليل: (1) مفهوم حق الاختلاف ومجالاته، (2) أهمية حق الاختلاف للفرد والمجتمع، (3) واجب احترام هذا الحق وكيفية ممارسته بمسؤولية.
+                </p>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>🔹 المحور الأول: مفهوم حق الاختلاف ومجالاته (6 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>أولاً – تعريف حق الاختلاف:</strong><br>
+                    • <strong>لغة:</strong> التميز وعدم التطابق، وهو تجسيد للتعددية الطبيعية بين البشر.<br>
+                    • <strong>اصطلاحاً:</strong> الإقرار والاعتراف المتبادل بين الأفراد والجماعات بالاختلاف، وحق الفرد في أن يكون مغايراً للآخرين ومتميزاً عنهم في إطار القانون.<br><br>
+                    <strong>ثانياً – مجالات حق الاختلاف:</strong><br>
+                    • <strong>المجال السياسي:</strong> حرية الفكر والرأي والانتماء الحزبي والممارسات السياسية المختلفة (المادة 19 من الإعلان العالمي لحقوق الإنسان).<br>
+                    • <strong>المجال الاجتماعي:</strong> اختلاف اللون والدين والعادات والتقاليد، وهو ما يثري النسيج الاجتماعي ويخلق التنوع الثقافي.<br>
+                    • <strong>المجال الاقتصادي:</strong> التفاوت في الأجور والعمل والإمكانيات المادية، مما يستدعي سياسات تضامنية لضمان العدالة الاجتماعية.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل مدني معمّق:</strong> يُعد حق الاختلاف أحد تجليات <strong>مبدأ التعددية (Pluralisme)</strong> الذي يُشكل ركيزة أساسية في الأنظمة الديمقراطية الحديثة. وقد نصت <strong>المادة 18 من الإعلان العالمي لحقوق الإنسان (1948)</strong> على أن "لكل شخص الحق في حرية الفكر والوجدان والدين"، كما أكد <strong>العهد الدولي الخاص بالحقوق المدنية والسياسية (1966)</strong> في مادته 19 على حق كل إنسان في "اعتناق الآراء دون مضايقة". وفي <strong>الدستور التونسي (2022)</strong>، كُفلت حرية الرأي والتعبير في الفصل 31، مما يُجسد الترسيخ الدستوري لحق الاختلاف كضمانة أساسية ضد الاستبداد الفكري والسياسي.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>🔹 المحور الثاني: أهمية حق الاختلاف للفرد والمجتمع (6 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>أولاً – الأهمية بالنسبة للفرد:</strong><br>
+                    • يضمن المشاركة الفاعلة في مختلف المجالات السياسية والاجتماعية والاقتصادية.<br>
+                    • يضمن التمتع بجميع الحقوق والحريات دون تمييز أو إقصاء.<br>
+                    • يضمن الاستقلالية الفكرية ويجنب الاستبداد بالرأي والانغلاق.<br>
+                    • يجسد قدرة الإنسان على التميز والإبداع والإضافة النوعية للمجتمع.<br><br>
+                    <strong>ثانياً – الأهمية بالنسبة للمجتمع:</strong><br>
+                    • يكرّس التعايش السلمي والتواصل الإيجابي بين مختلف مكونات المجتمع.<br>
+                    • يجسد مبدأ النقاش والحوار البناء ويجنب الانفراد بالرأي والهيمنة الفكرية.<br>
+                    • يضمن التوازن الاجتماعي ويسمح للجميع بالمشاركة في بناء الوطن.<br>
+                    • باحترام حق الاختلاف يتم القضاء على مظاهر التعصب والعنف والتطرف.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل اجتماعي وسياسي معمّق:</strong> تؤكد <strong>دراسات علم الاجتماع السياسي (2022)</strong> أن المجتمعات التي تحترم حق الاختلاف والتعددية تسجل مستويات أعلى من <strong>الاستقرار السياسي والتماسك الاجتماعي</strong>، حيث أظهر <strong>مؤشر السلام العالمي (Global Peace Index, 2023)</strong> أن الدول التي تضمن حريات التعبير والاختلاف تنخفض فيها معدلات العنف السياسي بنسبة 50%. كما أن احترام الاختلاف يعزز <strong>رأس المال الاجتماعي</strong> ويُسهم في خلق <strong>مجتمع مدني حيوي</strong> قادر على مساءلة السلطة واقتراح الحلول البديلة، وهو ما يُعدّ جوهر <strong>الديمقراطية التشاركية</strong> التي تتجاوز مجرد التصويت الدوري إلى المشاركة الفعلية في الشأن العام.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>🔹 المحور الثالث: واجب احترام حق الاختلاف وكيفية ممارسة الفرد له بمسؤولية (5 نقاط):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>أولاً – واجب احترام حق الاختلاف:</strong><br>
+                    • ضرورة احترام هذا الحق لأن عدم احترامه يؤدي إلى الفوضى والعنف والاعتداءات المتبادلة.<br>
+                    • يمكن أن يؤدي انتهاك هذا الحق إلى الحروب الأهلية والصراعات التي تدفع المجتمع إلى التأخر والتراجع.<br>
+                    • على المواطن احترام حق غيره في الاختلاف بإعمال العقل والتخلي عن التعصب.<br>
+                    • يجب أن يسود الاحترام والتفاهم والتسامح بين جميع الأطراف كاستعداد للتعايش رغم الاختلاف.<br><br>
+                    <strong>ثانياً – كيف يمارس الفرد حقه في الاختلاف بمسؤولية؟</strong><br>
+                    • <strong>بالحوار البناء:</strong> اعتماد لغة الحوار والاحترام المتبادل في التعبير عن الرأي المخالف.<br>
+                    • <strong>بنبذ التعصب:</strong> التخلي عن التعصب في الرأي أو الدين أو الانتماء، والاعتراف بحق الآخر في الاختلاف.<br>
+                    • <strong>باحترام القانون:</strong> ممارسة الاختلاف في إطار ما يسمح به الدستور والقوانين النافذة دون تجاوز.<br>
+                    • <strong>بالإقرار بالتنوع:</strong> الاعتراف بأن الاختلاف ثراء وإغناء لا تهديد، وأن الحقيقة تتعدد زواياها.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل أخلاقي وقانوني معمّق:</strong> يُطرح هنا مفهوم <strong>"الاختلاف المسؤول" (Différence Responsable)</strong> الذي يعني أن حرية الاختلاف ليست مطلقة بل تُقيّدها <strong>حقوق الآخرين والنظام العام</strong>. وقد نصت <strong>المادة 29 من الإعلان العالمي لحقوق الإنسان</strong> على أن "الفرد لا يخضع إلا للقيود التي يقررها القانون ضماناً للاعتراف بحقوق الآخرين وحرياتهم واحترامها". وهذا يعني أن الاختلاف المشروع هو الذي يحترم كرامة الإنسان ولا يمس بالوحدة الوطنية أو السلم الاجتماعي. وتُظهر <strong>تقارير منظمة اليونسكو (2022)</strong> حول الحوار بين الثقافات أن المجتمعات التي ترسخ ثقافة الاختلاف المسؤول تحقق <strong>تنمية بشرية</strong> أعلى بنسبة 30% مقارنة بالمجتمعات التي تقمع الاختلاف.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>🔹 الخاتمة (نقطة ضمن التقدير العام):</strong></p>
+                <p class="Tests-Hub-text-success">
+                    يعتبر حق الاختلاف من الحقوق الأساسية التي يتمتع بها الفرد داخل محيطه الاجتماعي والسياسي، وهو حق كفله الدستور ونظمته القوانين النافذة. غير أن هذا الحق يجب أن يُمارس في إطار <strong>المسؤولية الأخلاقية والقانونية</strong>، وبما يضمن احترام حقوق الآخرين وعدم المساس بالوحدة الوطنية. فالاختلاف رحمة حين يُحسن توظيفه، ونقمة حين يتحول إلى تعصب وكراهية. ولذلك فإن ترسيخ ثقافة الاختلاف المسؤول هو <strong>شرط أساسي لبناء مجتمع ديمقراطي تعددي</strong> قادر على مواجهة التحديات وتحقيق التنمية المستدامة.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 خلاصة تركيبية:</strong> يُجمع الفقه الدستوري المعاصر على أن <strong>حق الاختلاف</strong> هو أحد <strong>الحقوق الأساسية الثلاثة</strong> التي تقوم عليها الديمقراطية إلى جانب <strong>حق المشاركة</strong> و<strong>حق المعارضة</strong>. فبدون اختلاف لا توجد تعددية، وبدون تعددية لا توجد ديمقراطية حقيقية. لكن الاختلاف يظل مشروطاً بضابطين اثنين: <strong>احترام الدستور والقانون</strong> من جهة، و<strong>احترام كرامة الإنسان</strong> من جهة أخرى. وهذا ما يُعطي للاختلاف بعده الحضاري والإنساني النبيل.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <!-- القسم الثاني: نموذج الكتابة -->
+            <h3 style="color:var(--accent);">📝 القسم الثاني: نموذج كتابة المقال التحليلي</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>نموذج مقال تحليلي حول حق الاختلاف (20 نقطة):</strong></p>
+                <div class="Tests-Hub-text-model" style="line-height:2; font-style:normal;">
+                    <p><strong>مقدمة:</strong></p>
+                    <p>الاختلاف سنة كونية راسخة وفطرة إنسانية أصيلة، جعلها الله رحمة بعباده الذين لا يطيقون الكبت والقهر، فجاءت الدساتير الحديثة والمواثيق الدولية لتُكرّس هذا الحق كأحد الحقوق الأساسية التي لا يجوز الانتقاص منها. غير أن الاختلاف في الرأي لا ينبغي أن يتحول إلى كراهية وحقد يُلحقان الأضرار الجسيمة بالمجتمع سياسياً واقتصادياً واجتماعياً وثقافياً، بل لا بد أن يكون للاختلاف لغته وآدابه وقيمه الأخلاقية النابعة من حس المسؤولية. فكيف يمارس الفرد حقه في الاختلاف في إطار المسؤولية الأخلاقية والقانونية؟ وما مجالات هذا الحق وأهميته للفرد والمجتمع؟</p>
+                    <p style="margin-top:1.2rem;"><strong>الجوهر:</strong></p>
+                    <p>يُعرف حق الاختلاف لغة بأنه التميز وعدم التطابق، وهو تجسيد طبيعي للتعددية بين البشر في مختلف مجالات الحياة. أما اصطلاحاً فهو الإقرار والاعتراف المتبادل بين الأفراد والجماعات بالاختلاف فيما بينهم، ويعني أيضاً حق الفرد في أن يكون مغايراً للآخرين ومتميزاً عنهم في إطار القانون. وتتعدد مجالات حق الاختلاف لتشمل: المجال السياسي الذي تتجلى مظاهره في تنوع الفكر والانتماء والرأي والممارسات السياسية، وهو ما كفلته المادة 19 من الإعلان العالمي لحقوق الإنسان (1948) التي نصت على حرية الرأي والتعبير. ويمتد إلى المجال الاجتماعي حيث يتجلى الاختلاف في اللون والدين والعادات والتقاليد، مما يُثري النسيج الاجتماعي ويخلق تنوعاً ثقافياً وحضارياً. كما يشمل المجال الاقتصادي حيث تتفاوت الأجور وفرص العمل والإمكانيات المادية بين الأفراد، مما يستدعي سياسات تضامنية تضمن العدالة الاجتماعية وتكافؤ الفرص.</p>
+                    <p>وتتجلى أهمية حق الاختلاف على مستويين متكاملين: فعلى مستوى الفرد، يضمن هذا الحق المشاركة الفاعلة في مختلف المجالات السياسية والاجتماعية والاقتصادية، ويكفل التمتع بجميع الحقوق والحريات دون تمييز، ويُعزز الاستقلالية الفكرية ويجنب الاستبداد بالرأي والانغلاق، كما يُجسد قدرة الإنسان على التميز والإبداع والإضافة النوعية. أما على مستوى المجتمع، فإن احترام حق الاختلاف يُكرّس التعايش السلمي والتواصل الإيجابي بين مختلف مكونات المجتمع الواحد، ويُجسد مبدأ النقاش والحوار البناء ويجنب الانفراد بالرأي والهيمنة الفكرية، ويضمن التوازن الاجتماعي ويسمح للجميع بالمشاركة في بناء الوطن وتطويره. والأهم من ذلك كله أن احترام حق الاختلاف يُسهم في القضاء على مظاهر التعصب والعنف والتطرف التي تُهدد السلم الأهلي والاستقرار الوطني.</p>
+                    <p>غير أن حق الاختلاف لا يمكن أن يُمارس بمعزل عن واجب احترام الآخرين والقوانين النافذة. فضرورة احترام هذا الحق تنبع من كون عدم احترامه يؤدي حتماً إلى الفوضى والعنف والاعتداءات المتبادلة التي تُهدد النسيج الاجتماعي. بل إن انتهاك حق الاختلاف يمكن أن يُفضي إلى حروب أهلية وصراعات مدمرة تدفع المجتمع بأكمله إلى التأخر والتراجع في جميع المجالات. ولذلك فإن المواطن مطالب باحترام حق غيره في الاختلاف بإعمال العقل والتخلي عن التعصب في الرأي أو الدين أو الانتماء. ويجب أن يسود الاحترام والتفاهم والتسامح بين جميع الأطراف كاستعداد أخلاقي ونفسي للتعايش مع الآخرين رغم ما قد يكون بينهم من اختلافات. وهكذا يمارس الفرد حقه في الاختلاف بمسؤولية عبر أربعة مسالك أساسية: أولها اعتماد لغة الحوار البناء والاحترام المتبادل في التعبير عن الرأي المخالف، وثانيها التخلي عن التعصب والاعتراف بحق الآخر في أن يكون مختلفاً، وثالثها ممارسة الاختلاف في إطار ما يسمح به الدستور والقوانين النافذة دون تجاوز لحدود النظام العام، ورابعها الإقرار بأن الاختلاف ثراء وإغناء للحياة العامة لا تهديد لها، وأن الحقيقة قد تتعدد زوايا النظر إليها.</p>
+                    <p style="margin-top:1.2rem;"><strong>خاتمة:</strong></p>
+                    <p>ختاماً، يعتبر حق الاختلاف من الحقوق الأساسية التي يتمتع بها الفرد داخل محيطه الاجتماعي والسياسي، وهو حق كفله الدستور ونظمته القوانين النافذة وأكدته المواثيق الدولية. غير أن هذا الحق يجب أن يُمارس في إطار المسؤولية الأخلاقية والقانونية، وبما يضمن احترام حقوق الآخرين وعدم المساس بالوحدة الوطنية والسلم الاجتماعي. فالاختلاف رحمة حين يُحسن توظيفه وتأطيره بقيم التسامح والحوار، ونقمة حين يتحول إلى تعصب أعمى وكراهية مدمرة. ولذلك فإن ترسيخ ثقافة الاختلاف المسؤول هو شرط أساسي لبناء مجتمع ديمقراطي تعددي منفتح، قادر على مواجهة التحديات الراهنة وتحقيق التنمية البشرية المستدامة.</p>
+                </div>
+                <div class="correction-explanation">
+                    <strong>🔍 ملاحظات منهجية للتقييم:</strong> يُشترط في الإجابة المحترمة أن تشتمل على <strong>مقدمة</strong> تتضمن تمهيداً مناسباً وإشكالية واضحة وتقسيماً محكماً للموضوع، و<strong>جوهراً</strong> منظماً في محاور مترابطة (مفهوم حق الاختلاف ومجالاته، أهميته للفرد والمجتمع، واجب احترامه وكيفية ممارسته بمسؤولية)، و<strong>خاتمة</strong> تُلخص ما ورد وتُقدم خلاصة تركيبية. كما تُراعى <strong>سلامة اللغة العربية</strong> و<strong>جودة التحرير</strong> و<strong>دقة الإحالات المرجعية</strong> (الإعلان العالمي لحقوق الإنسان، الدستور، القوانين الوطنية) و<strong>غزارة المعطيات</strong> المدعمة بالتحليل.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">معايير التنقيط والتقدير (20 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    • <strong>المقدمة (3ن):</strong> 1ن للتمهيد + 1ن لطرح الإشكالية + 1ن لتقسيم الموضوع.<br>
+                    • <strong>المحور الأول – المفهوم والمجالات (5ن):</strong> 2ن للتعريف الشامل + 3ن للمجالات الثلاثة (1ن لكل مجال).<br>
+                    • <strong>المحور الثاني – الأهمية (5ن):</strong> 2.5ن لأهمية الحق للفرد + 2.5ن لأهميته للمجتمع (مع شرح وتحليل).<br>
+                    • <strong>المحور الثالث – واجب الاحترام وكيفية الممارسة (4ن):</strong> 2ن لواجب الاحترام + 2ن لكيفية ممارسة الفرد للحق بمسؤولية.<br>
+                    • <strong>الخاتمة (1ن):</strong> تلخيص وتركيب للموضوع مع إبداء رأي شخصي مدعم.<br>
+                    • <strong>سلامة اللغة والتحرير (2ن):</strong> جودة التحرير وسلامة اللغة العربية ووضوح الخط.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    civicEducationTest: {
+                        title: "فرض تأليفي عدد 02 - تربية مدنية - أولى ثانوي",
+                        subtitle: "حق الاختلاف",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    civicEducationTest: {
+                        title: "Devoir de Synthèse N°2 - Éducation Civique - 1ère",
+                        subtitle: "Le Droit à la Différence",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    civicEducationTest: {
+                        title: "Synthesis Test N°2 - Civic Education - 1st Year",
+                        subtitle: "The Right to Differ",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' :
+                        'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.civicEducationTest.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.civicEducationTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.civicEducationTest?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض مراقبة عدد 3 - جغرافيا - 8 أساسي (2023-2024)</title>
+
+    <meta name="theme-color" content="#2D1B5C">
+    <meta name="description" content="فرض مراقبة عدد 3 إعدادي نموذجي في الجغرافيا - السنة الثامنة أساسي - 2023-2024 - السياسة السكانية في الصين">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض جغرافيا 8 (مراقبة 3)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #2D1B5C;
+            --secondary: #5C3A9E;
+            --accent: #E8A440;
+            --accent2: #C56A2E;
+            --light-bg: #F7F6F9;
+            --light-section: #FFFFFF;
+            --text-light: #1A1B1E;
+            --text-light-secondary: #2B2A35;
+            --border-light: #C8C5D2;
+            --shadow-light: rgba(26, 27, 30, 0.06);
+            --header-light: linear-gradient(to left, #1A0F3C, #2D1B5C, #5C3A9E);
+            --canvas-bg: #F7F6F9;
+            --canvas-stroke: #2D1B5C;
+            --canvas-text: #1A1B1E;
+            --canvas-grid: #BBB8C8;
+            --canvas-accent: #E8A440;
+            --canvas-fill: rgba(232, 164, 64, 0.06);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #B8A8E0;
+            --secondary: #8B7BC0;
+            --accent: #F0C060;
+            --accent2: #D89050;
+            --light-bg: #0E0B18;
+            --light-section: #151122;
+            --text-light: #E8E6F0;
+            --text-light-secondary: #B8B5C8;
+            --border-light: #2B2835;
+            --shadow-light: rgba(0, 0, 0, 0.38);
+            --header-light: linear-gradient(to left, #060312, #0E0B18, #151122);
+            --canvas-bg: #0E0B18;
+            --canvas-stroke: #B8A8E0;
+            --canvas-text: #E8E6F0;
+            --canvas-grid: #2B2835;
+            --canvas-accent: #F0C060;
+            --canvas-fill: rgba(240, 192, 96, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F7F6F9 0%, #EDEAF3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0E0B18 0%, #060312 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #E8E6F0;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(232, 230, 240, 0.10);
+            color: #E8E6F0;
+            border: 1px solid rgba(232, 230, 240, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(232, 230, 240, 0.20);
+            border-color: rgba(232, 230, 240, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F7F6F9;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1A1B1E;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #EDEAF3;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #151122;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #E8E6F0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2B2835;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #1A0F3C, #2D1B5C, #5C3A9E);
+            color: #E8E6F0;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #060312, #0E0B18, #151122);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F7F6F9;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #0E0B18;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1A1B1E;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #C8892E;
+            color: #E8E6F0;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #BBB8C8;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1A1B1E;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 164, 64, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #2B2835;
+            background: #0E0B18;
+            color: #E8E6F0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 192, 96, 0.14);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #BBB8C8;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1A1B1E;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 164, 64, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2B2835;
+            background: #0E0B18;
+            color: #E8E6F0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 192, 96, 0.14);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.92rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #C8C5D2;
+            padding: 10px 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #2D1B5C;
+            color: #E8E6F0;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #151122;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #2B2835;
+        }
+        .Tests-Hub-table tbody tr:nth-child(even) td {
+            background: rgba(45, 27, 92, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tbody tr:nth-child(even) td {
+            background: rgba(232, 230, 240, 0.02);
+        }
+        .Tests-Hub-table td.highlight-cell {
+            background: rgba(232, 164, 64, 0.14);
+            font-weight: 700;
+            color: #2D1B5C;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td.highlight-cell {
+            background: rgba(240, 192, 96, 0.18);
+            color: #F0C060;
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 130px;
+            border: 1px solid #BBB8C8;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 85%;
+            background: #FFF;
+            color: #1A1B1E;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 164, 64, 0.10);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #2B2835;
+            background: #0E0B18;
+            color: #E8E6F0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(240, 192, 96, 0.14);
+        }
+
+        .Tests-Hub-document-card {
+            background: linear-gradient(135deg, #F7F6F9 0%, #EDEAF3 100%);
+            border-right: 5px solid var(--secondary);
+            padding: 1.5rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-document-card {
+            background: linear-gradient(135deg, #151122 0%, #0E0B18 100%);
+            border-right-color: #8B7BC0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-document-source {
+            display: block;
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-document-source {
+            color: #8B7BC0;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #2D1B5C, #5C3A9E, var(--accent));
+            color: #E8E6F0;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F7F6F9 0%, #EDEAF3 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.14);
+            border: 2px solid rgba(232, 164, 64, 0.24);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #151122, #0E0B18);
+            border-color: rgba(240, 192, 96, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(247, 246, 249, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(14, 11, 24, 0.7);
+            border-right-color: #F0C060;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #2D1B5C;
+            background: rgba(232, 164, 64, 0.08);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #F0C060;
+            background: rgba(240, 192, 96, 0.14);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(45, 27, 92, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2B2A35;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(240, 192, 96, 0.07);
+            color: #E8E6F0;
+            border-right-color: #D89050;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #2D1B5C;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #B8A8E0;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(45, 27, 92, 0.05), rgba(232, 164, 64, 0.07));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #2D1B5C, #5C3A9E);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #1A0F3C, #2D1B5C);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #E8A440, #F0C060);
+            color: #1A1B1E;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.20);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #1A0F3C, #2D1B5C, #5C3A9E);
+            color: #E8E6F0;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #060312, #0E0B18, #151122);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #F0C060;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #F0C060;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #F0C060;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        .Tests-Hub-small-note {
+            text-align: center;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light-secondary);
+            transition: color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+            .Tests-Hub-table-input {
+                min-width: 100px;
+                font-size: 12px;
+            }
+            .Tests-Hub-table {
+                font-size: 0.78rem;
+            }
+            .Tests-Hub-table th,
+            .Tests-Hub-table td {
+                padding: 7px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Tests-Hub-test-section {
+                padding: 1rem;
+            }
+            .Tests-Hub-header-container {
+                padding: 1rem;
+            }
+            .Tests-Hub-test-header {
+                padding: 1.2rem;
+            }
+            .Tests-Hub-test-header h1 {
+                font-size: 1.3rem;
+            }
+            .Tests-Hub-download-button {
+                height: 70px;
+                min-width: 70px;
+                font-size: 0.85rem;
+            }
+            .Tests-Hub-download-button span:first-child {
+                font-size: 1.5rem;
+            }
+            .Tests-Hub-table {
+                font-size: 0.68rem;
+            }
+            .Tests-Hub-table th,
+            .Tests-Hub-table td {
+                padding: 5px 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.geographyTest3.title">فرض مراقبة عدد 3 - جغرافيا - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.geographyTest3.subtitle">إعدادي نموذجي | السياسة السكانية في الصين | 2023-2024</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.geographyTest3.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض المراقبة الثالث في الجغرافيا</h1>
+            <p>إعدادي نموذجي | القسم: الثامنة أساسي | الموضوع: السياسة السكانية في الصين</p>
+            <p>السنة الدراسية: 2023-2024 | المدة: 30 دقيقة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح، معتمداً على مكتسباتك ومعطيات الوثائق.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 12 نقطة | الصياغة والتنظيم: نقطتان | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- ═══════════ SECTION 1 ═══════════ -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – السياسة السكانية في الصين <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <h3>أكمل الجدول التالي: مراحل سياسة تحديد النسل في الصين <span class="Tests-Hub-points-badge">6 نقاط</span></h3>
+            <div style="overflow-x:auto;">
+                <table class="Tests-Hub-table">
+                    <thead>
+                        <tr>
+                            <th style="width:50%;">المرحلة</th>
+                            <th style="width:50%;">عدد الأطفال المسموح به</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>المرحلة الأولى</strong><br><small>(سبعينات القرن العشرين – 1979)</small></td>
+                            <td><input type="text" class="Tests-Hub-table-input" placeholder="عدد الأطفال..."></td>
+                        </tr>
+                        <tr>
+                            <td><strong>المرحلة الثانية</strong><br><small>(1979 – 2015)</small></td>
+                            <td><input type="text" class="Tests-Hub-table-input" placeholder="عدد الأطفال..."></td>
+                        </tr>
+                        <tr>
+                            <td><strong>المرحلة الثالثة</strong><br><small>(2016 – اليوم)</small></td>
+                            <td><input type="text" class="Tests-Hub-table-input" placeholder="عدد الأطفال..."></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="Tests-Hub-small-note"><em>تنقيط القسم الأول: 2 نقطتان لكل مرحلة صحيحة | المجموع: 6 نقاط</em></p>
+        </div>
+
+        <!-- ═══════════ SECTION 2 ═══════════ -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – شرح وثيقة: تطور المؤشرات الديمغرافية بالصين <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+
+            <h3>📄 وثيقة: تطور المؤشرات الديمغرافية بالصين من 1970 إلى 2022</h3>
+            <div style="overflow-x:auto;">
+                <table class="Tests-Hub-table">
+                    <thead>
+                        <tr>
+                            <th>السنوات</th>
+                            <th>عدد السكان<br>(مليون)</th>
+                            <th>الولادات<br>(بالألف ‰)</th>
+                            <th>الوفيات<br>(بالألف ‰)</th>
+                            <th>نسبة النمو<br>الطبيعي %</th>
+                            <th>مؤشر الخصوبة<br>(طفل/امرأة)</th>
+                            <th>السكان أقل<br>من 20 سنة %</th>
+                            <th>السكان بين<br>20 و64 سنة %</th>
+                            <th>نسبة السكان<br>فوق 65 سنة %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1970</strong></td>
+                            <td>826</td>
+                            <td>33</td>
+                            <td>15</td>
+                            <td>1.8</td>
+                            <td class="highlight-cell">5.6</td>
+                            <td>....</td>
+                            <td>ـ</td>
+                            <td>R</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2004</strong></td>
+                            <td>1300</td>
+                            <td>12</td>
+                            <td>6</td>
+                            <td>0.6</td>
+                            <td class="highlight-cell">1.7</td>
+                            <td>25</td>
+                            <td>68</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2022</strong></td>
+                            <td>1416</td>
+                            <td>9</td>
+                            <td>7</td>
+                            <td>0.2</td>
+                            <td class="highlight-cell">1.2</td>
+                            <td>20</td>
+                            <td>62</td>
+                            <td class="highlight-cell">18</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="Tests-Hub-document-source" style="text-align:right;">المصدر: إحصاءات منظمة الأمم المتحدة 2022</p>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1/</span> <strong>قدّم الوثيقة.</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:95px;" placeholder="قدّم الوثيقة (الطبيعة، المصدر، الموضوع، الإطار الجغرافي)..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2/</span> <strong>كيف تطور عدد السكان في الصين من خلال الوثيقة؟</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:105px;" placeholder="حلّل تطور عدد السكان مدعماً إجابتك بأرقام من الجدول..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3/</span> <strong>استخرج من الوثيقة أبرز ملامح السياسة السكانية الصينية ونتائجها.</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:105px;" placeholder="استخرج أبرز الملامح والنتائج مدعماً إجابتك بأرقام من الجدول..."></textarea>
+            </div>
+
+            <p class="Tests-Hub-small-note"><em>تنقيط القسم الثاني: تقديم الوثيقة (4ن) – تحليل تطور السكان (4ن) – استخراج ملامح السياسة السكانية (4ن) | الصياغة العامة: نقطتان إضافيتان</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- ═══════════ DETAILED CORRECTION ═══════════ -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل جغرافي معمّق للسياسة السكانية الصينية</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح مراحل سياسة تحديد النسل (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>إكمال الجدول – الإجابات الصحيحة:</strong> <span class="Tests-Hub-points-badge">6 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>• المرحلة الأولى (سبعينات القرن العشرين – 1979):</strong> <strong>طفلان</strong> — طبقت الصين سياسة "晚、稀、少" (زواج متأخر – تباعد أطول – عدد أقل) التي شجعت على إنجاب طفلين مع تباعد زمني كافٍ. انخفض مؤشر الخصوبة من 5.6 (1970) إلى حوالي 2.7 مع نهاية هذه المرحلة.<br>
+                    <strong>• المرحلة الثانية (1979 – 2015):</strong> <strong>طفل واحد</strong> — سياسة الطفل الواحد الشهيرة التي أعلنها دنغ شياو بينغ سنة 1979 بهدف كبح الانفجار السكاني وربطه بخطط التنمية الاقتصادية. طبقت بصرامة في المدن مع بعض الاستثناءات في الأرياف (إذا كان المولود الأول بنتاً).<br>
+                    <strong>• المرحلة الثالثة (2016 – اليوم):</strong> <strong>طفلان ثم ثلاثة</strong> — سنة 2016 تم السماح بطفلين لجميع الأسر، ثم في ماي 2021 تم رفع العدد إلى ثلاثة أطفال بسبب مخاوف شيخوخة السكان وتقلص اليد العاملة.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> تمثل هذه المراحل الثلاث أضخم تجربة في التاريخ البشري للتحكم الرسمي في النمو الديمغرافي. فالصين التي كانت تمثل "خطر الأصفر" الديمغرافي في نظر العالم، تحولت في ظرف 50 سنة من أعلى معدلات الخصوبة في العالم (5.6 طفل/امرأة) إلى أدنى المعدلات (1.2 طفل/امرأة)، وهو انهيار ديمغرافي لم يسبق له مثيل في التاريخ. وتكمن المفارقة الكبرى في أن السياسة التي صُممت لتجنب كارثة الانفجار السكاني، أنتجت كارثة معاكسة تتمثل في الشيخوخة المتسارعة وتقلص قاعدة الهرم السكاني، مما دفع الدولة إلى التراجع عن سياستها والانتقال من تقييد النسل إلى التشجيع عليه.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – شرح الوثيقة (12 نقطة)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ تقديم الوثيقة – نموذج الإجابة:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الطبيعة:</strong> جدول إحصائي (وثيقة ديمغرافية – سكانية) يعرض تطور المؤشرات الديمغرافية على مدى 52 سنة (1970 – 2022).<br>
+                    <strong>المصدر:</strong> إحصاءات منظمة الأمم المتحدة سنة 2022، وهي هيئة دولية موثوقة تصدر تقارير دورية حول السكان والتنمية في العالم.<br>
+                    <strong>الموضوع:</strong> تطور المؤشرات الديمغرافية الأساسية في الصين (عدد السكان، الولادات، الوفيات، النمو الطبيعي، الخصوبة، والبنية العمرية) عبر ثلاث محطات زمنية تعكس مراحل التحول الديمغرافي العميق: 1970 (ما قبل سياسة الطفل الواحد)، 2004 (ذروة السياسة)، و2022 (ما بعد التراجع عنها).<br>
+                    <strong>الإطار الجغرافي:</strong> الصين، أكبر دولة في العالم من حيث عدد السكان (1.416 مليار نسمة سنة 2022)، والتي خاضت أضخم تجربة للتحكم الرسمي في النمو السكاني عرفها التاريخ البشري.
+                </p>
+                <div class="correction-explanation">
+                    <strong>✔ معايير التنقيط:</strong> نقطة لتحديد الطبيعة، نقطة لذكر المصدر، نقطة لصياغة الموضوع بدقة، نقطة لتحديد الإطار الجغرافي. تُقبل كل صياغة دقيقة تستوفي عناصر التقديم المنهجي.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ تطور عدد السكان في الصين – تحليل:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>• نمو سكاني هائل بين 1970 و2004:</strong> قفز عدد السكان من <strong>826 مليون</strong> نسمة سنة 1970 إلى <strong>1300 مليون</strong> سنة 2004، أي بزيادة 474 مليون نسمة (+57.4%) خلال 34 سنة. يعكس هذا النمو السريع استمرار زخم الخصوبة المرتفع رغم بداية سياسة تحديد النسل.<br>
+                    <strong>• تباطؤ واضح بين 2004 و2022:</strong> ارتفع العدد إلى <strong>1416 مليون</strong> سنة 2022، بزيادة 116 مليون فقط (+8.9%) خلال 18 سنة. مما يدل على نجاح سياسة الطفل الواحد في كبح النمو.<br>
+                    <strong>• انهيار النمو الطبيعي:</strong> تراجعت نسبة النمو الطبيعي من <strong>1.8%</strong> (1970) إلى <strong>0.6%</strong> (2004) ثم إلى <strong>0.2%</strong> فقط سنة 2022، وهو معدل يقترب من النمو الصفري وينذر بانكماش سكاني مستقبلي.<br>
+                    <strong>• تراجع عدد الولادات:</strong> انخفض معدل الولادات من <strong>33‰</strong> إلى <strong>12‰</strong> ثم <strong>9‰</strong>، بينما استقرت الوفيات نسبياً (15‰ → 6‰ → 7‰)، مما أدى إلى تقلص الفارق الطبيعي بينهما.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق:</strong> يُظهر الجدول "انتقالاً ديمغرافياً قسرياً" فرضته الدولة وليس نتاج تطور طبيعي كما حدث في أوروبا. ففي أوروبا الغربية، استغرق الانتقال الديمغرافي (من خصوبة ووفيات مرتفعتين إلى خصوبة ووفيات منخفضتين) حوالي 150 سنة (1800-1950)، بينما أنجزته الصين في أقل من 40 سنة بفعل تدخل الدولة المباشر. غير أن هذا "الانتقال المعجّل" أنتج تشوهات في البنية العمرية ستستغرق عقوداً لمعالجتها، أبرزها اختلال التوازن بين الذكور والإناث (بسبب تفضيل المولود الذكر في ظل سياسة الطفل الواحد) والتسارع غير المسبوق في شيخوخة المجتمع.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3/ أبرز ملامح السياسة السكانية الصينية ونتائجها من الوثيقة:</strong> <span class="Tests-Hub-points-badge">4 نقاط</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>أولاً: انهيار مؤشر الخصوبة – أبرز ملمح للسياسة:</strong><br>
+                    • انخفض مؤشر الخصوبة انهياراً دراماتيكياً من <strong>5.6 طفل/امرأة</strong> (1970) إلى <strong>1.7</strong> (2004) ثم إلى <strong>1.2</strong> فقط (2022)، وهو أدنى بكثير من عتبة تعويض الأجيال (2.1 طفل/امرأة). هذا الانخفاض هو النتيجة المباشرة لسياسة الطفل الواحد الصارمة.<br><br>
+                    <strong>ثانياً: شيخوخة السكان – النتيجة الأكثر إثارة للقلق:</strong><br>
+                    • قفزت نسبة السكان فوق 65 سنة من قيمة متدنية جداً (المشار إليها بـ R في 1970، حوالي 4-5%) إلى <strong>7%</strong> (2004) ثم إلى <strong>18%</strong> (2022)، مما يعني أن حوالي خمس السكان تجاوزوا سن الشيخوخة. هذا تحول من مجتمع فتيّ إلى مجتمع هرم في ظرف جيلين فقط.<br><br>
+                    <strong>ثالثاً: تقلص قاعدة الهرم السكاني:</strong><br>
+                    • تراجعت نسبة السكان أقل من 20 سنة من حوالي 45-48% تقديراً سنة 1970 (البيان منقوص في الجدول) إلى <strong>25%</strong> (2004) ثم إلى <strong>20%</strong> فقط (2022)، مما يعني تقلصاً حاداً في فئة الشباب التي تمثل مستقبل القوة العاملة.<br><br>
+                    <strong>رابعاً: انكماش الفئة النشيطة:</strong><br>
+                    • رغم ارتفاع نسبة السكان بين 20 و64 سنة إلى 68% سنة 2004 (مرحلة "العائد الديمغرافي")، إلا أنها تراجعت إلى <strong>62%</strong> سنة 2022، مما ينذر بنقص مستقبلي في اليد العاملة وارتفاع نسبة الإعالة.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> تكشف الوثيقة عن "المفارقة الديمغرافية الصينية" بامتياز: فالسياسة التي أنقذت الصين من انفجار سكاني كان سيعيق تنميتها (حيث وفّرت حسب بعض التقديرات حوالي 400 مليون ولادة إضافية) هي نفسها التي تهدد اليوم مستقبلها الاقتصادي. فالصين تواجه الآن خطر "الشيخوخة قبل الثراء" (Growing old before growing rich)، حيث تدخل مرحلة الشيخوخة بينما لا يزال متوسط دخل الفرد أدنى بكثير من الدول الغربية عندما واجهت نفس الظاهرة. وقد حاولت الدولة معالجة الوضع عبر السماح بطفلين (2016) ثم ثلاثة (2021)، لكن النتائج لا تزال محدودة بسبب تغير العقليات وارتفاع تكاليف تربية الأطفال في المدن الصينية الكبرى. ويضاف إلى ذلك اختلال التوازن بين الجنسين (حوالي 30 مليون رجل "فائض" لا يجدون زوجات) الناتج عن الإجهاض الانتقائي للإناث خلال عقود سياسة الطفل الواحد. وهكذا، فإن الصين تدفع اليوم ثمن "نجاحها" الديمغرافي السابق، في درس تاريخي عميق حول المخاطر غير المقصودة للهندسة الاجتماعية الشاملة.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+            <h3 style="color:var(--accent);">ملاحظات عامة حول التقييم</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    <strong>📌 توزيع النقاط (20 نقطة):</strong> القسم الأول 6 ن، القسم الثاني 12 ن، الصياغة والتنظيم 2 ن.<br>
+                    <strong>🔑 تذكير:</strong> تُثمّن الإجابات التي توظف المفاهيم الجغرافية والديمغرافية بدقة (الانتقال الديمغرافي، الخصوبة، النمو الطبيعي، البنية العمرية، الشيخوخة، عتبة تعويض الأجيال) وتستخرج المعطيات من الوثيقة بأمانة علمية. كما يُراعى التحليل النقدي للعلاقة بين السياسة السكانية ونتائجها غير المقصودة.
+                </div>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    geographyTest3: {
+                        title: "فرض مراقبة عدد 3 - جغرافيا - 8 أساسي",
+                        subtitle: "إعدادي نموذجي | السياسة السكانية في الصين | 2023-2024",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    geographyTest3: {
+                        title: "Devoir de Contrôle N°3 - Géographie - 8ème",
+                        subtitle: "Modèle | Politique démographique en Chine | 2023-2024",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    geographyTest3: {
+                        title: "Control Test N°3 - Geography - 8th Grade",
+                        subtitle: "Model | China's Population Policy | 2023-2024",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest3.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest3.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest3?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

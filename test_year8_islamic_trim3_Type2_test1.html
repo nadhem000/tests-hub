@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 3 - تربية إسلامية - 8 أساسي (2009-2010)</title>
+
+    <meta name="theme-color" content="#1B4332">
+    <meta name="description" content="فرض تأليفي عدد 3 في التربية الإسلامية - السنة الثامنة أساسي - 2009-2010 - الأستاذ لطفي الدبابي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - فرض ت.إسلامية 8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #1B4332;
+            --secondary: #2D6A4F;
+            --accent: #C5894A;
+            --accent2: #A66C38;
+            --light-bg: #F7F9F6;
+            --light-section: #FFFFFF;
+            --text-light: #1A1C1A;
+            --text-light-secondary: #2D332E;
+            --border-light: #C5D1C7;
+            --shadow-light: rgba(27, 67, 50, 0.06);
+            --header-light: linear-gradient(to left, #0D261A, #1B4332, #2D6A4F);
+            --quote-bg: rgba(27, 67, 50, 0.04);
+            --quote-border: #2D6A4F;
+            --quote-color: #2D332E;
+            --puzzle-box-bg: #fff;
+            --puzzle-box-border: #B5C7BA;
+            --highlight-bg: #FDE9C9;
+            --highlight-border: #C5894A;
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #95C4A8;
+            --secondary: #70A88B;
+            --accent: #E0A96D;
+            --accent2: #C5894A;
+            --light-bg: #111A14;
+            --light-section: #1A2620;
+            --text-light: #E8EDE9;
+            --text-light-secondary: #C5D1C7;
+            --border-light: #2D3D30;
+            --shadow-light: rgba(0, 0, 0, 0.35);
+            --header-light: linear-gradient(to left, #060E0A, #111A14, #1A2620);
+            --quote-bg: rgba(149, 196, 168, 0.06);
+            --quote-border: #70A88B;
+            --quote-color: #C5D1C7;
+            --puzzle-box-bg: #111A14;
+            --puzzle-box-border: #2D3D30;
+            --highlight-bg: #3E2B18;
+            --highlight-border: #E0A96D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F7F9F6 0%, #EDF2EE 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #111A14 0%, #0A100C 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #E8EDE9;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(232, 237, 233, 0.10);
+            color: #E8EDE9;
+            border: 1px solid rgba(232, 237, 233, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(232, 237, 233, 0.20);
+            border-color: rgba(232, 237, 233, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F7F9F6;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1A1C1A;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-language-option:hover {
+            background: #EDF2EE;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1A2620;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #E8EDE9;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2D3D30;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #E8EDE9;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F7F9F6;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #111A14;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1A1C1A;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #8B5E2F;
+            color: #E8EDE9;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid var(--puzzle-box-border);
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: var(--puzzle-box-bg);
+            color: var(--text-light);
+            margin: 3px 5px;
+            text-align: right;
+        }
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(197, 137, 74, 0.12);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid var(--puzzle-box-border);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: var(--puzzle-box-bg);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            line-height: 1.6;
+            text-align: right;
+        }
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(197, 137, 74, 0.12);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid var(--border-light);
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .Tests-Hub-table th {
+            background: #1B4332;
+            color: #E8EDE9;
+            font-weight: 700;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #1A2620;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #2D3D30;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(27, 67, 50, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(232, 237, 233, 0.02);
+        }
+
+        /* Puzzle specific */
+        .puzzle-input {
+            width: 38px;
+            height: 38px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid var(--puzzle-box-border);
+            border-radius: 6px;
+            background: var(--puzzle-box-bg);
+            color: var(--text-light);
+            margin: 0 2px;
+            padding: 0;
+            line-height: 38px;
+        }
+        .puzzle-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(197, 137, 74, 0.2);
+        }
+        .puzzle-highlight {
+            background: var(--highlight-bg) !important;
+            border-color: var(--highlight-border) !important;
+            box-shadow: 0 0 6px rgba(197, 137, 74, 0.4);
+        }
+        .puzzle-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+        .puzzle-label {
+            font-weight: 700;
+            margin-left: 10px;
+            min-width: 35px;
+            color: var(--accent);
+        }
+        .puzzle-clue-text {
+            min-width: 160px;
+        }
+        .extraction-grid {
+            display: flex;
+            gap: 8px;
+            margin: 1.2rem 0;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .extraction-box {
+            width: 42px;
+            height: 42px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: rgba(197, 137, 74, 0.06);
+            color: var(--accent);
+        }
+        .extraction-box input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: transparent;
+            color: var(--text-light);
+            outline: none;
+        }
+
+        .Tests-Hub-hadith-box {
+            background: linear-gradient(to right, rgba(27, 67, 50, 0.06), rgba(197, 137, 74, 0.06));
+            border: 2px dashed rgba(27, 67, 50, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2;
+            transition: all 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-hadith-box {
+            background: linear-gradient(to right, rgba(149, 196, 168, 0.08), rgba(224, 169, 109, 0.08));
+            border-color: rgba(149, 196, 168, 0.3);
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 100px;
+            border: 1px solid var(--puzzle-box-border);
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 90%;
+            background: var(--puzzle-box-bg);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #1B4332, #2D6A4F, var(--accent));
+            color: #1A1C1A;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F7F9F6 0%, #EDF2EE 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(197, 137, 74, 0.22);
+            transition: all 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #1A2620, #111A14);
+            border-color: rgba(224, 169, 109, 0.28);
+        }
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .Tests-Hub-correction-answer {
+            background: rgba(247, 249, 246, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(17, 26, 20, 0.7);
+            border-right-color: #E0A96D;
+        }
+        .Tests-Hub-correction-answer strong {
+            color: #1B4332;
+            background: rgba(197, 137, 74, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #E0A96D;
+            background: rgba(224, 169, 109, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(27, 67, 50, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #2D332E;
+        }
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(224, 169, 109, 0.08);
+            color: #E8EDE9;
+            border-right-color: #C5894A;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #1B4332;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #95C4A8;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1A1C1A;
+            background: rgba(197, 137, 74, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #E8EDE9;
+            background: rgba(224, 169, 109, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: var(--quote-bg);
+            border-right: 4px solid var(--quote-border);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--quote-color);
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(27, 67, 50, 0.05), rgba(197, 137, 74, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #6B3A1F, #8B4A2F);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #1B4332, #2D6A4F);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #C5894A, #E0A96D);
+            color: #1A1C1A;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0D261A, #1B4332, #2D6A4F);
+            color: #E8EDE9;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #060E0A, #111A14, #1A2620);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #E0A96D;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #E0A96D;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #E0A96D;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        .Tests-Hub-organized-list {
+            margin: 1rem 0;
+            padding-right: 1.5rem;
+        }
+        .Tests-Hub-organized-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-right: 1.2rem;
+        }
+        .Tests-Hub-organized-list li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-organized-list li:before {
+            color: #E0A96D;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .puzzle-input {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+            .extraction-box {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.islamicTest.title">فرض تأليفي عدد 3 - تربية إسلامية - 8 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.islamicTest.subtitle">2009-2010 | الأستاذ لطفي الدبابي</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.islamicTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الاختبار التأليفي الثالث في التربية الإسلامية</h1>
+            <p>المؤسسة: المدرسة الإعدادية المنارة | المستوى: الثامنة أساسي</p>
+            <p>السنة الدراسية: 2009-2010 | الأستاذ: لطفي الدبابي</p>
+            <p style="font-size:0.9rem;opacity:0.85;">العلامة: 20 نقطة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul class="Tests-Hub-organized-list">
+                <li>اقرأ السند والأسئلة بعناية تامة قبل الإجابة</li>
+                <li>أجب عن جميع الأسئلة الموضوعية والإنشائية بالترتيب</li>
+                <li>يُؤخذ بعين الاعتبار جودة التعبير وصحة اللغة العربية</li>
+                <li>اكتب بخط واضح ومرتب مع مراعاة قواعد اللغة والإملاء</li>
+                <li>انتبه إلى توزيع النقاط بين مختلف الأسئلة</li>
+                <li>الأسئلة الموضوعية: 8 نقاط | السؤال الإنشائي: 12 نقطة</li>
+            </ul>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>📜 السند</h2>
+            <div class="Tests-Hub-quote-block">
+                <p>عن عائشة رضي الله عنها أنّ النبيّ صلّى الله عليه وسلّم قال لها:</p>
+                <p><strong>«إنّ من أُعطيَ حظَّهُ من الرّفق فقد أُعطيَ حظَّهُ من خير الدّنيا والآخرة. وصلةُ الرّحم، وحسنُ الخلق، وحسنُ الجوار؛ يُعمِّران الدّيارَ ويزيدان في الأعمار».</strong></p>
+                <p style="margin-top:0.8rem;font-size:0.85rem;"><strong>المصدر:</strong> رواه أحمد في مسنده، وصححه الألباني في صحيح الترغيب والترهيب.</p>
+            </div>
+            <p style="margin-top:1rem;font-weight:600;color:var(--accent);">استعن بالسند للإجابة عن الأسئلة التالية:</p>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>الأسئلة الموضوعية <span class="Tests-Hub-points-badge">8 نقاط</span></h2>
+
+            <!-- السؤال 1: كلمات متقاطعة جديدة مع استخراج "بر الوالدين" -->
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> <strong>املأ الخانات ثم استخرج الكلمة المخفيّة.</strong> <span class="Tests-Hub-points-badge">3.5 نقطة</span></p>
+                <p style="margin-bottom:16px;">🟨 <em>المربع الملوّن في كلّ سطر هو الحرف الذي ستُضيفه إلى الكلمة المخفيّة.</em></p>
+
+                <div style="margin:1.2rem 0;">
+                    <!-- صف 1 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(أ)</span>
+                        <span class="puzzle-clue-text">جمع <em>بارٍّ</em> نكرة (5 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 2 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(ب)</span>
+                        <span class="puzzle-clue-text">من لم يكن عبداً مملوكاً نكرة (3 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 3 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(ت)</span>
+                        <span class="puzzle-clue-text">مدخل البيت نكرة (3 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 4 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(ث)</span>
+                        <span class="puzzle-clue-text">مكان الاجتماع نكرة (5 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 5 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(ج)</span>
+                        <span class="puzzle-clue-text">نبيّ مرسل نكرة (4 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 6 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(ح)</span>
+                        <span class="puzzle-clue-text">أداة فتح الأبواب نكرة (5 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 7 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(خ)</span>
+                        <span class="puzzle-clue-text">العالي المتكبّر نكرة (6 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 8 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(د)</span>
+                        <span class="puzzle-clue-text">الخلق الحسن نكرة (3 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 9 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(ذ)</span>
+                        <span class="puzzle-clue-text">ضد الشكّ نكرة (4 حروف)</span>
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                    </div>
+                    <!-- صف 10 -->
+                    <div class="puzzle-row">
+                        <span class="puzzle-label">(ر)</span>
+                        <span class="puzzle-clue-text">قيمة الشيء المباع نكرة (3 حروف)</span>
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input" maxlength="1" type="text">
+                        <input class="puzzle-input puzzle-highlight" maxlength="1" type="text">
+                    </div>
+                </div>
+
+                <p><strong>الحروف المستخرجة (بالترتيب):</strong></p>
+                <div class="extraction-grid">
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                    <div class="extraction-box"><input maxlength="1" type="text"></div>
+                </div>
+
+                <p style="margin-top:14px;"><strong>الكلمة المخفيّة:</strong> (أمر عظيم أوصى به الله بعد توحيده)</p>
+                <p style="text-align:center;margin-top:8px;">
+                    <textarea class="Tests-Hub-answer-input" style="width:220px;font-size:1.1rem;text-align:center;" placeholder="..."></textarea>
+                </p>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">2)</span> <strong>تذكّرت بالمناسبة حديثاً للنبيّ صلّى الله عليه وسلّم أخرجه البخاري في صحيحه. اكتبه واحرص على شكله.</strong> <span class="Tests-Hub-points-badge">2 نقطتان</span></p>
+                <div class="Tests-Hub-hadith-box">
+                    <p>قال رسول الله صلّى الله عليه وسلّم:</p>
+                    <p style="font-size:1.2rem;font-weight:600;">﴿مَنْ <textarea class="Tests-Hub-answer-input" style="width:85%;min-width:280px;" placeholder="أكمل الحديث الشريف..."></textarea>﴾</p>
+                </div>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:100px;" placeholder="اكتب الحديث كاملاً مع ضبطه بالشكل..."></textarea>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3)</span> <strong>صنّف الأعمال التالية بحسب أوصافها.</strong> <span class="Tests-Hub-points-badge">2.5 نقطة</span></p>
+                <p style="margin-bottom:12px;">الأوصاف: <strong>مقصّر</strong> – <strong>مغالٍ</strong> – <strong>ميسِّر</strong></p>
+                <table class="Tests-Hub-table" style="width:100%;">
+                    <thead>
+                        <tr><th style="width:55%;">العمل</th><th style="width:45%;">الوصف المناسب</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>شابّ يترك عمله ويعكف على الصلاة والذكر</td><td><textarea class="Tests-Hub-table-input" style="min-height:38px;" placeholder="الوصف..."></textarea></td></tr>
+                        <tr><td>مريض بمرض مزمن لا يصوم ويؤدّي الفدية ولا يترك المناسبة تفوته لمساعدة الناس</td><td><textarea class="Tests-Hub-table-input" style="min-height:38px;" placeholder="الوصف..."></textarea></td></tr>
+                        <tr><td>تلميذ يقضي معظم أوقاته في اللعب تاركاً واجباته المدرسية والدينية</td><td><textarea class="Tests-Hub-table-input" style="min-height:38px;" placeholder="الوصف..."></textarea></td></tr>
+                        <tr><td>ربّ أسرة يجاهد في سبيل اللقمة وهو مع ذلك لا يني عن الصلوات في أوقاتها</td><td><textarea class="Tests-Hub-table-input" style="min-height:38px;" placeholder="الوصف..."></textarea></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-test-section">
+            <h2>السؤال الإنشائي – صلة الرحم <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+            <div class="Tests-Hub-question">
+                <div class="Tests-Hub-quote-block">
+                    <p>روى البخاري ومسلم عن أبي أيوب الأنصاري رضي الله عنه أنّ رجلاً قال:</p>
+                    <p><strong>يا رسول الله أخبرني بعمل يُدخلني الجنّة؟</strong></p>
+                    <p>فقال صلّى الله عليه وسلّم:</p>
+                    <p><strong>«تعبد الله ولا تشرك به شيئاً، وتقيم الصلاة، وتؤتي الزكاة، وتصل الرحم».</strong></p>
+                </div>
+                <p><strong>الموضوع:</strong> استثمر معاني الحديث لتبيّن <strong>أنّ صلة الرحم من مقوّمات الإسلام ومن أسباب حسن العاقبة</strong>.</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:320px;" placeholder="اكتب موضوعاً منظّماً..."></textarea>
+            </div>
+            <div style="margin-top:1.5rem;padding:1rem;background:rgba(27,67,50,0.04);border-radius:8px;border-right:3px solid var(--accent);">
+                <strong>مقاييس إسناد العدد:</strong>
+                <ul class="Tests-Hub-organized-list">
+                    <li><strong>4 نقاط</strong> على المنهج (مقدمة - جوهر - خاتمة)</li>
+                    <li><strong>4 نقاط</strong> على سلامة المعلومة ودقتها</li>
+                    <li><strong>2 نقطتان</strong> على البرهنة والاستدلال</li>
+                    <li><strong>2 نقطتان</strong> على حسن العرض وسلامة التعبير</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل إسلامي معمّق</h2>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ حلّ الكلمات المتقاطعة والكلمة المخفيّة:</strong> <span class="Tests-Hub-points-badge">3.5 نقطة</span></p>
+                <table class="Tests-Hub-table">
+                    <tr><th>الرمز</th><th>الجواب</th><th>الحرف الملوّن</th><th>موقعه</th></tr>
+                    <tr><td>(أ)</td><td>أَبْرَار</td><td>ب</td><td>الثاني</td></tr>
+                    <tr><td>(ب)</td><td>حُرّ</td><td>ر</td><td>الثاني</td></tr>
+                    <tr><td>(ت)</td><td>بَاب</td><td>ا</td><td>الثاني</td></tr>
+                    <tr><td>(ث)</td><td>مَجْلِس</td><td>ل</td><td>الثالث</td></tr>
+                    <tr><td>(ج)</td><td>رَسُول</td><td>و</td><td>الثالث</td></tr>
+                    <tr><td>(ح)</td><td>مِفْتَاح</td><td>ا</td><td>الرابع</td></tr>
+                    <tr><td>(خ)</td><td>مُسْتَعْلِي</td><td>ل</td><td>الخامس</td></tr>
+                    <tr><td>(د)</td><td>أَدَب</td><td>د</td><td>الثاني</td></tr>
+                    <tr><td>(ذ)</td><td>يَقِين</td><td>ي</td><td>الأول</td></tr>
+                    <tr><td>(ر)</td><td>ثَمَن</td><td>ن</td><td>الثالث</td></tr>
+                </table>
+                <p><strong>الكلمة المخفيّة: بِرُّ الوَالِدَيْن</strong> (بر الوالدين) – وهو الأمر العظيم الذي قرنه الله بتوحيده في قوله: ﴿وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ وَبِالْوَالِدَيْنِ إِحْسَانًا﴾.</p>
+                <div class="correction-explanation">التنقيط: 0.25 لكل كلمة صحيحة (المجموع 2.5 نقطة) + 1 نقطة للكلمة المخفية الصحيحة.</div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ كتابة الحديث من صحيح البخاري:</strong> <span class="Tests-Hub-points-badge">2 نقطتان</span></p>
+                <p class="Tests-Hub-text-success">
+                    الحديث المطلوب هو:
+                </p>
+                <div class="Tests-Hub-quote-block" style="font-style:normal;">
+                    <p>قال رسول الله صلّى الله عليه وسلّم:</p>
+                    <p><strong>«مَنْ أَحَبَّ أَنْ يُبْسَطَ لَهُ فِي رِزْقِهِ، وَيُنْسَأَ لَهُ فِي أَثَرِهِ، فَلْيَصِلْ رَحِمَهُ»</strong></p>
+                    <p style="font-size:0.85rem;margin-top:0.5rem;">(رواه البخاري في صحيحه، كتاب البيوع، باب من أحب البسط في الرزق)</p>
+                </div>
+                <p><strong>معنى الحديث:</strong> من أراد أن يُوسَّع له في رزقه ويُمدَّ له في عمره ويُؤخَّر في أجله، فليصل رحمه. والمراد بـ "يُنسأ له في أثره": أي يُؤخَّر في أجله ويُمدَّ في عمره ببركة صلة الرحم.</p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق:</strong><br>
+                    • <strong>مناسبة الاستشهاد:</strong> هذا الحديث ورد في سياق التذكير بفضل صلة الرحم، وهو يتناغم تماماً مع حديث السند الذي يقول: «وصلة الرحم، وحسن الخلق، وحسن الجوار؛ يعمِّران الديار ويزيدان في الأعمار». فكلا الحديثين يربطان بين صلة الرحم وزيادة العمر والبركة في الرزق.<br>
+                    • <strong>شرح "يُنسأ له في أثره":</strong> قال ابن حجر في فتح الباري: "النسء: التأخير، والمراد بالزيادة في العمر ببركة صلة الرحم: إما الزيادة الحقيقية في سنوات العمر، وإما البركة في العمر بحيث يعمل الإنسان في عمره القصير ما لا يعمله غيره في عمر طويل، وقيل: المراد بقاء الذكر الجميل بعد الموت".<br>
+                    • <strong>التنقيط:</strong> نقطتان كاملتان لمن كتب الحديث صحيحاً مضبوطاً بالشكل. 1 نقطة لمن كتب معناه دون ضبط كامل. 0.5 نقطة لمن أشار إلى المعنى دون النص.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>3/ تصنيف الأعمال بحسب أوصافها:</strong> <span class="Tests-Hub-points-badge">2.5 نقطة</span></p>
+                <table class="Tests-Hub-table">
+                    <thead>
+                        <tr>
+                            <th style="width:50%;">العمل</th>
+                            <th style="width:50%;">الوصف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>شابّ يترك عمله ويعكف على الصلاة والذكر</td>
+                            <td><strong>مغالٍ</strong></td>
+                        </tr>
+                        <tr>
+                            <td>مريض بمرض مزمن لا يصوم ويؤدّي الفدية ولا يترك المناسبة تفوته لمساعدة الناس</td>
+                            <td><strong>ميسِّر</strong></td>
+                        </tr>
+                        <tr>
+                            <td>تلميذ يقضي معظم أوقاته في اللعب تاركاً واجباته المدرسية والدينية</td>
+                            <td><strong>مقصّر</strong></td>
+                        </tr>
+                        <tr>
+                            <td>ربّ أسرة يجاهد في سبيل اللقمة وهو مع ذلك لا يني عن الصلوات في أوقاتها</td>
+                            <td><strong>ميسِّر</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق – مفهوم التيسير والغلو والتقصير في الإسلام:</strong><br>
+                    • <strong>المغالي:</strong> هو الذي يتجاوز الحدّ المشروع في الدين، فيحمّل نفسه ما لا تطيق أو يترك واجباته الدنيوية بذريعة التعبّد. والشاب الذي يترك عمله ويعكف على الصلاة والذكر <strong>مغالٍ</strong> لأن الإسلام دين التوازن، يأمر بالعمل والكسب كما يأمر بالعبادة، قال تعالى: ﴿فَإِذَا قُضِيَتِ الصَّلَاةُ فَانْتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِنْ فَضْلِ اللَّهِ﴾ [الجمعة: 10]. وقد نهى النبي ﷺ عن الغلو فقال: «إياكم والغلو في الدين، فإنما أهلك من كان قبلكم الغلو في الدين» [رواه النسائي وابن ماجه].<br>
+                    • <strong>المقصّر:</strong> هو الذي يفرّط في أداء ما أوجب الله عليه، فيقدّم اللهو واللعب على الواجبات الدينية والمدرسية. والتلميذ الذي يضيّع وقته في اللعب تاركاً واجباته <strong>مقصّر</strong>، وهذا يتنافى مع قوله ﷺ: «نعمتان مغبون فيهما كثير من الناس: الصحة والفراغ» [رواه البخاري].<br>
+                    • <strong>الميسِّر:</strong> هو المقتصد المعتدل الذي يوازن بين حقوق الله وحقوق النفس وحقوق الناس، دون إفراط ولا تفريط. فالمريض الذي يفطر ويؤدي الفدية مع مواصلة مساعدة الناس <strong>ميسِّر</strong>، لأنه راعى رخصة الله له مع عدم انقطاعه عن الخير. وكذلك رب الأسرة الذي يعمل للرزق ويحافظ على الصلاة <strong>ميسِّر</strong>، امتثالاً لقوله تعالى: ﴿رِجَالٌ لَا تُلْهِيهِمْ تِجَارَةٌ وَلَا بَيْعٌ عَنْ ذِكْرِ اللَّهِ وَإِقَامِ الصَّلَاةِ وَإِيتَاءِ الزَّكَاةِ﴾ [النور: 37].<br>
+                    • <strong>التنقيط:</strong> 0.5 نقطة لكل تصنيف صحيح (المجموع 2 نقطتان على 4 أعمال)، و0.5 نقطة إضافية لمن أبدى فهماً للفروق بين الأوصاف الثلاثة.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">السؤال الإنشائي – التصحيح النموذجي (12 نقطة)</h3>
+
+            <div style="background:rgba(27,67,50,0.05);padding:1rem;border-radius:8px;margin-bottom:1.5rem;border-right:4px solid var(--accent);">
+                <strong>✏️ تخطيط التحرير المطلوب – الهيكل المنهجي:</strong>
+                <ul class="Tests-Hub-organized-list" style="margin-top:0.5rem;">
+                    <li><strong>المقدمة:</strong> طرح أهمية صلة الرحم في الإسلام، وربطها بحديث أبي أيوب الأنصاري رضي الله عنه.</li>
+                    <li><strong>الجوهر – المحور الأول:</strong> صلة الرحم مقوّم أساسي من مقوّمات الإسلام (الدليل من الحديث، ومن القرآن).</li>
+                    <li><strong>الجوهر – المحور الثاني:</strong> صلة الرحم سبب من أسباب حسن العاقبة في الدنيا والآخرة (البسط في الرزق، الزيادة في العمر، دخول الجنة).</li>
+                    <li><strong>الجوهر – المحور الثالث:</strong> صور صلة الرحم ومظاهرها العملية في المجتمع.</li>
+                    <li><strong>الخاتمة:</strong> استخلاص العبرة، والدعوة إلى التمسك بصلة الرحم.</li>
+                </ul>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p class="Tests-Hub-text-model" style="font-weight:normal;">
+                    <strong style="color:var(--accent2);font-size:1.05rem;">📌 مقدمة:</strong><br>
+                    شرع الإسلام أحكاماً عظيمة تهدف إلى بناء مجتمع متماسك متكافل، تسوده المحبة والألفة وتظلّله الرحمة. ومن أبرز هذه الأحكام وأعظمها شأناً: <strong>صلة الرحم</strong>، تلك العبادة الجليلة التي قرنها الله تعالى بالتوحيد، وجعلها النبي ﷺ طريقاً إلى الجنة وسبباً للبركة في العمر والرزق. وحين سأل ذلك الرجل النبيَّ ﷺ عن عمل يدخله الجنة، كان الجواب النبوي حاسماً شاملاً، تضمّن أركان الإسلام العظام، وخُتم بـ «وتصل الرحم»، مما يدلّ على مكانتها السامية في دين الله. وفي هذا الموضوع، سأبيّن – مستثمراً معاني هذا الحديث الشريف – كيف أن صلة الرحم من مقوّمات الإسلام الراسخة، ومن أسباب حسن العاقبة في الدارين.
+                    <br><br>
+                    <strong style="color:var(--accent2);font-size:1.05rem;">📌 الجوهر – المحور الأول: صلة الرحم مقوّم أساسي من مقوّمات الإسلام</strong><br>
+                    دلّ الحديث الشريف – بوضوح لا لبس فيه – على أن صلة الرحم في مصافّ أعظم مقوّمات الإسلام: التوحيد، وإقامة الصلاة، وإيتاء الزكاة. فقد بدأ النبي ﷺ بالتوحيد: <strong>«تعبد الله ولا تشرك به شيئاً»</strong>، فهو أصل الدين وقاعدته الكبرى. ثم أتبعها بالصلاة والزكاة، وهما الركنان العظيمان اللذان لا يقوم دين المرء إلا بهما. ثم ختم بـ <strong>«وتصل الرحم»</strong>، وكأنه يقول: إن دينك لا يكتمل إلا بصلة رحمك. وهذا الترتيب النبوي البديع يضع صلة الرحم في المرتبة نفسها التي تضمّ أركان الإسلام العملية الكبرى، مما يؤكد أنها ليست عملاً هامشياً أو تطوّعياً، بل هي <strong>مقوّم أساسي</strong> من مقوّمات الدين، وواجب شرعي مقدّس. ويؤيد هذا المعنى قول الله تعالى: ﴿وَاعْبُدُوا اللَّهَ وَلَا تُشْرِكُوا بِهِ شَيْئًا وَبِالْوَالِدَيْنِ إِحْسَانًا وَبِذِي الْقُرْبَىٰ﴾ [النساء: 36]، حيث أمر الله بالإحسان إلى ذوي القربى مباشرة بعد الأمر بالتوحيد، مما يعكس المنزلة نفسها التي أبرزها الحديث النبوي.
+                    <br><br>
+                    <strong style="color:var(--accent2);font-size:1.05rem;">📌 الجوهر – المحور الثاني: صلة الرحم سبب من أسباب حسن العاقبة</strong><br>
+                    إن صلة الرحم ليست مجرد واجب ديني فحسب، بل هي سبب عظيم من أسباب حسن العاقبة في الدنيا والآخرة. وقد بيّن النبي ﷺ ذلك في أحاديث عدة، منها قوله: <strong>«مَنْ أَحَبَّ أَنْ يُبْسَطَ لَهُ فِي رِزْقِهِ، وَيُنْسَأَ لَهُ فِي أَثَرِهِ، فَلْيَصِلْ رَحِمَهُ»</strong> [رواه البخاري]. وهذا الحديث – الذي يتناغم مع حديث السند القائل: «وصلة الرحم وحسن الخلق وحسن الجوار يعمِّران الديار ويزيدان في الأعمار» – يكشف لنا ثلاثة آثار عظيمة لصلة الرحم في الدنيا:<br>
+                    • <strong>البسط في الرزق:</strong> أي التوسعة فيه وزيادة البركة. فواصل الرحم يفتح الله له أبواب الرزق من حيث لا يحتسب، ويمنحه بركة في ماله ووقته وصحته.<br>
+                    • <strong>الزيادة في العمر:</strong> أي الإطالة في الأجل أو البركة في سنوات العمر بحيث يعمل المرء في عمره القصير ما لا يعمله غيره في العمر الطويل. وهذا من لطائف كرم الله، أن يجعل صلة الأرحام سبباً لطول البقاء وحسن الأثر.<br>
+                    • <strong>دخول الجنة:</strong> وهو الأثر الأخروي الأعظم، الذي أشار إليه حديث أبي أيوب الأنصاري صراحة حين سُئل النبي ﷺ عن عمل يدخل الجنة. فجعل صلة الرحم في جملة الأعمال الموصلة إلى الجنة، مقرونة بالتوحيد والصلاة والزكاة. وهذا شرف عظيم ومنزلة رفيعة لا تنالها إلا العبادات الجليلة. وقال ﷺ أيضاً: «الراحمون يرحمهم الرحمن، ارحموا من في الأرض يرحمكم من في السماء، الرحم شجنة من الرحمن، فمن وصلها وصله الله، ومن قطعها قطعه الله» [رواه الترمذي وأبو داود]. فصلة الرحم توجب صلة الله للعبد، وأيّ عاقبة أحسن من أن يكون العبد موصولاً بالله؟!
+                    <br><br>
+                    <strong style="color:var(--accent2);font-size:1.05rem;">📌 الجوهر – المحور الثالث: صور صلة الرحم في المجتمع</strong><br>
+                    تتجسّد صلة الرحم في صور عملية متعددة، تجعل المجتمع نسيجاً واحداً متماسكاً:
+                    <br>• <strong>التواصل والزيارة:</strong> بأن يزور المرء أرحامه ويتفقّد أحوالهم، ولا يكتفي بالتواصل الهاتفي أو عبر الرسائل في المناسبات فقط.
+                    <br>• <strong>النفقة والإعانة المالية:</strong> خاصة إذا كان ذو الرحم محتاجاً، فالصدقة على ذي الرحم صدقة وصلة معاً، وهي من أفضل أبواب الخير.
+                    <br>• <strong>المشاركة الوجدانية:</strong> بأن يفرح لفرحهم ويحزن لحزنهم، ويقف إلى جانبهم في الشدائد والملمّات.
+                    <br>• <strong>الإصلاح بين المتخاصمين:</strong> من الأرحام، فإن الصلح بين الناس من أعظم القربات، وهو من صلة الرحم بالمعنى الواسع.
+                    <br>• <strong>العفو والصفح:</strong> عن الإساءة، فإن قطيعة الرحم غالباً ما تبدأ بخلاف يسير يتضخم مع الأيام، وواصل الرحم هو الذي يحتمل أذى أقاربه ويصفح عن زلاتهم.
+                    <br><br>
+                    <strong style="color:var(--accent2);font-size:1.05rem;">📌 خاتمة:</strong><br>
+                    وهكذا يتبيّن لنا – بما لا يدع مجالاً للشك – أن صلة الرحم مقوّم راسخ من مقوّمات الإسلام، وسبب عظيم من أسباب حسن العاقبة في الدنيا والآخرة. لقد جعلها النبي ﷺ – في حديث أبي أيوب الأنصاري – في مصافّ أعظم أركان الدين، وبيّن أنها طريق إلى الجنة ورضوان الله. وجعلها – في حديث آخر – سبباً للبركة في الرزق والزيادة في العمر. فما أعظمها من عبادة! وما أحوجنا إليها في زمن كثرت فيه القطيعة واشتغلت فيه النفوس بالدنيا عن الأرحام! فلنحرص جميعاً على صلة أرحامنا، امتثالاً لأمر الله ورسوله، وطلباً لحسن العاقبة، وسعياً إلى مجتمع تسوده المحبة والتكافل، وليكن شعارنا قول النبي ﷺ: <strong>«وصلوا أرحامكم»</strong>.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل إضافي – أبعاد صلة الرحم في الفقه الإسلامي:</strong><br>
+                    • <strong>تعريف الرحم:</strong> الرحم هم الأقارب من جهة الأب والأم، ويدخل فيهم الأصول (الوالدان والأجداد) والفروع (الأبناء والأحفاد) والحواشي (الإخوة والأعمام والأخوال). واختلف الفقهاء في حدود الرحم الواجب صلتها، فذهب الجمهور إلى أن الرحم المحرَّمة (التي يحرم الزواج بين أفرادها) هي التي تجب صلتها وجوباً مؤكداً، وما عداها فمستحب.<br>
+                    • <strong>حكم قطيعة الرحم:</strong> قطع الرحم من كبائر الذنوب، قال تعالى: ﴿فَهَلْ عَسَيْتُمْ إِن تَوَلَّيْتُمْ أَن تُفْسِدُوا فِي الْأَرْضِ وَتُقَطِّعُوا أَرْحَامَكُمْ * أُو۟لَـٰٓئِكَ ٱلَّذِينَ لَعَنَهُمُ ٱللَّهُ فَأَصَمَّهُمْ وَأَعْمَىٰٓ أَبْصَـٰرَهُمْ﴾ [محمد: 22-23]. وقال ﷺ: «لا يدخل الجنة قاطع رحم» [رواه البخاري ومسلم].<br>
+                    • <strong>صلة الرحم مع غير المسلم:</strong> ذهب جمهور العلماء إلى أن صلة الرحم تشمل الأقارب غير المسلمين أيضاً، بالزيارة والهدية والإحسان، دون المشاركة في شعائرهم الدينية. وقد ثبت أن النبي ﷺ كان يصل رحمه ويزورهم ويهدي إليهم مع اختلاف الدين.<br>
+                    • <strong>الترابط مع حديث السند:</strong> حديث عائشة رضي الله عنها يركّز على ثلاثة أمور تعمّر الديار وتزيد في الأعمار: صلة الرحم، وحسن الخلق، وحسن الجوار. وهذه الثلاثة تمثل – مجتمعة – منهجاً إسلامياً متكاملاً للعلاقات الاجتماعية: تبدأ من الأسرة (صلة الرحم)، وتمتد إلى المجتمع الواسع (حسن الخلق)، وتكتمل بالعلاقة مع الجيران (حسن الجوار). وهذا الترابط يؤكد أن صلاح المجتمع يبدأ من صلاح الأسرة وتماسكها بصلة الأرحام.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">معايير تنقيط السؤال الإنشائي (12 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation" style="font-size:0.95rem;">
+                    <strong>• المنهج (4 نقاط):</strong> احترام هيكل التحرير: <strong>مقدمة</strong> تطرح أهمية صلة الرحم وتربطها بالحديث الشريف (نقطة واحدة)، <strong>جوهر</strong> مقسّم إلى محاور واضحة: صلة الرحم كمقوّم من مقوّمات الإسلام، كسبب لحسن العاقبة، صورها العملية (نقطتان)، <strong>خاتمة</strong> جامعة تستخلص العبرة وتدعو إلى التمسك بصلة الرحم (نقطة واحدة).<br><br>
+                    <strong>• سلامة المعلومة (4 نقاط):</strong> دقة المعلومات المقدّمة: الاستشهاد الصحيح بحديث أبي أيوب الأنصاري، وحديث "من أحب أن يبسط له في رزقه"، وربطهما بحديث السند عن عائشة رضي الله عنها. الاستدلال بالآيات القرآنية ذات الصلة (النساء: 36، محمد: 22-23). بيان معنى صلة الرحم، وآثارها في الدنيا (بسط الرزق، زيادة العمر) والآخرة (دخول الجنة). ذكر صور عملية لصلة الرحم. التفريق بين صلة الرحم وقطعها، وبيان حكم كل منهما.<br><br>
+                    <strong>• البرهنة والاستدلال (نقطتان):</strong> القدرة على توظيف الأدلة الشرعية (القرآن الكريم والحديث النبوي) في بناء الحجج، وإقامة البرهان على أن صلة الرحم مقوّم أساسي من الإسلام وسبب لحسن العاقبة. الربط المنطقي بين المقدمة والجوهر والخاتمة. استثمار معاني حديث أبي أيوب الأنصاري بشكل فعّال ومقنع.<br><br>
+                    <strong>• حسن العرض وسلامة التعبير (نقطتان):</strong> سلامة اللغة العربية (الإملاء، النحو، الصرف، علامات الترقيم)، وضوح الخط وجمال تنظيمه، جمال الأسلوب وسلاسته وخلوّه من الأخطاء الفادحة، ترابط الأفكار وانسجام الفقرات. التعبير عن قيمة صلة الرحم بأسلوب أدبي رفيع يُثاب عليه.
+                </div>
+            </div>
+        </div>
+
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name">زياد الماجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number">v1.0.0</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">الروابط</h3><ul class="Tests-Hub-footer-links-list"><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: { TestsHub: { islamicTest: { title: "فرض تأليفي عدد 3 - تربية إسلامية - 8 أساسي", subtitle: "2009-2010 | الأستاذ لطفي الدبابي", back: "العودة للاختبارات", showCorrection: "📘 عرض التصحيح المفصّل", hideCorrection: "📘 إخفاء التصحيح", comingSoon: "قريبًا!" }, language: { current: "العربية" }, theme: { toggle: "الوضع المظلم" }, footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية" } } },
+            fr: { TestsHub: { islamicTest: { title: "Devoir de Synthèse N°3 - Éducation Islamique - 8ème", subtitle: "2009-2010 | M. Lotfi Debbabi", back: "Retour", showCorrection: "📘 Afficher la correction", hideCorrection: "📘 Masquer la correction", comingSoon: "Bientôt!" }, language: { current: "Français" }, theme: { toggle: "Mode Sombre" }, footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions", privacy: "Confidentialité" } } },
+            en: { TestsHub: { islamicTest: { title: "Synthesis Test N°3 - Islamic Education - 8th Grade", subtitle: "2009-2010 | Mr. Lotfi Debbabi", back: "Back", showCorrection: "📘 Show Correction", hideCorrection: "📘 Hide Correction", comingSoon: "Coming soon!" }, language: { current: "English" }, theme: { toggle: "Dark Mode" }, footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms of Use", privacy: "Privacy Policy" } } }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) span.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode')) : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) btn.textContent = sec.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[currentLanguage].TestsHub.islamicTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub.islamicTest.hideCorrection;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)').textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() { alert(TestsHub_translations[currentLanguage]?.TestsHub?.islamicTest?.comingSoon || "Coming soon!"); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('testsHubTheme') === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language'))));
+            ['downloadPdf','downloadOdt','downloadPng'].forEach(id => document.getElementById(id)?.addEventListener('click', downloadAlert));
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => { correction.classList.toggle('Tests-Hub-hidden'); updateCorrectionButtonText(); });
+
+            if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+        });
+    </script>
+</body>
+</html>

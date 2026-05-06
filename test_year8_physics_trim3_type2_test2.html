@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبارات - فرض تأليفي عدد 3 (8 أساسي) - فيزياء (إنديغو)</title>
+
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="description" content="فرض تأليفي عدد 3 في الفيزياء - السنة الثامنة أساسي - Devoir de synthèse N°3 - Physique - 8ème">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - فرض فيزياء 8 أساسي">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js">
+    </script>
+    <script defer src="katex/contrib/auto-render.min.js">
+    </script>
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-deep: #4338ca;
+            --primary-dark: #3730a3;
+            --primary-light: #a5b4fc;
+            --primary-bg-light: #eef2ff;
+            --primary-bg-lighter: #e0e7ff;
+            --text-light: #1e1b4b;
+            --text-dark: #c7d2fe;
+            --section-bg-dark: #1e1b4b;
+            --header-dark-start: #1e1b4b;
+            --header-dark-mid: #312e81;
+            --header-dark-end: #4f46e5;
+            --accent-dark: #fbbf24;
+            --accent-dark-border: #f59e0b;
+            --accent-gold: #f59e0b;
+            --accent-gold-deep: #d97706;
+            --accent-amber: #fbbf24;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --danger: #dc2626;
+            --success: #16a34a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+            color: var(--text-light);
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #1e1b4b 0%, #172044 100%);
+            color: var(--text-dark);
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid), var(--header-dark-end));
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-language-button,
+        .Tests-Hub-theme-toggle,
+        .Tests-Hub-back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-language-button:hover,
+        .Tests-Hub-theme-toggle:hover,
+        .Tests-Hub-back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-language-option:hover {
+            background: var(--primary-bg-lighter);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: var(--section-bg-dark);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: var(--text-dark);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: var(--primary);
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid));
+        }
+
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: background 0.3s ease, color 0.3s ease;
+            border: 1px solid #e0e7ff;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: var(--section-bg-dark);
+            color: var(--text-dark);
+            border-color: #312e81;
+        }
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-deep);
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section h2 {
+            color: var(--accent-amber);
+            border-bottom-color: var(--accent-gold);
+        }
+
+        .Tests-Hub-instructions {
+            background: var(--primary-bg-lighter);
+            padding: 1rem;
+            border-right: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: var(--section-bg-dark);
+            border-right-color: var(--accent-amber);
+        }
+
+        .Tests-Hub-question {
+            margin: 1.5rem 0;
+            padding-right: 10px;
+        }
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: var(--accent-amber);
+        }
+
+        .Tests-Hub-question p {
+            font-size: 1.15em;
+            margin: 10px 0;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, var(--primary), var(--primary-deep), var(--accent-gold-deep));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 16px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            border-right: 4px solid var(--accent-gold);
+            transition: background 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #1e1b4b, #172044);
+            border-right-color: var(--accent-amber);
+        }
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent-gold-deep);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h2 {
+            color: var(--accent-amber);
+        }
+        .Tests-Hub-correction-section h3 {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section h3 {
+            color: var(--accent-amber);
+        }
+        .Tests-Hub-correction-answer {
+            background: rgba(79, 70, 229, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-right: 3px solid var(--primary);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(251, 191, 36, 0.08);
+            border-right-color: var(--accent-amber);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(79, 70, 229, 0.04);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent-gold-deep);
+            line-height: 1.7;
+        }
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(251, 191, 36, 0.06);
+            border-right-color: var(--accent-gold);
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-diagram-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .Tests-Hub-diagram-canvas {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+            max-width: 100%;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-diagram-canvas {
+            border-color: var(--accent-gold);
+            background: #1a1735;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(79, 70, 229, 0.06), rgba(245, 158, 11, 0.06));
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
+            color: white;
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #4338ca, #3730a3);
+            color: white;
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #1e1b4b;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, var(--primary), var(--primary-deep));
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, var(--header-dark-start), var(--header-dark-mid), var(--header-dark-end));
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: var(--accent-amber);
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: var(--accent-amber);
+        }
+
+        .answer-text {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            color: var(--text-light);
+            font-family: inherit;
+            resize: vertical;
+        }
+        .Tests-Hub-dark-theme .answer-text {
+            background: #1a1735;
+            color: var(--text-dark);
+            border-color: var(--accent-gold);
+        }
+        .answer-line {
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th,
+        td {
+            border: 1px solid var(--primary);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .Tests-Hub-dark-theme th,
+        .Tests-Hub-dark-theme td {
+            border-color: var(--accent-gold);
+        }
+        th {
+            background: var(--primary-bg-lighter);
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme th {
+            background: var(--section-bg-dark);
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent-gold), transparent);
+            margin: 1.5rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-text-model {
+            color: var(--text-light);
+            background: rgba(245, 158, 11, 0.05);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent-gold-deep);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: var(--text-dark);
+            background: rgba(251, 191, 36, 0.06);
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">الفيزياء - فرض تأليفي عدد 3 (8 أساسي)</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">Devoir de synthèse N°3 - Physique - 8ème</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back">
+                    <span>←</span> <span>العودة إلى الاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span> <span data-i18n="TestsHub.header.language">العربية</span> <span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span> <span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>فرض تأليفي عدد 3 - علوم فيزيائية - ثامنة أساسي (2023-2024)</h1>
+            <p>Devoir de synthèse N°3 - Physique - 8ème</p>
+            <p>المدة : ساعة واحدة &nbsp;|&nbsp; العدد: 20 نقطة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات</h3>
+            <ul>
+                <li>اكتب بإتقان وأذكر التعريفات والمبادئ المستعملة.</li>
+                <li>يجب تبرير الإجابات عند الاقتضاء.</li>
+                <li>الأشكال والرسوم تُكمل على الورقة بدقة.</li>
+                <li>انتبه إلى توزيع النقاط بين مختلف الأسئلة.</li>
+            </ul>
+        </div>
+
+        <!-- ==================== التمرين الأول : السمكة والبركة ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الأول : (6 نقاط) &nbsp; 🐟</h2>
+            <p style="font-size:1rem; color:var(--primary-deep); margin-bottom:1rem;">أثناء تجوله في حديقة الحيوانات شاهد أمين سمكة ببركة من الماء وذلك وفق الرسم:</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex1_fish_pond" class="Tests-Hub-diagram-canvas" width="620" height="380"></canvas>
+                <p style="font-size:0.9rem; color:var(--primary);">الشكل 1 : بركة ماء - سمكة - شمس - عين المشاهد</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> إلى أيّ نوع من الأوساط ينتمي كلّ من الهواء والماء؟ علّل جوابك. <strong>(2 نقاط)</strong></p>
+                <div class="answer-line"><textarea class="answer-text" rows="3" placeholder="..."></textarea></div>
+
+                <p><span class="Tests-Hub-question-number">2)</span> صنّف كلّ من الشّمس والسّمكة إلى أجسام مضاءة وأجسام مضيئة. علّل جوابك. <strong>(2 نقاط)</strong></p>
+                <div class="answer-line"><textarea class="answer-text" rows="3" placeholder="..."></textarea></div>
+
+                <p><span class="Tests-Hub-question-number">3)</span> أكمل مسار إتجاه الأشعة الضوئيّة التّي تمكن أمين من رؤية السمكة إنطلاقا من S (الشّمس) وصولا إلى عين المشاهد O ومرورا بالنقاط (J, A, I). <em>(يكمل على الرسم أعلاه)</em> <strong>(1 نقطة)</strong></p>
+
+                <p><span class="Tests-Hub-question-number">4)</span> ما هو المبدأ الذي أعتمد لإنجاز رسم الشّعاع السّابق (SI)؟ أسرده. <strong>(1 نقطة)</strong></p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين الثاني : البهو والعلبة المظلمة ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الثاني : (6 نقاط) &nbsp; 🏠</h2>
+            <p style="font-size:1rem; color:var(--primary-deep); margin-bottom:1rem;">وقفت سلمى أمام باب البهو المقابل لحائط من البلّور المطروق سمكه 0.5 صم لتدخل بحثت عن المفتاح فلم تجده حاولت النظر إلى داخل البهو من خلال ثقب الباب الخشبيّ فلم ترى شيئا ابتعدت قليلا ورفعت يدها لتتسلّق حينها ضحكت الأمّ من داخل المنزل ونادتها فتعجّبت سلمى من اكتشاف وجودها وراء الباب ومراقبتها لحركاتها رغم أنها لم تصدر أيّ صوت.</p>
+            <div class="Tests-Hub-diagram-container">
+                <canvas id="ex2_hall" class="Tests-Hub-diagram-canvas" width="620" height="340"></canvas>
+                <p style="font-size:0.9rem; color:var(--primary);">الشكل 2 : بهو المنزل - حائط بلوري - باب خشبي بثقب</p>
+            </div>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> صنّف العلبة المظلمة. <strong>(1.5 نقطة)</strong></p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+
+                <p><span class="Tests-Hub-question-number">2)</span> قارن الأجزاء المكونة لبهو المنزل (الحائط البلوري - الباب) بأجزاء العلبة المظلمة. <strong>(2 نقاط)</strong></p>
+                <div class="answer-line"><textarea class="answer-text" rows="3" placeholder="..."></textarea></div>
+
+                <p><span class="Tests-Hub-question-number">3)</span> ماذا شاهدت الأم داخل بهو المنزل على حائط البلّور المطروق حين ضحكت؟ <strong>(0.5 نقطة)</strong></p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+
+                <p><span class="Tests-Hub-question-number">4)</span> علّ برسم بصري لمسار الأشعة الضوئيّة. <em>(يكمل على الرسم أعلاه)</em> <strong>(2 نقاط)</strong></p>
+            </div>
+        </div>
+
+        <!-- ==================== التمرين الثالث : أطوار القمر والكسوف والخسوف ==================== -->
+        <div class="Tests-Hub-test-section">
+            <h2>التمرين الثالث : (8 نقاط) &nbsp; 🌙</h2>
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">1)</span> أذكر أهم أطوار القمر مدعما ذلك برسم بصري يبرز الجزء المضاء والجزء المظلم بالنسبة لمشاهد أرضي وحدد اتجاه دوران القمر حول الأرض في الرسم. <strong>(2 نقاط)</strong></p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="ex3_moon_phases" class="Tests-Hub-diagram-canvas" width="560" height="440"></canvas>
+                    <p style="font-size:0.9rem; color:var(--primary);">إطار الرسم : أطوار القمر</p>
+                </div>
+                <div class="answer-line"><textarea class="answer-text" rows="3" placeholder="أذكر أطوار القمر الثمانية..."></textarea></div>
+
+                <p><span class="Tests-Hub-question-number">2)</span> أذكر سبب ظاهرة الخسوف. في أيّ طور يكون القمر حينها؟ <strong>(1 نقطة)</strong></p>
+                <div class="answer-line"><textarea class="answer-text" rows="2" placeholder="..."></textarea></div>
+
+                <p><span class="Tests-Hub-question-number">3)</span> أرسم مواقع الشمس - القمر والأرض للحصول على خسوف كلّي للقمر وخسوف جزئي للقمر. <strong>(2.5 نقاط)</strong></p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="ex3_eclipse" class="Tests-Hub-diagram-canvas" width="560" height="280"></canvas>
+                    <p style="font-size:0.9rem; color:var(--primary);">إطار الرسم : الخسوف الكلّي والجزئي للقمر</p>
+                </div>
+                <p style="margin-top:0.5rem;">أكمل الجدول التالي: <strong>(2.5 نقاط)</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>نوع الخسوف</th>
+                            <th>وصف وضعية القمر</th>
+                            <th>المنطقة التي يدخلها القمر</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>خسوف كلي</strong></td>
+                            <td><textarea class="answer-text" rows="2" placeholder="..."></textarea></td>
+                            <td><textarea class="answer-text" rows="2" placeholder="..."></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><strong>خسوف جزئي</strong></td>
+                            <td><textarea class="answer-text" rows="2" placeholder="..."></textarea></td>
+                            <td><textarea class="answer-text" rows="2" placeholder="..."></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- زر الإصلاح -->
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض الإصلاح المفصّل</button>
+        </div>
+
+        <!-- ==================== قسم الإصلاح ==================== -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 الإصلاح المفصّل – تحليل فيزيائي معمّق</h2>
+
+            <h3 style="color:var(--accent-gold-deep);">التمرين الأول : السمكة والبركة (6 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx1_fish" class="Tests-Hub-diagram-canvas" width="620" height="380"></canvas>
+                </div>
+                <p><strong>1) نوع الأوساط:</strong></p>
+                <p class="Tests-Hub-text-model">
+                    • <strong>الهواء:</strong> وسط <strong>شفاف</strong> (Transparent) — لأنه يسمح بمرور الضوء ويمكننا من رؤية واضحة للأجسام من خلاله. ينتشر الضوء في الهواء دون عوائق تُذكر.<br>
+                    • <strong>الماء:</strong> وسط <strong>شفاف</strong> (Transparent) — لأنه يسمح بمرور الضوء ويمكننا من رؤية واضحة للأجسام الموجودة داخله (مثل السمكة). فرغم أن الماء يكسر الضوء إلا أنه يبقى وسطا شفافا يمكن الرؤية من خلاله بوضوح.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق – الأوساط البصرية الثلاثة:</strong> تصنّف الأوساط البصرية إلى ثلاثة أنواع: <strong>شفافة</strong> (تسمح بمرور الضوء ورؤية واضحة كالهواء والماء النقي والزجاج)، <strong>شبه شفافة</strong> (تسمح بمرور جزء من الضوء ورؤية ضبابية كالزجاج المطروق والورق الشفاف)، <strong>معتمة</strong> (لا تسمح بمرور الضوء كالخشب والمعادن). الهواء والماء ينتميان إلى الأوساط الشفافة.
+                </div>
+
+                <p><strong>2) تصنيف الشمس والسمكة:</strong></p>
+                <p class="Tests-Hub-text-model">
+                    • <strong>الشمس:</strong> جسم <strong>مضيء</strong> (Source lumineuse / Luminous source) — لأنها تنتج الضوء بذاتها بفعل التفاعلات النووية في باطنها. تنتمي إلى المصادر الضوئية الأولية (Primary light sources).<br>
+                    • <strong>السمكة:</strong> جسم <strong>مضاء</strong> (Objet éclairé / Illuminated object) — لأنها لا تنتج الضوء بذاتها بل تعكس (تنثر) جزءا من الضوء الساقط عليها من مصدر ضوئي آخر وهو الشمس. تنتمي إلى المصادر الضوئية الثانوية (Secondary light sources).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق – الأجسام المضيئة والمضاءة:</strong> الأجسام المضيئة هي التي تنتج ضوءها بنفسها (الشمس، النجوم، المصباح المتوهج، الشمعة المشتعلة، اليراعة). أما الأجسام المضاءة فهي التي تعكس الضوء الساقط عليها من مصدر آخر (القمر، الكواكب، السمكة، الطاولة، الجدران). معظم الأجسام من حولنا هي أجسام مضاءة. لولا وجود مصدر ضوئي (كالشمس أو المصباح) لما تمكّنا من رؤية أي جسم مضاء.
+                </div>
+
+                <p><strong>3) مسار الأشعة الضوئية:</strong> (أنظر الرسم أعلاه)</p>
+                <p class="Tests-Hub-text-model">
+                    المسار: <strong>S → J → A → I → O</strong><br>
+                    • الشعاع <strong>SJ</strong>: ينطلق من الشمس S ويخترق الهواء ليصل إلى سطح الماء عند النقطة J.<br>
+                    • الشعاع <strong>JA</strong>: يخترق الماء من النقطة J ليصل إلى السمكة عند النقطة A.<br>
+                    • الشعاع <strong>AI</strong>: ينعكس عن جسم السمكة عند A ويتجه نحو سطح الماء عند النقطة I.<br>
+                    • الشعاع <strong>IO</strong>: يخرج من الماء عند I ويخترق الهواء ليصل إلى عين المشاهد O.<br>
+                    • هكذا يتمكن أمين من رؤية السمكة: الضوء ينتقل من الشمس إلى السمكة، ثم ينعكس عنها ليصل إلى عينه.
+                </p>
+
+                <p><strong>4) المبدأ المعتمد:</strong></p>
+                <p class="Tests-Hub-text-model">
+                    <strong>مبدأ الانتشار المستقيمي للضوء</strong> (Principe de propagation rectiligne de la lumière):<br>
+                    "في الوسط الشفاف والمتجانس، ينتشر الضوء في جميع الاتجاهات وفق خطوط مستقيمة تسمى أشعة ضوئية."
+                </p>
+                <div class="correction-explanation">
+                    <strong>✔ تنقيط:</strong> 0.5 نقطة لكل تصنيف صحيح مع تعليل (الهواء والماء)، 0.5 نقطة لكل تصنيف صحيح مع تعليل (الشمس والسمكة)، 1 نقطة للرسم الصحيح لمسار الأشعة، 1 نقطة لذكر المبدأ مع صياغته.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent-gold-deep);">التمرين الثاني : البهو والعلبة المظلمة (6 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx2_hall" class="Tests-Hub-diagram-canvas" width="620" height="340"></canvas>
+                </div>
+                <p><strong>1) تصنيف العلبة المظلمة:</strong></p>
+                <p class="Tests-Hub-text-model">
+                    بهو المنزل مع ثقب الباب الخشبي يُشكّل <strong>غرفة مظلمة</strong> (Chambre noire / Camera obscura). فالبهو هو حيز مغلق ومعتم (باستثناء الثقب) يستقبل الضوء من الخارج عبر ثقب صغير (ثقب الباب) فتتشكل صورة مقلوبة للأجسام الخارجية على الجدار المقابل (حائط البلور المطروق).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق – مبدأ الغرفة المظلمة:</strong> الغرفة المظلمة هي صندوق أو حيز معتم به ثقب صغير في أحد جدرانه. عندما يمر الضوء من جسم خارجي عبر الثقب، ينتشر في خطوط مستقيمة ليشكل صورة مقلوبة (معكوسة رأسا على عقب) للجسم على الجدار المقابل للثقب. هذا المبدأ هو أساس عمل آلة التصوير الفوتوغرافية والعين البشرية.
+                </div>
+
+                <p><strong>2) مقارنة أجزاء بهو المنزل بأجزاء العلبة المظلمة:</strong></p>
+                <table>
+                    <thead>
+                        <tr><th>جزء بهو المنزل</th><th>يقابله في العلبة المظلمة</th><th>الوظيفة</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>بهو المنزل (الحيز الداخلي)</td>
+                            <td>الغرفة المظلمة (الصندوق)</td>
+                            <td>حيز معتم يستقبل الضوء</td>
+                        </tr>
+                        <tr>
+                            <td>ثقب الباب الخشبي</td>
+                            <td>الثقب (Le trou / Le sténopé)</td>
+                            <td>نقطة دخول الضوء</td>
+                        </tr>
+                        <tr>
+                            <td>حائط البلور المطروق</td>
+                            <td>الشاشة (L'écran)</td>
+                            <td>سطح استقبال الصورة</td>
+                        </tr>
+                        <tr>
+                            <td>الباب الخشبي (ما عدا الثقب)</td>
+                            <td>الجدار الأمامي المعتم</td>
+                            <td>حجب الضوء عن باقي المساحة</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>3) ما شاهدته الأم:</strong></p>
+                <p class="Tests-Hub-text-model">
+                    شاهدت الأم <strong>صورة مقلوبة (معكوسة) لسلمى</strong> على حائط البلور المطروق. فرأس سلمى يظهر في الأسفل ورجلاها في الأعلى، واليد اليمنى تظهر يسارا واليسرى تظهر يمينا (انقلاب كامل). هذه الصورة متكونة بفعل مرور الضوء المنعكس عن جسم سلمى عبر ثقب الباب وفق مبدأ الانتشار المستقيمي للضوء.
+                </p>
+
+                <p><strong>4) الرسم البصري:</strong> (أنظر الرسم أعلاه)</p>
+                <p class="Tests-Hub-text-model">
+                    • شعاعان ضوئيان ينطلقان من سلمى (من رأسها ومن رجليها) يمران عبر ثقب الباب.<br>
+                    • الشعاعان يستمران في خطوط مستقيمة ليصطدما بحائط البلور المطروق.<br>
+                    • الشعاع المنطلق من أعلى سلمى (رأسها) يصل إلى أسفل الحائط البلوري.<br>
+                    • الشعاع المنطلق من أسفل سلمى (رجلاها) يصل إلى أعلى الحائط البلوري.<br>
+                    • النتيجة: تكون صورة مقلوبة لسلمى على الحائط البلوري.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق – لماذا لم تر سلمى شيئا عبر الثقب؟</strong> عندما حاولت سلمى النظر عبر ثقب الباب، كانت عينها قريبة جدا من الثقب. في هذه الحالة، يدخل الضوء من الداخل (من البهو) عبر الثقب إلى عين سلمى ولكن بكمية ضئيلة جدا لأن البهو معتم نسبيا. إضافة إلى ذلك، حجم الصورة المتكونة على شبكية عينها يكون صغيرا جدا. أما الأم داخل البهو فرأت صورة سلمى بوضوح لأن الضوء المنعكس عن سلمى (الموجودة في الخارج تحت ضوء الشمس) كان كافيا لتكوين صورة واضحة على الحائط البلوري.
+                    <br><strong>✔ تنقيط:</strong> 1.5 نقطة لتصنيف العلبة المظلمة، 2 نقطة للمقارنة الصحيحة بين الأجزاء، 0.5 نقطة لوصف ما شاهدته الأم، 2 نقطة للرسم البصري الصحيح.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent-gold-deep);">التمرين الثالث : أطوار القمر والكسوف والخسوف (8 نقاط)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx3_moon" class="Tests-Hub-diagram-canvas" width="560" height="440"></canvas>
+                </div>
+                <p><strong>1) أطوار القمر الثمانية (مع اتجاه الدوران):</strong></p>
+                <p class="Tests-Hub-text-model">
+                    أطوار القمر حسب الترتيب (بدءا من المحاق):<br>
+                    ① <strong>المحاق</strong> (Nouvelle lune / New Moon): القمر بين الشمس والأرض، وجهه المضاء نحو الشمس، لا نرى منه شيئا.<br>
+                    ② <strong>هلال بداية الشهر</strong> (Premier croissant / Waxing Crescent): نرى جزءا صغيرا مضاء على اليمين.<br>
+                    ③ <strong>التربيع الأول</strong> (Premier quartier / First Quarter): نرى نصف القمر مضاء (النصف الأيمن).<br>
+                    ④ <strong>الأحدب المتزايد</strong> (Gibbeuse croissante / Waxing Gibbous): أكثر من نصف القمر مضاء.<br>
+                    ⑤ <strong>البدر</strong> (Pleine lune / Full Moon): القمر في مواجهة الشمس، نرى وجهه كله مضاء.<br>
+                    ⑥ <strong>الأحدب المتناقص</strong> (Gibbeuse décroissante / Waning Gibbous): يبدأ الضوء في التناقص من اليسار.<br>
+                    ⑦ <strong>التربيع الثاني</strong> (Dernier quartier / Last Quarter): نرى النصف الأيسر فقط مضاء.<br>
+                    ⑧ <strong>هلال نهاية الشهر</strong> (Dernier croissant / Waning Crescent): جزء صغير مضاء على اليسار.<br>
+                    <strong>اتجاه دوران القمر حول الأرض:</strong> عكس عقارب الساعة (إذا نظرنا من القطب الشمالي) أي من الغرب نحو الشرق. في الرسم يظهر اتجاه الدوران بسهم منحنٍ حول الأرض.
+                </p>
+
+                <p><strong>2) سبب ظاهرة الخسوف:</strong></p>
+                <p class="Tests-Hub-text-model">
+                    <strong>سبب الخسوف:</strong> يحدث خسوف القمر عندما تقع <strong>الأرض بين الشمس والقمر</strong> على استقامة واحدة. في هذه الوضعية، تحجب الأرض أشعة الشمس عن القمر فيدخل القمر في منطقة ظل الأرض فلا تصله أشعة الشمس مباشرة.<br>
+                    <strong>طور القمر أثناء الخسوف:</strong> يكون القمر في طور <strong>البدر</strong> (Full Moon) لأن الخسوف لا يمكن أن يحدث إلا عندما يكون القمر في مواجهة الشمس (أي جهة الأرض المقابلة للشمس)، وهذا الوضع هو طور البدر.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق – لماذا لا يحدث الخسوف كل شهر؟</strong> يحدث البدر مرة كل شهر قمري، لكن الخسوف لا يحدث شهريا لأن مستوى مدار القمر حول الأرض يميل بزاوية حوالي 5° عن مستوى مدار الأرض حول الشمس (دائرة البروج). لذلك، في معظم الأشهر، يمر القمر في طور البدر فوق أو تحت ظل الأرض فلا يحدث الخسوف. لا يحدث الخسوف إلا عندما يكون القمر في طور البدر <strong>و</strong> واقعا على مستوى دائرة البروج (أي عند العقدة الصاعدة أو النازلة).
+                </div>
+
+                <p><strong>3) رسم مواقع الشمس - القمر - الأرض للخسوف الكلّي والجزئي:</strong></p>
+                <div class="Tests-Hub-diagram-container">
+                    <canvas id="correctionEx3_eclipse" class="Tests-Hub-diagram-canvas" width="560" height="280"></canvas>
+                </div>
+                <p class="Tests-Hub-text-model">
+                    <strong>الخسوف الكلّي:</strong> يدخل القمر <strong>بالكامل</strong> في منطقة <strong>الظل التام</strong> (Umbra) للأرض. لا يصله أي ضوء مباشر من الشمس. يظهر القمر بلون أحمر داكن (بسبب انكسار أشعة الشمس عبر الغلاف الجوي الأرضي).<br>
+                    <strong>الخسوف الجزئي:</strong> يدخل <strong>جزء فقط</strong> من القمر في منطقة الظل التام للأرض، بينما يبقى الجزء الآخر في منطقة <strong>شبه الظل</strong> (Pénombre) أو خارجها. يظهر جزء من القمر مظلما والجزء الآخر مضاء.
+                </p>
+
+                <p><strong>الجدول:</strong></p>
+                <table>
+                    <thead>
+                        <tr><th>نوع الخسوف</th><th>وصف وضعية القمر</th><th>المنطقة التي يدخلها القمر</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>خسوف كلي</strong></td>
+                            <td>يدخل القمر بأكمله في ظل الأرض التام</td>
+                            <td>منطقة الظل التام (Umbra) بكاملها</td>
+                        </tr>
+                        <tr>
+                            <td><strong>خسوف جزئي</strong></td>
+                            <td>يدخل جزء من القمر في ظل الأرض التام والجزء الآخر في شبه الظل</td>
+                            <td>جزء في الظل التام وجزء في شبه الظل (Pénombre)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل معمّق – الفرق بين الكسوف والخسوف:</strong>
+                    <br>• <strong>كسوف الشمس:</strong> القمر بين الشمس والأرض → ظل القمر يسقط على الأرض → يُحجب ضوء الشمس عن جزء من الأرض. يحدث في طور <strong>المحاق</strong>.
+                    <br>• <strong>خسوف القمر:</strong> الأرض بين الشمس والقمر → القمر يدخل في ظل الأرض → يُحجب ضوء الشمس عن القمر. يحدث في طور <strong>البدر</strong>.
+                    <br>• الكسوف نادر الحدوث في منطقة معينة، بينما الخسوف يُرى من كل نصف الكرة الأرضية المواجه للقمر.
+                    <br><strong>✔ تنقيط:</strong> 2 نقطة لذكر أطوار القمر مع الرسم، 1 نقطة لسبب الخسوف وتحديد الطور، 2.5 نقطة للرسم والجدول.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v2.6.0</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul><li><a href="#" style="color:#fbbf24;" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" style="color:#fbbf24;" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    header: { title: "الفيزياء - فرض تأليفي عدد 3 (8 أساسي)", subtitle: "Devoir de synthèse N°3 - Physique - 8ème",
+                        back: "العودة إلى الاختبارات", language: "العربية" },
+                    theme: { toggle: "الوضع الليلي" },
+                    footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v2.6.0" },
+                    synthesisTest: { showCorrection: "📘 عرض الإصلاح المفصّل", hideCorrection: "📘 إخفاء الإصلاح",
+                        comingSoon: "قريباً!" }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    header: { title: "Physique - Devoir de synthèse N°3 (8ème)", subtitle: "Devoir de synthèse N°3 - Physique - 8ème",
+                        back: "Retour aux examens", language: "Français" },
+                    theme: { toggle: "Mode sombre" },
+                    footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité", developerName: "Ziad Mejri", versionNumber: "v2.6.0" },
+                    synthesisTest: { showCorrection: "📘 Afficher la correction", hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    header: { title: "Physics - Synthesis Test N°3 (Grade 8)", subtitle: "Synthesis Test N°3 - Physics - 8th Grade",
+                        back: "Back to tests", language: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms of use",
+                        privacy: "Privacy policy", developerName: "Ziad Mejri", versionNumber: "v2.6.0" },
+                    synthesisTest: { showCorrection: "📘 Show Correction", hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!" }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                let key = el.getAttribute('data-i18n');
+                let val = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (val) val = val[k]; });
+                if (typeof val === 'string') el.textContent = val;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const toggle = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (toggle) toggle.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage ===
+                'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if (btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? TestsHub_translations[currentLanguage]
+                .TestsHub.synthesisTest.showCorrection : TestsHub_translations[currentLanguage].TestsHub.synthesisTest
+                .hideCorrection;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubThemeIndigo', isDarkTheme ? 'dark' : 'light');
+            redrawAllGraphs();
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            document.querySelector('.Tests-Hub-language-button span:nth-child(2)').textContent = lang === 'ar' ?
+                'العربية' : lang === 'fr' ? 'Français' : 'English';
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguageIndigo', lang);
+        }
+
+        function getStrokeColor() { return isDarkTheme ? '#fbbf24' : '#4f46e5'; }
+
+        function getFillColor() { return isDarkTheme ? '#c7d2fe' : '#1e1b4b'; }
+
+        function getAccentColor() { return isDarkTheme ? '#f59e0b' : '#d97706'; }
+
+        function getWaterColor() { return isDarkTheme ? 'rgba(59,130,246,0.35)' : 'rgba(59,130,246,0.25)'; }
+
+        function getGlassColor() { return isDarkTheme ? 'rgba(168,162,240,0.25)' : 'rgba(199,210,254,0.4)'; }
+
+        // ==================== رسوم التمرين الأول ====================
+        function drawEx1FishPond(canvasId, showRays) {
+            const c = document.getElementById(canvasId);
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 620;
+            const h = c.height = 380;
+            ctx.clearRect(0, 0, w, h);
+            const sc = getStrokeColor(),
+                fc = getFillColor(),
+                ac = getAccentColor();
+
+            // السماء
+            ctx.fillStyle = isDarkTheme ? '#1a1735' : '#e0f0ff';
+            ctx.fillRect(0, 0, w, 160);
+
+            // الأرض/الحوض
+            ctx.fillStyle = isDarkTheme ? '#2d2838' : '#e8e0d8';
+            ctx.fillRect(0, 280, w, 100);
+
+            // حوض الماء
+            const waterTop = 155,
+                waterBottom = 285,
+                waterLeft = 80,
+                waterRight = 540;
+            ctx.fillStyle = getWaterColor();
+            ctx.fillRect(waterLeft, waterTop, waterRight - waterLeft, waterBottom - waterTop);
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(waterLeft, waterTop, waterRight - waterLeft, waterBottom - waterTop);
+            // سطح الماء
+            ctx.setLineDash([8, 4]);
+            ctx.beginPath();
+            ctx.moveTo(waterLeft, waterTop);
+            ctx.lineTo(waterRight, waterTop);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 13px Arial';
+            ctx.fillText('ماء (Eau)', 300, waterTop - 10);
+            ctx.fillText('هواء (Air)', 300, 40);
+
+            // الشمس S (أعلى اليسار)
+            const sunX = 100,
+                sunY = 70,
+                sunR = 30;
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.stroke();
+            // أشعة الشمس
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                ctx.beginPath();
+                ctx.moveTo(sunX + Math.cos(angle) * (sunR + 5), sunY + Math.sin(angle) * (sunR + 5));
+                ctx.lineTo(sunX + Math.cos(angle) * (sunR + 16), sunY + Math.sin(angle) * (sunR + 16));
+                ctx.strokeStyle = '#fbbf24';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('S (الشمس)', sunX - 30, sunY - 40);
+
+            // السمكة عند النقطة A
+            const fishX = 340,
+                fishY = 220;
+            ctx.fillStyle = '#f97316';
+            ctx.beginPath();
+            ctx.ellipse(fishX, fishY, 28, 14, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#ea580c';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.ellipse(fishX, fishY, 28, 14, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            // ذيل السمكة
+            ctx.beginPath();
+            ctx.moveTo(fishX + 24, fishY);
+            ctx.lineTo(fishX + 40, fishY - 14);
+            ctx.lineTo(fishX + 40, fishY + 14);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            // عين السمكة
+            ctx.fillStyle = '#1e1b4b';
+            ctx.beginPath();
+            ctx.arc(fishX - 12, fishY - 3, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('A (سمكة)', fishX - 35, fishY - 22);
+
+            // عين المشاهد O
+            const eyeX = 540,
+                eyeY = 120;
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.arc(eyeX, eyeY, 20, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.arc(eyeX, eyeY, 20, 0, Math.PI * 2);
+            ctx.stroke();
+            // الحدقة
+            ctx.fillStyle = '#1e1b4b';
+            ctx.beginPath();
+            ctx.arc(eyeX - 2, eyeY, 8, 0, Math.PI * 2);
+            ctx.fill();
+            // رموش
+            for (let i = -2; i <= 2; i++) {
+                ctx.beginPath();
+                ctx.moveTo(eyeX - 4 + i * 5, eyeY - 18);
+                ctx.lineTo(eyeX - 8 + i * 5, eyeY - 30);
+                ctx.strokeStyle = sc;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('O (مشاهد)', eyeX - 5, eyeY - 38);
+
+            // النقاط J و I على سطح الماء
+            const Jx = 180,
+                Jy = waterTop;
+            const Ix = 420,
+                Iy = waterTop;
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(Jx, Jy, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = fc;
+            ctx.fillText('J', Jx - 16, Jy - 10);
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(Ix, Iy, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = fc;
+            ctx.fillText('I', Ix + 10, Iy - 10);
+
+            // رسم الأشعة (للقسم الإصلاحي فقط)
+            if (showRays) {
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([6, 4]);
+                // S → J
+                ctx.beginPath();
+                ctx.moveTo(sunX + sunR, sunY + 8);
+                ctx.lineTo(Jx, Jy);
+                ctx.stroke();
+                // J → A
+                ctx.beginPath();
+                ctx.moveTo(Jx, Jy);
+                ctx.lineTo(fishX - 10, fishY);
+                ctx.stroke();
+                // A → I
+                ctx.beginPath();
+                ctx.moveTo(fishX + 15, fishY - 3);
+                ctx.lineTo(Ix, Iy);
+                ctx.stroke();
+                // I → O
+                ctx.beginPath();
+                ctx.moveTo(Ix, Iy);
+                ctx.lineTo(eyeX - 18, eyeY);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // أسهم على الأشعة
+                ctx.fillStyle = '#f59e0b';
+                ctx.font = 'bold 12px Arial';
+                ctx.fillText('①', (sunX + sunR + Jx) / 2, (sunY + 8 + Jy) / 2 - 6);
+                ctx.fillText('②', (Jx + fishX - 10) / 2 + 10, (Jy + fishY) / 2);
+                ctx.fillText('③', (fishX + 15 + Ix) / 2, (fishY - 3 + Iy) / 2 - 6);
+                ctx.fillText('④', (Ix + eyeX - 18) / 2, (Iy + eyeY) / 2 - 6);
+
+                ctx.fillStyle = fc;
+                ctx.font = 'bold 11px Arial';
+                ctx.fillText('S→J→A→I→O :مسار الضوء', 230, 340);
+            }
+        }
+
+        function drawEx1FishPondExercise() { drawEx1FishPond('ex1_fish_pond', false); }
+
+        function drawCorrectionEx1Fish() { drawEx1FishPond('correctionEx1_fish', true); }
+
+        // ==================== رسوم التمرين الثاني ====================
+        function drawEx2Hall(canvasId, showRays) {
+            const c = document.getElementById(canvasId);
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 620;
+            const h = c.height = 340;
+            ctx.clearRect(0, 0, w, h);
+            const sc = getStrokeColor(),
+                fc = getFillColor();
+
+            // البهو (غرفة داخلية)
+            const hallLeft = 220,
+                hallRight = 560,
+                hallTop = 40,
+                hallBottom = 300;
+            ctx.fillStyle = isDarkTheme ? 'rgba(30,27,50,0.9)' : 'rgba(200,190,180,0.3)';
+            ctx.fillRect(hallLeft, hallTop, hallRight - hallLeft, hallBottom - hallTop);
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 2.5;
+            ctx.strokeRect(hallLeft, hallTop, hallRight - hallLeft, hallBottom - hallTop);
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('بهو المنزل (Hall)', 340, 65);
+
+            // حائط البلور المطروق (الجدار الأيمن للبهو)
+            const glassX = hallRight;
+            ctx.fillStyle = getGlassColor();
+            ctx.fillRect(glassX - 6, hallTop + 20, 8, hallBottom - hallTop - 40);
+            ctx.strokeStyle = '#a5b4fc';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([2, 3]);
+            ctx.strokeRect(glassX - 6, hallTop + 20, 8, hallBottom - hallTop - 40);
+            ctx.setLineDash([]);
+            // نسيج البلور المطروق (نقاط صغيرة)
+            ctx.fillStyle = isDarkTheme ? 'rgba(255,255,255,0.3)' : 'rgba(100,100,150,0.5)';
+            for (let gy = hallTop + 30; gy < hallBottom - 20; gy += 18) {
+                ctx.beginPath();
+                ctx.arc(glassX - 2, gy, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 13px Arial';
+            ctx.fillText('حائط البلور المطروق', glassX + 10, hallTop + 80);
+            ctx.fillText('(شاشة Écran)', glassX + 10, hallTop + 98);
+
+            // الباب الخشبي (الجدار الأيسر للبهو)
+            const doorX = hallLeft - 16;
+            ctx.fillStyle = '#8B5A2B';
+            ctx.fillRect(doorX, hallTop + 10, 20, hallBottom - hallTop - 20);
+            ctx.strokeStyle = '#5C3A1E';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(doorX, hallTop + 10, 20, hallBottom - hallTop - 20);
+            // خطوط الخشب
+            for (let dy = hallTop + 25; dy < hallBottom - 15; dy += 22) {
+                ctx.strokeStyle = '#6B4226';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(doorX + 3, dy);
+                ctx.lineTo(doorX + 17, dy);
+                ctx.stroke();
+            }
+            // الثقب T
+            const holeX = doorX + 10,
+                holeY = (hallTop + hallBottom) / 2;
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(holeX, holeY, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#b45309';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(holeX, holeY, 5, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('T (ثقب)', holeX - 30, holeY - 14);
+            ctx.fillText('باب خشبي', holeX - 30, hallBottom + 20);
+
+            // سلمى خارج الباب
+            const salmaX = 50,
+                salmaY = 170;
+            // رأس
+            ctx.fillStyle = '#fcd34d';
+            ctx.beginPath();
+            ctx.arc(salmaX, salmaY - 35, 18, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(salmaX, salmaY - 35, 18, 0, Math.PI * 2);
+            ctx.stroke();
+            // جسم
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(salmaX, salmaY - 17);
+            ctx.lineTo(salmaX, salmaY + 40);
+            ctx.stroke();
+            // ذراع مرفوعة
+            ctx.beginPath();
+            ctx.moveTo(salmaX, salmaY - 10);
+            ctx.lineTo(salmaX + 25, salmaY - 45);
+            ctx.stroke();
+            // أرجل
+            ctx.beginPath();
+            ctx.moveTo(salmaX, salmaY + 40);
+            ctx.lineTo(salmaX - 12, salmaY + 60);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(salmaX, salmaY + 40);
+            ctx.lineTo(salmaX + 12, salmaY + 60);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('سلمى', salmaX - 20, salmaY - 55);
+
+            // الأم داخل البهو
+            const momX = 460,
+                momY = 200;
+            ctx.fillStyle = '#fcd34d';
+            ctx.beginPath();
+            ctx.arc(momX, momY - 30, 16, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(momX, momY - 30, 16, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.strokeStyle = '#8b5cf6';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(momX, momY - 14);
+            ctx.lineTo(momX, momY + 30);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 13px Arial';
+            ctx.fillText('الأم', momX - 16, momY - 52);
+            // عين الأم
+            ctx.fillStyle = '#1e1b4b';
+            ctx.beginPath();
+            ctx.arc(momX + 8, momY - 33, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (showRays) {
+                // أشعة من سلمى عبر الثقب إلى الحائط البلوري
+                const glassScreenX = glassX - 4;
+                // شعاع من رأس سلمى
+                const headTopY = salmaY - 55;
+                const imgHeadY = holeY + (holeY - headTopY) * ((glassScreenX - holeX) / (holeX - salmaX));
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 1.8;
+                ctx.setLineDash([5, 3]);
+                ctx.beginPath();
+                ctx.moveTo(salmaX, headTopY);
+                ctx.lineTo(holeX, holeY);
+                ctx.lineTo(glassScreenX, imgHeadY);
+                ctx.stroke();
+                // شعاع من قدم سلمى
+                const footY = salmaY + 60;
+                const imgFootY = holeY + (holeY - footY) * ((glassScreenX - holeX) / (holeX - salmaX));
+                ctx.beginPath();
+                ctx.moveTo(salmaX + 12, footY);
+                ctx.lineTo(holeX, holeY);
+                ctx.lineTo(glassScreenX, imgFootY);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // صورة مقلوبة على الحائط البلوري
+                ctx.strokeStyle = '#ef4444';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.moveTo(glassScreenX, imgFootY);
+                ctx.lineTo(glassScreenX, imgHeadY);
+                ctx.stroke();
+                ctx.fillStyle = '#ef4444';
+                ctx.beginPath();
+                ctx.arc(glassScreenX, imgFootY, 4, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(glassScreenX, imgHeadY, 8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = fc;
+                ctx.font = 'bold 12px Arial';
+                ctx.fillText('صورة مقلوبة', glassScreenX - 45, imgHeadY - 12);
+                ctx.fillText('لسلمى', glassScreenX - 30, imgHeadY + 4);
+            }
+        }
+
+        function drawEx2HallExercise() { drawEx2Hall('ex2_hall', false); }
+
+        function drawCorrectionEx2Hall() { drawEx2Hall('correctionEx2_hall', true); }
+
+        // ==================== رسوم التمرين الثالث ====================
+        function drawEx3MoonPhases(canvasId, showPhases) {
+            const c = document.getElementById(canvasId);
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 560;
+            const h = c.height = 440;
+            ctx.clearRect(0, 0, w, h);
+            const sc = getStrokeColor(),
+                fc = getFillColor();
+
+            // عنوان
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('أطوار القمر (Phases de la Lune)', 180, 25);
+
+            // الأرض في المركز
+            const earthX = w / 2,
+                earthY = h / 2 + 20,
+                earthR = 32;
+            ctx.fillStyle = '#3b82f6';
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#1d4ed8';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR, 0, Math.PI * 2);
+            ctx.stroke();
+            // قارات
+            ctx.fillStyle = '#22c55e';
+            ctx.beginPath();
+            ctx.arc(earthX - 8, earthY - 10, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(earthX + 10, earthY + 5, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('الأرض', earthX - 22, earthY  - 40);
+
+            // مدار القمر
+            const orbitR = 150;
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([8, 5]);
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, orbitR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // الشمس (يمين)
+            const sunX = w - 50,
+                sunY = earthY,
+                sunR = 35;
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 13px Arial';
+            ctx.fillText('الشمس', sunX - 22, sunY - 42);
+            ctx.fillText('(ضوء)', sunX - 18, sunY + 52);
+
+            // اتجاه الدوران
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([4, 2]);
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, orbitR + 25, -0.3, 1.8, false);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            // رأس السهم
+            const arrowAng = 1.8;
+            const arrowTipX = earthX + Math.cos(arrowAng) * (orbitR + 25);
+            const arrowTipY = earthY + Math.sin(arrowAng) * (orbitR + 25);
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.moveTo(arrowTipX, arrowTipY);
+            ctx.lineTo(arrowTipX - 14, arrowTipY - 8);
+            ctx.lineTo(arrowTipX - 14, arrowTipY + 8);
+            ctx.closePath();
+            ctx.fill();
+            ctx.fillStyle = '#ef4444';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('اتجاه الدوران', earthX + 140, earthY + 80);
+
+            if (showPhases) {
+                // 8 مواقع للقمر
+                const phaseAngles = [0, Math.PI / 4, Math.PI / 2, 3 * Math.PI / 4, Math.PI, 5 * Math.PI / 4, 3 * Math.PI / 2,
+                    7 * Math.PI / 4
+                ];
+                const phaseNames = ['محاق', 'هلال بداية', 'تربيع أول', 'أحدب متزايد', 'بدر', 'أحدب متناقص', 'تربيع ثاني',
+                    'هلال نهاية'
+                ];
+                const moonR = 13;
+                const lightFromX = sunX;
+
+                phaseAngles.forEach((angle, idx) => {
+                    const mx = earthX + Math.cos(angle) * orbitR;
+                    const my = earthY + Math.sin(angle) * orbitR;
+
+                    // دائرة القمر
+                    ctx.fillStyle = '#9ca3af';
+                    ctx.beginPath();
+                    ctx.arc(mx, my, moonR, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = '#6b7280';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.arc(mx, my, moonR, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    // الجزء المضاء (أصفر) - النصف المواجه للشمس
+                    const lightAngle = Math.atan2(sunY - my, lightFromX - mx);
+                    ctx.fillStyle = '#fef3c7';
+                    ctx.beginPath();
+                    ctx.arc(mx, my, moonR, lightAngle - Math.PI / 2, lightAngle + Math.PI / 2);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // تسمية
+                    ctx.fillStyle = fc;
+                    ctx.font = 'bold 11px Arial';
+                    const labelX = mx + (mx > earthX ? 18 : -60);
+                    const labelY = my + (my < earthY ? -16 : 18);
+                    ctx.fillText(phaseNames[idx], labelX, labelY);
+                });
+
+                // رقم 5 = البدر بالأحمر
+                const fullMoonX = earthX + Math.cos(Math.PI) * orbitR;
+                const fullMoonY = earthY + Math.sin(Math.PI) * orbitR;
+                ctx.strokeStyle = '#ef4444';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.arc(fullMoonX, fullMoonY, moonR + 3, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.fillStyle = '#ef4444';
+                ctx.font = 'bold 13px Arial';
+                ctx.fillText('← الخسوف يحدث هنا (بدر)', fullMoonX - 135, fullMoonY + 4);
+            }
+        }
+
+        function drawEx3MoonPhasesExercise() { drawEx3MoonPhases('ex3_moon_phases', false); }
+
+        function drawCorrectionEx3Moon() { drawEx3MoonPhases('correctionEx3_moon', true); }
+
+        function drawEx3Eclipse(canvasId, showDetails) {
+            const c = document.getElementById(canvasId);
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const w = c.width = 560;
+            const h = c.height = 280;
+            ctx.clearRect(0, 0, w, h);
+            const sc = getStrokeColor(),
+                fc = getFillColor();
+
+            // إطار
+            ctx.strokeStyle = sc;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(15, 15, w - 30, h - 30);
+            ctx.fillStyle = fc;
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText('الخسوف الكلّي والجزئي للقمر', 160, 12);
+
+            // الشمس (يمين)
+            const sunX = 480,
+                sunY = 140,
+                sunR = 35;
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.fillText('الشمس', sunX - 22, sunY - 42);
+
+            // الأرض (وسط)
+            const earthX = 280,
+                earthY = 140,
+                earthR = 30;
+            ctx.fillStyle = '#3b82f6';
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#1d4ed8';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.arc(earthX, earthY, earthR, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillStyle = fc;
+            ctx.fillText('الأرض', earthX - 18, earthY - 38);
+
+            if (showDetails) {
+                // مخروط الظل التام (Umbra)
+                const dSE = earthX - sunX;
+                const umbraHalfAngle = Math.atan(earthR / dSE);
+                const umbraEndX = earthX - 180;
+                const umbraTopY = earthY - Math.tan(umbraHalfAngle) * (earthX - umbraEndX);
+                const umbraBottomY = earthY + Math.tan(umbraHalfAngle) * (earthX - umbraEndX);
+
+                // شبه الظل (Penumbra)
+                const penumbraHalfAngleTop = Math.atan((sunR + earthR) / dSE);
+                const penumbraHalfAngleBottom = Math.atan((sunR - earthR) / dSE);
+                const penumbraEndX = earthX - 240;
+                const penumbraTopY = earthY - Math.tan(penumbraHalfAngleTop) * (earthX - penumbraEndX);
+                const penumbraBottomY = earthY + Math.tan(penumbraHalfAngleTop) * (earthX - penumbraEndX);
+
+                // منطقة الظل التام
+                ctx.fillStyle = 'rgba(30,27,75,0.55)';
+                ctx.beginPath();
+                ctx.moveTo(earthX - earthR, earthY - earthR);
+                ctx.lineTo(umbraEndX, umbraTopY);
+                ctx.lineTo(umbraEndX, umbraBottomY);
+                ctx.lineTo(earthX - earthR, earthY + earthR);
+                ctx.closePath();
+                ctx.fill();
+
+                // منطقة شبه الظل
+                ctx.fillStyle = 'rgba(30,27,75,0.25)';
+                ctx.beginPath();
+                ctx.moveTo(earthX - earthR, earthY - earthR - 5);
+                ctx.lineTo(penumbraEndX, penumbraTopY);
+                ctx.lineTo(umbraEndX, umbraTopY);
+                ctx.lineTo(earthX - earthR, earthY - earthR);
+                ctx.closePath();
+                ctx.fill();
+                ctx.beginPath();
+                ctx.moveTo(earthX - earthR, earthY + earthR + 5);
+                ctx.lineTo(penumbraEndX, penumbraBottomY);
+                ctx.lineTo(umbraEndX, umbraBottomY);
+                ctx.lineTo(earthX - earthR, earthY + earthR);
+                ctx.closePath();
+                ctx.fill();
+
+                // أشعة حدودية
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 1.2;
+                ctx.setLineDash([4, 3]);
+                ctx.beginPath();
+                ctx.moveTo(sunX, sunY - sunR);
+                ctx.lineTo(earthX, earthY - earthR);
+                ctx.lineTo(umbraEndX, umbraTopY);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(sunX, sunY + sunR);
+                ctx.lineTo(earthX, earthY + earthR);
+                ctx.lineTo(umbraEndX, umbraBottomY);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // تسميات
+                ctx.fillStyle = fc;
+                ctx.font = 'bold 12px Arial';
+                ctx.fillText('ظل تام (Umbra)', umbraEndX - 30, (umbraTopY + umbraBottomY) / 2 + 5);
+                ctx.fillText('شبه ظل (Pénombre)', penumbraEndX - 50, penumbraTopY - 8);
+
+                // القمر في وضعيتين
+                const moonR = 10;
+                // خسوف كلي: القمر بالكامل في الظل التام
+                const totalMoonX = umbraEndX + 50;
+                const totalMoonY = (umbraTopY + umbraBottomY) / 2;
+                ctx.fillStyle = '#9ca3af';
+                ctx.beginPath();
+                ctx.arc(totalMoonX, totalMoonY, moonR, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#ef4444';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.arc(totalMoonX, totalMoonY, moonR, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.fillStyle = fc;
+                ctx.fillText('خسوف كلّي', totalMoonX + 14, totalMoonY + 4);
+
+                // خسوف جزئي: القمر جزئيا في الظل التام
+                const partialMoonX = umbraEndX + 90;
+                const partialMoonY = umbraTopY - 10;
+                ctx.fillStyle = '#9ca3af';
+                ctx.beginPath();
+                ctx.arc(partialMoonX, partialMoonY, moonR, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#fef3c7';
+                ctx.beginPath();
+                ctx.arc(partialMoonX, partialMoonY, moonR, Math.PI / 2, 3 * Math.PI / 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = '#ef4444';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.arc(partialMoonX, partialMoonY, moonR, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.fillStyle = fc;
+                ctx.fillText('خسوف جزئي', partialMoonX + 14, partialMoonY + 4);
+            }
+        }
+
+        function drawEx3EclipseExercise() { drawEx3Eclipse('ex3_eclipse', false); }
+
+        function drawCorrectionEx3Eclipse() { drawEx3Eclipse('correctionEx3_eclipse', true); }
+
+        function redrawAllGraphs() {
+            drawEx1FishPondExercise();
+            drawEx2HallExercise();
+            drawEx3MoonPhasesExercise();
+            drawEx3EclipseExercise();
+            if (!document.getElementById('correction').classList.contains('Tests-Hub-hidden')) {
+                drawCorrectionEx1Fish();
+                drawCorrectionEx2Hall();
+                drawCorrectionEx3Moon();
+                drawCorrectionEx3Eclipse();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('testsHubThemeIndigo');
+            if (savedTheme === 'dark') { isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme'); }
+            const savedLanguage = localStorage.getItem('testsHubLanguageIndigo');
+            if (savedLanguage && TestsHub_translations[savedLanguage]) { currentLanguage = savedLanguage; }
+            if (currentLanguage === 'ar') document.documentElement.dir = 'rtl';
+            else document.documentElement.dir = 'ltr';
+            updateTextContent();
+
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$",
+                        display: false }, { left: "\\(", right: "\\)", display: false }, { left: "\\[",
+                        right: "\\]", display: true }
+                    ],
+                    throwOnError: false
+                });
+            }
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => {
+                opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); });
+            });
+            document.getElementById('downloadPdf').addEventListener('click', () => alert(TestsHub_translations[
+                currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || 'قريباً!'));
+            document.getElementById('downloadOdt').addEventListener('click', () => alert(TestsHub_translations[
+                currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || 'قريباً!'));
+            document.getElementById('downloadPng').addEventListener('click', () => alert(TestsHub_translations[
+                currentLanguage]?.TestsHub?.synthesisTest?.comingSoon || 'قريباً!'));
+
+            const correctionBtn = document.getElementById('toggleCorrection');
+            correctionBtn.addEventListener('click', function() {
+                const corr = document.getElementById('correction');
+                corr.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+                redrawAllGraphs();
+                if (typeof renderMathInElement === 'function' && !corr.classList.contains(
+                        'Tests-Hub-hidden')) {
+                    renderMathInElement(corr, { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$",
+                            right: "$", display: false }], throwOnError: false });
+                }
+            });
+            redrawAllGraphs();
+            window.addEventListener('resize', redrawAllGraphs);
+        });
+    </script>
+</body>
+</html>
