@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمرين الوسيط | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.10);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-median: #b45309;
+            --highlight-median-light: rgba(180, 83, 9, 0.08);
+            --highlight-rank: #0891b2;
+            --highlight-rank-light: rgba(8, 145, 178, 0.08);
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+            --shadow: 0 4px 16px rgba(0,0,0,0.25);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-median: #fbbf24;
+            --highlight-median-light: rgba(251, 191, 36, 0.12);
+            --highlight-rank: #22d3ee;
+            --highlight-rank-light: rgba(34, 211, 238, 0.12);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        .dashboard-header {
+            width: 100%; max-width: 1060px; margin: 0 auto 16px;
+            background: var(--surface); border-radius: 30px; padding: 14px 24px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px; transition: all 0.35s;
+        }
+        .logo-area { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: var(--text); white-space: nowrap; }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .btn-icon {
+            width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--border);
+            background: var(--surface2); cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+            color: var(--text); flex-shrink: 0;
+        }
+        .btn-icon:hover { background: var(--surface3); border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px; border-radius: 50px; border: 2px solid var(--border);
+            background: var(--surface2); color: var(--text); font-family: inherit; font-weight: 600;
+            font-size: 0.9rem; cursor: pointer; outline: none; transition: 0.2s; min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+        .exercise-wrapper {
+            width: 100%; max-width: 1060px; background: var(--surface); border-radius: 36px;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 28px 32px;
+            margin-bottom: 16px; transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem; font-weight: 800; color: var(--accent); text-align: center;
+            margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center; color: var(--text2); margin-bottom: 20px; font-size: 1rem;
+            font-weight: 500; background: var(--section-header-bg); padding: 5px 20px;
+            border-radius: 40px; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+        }
+        .stats-table-container { display: flex; justify-content: center; margin-bottom: 22px; overflow-x: auto; border-radius: 20px; box-shadow: var(--shadow); }
+        .stats-table {
+            width: 100%; border-collapse: collapse; background: var(--surface);
+            border: 1px solid var(--table-border); font-size: 1.1rem; font-weight: 600;
+            text-align: center; transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg); color: var(--section-header-text);
+            padding: 12px 14px; border-left: 1px solid var(--table-border); font-weight: 700; white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg); color: var(--text); padding: 12px 14px;
+            border-left: 1px solid var(--table-border); min-width: 50px; transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) { background: var(--table-stripe-bg); }
+        .stats-table .sorted-cell {
+            background: var(--highlight-median-light); color: var(--highlight-median); font-weight: 700;
+            box-shadow: inset 0 0 0 2px var(--highlight-median);
+        }
+        .question-block {
+            margin-top: 10px; font-size: 1.2rem; font-weight: 600; color: var(--text);
+            background: var(--surface2); padding: 18px 20px; border-radius: 28px;
+            line-height: 2.2; border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface); border-radius: 20px; padding: 14px 18px; margin: 10px 0;
+            border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
+        }
+        .section-card.order-card { border-right: 4px solid var(--highlight-rank); background: var(--highlight-rank-light); }
+        .section-card.rule-card { border-right: 4px solid var(--accent); background: rgba(44,110,158,0.04); }
+        .section-card.median-card { border-right: 4px solid var(--highlight-median); background: var(--highlight-median-light); }
+        .section-label {
+            font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center;
+            gap: 6px; padding: 4px 14px; border-radius: 30px; width: fit-content;
+        }
+        .section-label.order-label { color: var(--highlight-rank); background: rgba(8,145,178,0.1); }
+        .section-label.rule-label { color: var(--accent); background: rgba(44,110,158,0.1); }
+        .section-label.median-label { color: var(--highlight-median); background: rgba(180,83,9,0.1); }
+        .calc-line {
+            display: inline-flex; align-items: center; gap: 0 5px; background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border); border-radius: 40px; padding: 6px 16px;
+            margin: 6px 0; direction: ltr; white-space: nowrap; font-size: 1.3rem; font-weight: 700;
+            color: var(--text); width: 100%; justify-content: center; flex-wrap: wrap;
+        }
+        .calc-line .operator { font-size: 1.4rem; font-weight: 800; color: var(--accent); margin: 0 3px; }
+        .calc-line .num-display {
+            font-weight: 800; background: var(--surface3); padding: 4px 10px; border-radius: 16px;
+            font-size: 1.2rem; color: var(--highlight-rank);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.2rem;
+            background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
+            text-align: center; padding: 3px 2px; margin: 0 3px; width: 3em; min-width: 54px;
+            max-width: 100px; outline: none; transition: all 0.15s; color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+        }
+        .inline-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,110,158,0.2); }
+        .wide-input { width: 4.5em; min-width: 70px; }
+        .action-row { display: flex; justify-content: center; gap: 12px; margin: 16px 0 8px; }
+        .btn {
+            border: none; padding: 11px 28px; font-size: 1.1rem; font-weight: bold;
+            border-radius: 60px; cursor: pointer; transition: 0.08s linear; font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2); color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #2c3e66; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex; justify-content: space-between; margin-top: 18px; font-size: 1.2rem;
+            color: var(--text); font-weight: 600; background: var(--surface2); padding: 12px 28px;
+            border-radius: 60px; border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500;
+            text-align: center; background: var(--surface2); border-radius: 60px; padding: 10px 16px;
+            transition: 0.1s; border: 1px solid var(--border); color: var(--text); line-height: 2;
+        }
+        .hint-text { font-size: 0.95rem; color: var(--text2); margin-top: 8px; text-align: center; }
+        .dashboard-footer {
+            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px;
+            background: var(--surface); border-radius: 24px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px; transition: background 0.35s; font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a { color: var(--text2); text-decoration: none; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .footer-col { align-items: center; }
+            .question-block { font-size: 1rem; padding: 12px 8px; }
+            .inline-input { font-size: 1rem; width: 2.5em; min-width: 44px; }
+            .calc-line { font-size: 1rem; padding: 4px 8px; border-radius: 30px; }
+            .calc-line .operator { font-size: 1.1rem; }
+            .section-label { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">الوسيط (الموسط)</span> <span>🔢</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">ترتيب القيم وتطبيق قاعدة الوسيط خطوة بخطوة</div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ جميع الفراغات: رتب القيم، حدد العدد (فردي/زوجي)، طبق القاعدة، ثم استخرج الوسيط.</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let currentRawNumbers = [];
+            let currentSorted = [];
+            let currentN, currentIsOdd, currentMedian;
+            let currentOddRanks = null;
+            let currentEvenRanks = null;
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
+            let inputRefs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'الوسيط (الموسط)',
+                    exercise_subtitle: 'ترتيب القيم وتطبيق قاعدة الوسيط خطوة بخطوة',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات: رتب القيم، حدد العدد (فردي/زوجي)، طبق القاعدة، ثم استخرج الوسيط.',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    index_row: 'العدد',
+                    values_row: 'القِيَم الأصلية',
+                    sorted_row: 'القيم المرتبة تصاعدياً',
+                    order_section: '🔢 أولاً: رتب القيم تصاعدياً (من الأصغر إلى الأكبر)',
+                    rule_section: '📏 ثانياً: حدد حالة عدد القيم وطبق القاعدة',
+                    count_intro: 'عدد القيم N =',
+                    parity_question: 'هل N فردي أم زوجي؟',
+                    odd_label: 'فردي',
+                    even_label: 'زوجي',
+                    odd_rule: 'بما أن N فردي، رتبة الوسيط = (N + 1) ÷ 2',
+                    even_rule: 'بما أن N زوجي، رتبتا الوسيط = N ÷ 2 وَ (N ÷ 2) + 1',
+                    rank_calc: 'الرتبة =',
+                    rank_calc1: 'الرتبة الأولى =',
+                    rank_calc2: 'الرتبة الثانية =',
+                    median_section: '🎯 ثالثاً: استخرج الوسيط من القيم المرتبة',
+                    extract_value_odd: 'القيمة التي ترتيبها {rank} في السطر المرتب هي الوسيط =',
+                    extract_value_even1: 'القيمة الأولى (ترتيب {r1}) =',
+                    extract_value_even2: 'القيمة الثانية (ترتيب {r2}) =',
+                    even_mean_formula: 'الوسيط = (القيمة الأولى + القيمة الثانية) ÷ 2',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة فقط في الفراغات المطلوبة',
+                    parity_required: '⚠️ الرجاء اختيار فردي أو زوجي',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! القيم المرتبة: {sorted}، N={n} ({parity})، الوسيط = {median}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_equals: '='
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'La médiane',
+                    exercise_subtitle: 'Ordonner les valeurs et appliquer la règle de la médiane',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs : tri, parité, règle, puis médiane.',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    index_row: 'N°',
+                    values_row: 'Valeurs brutes',
+                    sorted_row: 'Valeurs triées',
+                    order_section: '🔢 1. Trier les valeurs par ordre croissant',
+                    rule_section: '📏 2. Déterminer si N est pair ou impair et appliquer la règle',
+                    count_intro: 'Nombre de valeurs N =',
+                    parity_question: 'N est-il pair ou impair ?',
+                    odd_label: 'Impair',
+                    even_label: 'Pair',
+                    odd_rule: 'N est impair, rang de la médiane = (N + 1) ÷ 2',
+                    even_rule: 'N est pair, rangs de la médiane = N ÷ 2 et (N ÷ 2) + 1',
+                    rank_calc: 'Rang =',
+                    rank_calc1: '1er rang =',
+                    rank_calc2: '2e rang =',
+                    median_section: '🎯 3. Extraire la médiane des valeurs triées',
+                    extract_value_odd: 'Valeur au rang {rank} = médiane =',
+                    extract_value_even1: '1ère valeur (rang {r1}) =',
+                    extract_value_even2: '2e valeur (rang {r2}) =',
+                    even_mean_formula: 'Médiane = (1ère valeur + 2e valeur) ÷ 2',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers uniquement',
+                    parity_required: '⚠️ Veuillez choisir pair ou impair',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! Triées : {sorted}, N={n} ({parity}), médiane = {median}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés (essai non compté)',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_equals: '='
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'The Median',
+                    exercise_subtitle: 'Order values and apply the median rule step by step',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill all blanks: sort values, parity, rule, then extract the median.',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    index_row: 'No.',
+                    values_row: 'Raw values',
+                    sorted_row: 'Sorted values',
+                    order_section: '🔢 1. Sort values in ascending order',
+                    rule_section: '📏 2. Determine if N is odd or even and apply the rule',
+                    count_intro: 'Number of values N =',
+                    parity_question: 'Is N odd or even?',
+                    odd_label: 'Odd',
+                    even_label: 'Even',
+                    odd_rule: 'N is odd, median rank = (N + 1) ÷ 2',
+                    even_rule: 'N is even, median ranks = N ÷ 2 and (N ÷ 2) + 1',
+                    rank_calc: 'Rank =',
+                    rank_calc1: '1st rank =',
+                    rank_calc2: '2nd rank =',
+                    median_section: '🎯 3. Extract the median from sorted values',
+                    extract_value_odd: 'Value at rank {rank} = median =',
+                    extract_value_even1: '1st value (rank {r1}) =',
+                    extract_value_even2: '2nd value (rank {r2}) =',
+                    even_mean_formula: 'Median = (1st value + 2nd value) ÷ 2',
+                    fill_all: '⚠️ Please complete all fields',
+                    invalid_numbers: '❌ Integers only',
+                    parity_required: '⚠️ Please select odd or even',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong! Sorted: {sorted}, N={n} ({parity}), median = {median}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed (attempt not counted)',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_equals: '='
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => { if (el.dataset.i18n) el.textContent = t(el.dataset.i18n); });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_median_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_median_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true, audioCtx = null;
+            function getAudioContext() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') { osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(659.25, now+0.1); gain.gain.setValueAtTime(0.3, now); gain.gain.linearRampToValueAtTime(0, now+0.25); osc.start(now); osc.stop(now+0.25); }
+                    else if (type === 'incorrect') { osc.type = 'square'; osc.frequency.setValueAtTime(200, now); gain.gain.setValueAtTime(0.2, now); gain.gain.linearRampToValueAtTime(0, now+0.3); osc.start(now); osc.stop(now+0.3); }
+                } catch(e) {}
+            }
+            function loadSoundPref() { const s = localStorage.getItem('exercise_median_sound'); soundEnabled = s !== 'off'; btnSound.textContent = soundEnabled ? '🔊' : '🔇'; btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); }
+            function toggleSound() { soundEnabled = !soundEnabled; localStorage.setItem('exercise_median_sound', soundEnabled ? 'on' : 'off'); btnSound.textContent = soundEnabled ? '🔊' : '🔇'; btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); if (soundEnabled) playSound('correct'); }
+
+            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙'; localStorage.setItem('exercise_median_theme', theme); }
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+            function loadTheme() { const s = localStorage.getItem('exercise_median_theme'); if (s === 'dark' || s === 'light') applyTheme(s); else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+
+            function goBack() { if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back(); else window.location.href = 'لوحة التمارين التفاعلية.html'; }
+
+            function generateNumbers() {
+                const isOdd = Math.random() < 0.55;
+                const n = isOdd ? (Math.floor(Math.random() * 3) * 2 + 5) : (Math.floor(Math.random() * 3) * 2 + 6);
+                const nums = [];
+                const used = new Set();
+                while (nums.length < n) {
+                    const v = Math.floor(Math.random() * 60) + 10;
+                    if (!used.has(v)) { used.add(v); nums.push(v); }
+                }
+                for (let i = nums.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [nums[i], nums[j]] = [nums[j], nums[i]]; }
+                return nums;
+            }
+
+            function computeMedian(sorted) {
+                const n = sorted.length;
+                if (n % 2 === 1) {
+                    const rank = (n + 1) / 2;
+                    return { isOdd: true, median: sorted[rank - 1], ranks: [rank] };
+                } else {
+                    const r1 = n / 2, r2 = r1 + 1;
+                    const v1 = sorted[r1 - 1], v2 = sorted[r2 - 1];
+                    return { isOdd: false, median: (v1 + v2) / 2, ranks: [r1, r2], values: [v1, v2] };
+                }
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                let html = '<table class="stats-table">';
+                html += `<tr><td class="header-cell">${dict.index_row}</td>`;
+                currentRawNumbers.forEach((_, i) => html += `<td class="index-cell">${i+1}</td>`);
+                html += '</tr>';
+                html += `<tr><td class="header-cell">${dict.values_row}</td>`;
+                currentRawNumbers.forEach(v => html += `<td class="value-cell">${v}</td>`);
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opPlus = t('operator_plus');
+                const opDiv = t('operator_divide');
+                const opEq = t('operator_equals');
+
+                let html = '';
+
+                html += `<div class="section-card order-card"><div class="section-label order-label">${t('order_section')}</div>`;
+                html += `<div style="text-align:center;font-weight:700;margin-bottom:4px;">${t('sorted_row')}:</div>`;
+                html += '<div class="calc-line" dir="ltr">';
+                currentSorted.forEach((_, i) => {
+                    html += `<input type="text" id="inpS${i}" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    if (i < currentSorted.length - 1) html += '<span style="margin:0 2px;color:var(--text3);">,</span>';
+                });
+                html += '</div></div>';
+
+                html += `<div class="section-card rule-card"><div class="section-label rule-label">${t('rule_section')}</div>`;
+                html += `<div style="text-align:center;margin-bottom:6px;"><span style="font-weight:700;">${t('count_intro')}</span> <input type="text" id="inpN" class="inline-input wide-input" placeholder="N" autocomplete="off" inputmode="numeric"></div>`;
+                html += `<div style="text-align:center;margin-bottom:6px;"><span style="font-weight:700;">${t('parity_question')}</span> `;
+                html += `<select id="selParity" style="padding:6px 14px;border-radius:30px;border:2px solid var(--input-border);background:var(--input-bg);color:var(--text);font-weight:600;font-family:inherit;font-size:1rem;cursor:pointer;">`;
+                html += `<option value="">--</option><option value="odd">${t('odd_label')}</option><option value="even">${t('even_label')}</option></select></div>`;
+
+                html += `<div id="oddRuleBlock" style="display:none;">`;
+                html += `<div style="text-align:center;font-weight:700;margin:4px 0;">${t('odd_rule')}</div>`;
+                html += `<div class="calc-line" dir="ltr"><span>${t('rank_calc')}</span> (<span class="num-display" id="dispN">?</span> ${opPlus} 1) ${opDiv} 2 ${opEq} <input type="text" id="inpRank1" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                html += `</div>`;
+
+                html += `<div id="evenRuleBlock" style="display:none;">`;
+                html += `<div style="text-align:center;font-weight:700;margin:4px 0;">${t('even_rule')}</div>`;
+                html += `<div class="calc-line" dir="ltr"><span>${t('rank_calc1')}</span> <span class="num-display" id="dispN2">?</span> ${opDiv} 2 ${opEq} <input type="text" id="inpRankE1" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                html += `<div class="calc-line" dir="ltr"><span>${t('rank_calc2')}</span> (<span class="num-display" id="dispN2b">?</span> ${opDiv} 2) ${opPlus} 1 ${opEq} <input type="text" id="inpRankE2" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                html += `</div>`;
+                html += `</div>`;
+
+                html += `<div class="section-card median-card"><div class="section-label median-label">${t('median_section')}</div>`;
+                html += `<div id="medianOddBlock" style="display:none;">`;
+                html += `<div style="text-align:center;font-weight:700;margin-bottom:4px;">${t('extract_value_odd', {rank: '?'})}</div>`;
+                html += `<div class="calc-line" dir="ltr"><input type="text" id="inpMedianOdd" class="inline-input wide-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                html += `</div>`;
+                html += `<div id="medianEvenBlock" style="display:none;">`;
+                html += `<div style="text-align:center;font-weight:700;margin-bottom:2px;">${t('extract_value_even1', {r1:'?'})}</div>`;
+                html += `<div class="calc-line" dir="ltr"><input type="text" id="inpVal1" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                html += `<div style="text-align:center;font-weight:700;margin:4px 0 2px;">${t('extract_value_even2', {r2:'?'})}</div>`;
+                html += `<div class="calc-line" dir="ltr"><input type="text" id="inpVal2" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"></div>`;
+                html += `<div style="text-align:center;font-weight:700;margin:6px 0 2px;">${t('even_mean_formula')}</div>`;
+                html += `<div class="calc-line" dir="ltr">( <input type="text" id="inpVal1b" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"> ${opPlus} <input type="text" id="inpVal2b" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric"> ) ${opDiv} 2 ${opEq} <input type="text" id="inpMedianEven" class="inline-input wide-input" placeholder="?" autocomplete="off" inputmode="decimal"></div>`;
+                html += `</div>`;
+                html += `</div>`;
+
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                currentSorted.forEach((_, i) => inputRefs['s' + i] = document.getElementById('inpS' + i));
+                inputRefs['n'] = document.getElementById('inpN');
+                inputRefs['parity'] = document.getElementById('selParity');
+                inputRefs['rank1'] = document.getElementById('inpRank1');
+                inputRefs['rankE1'] = document.getElementById('inpRankE1');
+                inputRefs['rankE2'] = document.getElementById('inpRankE2');
+                inputRefs['medianOdd'] = document.getElementById('inpMedianOdd');
+                inputRefs['val1'] = document.getElementById('inpVal1');
+                inputRefs['val2'] = document.getElementById('inpVal2');
+                inputRefs['val1b'] = document.getElementById('inpVal1b');
+                inputRefs['val2b'] = document.getElementById('inpVal2b');
+                inputRefs['medianEven'] = document.getElementById('inpMedianEven');
+                inputRefs['dispN'] = document.getElementById('dispN');
+                inputRefs['dispN2'] = document.getElementById('dispN2');
+                inputRefs['dispN2b'] = document.getElementById('dispN2b');
+            }
+
+            function updateParityUI() {
+                const parity = inputRefs['parity']?.value || '';
+                const oddBlock = document.getElementById('oddRuleBlock');
+                const evenBlock = document.getElementById('evenRuleBlock');
+                const medianOdd = document.getElementById('medianOddBlock');
+                const medianEven = document.getElementById('medianEvenBlock');
+                if (parity === 'odd') { oddBlock.style.display = ''; evenBlock.style.display = 'none'; medianOdd.style.display = ''; medianEven.style.display = 'none'; }
+                else if (parity === 'even') { oddBlock.style.display = 'none'; evenBlock.style.display = ''; medianOdd.style.display = 'none'; medianEven.style.display = ''; }
+                else { oddBlock.style.display = 'none'; evenBlock.style.display = 'none'; medianOdd.style.display = 'none'; medianEven.style.display = 'none'; }
+                if (inputRefs['dispN']) inputRefs['dispN'].textContent = inputRefs['n']?.value || '?';
+                if (inputRefs['dispN2']) inputRefs['dispN2'].textContent = inputRefs['n']?.value || '?';
+                if (inputRefs['dispN2b']) inputRefs['dispN2b'].textContent = inputRefs['n']?.value || '?';
+            }
+
+            function clearInputs() {
+                for (let k in inputRefs) { if (inputRefs[k] && inputRefs[k].tagName !== 'SPAN') inputRefs[k].value = ''; if (inputRefs[k] && inputRefs[k].tagName === 'SELECT') inputRefs[k].value = ''; }
+                updateParityUI();
+            }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+                if (inputRefs['parity']) inputRefs['parity'].addEventListener('change', updateParityUI);
+            }
+
+            function generateNewQuestion() {
+                currentRawNumbers = generateNumbers();
+                currentSorted = [...currentRawNumbers].sort((a, b) => a - b);
+                currentN = currentSorted.length;
+                const result = computeMedian(currentSorted);
+                currentIsOdd = result.isOdd;
+                currentMedian = result.median;
+                if (currentIsOdd) { currentOddRanks = result.ranks; currentEvenRanks = null; }
+                else { currentEvenRanks = { r1: result.ranks[0], r2: result.ranks[1], v1: result.values[0], v2: result.values[1] }; currentOddRanks = null; }
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts; scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = ''; messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false); checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => { if (inputRefs['s0']) inputRefs['s0'].focus(); }, 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let k in inputRefs) { if (inputRefs[k] && inputRefs[k].tagName !== 'SPAN') inputRefs[k].disabled = disabled; }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true); checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const parity = inputRefs['parity']?.value || '';
+                if (!parity) { messageEl.innerHTML = t('parity_required'); messageEl.style.color = 'var(--accent3)'; return; }
+
+                const isEmpty = (id) => !(inputRefs[id]?.value.trim());
+                let allFilled = true;
+                currentSorted.forEach((_, i) => { if (isEmpty('s' + i)) allFilled = false; });
+                if (isEmpty('n')) allFilled = false;
+                if (parity === 'odd') { if (isEmpty('rank1') || isEmpty('medianOdd')) allFilled = false; }
+                else { if (isEmpty('rankE1') || isEmpty('rankE2') || isEmpty('val1') || isEmpty('val2') || isEmpty('val1b') || isEmpty('val2b') || isEmpty('medianEven')) allFilled = false; }
+                if (!allFilled) { messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return; }
+
+                const getInt = (id) => Number(inputRefs[id]?.value.trim());
+                const getNum = (id) => Number(inputRefs[id]?.value.trim());
+                let valid = true;
+                currentSorted.forEach((_, i) => { if (!Number.isInteger(getInt('s' + i))) valid = false; });
+                if (!Number.isInteger(getInt('n'))) valid = false;
+                if (parity === 'odd') { if (!Number.isInteger(getInt('rank1')) || !Number.isInteger(getInt('medianOdd'))) valid = false; }
+                else { if (!Number.isInteger(getInt('rankE1')) || !Number.isInteger(getInt('rankE2')) || !Number.isInteger(getInt('val1')) || !Number.isInteger(getInt('val2')) || !Number.isInteger(getInt('val1b')) || !Number.isInteger(getInt('val2b')) || isNaN(getNum('medianEven'))) valid = false; }
+                if (!valid) { messageEl.innerHTML = t('invalid_numbers'); messageEl.style.color = 'var(--accent3)'; return; }
+
+                let correct = true;
+                currentSorted.forEach((v, i) => { if (getInt('s' + i) !== v) correct = false; });
+                if (getInt('n') !== currentN) correct = false;
+                if ((parity === 'odd') !== currentIsOdd) correct = false;
+
+                if (currentIsOdd) {
+                    const expectedRank = (currentN + 1) / 2;
+                    if (getInt('rank1') !== expectedRank) correct = false;
+                    if (getInt('medianOdd') !== currentMedian) correct = false;
+                } else {
+                    const r1 = currentN / 2, r2 = r1 + 1;
+                    if (getInt('rankE1') !== r1 || getInt('rankE2') !== r2) correct = false;
+                    if (getInt('val1') !== currentEvenRanks.v1 || getInt('val2') !== currentEvenRanks.v2) correct = false;
+                    if (getInt('val1b') !== currentEvenRanks.v1 || getInt('val2b') !== currentEvenRanks.v2) correct = false;
+                    if (Math.abs(getNum('medianEven') - currentMedian) > 0.01) correct = false;
+                }
+
+                attempts++;
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct'); messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    const parityStr = currentIsOdd ? t('odd_label') : t('even_label');
+                    messageEl.innerHTML = t('wrong', { sorted: currentSorted.join(', '), n: currentN, parity: parityStr, median: currentMedian });
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => { if (inputRefs['s0']) inputRefs['s0'].focus(); }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed'); messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => { if (inputRefs['s0']) inputRefs['s0'].focus(); }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => { if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault(); handleCheck(); } });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => { if (inputRefs['s0']) inputRefs['s0'].focus(); }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

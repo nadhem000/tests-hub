@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعدل | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.13);
+            --accent: #7c3aed;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #ede9fe;
+            --tag-text: #4c1d95;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-mean: #7c3aed;
+            --highlight-mean-light: rgba(124, 58, 237, 0.07);
+            --highlight-product: #0891b2;
+            --highlight-product-light: rgba(8, 145, 178, 0.07);
+            --highlight-total: #059669;
+            --highlight-total-light: rgba(5, 150, 105, 0.07);
+            --highlight-center: #d97706;
+            --highlight-center-light: rgba(217, 119, 6, 0.07);
+            --example-bg: #fef9e6;
+            --example-border: #e7c45d;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.4);
+            --accent: #a78bfa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #2d1f5e;
+            --tag-text: #c4b5fd;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-mean: #a78bfa;
+            --highlight-mean-light: rgba(167, 139, 250, 0.10);
+            --highlight-product: #22d3ee;
+            --highlight-product-light: rgba(34, 211, 238, 0.10);
+            --highlight-total: #34d399;
+            --highlight-total-light: rgba(52, 211, 153, 0.10);
+            --highlight-center: #fbbf24;
+            --highlight-center-light: rgba(251, 191, 36, 0.10);
+            --example-bg: #2d2a1a;
+            --example-border: #9b8130;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .example-toggle {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 auto 14px;
+            display: block;
+            color: var(--text);
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .example-panel {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            display: none;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+        .example-panel.visible {
+            display: block;
+        }
+
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 12px 14px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 12px 14px;
+            border-left: 1px solid var(--table-border);
+            min-width: 60px;
+            transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .stats-table .index-cell {
+            background: var(--surface2);
+            color: var(--text3);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 14px;
+            border-left: 1px solid var(--table-border);
+        }
+        .value-cell.given-highlight {
+            background: var(--highlight-mean-light) !important;
+            color: var(--highlight-mean);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 2px var(--highlight-mean);
+        }
+
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2.1;
+            border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+        }
+        .section-card.product-card {
+            border-right: 4px solid var(--highlight-product);
+            background: var(--highlight-product-light);
+        }
+        .section-card.total-card {
+            border-right: 4px solid var(--highlight-total);
+            background: var(--highlight-total-light);
+        }
+        .section-card.mean-card {
+            border-right: 4px solid var(--highlight-mean);
+            background: var(--highlight-mean-light);
+        }
+        .section-card.center-card {
+            border-right: 4px solid var(--highlight-center);
+            background: var(--highlight-center-light);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+        .section-label.product-label {
+            color: var(--highlight-product);
+            background: var(--highlight-product-light);
+        }
+        .section-label.total-label {
+            color: var(--highlight-total);
+            background: var(--highlight-total-light);
+        }
+        .section-label.mean-label {
+            color: var(--highlight-mean);
+            background: var(--highlight-mean-light);
+        }
+        .section-label.center-label {
+            color: var(--highlight-center);
+            background: var(--highlight-center-light);
+        }
+        .note-box {
+            font-size: 0.9rem;
+            background: var(--surface3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 8px 0;
+            color: var(--text2);
+            font-weight: 500;
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 5px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 14px;
+            margin: 6px 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .calc-line .operator {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 3px;
+        }
+        .calc-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--highlight-product);
+        }
+        .calc-line .num-display.total-display {
+            color: var(--highlight-total);
+        }
+        .calc-line .num-display.mean-display {
+            color: var(--highlight-mean);
+        }
+        .calc-line .num-display.center-display {
+            color: var(--highlight-center);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.15rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3em;
+            min-width: 52px;
+            max-width: 110px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+        .wide-input {
+            width: 4em;
+            min-width: 65px;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .mode-badge {
+            display: inline-block;
+            background: var(--highlight-mean-light);
+            color: var(--highlight-mean);
+            font-weight: 800;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin: 4px 0;
+        }
+
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1rem;
+                padding: 12px 8px;
+            }
+            .section-card {
+                padding: 10px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 2.6em;
+                min-width: 44px;
+            }
+            .calc-line {
+                font-size: 1rem;
+                padding: 4px 8px;
+                border-radius: 30px;
+            }
+            .calc-line .operator {
+                font-size: 1.1rem;
+            }
+            .section-label {
+                font-size: 0.9rem;
+            }
+            .stats-table {
+                font-size: 0.9rem;
+            }
+            .stats-table .header-cell,
+            .stats-table .value-cell {
+                padding: 10px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">المعدّل (المتوسط الحسابي)</span> <span>🧮</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">حساب المعدل من جدول التكرارات – جداول عادية وجداول فئات</div>
+
+        <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
+        <div class="example-panel" id="examplePanel">
+            <strong>مثال 1 – جدول عادي:</strong><br>
+            القيم xᵢ: 10 ، 12 ، 15 ، 18<br>
+            التكرارات fᵢ: 3 ، 2 ، 4 ، 1<br>
+            <strong>الخطوة 1 – جداءات xᵢ × fᵢ:</strong> 10×3=<strong>30</strong> ، 12×2=<strong>24</strong> ، 15×4=<strong>60</strong> ، 18×1=<strong>18</strong><br>
+            <strong>الخطوة 2 – مجموع الجداءات:</strong> 30+24+60+18 = <strong>132</strong><br>
+            <strong>الخطوة 3 – التكرار الجملي:</strong> 3+2+4+1 = <strong>10</strong><br>
+            <strong>الخطوة 4 – المعدل:</strong> 132 ÷ 10 = <strong>13.2</strong><br><br>
+            <strong>مثال 2 – جدول فئات:</strong><br>
+            الفئات: [0,10] ، [10,20] ، [20,30] ، [30,40]<br>
+            التكرارات: 4 ، 7 ، 5 ، 3<br>
+            <strong>الخطوة 1 – مراكز الفئات:</strong> (0+10)÷2=<strong>5</strong> ، (10+20)÷2=<strong>15</strong> ، (20+30)÷2=<strong>25</strong> ، (30+40)÷2=<strong>35</strong><br>
+            <strong>الخطوة 2 – جداءات المركز×التكرار:</strong> 5×4=<strong>20</strong> ، 15×7=<strong>105</strong> ، 25×5=<strong>125</strong> ، 35×3=<strong>105</strong><br>
+            <strong>الخطوة 3 – مجموع الجداءات:</strong> 20+105+125+105 = <strong>355</strong><br>
+            <strong>الخطوة 4 – التكرار الجملي:</strong> 4+7+5+3 = <strong>19</strong><br>
+            <strong>الخطوة 5 – المعدل:</strong> 355 ÷ 19 ≈ <strong>18.68</strong>
+        </div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ جميع الفراغات المطلوبة خطوة بخطوة. تذكّر: المعدل = (مجموع xᵢ×fᵢ) ÷ التكرار الجملي</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const btnToggleExample = document.getElementById('btnToggleExample');
+            const examplePanel = document.getElementById('examplePanel');
+
+            const COL_COUNT = 4;
+
+            let currentMode = 'simple';
+            let currentValues = [];
+            let currentFreqs = [];
+            let currentProducts = [];
+            let currentSumProducts;
+            let currentTotalFreq;
+            let currentMean;
+            let currentClasses = [];
+            let currentCenters = [];
+            let attempts = 0,
+                score = 0,
+                gameActive = true,
+                isSwitchingRound = false;
+            let inputRefs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'المعدّل (المتوسط الحسابي)',
+                    exercise_subtitle: 'حساب المعدل من جدول التكرارات – جداول عادية وجداول فئات',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات المطلوبة خطوة بخطوة. تذكّر: المعدل = (مجموع xᵢ×fᵢ) ÷ التكرار الجملي',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    class_header: 'الفئات',
+                    freq_header: 'التكرار (fᵢ)',
+                    values_header: 'القيم (xᵢ)',
+                    center_header: 'مركز الفئة (cᵢ)',
+                    mode_badge_simple: '🎯 النمط: جدول عادي – حساب المعدل',
+                    mode_badge_grouped: '🎯 النمط: جدول فئات – حساب المعدل',
+                    step_products_label: '🔢 أولاً: حساب الجداءات xᵢ × fᵢ',
+                    step_products_rule: 'اضرب كل قيمة xᵢ في تكرارها fᵢ',
+                    step_sum_products_label: '➕ ثانياً: حساب مجموع الجداءات',
+                    step_sum_products_rule: 'اجمع كل الجداءات التي حسبتها',
+                    step_total_label: '📊 ثالثاً: حساب التكرار الجملي',
+                    step_total_rule: 'اجمع كل التكرارات fᵢ',
+                    step_mean_label: '🧮 رابعاً: حساب المعدل',
+                    step_mean_rule: 'المعدل = مجموع الجداءات ÷ التكرار الجملي',
+                    step_centers_label: '📍 أولاً: حساب مراكز الفئات (cᵢ)',
+                    step_centers_rule: 'مركز كل فئة = (الحد الأدنى + الحد الأعلى) ÷ 2',
+                    step_cprod_label: '🔢 ثانياً: حساب الجداءات cᵢ × fᵢ',
+                    step_cprod_rule: 'اضرب كل مركز فئة في تكرارها',
+                    step_csum_label: '➕ ثالثاً: حساب مجموع الجداءات',
+                    step_csum_rule: 'اجمع كل الجداءات التي حسبتها',
+                    step_ctotal_label: '📊 رابعاً: حساب التكرار الجملي',
+                    step_ctotal_rule: 'اجمع كل التكرارات fᵢ',
+                    step_cmean_label: '🧮 خامساً: حساب المعدل',
+                    step_cmean_rule: 'المعدل = مجموع الجداءات ÷ التكرار الجملي',
+                    product_line_prefix: 'x',
+                    product_line_eq: '=',
+                    sum_line: 'مجموع الجداءات =',
+                    total_line: 'التكرار الجملي =',
+                    mean_line: 'المعدل =',
+                    center_line_prefix: 'c',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات المطلوبة',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة أو عشرية صالحة',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong_simple: '❌ خطأ! الجداءات: {prods}، مجموعها: {sumProds}، التكرار الجملي: {total}، المعدل: {mean}',
+                    wrong_grouped: '❌ خطأ! المراكز: {centers}، الجداءات: {prods}، مجموعها: {sumProds}، التكرار الجملي: {total}، المعدل: {mean}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
+                    example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)',
+                    col_label: 'العمود'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Moyenne (moyenne arithmétique)',
+                    exercise_subtitle: 'Calcul de la moyenne à partir d\'un tableau d\'effectifs – données simples et groupées',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs étape par étape. Rappel : moyenne = (somme xᵢ×fᵢ) ÷ effectif total',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    class_header: 'Classes',
+                    freq_header: 'Effectif (fᵢ)',
+                    values_header: 'Valeurs (xᵢ)',
+                    center_header: 'Centre (cᵢ)',
+                    mode_badge_simple: '🎯 Mode : Tableau simple – calcul de la moyenne',
+                    mode_badge_grouped: '🎯 Mode : Tableau groupé – calcul de la moyenne',
+                    step_products_label: '🔢 1. Calcul des produits xᵢ × fᵢ',
+                    step_products_rule: 'Multipliez chaque valeur xᵢ par son effectif fᵢ',
+                    step_sum_products_label: '➕ 2. Somme des produits',
+                    step_sum_products_rule: 'Additionnez tous les produits calculés',
+                    step_total_label: '📊 3. Effectif total',
+                    step_total_rule: 'Additionnez tous les effectifs fᵢ',
+                    step_mean_label: '🧮 4. Calcul de la moyenne',
+                    step_mean_rule: 'Moyenne = somme des produits ÷ effectif total',
+                    step_centers_label: '📍 1. Calcul des centres de classes (cᵢ)',
+                    step_centers_rule: 'Centre = (borne inférieure + borne supérieure) ÷ 2',
+                    step_cprod_label: '🔢 2. Calcul des produits cᵢ × fᵢ',
+                    step_cprod_rule: 'Multipliez chaque centre par son effectif',
+                    step_csum_label: '➕ 3. Somme des produits',
+                    step_csum_rule: 'Additionnez tous les produits',
+                    step_ctotal_label: '📊 4. Effectif total',
+                    step_ctotal_rule: 'Additionnez tous les effectifs fᵢ',
+                    step_cmean_label: '🧮 5. Calcul de la moyenne',
+                    step_cmean_rule: 'Moyenne = somme des produits ÷ effectif total',
+                    product_line_prefix: 'x',
+                    product_line_eq: '=',
+                    sum_line: 'Somme des produits =',
+                    total_line: 'Effectif total =',
+                    mean_line: 'Moyenne =',
+                    center_line_prefix: 'c',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers ou décimaux valides uniquement',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong_simple: '❌ Faux ! Produits : {prods}, somme : {sumProds}, total : {total}, moyenne : {mean}',
+                    wrong_grouped: '❌ Faux ! Centres : {centers}, produits : {prods}, somme : {sumProds}, total : {total}, moyenne : {mean}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    example_toggle_show: '📘 Exemple (afficher)',
+                    example_toggle_hide: '📘 Exemple (masquer)',
+                    col_label: 'Colonne'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Mean (Arithmetic Average)',
+                    exercise_subtitle: 'Calculate the mean from frequency tables – simple and grouped data',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill all fields step by step. Remember: mean = (sum xᵢ×fᵢ) ÷ total frequency',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    class_header: 'Classes',
+                    freq_header: 'Frequency (fᵢ)',
+                    values_header: 'Values (xᵢ)',
+                    center_header: 'Center (cᵢ)',
+                    mode_badge_simple: '🎯 Mode: Simple table – calculate mean',
+                    mode_badge_grouped: '🎯 Mode: Grouped table – calculate mean',
+                    step_products_label: '🔢 1. Calculate products xᵢ × fᵢ',
+                    step_products_rule: 'Multiply each value xᵢ by its frequency fᵢ',
+                    step_sum_products_label: '➕ 2. Sum of products',
+                    step_sum_products_rule: 'Add all the products you calculated',
+                    step_total_label: '📊 3. Total frequency',
+                    step_total_rule: 'Add all frequencies fᵢ',
+                    step_mean_label: '🧮 4. Calculate the mean',
+                    step_mean_rule: 'Mean = sum of products ÷ total frequency',
+                    step_centers_label: '📍 1. Calculate class centers (cᵢ)',
+                    step_centers_rule: 'Center = (lower bound + upper bound) ÷ 2',
+                    step_cprod_label: '🔢 2. Calculate products cᵢ × fᵢ',
+                    step_cprod_rule: 'Multiply each center by its frequency',
+                    step_csum_label: '➕ 3. Sum of products',
+                    step_csum_rule: 'Add all the products',
+                    step_ctotal_label: '📊 4. Total frequency',
+                    step_ctotal_rule: 'Add all frequencies fᵢ',
+                    step_cmean_label: '🧮 5. Calculate the mean',
+                    step_cmean_rule: 'Mean = sum of products ÷ total frequency',
+                    product_line_prefix: 'x',
+                    product_line_eq: '=',
+                    sum_line: 'Sum of products =',
+                    total_line: 'Total frequency =',
+                    mean_line: 'Mean =',
+                    center_line_prefix: 'c',
+                    fill_all: '⚠️ Please fill all required fields',
+                    invalid_numbers: '❌ Valid integers or decimals only',
+                    correct: '✅ Correct! +1 point',
+                    wrong_simple: '❌ Wrong! Products: {prods}, sum: {sumProds}, total: {total}, mean: {mean}',
+                    wrong_grouped: '❌ Wrong! Centers: {centers}, products: {prods}, sum: {sumProds}, total: {total}, mean: {mean}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    example_toggle_show: '📘 Example (show)',
+                    example_toggle_hide: '📘 Example (hide)',
+                    col_label: 'Column'
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_mean_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_mean_lang');
+                if (saved && translations[saved]) { applyLanguage(saved);
+                    return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true,
+                audioCtx = null;
+
+            function getAudioContext() { if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx; }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const s = localStorage.getItem('exercise_mean_sound');
+                soundEnabled = s !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_mean_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('exercise_mean_theme', theme);
+            }
+
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' :
+                    'dark'); }
+
+            function loadTheme() {
+                const s = localStorage.getItem('exercise_mean_theme');
+                if (s === 'dark' || s === 'light') applyTheme(s);
+                else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back();
+                else window.location.href = 'لوحة التمارين التفاعلية.html';
+            }
+
+            function roundTo(n, dp) {
+                const f = Math.pow(10, dp);
+                return Math.round(n * f) / f;
+            }
+
+            function generateSimpleData() {
+                const xVals = [];
+                const used = new Set();
+                for (let i = 0; i < COL_COUNT; i++) {
+                    let v;
+                    do { v = Math.floor(Math.random() * 16) + 5; } while (used.has(v));
+                    used.add(v);
+                    xVals.push(v);
+                }
+                xVals.sort((a, b) => a - b);
+                const freqs = [];
+                let total = 0;
+                for (let i = 0; i < COL_COUNT; i++) {
+                    const f = Math.floor(Math.random() * 5) + 1;
+                    freqs.push(f);
+                    total += f;
+                }
+                if (total < 8) { freqs[COL_COUNT - 1] += (8 - total);
+                    total = 8; }
+                if (total > 20) {
+                    const idx = Math.floor(Math.random() * COL_COUNT);
+                    freqs[idx] = Math.max(1, freqs[idx] - (total - 20));
+                    total = freqs.reduce((a, b) => a + b, 0);
+                }
+                const products = xVals.map((x, i) => x * freqs[i]);
+                const sumProducts = products.reduce((a, b) => a + b, 0);
+                const mean = roundTo(sumProducts / total, 2);
+                return { xVals, freqs, products, sumProducts, total, mean };
+            }
+
+            function generateGroupedData() {
+                const classWidthOptions = [5, 10];
+                const classWidth = classWidthOptions[Math.floor(Math.random() * classWidthOptions.length)];
+                const startVal = Math.floor(Math.random() * 20);
+                const classes = [];
+                const centers = [];
+                for (let i = 0; i < COL_COUNT; i++) {
+                    const low = startVal + i * classWidth;
+                    const high = low + classWidth;
+                    classes.push({ low, high, width: classWidth });
+                    centers.push((low + high) / 2);
+                }
+                const freqs = [];
+                let total = 0;
+                for (let i = 0; i < COL_COUNT; i++) {
+                    const f = Math.floor(Math.random() * 5) + 1;
+                    freqs.push(f);
+                    total += f;
+                }
+                if (total < 8) { freqs[COL_COUNT - 1] += (8 - total);
+                    total = 8; }
+                if (total > 20) {
+                    const idx = Math.floor(Math.random() * COL_COUNT);
+                    freqs[idx] = Math.max(1, freqs[idx] - (total - 20));
+                    total = freqs.reduce((a, b) => a + b, 0);
+                }
+                const products = centers.map((c, i) => roundTo(c * freqs[i], 1));
+                const sumProducts = roundTo(products.reduce((a, b) => a + b, 0), 1);
+                const mean = roundTo(sumProducts / total, 2);
+                return { classes, centers, freqs, products, sumProducts, total, mean };
+            }
+
+            function generateScenario() {
+                const mode = Math.random() < 0.5 ? 'simple' : 'grouped';
+                if (mode === 'simple') {
+                    const d = generateSimpleData();
+                    return {
+                        mode: 'simple',
+                        xVals: d.xVals,
+                        freqs: d.freqs,
+                        products: d.products,
+                        sumProducts: d.sumProducts,
+                        total: d.total,
+                        mean: d.mean,
+                        classes: null,
+                        centers: null
+                    };
+                } else {
+                    const d = generateGroupedData();
+                    return {
+                        mode: 'grouped',
+                        xVals: null,
+                        freqs: d.freqs,
+                        products: d.products,
+                        sumProducts: d.sumProducts,
+                        total: d.total,
+                        mean: d.mean,
+                        classes: d.classes,
+                        centers: d.centers
+                    };
+                }
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                const colLabel = dict.col_label || 'العمود';
+                let html = '<table class="stats-table">';
+                html += '<tr><td class="header-cell"></td>';
+                for (let i = 0; i < COL_COUNT; i++) html += `<td class="header-cell">${colLabel} ${i + 1}</td>`;
+                html += '</tr>';
+
+                if (currentMode === 'simple') {
+                    html += `<tr><td class="header-cell">${dict.values_header}</td>`;
+                    currentValues.forEach(v => html +=
+                        `<td class="value-cell given-highlight">${v}</td>`);
+                    html += '</tr>';
+                    html += `<tr><td class="header-cell">${dict.freq_header}</td>`;
+                    currentFreqs.forEach(f => html +=
+                        `<td class="value-cell given-highlight">${f}</td>`);
+                    html += '</tr>';
+                } else {
+                    html += `<tr><td class="header-cell">${dict.class_header}</td>`;
+                    currentClasses.forEach(cls => html +=
+                        `<td class="value-cell given-highlight">]${cls.low} , ${cls.high}]</td>`);
+                    html += '</tr>';
+                    html += `<tr><td class="header-cell">${dict.freq_header}</td>`;
+                    currentFreqs.forEach(f => html +=
+                        `<td class="value-cell given-highlight">${f}</td>`);
+                    html += '</tr>';
+                }
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opPlus = t('operator_plus');
+                const opMul = t('operator_multiply');
+                const opDiv = t('operator_divide');
+                const opEq = t('operator_equals');
+                let html = '';
+
+                const modeBadgeKey = 'mode_badge_' + currentMode;
+                html +=
+                    `<div style="text-align:center;margin-bottom:8px;"><span class="mode-badge">${t(modeBadgeKey)}</span></div>`;
+
+                if (currentMode === 'simple') {
+                    html +=
+                        `<div class="section-card product-card"><div class="section-label product-label">${t('step_products_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_products_rule')}</div>`;
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        html += `<div class="calc-line" dir="ltr">`;
+                        html +=
+                            `<span style="font-weight:700;">${t('product_line_prefix')}<sub>${i+1}</sub>×f<sub>${i+1}</sub></span>`;
+                        html += `<span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span class="num-display">${currentValues[i]}</span><span class="operator">${opMul}</span><span class="num-display">${currentFreqs[i]}</span>`;
+                        html += `<span class="operator">${opEq}</span>`;
+                        html +=
+                            `<input type="text" id="inpProd${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card total-card"><div class="section-label total-label">${t('step_sum_products_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_sum_products_rule')}</div>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('sum_line')}</span>`;
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                        html +=
+                            `<span style="font-size:0.85rem;">(x<sub>${i+1}</sub>×f<sub>${i+1}</sub>)</span>`;
+                    }
+                    html +=
+                        `<span class="operator">${opEq}</span><input type="text" id="inpSumProd" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
+
+                    html +=
+                        `<div class="section-card total-card"><div class="section-label total-label">${t('step_total_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_total_rule')}</div>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('total_line')}</span>`;
+                    currentFreqs.forEach((f, i) => {
+                        if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                        html += `<span class="num-display total-display">${f}</span>`;
+                    });
+                    html +=
+                        `<span class="operator">${opEq}</span><input type="text" id="inpTotal" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
+
+                    html +=
+                        `<div class="section-card mean-card"><div class="section-label mean-label">${t('step_mean_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_mean_rule')}</div>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('mean_line')}</span>`;
+                    html +=
+                        `<span>Σ(xᵢ×fᵢ)</span><span class="operator">${opDiv}</span><span>Σfᵢ</span><span class="operator">${opEq}</span>`;
+                    html +=
+                        `<input type="text" id="inpMean" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal">`;
+                    html += `</div></div>`;
+                } else {
+                    html +=
+                        `<div class="section-card center-card"><div class="section-label center-label">${t('step_centers_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_centers_rule')}</div>`;
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        const cls = currentClasses[i];
+                        html += `<div class="calc-line" dir="ltr">`;
+                        html +=
+                            `<span style="font-weight:700;">c<sub>${i+1}</sub></span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(</span><span class="num-display center-display">${cls.low}</span><span class="operator">${opPlus}</span><span class="num-display center-display">${cls.high}</span><span>)</span>`;
+                        html +=
+                            `<span class="operator">${opDiv}</span><span>2</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<input type="text" id="inpCenter${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card product-card"><div class="section-label product-label">${t('step_cprod_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_cprod_rule')}</div>`;
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        html += `<div class="calc-line" dir="ltr">`;
+                        html +=
+                            `<span style="font-weight:700;">c<sub>${i+1}</sub>×f<sub>${i+1}</sub></span>`;
+                        html += `<span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>c<sub>${i+1}</sub></span><span class="operator">${opMul}</span><span class="num-display">${currentFreqs[i]}</span>`;
+                        html += `<span class="operator">${opEq}</span>`;
+                        html +=
+                            `<input type="text" id="inpCprod${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card total-card"><div class="section-label total-label">${t('step_csum_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_csum_rule')}</div>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('sum_line')}</span>`;
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                        html +=
+                            `<span style="font-size:0.85rem;">(c<sub>${i+1}</sub>×f<sub>${i+1}</sub>)</span>`;
+                    }
+                    html +=
+                        `<span class="operator">${opEq}</span><input type="text" id="inpSumProd" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
+
+                    html +=
+                        `<div class="section-card total-card"><div class="section-label total-label">${t('step_ctotal_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_ctotal_rule')}</div>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('total_line')}</span>`;
+                    currentFreqs.forEach((f, i) => {
+                        if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                        html += `<span class="num-display total-display">${f}</span>`;
+                    });
+                    html +=
+                        `<span class="operator">${opEq}</span><input type="text" id="inpTotal" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
+
+                    html +=
+                        `<div class="section-card mean-card"><div class="section-label mean-label">${t('step_cmean_label')}</div>`;
+                    html += `<div class="note-box">💡 ${t('step_cmean_rule')}</div>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('mean_line')}</span>`;
+                    html +=
+                        `<span>Σ(cᵢ×fᵢ)</span><span class="operator">${opDiv}</span><span>Σfᵢ</span><span class="operator">${opEq}</span>`;
+                    html +=
+                        `<input type="text" id="inpMean" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal">`;
+                    html += `</div></div>`;
+                }
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                if (currentMode === 'simple') {
+                    for (let i = 0; i < COL_COUNT; i++) inputRefs['prod' + i] = document.getElementById('inpProd' + i);
+                    inputRefs['sumProd'] = document.getElementById('inpSumProd');
+                    inputRefs['total'] = document.getElementById('inpTotal');
+                    inputRefs['mean'] = document.getElementById('inpMean');
+                } else {
+                    for (let i = 0; i < COL_COUNT; i++) inputRefs['center' + i] = document.getElementById('inpCenter' + i);
+                    for (let i = 0; i < COL_COUNT; i++) inputRefs['cprod' + i] = document.getElementById('inpCprod' + i);
+                    inputRefs['sumProd'] = document.getElementById('inpSumProd');
+                    inputRefs['total'] = document.getElementById('inpTotal');
+                    inputRefs['mean'] = document.getElementById('inpMean');
+                }
+            }
+
+            function clearInputs() {
+                for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].value = ''; }
+            }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateScenario();
+                currentMode = data.mode;
+                if (currentMode === 'simple') {
+                    currentValues = data.xVals;
+                    currentFreqs = data.freqs;
+                    currentClasses = null;
+                    currentCenters = null;
+                } else {
+                    currentValues = null;
+                    currentFreqs = data.freqs;
+                    currentClasses = data.classes;
+                    currentCenters = data.centers;
+                }
+                currentProducts = data.products;
+                currentSumProducts = data.sumProducts;
+                currentTotalFreq = data.total;
+                currentMean = data.mean;
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 60);
+            }
+
+            function setInputsDisabled(disabled) { for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].disabled =
+                    disabled; } }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function getNumVal(id) { const el = inputRefs[id]; if (!el) return NaN;
+                return Number(el.value.trim()); }
+
+            function valuesClose(a, b) {
+                if (isNaN(a) || isNaN(b)) return false;
+                return Math.abs(a - b) < 0.01;
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const requiredKeys = Object.keys(inputRefs);
+                let allFilled = true;
+                let allValid = true;
+                for (const key of requiredKeys) {
+                    const el = inputRefs[key];
+                    if (!el || !el.value.trim()) { allFilled = false; break; }
+                    const num = Number(el.value.trim());
+                    if (isNaN(num)) { allValid = false; break; }
+                }
+
+                if (!allFilled) { messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+                if (!allValid) { messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                let correct = true;
+
+                if (currentMode === 'simple') {
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        if (!valuesClose(getNumVal('prod' + i), currentProducts[i])) correct = false;
+                    }
+                    if (!valuesClose(getNumVal('sumProd'), currentSumProducts)) correct = false;
+                    if (!valuesClose(getNumVal('total'), currentTotalFreq)) correct = false;
+                    if (!valuesClose(getNumVal('mean'), currentMean)) correct = false;
+                } else {
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        if (!valuesClose(getNumVal('center' + i), currentCenters[i])) correct = false;
+                    }
+                    for (let i = 0; i < COL_COUNT; i++) {
+                        if (!valuesClose(getNumVal('cprod' + i), currentProducts[i])) correct = false;
+                    }
+                    if (!valuesClose(getNumVal('sumProd'), currentSumProducts)) correct = false;
+                    if (!valuesClose(getNumVal('total'), currentTotalFreq)) correct = false;
+                    if (!valuesClose(getNumVal('mean'), currentMean)) correct = false;
+                }
+
+                attempts++;
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    if (currentMode === 'simple') {
+                        messageEl.innerHTML = t('wrong_simple', {
+                            prods: currentProducts.join(', '),
+                            sumProds: currentSumProducts,
+                            total: currentTotalFreq,
+                            mean: currentMean
+                        });
+                    } else {
+                        messageEl.innerHTML = t('wrong_grouped', {
+                            centers: currentCenters.join(', '),
+                            prods: currentProducts.join(', '),
+                            sumProds: currentSumProducts,
+                            total: currentTotalFreq,
+                            mean: currentMean
+                        });
+                    }
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+            btnToggleExample.addEventListener('click', () => { examplePanel.classList.toggle('visible');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show'); });
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => {
+                const firstKey = Object.keys(inputRefs)[0];
+                if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاحتمال 2 (فئات عددية) | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-prob: #0ea5e9;
+            --highlight-prob-light: rgba(14, 165, 233, 0.08);
+            --highlight-target: #f59e0b;
+            --highlight-target-light: rgba(245, 158, 11, 0.12);
+            --highlight-comp: #8b5cf6;
+            --highlight-comp-light: rgba(139, 92, 246, 0.08);
+            --highlight-comb: #ec4899;
+            --highlight-comb-light: rgba(236, 72, 153, 0.08);
+            --hint-bg: #fefce8;
+            --hint-border: #fde68a;
+            --hint-text: #92400e;
+            --example-bg: #fef9e6;
+            --example-border: #e7c45d;
+            --frac-bg: #ffffff;
+            --frac-border: #bcc9da;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-prob: #38bdf8;
+            --highlight-prob-light: rgba(56, 189, 248, 0.10);
+            --highlight-target: #fbbf24;
+            --highlight-target-light: rgba(251, 191, 36, 0.12);
+            --highlight-comp: #a78bfa;
+            --highlight-comp-light: rgba(167, 139, 250, 0.10);
+            --highlight-comb: #f472b6;
+            --highlight-comb-light: rgba(244, 114, 182, 0.10);
+            --hint-bg: #292524;
+            --hint-border: #78350f;
+            --hint-text: #fde68a;
+            --example-bg: #2d2a1a;
+            --example-border: #9b8130;
+            --frac-bg: #1e293b;
+            --frac-border: #475569;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text); min-height: 100vh; padding: 16px;
+            transition: background 0.4s, color 0.35s; line-height: 1.6;
+            -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center;
+        }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        .dashboard-header {
+            width: 100%; max-width: 1060px; margin: 0 auto 16px;
+            background: var(--surface); border-radius: 30px; padding: 14px 24px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px; transition: all 0.35s;
+        }
+        .logo-area { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: var(--text); white-space: nowrap; }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .btn-icon {
+            width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--border);
+            background: var(--surface2); cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+            color: var(--text); flex-shrink: 0;
+        }
+        .btn-icon:hover { background: var(--surface3); border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px; border-radius: 50px; border: 2px solid var(--border);
+            background: var(--surface2); color: var(--text); font-family: inherit; font-weight: 600;
+            font-size: 0.9rem; cursor: pointer; outline: none; transition: 0.2s; min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+        .exercise-wrapper {
+            width: 100%; max-width: 1060px; background: var(--surface); border-radius: 36px;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 28px 32px;
+            margin-bottom: 16px; transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem; font-weight: 800; color: var(--highlight-prob); text-align: center;
+            margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center; color: var(--text2); margin-bottom: 15px; font-size: 1rem;
+            font-weight: 500; background: var(--section-header-bg); padding: 5px 20px;
+            border-radius: 40px; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+        }
+        .example-toggle {
+            background: var(--example-bg); border: 2px solid var(--example-border);
+            border-radius: 60px; padding: 8px 22px; font-weight: 700; cursor: pointer;
+            font-size: 1rem; margin: 0 auto 14px; display: block; color: var(--text);
+            transition: 0.2s; font-family: inherit;
+        }
+        .example-panel {
+            background: var(--example-bg); border: 2px solid var(--example-border);
+            border-radius: 24px; padding: 16px 18px; margin-bottom: 18px; display: none;
+            font-size: 0.95rem; line-height: 2.1;
+        }
+        .example-panel.visible { display: block; }
+        .stats-table-container { display: flex; justify-content: center; margin-bottom: 22px; overflow-x: auto; border-radius: 20px; box-shadow: var(--shadow); }
+        .stats-table {
+            width: 100%; border-collapse: collapse; background: var(--surface);
+            border: 3px solid var(--highlight-prob); font-size: 1.1rem; font-weight: 600;
+            text-align: center; transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg); color: var(--section-header-text);
+            padding: 12px 14px; border-left: 1px solid var(--table-border); font-weight: 700; white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg); color: var(--text); padding: 12px 14px;
+            border-left: 1px solid var(--table-border); min-width: 80px; transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) { background: var(--table-stripe-bg); }
+        .value-cell.target-highlight {
+            background: var(--highlight-target-light) !important; color: var(--highlight-target);
+            font-weight: 800; box-shadow: inset 0 0 0 2px var(--highlight-target);
+        }
+        .value-cell.target2-highlight {
+            background: var(--highlight-comb-light) !important; color: var(--highlight-comb);
+            font-weight: 800; box-shadow: inset 0 0 0 2px var(--highlight-comb);
+        }
+        .question-block {
+            margin-top: 10px; font-size: 1.05rem; font-weight: 600; color: var(--text);
+            background: var(--surface2); padding: 16px 18px; border-radius: 28px;
+            line-height: 2.1; border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface); border-radius: 20px; padding: 14px 18px; margin: 10px 0;
+            border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
+            border-right: 4px solid var(--highlight-prob); background: var(--highlight-prob-light);
+        }
+        [data-theme="dark"] .section-card { background: var(--highlight-prob-light); }
+        .section-card.card-target { border-right: 4px solid var(--highlight-target); background: var(--highlight-target-light); }
+        .section-card.card-comp { border-right: 4px solid var(--highlight-comp); background: var(--highlight-comp-light); }
+        .section-card.card-comb { border-right: 4px solid var(--highlight-comb); background: var(--highlight-comb-light); }
+        .section-label {
+            font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center;
+            gap: 6px; padding: 4px 14px; border-radius: 30px; width: fit-content;
+            color: var(--highlight-prob); background: var(--highlight-prob-light);
+        }
+        .section-label.label-target { color: var(--highlight-target); background: var(--highlight-target-light); }
+        .section-label.label-comp { color: var(--highlight-comp); background: var(--highlight-comp-light); }
+        .section-label.label-comb { color: var(--highlight-comb); background: var(--highlight-comb-light); }
+        .formula-line {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px;
+            margin: 6px 0; direction: ltr; font-size: 1.25rem; font-weight: 700;
+            background: var(--calc-line-bg); border: 2px dashed var(--calc-line-border);
+            border-radius: 40px; padding: 8px 16px;
+        }
+        .formula-line .operator { font-size: 1.4rem; font-weight: 800; color: var(--accent); margin: 0 3px; }
+        .formula-line .num-display {
+            font-weight: 800; background: var(--surface3); padding: 4px 10px; border-radius: 16px;
+            font-size: 1.15rem; color: var(--text);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.15rem;
+            background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
+            text-align: center; padding: 4px 2px; margin: 0 4px; width: 3.5em; min-width: 60px;
+            max-width: 110px; outline: none; transition: all 0.15s; color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+        }
+        .inline-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,110,158,0.2); }
+        .inline-input.input-sm { width: 2.8em; min-width: 48px; }
+        .percent-sign { font-weight: 800; font-size: 1.3rem; color: var(--accent); margin-left: 2px; }
+        .hint-box {
+            background: var(--hint-bg); border: 2px solid var(--hint-border); border-radius: 16px;
+            padding: 8px 16px; margin: 8px 0; color: var(--hint-text); font-size: 0.95rem; font-weight: 600; text-align: center;
+        }
+        .note-mini { font-size: 0.85rem; color: var(--text2); margin-top: 4px; text-align: center; font-weight: 500; }
+        .mode-badge { display: inline-block; background: var(--highlight-prob-light); color: var(--highlight-prob); font-weight: 800; padding: 4px 16px; border-radius: 30px; font-size: 0.9rem; margin: 4px 0; }
+        .action-row { display: flex; justify-content: center; gap: 12px; margin: 18px 0 8px; }
+        .btn {
+            border: none; padding: 11px 28px; font-size: 1.1rem; font-weight: bold; border-radius: 60px;
+            cursor: pointer; transition: 0.08s linear; font-family: inherit; box-shadow: 0 5px 0 rgba(0,0,0,0.2); color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #2c3e66; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex; justify-content: space-between; margin-top: 18px; font-size: 1.2rem;
+            color: var(--text); font-weight: 600; background: var(--surface2); padding: 12px 28px;
+            border-radius: 60px; border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500; text-align: center;
+            background: var(--surface2); border-radius: 60px; padding: 10px 16px; transition: 0.1s;
+            border: 1px solid var(--border); color: var(--text); line-height: 2;
+        }
+        .dashboard-footer {
+            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px;
+            background: var(--surface); border-radius: 24px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px; transition: background 0.35s; font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a { color: var(--text2); text-decoration: none; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .footer-col { align-items: center; }
+            .question-block { font-size: 0.95rem; padding: 12px 8px; }
+            .section-card { padding: 10px 8px; }
+            .inline-input { font-size: 1rem; width: 2.8em; min-width: 48px; }
+            .formula-line { font-size: 1rem; padding: 5px 8px; border-radius: 28px; }
+            .formula-line .operator { font-size: 1.1rem; }
+            .section-label { font-size: 0.9rem; }
+            .stats-table { font-size: 0.95rem; }
+            .stats-table .header-cell, .stats-table .value-cell { padding: 10px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>🎲</span> <span data-i18n="exercise_heading">الاحتمال 2 (فئات عددية)</span> <span>📊</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">استخراج التكرارات من جدول فئات وحساب الاحتمال خطوة بخطوة</div>
+
+        <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
+        <div class="example-panel" id="examplePanel">
+            <strong>📌 مثال:</strong> جدول توزيع 50 عاملاً حسب الأجرة اليومية (بالدينار):<br>
+            ]20 , 30] : 12 عاملاً &nbsp;|&nbsp; ]30 , 40] : 18 عاملاً &nbsp;|&nbsp; ]40 , 50] : 14 عاملاً &nbsp;|&nbsp; ]50 , 60] : 6 عمال<br>
+            <strong>المجموع الكلي:</strong> 12 + 18 + 14 + 6 = <strong>50</strong><br>
+            <strong>احتمال أن تكون أجرته في الفئة ]30 , 40]:</strong> P = 18 ÷ 50 × 100 = <strong>36%</strong><br>
+            <strong>احتمال ألا تكون أجرته في الفئة ]40 , 50]:</strong> P = 100% − 28% = <strong>72%</strong><br>
+            <strong>احتمال أن تكون أجرته في ]20 , 30] أو ]50 , 60]:</strong> (12+6) ÷ 50 × 100 = <strong>36%</strong><br>
+            <strong>تذكير:</strong> الاحتمال = (تكرار الفئة ÷ المجموع الكلي) × 100
+        </div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div style="text-align:center;font-size:0.95rem;color:var(--text2);margin-top:6px;" data-i18n="hint">📌 أكمل جميع الفراغات خطوة بخطوة. تذكّر: الاحتمال = (تكرار الفئة ÷ المجموع الكلي) × 100</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul><li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li><li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li></ul>
+        </div>
+        <div class="footer-col"><h4 data-i18n="footer_version">الإصدار</h4><p>v1.1.0</p></div>
+        <div class="footer-col"><h4 data-i18n="footer_dev">تطوير</h4><p>ماجري زياد</p><p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p></div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const btnToggleExample = document.getElementById('btnToggleExample');
+            const examplePanel = document.getElementById('examplePanel');
+
+            const CAT_COUNT = 4;
+            let currentClasses = [];
+            let currentFreqs = [];
+            let currentVarName = '';
+            let currentUnit = '';
+            let currentTotal = 0;
+            let targetIndex = 0;
+            let targetIndex2 = -1;
+            let currentMode = 'basic';
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
+            let inputRefs = {};
+            let expectedValues = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'الاحتمال 2 (فئات عددية)',
+                    exercise_subtitle: 'استخراج التكرارات من جدول فئات وحساب الاحتمال خطوة بخطوة',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 أكمل جميع الفراغات خطوة بخطوة. تذكّر: الاحتمال = (تكرار الفئة ÷ المجموع الكلي) × 100',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    class_header: 'الفئة',
+                    freq_header: 'التكرار (عدد الحالات)',
+                    mode_badge_basic: '🎯 النمط: حساب احتمال فئة معينة',
+                    mode_badge_complement: '🔄 النمط: حساب احتمال عدم الانتماء لفئة (الحدث المتمم)',
+                    mode_badge_combine: '🔗 النمط: حساب احتمال الانتماء لإحدى فئتين (اتحاد)',
+                    step_extract: '🔍 الخطوة 1: استخرج تكرار الفئة المطلوبة من الجدول',
+                    step_extract2: '🔍 الخطوة 1ب: استخرج تكرار الفئة الثانية من الجدول',
+                    step_total: '🧮 الخطوة 2: احسب المجموع الكلي للحالات',
+                    step_total_intro: 'المجموع الكلي = مجموع كل التكرارات =',
+                    step_prob: '📐 الخطوة 3: طبق قانون الاحتمال التجريبي',
+                    step_prob_formula: 'الاحتمال = (تكرار الفئة ÷ المجموع الكلي) × 100',
+                    step_combine_num: 'تكرار الفئتين معاً = تكرار الفئة الأولى + تكرار الفئة الثانية =',
+                    step_complement: '📐 الخطوة 4: استنتج احتمال الحدث المتمم (عدم الانتماء للفئة)',
+                    step_complement_rule: 'احتمال عدم الانتماء للفئة = 100% − احتمال الانتماء للفئة',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات المطلوبة',
+                    invalid_numbers: '❌ أدخل أعداداً صحيحة فقط في جميع الفراغات',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! راجع القيم الصحيحة في الجدول وحاول مرة أخرى.',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط', footer_terms: 'شروط الاستخدام', footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار', footer_dev: 'تطوير', footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)', sound_off_title: 'الصوت (معطل)', back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+', operator_minus: '−', operator_div: '÷', operator_mul: '×', operator_eq: '=',
+                    example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
+                    example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)',
+                    percent_symbol: '%'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Probabilité 2 (classes)',
+                    exercise_subtitle: 'Extraire les effectifs du tableau de classes et calculer la probabilité',
+                    new_question: '🔄 Nouvelle question', check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs. Rappel : probabilité = (effectif ÷ total) × 100',
+                    attempts_label: 'Essais', score_label: 'Points',
+                    class_header: 'Classe', freq_header: 'Effectif',
+                    mode_badge_basic: '🎯 Mode : Probabilité simple',
+                    mode_badge_complement: '🔄 Mode : Événement complémentaire',
+                    mode_badge_combine: '🔗 Mode : Union de deux classes',
+                    step_extract: '🔍 Étape 1 : Extraire l\'effectif de la classe',
+                    step_extract2: '🔍 Étape 1b : Extraire l\'effectif de la 2e classe',
+                    step_total: '🧮 Étape 2 : Calculer l\'effectif total',
+                    step_total_intro: 'Total = somme des effectifs =',
+                    step_prob: '📐 Étape 3 : Appliquer la formule de probabilité',
+                    step_prob_formula: 'Probabilité = (effectif ÷ total) × 100',
+                    step_combine_num: 'Effectif des deux classes = effectif 1 + effectif 2 =',
+                    step_complement: '📐 Étape 4 : Probabilité de l\'événement complémentaire',
+                    step_complement_rule: 'Probabilité de ne pas appartenir à la classe = 100% − probabilité de la classe',
+                    fill_all: '⚠️ Remplissez tous les champs', invalid_numbers: '❌ Nombres entiers uniquement',
+                    correct: '✅ Bonne réponse ! +1 point', wrong: '❌ Faux ! Vérifiez les valeurs du tableau.',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁', round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés', footer_links: 'Liens', footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité', footer_version: 'Version', footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub', sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)', back_title: 'Retour', operator_plus: '+', operator_minus: '−',
+                    operator_div: '÷', operator_mul: '×', operator_eq: '=', example_toggle_show: '📘 Exemple (afficher)',
+                    example_toggle_hide: '📘 Exemple (masquer)', percent_symbol: '%'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Probability 2 (Class Intervals)',
+                    exercise_subtitle: 'Extract frequencies from a grouped table and calculate probability step by step',
+                    new_question: '🔄 New Question', check: '✓ Check',
+                    hint: '📌 Fill all fields. Remember: probability = (frequency ÷ total) × 100',
+                    attempts_label: 'Attempts', score_label: 'Score',
+                    class_header: 'Class', freq_header: 'Frequency',
+                    mode_badge_basic: '🎯 Mode: Single class probability',
+                    mode_badge_complement: '🔄 Mode: Complementary event',
+                    mode_badge_combine: '🔗 Mode: Union of two classes',
+                    step_extract: '🔍 Step 1: Extract class frequency',
+                    step_extract2: '🔍 Step 1b: Extract second class frequency',
+                    step_total: '🧮 Step 2: Calculate total',
+                    step_total_intro: 'Total = sum of frequencies =',
+                    step_prob: '📐 Step 3: Apply probability formula',
+                    step_prob_formula: 'Probability = (frequency ÷ total) × 100',
+                    step_combine_num: 'Combined frequency = freq₁ + freq₂ =',
+                    step_complement: '📐 Step 4: Complementary probability',
+                    step_complement_rule: 'Probability of not being in this class = 100% − probability of the class',
+                    fill_all: '⚠️ Please fill all fields', invalid_numbers: '❌ Integers only',
+                    correct: '✅ Correct! +1 point', wrong: '❌ Wrong! Check the table values.',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁', round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed', footer_links: 'Links', footer_terms: 'Terms',
+                    footer_privacy: 'Privacy', footer_version: 'Version', footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub', sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)', back_title: 'Back', operator_plus: '+', operator_minus: '−',
+                    operator_div: '÷', operator_mul: '×', operator_eq: '=', example_toggle_show: '📘 Example (show)',
+                    example_toggle_hide: '📘 Example (hide)', percent_symbol: '%'
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => { if (el.dataset.i18n) el.textContent = t(el.dataset.i18n); });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t('example_toggle_show');
+            }
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_proba2classes_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_proba2classes_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true, audioCtx = null;
+            function getAudioContext() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now); osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now); osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+            function loadSoundPref() { const s = localStorage.getItem('exercise_proba2classes_sound'); soundEnabled = s !== 'off'; btnSound.textContent = soundEnabled ? '🔊' : '🔇'; btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); }
+            function toggleSound() { soundEnabled = !soundEnabled; localStorage.setItem('exercise_proba2classes_sound', soundEnabled ? 'on' : 'off'); btnSound.textContent = soundEnabled ? '🔊' : '🔇'; btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); if (soundEnabled) playSound('correct'); }
+            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙'; localStorage.setItem('exercise_proba2classes_theme', theme); }
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+            function loadTheme() { const s = localStorage.getItem('exercise_proba2classes_theme'); if (s === 'dark' || s === 'light') applyTheme(s); else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+            function goBack() { if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back(); else window.location.href = 'لوحة التمارين التفاعلية.html'; }
+
+            const scenarios = [
+                { ar: { name: 'الأجرة اليومية', unit: 'دينار', lowStart: 20, width: 10 }, fr: { name: 'salaire journalier', unit: 'dinar', lowStart: 20, width: 10 }, en: { name: 'daily wage', unit: 'dinar', lowStart: 20, width: 10 } },
+                { ar: { name: 'الكتلة', unit: 'غرام', lowStart: 100, width: 50 }, fr: { name: 'masse', unit: 'gramme', lowStart: 100, width: 50 }, en: { name: 'mass', unit: 'gram', lowStart: 100, width: 50 } },
+                { ar: { name: 'المسافة', unit: 'متر', lowStart: 0, width: 100 }, fr: { name: 'distance', unit: 'mètre', lowStart: 0, width: 100 }, en: { name: 'distance', unit: 'meter', lowStart: 0, width: 100 } },
+                { ar: { name: 'الطول', unit: 'سم', lowStart: 150, width: 10 }, fr: { name: 'taille', unit: 'cm', lowStart: 150, width: 10 }, en: { name: 'height', unit: 'cm', lowStart: 150, width: 10 } },
+                { ar: { name: 'المدة الزمنية', unit: 'دقيقة', lowStart: 0, width: 15 }, fr: { name: 'durée', unit: 'minute', lowStart: 0, width: 15 }, en: { name: 'duration', unit: 'minute', lowStart: 0, width: 15 } },
+                { ar: { name: 'السن', unit: 'سنة', lowStart: 10, width: 10 }, fr: { name: 'âge', unit: 'an', lowStart: 10, width: 10 }, en: { name: 'age', unit: 'year', lowStart: 10, width: 10 } },
+                { ar: { name: 'المبلغ المدخر', unit: 'دينار', lowStart: 0, width: 200 }, fr: { name: 'montant épargné', unit: 'dinar', lowStart: 0, width: 200 }, en: { name: 'savings', unit: 'dinar', lowStart: 0, width: 200 } },
+                { ar: { name: 'عدد الساعات', unit: 'ساعة', lowStart: 0, width: 5 }, fr: { name: 'nombre d\'heures', unit: 'heure', lowStart: 0, width: 5 }, en: { name: 'hours', unit: 'hour', lowStart: 0, width: 5 } }
+            ];
+
+            function generateScenario() {
+                const sc = scenarios[Math.floor(Math.random() * scenarios.length)];
+                const langData = sc[currentLang] || sc.ar;
+                const varName = langData.name;
+                const unit = langData.unit;
+                const lowStart = langData.lowStart;
+                const width = langData.width;
+
+                const classes = [];
+                for (let i = 0; i < CAT_COUNT; i++) {
+                    const low = lowStart + i * width;
+                    const high = low + width;
+                    classes.push({ low, high, label: `[${low} , ${high}[` });
+                }
+
+                const baseVals = [3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20];
+                const freqs = [];
+                let total = 0;
+                for (let i = 0; i < CAT_COUNT; i++) {
+                    const f = baseVals[Math.floor(Math.random() * baseVals.length)];
+                    freqs.push(f);
+                    total += f;
+                }
+                if (total < 24) { freqs[0] += (24 - total); total = 24; }
+                if (total > 56) {
+                    let excess = total - 52;
+                    for (let i = 0; i < CAT_COUNT && excess > 0; i++) {
+                        const reduce = Math.min(freqs[i] - 2, excess);
+                        freqs[i] -= reduce;
+                        total -= reduce;
+                        excess -= reduce;
+                    }
+                }
+
+                const modes = ['basic', 'complement', 'combine'];
+                const mode = modes[Math.floor(Math.random() * modes.length)];
+                let tIdx = Math.floor(Math.random() * CAT_COUNT);
+                let tIdx2 = -1;
+                if (mode === 'combine') {
+                    do { tIdx2 = Math.floor(Math.random() * CAT_COUNT); } while (tIdx2 === tIdx);
+                }
+
+                return { classes, freqs, total, mode, tIdx, tIdx2, varName, unit };
+            }
+
+            function renderTable() {
+                const classLabel = t('class_header');
+                const freqLabel = t('freq_header');
+                let html = '<table class="stats-table">';
+                html += `<tr><td class="header-cell">${classLabel} (${currentVarName} بـ ${currentUnit})</td>`;
+                currentClasses.forEach((cls, i) => {
+                    let clsStyle = '';
+                    if (i === targetIndex) clsStyle = ' target-highlight';
+                    else if (i === targetIndex2) clsStyle = ' target2-highlight';
+                    html += `<td class="value-cell${clsStyle}">${cls.label}</td>`;
+                });
+                html += '</tr><tr>';
+                html += `<td class="header-cell">${freqLabel}</td>`;
+                currentFreqs.forEach((f, i) => {
+                    let clsStyle = '';
+                    if (i === targetIndex) clsStyle = ' target-highlight';
+                    else if (i === targetIndex2) clsStyle = ' target2-highlight';
+                    html += `<td class="value-cell${clsStyle}">${f}</td>`;
+                });
+                html += '</tr></table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opPlus = t('operator_plus');
+                const opDiv = t('operator_div');
+                const opMul = t('operator_mul');
+                const opEq = t('operator_eq');
+                const pctSym = t('percent_symbol');
+                let html = '';
+
+                const modeBadgeKey = 'mode_badge_' + currentMode;
+                html += `<div style="text-align:center;margin-bottom:10px;"><span class="mode-badge">${t(modeBadgeKey)}</span></div>`;
+
+                const targetClass = currentClasses[targetIndex];
+                const targetFreq = currentFreqs[targetIndex];
+
+                // Step 1: Extract frequency
+                html += `<div class="section-card card-target">`;
+                html += `<div class="section-label label-target">${t('step_extract')}</div>`;
+                html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_extract')}: فئة ${targetClass.label}</div>`;
+                html += `<div class="formula-line" dir="ltr">`;
+                html += `<input type="text" id="inpFreq" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                html += `</div></div>`;
+
+                // Step 1b: Extract second frequency (combine mode)
+                if (currentMode === 'combine' && targetIndex2 >= 0) {
+                    const targetClass2 = currentClasses[targetIndex2];
+                    html += `<div class="section-card card-comb">`;
+                    html += `<div class="section-label label-comb">${t('step_extract2')}</div>`;
+                    html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_extract2')}: فئة ${targetClass2.label}</div>`;
+                    html += `<div class="formula-line" dir="ltr">`;
+                    html += `<input type="text" id="inpFreq2" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
+                }
+
+                // Step 2: Calculate total
+                html += `<div class="section-card">`;
+                html += `<div class="section-label">${t('step_total')}</div>`;
+                html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_total_intro')}</div>`;
+                html += `<div class="formula-line" dir="ltr">`;
+                currentFreqs.forEach((f, i) => {
+                    if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                    html += `<span class="num-display">${f}</span>`;
+                });
+                html += `<span class="operator">${opEq}</span>`;
+                html += `<input type="text" id="inpTotal" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                html += `</div></div>`;
+
+                if (currentMode === 'combine') {
+                    const targetClass2 = currentClasses[targetIndex2];
+                    const targetFreq2 = currentFreqs[targetIndex2];
+                    html += `<div class="section-card card-comb">`;
+                    html += `<div class="section-label label-comb">${t('step_prob')} – ${t('step_prob_formula')}</div>`;
+                    html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_combine_num')}</div>`;
+                    html += `<div class="formula-line" dir="ltr">`;
+                    html += `<span class="num-display" style="color:var(--highlight-target);">${targetFreq}</span>`;
+                    html += `<span class="operator">${opPlus}</span>`;
+                    html += `<span class="num-display" style="color:var(--highlight-comb);">${targetFreq2}</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    html += `<input type="text" id="inpCombFreq" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `</div>`;
+                    html += `<div style="font-weight:700;margin:8px 0 4px;">احتمال (${targetClass.label} أو ${targetClass2.label}) =</div>`;
+                    html += `<div class="formula-line" dir="ltr">`;
+                    html += `<span>(</span>`;
+                    html += `<input type="text" id="inpCombFreq2" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `<span class="operator">${opDiv}</span>`;
+                    html += `<input type="text" id="inpTotalComb" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `<span>)</span>`;
+                    html += `<span class="operator">${opMul}</span>`;
+                    html += `<span class="num-display">100</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    html += `<input type="text" id="inpPercent" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `<span class="percent-sign">${pctSym}</span>`;
+                    html += `</div>`;
+                    html += `<div class="note-mini">📝 (التكرار المشترك ÷ المجموع الكلي) × 100 = النسبة المئوية</div>`;
+                    html += `</div>`;
+                } else {
+                    html += `<div class="section-card">`;
+                    html += `<div class="section-label">${t('step_prob')}</div>`;
+                    html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_prob_formula')}</div>`;
+                    html += `<div style="font-weight:700;margin:4px 0;">احتمال الفئة ${targetClass.label} =</div>`;
+                    html += `<div class="formula-line" dir="ltr">`;
+                    html += `<span>(</span>`;
+                    html += `<input type="text" id="inpFreqB" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `<span class="operator">${opDiv}</span>`;
+                    html += `<input type="text" id="inpTotalB" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `<span>)</span>`;
+                    html += `<span class="operator">${opMul}</span>`;
+                    html += `<span class="num-display">100</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    html += `<input type="text" id="inpPercentB" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                    html += `<span class="percent-sign">${pctSym}</span>`;
+                    html += `</div>`;
+                    html += `<div class="note-mini">📝 (تكرار الفئة ÷ المجموع الكلي) × 100 = النسبة المئوية</div>`;
+                    html += `</div>`;
+
+                    if (currentMode === 'complement') {
+                        const correctPct = Math.round((targetFreq / currentTotal) * 100);
+                        html += `<div class="section-card card-comp">`;
+                        html += `<div class="section-label label-comp">${t('step_complement')}</div>`;
+                        html += `<div class="hint-box">💡 ${t('step_complement_rule')}</div>`;
+                        html += `<div class="formula-line" dir="ltr">`;
+                        html += `<span style="font-weight:700;">P(ليس ${targetClass.label}) = 100% −</span>`;
+                        html += `<input type="text" id="inpPctA" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                        html += `<span class="percent-sign">${pctSym}</span>`;
+                        html += `<span class="operator">${opEq}</span>`;
+                        html += `<input type="text" id="inpPctComp" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
+                        html += `<span class="percent-sign">${pctSym}</span>`;
+                        html += `</div>`;
+                        html += `<div class="note-mini">📝 المجموع دائماً 100%. احتمال (ليس A) + احتمال (A) = 100%</div>`;
+                        html += `</div>`;
+                    }
+                }
+
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                if (document.getElementById('inpFreq')) inputRefs['freq'] = document.getElementById('inpFreq');
+                if (document.getElementById('inpFreq2')) inputRefs['freq2'] = document.getElementById('inpFreq2');
+                if (document.getElementById('inpTotal')) inputRefs['total'] = document.getElementById('inpTotal');
+                if (document.getElementById('inpFreqB')) inputRefs['freqB'] = document.getElementById('inpFreqB');
+                if (document.getElementById('inpTotalB')) inputRefs['totalB'] = document.getElementById('inpTotalB');
+                if (document.getElementById('inpPercentB')) inputRefs['percentB'] = document.getElementById('inpPercentB');
+                if (document.getElementById('inpCombFreq')) inputRefs['combFreq'] = document.getElementById('inpCombFreq');
+                if (document.getElementById('inpCombFreq2')) inputRefs['combFreq2'] = document.getElementById('inpCombFreq2');
+                if (document.getElementById('inpTotalComb')) inputRefs['totalComb'] = document.getElementById('inpTotalComb');
+                if (document.getElementById('inpPercent')) inputRefs['percent'] = document.getElementById('inpPercent');
+                if (document.getElementById('inpPctA')) inputRefs['pctA'] = document.getElementById('inpPctA');
+                if (document.getElementById('inpPctComp')) inputRefs['pctComp'] = document.getElementById('inpPctComp');
+            }
+
+            function buildExpected() {
+                expectedValues = {};
+                const targetFreq = currentFreqs[targetIndex];
+                const correctPct = Math.round((targetFreq / currentTotal) * 100);
+                expectedValues['freq'] = targetFreq;
+                expectedValues['total'] = currentTotal;
+                if (currentMode === 'combine') {
+                    const targetFreq2 = currentFreqs[targetIndex2];
+                    const combFreq = targetFreq + targetFreq2;
+                    const combPct = Math.round((combFreq / currentTotal) * 100);
+                    expectedValues['freq2'] = targetFreq2;
+                    expectedValues['combFreq'] = combFreq;
+                    expectedValues['combFreq2'] = combFreq;
+                    expectedValues['totalComb'] = currentTotal;
+                    expectedValues['percent'] = combPct;
+                } else {
+                    expectedValues['freqB'] = targetFreq;
+                    expectedValues['totalB'] = currentTotal;
+                    expectedValues['percentB'] = correctPct;
+                    if (currentMode === 'complement') {
+                        expectedValues['pctA'] = correctPct;
+                        expectedValues['pctComp'] = 100 - correctPct;
+                    }
+                }
+            }
+
+            function clearInputs() { for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].value = ''; } }
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                buildExpected();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateScenario();
+                currentClasses = data.classes;
+                currentFreqs = data.freqs;
+                currentTotal = data.total;
+                currentMode = data.mode;
+                targetIndex = data.tIdx;
+                targetIndex2 = data.tIdx2;
+                currentVarName = data.varName;
+                currentUnit = data.unit;
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts; scoreSpan.textContent = score; }
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = ''; messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                const firstKey = Object.keys(inputRefs)[0];
+                if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            }
+            function setInputsDisabled(disabled) { for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].disabled = disabled; } }
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+            function getIntVal(key) { const el = inputRefs[key]; if (!el) return NaN; return Number(el.value.trim()); }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                let allFilled = true, allInt = true;
+                const keys = Object.keys(inputRefs);
+                for (const key of keys) {
+                    const el = inputRefs[key];
+                    if (!el || !el.value.trim()) { allFilled = false; break; }
+                    if (!Number.isInteger(Number(el.value.trim()))) { allInt = false; break; }
+                }
+                if (!allFilled) { messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return; }
+                if (!allInt) { messageEl.innerHTML = t('invalid_numbers'); messageEl.style.color = 'var(--accent3)'; return; }
+
+                let correct = true;
+                for (const key of keys) {
+                    if (getIntVal(key) !== expectedValues[key]) { correct = false; break; }
+                }
+
+                attempts++;
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    let detailMsg = '';
+                    if (currentMode === 'combine') {
+                        detailMsg = `تكرار ${currentClasses[targetIndex].label} = ${expectedValues['freq']}، تكرار ${currentClasses[targetIndex2].label} = ${expectedValues['freq2']}، المجموع = ${expectedValues['total']}، الاحتمال = ${expectedValues['percent']}%`;
+                    } else if (currentMode === 'complement') {
+                        detailMsg = `تكرار ${currentClasses[targetIndex].label} = ${expectedValues['freq']}، المجموع = ${expectedValues['total']}، الاحتمال = ${expectedValues['percentB']}%، احتمال المتمم = ${expectedValues['pctComp']}%`;
+                    } else {
+                        detailMsg = `تكرار ${currentClasses[targetIndex].label} = ${expectedValues['freq']}، المجموع = ${expectedValues['total']}، الاحتمال = ${expectedValues['percentB']}%`;
+                    }
+                    messageEl.innerHTML = t('wrong') + ' (' + detailMsg + ')';
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                const firstKey = Object.keys(inputRefs)[0];
+                if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                const firstKey = Object.keys(inputRefs)[0];
+                if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault(); handleCheck(); }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+            btnToggleExample.addEventListener('click', () => {
+                examplePanel.classList.toggle('visible');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t('example_toggle_show');
+            });
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            const firstKey = Object.keys(inputRefs)[0];
+            if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

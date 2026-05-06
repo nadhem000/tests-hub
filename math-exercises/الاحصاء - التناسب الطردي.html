@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التناسب الطردي | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-coeff: #0ea5e9;
+            --highlight-coeff-light: rgba(14, 165, 233, 0.08);
+            --highlight-missing: #f59e0b;
+            --highlight-missing-light: rgba(245, 158, 11, 0.1);
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-coeff: #38bdf8;
+            --highlight-coeff-light: rgba(56, 189, 248, 0.1);
+            --highlight-missing: #fbbf24;
+            --highlight-missing-light: rgba(251, 191, 36, 0.12);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+
+        .dashboard-header {
+            width: 100%; max-width: 1060px; margin: 0 auto 16px;
+            background: var(--surface); border-radius: 30px; padding: 14px 24px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px; transition: all 0.35s;
+        }
+        .logo-area { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; color: var(--text); }
+        .logo-area .icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .btn-icon {
+            width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--border);
+            background: var(--surface2); cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+            color: var(--text); flex-shrink: 0;
+        }
+        .btn-icon:hover { background: var(--surface3); border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .btn-icon:active { transform: scale(0.93); }
+        .lang-select {
+            padding: 7px 12px; border-radius: 50px; border: 2px solid var(--border);
+            background: var(--surface2); color: var(--text); font-family: inherit; font-weight: 600;
+            font-size: 0.9rem; cursor: pointer; outline: none; transition: 0.2s; min-width: 100px;
+        }
+        .lang-select:hover { border-color: var(--accent); }
+
+        .exercise-wrapper {
+            width: 100%; max-width: 1060px; background: var(--surface); border-radius: 36px;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 28px 32px;
+            margin-bottom: 16px; transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem; font-weight: 800; color: var(--accent); text-align: center;
+            margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center; color: var(--text2); margin-bottom: 24px; font-size: 1rem;
+            font-weight: 500; background: var(--section-header-bg); padding: 5px 20px;
+            border-radius: 40px; display: inline-block; width: fit-content; margin-left: auto; margin-right: auto;
+        }
+
+        .stats-table-container {
+            display: flex; justify-content: center; margin-bottom: 28px; overflow-x: auto;
+            border-radius: 20px; box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%; border-collapse: collapse; background: var(--surface);
+            border: 2px solid var(--highlight-coeff); font-size: 1.2rem; font-weight: 600;
+            text-align: center; transition: background 0.35s, border-color 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg); color: var(--section-header-text);
+            padding: 14px 18px; border-left: 1px solid var(--table-border); font-weight: 700; white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg); color: var(--text); padding: 14px 18px;
+            border-left: 1px solid var(--table-border); min-width: 80px; transition: background 0.35s, color 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) { background: var(--table-stripe-bg); }
+        .missing-cell {
+            background: var(--highlight-missing-light) !important; color: var(--highlight-missing) !important;
+            font-weight: 800; box-shadow: inset 0 0 0 3px var(--highlight-missing);
+        }
+        [data-theme="dark"] .missing-cell { background: #78350f !important; color: #fde68a !important; }
+
+        .question-block {
+            margin-top: 10px; font-size: 1.2rem; font-weight: 600; color: var(--text);
+            background: var(--surface2); padding: 18px 20px; border-radius: 28px;
+            line-height: 2.2; border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface); border-radius: 20px; padding: 14px 18px; margin: 10px 0;
+            border: 1px solid var(--border2); box-shadow: var(--shadow-sm); transition: background 0.35s;
+            border-right: 4px solid var(--highlight-coeff); background: var(--highlight-coeff-light);
+        }
+        [data-theme="dark"] .section-card { background: var(--highlight-coeff-light); }
+        .section-label {
+            font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center;
+            gap: 6px; padding: 4px 14px; border-radius: 30px; width: fit-content;
+            color: var(--highlight-coeff); background: rgba(14,165,233,0.12);
+        }
+        .formula-line {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px;
+            margin: 6px 0; direction: ltr; font-size: 1.35rem; font-weight: 700;
+            background: var(--calc-line-bg); border: 2px dashed var(--calc-line-border);
+            border-radius: 40px; padding: 8px 18px;
+        }
+        .formula-line .operator { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 0 4px; }
+        .formula-line .num-display {
+            font-weight: 800; background: var(--surface3); padding: 4px 12px; border-radius: 16px;
+            font-size: 1.2rem; color: var(--text);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.25rem;
+            background: var(--input-bg); border: 2px solid var(--input-border); border-radius: 32px;
+            text-align: center; padding: 3px 2px; margin: 0 4px; width: 4em; min-width: 70px;
+            max-width: 130px; outline: none; transition: all 0.15s; color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.4;
+        }
+        .inline-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,110,158,0.2); }
+        .hint-text { font-size: 0.95rem; color: var(--text2); margin-top: 6px; text-align: center; }
+        .action-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0 8px; }
+        .btn {
+            border: none; padding: 11px 28px; font-size: 1.1rem; font-weight: bold;
+            border-radius: 60px; cursor: pointer; transition: 0.08s linear; font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2); color: white;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-generate { background: #2c3e66; }
+        .btn-check { background: var(--accent2); }
+        .stats {
+            display: flex; justify-content: space-between; margin-top: 18px; font-size: 1.2rem;
+            color: var(--text); font-weight: 600; background: var(--surface2); padding: 12px 28px;
+            border-radius: 60px; border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px; font-size: 1.05rem; min-height: 50px; font-weight: 500;
+            text-align: center; background: var(--surface2); border-radius: 60px; padding: 10px 16px;
+            transition: 0.1s; border: 1px solid var(--border); color: var(--text); line-height: 2;
+        }
+        .dashboard-footer {
+            width: 100%; max-width: 1060px; margin: 8px auto 8px; padding: 18px 20px;
+            background: var(--surface); border-radius: 24px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px; transition: background 0.35s; font-size: 0.9rem;
+        }
+        .footer-col { display: flex; flex-direction: column; gap: 6px; }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 3px; }
+        .footer-col a { color: var(--text2); text-decoration: none; }
+        .footer-col a:hover { color: var(--accent); text-decoration: underline; }
+        .footer-col p { color: var(--text2); margin: 0; }
+        .host-info { font-size: 0.8rem; opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .dashboard-header { padding: 10px 14px; }
+            .exercise-wrapper { padding: 18px 14px; }
+            .dashboard-footer { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+            .question-block { font-size: 1.05rem; padding: 12px 8px; }
+            .inline-input { font-size: 1rem; width: 3.5em; min-width: 60px; }
+            .formula-line { font-size: 1.1rem; padding: 6px 10px; border-radius: 30px; }
+            .stats { font-size: 1rem; padding: 10px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area"><span class="icon">🎯</span><span data-i18n="app_title">لوحة التمارين</span></div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي">🌙</button>
+            <button class="btn-icon" id="btnBack" title="عودة">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title"><span>⚖️</span> <span data-i18n="exercise_heading">التناسب الطردي</span> <span>📈</span></h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">اكتشف معامل التناسب وأكمل الجدول</div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ الفراغات تدريجياً: معامل التناسب، ثم العلاقة، ثم القيمة الناقصة</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col"><h4 data-i18n="footer_links">روابط</h4><ul><li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li><li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li></ul></div>
+        <div class="footer-col"><h4 data-i18n="footer_version">الإصدار</h4><p>v1.0.0</p></div>
+        <div class="footer-col"><h4 data-i18n="footer_dev">تطوير</h4><p>ماجري زياد</p><p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p></div>
+    </footer>
+
+    <script>
+        (function() {
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+
+            let currentX = [], currentY = [], coeff, missingIdx, missingIsY;
+            let attempts = 0, score = 0, gameActive = true, isSwitchingRound = false;
+            let inputRefs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'التناسب الطردي',
+                    exercise_subtitle: 'اكتشف معامل التناسب وأكمل الجدول',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ الفراغات تدريجياً: معامل التناسب، ثم العلاقة، ثم القيمة الناقصة',
+                    attempts_label: 'المحاولات', score_label: 'النقاط',
+                    x_row: 'عدد الكتب 📚', y_row: 'السعر (دينار) 💰',
+                    step1_label: '🔍 أولاً: استخرج معامل التناسب (a)',
+                    step1_instruction: 'اختر زوجاً معلوماً (x, y) واحسب a = y ÷ x',
+                    step2_label: '📐 ثانياً: اكتب علاقة التناسب',
+                    step2_instruction: 'بما أن y = a × x ، تصبح العلاقة:',
+                    step3_label: '🧮 ثالثاً: احسب القيمة الناقصة',
+                    step3_instruction_y: 'لحساب y الناقصة: y = a × x',
+                    step3_instruction_x: 'لحساب x الناقص: x = y ÷ a',
+                    fill_all: '⚠️ أكمل جميع الفراغات (معامل التناسب، العلاقة، القيمة الناقصة)',
+                    invalid_numbers: '❌ يجب إدخال أعداد فقط (يمكن أن تكون عشرية)',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! المعامل = {coeff}، العلاقة y = {coeff} × x، القيمة الناقصة = {missingVal}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links:'روابط', footer_terms:'شروط الاستخدام', footer_privacy:'سياسة الخصوصية',
+                    footer_version:'الإصدار', footer_dev:'تطوير', footer_host:'مستضاف على Netlify و GitHub',
+                    sound_on_title:'الصوت (مفعل)', sound_off_title:'الصوت (معطل)', back_title:'العودة إلى لوحة التمارين',
+                    operator_divide:'÷', operator_multiply:'×', operator_equals:'=',
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Proportionnalité directe',
+                    exercise_subtitle: 'Trouve le coefficient et complète le tableau',
+                    new_question: '🔄 Nouvelle question', check: '✓ Vérifier',
+                    hint: '📌 Remplis les champs : coefficient, relation, valeur manquante',
+                    attempts_label: 'Essais', score_label: 'Points',
+                    x_row: 'Nb de livres 📚', y_row: 'Prix (dinar) 💰',
+                    step1_label: '🔍 1. Coefficient de proportionnalité (a)',
+                    step1_instruction: 'Choisis un couple connu (x, y) et calcule a = y ÷ x',
+                    step2_label: '📐 2. Relation de proportionnalité',
+                    step2_instruction: 'Puisque y = a × x, la relation est :',
+                    step3_label: '🧮 3. Calcule la valeur manquante',
+                    step3_instruction_y: 'Pour trouver y : y = a × x',
+                    step3_instruction_x: 'Pour trouver x : x = y ÷ a',
+                    fill_all: '⚠️ Remplis tous les champs',
+                    invalid_numbers: '❌ Nombres uniquement (décimaux autorisés)',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! Coefficient = {coeff}, relation y = {coeff} × x, valeur manquante = {missingVal}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Nouveau tour...',
+                    figure_changed: '🔄 Nombres changés',
+                    footer_links:'Liens', footer_terms:'Conditions', footer_privacy:'Confidentialité',
+                    footer_version:'Version', footer_dev:'Développement', footer_host:'Hébergé sur Netlify & GitHub',
+                    sound_on_title:'Son (actif)', sound_off_title:'Son (inactif)', back_title:'Retour',
+                    operator_divide:'÷', operator_multiply:'×', operator_equals:'=',
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Direct Proportionality',
+                    exercise_subtitle: 'Find the constant and complete the table',
+                    new_question: '🔄 New Question', check: '✓ Check',
+                    hint: '📌 Fill in: constant, relationship, missing value',
+                    attempts_label: 'Attempts', score_label: 'Score',
+                    x_row: 'Books 📚', y_row: 'Price (dinar) 💰',
+                    step1_label: '🔍 Step 1: Find the constant (a)',
+                    step1_instruction: 'Pick a known pair (x, y) and compute a = y ÷ x',
+                    step2_label: '📐 Step 2: Write the relationship',
+                    step2_instruction: 'Since y = a × x, the relationship is:',
+                    step3_label: '🧮 Step 3: Calculate the missing value',
+                    step3_instruction_y: 'To find y: y = a × x',
+                    step3_instruction_x: 'To find x: x = y ÷ a',
+                    fill_all: '⚠️ Complete all fields',
+                    invalid_numbers: '❌ Numbers only (decimals allowed)',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong! Constant = {coeff}, relation y = {coeff} × x, missing = {missingVal}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ New round...',
+                    figure_changed: '🔄 Numbers changed',
+                    footer_links:'Links', footer_terms:'Terms', footer_privacy:'Privacy',
+                    footer_version:'Version', footer_dev:'Development', footer_host:'Hosted on Netlify & GitHub',
+                    sound_on_title:'Sound (on)', sound_off_title:'Sound (off)', back_title:'Back',
+                    operator_divide:'÷', operator_multiply:'×', operator_equals:'=',
+                }
+            };
+
+            let currentLang = 'ar';
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => { if (el.dataset.i18n) el.textContent = t(el.dataset.i18n); });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_proportion_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_proportion_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true, audioCtx = null;
+            function getAudioContext() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext(), osc = ctx.createOscillator(), gain = ctx.createGain();
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(659.25, now+0.1);
+                        gain.gain.setValueAtTime(0.3, now); gain.gain.linearRampToValueAtTime(0, now+0.25);
+                        osc.start(now); osc.stop(now+0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square'; osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now); gain.gain.linearRampToValueAtTime(0, now+0.3);
+                        osc.start(now); osc.stop(now+0.3);
+                    }
+                } catch(e) {}
+            }
+            function loadSoundPref() {
+                const saved = localStorage.getItem('exercise_proportion_sound');
+                soundEnabled = saved !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+            }
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_proportion_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('exercise_proportion_theme', theme);
+            }
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+            function loadTheme() {
+                const saved = localStorage.getItem('exercise_proportion_theme');
+                if (saved === 'dark' || saved === 'light') applyTheme(saved);
+                else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                else applyTheme('light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back();
+                else window.location.href = 'لوحة التمارين التفاعلية.html';
+            }
+
+            function generateScenario() {
+                // إنشاء جدول بـ 3 أعمدة: قيم x و y متناسبة
+                const a = Math.floor(Math.random() * 4) + 2; // معامل بين 2 و 5
+                const xVals = [];
+                const yVals = [];
+                const baseX = Math.floor(Math.random() * 5) + 3; // 3..7
+                for (let i = 0; i < 3; i++) {
+                    const x = baseX + i * (Math.floor(Math.random() * 3) + 1);
+                    xVals.push(x);
+                    yVals.push(x * a);
+                }
+                // اختيار خلية عشوائية لتكون ناقصة (ليست الأولى ولا الثانية معاً)
+                const idx = Math.floor(Math.random() * 3);
+                const hideY = Math.random() < 0.5; // هل نخفي y أم x؟
+                return { x: xVals, y: yVals, a, missingIdx: idx, missingIsY: hideY };
+            }
+
+            function renderTable() {
+                const xLabel = t('x_row'), yLabel = t('y_row');
+                let html = '<table class="stats-table"><tr><td class="header-cell"></td>';
+                for (let i = 0; i < 3; i++) html += `<td class="header-cell">${i+1}</td>`;
+                html += '</tr><tr><td class="header-cell">' + xLabel + '</td>';
+                for (let i = 0; i < 3; i++) {
+                    const cls = (i === missingIdx && !missingIsY) ? ' missing-cell' : '';
+                    html += `<td class="value-cell${cls}">${(i === missingIdx && !missingIsY) ? '❓' : currentX[i]}</td>`;
+                }
+                html += '</tr><tr><td class="header-cell">' + yLabel + '</td>';
+                for (let i = 0; i < 3; i++) {
+                    const cls = (i === missingIdx && missingIsY) ? ' missing-cell' : '';
+                    html += `<td class="value-cell${cls}">${(i === missingIdx && missingIsY) ? '❓' : currentY[i]}</td>`;
+                }
+                html += '</tr></table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opDiv = t('operator_divide'), opMul = t('operator_multiply'), opEq = t('operator_equals');
+                // اختيار زوج معروف للخطوة الأولى (أول زوج غير ناقص)
+                let knownIdx = 0;
+                while (knownIdx === missingIdx) knownIdx++;
+                const knownX = currentX[knownIdx], knownY = currentY[knownIdx];
+
+                const step3instruction = missingIsY ? t('step3_instruction_y') : t('step3_instruction_x');
+
+                return `
+                    <div class="section-card">
+                        <div class="section-label">${t('step1_label')}</div>
+                        <div style="font-weight:700;margin-bottom:6px;">${t('step1_instruction')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span class="num-display">${knownY}</span>
+                            <span class="operator">${opDiv}</span>
+                            <span class="num-display">${knownX}</span>
+                            <span class="operator">${opEq}</span>
+                            <input type="text" id="inpCoeff" class="inline-input" placeholder="a" autocomplete="off" inputmode="decimal">
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">${t('step2_label')}</div>
+                        <div style="font-weight:700;margin-bottom:6px;">${t('step2_instruction')}</div>
+                        <div class="formula-line" dir="ltr">
+                            <span>y</span><span class="operator">${opEq}</span>
+                            <input type="text" id="inpCoeff2" class="inline-input" placeholder="a" autocomplete="off" inputmode="decimal">
+                            <span class="operator">${opMul}</span><span>x</span>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-label">${t('step3_label')}</div>
+                        <div style="font-weight:700;margin-bottom:6px;">${step3instruction}</div>
+                        <div class="formula-line" dir="ltr">
+                            ${missingIsY ? '<span>y</span><span class="operator">=</span>' : '<span>x</span><span class="operator">=</span>'}
+                            <input type="text" id="inpVal" class="inline-input" placeholder="?" autocomplete="off" inputmode="decimal">
+                        </div>
+                    </div>
+                `;
+            }
+
+            function refreshInputRefs() {
+                inputRefs.coeff = document.getElementById('inpCoeff');
+                inputRefs.coeff2 = document.getElementById('inpCoeff2');
+                inputRefs.val = document.getElementById('inpVal');
+            }
+
+            function clearInputs() { for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].value = ''; }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const s = generateScenario();
+                currentX = s.x; currentY = s.y; coeff = s.a;
+                missingIdx = s.missingIdx; missingIsY = s.missingIsY;
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts; scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0; score = 0; gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => inputRefs.coeff?.focus(), 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].disabled = disabled;
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const c1 = inputRefs.coeff?.value.trim() || '';
+                const c2 = inputRefs.coeff2?.value.trim() || '';
+                const v = inputRefs.val?.value.trim() || '';
+                if (!c1 || !c2 || !v) { messageEl.innerHTML = t('fill_all'); messageEl.style.color = 'var(--accent3)'; return; }
+
+                const nC1 = Number(c1), nC2 = Number(c2), nV = Number(v);
+                if (isNaN(nC1) || isNaN(nC2) || isNaN(nV)) { messageEl.innerHTML = t('invalid_numbers'); messageEl.style.color = 'var(--accent3)'; return; }
+
+                const missingX = currentX[missingIdx], missingY = currentY[missingIdx];
+                const correctMissing = missingIsY ? missingY : missingX;
+                const isCorrect = Math.abs(nC1 - coeff) < 0.001 && Math.abs(nC2 - coeff) < 0.001 && Math.abs(nV - correctMissing) < 0.001;
+
+                attempts++;
+                if (isCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct'); messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    messageEl.innerHTML = t('wrong', {coeff: coeff, missingVal: correctMissing});
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => inputRefs.coeff?.focus(), 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed'); messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => inputRefs.coeff?.focus(), 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault(); handleCheck(); }
+            });
+
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+
+            loadLanguage(); loadTheme(); loadSoundPref();
+            attempts = 0; score = 0; gameActive = true; isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => inputRefs.coeff?.focus(), 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

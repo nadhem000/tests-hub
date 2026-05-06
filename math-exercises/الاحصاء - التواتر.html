@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التواتر | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-freq: #2563eb;
+            --highlight-freq-light: rgba(37, 99, 235, 0.07);
+            --highlight-rel: #0d7c6b;
+            --highlight-rel-light: rgba(13, 124, 107, 0.07);
+            --highlight-total: #059669;
+            --highlight-total-light: rgba(5, 150, 105, 0.07);
+            --highlight-missing: #f59e0b;
+            --highlight-missing-light: rgba(245, 158, 11, 0.12);
+            --highlight-verify: #9333ea;
+            --highlight-verify-light: rgba(147, 51, 234, 0.07);
+            --example-bg: #fef9e6;
+            --example-border: #e7c45d;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-freq: #60a5fa;
+            --highlight-freq-light: rgba(96, 165, 250, 0.10);
+            --highlight-rel: #2dd4bf;
+            --highlight-rel-light: rgba(45, 212, 191, 0.10);
+            --highlight-total: #34d399;
+            --highlight-total-light: rgba(52, 211, 153, 0.10);
+            --highlight-missing: #fbbf24;
+            --highlight-missing-light: rgba(251, 191, 36, 0.14);
+            --highlight-verify: #c084fc;
+            --highlight-verify-light: rgba(192, 132, 252, 0.10);
+            --example-bg: #2d2a1a;
+            --example-border: #9b8130;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .example-toggle {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 auto 14px;
+            display: block;
+            color: var(--text);
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .example-panel {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            display: none;
+            font-size: 0.95rem;
+            line-height: 2;
+            direction: rtl;
+        }
+        .example-panel.visible {
+            display: block;
+        }
+
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 12px 10px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 12px 10px;
+            border-left: 1px solid var(--table-border);
+            min-width: 65px;
+            transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .value-cell.given-freq {
+            background: var(--highlight-freq-light) !important;
+            color: var(--highlight-freq);
+            font-weight: 700;
+        }
+        .value-cell.given-rel {
+            background: var(--highlight-rel-light) !important;
+            color: var(--highlight-rel);
+            font-weight: 700;
+        }
+        .value-cell.missing-cell {
+            background: var(--highlight-missing-light) !important;
+            color: var(--highlight-missing);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 2.5px var(--highlight-missing);
+        }
+
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2;
+            border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+        }
+        .section-card.total-card {
+            border-right: 4px solid var(--highlight-total);
+            background: var(--highlight-total-light);
+        }
+        .section-card.rel-card {
+            border-right: 4px solid var(--highlight-rel);
+            background: var(--highlight-rel-light);
+        }
+        .section-card.freq-card {
+            border-right: 4px solid var(--highlight-freq);
+            background: var(--highlight-freq-light);
+        }
+        .section-card.verify-card {
+            border-right: 4px solid var(--highlight-verify);
+            background: var(--highlight-verify-light);
+        }
+        .section-label {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+        .section-label.total-label {
+            color: var(--highlight-total);
+            background: rgba(5, 150, 105, 0.10);
+        }
+        .section-label.rel-label {
+            color: var(--highlight-rel);
+            background: rgba(13, 124, 107, 0.10);
+        }
+        .section-label.freq-label {
+            color: var(--highlight-freq);
+            background: rgba(37, 99, 235, 0.10);
+        }
+        .section-label.verify-label {
+            color: var(--highlight-verify);
+            background: rgba(147, 51, 234, 0.10);
+        }
+        [data-theme="dark"] .section-label.total-label {
+            background: rgba(52, 211, 153, 0.13);
+        }
+        [data-theme="dark"] .section-label.rel-label {
+            background: rgba(45, 212, 191, 0.13);
+        }
+        [data-theme="dark"] .section-label.freq-label {
+            background: rgba(96, 165, 250, 0.13);
+        }
+        [data-theme="dark"] .section-label.verify-label {
+            background: rgba(192, 132, 252, 0.13);
+        }
+        .note-box {
+            font-size: 0.85rem;
+            background: var(--surface3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 8px 0;
+            color: var(--text2);
+            font-weight: 500;
+            line-height: 1.7;
+            direction: rtl;
+        }
+        .mode-badge {
+            display: inline-block;
+            background: var(--highlight-missing-light);
+            color: var(--highlight-missing);
+            font-weight: 800;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin: 4px 0;
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 5px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 14px;
+            margin: 6px 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .calc-line .operator {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 3px;
+        }
+        .calc-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 1.05rem;
+        }
+        .calc-line .num-display.freq-color {
+            color: var(--highlight-freq);
+        }
+        .calc-line .num-display.rel-color {
+            color: var(--highlight-rel);
+        }
+        .calc-line .num-display.total-color {
+            color: var(--highlight-total);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3em;
+            min-width: 48px;
+            max-width: 90px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44, 110, 158, 0.2);
+        }
+        .wide-input {
+            width: 3.5em;
+            min-width: 58px;
+        }
+        .percent-sign {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-left: 2px;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .separate-text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+            margin: 8px 0 2px;
+            padding: 3px 12px;
+            background: var(--surface3);
+            border-radius: 30px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 0.95rem;
+                padding: 12px 8px;
+            }
+            .section-card {
+                padding: 10px 8px;
+            }
+            .inline-input {
+                font-size: 0.95rem;
+                width: 2.5em;
+                min-width: 40px;
+            }
+            .calc-line {
+                font-size: 0.95rem;
+                padding: 4px 8px;
+                border-radius: 30px;
+            }
+            .calc-line .operator {
+                font-size: 1rem;
+            }
+            .section-label {
+                font-size: 0.85rem;
+            }
+            .stats-table {
+                font-size: 0.85rem;
+            }
+            .separate-text {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">التواتر (النسبة المئوية)</span> <span>💯</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">حساب التواتر (fᵢ%) انطلاقاً من التكرارات والعكس</div>
+
+        <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
+        <div class="example-panel" id="examplePanel">
+            <strong>📌 القاعدة الأساسية:</strong><br>
+            <strong>التواتر fᵢ%</strong> = (التكرار fᵢ ÷ التكرار الجملي Total) × 100<br><br>
+            <strong>🔹 مثال 1 (جدول عادي):</strong><br>
+            القيم: 12، 15، 18<br>
+            التكرارات: 5، 3، 2<br>
+            <strong>Total</strong> = 5 + 3 + 2 = <strong>10</strong><br>
+            f₁% = (5 ÷ 10) × 100 = <strong>50%</strong><br>
+            f₂% = (3 ÷ 10) × 100 = <strong>30%</strong><br>
+            f₃% = (2 ÷ 10) × 100 = <strong>20%</strong><br>
+            <strong>التحقق:</strong> 50% + 30% + 20% = <strong>100%</strong> ✓<br><br>
+            <strong>🔹 مثال 2 (فئات):</strong><br>
+            الفئات: ]0,10] ، ]10,20] ، ]20,30]<br>
+            التكرارات: 8، 6، 6<br>
+            <strong>Total</strong> = 8 + 6 + 6 = <strong>20</strong><br>
+            f₁% = (8 ÷ 20) × 100 = <strong>40%</strong><br>
+            f₂% = (6 ÷ 20) × 100 = <strong>30%</strong><br>
+            f₃% = (6 ÷ 20) × 100 = <strong>30%</strong><br><br>
+            <strong>🔹 مثال 3 (استنتاج التكرار من التواتر):</strong><br>
+            إذا علمت أن Total = 50 و f₁% = 20%<br>
+            فإن: f₁ = (20 × 50) ÷ 100 = <strong>10</strong>
+        </div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ جميع الفراغات حسب نوع السؤال. تذكّر: fᵢ% = (fᵢ ÷ Total) × 100 و fᵢ = (fᵢ% × Total) ÷ 100 ومجموع التواترات = 100% دائماً</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const btnToggleExample = document.getElementById('btnToggleExample');
+            const examplePanel = document.getElementById('examplePanel');
+
+            const VALUE_COUNT = 3;
+
+            let currentLabels = [];
+            let currentFreqs = [];
+            let currentRelFreqs = [];
+            let currentTotal;
+            let currentMode = 'basic';
+            let currentIsClasses = false;
+            let currentClassBounds = [];
+            let attempts = 0,
+                score = 0,
+                gameActive = true,
+                isSwitchingRound = false;
+            let inputRefs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'التواتر (النسبة المئوية)',
+                    exercise_subtitle: 'حساب التواتر (fᵢ%) انطلاقاً من التكرارات والعكس',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات حسب نوع السؤال. تذكّر: fᵢ% = (fᵢ ÷ Total) × 100 و fᵢ = (fᵢ% × Total) ÷ 100 ومجموع التواترات = 100% دائماً',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    label_row: 'العنوان',
+                    freq_row: 'التكرار (fᵢ)',
+                    rel_row: 'التواتر (fᵢ%)',
+                    class_header: 'الفئات',
+                    values_header: 'القيم (xᵢ)',
+                    mode_badge_basic: '🎯 النمط: حساب التواترات من التكرارات',
+                    mode_badge_reverse: '🎯 النمط: استنتاج التكرارات من التواترات',
+                    mode_badge_mixed: '🎯 النمط: استنتاج المعلومات الناقصة',
+                    total_section: '🔢 أولاً: حساب التكرار الجملي (Total)',
+                    total_intro: 'التكرار الجملي = مجموع التكرارات =',
+                    total_hint: 'اجمع كل التكرارات: f₁ + f₂ + f₃',
+                    total_given: '💡 التكرار الجملي المعطى: Total = ',
+                    rel_section: '📊 حساب التواترات (النسب المئوية fᵢ%)',
+                    rel_rule: 'fᵢ% = (fᵢ ÷ Total) × 100',
+                    rel_line_prefix: 'f',
+                    rel_pct_suffix: '%',
+                    freq_section: '🔢 حساب التكرارات (fᵢ) من التواترات',
+                    freq_rule: 'fᵢ = (fᵢ% × Total) ÷ 100',
+                    freq_line_prefix: 'f',
+                    verify_section: '✅ التحقق: مجموع التواترات يجب أن يساوي 100%',
+                    verify_sum: 'f₁% + f₂% + f₃% = 100% ؟',
+                    verify_total_section: '✅ التحقق: مجموع التكرارات يجب أن يساوي Total',
+                    verify_total_sum: 'f₁ + f₂ + f₃ = Total ؟',
+                    mixed_find_total: '🔍 أوجد التكرار الجملي (Total) من زوج معلوم',
+                    mixed_find_total_rule: 'بما أن fᵢ% = (fᵢ ÷ Total) × 100 فإن: Total = (fᵢ × 100) ÷ fᵢ%',
+                    mixed_find_rest_rel: '📊 استنتج التواترات الناقصة',
+                    mixed_find_rest_freq: '🔢 استنتج التكرارات الناقصة',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات المطلوبة',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة فقط في جميع الفراغات',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! التواترات الصحيحة: {rel}، التكرارات: {freqs}، Total={total}',
+                    wrong_mixed: '❌ خطأ! Total={total}، التواترات: {rel}، التكرارات: {freqs}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
+                    example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)',
+                    class_prefix: 'الفئة',
+                    given_info: '📋 المعطيات في الجدول:',
+                    step_separator: '➖➖➖➖➖➖➖➖➖➖'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Fréquence relative (pourcentage)',
+                    exercise_subtitle: 'Calcul des fréquences relatives à partir des effectifs et inversement',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs. Rappel : fᵢ% = (fᵢ ÷ Total) × 100 et fᵢ = (fᵢ% × Total) ÷ 100',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    label_row: 'Étiquette',
+                    freq_row: 'Effectif (fᵢ)',
+                    rel_row: 'Fréquence (fᵢ%)',
+                    class_header: 'Classes',
+                    values_header: 'Valeurs (xᵢ)',
+                    mode_badge_basic: '🎯 Mode : Calcul des fréquences à partir des effectifs',
+                    mode_badge_reverse: '🎯 Mode : Déduire les effectifs des fréquences',
+                    mode_badge_mixed: '🎯 Mode : Déduire les informations manquantes',
+                    total_section: '🔢 1. Calcul de l\'effectif total',
+                    total_intro: 'Effectif total = somme des effectifs =',
+                    total_hint: 'Additionnez tous les effectifs : f₁+f₂+f₃',
+                    total_given: '💡 Effectif total donné : Total = ',
+                    rel_section: '📊 Calcul des fréquences relatives (fᵢ%)',
+                    rel_rule: 'fᵢ% = (fᵢ ÷ Total) × 100',
+                    rel_line_prefix: 'f',
+                    rel_pct_suffix: '%',
+                    freq_section: '🔢 Calcul des effectifs (fᵢ) à partir des fréquences',
+                    freq_rule: 'fᵢ = (fᵢ% × Total) ÷ 100',
+                    freq_line_prefix: 'f',
+                    verify_section: '✅ Vérification : la somme des fréquences doit être 100%',
+                    verify_sum: 'f₁%+f₂%+f₃% = 100% ?',
+                    verify_total_section: '✅ Vérification : la somme des effectifs doit être Total',
+                    verify_total_sum: 'f₁+f₂+f₃ = Total ?',
+                    mixed_find_total: '🔍 Trouver l\'effectif total à partir d\'un couple connu',
+                    mixed_find_total_rule: 'Total = (fᵢ × 100) ÷ fᵢ%',
+                    mixed_find_rest_rel: '📊 Déduire les fréquences manquantes',
+                    mixed_find_rest_freq: '🔢 Déduire les effectifs manquants',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers uniquement',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! f%={rel}, f={freqs}, Total={total}',
+                    wrong_mixed: '❌ Faux ! Total={total}, f%={rel}, f={freqs}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Exemple (afficher)',
+                    example_toggle_hide: '📘 Exemple (masquer)',
+                    class_prefix: 'Classe',
+                    given_info: '📋 Données du tableau :',
+                    step_separator: '➖➖➖➖➖➖➖➖➖➖'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Relative Frequency (Percentage)',
+                    exercise_subtitle: 'Calculate relative frequencies from frequencies and vice versa',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill all required fields. Remember: fᵢ% = (fᵢ ÷ Total) × 100 and fᵢ = (fᵢ% × Total) ÷ 100',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    label_row: 'Label',
+                    freq_row: 'Frequency (fᵢ)',
+                    rel_row: 'Rel. Freq (fᵢ%)',
+                    class_header: 'Classes',
+                    values_header: 'Values (xᵢ)',
+                    mode_badge_basic: '🎯 Mode: Calculate relative frequencies from frequencies',
+                    mode_badge_reverse: '🎯 Mode: Deduce frequencies from relative frequencies',
+                    mode_badge_mixed: '🎯 Mode: Deduce missing information',
+                    total_section: '🔢 1. Calculate Total Frequency',
+                    total_intro: 'Total = sum of frequencies =',
+                    total_hint: 'Add all frequencies: f₁+f₂+f₃',
+                    total_given: '💡 Given total frequency: Total = ',
+                    rel_section: '📊 Calculate Relative Frequencies (fᵢ%)',
+                    rel_rule: 'fᵢ% = (fᵢ ÷ Total) × 100',
+                    rel_line_prefix: 'f',
+                    rel_pct_suffix: '%',
+                    freq_section: '🔢 Calculate Frequencies (fᵢ) from Relative Frequencies',
+                    freq_rule: 'fᵢ = (fᵢ% × Total) ÷ 100',
+                    freq_line_prefix: 'f',
+                    verify_section: '✅ Verification: Sum of relative frequencies = 100%',
+                    verify_sum: 'f₁%+f₂%+f₃% = 100%?',
+                    verify_total_section: '✅ Verification: Sum of frequencies = Total',
+                    verify_total_sum: 'f₁+f₂+f₃ = Total?',
+                    mixed_find_total: '🔍 Find total frequency from a known pair',
+                    mixed_find_total_rule: 'Total = (fᵢ × 100) ÷ fᵢ%',
+                    mixed_find_rest_rel: '📊 Deduce missing relative frequencies',
+                    mixed_find_rest_freq: '🔢 Deduce missing frequencies',
+                    fill_all: '⚠️ Please complete all required fields',
+                    invalid_numbers: '❌ Integers only',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong! f%={rel}, f={freqs}, Total={total}',
+                    wrong_mixed: '❌ Wrong! Total={total}, f%={rel}, f={freqs}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Example (show)',
+                    example_toggle_hide: '📘 Example (hide)',
+                    class_prefix: 'Class',
+                    given_info: '📋 Table data:',
+                    step_separator: '➖➖➖➖➖➖➖➖➖➖'
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_relfreq_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_relfreq_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true,
+                audioCtx = null;
+
+            function getAudioContext() { if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx; }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() { const s = localStorage.getItem('exercise_relfreq_sound');
+                soundEnabled = s !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); }
+
+            function toggleSound() { soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_relfreq_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); if (soundEnabled) playSound(
+                    'correct'); }
+
+            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('exercise_relfreq_theme', theme); }
+
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' :
+                    'dark'); }
+
+            function loadTheme() { const s = localStorage.getItem('exercise_relfreq_theme'); if (s === 'dark' || s ===
+                    'light') applyTheme(s);
+                else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+
+            function goBack() { if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window
+                    .history.back();
+                else window.location.href = 'لوحة التمارين التفاعلية.html'; }
+
+            function gcd(a, b) { while (b) { [a, b] = [b, a % b]; } return a; }
+
+            function generateData() {
+                const useClasses = Math.random() < 0.35;
+                const modes = ['basic', 'reverse', 'mixed'];
+                const mode = modes[Math.floor(Math.random() * modes.length)];
+
+                let total, freqs, relFreqs, labels, classBounds;
+
+                if (useClasses) {
+                    const widths = [5, 10, 20];
+                    const w = widths[Math.floor(Math.random() * widths.length)];
+                    const start = Math.floor(Math.random() * 20);
+                    classBounds = [];
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        classBounds.push({ low: start + i * w, high: start + (i + 1) * w, width: w });
+                    }
+                    labels = classBounds.map(cb => ']' + cb.low + ' , ' + cb.high + ']');
+                } else {
+                    classBounds = null;
+                    const baseVals = [8, 12, 15, 20, 25, 30, 10, 14, 18, 22, 28, 35];
+                    const used = new Set();
+                    labels = [];
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        let v;
+                        do { v = baseVals[Math.floor(Math.random() * baseVals.length)]; } while (used.has(v));
+                        used.add(v);
+                        labels.push(String(v));
+                    }
+                    labels.sort((a, b) => Number(a) - Number(b));
+                }
+
+                if (mode === 'basic') {
+                    const totals = [10, 20, 25, 30, 40, 50];
+                    total = totals[Math.floor(Math.random() * totals.length)];
+                    freqs = [];
+                    let remaining = total;
+                    const minF = 1;
+                    for (let i = 0; i < VALUE_COUNT - 1; i++) {
+                        const maxF = remaining - (VALUE_COUNT - 1 - i) * minF;
+                        const f = Math.floor(Math.random() * (maxF - minF + 1)) + minF;
+                        freqs.push(f);
+                        remaining -= f;
+                    }
+                    freqs.push(remaining);
+                    for (let i = freqs.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [freqs[i], freqs[j]] = [freqs[j], freqs[i]];
+                    }
+                    relFreqs = freqs.map(f => Math.round((f / total) * 100));
+                    const sumRel = relFreqs.reduce((a, b) => a + b, 0);
+                    if (sumRel !== 100) {
+                        const diff = 100 - sumRel;
+                        relFreqs[VALUE_COUNT - 1] += diff;
+                    }
+                } else if (mode === 'reverse') {
+                    const totals = [10, 20, 25, 30, 40, 50];
+                    total = totals[Math.floor(Math.random() * totals.length)];
+                    relFreqs = [];
+                    let remainingPct = 100;
+                    const minPct = 10;
+                    for (let i = 0; i < VALUE_COUNT - 1; i++) {
+                        const maxPct = remainingPct - (VALUE_COUNT - 1 - i) * minPct;
+                        const pct = Math.floor(Math.random() * (maxPct - minPct + 1)) + minPct;
+                        relFreqs.push(pct);
+                        remainingPct -= pct;
+                    }
+                    relFreqs.push(remainingPct);
+                    for (let i = relFreqs.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [relFreqs[i], relFreqs[j]] = [relFreqs[j], relFreqs[i]];
+                    }
+                    freqs = relFreqs.map(pct => Math.round((pct * total) / 100));
+                    const sumF = freqs.reduce((a, b) => a + b, 0);
+                    if (sumF !== total) {
+                        const diff = total - sumF;
+                        freqs[VALUE_COUNT - 1] += diff;
+                    }
+                } else {
+                    const totals = [20, 25, 30, 40, 50];
+                    total = totals[Math.floor(Math.random() * totals.length)];
+                    freqs = [];
+                    let remaining = total;
+                    const minF = 2;
+                    for (let i = 0; i < VALUE_COUNT - 1; i++) {
+                        const maxF = remaining - (VALUE_COUNT - 1 - i) * minF;
+                        const f = Math.floor(Math.random() * (maxF - minF + 1)) + minF;
+                        freqs.push(f);
+                        remaining -= f;
+                    }
+                    freqs.push(remaining);
+                    for (let i = freqs.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [freqs[i], freqs[j]] = [freqs[j], freqs[i]];
+                    }
+                    relFreqs = freqs.map(f => Math.round((f / total) * 100));
+                    const sumRel = relFreqs.reduce((a, b) => a + b, 0);
+                    if (sumRel !== 100) {
+                        const diff = 100 - sumRel;
+                        relFreqs[VALUE_COUNT - 1] += diff;
+                    }
+                }
+
+                return { labels, freqs, relFreqs, total, mode, useClasses, classBounds };
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                const isMixed = currentMode === 'mixed';
+                const isReverse = currentMode === 'reverse';
+                const isBasic = currentMode === 'basic';
+
+                const headerLabel = currentIsClasses ? dict.class_header : dict.values_header;
+
+                let html = '<table class="stats-table">';
+                html += `<tr><td class="header-cell">${headerLabel}</td>`;
+                currentLabels.forEach(lbl => {
+                    html += `<td class="value-cell">${lbl}</td>`;
+                });
+                html += '</tr>';
+
+                html += `<tr><td class="header-cell">${dict.freq_row}</td>`;
+                currentFreqs.forEach((f, i) => {
+                    let cls = '';
+                    if (isBasic) cls = ' given-freq';
+                    if (isReverse) cls = ' missing-cell';
+                    if (isMixed && i === 0) cls = ' given-freq';
+                    if (isMixed && i > 0) cls = ' missing-cell';
+                    const display = (isReverse || (isMixed && i > 0)) ? '❓' : f;
+                    html += `<td class="value-cell${cls}">${display}</td>`;
+                });
+                html += '</tr>';
+
+                html += `<tr><td class="header-cell">${dict.rel_row}</td>`;
+                currentRelFreqs.forEach((rf, i) => {
+                    let cls = '';
+                    if (isBasic) cls = ' missing-cell';
+                    if (isReverse) cls = ' given-rel';
+                    if (isMixed && i === 0) cls = ' given-rel';
+                    if (isMixed && i > 0) cls = ' missing-cell';
+                    const display = (isBasic || (isMixed && i > 0)) ? '❓' : (rf + '%');
+                    html += `<td class="value-cell${cls}">${display}</td>`;
+                });
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opPlus = t('operator_plus');
+                const opMinus = t('operator_minus');
+                const opDiv = t('operator_divide');
+                const opMul = t('operator_multiply');
+                const opEq = t('operator_equals');
+                let html = '';
+
+                const modeBadgeKey = 'mode_badge_' + currentMode;
+                html +=
+                    `<div style="text-align:center;margin-bottom:10px;"><span class="mode-badge">${t(modeBadgeKey)}</span></div>`;
+
+                html +=
+                    `<div class="note-box" style="text-align:center;">${t('given_info')} ${currentIsClasses ? t('class_header') : t('values_header')}: <strong>${currentLabels.join(' | ')}</strong></div>`;
+
+                if (currentMode === 'basic') {
+                    html +=
+                        `<div class="section-card total-card"><div class="section-label total-label">${t('total_section')}</div>`;
+                    html += `<div class="note-box">💡 ${t('total_hint')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('total_intro')}</span>`;
+                    currentFreqs.forEach((f, i) => {
+                        if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                        html += `<span class="num-display total-color">${f}</span>`;
+                    });
+                    html +=
+                        `<span class="operator">${opEq}</span><input type="text" id="inpTotal" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
+
+                    html +=
+                        `<div class="section-card rel-card"><div class="section-label rel-label">${t('rel_section')}</div>`;
+                    html += `<div class="note-box">💡 ${t('rel_rule')}</div>`;
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">f<sub>${i+1}</sub>%</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(f<sub>${i+1}</sub></span><span class="operator">${opDiv}</span><span>Total</span>)<span class="operator">${opMul}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(${currentFreqs[i]}</span><span class="operator">${opDiv}</span><span class="num-display total-color">${currentTotal}</span>)<span class="operator">${opMul}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<input type="text" id="inpRel${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="percent-sign">%</span>`;
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card verify-card"><div class="section-label verify-label">${t('verify_section')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('verify_sum')}</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                        html += `<span>f<sub>${i+1}</sub>%</span>`;
+                    }
+                    html +=
+                        `<span class="operator">${opEq}</span><input type="text" id="inpVerifySum" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="percent-sign">%</span>`;
+                    html +=
+                        `<div class="note-box" style="margin-top:4px;">🎯 يجب أن يكون المجموع <strong>100%</strong> بالضبط</div>`;
+                    html += `</div>`;
+                } else if (currentMode === 'reverse') {
+                    html +=
+                        `<div class="section-card total-card"><div class="section-label total-label">📋 المعطى</div>`;
+                    html +=
+                        `<div class="note-box">${t('total_given')}<strong>${currentTotal}</strong></div>`;
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card freq-card"><div class="section-label freq-label">${t('freq_section')}</div>`;
+                    html += `<div class="note-box">💡 ${t('freq_rule')}</div>`;
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">f<sub>${i+1}</sub></span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(f<sub>${i+1}</sub>%</span><span class="operator">${opMul}</span><span>Total</span>)<span class="operator">${opDiv}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(${currentRelFreqs[i]}%</span><span class="operator">${opMul}</span><span class="num-display total-color">${currentTotal}</span>)<span class="operator">${opDiv}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<input type="text" id="inpFreq${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card verify-card"><div class="section-label verify-label">${t('verify_total_section')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('verify_total_sum')}</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                        html += `<span>f<sub>${i+1}</sub></span>`;
+                    }
+                    html +=
+                        `<span class="operator">${opEq}</span><input type="text" id="inpVerifyTotal" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                    html +=
+                        `<div class="note-box" style="margin-top:4px;">🎯 يجب أن يساوي المجموع <strong>${currentTotal}</strong> بالضبط</div>`;
+                    html += `</div>`;
+                } else if (currentMode === 'mixed') {
+                    const knownIdx = 0;
+                    const knownF = currentFreqs[knownIdx];
+                    const knownR = currentRelFreqs[knownIdx];
+
+                    html +=
+                        `<div class="section-card total-card"><div class="section-label total-label">${t('mixed_find_total')}</div>`;
+                    html +=
+                        `<div class="note-box">💡 ${t('mixed_find_total_rule')}<br>📌 نستخدم الزوج المعلوم: f<sub>${knownIdx+1}</sub>=${knownF} و f<sub>${knownIdx+1}</sub>%=${knownR}%</div>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">Total</span><span class="operator">${opEq}</span>`;
+                    html +=
+                        `<span>(f<sub>${knownIdx+1}</sub></span><span class="operator">${opMul}</span><span>100</span>)<span class="operator">${opDiv}</span><span>f<sub>${knownIdx+1}</sub>%</span><span class="operator">${opEq}</span>`;
+                    html +=
+                        `<span>(${knownF}</span><span class="operator">${opMul}</span><span>100</span>)<span class="operator">${opDiv}</span><span>${knownR}%</span><span class="operator">${opEq}</span>`;
+                    html +=
+                        `<input type="text" id="inpTotalM" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                    html += `</div></div>`;
+
+                    html +=
+                        `<div class="section-card rel-card"><div class="section-label rel-label">${t('mixed_find_rest_rel')}</div>`;
+                    html += `<div class="note-box">💡 ${t('rel_rule')} (باستعمال Total الذي وجدته)</div>`;
+                    for (let i = 1; i < VALUE_COUNT; i++) {
+                        html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">f<sub>${i+1}</sub>%</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(f<sub>${i+1}</sub></span><span class="operator">${opDiv}</span><span>Total</span>)<span class="operator">${opMul}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(${currentFreqs[i]}</span><span class="operator">${opDiv}</span><span>Total</span>)<span class="operator">${opMul}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<input type="text" id="inpRelM${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="percent-sign">%</span>`;
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card freq-card"><div class="section-label freq-label">${t('mixed_find_rest_freq')}</div>`;
+                    html +=
+                        `<div class="note-box">💡 ${t('freq_rule')} (باستعمال Total و fᵢ% التي وجدتها)</div>`;
+                    for (let i = 1; i < VALUE_COUNT; i++) {
+                        html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">f<sub>${i+1}</sub></span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(f<sub>${i+1}</sub>%</span><span class="operator">${opMul}</span><span>Total</span>)<span class="operator">${opDiv}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<span>(f<sub>${i+1}</sub>%</span><span class="operator">${opMul}</span><span>Total</span>)<span class="operator">${opDiv}</span><span>100</span><span class="operator">${opEq}</span>`;
+                        html +=
+                            `<input type="text" id="inpFreqM${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric">`;
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card verify-card"><div class="section-label verify-label">✅ تحقق سريع</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span>f<sub>1</sub>%+f<sub>2</sub>%+f<sub>3</sub>%</span><span class="operator">${opEq}</span><input type="text" id="inpVerifyM" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="percent-sign">%</span>`;
+                    html +=
+                        `<div class="note-box" style="margin-top:4px;">🎯 يجب أن يساوي <strong>100%</strong></div>`;
+                    html += `</div>`;
+                }
+
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                if (currentMode === 'basic') {
+                    inputRefs['total'] = document.getElementById('inpTotal');
+                    for (let i = 0; i < VALUE_COUNT; i++) inputRefs['rel' + i] = document.getElementById('inpRel' + i);
+                    inputRefs['verifySum'] = document.getElementById('inpVerifySum');
+                } else if (currentMode === 'reverse') {
+                    for (let i = 0; i < VALUE_COUNT; i++) inputRefs['freq' + i] = document.getElementById('inpFreq' + i);
+                    inputRefs['verifyTotal'] = document.getElementById('inpVerifyTotal');
+                } else if (currentMode === 'mixed') {
+                    inputRefs['totalM'] = document.getElementById('inpTotalM');
+                    for (let i = 1; i < VALUE_COUNT; i++) inputRefs['relM' + i] = document.getElementById('inpRelM' + i);
+                    for (let i = 1; i < VALUE_COUNT; i++) inputRefs['freqM' + i] = document.getElementById('inpFreqM' + i);
+                    inputRefs['verifyM'] = document.getElementById('inpVerifyM');
+                }
+            }
+
+            function clearInputs() { for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].value = ''; } }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateData();
+                currentLabels = data.labels;
+                currentFreqs = data.freqs;
+                currentRelFreqs = data.relFreqs;
+                currentTotal = data.total;
+                currentMode = data.mode;
+                currentIsClasses = data.useClasses;
+                currentClassBounds = data.classBounds;
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 60);
+            }
+
+            function setInputsDisabled(disabled) { for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].disabled =
+                        disabled; } }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function getIntVal(id) { const el = inputRefs[id]; if (!el) return NaN; return Number(el.value.trim()); }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                let allFilled = true;
+                let allInt = true;
+                const requiredKeys = Object.keys(inputRefs);
+
+                for (const key of requiredKeys) {
+                    const el = inputRefs[key];
+                    if (!el || !el.value.trim()) { allFilled = false; break; }
+                    const num = Number(el.value.trim());
+                    if (!Number.isInteger(num)) { allInt = false; break; }
+                }
+
+                if (!allFilled) { messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+                if (!allInt) { messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                let correct = true;
+
+                if (currentMode === 'basic') {
+                    if (getIntVal('total') !== currentTotal) correct = false;
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        if (getIntVal('rel' + i) !== currentRelFreqs[i]) correct = false;
+                    }
+                    if (getIntVal('verifySum') !== 100) correct = false;
+                } else if (currentMode === 'reverse') {
+                    for (let i = 0; i < VALUE_COUNT; i++) {
+                        if (getIntVal('freq' + i) !== currentFreqs[i]) correct = false;
+                    }
+                    if (getIntVal('verifyTotal') !== currentTotal) correct = false;
+                } else if (currentMode === 'mixed') {
+                    if (getIntVal('totalM') !== currentTotal) correct = false;
+                    for (let i = 1; i < VALUE_COUNT; i++) {
+                        if (getIntVal('relM' + i) !== currentRelFreqs[i]) correct = false;
+                    }
+                    for (let i = 1; i < VALUE_COUNT; i++) {
+                        if (getIntVal('freqM' + i) !== currentFreqs[i]) correct = false;
+                    }
+                    if (getIntVal('verifyM') !== 100) correct = false;
+                }
+
+                attempts++;
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    if (currentMode === 'mixed') {
+                        messageEl.innerHTML = t('wrong_mixed', {
+                            total: currentTotal,
+                            rel: currentRelFreqs.join('%, '),
+                            freqs: currentFreqs.join(', ')
+                        });
+                    } else {
+                        messageEl.innerHTML = t('wrong', {
+                            rel: currentRelFreqs.join('%, '),
+                            freqs: currentFreqs.join(', '),
+                            total: currentTotal
+                        });
+                    }
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+            btnToggleExample.addEventListener('click', () => { examplePanel.classList.toggle('visible');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show'); });
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => {
+                const firstKey = Object.keys(inputRefs)[0];
+                if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

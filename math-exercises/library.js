@@ -1487,6 +1487,434 @@ const exercises = [
             description: 'Interactive exercise to add and subtract positive and negative fractions step by step, including unifying denominators and simplifying. 10 attempts with points.'
         }
     }
+},
+{
+    id: 'ex-046',
+    section: 'الإحصاء',
+    sectionIcon: '📈',
+    name: 'التناسب الطردي',
+    description: 'تمرين تفاعلي لاكتشاف معامل التناسب وإكمال جدول تناسب طردي خطوة بخطوة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'السابعة أساسي',
+    cardColor: '#0ea5e9',
+    cardColorDark: '#38bdf8',
+    link: 'الاحصاء - التناسب الطردي.html',
+    version: '1.0',
+    tags: ['تناسب طردي', 'معامل التناسب', 'جدول', 'نسبة', 'إحصاء'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-06',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['تناسب طردي', 'معامل التناسب', 'جدول تناسب', 'قانون y=ax', 'سابعة أساسي'],
+    thumbnail: '⚖️',
+    translations: {
+        fr: {
+            name: 'Proportionnalité directe',
+            description: 'Exercice interactif pour trouver le coefficient de proportionnalité et compléter un tableau. 10 essais avec points.'
+        },
+        en: {
+            name: 'Direct Proportionality',
+            description: 'Interactive exercise to find the constant of proportionality and complete a table. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-047',
+    section: 'الإحصاء',
+    sectionIcon: '📈',
+    name: 'التناسب الطردي بأعداد كسرية',
+    description: 'تمرين تفاعلي لاكتشاف معامل التناسب (كسر) وإكمال جدول تناسب طردي بأعداد كسرية خطوة بخطوة. موجه لتلاميذ الثامنة أساسي. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'الثامنة أساسي',
+    cardColor: '#0ea5e9',
+    cardColorDark: '#38bdf8',
+    link: 'الاحصاء - التناسب الطردي 2.html',
+    version: '1.0',
+    tags: ['تناسب طردي', 'أعداد كسرية', 'جدول', 'معامل التناسب', 'كسر', 'ثامنة أساسي'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-06',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['تناسب طردي', 'كسر', 'معامل التناسب', 'عدد كسري', 'جدول تناسب', 'y=ax', 'ثامنة أساسي'],
+    thumbnail: '📈',
+    translations: {
+        fr: {
+            name: 'Proportionnalité directe avec fractions',
+            description: 'Exercice interactif pour trouver le coefficient de proportionnalité (fraction) et compléter un tableau de nombres rationnels, étape par étape. 10 essais avec points.'
+        },
+        en: {
+            name: 'Direct Proportionality with Fractions',
+            description: 'Interactive exercise to find the constant of proportionality (fraction) and complete a table of rational numbers step by step. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-048',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'الوسيط (الموسط)',
+    description: 'تمرين تفاعلي مبسط لحساب الوسيط (الموسط) من سلسلة إحصائية: ترتيب القيم، تحديد فردي/زوجي، تطبيق قاعدة الرتبة، واستخراج الوسيط خطوة بخطوة. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'الثامنة أساسي',
+    cardColor: '#f59e0b',
+    cardColorDark: '#fbbf24',
+    link: 'الاحصاء - الموسط.html',
+    version: '1.0',
+    tags: ['إحصاء', 'وسيط', 'موسط', 'ترتيب', 'قاعدة', 'أعداد', 'فردي', 'زوجي'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-06',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['وسيط', 'موسط', 'ترتيب تصاعدي', 'رتبة', 'فردي', 'زوجي', 'إحصاء', 'ثامنة أساسي'],
+    thumbnail: '📊',
+    translations: {
+        fr: {
+            name: 'La médiane',
+            description: 'Exercice interactif simplifié pour calculer la médiane d’une série statistique : trier les valeurs, déterminer pair/impair, appliquer la règle du rang et extraire la médiane étape par étape. 10 essais avec points.'
+        },
+        en: {
+            name: 'The Median',
+            description: 'Simplified interactive exercise to calculate the median of a data set: sort values, determine odd/even, apply the rank rule, and extract the median step by step. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-049',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'الموسط 2 (الفئات)',
+    description: 'تمرين تفاعلي مبسط لتحديد الوسيط في سلسلة إحصائية ذات فئات خطوة بخطوة. يتناول التكرارات المتجمعة، الرتبة، فئة الوسيط ومركزها. مناسب للتلاميذ الضعفاء في التاسعة أساسي. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'التاسعة أساسي',
+    cardColor: '#6366f1',
+    cardColorDark: '#818cf8',
+    link: 'الاحصاء - الموسط 2.html',
+    version: '2.0',
+    tags: ['إحصاء', 'وسيط', 'فئات', 'تكرارات متجمعة', 'رتبة', 'فئة الوسيط', 'مركز فئة', 'CF'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-06',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['وسيط', 'موسط', 'فئات', 'تكرار متجمع', 'CF', 'رتبة الوسيط', 'مركز الفئة', 'إحصاء', 'تاسعة أساسي'],
+    thumbnail: '📊',
+    translations: {
+        fr: {
+            name: 'Médiane 2 (classes)',
+            description: 'Exercice interactif simplifié pour déterminer la médiane dans une série groupée par classes, étape par étape. Effectifs cumulés, rang, classe médiane et centre. Adapté aux élèves en difficulté de 9ème année. 10 essais avec points.'
+        },
+        en: {
+            name: 'Median 2 (Grouped Data)',
+            description: 'Simplified interactive exercise to find the median in a grouped frequency distribution step by step. Cumulative frequencies, rank, median class and midpoint. Suitable for struggling 9th grade students. 10 attempts with points.'
+        }
+    }
+},
+{
+  "id": "ex-050",
+  "section": "الإحصاء",
+  "sectionIcon": "📊",
+  "name": "التكرار التراكمي",
+  "description": "تمرين تفاعلي لحساب التكرار التراكمي الصاعد والنازل من جدول التكرارات. 10 محاولات مع نقاط.",
+  "difficulty": "easy",
+  "class": "الثامنة أساسي",
+  "cardColor": "#3b82f6",
+  "cardColorDark": "#60a5fa",
+  "link": "الاحصاء - التكرار التراكمي.html",
+  "version": "1.0",
+  "tags": ["إحصاء", "تكرار تراكمي", "صاعد", "نازل", "جدول تكرارات"],
+  "mainLanguage": "العربية",
+  "availableTranslations": ["العربية", "Français", "English"],
+  "author": "فريق الرياضيات",
+  "dateAdded": "2026-05-06",
+  "estimatedTime": "6-10 دقائق",
+  "questionCount": 10,
+  "curriculum": "المرحلة الإعدادية",
+  "keywords": ["تكرار تراكمي", "صاعد", "نازل", "Cumulatif", "إحصاء", "ثامنة أساسي"],
+  "thumbnail": "📊",
+  "translations": {
+    "fr": {
+      "name": "Fréquence cumulée",
+      "description": "Calcul des fréquences cumulées croissante et décroissante à partir d'un tableau d'effectifs. 10 essais avec points."
+    },
+    "en": {
+      "name": "Cumulative Frequency",
+      "description": "Calculate ascending and descending cumulative frequencies from a frequency table. 10 attempts with points."
+    }
+  }
+},
+{
+  "id": "ex-051",
+  "section": "الإحصاء",
+  "sectionIcon": "📊",
+  "name": "التكرار التراكمي 2 (فئات)",
+  "description": "تمرين تفاعلي لحساب التكرار التراكمي الصاعد والنازل في جداول فئات مع تنويع الأسئلة (أربع أنماط). 10 محاولات مع نقاط.",
+  "difficulty": "medium",
+  "class": "الثامنة أساسي",
+  "cardColor": "#7c3aed",
+  "cardColorDark": "#a78bfa",
+  "link": "الاحصاء - التكرار التراكمي 2.html",
+  "version": "1.0",
+  "tags": ["إحصاء", "تكرار تراكمي", "صاعد", "نازل", "فئات", "جداول", "CFA", "CFD"],
+  "mainLanguage": "العربية",
+  "availableTranslations": ["العربية", "Français", "English"],
+  "author": "فريق الرياضيات",
+  "dateAdded": "2026-05-06",
+  "estimatedTime": "8-12 دقائق",
+  "questionCount": 10,
+  "curriculum": "المرحلة الإعدادية",
+  "keywords": ["تكرار تراكمي صاعد", "تكرار تراكمي نازل", "CFA", "CFD", "فئات", "جدول تكرارات", "إحصاء", "ثامنة أساسي"],
+  "thumbnail": "📊",
+  "translations": {
+    "fr": {
+      "name": "Fréquence cumulée 2 (classes)",
+      "description": "Exercice interactif pour calculer les fréquences cumulées croissante et décroissante dans des tableaux de classes avec divers types de questions. 10 essais avec points."
+    },
+    "en": {
+      "name": "Cumulative Frequency 2 (Grouped Data)",
+      "description": "Interactive exercise to calculate ascending and descending cumulative frequencies in grouped frequency tables with various question types. 10 attempts with points."
+    }
+  }
+},
+{
+    "id": "ex-052",
+    "section": "الإحصاء",
+    "sectionIcon": "📊",
+    "name": "المدى 2 (الفئات)",
+    "description": "تمرين تفاعلي مبسط لتحديد المدى من جدول فئات خطوة بخطوة. يتناول الفئة الأولى، الفئة الأخيرة، وحساب المدى أو استخراج حد مجهول. موجه لتلاميذ الثامنة أساسي. 10 محاولات مع نقاط.",
+    "difficulty": "easy",
+    "class": "الثامنة أساسي",
+    "cardColor": "#0d9488",
+    "cardColorDark": "#2dd4bf",
+    "link": "الاحصاء - المدى 2.html",
+    "version": "1.0",
+    "tags": ["إحصاء", "مدى", "فئات", "جدول", "فئة أولى", "فئة أخيرة", "حد أدنى", "حد أعلى"],
+    "mainLanguage": "العربية",
+    "availableTranslations": ["العربية", "Français", "English"],
+    "author": "فريق الرياضيات",
+    "dateAdded": "2026-05-06",
+    "estimatedTime": "6-10 دقائق",
+    "questionCount": 10,
+    "curriculum": "المرحلة الإعدادية",
+    "keywords": ["مدى", "فئات", "فئة أولى", "فئة أخيرة", "حد أدنى", "حد أعلى", "إحصاء", "ثامنة أساسي"],
+    "thumbnail": "📊",
+    "translations": {
+        "fr": {
+            "name": "Étendue 2 (classes)",
+            "description": "Exercice interactif simplifié pour déterminer l’étendue à partir d’un tableau de classes, étape par étape. Comprend la première classe, la dernière classe, et le calcul de l’étendue ou d’une borne manquante. Adapté aux élèves de 8ème année. 10 essais avec points."
+        },
+        "en": {
+            "name": "Range 2 (Grouped Data)",
+            "description": "Simplified interactive exercise to find the range from a grouped frequency table step by step. Includes first class, last class, and calculation of the range or a missing bound. Suitable for 8th grade students. 10 attempts with points."
+        }
+    }
+},
+{
+	"id": "ex-053",
+	"section": "الإحصاء",
+	"sectionIcon": "📊",
+	"name": "التواتر التراكمي 2 (فئات)",
+	"description": "تمرين تفاعلي مبسّط جداً لحساب التواتر التراكمي الصاعد والنازل في جداول فئات خطوة بخطوة. 10 محاولات مع نقاط، مناسب للتلاميذ الضعفاء في الثامنة أساسي.",
+	"difficulty": "easy",
+	"class": "الثامنة أساسي",
+	"cardColor": "#0d9488",
+	"cardColorDark": "#2dd4bf",
+	"link": "الاحصاء - التواتر التراكمي 2.html",
+	"version": "1.0",
+	"tags": ["إحصاء", "تواتر تراكمي", "صاعد", "نازل", "نسب مئوية", "فئات", "جداول", "CRA", "CRD"],
+	"mainLanguage": "العربية",
+	"availableTranslations": ["العربية", "Français", "English"],
+	"author": "فريق الرياضيات",
+	"dateAdded": "2026-05-06",
+	"estimatedTime": "8-12 دقائق",
+	"questionCount": 10,
+	"curriculum": "المرحلة الإعدادية",
+	"keywords": ["تواتر تراكمي", "صاعد", "نازل", "نسبة مئوية", "CRA", "CRD", "إحصاء", "ثامنة أساسي", "فئات"],
+	"thumbnail": "📊",
+	"translations": {
+		"fr": {
+			"name": "Fréquence cumulée relative 2 (classes)",
+			"description": "Exercice interactif très simplifié pour calculer les fréquences relatives cumulées croissante et décroissante dans des tableaux de classes, étape par étape. 10 essais avec points, adapté aux élèves en difficulté de 8ème année."
+		},
+		"en": {
+			"name": "Cumulative Relative Frequency 2 (Grouped Data)",
+			"description": "Very simplified interactive exercise to calculate ascending and descending cumulative relative frequencies in class interval tables step by step. 10 attempts with points, suitable for struggling 8th grade students."
+		}
+	}
+},{
+    id: 'ex-054',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'المنوال 2 (الفئات)',
+    description: 'تمرين تفاعلي مبسط لتحديد الفئة المنوالية واستخراج المنوال في جداول فئات خطوة بخطوة. يتناول أكبر تكرار، المعطيات (L، h، التكرارات)، حساب d₁ و d₂، وتطبيق القانون (Mode = L + [d₁/(d₁+d₂)] × h). موجه لتلاميذ الثامنة أساسي. 10 محاولات مع نقاط.',
+    difficulty: 'medium',
+    class: 'الثامنة أساسي',
+    cardColor: '#8b5cf6',
+    cardColorDark: '#a78bfa',
+    link: 'الاحصاء - المنوال 2.html',
+    version: '1.0',
+    tags: ['إحصاء', 'منوال', 'فئات', 'فئة منوالية', 'قانون المنوال', 'd₁', 'd₂', 'تكرار أكبر'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-06',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['منوال', 'فئة منوالية', 'قانون المنوال', 'L + [d₁/(d₁+d₂)] × h', 'd₁', 'd₂', 'تكرار', 'جدول فئات', 'إحصاء', 'ثامنة أساسي'],
+    thumbnail: '📊',
+    translations: {
+        fr: {
+            name: 'Mode 2 (classes)',
+            description: 'Exercice interactif simplifié pour déterminer la classe modale et calculer le mode dans un tableau de classes, étape par étape. Aborde le plus grand effectif, les données (L, h, effectifs), le calcul de d₁ et d₂, et l\'application de la formule (Mode = L + [d₁/(d₁+d₂)] × h). Adapté aux élèves de 8ème année. 10 essais avec points.'
+        },
+        en: {
+            name: 'Mode 2 (Grouped Data)',
+            description: 'Simplified interactive exercise to identify the modal class and compute the mode in grouped frequency tables, step by step. Covers the highest frequency, required data (L, h, frequencies), calculation of d₁ and d₂, and application of the formula (Mode = L + [d₁/(d₁+d₂)] × h). Suitable for 8th grade students. 10 attempts with points.'
+        }
+    }
+},
+{
+  "id": "ex-055",
+  "section": "الإحصاء",
+  "sectionIcon": "📊",
+  "name": "التواتر (النسبة المئوية)",
+  "description": "تمرين تفاعلي مبسط جداً لحساب التواتر (fᵢ%) من التكرارات والعكس، مع ثلاثة أنماط متنوعة: حساب التواترات، استنتاج التكرارات، والمعلومات الناقصة. خطوات مفصلة ومرحلية تناسب التلاميذ الضعفاء في الثامنة أساسي. 10 محاولات مع نقاط.",
+  "difficulty": "easy",
+  "class": "الثامنة أساسي",
+  "cardColor": "#0284c7",
+  "cardColorDark": "#38bdf8",
+  "link": "الاحصاء - التواتر.html",
+  "version": "1.0",
+  "tags": ["إحصاء", "تواتر", "نسبة مئوية", "تكرار", "fᵢ%", "جداول", "فئات", "استنتاج", "ثامنة أساسي"],
+  "mainLanguage": "العربية",
+  "availableTranslations": ["العربية", "Français", "English"],
+  "author": "فريق الرياضيات",
+  "dateAdded": "2026-05-06",
+  "estimatedTime": "6-10 دقائق",
+  "questionCount": 10,
+  "curriculum": "المرحلة الإعدادية",
+  "keywords": ["تواتر", "fᵢ%", "تكرار", "نسبة مئوية", "إحصاء", "جدول", "فئات", "قانون التواتر", "ثامنة أساسي"],
+  "thumbnail": "📊",
+  "translations": {
+    "fr": {
+      "name": "Fréquence relative (pourcentage)",
+      "description": "Exercice interactif très simplifié pour calculer la fréquence relative (fᵢ%) à partir des effectifs et inversement, avec trois modes variés. Étapes détaillées et progressives, adapté aux élèves en difficulté de 8ème année. 10 essais avec points."
+    },
+    "en": {
+      "name": "Relative Frequency (Percentage)",
+      "description": "Very simplified interactive exercise to calculate relative frequency (fᵢ%) from frequencies and vice versa, with three varied modes. Detailed step‑by‑step guidance, suitable for struggling 8th‑grade students. 10 attempts with points."
+    }
+  }
+},
+{
+    id: 'ex-056',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'مركز الفئة',
+    description: 'تمرين تفاعلي مبسط لحساب مركز فئة من جدول فئات خطوة بخطوة مع تنويع الأسئلة. موجه لتلاميذ الثامنة أساسي. 10 محاولات مع نقاط.',
+    difficulty: 'easy',
+    class: 'الثامنة أساسي',
+    cardColor: '#0d9488',
+    cardColorDark: '#2dd4bf',
+    link: 'الاحصاء - مركز الفئة.html',
+    version: '1.0',
+    tags: ['إحصاء', 'مركز الفئة', 'فئات', 'حدود', 'منوال', 'قانون المركز'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-06',
+    estimatedTime: '8-12 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['مركز الفئة', 'حد أدنى', 'حد أعلى', 'قانون المركز', 'فئة منوالية', 'إحصاء', 'ثامنة أساسي'],
+    thumbnail: '🎯',
+    translations: {
+        fr: {
+            name: 'Centre de classe',
+            description: 'Exercice interactif simplifié pour calculer le centre d’une classe à partir d’un tableau de classes, avec différents types de questions. Adapté aux élèves de 8ème année. 10 essais avec points.'
+        },
+        en: {
+            name: 'Class Midpoint',
+            description: 'Simplified interactive exercise to calculate the midpoint of a class from a grouped frequency table, with varied question types. Suitable for 8th grade students. 10 attempts with points.'
+        }
+    }
+},
+{
+    "id": "ex-057",
+    "section": "الإحصاء",
+    "sectionIcon": "📊",
+    "name": "المعدل (المتوسط الحسابي) – جداول وفئات",
+    "description": "تمرين تفاعلي مبسط جداً لحساب المعدل (المتوسط الحسابي) من جدول تكرارات عادي وجدول فئات، خطوة بخطوة. يتناول حساب المركز، الجداءات، المجاميع، والتكرار الجملي. 10 محاولات مع نقاط، مناسب للتلاميذ الضعفاء في الثامنة أساسي.",
+    "difficulty": "easy",
+    "class": "الثامنة أساسي",
+    "cardColor": "#7c3aed",
+    "cardColorDark": "#a78bfa",
+    "link": "الاحصاء - المعدل.html",
+    "version": "1.0",
+    "tags": ["إحصاء", "معدل", "متوسط", "فئات", "مركز الفئة", "جدول تكرارات", "ثامنة أساسي"],
+    "mainLanguage": "العربية",
+    "availableTranslations": ["العربية", "Français", "English"],
+    "author": "فريق الرياضيات",
+    "dateAdded": "2026-05-06",
+    "estimatedTime": "8-12 دقيقة",
+    "questionCount": 10,
+    "curriculum": "المرحلة الإعدادية",
+    "keywords": ["معدل", "متوسط حسابي", "مركز فئة", "جدول تكرارات", "تكرار جملي", "جداء", "إحصاء", "ثامنة أساسي"],
+    "thumbnail": "📊",
+    "translations": {
+        "fr": {
+            "name": "La moyenne (moyenne arithmétique) – tableaux simples et groupés",
+            "description": "Exercice interactif très simplifié pour calculer la moyenne à partir d’un tableau d’effectifs simple et d’un tableau de classes, étape par étape. Comprend le centre, les produits, les sommes et l’effectif total. 10 essais avec points, adapté aux élèves en difficulté de 8ème année."
+        },
+        "en": {
+            "name": "Mean (Arithmetic Average) – Simple and Grouped Tables",
+            "description": "Very simplified interactive exercise to calculate the mean from a simple frequency table and a grouped frequency table, step by step. Covers midpoint, products, sums, and total frequency. 10 attempts with points, suitable for struggling 8th grade students."
+        }
+    }
+},
+{
+    id: 'ex-058',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'الاحتمال 2 (فئات عددية)',
+    description: 'تمرين تفاعلي مبسط لحساب الاحتمال من جدول فئات خطوة بخطوة. يشمل حساب احتمال فئة، احتمال متمم، واحتمال اتحاد فئتين. 10 محاولات مع نقاط.',
+    difficulty: 'medium',
+    class: 'التاسعة أساسي',
+    cardColor: '#0ea5e9',
+    cardColorDark: '#38bdf8',
+    link: 'الاحصاء - الاحتمال 2.html',
+    version: '1.0',
+    tags: ['إحصاء', 'احتمال', 'فئات', 'تكرار', 'نسبة مئوية', 'جدول', 'اتحاد', 'متمم'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-06',
+    estimatedTime: '8-12 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['احتمال', 'فئات', 'تكرار', 'نسبة مئوية', 'جدول', 'اتحاد', 'متمم', 'إحصاء', 'قانون الاحتمال'],
+    thumbnail: '🎲',
+    translations: {
+        fr: {
+            name: 'Probabilité 2 (classes)',
+            description: 'Exercice interactif simplifié pour calculer une probabilité à partir d\'un tableau de classes, étape par étape. Inclut probabilité simple, événement complémentaire et union de deux classes. 10 essais avec points.'
+        },
+        en: {
+            name: 'Probability 2 (Class Intervals)',
+            description: 'Simplified interactive exercise to calculate probability from a grouped frequency table step by step. Covers single probability, complementary event, and union of two classes. 10 attempts with points.'
+        }
+    }
 }
 ];
 

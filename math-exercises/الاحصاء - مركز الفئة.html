@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز الفئة | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-center: #0d9488;
+            --highlight-center-light: rgba(13, 148, 136, 0.08);
+            --highlight-bound: #6366f1;
+            --highlight-bound-light: rgba(99, 102, 241, 0.08);
+            --highlight-modal: #8b5cf6;
+            --highlight-modal-light: rgba(139, 92, 246, 0.10);
+            --highlight-reverse: #e06c2e;
+            --highlight-reverse-light: rgba(224, 108, 46, 0.08);
+            --example-bg: #fef9e6;
+            --example-border: #e7c45d;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-center: #2dd4bf;
+            --highlight-center-light: rgba(45, 212, 191, 0.10);
+            --highlight-bound: #818cf8;
+            --highlight-bound-light: rgba(129, 140, 248, 0.10);
+            --highlight-modal: #a78bfa;
+            --highlight-modal-light: rgba(167, 139, 250, 0.14);
+            --highlight-reverse: #f08a50;
+            --highlight-reverse-light: rgba(240, 138, 80, 0.10);
+            --example-bg: #2d2a1a;
+            --example-border: #9b8130;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+            backdrop-filter: blur(10px);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .example-toggle {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 auto 12px;
+            display: block;
+            color: var(--text);
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .example-panel {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            display: none;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+        .example-panel.visible {
+            display: block;
+        }
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1.0rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 12px 10px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 12px 10px;
+            border-left: 1px solid var(--table-border);
+            min-width: 60px;
+            transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .value-cell.modal-highlight {
+            background: var(--highlight-modal-light) !important;
+            color: var(--highlight-modal);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 3px var(--highlight-modal);
+            border-radius: 4px;
+        }
+        .value-cell.modal-highlight::after {
+            content: " ⭑";
+            font-size: 1rem;
+            color: var(--highlight-modal);
+        }
+        .value-cell.target-highlight {
+            background: var(--highlight-center-light) !important;
+            color: var(--highlight-center);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 3px var(--highlight-center);
+            border-radius: 4px;
+        }
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2.1;
+            border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+        }
+        .section-card.center-card {
+            border-right: 4px solid var(--highlight-center);
+            background: var(--highlight-center-light);
+        }
+        .section-card.bound-card {
+            border-right: 4px solid var(--highlight-bound);
+            background: var(--highlight-bound-light);
+        }
+        .section-card.modal-card {
+            border-right: 4px solid var(--highlight-modal);
+            background: var(--highlight-modal-light);
+        }
+        .section-card.reverse-card {
+            border-right: 4px solid var(--highlight-reverse);
+            background: var(--highlight-reverse-light);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+        .section-label.center-label {
+            color: var(--highlight-center);
+            background: rgba(13, 148, 136, 0.10);
+        }
+        .section-label.bound-label {
+            color: var(--highlight-bound);
+            background: rgba(99, 102, 241, 0.10);
+        }
+        .section-label.modal-label {
+            color: var(--highlight-modal);
+            background: rgba(139, 92, 246, 0.10);
+        }
+        .section-label.reverse-label {
+            color: var(--highlight-reverse);
+            background: rgba(224, 108, 46, 0.10);
+        }
+        [data-theme="dark"] .section-label.center-label {
+            background: rgba(45, 212, 191, 0.15);
+        }
+        [data-theme="dark"] .section-label.bound-label {
+            background: rgba(129, 140, 248, 0.15);
+        }
+        [data-theme="dark"] .section-label.modal-label {
+            background: rgba(167, 139, 250, 0.16);
+        }
+        [data-theme="dark"] .section-label.reverse-label {
+            background: rgba(240, 138, 80, 0.14);
+        }
+        .note-box {
+            font-size: 0.9rem;
+            background: var(--surface3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 8px 0;
+            color: var(--text2);
+            font-weight: 500;
+            line-height: 1.8;
+        }
+        .separate-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+            margin: 8px 0 4px;
+            padding: 4px 14px;
+            background: var(--surface3);
+            border-radius: 30px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 5px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 16px;
+            margin: 6px 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .calc-line .operator {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 3px;
+        }
+        .calc-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--highlight-center);
+        }
+        .calc-line .num-display.bound-display {
+            color: var(--highlight-bound);
+        }
+        .calc-line .num-display.modal-display {
+            color: var(--highlight-modal);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.15rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3em;
+            min-width: 52px;
+            max-width: 105px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44, 110, 158, 0.2);
+        }
+        .wide-input {
+            width: 4em;
+            min-width: 68px;
+        }
+        .thin-input {
+            width: 2.6em;
+            min-width: 44px;
+        }
+        .mode-badge {
+            display: inline-block;
+            background: var(--highlight-center-light);
+            color: var(--highlight-center);
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin: 4px 0;
+            border: 2px solid var(--highlight-center);
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1rem;
+                padding: 12px 8px;
+            }
+            .section-card {
+                padding: 10px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 2.4em;
+                min-width: 40px;
+            }
+            .calc-line {
+                font-size: 1rem;
+                padding: 4px 8px;
+                border-radius: 30px;
+            }
+            .calc-line .operator {
+                font-size: 1.1rem;
+            }
+            .section-label {
+                font-size: 0.9rem;
+            }
+            .stats-table {
+                font-size: 0.9rem;
+            }
+            .stats-table .header-cell,
+            .stats-table .value-cell {
+                padding: 10px 10px;
+            }
+            .separate-text {
+                font-size: 0.95rem;
+            }
+            .note-box {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">مركز الفئة</span> <span>🎯</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">حساب مركز فئة من جدول فئات وتطبيقاته</div>
+
+        <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
+        <div class="example-panel" id="examplePanel">
+            <strong>📘 مثال توضيحي:</strong><br>
+            لدينا الفئة <strong>]15 , 25]</strong> في جدول إحصائي.<br><br>
+            <strong>🔹 حساب مركز الفئة:</strong><br>
+            مركز الفئة = (الحد الأدنى + الحد الأعلى) ÷ 2<br>
+            مركز الفئة = (15 + 25) ÷ 2 = 40 ÷ 2 = <strong>20</strong><br><br>
+            <strong>🔹 استخراج حد مجهول انطلاقاً من المركز:</strong><br>
+            إذا علمت أن مركز فئة هو <strong>20</strong> وحدها الأدنى هو <strong>15</strong>، فما هو حدها الأعلى؟<br>
+            المركز = (الحد الأدنى + الحد الأعلى) ÷ 2<br>
+            20 = (15 + الحد الأعلى) ÷ 2<br>
+            إذن: 2 × 20 = 15 + الحد الأعلى<br>
+            40 = 15 + الحد الأعلى<br>
+            الحد الأعلى = 40 − 15 = <strong>25</strong><br><br>
+            <em>✅ تذكّر: مركز الفئة هو العدد الذي يقع في منتصف الفئة تماماً.</em>
+        </div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ جميع الفراغات حسب نوع السؤال. تذكّر: مركز الفئة = (الحد الأدنى + الحد الأعلى) ÷ 2</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const btnToggleExample = document.getElementById('btnToggleExample');
+            const examplePanel = document.getElementById('examplePanel');
+
+            const CLASS_COUNT = 4;
+
+            let currentClasses = [];
+            let currentFreqs = [];
+            let currentTargetClassIdx;
+            let currentTargetLow, currentTargetHigh, currentTargetMidpoint;
+            let currentQuestionType;
+            let currentModalIdx;
+            let attempts = 0,
+                score = 0,
+                gameActive = true,
+                isSwitchingRound = false;
+            let inputRefs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'مركز الفئة',
+                    exercise_subtitle: 'حساب مركز فئة من جدول فئات وتطبيقاته',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات حسب نوع السؤال. تذكّر: مركز الفئة = (الحد الأدنى + الحد الأعلى) ÷ 2',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    class_header: 'الفئات',
+                    freq_header: 'التكرار (fᵢ)',
+                    mode_badge_direct: '🎯 النمط: احسب مركز فئة معطاة',
+                    mode_badge_reverse: '🔄 النمط: استخرج حداً مجهولاً انطلاقاً من المركز',
+                    mode_badge_modal: '⭐ النمط: مركز الفئة المنوالية',
+                    bounds_section: '🔍 أولاً: تحديد حدود الفئة المطلوبة',
+                    bounds_note: 'الفئة المطلوبة محددة في الجدول بلون مميز. أكتب حديها الأدنى والأعلى.',
+                    bounds_prompt: '📝 أكتب حدود الفئة (الحد الأدنى ثم الحد الأعلى):',
+                    bounds_low_label: 'الحد الأدنى =',
+                    bounds_high_label: 'الحد الأعلى =',
+                    center_section: '🧮 ثانياً: حساب مركز الفئة',
+                    center_rule: 'مركز الفئة = (الحد الأدنى + الحد الأعلى) ÷ 2',
+                    center_step1: 'الخطوة ①: نجمع الحدين:',
+                    center_step2: 'الخطوة ②: نقسم المجموع على 2:',
+                    center_final: 'إذن مركز الفئة =',
+                    reverse_section: '🧮 ثانياً: استخراج الحد المجهول',
+                    reverse_rule: 'بما أن: المركز = (الحد الأدنى + الحد الأعلى) ÷ 2',
+                    reverse_step1: 'الخطوة ①: نضرب المركز في 2:',
+                    reverse_step2_high: 'الخطوة ②: الحد الأعلى = (2 × المركز) − الحد الأدنى:',
+                    reverse_step2_low: 'الخطوة ②: الحد الأدنى = (2 × المركز) − الحد الأعلى:',
+                    reverse_final_high: 'إذن الحد الأعلى =',
+                    reverse_final_low: 'إذن الحد الأدنى =',
+                    modal_freq_section: '🔍 أولاً: تحديد أكبر تكرار (لإيجاد الفئة المنوالية)',
+                    modal_freq_note: 'الفئة المنوالية = الفئة التي تملك <strong>أكبر تكرار</strong>. ابحث في سطر التكرارات.',
+                    modal_freq_question: 'ما هو أكبر تكرار في الجدول؟',
+                    modal_freq_equals: 'أكبر تكرار =',
+                    modal_class_section: '📋 ثانياً: تحديد الفئة المنوالية',
+                    modal_class_note: 'الفئة التي تكرارها = <span class="num-display modal-display">{maxFreq}</span> هي الفئة المنوالية.',
+                    modal_class_prompt: 'أكتب حدود الفئة المنوالية (الحد الأدنى ثم الحد الأعلى):',
+                    modal_center_section: '🧮 ثالثاً: حساب مركز الفئة المنوالية',
+                    modal_center_rule: 'مركز الفئة المنوالية = (الحد الأدنى + الحد الأعلى) ÷ 2',
+                    modal_center_step1: 'الخطوة ①: نجمع الحدين:',
+                    modal_center_step2: 'الخطوة ②: نقسم المجموع على 2:',
+                    modal_center_final: 'إذن مركز الفئة المنوالية =',
+                    given_midpoint_label: '🔑 المعطى: مركز الفئة =',
+                    given_low_label: '🔑 المعطى: الحد الأدنى =',
+                    given_high_label: '🔑 المعطى: الحد الأعلى =',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات المطلوبة',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة في جميع الفراغات (المركز يمكن أن يكون عشراً).',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong_direct: '❌ خطأ! الحدود: ]{low} , {high}]، المركز = ({low} + {high}) ÷ 2 = {midpoint}',
+                    wrong_reverse_high: '❌ خطأ! المركز={midpoint}، الحد الأدنى={low}، إذن الحد الأعلى = 2×{midpoint} − {low} = {high}',
+                    wrong_reverse_low: '❌ خطأ! المركز={midpoint}، الحد الأعلى={high}، إذن الحد الأدنى = 2×{midpoint} − {high} = {low}',
+                    wrong_modal: '❌ خطأ! أكبر تكرار={maxFreq}، الفئة المنوالية: ]{low},{high}]، المركز=({low}+{high})÷2={midpoint}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
+                    example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)',
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Centre de classe',
+                    exercise_subtitle: 'Calculer le centre d\'une classe et applications',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs. Centre = (borne inf + borne sup) ÷ 2',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    class_header: 'Classes',
+                    freq_header: 'Effectif (fᵢ)',
+                    mode_badge_direct: '🎯 Mode : Calculer le centre d\'une classe',
+                    mode_badge_reverse: '🔄 Mode : Trouver une borne à partir du centre',
+                    mode_badge_modal: '⭐ Mode : Centre de la classe modale',
+                    bounds_section: '🔍 1. Identifier les bornes de la classe',
+                    bounds_note: 'La classe cible est mise en évidence. Écris ses bornes.',
+                    bounds_prompt: '📝 Écris les bornes (inférieure puis supérieure) :',
+                    bounds_low_label: 'Borne inférieure =',
+                    bounds_high_label: 'Borne supérieure =',
+                    center_section: '🧮 2. Calculer le centre',
+                    center_rule: 'Centre = (borne inf + borne sup) ÷ 2',
+                    center_step1: '① Additionner les bornes :',
+                    center_step2: '② Diviser par 2 :',
+                    center_final: 'Donc le centre =',
+                    reverse_section: '🧮 2. Trouver la borne manquante',
+                    reverse_rule: 'On sait : centre = (borne inf + borne sup) ÷ 2',
+                    reverse_step1: '① Multiplier le centre par 2 :',
+                    reverse_step2_high: '② Borne sup = (2 × centre) − borne inf :',
+                    reverse_step2_low: '② Borne inf = (2 × centre) − borne sup :',
+                    reverse_final_high: 'Donc borne sup =',
+                    reverse_final_low: 'Donc borne inf =',
+                    modal_freq_section: '🔍 1. Trouver le plus grand effectif',
+                    modal_freq_note: 'La classe modale a le <strong>plus grand effectif</strong>.',
+                    modal_freq_question: 'Quel est le plus grand effectif ?',
+                    modal_freq_equals: 'Plus grand effectif =',
+                    modal_class_section: '📋 2. Identifier la classe modale',
+                    modal_class_note: 'La classe d\'effectif <span class="num-display modal-display">{maxFreq}</span> est la classe modale.',
+                    modal_class_prompt: 'Écris les bornes de la classe modale :',
+                    modal_center_section: '🧮 3. Centre de la classe modale',
+                    modal_center_rule: 'Centre = (borne inf + borne sup) ÷ 2',
+                    modal_center_step1: '① Additionner :',
+                    modal_center_step2: '② Diviser par 2 :',
+                    modal_center_final: 'Centre de la classe modale =',
+                    given_midpoint_label: '🔑 Donné : centre =',
+                    given_low_label: '🔑 Donné : borne inf =',
+                    given_high_label: '🔑 Donné : borne sup =',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers requis (centre décimal accepté).',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong_direct: '❌ Faux ! Bornes: ]{low},{high}], centre=({low}+{high})÷2={midpoint}',
+                    wrong_reverse_high: '❌ Faux ! centre={midpoint}, borne inf={low}, borne sup=2×{midpoint}−{low}={high}',
+                    wrong_reverse_low: '❌ Faux ! centre={midpoint}, borne sup={high}, borne inf=2×{midpoint}−{high}={low}',
+                    wrong_modal: '❌ Faux ! Effectif max={maxFreq}, classe modale: ]{low},{high}], centre=({low}+{high})÷2={midpoint}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Exemple (afficher)',
+                    example_toggle_hide: '📘 Exemple (masquer)',
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Class Midpoint',
+                    exercise_subtitle: 'Calculate class midpoint and applications',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill all fields. Midpoint = (lower + upper) ÷ 2',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    class_header: 'Classes',
+                    freq_header: 'Frequency (fᵢ)',
+                    mode_badge_direct: '🎯 Mode: Calculate class midpoint',
+                    mode_badge_reverse: '🔄 Mode: Find a bound from the midpoint',
+                    mode_badge_modal: '⭐ Mode: Modal class midpoint',
+                    bounds_section: '🔍 1. Identify the class bounds',
+                    bounds_note: 'The target class is highlighted. Write its bounds.',
+                    bounds_prompt: '📝 Write the bounds (lower then upper):',
+                    bounds_low_label: 'Lower bound =',
+                    bounds_high_label: 'Upper bound =',
+                    center_section: '🧮 2. Calculate the midpoint',
+                    center_rule: 'Midpoint = (lower + upper) ÷ 2',
+                    center_step1: '① Add the bounds:',
+                    center_step2: '② Divide by 2:',
+                    center_final: 'So the midpoint =',
+                    reverse_section: '🧮 2. Find the missing bound',
+                    reverse_rule: 'We know: midpoint = (lower + upper) ÷ 2',
+                    reverse_step1: '① Multiply midpoint by 2:',
+                    reverse_step2_high: '② Upper = (2 × midpoint) − lower:',
+                    reverse_step2_low: '② Lower = (2 × midpoint) − upper:',
+                    reverse_final_high: 'So upper bound =',
+                    reverse_final_low: 'So lower bound =',
+                    modal_freq_section: '🔍 1. Find the highest frequency',
+                    modal_freq_note: 'The modal class has the <strong>highest frequency</strong>.',
+                    modal_freq_question: 'What is the highest frequency?',
+                    modal_freq_equals: 'Highest frequency =',
+                    modal_class_section: '📋 2. Identify the modal class',
+                    modal_class_note: 'The class with frequency <span class="num-display modal-display">{maxFreq}</span> is the modal class.',
+                    modal_class_prompt: 'Write the bounds of the modal class:',
+                    modal_center_section: '🧮 3. Modal class midpoint',
+                    modal_center_rule: 'Midpoint = (lower + upper) ÷ 2',
+                    modal_center_step1: '① Add:',
+                    modal_center_step2: '② Divide by 2:',
+                    modal_center_final: 'Modal class midpoint =',
+                    given_midpoint_label: '🔑 Given: midpoint =',
+                    given_low_label: '🔑 Given: lower bound =',
+                    given_high_label: '🔑 Given: upper bound =',
+                    fill_all: '⚠️ Please complete all required fields',
+                    invalid_numbers: '❌ Integers required (midpoint can be decimal).',
+                    correct: '✅ Correct! +1 point',
+                    wrong_direct: '❌ Wrong! Bounds: ]{low},{high}], midpoint=({low}+{high})÷2={midpoint}',
+                    wrong_reverse_high: '❌ Wrong! midpoint={midpoint}, lower={low}, upper=2×{midpoint}−{low}={high}',
+                    wrong_reverse_low: '❌ Wrong! midpoint={midpoint}, upper={high}, lower=2×{midpoint}−{high}={low}',
+                    wrong_modal: '❌ Wrong! Max freq={maxFreq}, modal class: ]{low},{high}], midpoint=({low}+{high})÷2={midpoint}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Example (show)',
+                    example_toggle_hide: '📘 Example (hide)',
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_midpoint_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_midpoint_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true,
+                audioCtx = null;
+
+            function getAudioContext() { if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx; }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const s = localStorage.getItem('exercise_midpoint_sound');
+                soundEnabled = s !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_midpoint_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('exercise_midpoint_theme', theme);
+            }
+
+            function toggleTheme() {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                const s = localStorage.getItem('exercise_midpoint_theme');
+                if (s === 'dark' || s === 'light') applyTheme(s);
+                else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back();
+                else window.location.href = 'لوحة التمارين التفاعلية.html';
+            }
+
+            function generateData() {
+                const classWidthOptions = [5, 10, 20];
+                const classWidth = classWidthOptions[Math.floor(Math.random() * classWidthOptions.length)];
+                const startVal = Math.floor(Math.random() * 25) + 5;
+                const classes = [];
+                for (let i = 0; i < CLASS_COUNT; i++) {
+                    const low = startVal + i * classWidth;
+                    const high = low + classWidth;
+                    classes.push({ low, high, width: classWidth, midpoint: (low + high) / 2 });
+                }
+
+                const freqs = [];
+                for (let i = 0; i < CLASS_COUNT; i++) {
+                    freqs.push(Math.floor(Math.random() * 4) + 2);
+                }
+                const modalIdx = 1 + Math.floor(Math.random() * 2);
+                freqs[modalIdx] = Math.max(...freqs) + 3 + Math.floor(Math.random() * 5);
+
+                const total = freqs.reduce((a, b) => a + b, 0);
+                if (total > 30) {
+                    const excess = total - 30;
+                    for (let i = 0; i < CLASS_COUNT; i++) {
+                        if (i !== modalIdx && freqs[i] > 1) {
+                            const reduce = Math.min(excess, freqs[i] - 1);
+                            freqs[i] -= reduce;
+                        }
+                    }
+                }
+
+                const questionType = Math.floor(Math.random() * 3);
+                let targetClassIdx;
+                if (questionType === 0) {
+                    targetClassIdx = Math.floor(Math.random() * CLASS_COUNT);
+                } else if (questionType === 1) {
+                    targetClassIdx = Math.floor(Math.random() * CLASS_COUNT);
+                } else {
+                    targetClassIdx = modalIdx;
+                }
+
+                const targetCls = classes[targetClassIdx];
+
+                return {
+                    classes,
+                    freqs,
+                    modalIdx,
+                    targetClassIdx,
+                    targetLow: targetCls.low,
+                    targetHigh: targetCls.high,
+                    targetMidpoint: targetCls.midpoint,
+                    questionType,
+                };
+            }
+
+            function formatMidpoint(val) {
+                if (Number.isInteger(val)) return val.toString();
+                const rounded = Math.round(val * 100) / 100;
+                let s = rounded.toFixed(2);
+                s = s.replace(/\.?0+$/, '');
+                return s;
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                let html = '<table class="stats-table">';
+                html += `<tr><td class="header-cell">${dict.class_header}</td>`;
+                currentClasses.forEach((cls, i) => {
+                    let cellClass = 'value-cell';
+                    if (currentQuestionType === 0 || currentQuestionType === 1) {
+                        if (i === currentTargetClassIdx) cellClass += ' target-highlight';
+                    } else if (currentQuestionType === 2) {
+                        if (i === currentModalIdx) cellClass += ' modal-highlight';
+                    }
+                    html += `<td class="${cellClass}">]${cls.low} , ${cls.high}]</td>`;
+                });
+                html += '</tr>';
+                html += `<tr><td class="header-cell">${dict.freq_header}</td>`;
+                currentFreqs.forEach((f, i) => {
+                    let cellClass = 'value-cell';
+                    if (currentQuestionType === 2 && i === currentModalIdx) cellClass += ' modal-highlight';
+                    html += `<td class="${cellClass}">${f}</td>`;
+                });
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opPlus = t('operator_plus');
+                const opMinus = t('operator_minus');
+                const opDiv = t('operator_divide');
+                const opMul = t('operator_multiply');
+                const opEq = t('operator_equals');
+                let html = '';
+
+                const badgeKey = 'mode_badge_' + (
+                    currentQuestionType === 0 ? 'direct' : currentQuestionType === 1 ? 'reverse' : 'modal');
+                html +=
+                    `<div style="text-align:center;margin-bottom:8px;"><span class="mode-badge">${t(badgeKey)}</span></div>`;
+
+                if (currentQuestionType === 0) {
+                    html +=
+                        `<div class="section-card center-card"><div class="section-label center-label">${t('bounds_section')}</div>`;
+                    html += `<div class="note-box">💡 ${t('bounds_note')}</div>`;
+                    html += `<div class="separate-text">${t('bounds_prompt')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;"> ]</span><input type="text" id="inpLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;"> , </span><input type="text" id="inpHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;"> ]</span></div>`;
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card center-card"><div class="section-label center-label">${t('center_section')}</div>`;
+                    html += `<div class="note-box">📝 ${t('center_rule')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('center_step1')}</span><input type="text" id="inpSumLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opPlus}</span><input type="text" id="inpSumHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opEq}</span><input type="text" id="inpSum" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('center_step2')}</span><input type="text" id="inpDivNum" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opDiv}</span><span class="num-display">2</span><span class="operator">${opEq}</span><input type="text" id="inpMidpoint" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr" style="border:3px solid var(--highlight-center);"><span style="font-weight:800;color:var(--highlight-center);">${t('center_final')}</span><input type="text" id="inpFinalMidpoint" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html += `</div>`;
+                } else if (currentQuestionType === 1) {
+                    const revealLow = Math.random() < 0.5;
+                    html +=
+                        `<div class="section-card reverse-card"><div class="section-label reverse-label">${t('reverse_section')}</div>`;
+                    html += `<div class="note-box">📝 ${t('reverse_rule')}</div>`;
+                    if (revealLow) {
+                        html +=
+                            `<div class="separate-text">${t('given_midpoint_label')} <span class="num-display">${formatMidpoint(currentTargetMidpoint)}</span> &nbsp;|&nbsp; ${t('given_low_label')} <span class="num-display bound-display">${currentTargetLow}</span></div>`;
+                        html +=
+                            `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('reverse_step1')}</span><span class="num-display">${formatMidpoint(currentTargetMidpoint)}</span><span class="operator">${opMul}</span><span class="num-display">2</span><span class="operator">${opEq}</span><input type="text" id="inpDouble" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                        html +=
+                            `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('reverse_step2_high')}</span><input type="text" id="inpDouble2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opMinus}</span><input type="text" id="inpKnownLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opEq}</span><input type="text" id="inpResult" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                        html +=
+                            `<div class="calc-line" dir="ltr" style="border:3px solid var(--highlight-reverse);"><span style="font-weight:800;color:var(--highlight-reverse);">${t('reverse_final_high')}</span><input type="text" id="inpFinalHigh" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    } else {
+                        html +=
+                            `<div class="separate-text">${t('given_midpoint_label')} <span class="num-display">${formatMidpoint(currentTargetMidpoint)}</span> &nbsp;|&nbsp; ${t('given_high_label')} <span class="num-display bound-display">${currentTargetHigh}</span></div>`;
+                        html +=
+                            `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('reverse_step1')}</span><span class="num-display">${formatMidpoint(currentTargetMidpoint)}</span><span class="operator">${opMul}</span><span class="num-display">2</span><span class="operator">${opEq}</span><input type="text" id="inpDouble" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                        html +=
+                            `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('reverse_step2_low')}</span><input type="text" id="inpDouble2" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opMinus}</span><input type="text" id="inpKnownHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opEq}</span><input type="text" id="inpResult" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                        html +=
+                            `<div class="calc-line" dir="ltr" style="border:3px solid var(--highlight-reverse);"><span style="font-weight:800;color:var(--highlight-reverse);">${t('reverse_final_low')}</span><input type="text" id="inpFinalLow" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    }
+                    html += `</div>`;
+                } else {
+                    const maxFreq = currentFreqs[currentModalIdx];
+                    html +=
+                        `<div class="section-card modal-card"><div class="section-label modal-label">${t('modal_freq_section')}</div>`;
+                    html += `<div class="note-box">💡 ${t('modal_freq_note')}</div>`;
+                    html += `<div class="separate-text">${t('modal_freq_question')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('modal_freq_equals')}</span><input type="text" id="inpMaxFreq" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card modal-card"><div class="section-label modal-label">${t('modal_class_section')}</div>`;
+                    html +=
+                        `<div class="note-box">💡 ${t('modal_class_note',{maxFreq})}</div>`;
+                    html += `<div class="separate-text">${t('modal_class_prompt')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;"> ]</span><input type="text" id="inpModalLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;"> , </span><input type="text" id="inpModalHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;"> ]</span></div>`;
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card center-card"><div class="section-label center-label">${t('modal_center_section')}</div>`;
+                    html += `<div class="note-box">📝 ${t('modal_center_rule')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('modal_center_step1')}</span><input type="text" id="inpSumLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opPlus}</span><input type="text" id="inpSumHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opEq}</span><input type="text" id="inpSum" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('modal_center_step2')}</span><input type="text" id="inpDivNum" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opDiv}</span><span class="num-display">2</span><span class="operator">${opEq}</span><input type="text" id="inpMidpoint" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr" style="border:3px solid var(--highlight-center);"><span style="font-weight:800;color:var(--highlight-center);">${t('modal_center_final')}</span><input type="text" id="inpFinalMidpoint" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html += `</div>`;
+                }
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                if (currentQuestionType === 0) {
+                    inputRefs['low'] = document.getElementById('inpLow');
+                    inputRefs['high'] = document.getElementById('inpHigh');
+                    inputRefs['sumLow'] = document.getElementById('inpSumLow');
+                    inputRefs['sumHigh'] = document.getElementById('inpSumHigh');
+                    inputRefs['sum'] = document.getElementById('inpSum');
+                    inputRefs['divNum'] = document.getElementById('inpDivNum');
+                    inputRefs['midpoint'] = document.getElementById('inpMidpoint');
+                    inputRefs['finalMidpoint'] = document.getElementById('inpFinalMidpoint');
+                } else if (currentQuestionType === 1) {
+                    inputRefs['double'] = document.getElementById('inpDouble');
+                    inputRefs['double2'] = document.getElementById('inpDouble2');
+                    if (document.getElementById('inpKnownLow')) {
+                        inputRefs['knownLow'] = document.getElementById('inpKnownLow');
+                        inputRefs['result'] = document.getElementById('inpResult');
+                        inputRefs['finalHigh'] = document.getElementById('inpFinalHigh');
+                        inputRefs._revealLow = true;
+                    } else {
+                        inputRefs['knownHigh'] = document.getElementById('inpKnownHigh');
+                        inputRefs['result'] = document.getElementById('inpResult');
+                        inputRefs['finalLow'] = document.getElementById('inpFinalLow');
+                        inputRefs._revealLow = false;
+                    }
+                } else {
+                    inputRefs['maxFreq'] = document.getElementById('inpMaxFreq');
+                    inputRefs['modalLow'] = document.getElementById('inpModalLow');
+                    inputRefs['modalHigh'] = document.getElementById('inpModalHigh');
+                    inputRefs['sumLow'] = document.getElementById('inpSumLow');
+                    inputRefs['sumHigh'] = document.getElementById('inpSumHigh');
+                    inputRefs['sum'] = document.getElementById('inpSum');
+                    inputRefs['divNum'] = document.getElementById('inpDivNum');
+                    inputRefs['midpoint'] = document.getElementById('inpMidpoint');
+                    inputRefs['finalMidpoint'] = document.getElementById('inpFinalMidpoint');
+                }
+            }
+
+            function clearInputs() { for (let k in inputRefs) { if (k.startsWith('_')) continue; if (inputRefs[k]) inputRefs[
+                        k].value = ''; } }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateData();
+                currentClasses = data.classes;
+                currentFreqs = data.freqs;
+                currentModalIdx = data.modalIdx;
+                currentTargetClassIdx = data.targetClassIdx;
+                currentTargetLow = data.targetLow;
+                currentTargetHigh = data.targetHigh;
+                currentTargetMidpoint = data.targetMidpoint;
+                currentQuestionType = data.questionType;
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs).find(k => !k.startsWith('_') && inputRefs[k]);
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 60);
+            }
+
+            function setInputsDisabled(disabled) { for (let k in inputRefs) { if (k.startsWith('_')) continue; if (inputRefs[
+                        k]) inputRefs[k].disabled = disabled; } }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function getIntVal(id) { const el = inputRefs[id]; if (!el) return NaN; return Number(el.value.trim()); }
+
+            function getFloatVal(id) { const el = inputRefs[id]; if (!el) return NaN; return parseFloat(el.value.trim()); }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const requiredKeys = Object.keys(inputRefs).filter(k => !k.startsWith('_'));
+                let allFilled = true;
+                for (const key of requiredKeys) {
+                    const el = inputRefs[key];
+                    if (!el || !el.value.trim()) { allFilled = false; break; }
+                }
+                if (!allFilled) { messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                const intKeys = [];
+                if (currentQuestionType === 0) {
+                    intKeys.push('low', 'high', 'sumLow', 'sumHigh', 'sum', 'divNum');
+                } else if (currentQuestionType === 1) {
+                    intKeys.push('double', 'double2');
+                    if (inputRefs._revealLow) intKeys.push('knownLow', 'result', 'finalHigh');
+                    else intKeys.push('knownHigh', 'result', 'finalLow');
+                } else {
+                    intKeys.push('maxFreq', 'modalLow', 'modalHigh', 'sumLow', 'sumHigh', 'sum', 'divNum');
+                }
+
+                let allValid = true;
+                for (const key of intKeys) {
+                    if (inputRefs[key] && !Number.isInteger(getIntVal(key))) allValid = false;
+                }
+                if (!allValid) { messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                let correct = true;
+                const mpStr = formatMidpoint(currentTargetMidpoint);
+
+                if (currentQuestionType === 0) {
+                    if (getIntVal('low') !== currentTargetLow) correct = false;
+                    if (getIntVal('high') !== currentTargetHigh) correct = false;
+                    if (getIntVal('sumLow') !== currentTargetLow) correct = false;
+                    if (getIntVal('sumHigh') !== currentTargetHigh) correct = false;
+                    if (getIntVal('sum') !== currentTargetLow + currentTargetHigh) correct = false;
+                    if (getIntVal('divNum') !== currentTargetLow + currentTargetHigh) correct = false;
+                    if (Math.abs(getFloatVal('midpoint') - currentTargetMidpoint) > 0.015) correct = false;
+                    if (Math.abs(getFloatVal('finalMidpoint') - currentTargetMidpoint) > 0.015) correct = false;
+                } else if (currentQuestionType === 1) {
+                    const doubleVal = currentTargetMidpoint * 2;
+                    if (Math.abs(getIntVal('double') - Math.round(doubleVal)) > 0.5) correct = false;
+                    if (Math.abs(getIntVal('double2') - Math.round(doubleVal)) > 0.5) correct = false;
+                    if (inputRefs._revealLow) {
+                        if (getIntVal('knownLow') !== currentTargetLow) correct = false;
+                        if (getIntVal('result') !== currentTargetHigh) correct = false;
+                        if (getIntVal('finalHigh') !== currentTargetHigh) correct = false;
+                    } else {
+                        if (getIntVal('knownHigh') !== currentTargetHigh) correct = false;
+                        if (getIntVal('result') !== currentTargetLow) correct = false;
+                        if (getIntVal('finalLow') !== currentTargetLow) correct = false;
+                    }
+                } else {
+                    if (getIntVal('maxFreq') !== currentFreqs[currentModalIdx]) correct = false;
+                    if (getIntVal('modalLow') !== currentTargetLow) correct = false;
+                    if (getIntVal('modalHigh') !== currentTargetHigh) correct = false;
+                    if (getIntVal('sumLow') !== currentTargetLow) correct = false;
+                    if (getIntVal('sumHigh') !== currentTargetHigh) correct = false;
+                    if (getIntVal('sum') !== currentTargetLow + currentTargetHigh) correct = false;
+                    if (getIntVal('divNum') !== currentTargetLow + currentTargetHigh) correct = false;
+                    if (Math.abs(getFloatVal('midpoint') - currentTargetMidpoint) > 0.015) correct = false;
+                    if (Math.abs(getFloatVal('finalMidpoint') - currentTargetMidpoint) > 0.015) correct = false;
+                }
+
+                attempts++;
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    if (currentQuestionType === 0) {
+                        messageEl.innerHTML = t('wrong_direct', { low: currentTargetLow, high: currentTargetHigh,
+                            midpoint: mpStr });
+                    } else if (currentQuestionType === 1) {
+                        if (inputRefs._revealLow) {
+                            messageEl.innerHTML = t('wrong_reverse_high', { midpoint: mpStr, low: currentTargetLow,
+                                high: currentTargetHigh });
+                        } else {
+                            messageEl.innerHTML = t('wrong_reverse_low', { midpoint: mpStr, high: currentTargetHigh,
+                                low: currentTargetLow });
+                        }
+                    } else {
+                        messageEl.innerHTML = t('wrong_modal', { maxFreq: currentFreqs[currentModalIdx],
+                            low: currentTargetLow, high: currentTargetHigh, midpoint: mpStr });
+                    }
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs).find(k => !k.startsWith('_') && inputRefs[k]);
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs).find(k => !k.startsWith('_') && inputRefs[k]);
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+            btnToggleExample.addEventListener('click', () => {
+                examplePanel.classList.toggle('visible');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show');
+            });
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => {
+                const firstKey = Object.keys(inputRefs).find(k => !k.startsWith('_') && inputRefs[k]);
+                if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

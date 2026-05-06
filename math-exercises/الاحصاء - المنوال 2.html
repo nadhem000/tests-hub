@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنوال 2 (الفئات) | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-mode: #8b5cf6;
+            --highlight-mode-light: rgba(139, 92, 246, 0.10);
+            --highlight-freq: #e06c2e;
+            --highlight-freq-light: rgba(224, 108, 46, 0.08);
+            --highlight-d1: #2563eb;
+            --highlight-d1-light: rgba(37, 99, 235, 0.08);
+            --highlight-d2: #059669;
+            --highlight-d2-light: rgba(5, 150, 105, 0.08);
+            --highlight-result: #b45309;
+            --highlight-result-light: rgba(180, 83, 9, 0.10);
+            --example-bg: #fef9e6;
+            --example-border: #e7c45d;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-mode: #a78bfa;
+            --highlight-mode-light: rgba(167, 139, 250, 0.14);
+            --highlight-freq: #f08a50;
+            --highlight-freq-light: rgba(240, 138, 80, 0.10);
+            --highlight-d1: #60a5fa;
+            --highlight-d1-light: rgba(96, 165, 250, 0.10);
+            --highlight-d2: #34d399;
+            --highlight-d2-light: rgba(52, 211, 153, 0.10);
+            --highlight-result: #fbbf24;
+            --highlight-result-light: rgba(251, 191, 36, 0.12);
+            --example-bg: #2d2a1a;
+            --example-border: #9b8130;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+            backdrop-filter: blur(10px);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .example-toggle {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 auto 14px;
+            display: block;
+            color: var(--text);
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .example-panel {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            display: none;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+        .example-panel.visible {
+            display: block;
+        }
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 12px 14px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 12px 14px;
+            border-left: 1px solid var(--table-border);
+            min-width: 65px;
+            transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .stats-table .index-cell {
+            background: var(--surface2);
+            color: var(--text3);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 14px;
+            border-left: 1px solid var(--table-border);
+        }
+        .value-cell.modal-highlight {
+            background: var(--highlight-mode-light) !important;
+            color: var(--highlight-mode);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 3px var(--highlight-mode);
+            border-radius: 6px;
+        }
+        .value-cell.modal-highlight::after {
+            content: " ⭑";
+            font-size: 1.1rem;
+            color: var(--highlight-mode);
+        }
+        .value-cell.before-highlight {
+            background: var(--highlight-d1-light) !important;
+            font-weight: 700;
+        }
+        .value-cell.after-highlight {
+            background: var(--highlight-d2-light) !important;
+            font-weight: 700;
+        }
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2.1;
+            border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+        }
+        .section-card.mode-card {
+            border-right: 4px solid var(--highlight-mode);
+            background: var(--highlight-mode-light);
+        }
+        .section-card.freq-card {
+            border-right: 4px solid var(--highlight-freq);
+            background: var(--highlight-freq-light);
+        }
+        .section-card.d1-card {
+            border-right: 4px solid var(--highlight-d1);
+            background: var(--highlight-d1-light);
+        }
+        .section-card.d2-card {
+            border-right: 4px solid var(--highlight-d2);
+            background: var(--highlight-d2-light);
+        }
+        .section-card.result-card {
+            border-right: 4px solid var(--highlight-result);
+            background: var(--highlight-result-light);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+        .section-label.mode-label {
+            color: var(--highlight-mode);
+            background: rgba(139, 92, 246, 0.10);
+        }
+        .section-label.freq-label {
+            color: var(--highlight-freq);
+            background: rgba(224, 108, 46, 0.10);
+        }
+        .section-label.d1-label {
+            color: var(--highlight-d1);
+            background: rgba(37, 99, 235, 0.10);
+        }
+        .section-label.d2-label {
+            color: var(--highlight-d2);
+            background: rgba(5, 150, 105, 0.10);
+        }
+        .section-label.result-label {
+            color: var(--highlight-result);
+            background: rgba(180, 83, 9, 0.10);
+        }
+        [data-theme="dark"] .section-label.mode-label {
+            background: rgba(167, 139, 250, 0.16);
+        }
+        [data-theme="dark"] .section-label.freq-label {
+            background: rgba(240, 138, 80, 0.14);
+        }
+        [data-theme="dark"] .section-label.d1-label {
+            background: rgba(96, 165, 250, 0.14);
+        }
+        [data-theme="dark"] .section-label.d2-label {
+            background: rgba(52, 211, 153, 0.14);
+        }
+        [data-theme="dark"] .section-label.result-label {
+            background: rgba(251, 191, 36, 0.15);
+        }
+        .note-box {
+            font-size: 0.9rem;
+            background: var(--surface3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 8px 0;
+            color: var(--text2);
+            font-weight: 500;
+            line-height: 1.8;
+        }
+        .separate-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+            margin: 8px 0 2px;
+            padding: 4px 14px;
+            background: var(--surface3);
+            border-radius: 30px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 5px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 16px;
+            margin: 6px 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .calc-line .operator {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 3px;
+        }
+        .calc-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--highlight-mode);
+        }
+        .calc-line .num-display.freq-display {
+            color: var(--highlight-freq);
+        }
+        .calc-line .num-display.d1-display {
+            color: var(--highlight-d1);
+        }
+        .calc-line .num-display.d2-display {
+            color: var(--highlight-d2);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.15rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3em;
+            min-width: 52px;
+            max-width: 105px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44, 110, 158, 0.2);
+        }
+        .wide-input {
+            width: 4em;
+            min-width: 68px;
+        }
+        .thin-input {
+            width: 2.6em;
+            min-width: 44px;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .mode-badge {
+            display: inline-block;
+            background: var(--highlight-mode-light);
+            color: var(--highlight-mode);
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin: 4px 0;
+            border: 2px solid var(--highlight-mode);
+        }
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1rem;
+                padding: 12px 8px;
+            }
+            .section-card {
+                padding: 10px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 2.4em;
+                min-width: 40px;
+            }
+            .calc-line {
+                font-size: 1rem;
+                padding: 4px 8px;
+                border-radius: 30px;
+            }
+            .calc-line .operator {
+                font-size: 1.1rem;
+            }
+            .section-label {
+                font-size: 0.9rem;
+            }
+            .stats-table {
+                font-size: 0.9rem;
+            }
+            .stats-table .header-cell,
+            .stats-table .value-cell {
+                padding: 10px 10px;
+            }
+            .separate-text {
+                font-size: 0.95rem;
+            }
+            .note-box {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">المنوال 2 (الفئات)</span> <span>🔢</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">تحديد الفئة المنوالية وحساب المنوال من جدول فئات</div>
+
+        <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
+        <div class="example-panel" id="examplePanel">
+            <strong>📘 مثال توضيحي:</strong><br>
+            لدينا جدول الفئات التالي:<br>
+            ]10 , 20] : 5 تلاميذ<br>
+            ]20 , 30] : <strong>12</strong> تلميذاً ← <strong>أكبر تكرار</strong><br>
+            ]30 , 40] : 7 تلاميذ<br>
+            ]40 , 50] : 3 تلاميذ<br><br>
+            <strong>الخطوات:</strong><br>
+            1. <strong>نبحث عن أكبر تكرار:</strong> 12 هو الأكبر ← الفئة المنوالية هي <strong>]20 , 30]</strong>.<br>
+            2. <strong>نستخرج المعطيات:</strong><br>
+            &nbsp;&nbsp;&nbsp;L (الحد الأدنى للفئة المنوالية) = <strong>20</strong><br>
+            &nbsp;&nbsp;&nbsp;h (طول الفئة) = 30 − 20 = <strong>10</strong><br>
+            &nbsp;&nbsp;&nbsp;f₁ (تكرار الفئة المنوالية) = <strong>12</strong><br>
+            &nbsp;&nbsp;&nbsp;f₀ (تكرار الفئة السابقة) = <strong>5</strong><br>
+            &nbsp;&nbsp;&nbsp;f₂ (تكرار الفئة اللاحقة) = <strong>7</strong><br>
+            3. <strong>نحسب d₁ و d₂:</strong><br>
+            &nbsp;&nbsp;&nbsp;d₁ = f₁ − f₀ = 12 − 5 = <strong>7</strong><br>
+            &nbsp;&nbsp;&nbsp;d₂ = f₁ − f₂ = 12 − 7 = <strong>5</strong><br>
+            4. <strong>نطبق القانون:</strong> المنوال = L + [d₁ ÷ (d₁ + d₂)] × h<br>
+            &nbsp;&nbsp;&nbsp;المنوال = 20 + [7 ÷ (7 + 5)] × 10<br>
+            &nbsp;&nbsp;&nbsp;المنوال = 20 + [7 ÷ 12] × 10<br>
+            &nbsp;&nbsp;&nbsp;المنوال = 20 + 0.583 × 10<br>
+            &nbsp;&nbsp;&nbsp;المنوال = 20 + 5.83 = <strong>25.83</strong>
+        </div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ جميع الفراغات حسب نوع السؤال. تذكّر: الفئة المنوالية هي الأكثر تكراراً. المنوال = L + [d₁ ÷ (d₁ + d₂)] × h</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const btnToggleExample = document.getElementById('btnToggleExample');
+            const examplePanel = document.getElementById('examplePanel');
+
+            const CLASS_COUNT = 4;
+
+            let currentClasses = [];
+            let currentFreqs = [];
+            let modalIndex;
+            let L_val, h_val, f1_val, f0_val, f2_val;
+            let d1_val, d2_val, modeVal;
+            let currentMode = 0;
+            let attempts = 0,
+                score = 0,
+                gameActive = true,
+                isSwitchingRound = false;
+            let inputRefs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'المنوال 2 (الفئات)',
+                    exercise_subtitle: 'تحديد الفئة المنوالية وحساب المنوال من جدول فئات',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات حسب نوع السؤال. تذكّر: الفئة المنوالية هي الأكثر تكراراً. المنوال = L + [d₁ ÷ (d₁ + d₂)] × h',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    class_header: 'الفئات',
+                    freq_header: 'التكرار (fᵢ)',
+                    mode_badge_0: '🎯 النمط: حدد الفئة المنوالية',
+                    mode_badge_1: '🎯 النمط: استخرج معطيات الفئة المنوالية',
+                    mode_badge_2: '🎯 النمط: احسب المنوال',
+                    freq_section: '🔍 أولاً: تحديد أكبر تكرار (لإيجاد الفئة المنوالية)',
+                    freq_note: 'الفئة المنوالية = الفئة التي تملك <strong>أكبر تكرار</strong>. ابحث في سطر التكرارات عن العدد الأكبر.',
+                    freq_question: 'ما هو أكبر تكرار في الجدول؟',
+                    freq_equals: 'أكبر تكرار =',
+                    modal_class_section: '📋 ثانياً: تحديد الفئة المنوالية',
+                    modal_class_note: 'الفئة التي تكرارها = <span class="num-display freq-display">{maxFreq}</span> هي <strong>الفئة المنوالية</strong>. أكتب حدودها.',
+                    modal_class_prompt: 'أكتب حدود الفئة المنوالية (الحد الأدنى ثم الحد الأعلى):',
+                    modal_low_prompt: 'إذن الحد الأدنى للفئة المنوالية (L) =',
+                    extract_section: '📋 ثانياً: استخراج معطيات الفئة المنوالية',
+                    extract_note: 'حددنا الفئة المنوالية: <strong>]{low} , {high}]</strong>. الآن نستخرج كل المعطيات اللازمة لحساب المنوال.',
+                    extract_L: '① الحد الأدنى للفئة المنوالية (L) =',
+                    extract_h: '② طول الفئة (h) = الحد الأعلى − الحد الأدنى = {high} − {low}',
+                    extract_f1: '③ تكرار الفئة المنوالية (f₁) =',
+                    extract_f0: '④ تكرار الفئة السابقة للمنوالية (f₀) =',
+                    extract_f2: '⑤ تكرار الفئة اللاحقة للمنوالية (f₂) =',
+                    d_section: '🧮 ثالثاً: حساب الفرقين d₁ و d₂',
+                    d_note: 'نحتاج إلى فرقين: d₁ = f₁ − f₀ (الفرق مع الفئة السابقة)، d₂ = f₁ − f₂ (الفرق مع الفئة اللاحقة).',
+                    d1_line: 'd₁ = f₁ − f₀ = {f1} − {f0}',
+                    d2_line: 'd₂ = f₁ − f₂ = {f1} − {f2}',
+                    mode_section: '📏 رابعاً: حساب المنوال بالقانون',
+                    mode_formula_note: 'القانون: <strong>المنوال = L + [d₁ ÷ (d₁ + d₂)] × h</strong>',
+                    mode_step1: 'الخطوة ①: d₁ + d₂ = {d1} + {d2}',
+                    mode_step2: 'الخطوة ②: d₁ ÷ (d₁ + d₂) = {d1} ÷ {dsum}',
+                    mode_step3: 'الخطوة ③: [d₁ ÷ (d₁ + d₂)] × h = الناتج × {h}',
+                    mode_step4: 'الخطوة ④: L + النتيجة = {L} + النتيجة السابقة',
+                    mode_final: 'المنوال =',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات المطلوبة',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة في جميع الفراغات (والمنوال يمكن أن يكون عشراً).',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong_0: '❌ خطأ! أكبر تكرار هو {maxFreq}. الفئة المنوالية: ]{low} , {high}]. الحد الأدنى L = {low}.',
+                    wrong_1: '❌ خطأ! المعطيات الصحيحة: L={L}, h={h}, f₁={f1}, f₀={f0}, f₂={f2}.',
+                    wrong_2: '❌ خطأ! d₁={d1}, d₂={d2}, d₁+d₂={dsum}, d₁÷(d₁+d₂)={ratio}, المنوال={mode}.',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_minus: '−',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
+                    example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)',
+                    ratio_label: 'الناتج =',
+                    times_h_label: '× h =',
+                    mode_equals: 'المنوال =',
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Mode 2 (classes)',
+                    exercise_subtitle: 'Déterminer la classe modale et calculer le mode',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs. Classe modale = plus grand effectif. Mode = L + [d₁ ÷ (d₁ + d₂)] × h',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    class_header: 'Classes',
+                    freq_header: 'Effectif (fᵢ)',
+                    mode_badge_0: '🎯 Mode : Identifier la classe modale',
+                    mode_badge_1: '🎯 Mode : Extraire les données de la classe modale',
+                    mode_badge_2: '🎯 Mode : Calculer le mode',
+                    freq_section: '🔍 1. Trouver le plus grand effectif',
+                    freq_note: 'La classe modale est celle qui a le <strong>plus grand effectif</strong>.',
+                    freq_question: 'Quel est le plus grand effectif ?',
+                    freq_equals: 'Plus grand effectif =',
+                    modal_class_section: '📋 2. Identifier la classe modale',
+                    modal_class_note: 'La classe d\'effectif <span class="num-display freq-display">{maxFreq}</span> est la <strong>classe modale</strong>.',
+                    modal_class_prompt: 'Écris les bornes de la classe modale (inf puis sup) :',
+                    modal_low_prompt: 'Donc la borne inférieure (L) =',
+                    extract_section: '📋 2. Extraire les données de la classe modale',
+                    extract_note: 'Classe modale : <strong>]{low} , {high}]</strong>.',
+                    extract_L: '① Borne inférieure (L) =',
+                    extract_h: '② Amplitude (h) = {high} − {low}',
+                    extract_f1: '③ Effectif de la classe modale (f₁) =',
+                    extract_f0: '④ Effectif de la classe précédente (f₀) =',
+                    extract_f2: '⑤ Effectif de la classe suivante (f₂) =',
+                    d_section: '🧮 3. Calculer d₁ et d₂',
+                    d_note: 'd₁ = f₁ − f₀, d₂ = f₁ − f₂.',
+                    d1_line: 'd₁ = f₁ − f₀ = {f1} − {f0}',
+                    d2_line: 'd₂ = f₁ − f₂ = {f1} − {f2}',
+                    mode_section: '📏 4. Calculer le mode',
+                    mode_formula_note: 'Formule : <strong>Mode = L + [d₁ ÷ (d₁ + d₂)] × h</strong>',
+                    mode_step1: '① d₁ + d₂ = {d1} + {d2}',
+                    mode_step2: '② d₁ ÷ (d₁ + d₂) = {d1} ÷ {dsum}',
+                    mode_step3: '③ [d₁ ÷ (d₁ + d₂)] × h = résultat × {h}',
+                    mode_step4: '④ L + résultat = {L} + résultat',
+                    mode_final: 'Mode =',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers requis (mode décimal accepté).',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong_0: '❌ Faux ! Effectif max = {maxFreq}. Classe modale : ]{low} , {high}]. L = {low}.',
+                    wrong_1: '❌ Faux ! L={L}, h={h}, f₁={f1}, f₀={f0}, f₂={f2}.',
+                    wrong_2: '❌ Faux ! d₁={d1}, d₂={d2}, d₁+d₂={dsum}, d₁÷(d₁+d₂)={ratio}, mode={mode}.',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    operator_minus: '−',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Exemple (afficher)',
+                    example_toggle_hide: '📘 Exemple (masquer)',
+                    ratio_label: 'Résultat =',
+                    times_h_label: '× h =',
+                    mode_equals: 'Mode =',
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Mode 2 (Classes)',
+                    exercise_subtitle: 'Identify the modal class and compute the mode',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill all fields. Modal class = highest frequency. Mode = L + [d₁ ÷ (d₁ + d₂)] × h',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    class_header: 'Classes',
+                    freq_header: 'Frequency (fᵢ)',
+                    mode_badge_0: '🎯 Mode: Identify the modal class',
+                    mode_badge_1: '🎯 Mode: Extract modal class data',
+                    mode_badge_2: '🎯 Mode: Compute the mode',
+                    freq_section: '🔍 1. Find the highest frequency',
+                    freq_note: 'The modal class is the one with the <strong>highest frequency</strong>.',
+                    freq_question: 'What is the highest frequency?',
+                    freq_equals: 'Highest frequency =',
+                    modal_class_section: '📋 2. Identify the modal class',
+                    modal_class_note: 'The class with frequency <span class="num-display freq-display">{maxFreq}</span> is the <strong>modal class</strong>.',
+                    modal_class_prompt: 'Write the bounds of the modal class (lower then upper):',
+                    modal_low_prompt: 'So the lower bound (L) =',
+                    extract_section: '📋 2. Extract modal class data',
+                    extract_note: 'Modal class: <strong>]{low} , {high}]</strong>.',
+                    extract_L: '① Lower bound (L) =',
+                    extract_h: '② Class width (h) = {high} − {low}',
+                    extract_f1: '③ Modal class frequency (f₁) =',
+                    extract_f0: '④ Previous class frequency (f₀) =',
+                    extract_f2: '⑤ Next class frequency (f₂) =',
+                    d_section: '🧮 3. Compute d₁ and d₂',
+                    d_note: 'd₁ = f₁ − f₀, d₂ = f₁ − f₂.',
+                    d1_line: 'd₁ = f₁ − f₀ = {f1} − {f0}',
+                    d2_line: 'd₂ = f₁ − f₂ = {f1} − {f2}',
+                    mode_section: '📏 4. Compute the mode',
+                    mode_formula_note: 'Formula: <strong>Mode = L + [d₁ ÷ (d₁ + d₂)] × h</strong>',
+                    mode_step1: '① d₁ + d₂ = {d1} + {d2}',
+                    mode_step2: '② d₁ ÷ (d₁ + d₂) = {d1} ÷ {dsum}',
+                    mode_step3: '③ [d₁ ÷ (d₁ + d₂)] × h = result × {h}',
+                    mode_step4: '④ L + result = {L} + result',
+                    mode_final: 'Mode =',
+                    fill_all: '⚠️ Please complete all required fields',
+                    invalid_numbers: '❌ Integers required (mode can be decimal).',
+                    correct: '✅ Correct! +1 point',
+                    wrong_0: '❌ Wrong! Max freq = {maxFreq}. Modal class: ]{low} , {high}]. L = {low}.',
+                    wrong_1: '❌ Wrong! L={L}, h={h}, f₁={f1}, f₀={f0}, f₂={f2}.',
+                    wrong_2: '❌ Wrong! d₁={d1}, d₂={d2}, d₁+d₂={dsum}, ratio={ratio}, mode={mode}.',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    operator_minus: '−',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Example (show)',
+                    example_toggle_hide: '📘 Example (hide)',
+                    ratio_label: 'Result =',
+                    times_h_label: '× h =',
+                    mode_equals: 'Mode =',
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_mode2_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_mode2_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true,
+                audioCtx = null;
+
+            function getAudioContext() { if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                return audioCtx; }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const s = localStorage.getItem('exercise_mode2_sound');
+                soundEnabled = s !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_mode2_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('exercise_mode2_theme', theme);
+            }
+
+            function toggleTheme() {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                const s = localStorage.getItem('exercise_mode2_theme');
+                if (s === 'dark' || s === 'light') applyTheme(s);
+                else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back();
+                else window.location.href = 'لوحة التمارين التفاعلية.html';
+            }
+
+            function generateData() {
+                const classWidthOptions = [5, 10, 20];
+                const classWidth = classWidthOptions[Math.floor(Math.random() * classWidthOptions.length)];
+                const startVal = Math.floor(Math.random() * 20);
+                const classes = [];
+                for (let i = 0; i < CLASS_COUNT; i++) {
+                    const low = startVal + i * classWidth;
+                    const high = low + classWidth;
+                    classes.push({ low, high, width: classWidth });
+                }
+
+                const freqs = [];
+                for (let i = 0; i < CLASS_COUNT; i++) {
+                    freqs.push(Math.floor(Math.random() * 4) + 2);
+                }
+
+                const midIndex = 1 + Math.floor(Math.random() * 2);
+                freqs[midIndex] = Math.max(...freqs) + 3 + Math.floor(Math.random() * 5);
+
+                const total = freqs.reduce((a, b) => a + b, 0);
+                if (total > 30) {
+                    const excess = total - 30;
+                    for (let i = 0; i < CLASS_COUNT; i++) {
+                        if (i !== midIndex && freqs[i] > 1) {
+                            const reduce = Math.min(excess, freqs[i] - 1);
+                            freqs[i] -= reduce;
+                        }
+                    }
+                }
+
+                const modalIndex = midIndex;
+                const L = classes[modalIndex].low;
+                const h = classes[modalIndex].width;
+                const f1 = freqs[modalIndex];
+                const f0 = modalIndex > 0 ? freqs[modalIndex - 1] : 0;
+                const f2 = modalIndex < CLASS_COUNT - 1 ? freqs[modalIndex + 1] : 0;
+                const d1 = f1 - f0;
+                const d2 = f1 - f2;
+                const dsum = d1 + d2;
+                const modeVal = L + (d1 / dsum) * h;
+
+                const questionMode = Math.floor(Math.random() * 3);
+
+                return {
+                    classes,
+                    freqs,
+                    modalIndex,
+                    L,
+                    h,
+                    f1,
+                    f0,
+                    f2,
+                    d1,
+                    d2,
+                    dsum,
+                    modeVal,
+                    questionMode
+                };
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                let html = '<table class="stats-table">';
+                html += `<tr><td class="header-cell">${dict.class_header}</td>`;
+                currentClasses.forEach((cls, i) => {
+                    const isModal = (i === modalIndex);
+                    let cellClass = 'value-cell';
+                    if (isModal) cellClass += ' modal-highlight';
+                    else if (i === modalIndex - 1) cellClass += ' before-highlight';
+                    else if (i === modalIndex + 1) cellClass += ' after-highlight';
+                    html += `<td class="${cellClass}">]${cls.low} , ${cls.high}]</td>`;
+                });
+                html += '</tr>';
+                html += `<tr><td class="header-cell">${dict.freq_header}</td>`;
+                currentFreqs.forEach((f, i) => {
+                    const isModal = (i === modalIndex);
+                    let cellClass = 'value-cell';
+                    if (isModal) cellClass += ' modal-highlight';
+                    html += `<td class="${cellClass}">${f}</td>`;
+                });
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opMinus = t('operator_minus');
+                const opPlus = t('operator_plus');
+                const opDivide = t('operator_divide');
+                const opEq = t('operator_equals');
+                const maxFreq = currentFreqs[modalIndex];
+                const modalClass = currentClasses[modalIndex];
+                const low = modalClass.low;
+                const high = modalClass.high;
+
+                let html = '';
+                const modeBadgeKey = 'mode_badge_' + currentMode;
+                html +=
+                    `<div style="text-align:center;margin-bottom:8px;"><span class="mode-badge">${t(modeBadgeKey)}</span></div>`;
+
+                if (currentMode === 0) {
+                    html +=
+                        `<div class="section-card freq-card"><div class="section-label freq-label">${t('freq_section')}</div>`;
+                    html += `<div class="note-box">💡 ${t('freq_note')}</div>`;
+                    html +=
+                        `<div class="separate-text">${t('freq_question')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('freq_equals')}</span><input type="text" id="inpMaxFreq" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card mode-card"><div class="section-label mode-label">${t('modal_class_section')}</div>`;
+                    html +=
+                        `<div class="note-box">💡 ${t('modal_class_note',{maxFreq})}</div>`;
+                    html +=
+                        `<div class="separate-text">${t('modal_class_prompt')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;"> ]</span><input type="text" id="inpModalLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;"> , </span><input type="text" id="inpModalHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;"> ]</span></div>`;
+                    html +=
+                        `<div class="separate-text">${t('modal_low_prompt')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><input type="text" id="inpL" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html += `</div>`;
+                } else if (currentMode === 1) {
+                    html +=
+                        `<div class="section-card mode-card"><div class="section-label mode-label">${t('extract_section')}</div>`;
+                    html +=
+                        `<div class="note-box">💡 ${t('extract_note',{low,high})}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_L')}</span><input type="text" id="inpL" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_h',{high,low})}</span><span class="operator">${opEq}</span><input type="text" id="inpH" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_f1')}</span><input type="text" id="inpF1" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_f0')}</span><input type="text" id="inpF0" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_f2')}</span><input type="text" id="inpF2" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html += `</div>`;
+                } else {
+                    html +=
+                        `<div class="section-card mode-card"><div class="section-label mode-label">${t('extract_section')}</div>`;
+                    html +=
+                        `<div class="note-box">💡 ${t('extract_note',{low,high})}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_L')}</span><input type="text" id="inpL" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_h',{high,low})}</span><span class="operator">${opEq}</span><input type="text" id="inpH" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_f1')}</span><input type="text" id="inpF1" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_f0')}</span><input type="text" id="inpF0" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('extract_f2')}</span><input type="text" id="inpF2" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card d1-card"><div class="section-label d1-label">${t('d_section')}</div>`;
+                    html += `<div class="note-box">💡 ${t('d_note')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('d1_line',{f1:f1_val,f0:f0_val})}</span><span class="operator">${opEq}</span><input type="text" id="inpD1" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('d2_line',{f1:f1_val,f2:f2_val})}</span><span class="operator">${opEq}</span><input type="text" id="inpD2" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html += `</div>`;
+
+                    html +=
+                        `<div class="section-card result-card"><div class="section-label result-label">${t('mode_section')}</div>`;
+                    html += `<div class="note-box">📝 ${t('mode_formula_note')}</div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('mode_step1',{d1:d1_val,d2:d2_val})}</span><span class="operator">${opEq}</span><input type="text" id="inpDsum" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('mode_step2',{d1:d1_val,dsum:d1_val+d2_val})}</span><span class="operator">${opEq}</span><input type="text" id="inpRatio" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('mode_step3',{h:h_val})}</span><span class="operator">${opEq}</span><input type="text" id="inpTimesH" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('mode_step4',{L:L_val})}</span><span class="operator">${opEq}</span><input type="text" id="inpFinalMode" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html +=
+                        `<div class="calc-line" dir="ltr" style="border:3px solid var(--highlight-result);"><span style="font-weight:800;color:var(--highlight-result);">${t('mode_final')}</span><input type="text" id="inpModeResult" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                    html += `</div>`;
+                }
+
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                if (currentMode === 0) {
+                    inputRefs['maxFreq'] = document.getElementById('inpMaxFreq');
+                    inputRefs['modalLow'] = document.getElementById('inpModalLow');
+                    inputRefs['modalHigh'] = document.getElementById('inpModalHigh');
+                    inputRefs['L'] = document.getElementById('inpL');
+                } else if (currentMode === 1) {
+                    inputRefs['L'] = document.getElementById('inpL');
+                    inputRefs['h'] = document.getElementById('inpH');
+                    inputRefs['f1'] = document.getElementById('inpF1');
+                    inputRefs['f0'] = document.getElementById('inpF0');
+                    inputRefs['f2'] = document.getElementById('inpF2');
+                } else {
+                    inputRefs['L'] = document.getElementById('inpL');
+                    inputRefs['h'] = document.getElementById('inpH');
+                    inputRefs['f1'] = document.getElementById('inpF1');
+                    inputRefs['f0'] = document.getElementById('inpF0');
+                    inputRefs['f2'] = document.getElementById('inpF2');
+                    inputRefs['d1'] = document.getElementById('inpD1');
+                    inputRefs['d2'] = document.getElementById('inpD2');
+                    inputRefs['dsum'] = document.getElementById('inpDsum');
+                    inputRefs['ratio'] = document.getElementById('inpRatio');
+                    inputRefs['timesH'] = document.getElementById('inpTimesH');
+                    inputRefs['finalMode'] = document.getElementById('inpFinalMode');
+                    inputRefs['modeResult'] = document.getElementById('inpModeResult');
+                }
+            }
+
+            function clearInputs() {
+                for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].value = ''; }
+            }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateData();
+                currentClasses = data.classes;
+                currentFreqs = data.freqs;
+                modalIndex = data.modalIndex;
+                L_val = data.L;
+                h_val = data.h;
+                f1_val = data.f1;
+                f0_val = data.f0;
+                f2_val = data.f2;
+                d1_val = data.d1;
+                d2_val = data.d2;
+                modeVal = data.modeVal;
+                currentMode = data.questionMode;
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 60);
+            }
+
+            function setInputsDisabled(disabled) { for (let k in inputRefs) { if (inputRefs[k]) inputRefs[k].disabled =
+                    disabled; } }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function getIntVal(id) { const el = inputRefs[id]; if (!el) return NaN; return Number(el.value.trim()); }
+
+            function getFloatVal(id) { const el = inputRefs[id]; if (!el) return NaN; return parseFloat(el.value.trim()); }
+
+            function formatDecimal(val) {
+                const rounded = Math.round(val * 100) / 100;
+                if (Number.isInteger(rounded)) return rounded.toString();
+                let s = rounded.toFixed(2);
+                s = s.replace(/\.?0+$/, '');
+                return s;
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const requiredKeys = Object.keys(inputRefs);
+                let allFilled = true;
+                for (const key of requiredKeys) {
+                    const el = inputRefs[key];
+                    if (!el || !el.value.trim()) { allFilled = false; break; }
+                }
+                if (!allFilled) { messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                let allValid = true;
+                const intKeys = [];
+                if (currentMode === 0) intKeys.push('maxFreq', 'modalLow', 'modalHigh', 'L');
+                else if (currentMode === 1) intKeys.push('L', 'h', 'f1', 'f0', 'f2');
+                else intKeys.push('L', 'h', 'f1', 'f0', 'f2', 'd1', 'd2', 'dsum');
+
+                for (const key of intKeys) {
+                    if (inputRefs[key] && !Number.isInteger(getIntVal(key))) allValid = false;
+                }
+                if (!allValid) { messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                let correct = true;
+                const modalClass = currentClasses[modalIndex];
+
+                if (currentMode === 0) {
+                    if (getIntVal('maxFreq') !== currentFreqs[modalIndex]) correct = false;
+                    if (getIntVal('modalLow') !== modalClass.low) correct = false;
+                    if (getIntVal('modalHigh') !== modalClass.high) correct = false;
+                    if (getIntVal('L') !== modalClass.low) correct = false;
+                } else if (currentMode === 1) {
+                    if (getIntVal('L') !== L_val) correct = false;
+                    if (getIntVal('h') !== h_val) correct = false;
+                    if (getIntVal('f1') !== f1_val) correct = false;
+                    if (getIntVal('f0') !== f0_val) correct = false;
+                    if (getIntVal('f2') !== f2_val) correct = false;
+                } else {
+                    if (getIntVal('L') !== L_val) correct = false;
+                    if (getIntVal('h') !== h_val) correct = false;
+                    if (getIntVal('f1') !== f1_val) correct = false;
+                    if (getIntVal('f0') !== f0_val) correct = false;
+                    if (getIntVal('f2') !== f2_val) correct = false;
+                    if (getIntVal('d1') !== d1_val) correct = false;
+                    if (getIntVal('d2') !== d2_val) correct = false;
+                    if (getIntVal('dsum') !== d1_val + d2_val) correct = false;
+                    const ratio = d1_val / (d1_val + d2_val);
+                    const timesH = ratio * h_val;
+                    const finalMode = L_val + timesH;
+                    if (Math.abs(getFloatVal('ratio') - ratio) > 0.015) correct = false;
+                    if (Math.abs(getFloatVal('timesH') - timesH) > 0.015) correct = false;
+                    if (Math.abs(getFloatVal('finalMode') - finalMode) > 0.015) correct = false;
+                    if (Math.abs(getFloatVal('modeResult') - modeVal) > 0.015) correct = false;
+                }
+
+                attempts++;
+                if (correct) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    const maxFreq = currentFreqs[modalIndex];
+                    const ratioStr = formatDecimal(d1_val / (d1_val + d2_val));
+                    const modeStr = formatDecimal(modeVal);
+                    if (currentMode === 0) {
+                        messageEl.innerHTML = t('wrong_0', { maxFreq, low: modalClass.low, high: modalClass.high });
+                    } else if (currentMode === 1) {
+                        messageEl.innerHTML = t('wrong_1', { L: L_val, h: h_val, f1: f1_val, f0: f0_val, f2: f2_val });
+                    } else {
+                        messageEl.innerHTML = t('wrong_2', { d1: d1_val, d2: d2_val, dsum: d1_val + d2_val,
+                            ratio: ratioStr, mode: modeStr });
+                    }
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => {
+                    const firstKey = Object.keys(inputRefs)[0];
+                    if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+                }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+            btnToggleExample.addEventListener('click', () => {
+                examplePanel.classList.toggle('visible');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t(
+                    'example_toggle_show');
+            });
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => {
+                const firstKey = Object.keys(inputRefs)[0];
+                if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

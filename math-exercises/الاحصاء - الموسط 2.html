@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمرين الموسط 2 (الفئات) | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #2c6e9e;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #e2eaf5;
+            --tag-text: #1e3a4f;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-cf: #0891b2;
+            --highlight-cf-light: rgba(8, 145, 178, 0.08);
+            --highlight-median: #b45309;
+            --highlight-median-light: rgba(180, 83, 9, 0.08);
+            --highlight-rank: #7c3aed;
+            --highlight-rank-light: rgba(124, 58, 237, 0.08);
+            --highlight-class: #059669;
+            --highlight-class-light: rgba(5, 150, 105, 0.08);
+            --example-bg: #fef9e6;
+            --example-border: #e7c45d;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #60a5fa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #243044;
+            --tag-text: #bcc8d6;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-cf: #22d3ee;
+            --highlight-cf-light: rgba(34, 211, 238, 0.10);
+            --highlight-median: #fbbf24;
+            --highlight-median-light: rgba(251, 191, 36, 0.10);
+            --highlight-rank: #a78bfa;
+            --highlight-rank-light: rgba(167, 139, 250, 0.10);
+            --highlight-class: #34d399;
+            --highlight-class-light: rgba(52, 211, 153, 0.10);
+            --example-bg: #2d2a1a;
+            --example-border: #9b8130;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* مثال توضيحي */
+        .example-toggle {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 auto 12px;
+            display: block;
+            color: var(--text);
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .example-panel {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            display: none;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+        .example-panel.visible {
+            display: block;
+        }
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1.0rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 12px 10px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 12px 10px;
+            border-left: 1px solid var(--table-border);
+            min-width: 60px;
+            transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .stats-table .cf-cell {
+            background: var(--highlight-cf-light);
+            color: var(--highlight-cf);
+            font-weight: 700;
+            transition: background 0.35s, color 0.35s;
+        }
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 18px 20px;
+            border-radius: 28px;
+            line-height: 2.2;
+            border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+        }
+        .section-card.cf-card {
+            border-right: 4px solid var(--highlight-cf);
+            background: var(--highlight-cf-light);
+        }
+        .section-card.rank-card {
+            border-right: 4px solid var(--highlight-rank);
+            background: var(--highlight-rank-light);
+        }
+        .section-card.class-card {
+            border-right: 4px solid var(--highlight-class);
+            background: var(--highlight-class-light);
+        }
+        .section-card.median-card {
+            border-right: 4px solid var(--highlight-median);
+            background: var(--highlight-median-light);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+        .section-label.cf-label {
+            color: var(--highlight-cf);
+            background: rgba(8, 145, 178, 0.10);
+        }
+        .section-label.rank-label {
+            color: var(--highlight-rank);
+            background: rgba(124, 58, 237, 0.10);
+        }
+        .section-label.class-label {
+            color: var(--highlight-class);
+            background: rgba(5, 150, 105, 0.10);
+        }
+        .section-label.median-label {
+            color: var(--highlight-median);
+            background: rgba(180, 83, 9, 0.10);
+        }
+        [data-theme="dark"] .section-label.cf-label {
+            background: rgba(34, 211, 238, 0.13);
+        }
+        [data-theme="dark"] .section-label.rank-label {
+            background: rgba(167, 139, 250, 0.13);
+        }
+        [data-theme="dark"] .section-label.class-label {
+            background: rgba(52, 211, 153, 0.13);
+        }
+        [data-theme="dark"] .section-label.median-label {
+            background: rgba(251, 191, 36, 0.13);
+        }
+        .note-box {
+            font-size: 0.9rem;
+            background: var(--surface3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 8px 0;
+            color: var(--text2);
+            font-weight: 500;
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 5px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 16px;
+            margin: 6px 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .calc-line .operator {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 3px;
+        }
+        .calc-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--highlight-cf);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.15rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3em;
+            min-width: 50px;
+            max-width: 95px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(44, 110, 158, 0.2);
+        }
+        .wide-input {
+            width: 4em;
+            min-width: 65px;
+        }
+        .cf-compare-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .cf-badge {
+            background: var(--surface3);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 1rem;
+                padding: 12px 8px;
+            }
+            .inline-input {
+                font-size: 1rem;
+                width: 2.5em;
+                min-width: 42px;
+            }
+            .calc-line {
+                font-size: 1rem;
+                padding: 4px 8px;
+                border-radius: 30px;
+            }
+            .section-label {
+                font-size: 0.9rem;
+            }
+            .stats-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">الموسط 2 (الفئات)</span> <span>🔢</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">تحديد الوسيط في سلسلة إحصائية ذات فئات</div>
+
+        <!-- مثال توضيحي -->
+        <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
+        <div class="example-panel" id="examplePanel">
+            <strong>مثال:</strong> لدينا جدول الفئات التالي:<br>
+            ]10 , 20] : 3 تلاميذ<br>
+            ]20 , 30] : 5 تلاميذ<br>
+            ]30 , 40] : 4 تلاميذ<br>
+            <strong>الخطوات:</strong><br>
+            1. <strong>التكرارات المتجمعة (CF):</strong> CF₁ = 3، CF₂ = 3+5 = 8، CF₃ = 8+4 = 12.<br>
+            2. <strong>العدد الجملي N = 12</strong> (زوجي).<br>
+            3. <strong>الرتبة:</strong> بما أن N زوجي، الرتبة = N ÷ 2 = 6.<br>
+            4. <strong>تحديد الفئة:</strong> نفحص CF: 3 < 6، 8 ≥ 6 ← <strong>الفئة الثانية</strong> ]20 , 30] هي فئة الوسيط.<br>
+            5. <strong>الوسيط التقريبي = مركز الفئة =</strong> (20 + 30) ÷ 2 = 25.
+        </div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ جميع الفراغات: التكرارات المتجمعة، العدد الجملي، الرتبة، رقم الفئة المناسبة، حدودها، والوسيط التقريبي.</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v2.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const btnToggleExample = document.getElementById('btnToggleExample');
+            const examplePanel = document.getElementById('examplePanel');
+
+            let currentClasses = [];
+            let currentFreqs = [];
+            let currentCF = [];
+            let currentN, currentIsOdd, currentMedianRank, currentMedianClassIdx;
+            let currentApproxMedian;
+            let attempts = 0,
+                score = 0,
+                gameActive = true,
+                isSwitchingRound = false;
+            let inputRefs = {};
+            const CLASS_COUNT = 4;
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'الموسط 2 (الفئات)',
+                    exercise_subtitle: 'تحديد الوسيط في سلسلة إحصائية ذات فئات',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات: التكرارات المتجمعة، العدد الجملي، الرتبة، رقم الفئة المناسبة، حدودها، والوسيط التقريبي.',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    class_header: 'الفئات',
+                    freq_header: 'التكرار (fᵢ)',
+                    cf_header: 'التكرار المتجمع الصاعد',
+                    cf_section: '📋 أولاً: حساب التكرارات المتجمعة الصاعدة (CF)',
+                    cf_note: 'تذكر: CF الحالي = CF السابق + تكرار الفئة الحالية. يساعدنا في معرفة عدد القيم حتى نهاية الفئة.',
+                    cf_line_prefix: 'CF للفئة',
+                    cf_equals: '=',
+                    rank_section: '📏 ثانياً: تحديد العدد الجملي N وموقع الوسيط',
+                    n_intro: 'العدد الجملي N = مجموع التكرارات =',
+                    parity_question: 'هل N فردي أم زوجي؟',
+                    odd_label: 'فردي',
+                    even_label: 'زوجي',
+                    odd_rule: 'بما أن N فردي، فرتبة الوسيط = (N + 1) ÷ 2',
+                    even_rule: 'بما أن N زوجي، فرتبة الوسيط = N ÷ 2 (نستعمل هذه الرتبة لتحديد الفئة)',
+                    rank_eq: 'رتبة الوسيط =',
+                    class_section: '🎯 ثالثاً: تحديد فئة الوسيط',
+                    class_rule_intro: 'لمعرفة فئة الوسيط، نفحص التكرارات المتجمعة: أول فئة يصبح فيها CF ≥ رتبة الوسيط هي فئة الوسيط.',
+                    class_ask_idx: 'رقم هذه الفئة (1,2,3 أو 4) هو:',
+                    class_ask_bounds: 'حدود فئة الوسيط: ]',
+                    class_sep: ' ، ',
+                    class_close: ']',
+                    median_section: '🧮 رابعاً: حساب القيمة التقريبية للوسيط (مركز الفئة)',
+                    midpoint_formula: 'الوسيط التقريبي ≈ مركز فئة الوسيط = (الحد الأدنى + الحد الأعلى) ÷ 2',
+                    midpoint_eq: 'الوسيط ≈',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة (الوسيط يمكن أن يكون عشراً).',
+                    parity_required: '⚠️ الرجاء اختيار فردي أو زوجي',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong: '❌ خطأ! التكرارات المتجمعة: {cf}، N={n} ({parity})، الرتبة={rank}، فئة الوسيط: ]{clow},{chigh}]، الوسيط≈{median}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
+                    example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)'
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Médiane 2 (classes)',
+                    exercise_subtitle: 'Déterminer la médiane dans une série groupée',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs : CF, N, rang, numéro de classe, bornes, médiane.',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    class_header: 'Classes',
+                    freq_header: 'Effectif (fᵢ)',
+                    cf_header: 'Effectif cumulé croissant',
+                    cf_section: '📋 1. Calcul des effectifs cumulés (CF)',
+                    cf_note: 'CF courant = CF précédent + effectif de la classe.',
+                    cf_line_prefix: 'CF classe',
+                    cf_equals: '=',
+                    rank_section: '📏 2. Déterminer N et le rang',
+                    n_intro: 'Effectif total N =',
+                    parity_question: 'N est-il pair ou impair ?',
+                    odd_label: 'Impair',
+                    even_label: 'Pair',
+                    odd_rule: 'N impair → rang = (N + 1) ÷ 2',
+                    even_rule: 'N pair → rang = N ÷ 2',
+                    rank_eq: 'Rang =',
+                    class_section: '🎯 3. Identifier la classe médiane',
+                    class_rule_intro: 'La classe médiane est la première classe où CF ≥ rang.',
+                    class_ask_idx: 'Numéro de la classe (1,2,3,4) :',
+                    class_ask_bounds: 'Classe médiane : ]',
+                    class_sep: ' , ',
+                    class_close: ']',
+                    median_section: '🧮 4. Médiane approximative (centre)',
+                    midpoint_formula: 'Médiane ≈ centre = (borne inf + borne sup) ÷ 2',
+                    midpoint_eq: 'Médiane ≈',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers (médiane décimale possible)',
+                    parity_required: '⚠️ Choisissez pair ou impair',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong: '❌ Faux ! CF: {cf}, N={n} ({parity}), rang={rank}, classe: ]{clow},{chigh}], médiane≈{median}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Exemple (afficher)',
+                    example_toggle_hide: '📘 Exemple (masquer)'
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Median 2 (Classes)',
+                    exercise_subtitle: 'Find the median in grouped data',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: 'Fill all: CF, N, rank, class number, bounds, approximate median.',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    class_header: 'Classes',
+                    freq_header: 'Frequency (fᵢ)',
+                    cf_header: 'Cumulative Frequency',
+                    cf_section: '📋 1. Cumulative frequencies (CF)',
+                    cf_note: 'Current CF = previous CF + current frequency.',
+                    cf_line_prefix: 'CF class',
+                    cf_equals: '=',
+                    rank_section: '📏 2. Total N and median rank',
+                    n_intro: 'Total N =',
+                    parity_question: 'Odd or even?',
+                    odd_label: 'Odd',
+                    even_label: 'Even',
+                    odd_rule: 'N odd → rank = (N + 1) ÷ 2',
+                    even_rule: 'N even → rank = N ÷ 2',
+                    rank_eq: 'Rank =',
+                    class_section: '🎯 3. Identify median class',
+                    class_rule_intro: 'The median class is the first class with CF ≥ rank.',
+                    class_ask_idx: 'Class number (1,2,3,4):',
+                    class_ask_bounds: 'Median class: ]',
+                    class_sep: ' , ',
+                    class_close: ']',
+                    median_section: '🧮 4. Approximate median (midpoint)',
+                    midpoint_formula: 'Median ≈ midpoint = (lower + upper) ÷ 2',
+                    midpoint_eq: 'Median ≈',
+                    fill_all: '⚠️ Complete all fields',
+                    invalid_numbers: '❌ Integers only (median can be decimal)',
+                    parity_required: '⚠️ Select odd or even',
+                    correct: '✅ Correct! +1 point',
+                    wrong: '❌ Wrong! CF: {cf}, N={n} ({parity}), rank={rank}, class: ]{clow},{chigh}], median≈{median}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    operator_plus: '+',
+                    operator_divide: '÷',
+                    operator_equals: '=',
+                    example_toggle_show: '📘 Example (show)',
+                    example_toggle_hide: '📘 Example (hide)'
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t('example_toggle_show');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_median2_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_median2_lang');
+                if (saved && translations[saved]) { applyLanguage(saved); return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true,
+                audioCtx = null;
+            function getAudioContext() { if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') { osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25); } else if (type === 'incorrect') { osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3); }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() { const s = localStorage.getItem('exercise_median2_sound');
+                soundEnabled = s !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); }
+
+            function toggleSound() { soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_median2_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title'); if (soundEnabled) playSound('correct'); }
+
+            function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('exercise_median2_theme', theme); }
+
+            function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+
+            function loadTheme() { const s = localStorage.getItem('exercise_median2_theme'); if (s === 'dark' || s === 'light') applyTheme(s);
+                else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+
+            function goBack() { if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history.back();
+                else window.location.href = 'لوحة التمارين التفاعلية.html'; }
+
+            function generateNumbers() {
+                const classWidthOptions = [5, 10, 15, 20];
+                const classWidth = classWidthOptions[Math.floor(Math.random() * classWidthOptions.length)];
+                const startVal = Math.floor(Math.random() * 35) + 5;
+                const classes = [];
+                for (let i = 0; i < CLASS_COUNT; i++) {
+                    const low = startVal + i * classWidth;
+                    const high = low + classWidth;
+                    classes.push({ low, high, width: classWidth, midpoint: (low + high) / 2 });
+                }
+                const freqs = [];
+                let totalN = 0;
+                for (let i = 0; i < CLASS_COUNT; i++) {
+                    const f = Math.floor(Math.random() * 7) + 2;
+                    freqs.push(f);
+                    totalN += f;
+                }
+                if (totalN < 14) { const idx = Math.floor(Math.random() * CLASS_COUNT);
+                    freqs[idx] += (14 - totalN);
+                    totalN = 14; }
+                if (totalN > 30) { const idx = Math.floor(Math.random() * CLASS_COUNT); const excess = totalN - 30;
+                    freqs[idx] = Math.max(2, freqs[idx] - excess);
+                    totalN = freqs.reduce((a, b) => a + b, 0); }
+                const cf = [];
+                let running = 0;
+                for (let i = 0; i < CLASS_COUNT; i++) { running += freqs[i];
+                    cf.push(running); }
+                const isOdd = totalN % 2 === 1;
+                const medianRank = isOdd ? (totalN + 1) / 2 : totalN / 2;
+                let medianClassIdx = 0;
+                for (let i = 0; i < CLASS_COUNT; i++) { if (cf[i] >= medianRank) { medianClassIdx = i; break; } }
+                if (medianClassIdx === 0 && cf[0] === medianRank && CLASS_COUNT >= 2) { if (freqs[1] > 0 && cf[1] >= medianRank) medianClassIdx = 1; }
+                const approxMedian = classes[medianClassIdx].midpoint;
+                return { classes, freqs, cf, totalN, isOdd, medianRank, medianClassIdx, approxMedian };
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                let html = '<table class="stats-table">';
+                html += `<tr><td class="header-cell">${dict.class_header}</td>`;
+                currentClasses.forEach(cls => { html += `<td class="value-cell">]${cls.low} , ${cls.high}]</td>`; });
+                html += '</tr>';
+                html += `<tr><td class="header-cell">${dict.freq_header}</td>`;
+                currentFreqs.forEach(f => { html += `<td class="value-cell">${f}</td>`; });
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildQuestionHTML() {
+                const opPlus = t('operator_plus');
+                const opDiv = t('operator_divide');
+                const opEq = t('operator_equals');
+                let html = '';
+
+                html += `<div class="section-card cf-card"><div class="section-label cf-label">${t('cf_section')}</div>`;
+                html += `<div class="note-box">💡 ${t('cf_note')}</div>`;
+                for (let i = 0; i < CLASS_COUNT; i++) {
+                    const prevDisplay = i === 0 ? '0' : `CF<sub>${i}</sub>`;
+                    html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">CF<sub>${i+1}</sub></span><span class="operator">${opEq}</span><span>${prevDisplay}</span><span class="operator">${opPlus}</span><span class="num-display">f<sub>${i+1}</sub>=${currentFreqs[i]}</span><span class="operator">${opEq}</span><input type="text" id="inpCF${i}" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                }
+                html += `</div>`;
+
+                html += `<div class="section-card rank-card"><div class="section-label rank-label">${t('rank_section')}</div>`;
+                html += `<div style="text-align:center;margin-bottom:4px;"><span style="font-weight:700;">${t('n_intro')}</span> <input type="text" id="inpN" class="inline-input wide-input" placeholder="N" autocomplete="off" inputmode="numeric"></div>`;
+                html += `<div style="text-align:center;margin-bottom:4px;"><span style="font-weight:700;">${t('parity_question')}</span> <select id="selParity" style="padding:6px 14px;border-radius:30px;border:2px solid var(--input-border);background:var(--input-bg);color:var(--text);font-weight:600;font-family:inherit;font-size:1rem;cursor:pointer;"><option value="">--</option><option value="odd">${t('odd_label')}</option><option value="even">${t('even_label')}</option></select></div>`;
+                html += `<div id="oddRuleBlock" style="display:none;"><div style="text-align:center;font-weight:700;margin:4px 0;">${t('odd_rule')}</div></div>`;
+                html += `<div id="evenRuleBlock" style="display:none;"><div style="text-align:center;font-weight:700;margin:4px 0;">${t('even_rule')}</div></div>`;
+                html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('rank_eq')}</span><input type="text" id="inpRank" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"></div>`;
+                html += `</div>`;
+
+                html += `<div class="section-card class-card"><div class="section-label class-label">${t('class_section')}</div>`;
+                html += `<div class="note-box">🔍 ${t('class_rule_intro')}</div>`;
+                html += `<div style="text-align:center;margin:10px 0;font-weight:700;">${t('class_ask_idx')} <select id="selClassIdx" style="padding:6px 14px;border-radius:30px;border:2px solid var(--input-border);background:var(--input-bg);color:var(--text);font-weight:600;font-family:inherit;font-size:1rem;cursor:pointer;"><option value="">--</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>`;
+                html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('class_ask_bounds')}</span><input type="text" id="inpClassLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;">${t('class_sep')}</span><input type="text" id="inpClassHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span style="font-weight:700;">${t('class_close')}</span></div>`;
+                html += `</div>`;
+
+                html += `<div class="section-card median-card"><div class="section-label median-label">${t('median_section')}</div>`;
+                html += `<div style="text-align:center;font-weight:700;margin-bottom:2px;">📝 ${t('midpoint_formula')}</div>`;
+                html += `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('midpoint_eq')}</span><span>(</span><input type="text" id="inpMidLow" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span class="operator">${opPlus}</span><input type="text" id="inpMidHigh" class="inline-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="numeric"><span>)</span><span class="operator">${opDiv}</span><span>2</span><span class="operator">${opEq}</span><input type="text" id="inpApproxMedian" class="inline-input wide-input" placeholder="?" dir="ltr" autocomplete="off" inputmode="decimal"></div>`;
+                html += `</div>`;
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                for (let i = 0; i < CLASS_COUNT; i++) inputRefs['cf' + i] = document.getElementById('inpCF' + i);
+                inputRefs['n'] = document.getElementById('inpN');
+                inputRefs['parity'] = document.getElementById('selParity');
+                inputRefs['rank'] = document.getElementById('inpRank');
+                inputRefs['classIdx'] = document.getElementById('selClassIdx');
+                inputRefs['classLow'] = document.getElementById('inpClassLow');
+                inputRefs['classHigh'] = document.getElementById('inpClassHigh');
+                inputRefs['midLow'] = document.getElementById('inpMidLow');
+                inputRefs['midHigh'] = document.getElementById('inpMidHigh');
+                inputRefs['approxMedian'] = document.getElementById('inpApproxMedian');
+            }
+
+            function updateParityUI() {
+                const parity = inputRefs['parity']?.value || '';
+                document.getElementById('oddRuleBlock').style.display = parity === 'odd' ? '' : 'none';
+                document.getElementById('evenRuleBlock').style.display = parity === 'even' ? '' : 'none';
+            }
+
+            function clearInputs() {
+                for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].value = (inputRefs[k].tagName === 'SELECT' ? '' : '');
+                updateParityUI();
+            }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearInputs();
+                if (inputRefs['parity']) inputRefs['parity'].addEventListener('change', updateParityUI);
+            }
+
+            function generateNewQuestion() {
+                const data = generateNumbers();
+                currentClasses = data.classes;
+                currentFreqs = data.freqs;
+                currentCF = data.cf;
+                currentN = data.totalN;
+                currentIsOdd = data.isOdd;
+                currentMedianRank = data.medianRank;
+                currentMedianClassIdx = data.medianClassIdx;
+                currentApproxMedian = data.approxMedian;
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => { if (inputRefs['cf0']) inputRefs['cf0'].focus(); }, 60);
+            }
+
+            function setInputsDisabled(disabled) { for (let k in inputRefs) if (inputRefs[k]) inputRefs[k].disabled = disabled; }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML = `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function formatMedian(val) { if (Number.isInteger(val)) return val.toString(); const r = Math.round(val * 100) / 100; return r.toFixed(2).replace(/\.?0+$/, ''); }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                const parity = inputRefs['parity']?.value || '';
+                if (!parity) { messageEl.innerHTML = t('parity_required');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+                const classIdxStr = inputRefs['classIdx']?.value || '';
+                if (!classIdxStr) { messageEl.innerHTML = '⚠️ الرجاء اختيار رقم الفئة';
+                    messageEl.style.color = 'var(--accent3)'; return; }
+                const isEmpty = (id) => !(inputRefs[id]?.value.trim());
+                let allFilled = true;
+                for (let i = 0; i < CLASS_COUNT; i++) if (isEmpty('cf' + i)) allFilled = false;
+                if (isEmpty('n') || isEmpty('rank') || isEmpty('classLow') || isEmpty('classHigh') || isEmpty('midLow') || isEmpty('midHigh') || isEmpty('approxMedian')) allFilled = false;
+                if (!allFilled) { messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+                const getInt = (id) => Number(inputRefs[id]?.value.trim());
+                const getNum = (id) => Number(inputRefs[id]?.value.trim());
+                let valid = true;
+                for (let i = 0; i < CLASS_COUNT; i++) if (!Number.isInteger(getInt('cf' + i))) valid = false;
+                if (!Number.isInteger(getInt('n')) || !Number.isInteger(getInt('rank')) || !Number.isInteger(getInt('classLow')) || !Number.isInteger(getInt('classHigh')) || !Number.isInteger(getInt('midLow')) || !Number.isInteger(getInt('midHigh')) || isNaN(getNum('approxMedian'))) valid = false;
+                if (!valid) { messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+                let correct = true;
+                for (let i = 0; i < CLASS_COUNT; i++) if (getInt('cf' + i) !== currentCF[i]) correct = false;
+                if (getInt('n') !== currentN) correct = false;
+                if ((parity === 'odd') !== currentIsOdd) correct = false;
+                if (getInt('rank') !== currentMedianRank) correct = false;
+                if (Number(classIdxStr) !== currentMedianClassIdx + 1) correct = false;
+                const medCls = currentClasses[currentMedianClassIdx];
+                if (getInt('classLow') !== medCls.low || getInt('classHigh') !== medCls.high) correct = false;
+                if (getInt('midLow') !== medCls.low || getInt('midHigh') !== medCls.high) correct = false;
+                if (Math.abs(getNum('approxMedian') - currentApproxMedian) > 0.01) correct = false;
+                attempts++;
+                if (correct) { score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct'); } else { const parityStr = currentIsOdd ? t('odd_label') : t('even_label');
+                    messageEl.innerHTML = t('wrong', { cf: currentCF.join(', '), n: currentN, parity: parityStr, rank: currentMedianRank, clow: medCls.low, chigh: medCls.high, median: formatMedian(currentApproxMedian) });
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect'); }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => { if (inputRefs['cf0']) inputRefs['cf0'].focus(); }, 40);
+            }
+
+            function onManualNewQuestion() { if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => { if (inputRefs['cf0']) inputRefs['cf0'].focus(); }, 40); }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => { if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); } });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+            btnToggleExample.addEventListener('click', () => { examplePanel.classList.toggle('visible');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t('example_toggle_show'); });
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => { if (inputRefs['cf0']) inputRefs['cf0'].focus(); }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>
