@@ -1915,6 +1915,138 @@ const exercises = [
             description: 'Simplified interactive exercise to calculate probability from a grouped frequency table step by step. Covers single probability, complementary event, and union of two classes. 10 attempts with points.'
         }
     }
+},
+{
+    id: 'ex-059',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'Variance',
+    description: 'Exercice interactif très simplifié pour calculer la variance à partir d’un tableau d’effectifs, étape par étape. Comprend le calcul de la moyenne, les écarts, leurs carrés, la multiplication par les effectifs, et la somme/division finale. 10 essais avec points.',
+    difficulty: 'hard',
+    class: '2ème année secondaire',
+    cardColor: '#be123c',
+    cardColorDark: '#fb7185',
+    link: 'الاحصاء - التباين.html',
+    version: '1.0',
+    tags: ['Statistiques', 'Variance', 'écart', 'carré', 'moyenne', 'effectifs', 'tableau'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-12',
+    estimatedTime: '10-15 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['variance', 'écart', 'moyenne', 'carré', 'effectif', 'tableau statistique', 'formule de la variance', '2ème secondaire'],
+    thumbnail: '📊',
+    translations: {
+        ar: {
+            name: 'التباين',
+            description: 'تمرين تفاعلي مبسط جداً لحساب التباين من جدول التكرارات خطوة بخطوة. يشمل حساب المعدل، الانحرافات، التربيع، الضرب في التكرارات، والجمع والقسمة النهائية. 10 محاولات مع نقاط.'
+        },
+        en: {
+            name: 'Variance',
+            description: 'Very simplified interactive exercise to calculate variance from a frequency table step by step. Includes mean calculation, deviations, squaring, multiplying by frequencies, and final summation/division. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-060',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'Variance 2 (classes)',
+    description: 'Exercice interactif très simplifié pour calculer la variance à partir d\'un tableau de classes, étape par étape. Comprend le calcul des centres, la moyenne, les écarts, leurs carrés, la multiplication par les effectifs et la division finale. Deux modes : centres donnés ou à trouver. 10 essais avec points.',
+    difficulty: 'hard',
+    class: '2ème année secondaire',
+    cardColor: '#be123c',
+    cardColorDark: '#fb7185',
+    link: 'الاحصاء - التباين 2.html',
+    version: '1.0',
+    tags: ['Statistiques', 'Variance', 'classes', 'centre de classe', 'écart', 'carré', 'moyenne', 'effectifs', 'tableau', '2ème secondaire'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-12',
+    estimatedTime: '12-18 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['variance', 'classes', 'centre de classe', 'écart', 'moyenne', 'carré', 'effectif', 'tableau statistique', 'formule de la variance', '2ème secondaire'],
+    thumbnail: '📊',
+    translations: {
+        ar: {
+            name: 'التباين 2 (فئات)',
+            description: 'تمرين تفاعلي مبسط جداً لحساب التباين من جدول فئات إحصائية خطوة بخطوة. يتناول حساب مراكز الفئات، المعدل، الانحرافات، التربيع، الضرب في التكرارات، والجمع والقسمة النهائية. نمطان: مراكز معطاة أو استخراج المراكز أولاً. 10 محاولات مع نقاط.'
+        },
+        en: {
+            name: 'Variance 2 (Grouped Data)',
+            description: 'Very simplified interactive exercise to calculate variance from a grouped frequency table step by step. Covers class midpoints, mean, deviations, squaring, multiplying by frequencies, and final summation/division. Two modes: given midpoints or find them first. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-061',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'Écart-type',
+    description: 'Exercice interactif très simplifié pour calculer l\'écart-type à partir d\'un tableau d\'effectifs, étape par étape. Couvre la moyenne, les écarts, les carrés, la multiplication par les effectifs, la variance puis la racine carrée. Quatre modes variés, adapté aux élèves de 2ème année secondaire. 10 essais avec points.',
+    difficulty: 'hard',
+    class: '2ème année secondaire',
+    cardColor: '#db2777',
+    cardColorDark: '#f472b6',
+    link: 'الاحصاء - الانحراف المعياري.html',
+    version: '1.0',
+    tags: ['Statistiques', 'Écart-type', 'Variance', 'racine carrée', 'σ', 'sigma', 'effectifs', 'tableau', 'étapes', '2ème secondaire'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-12',
+    estimatedTime: '10-15 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['écart-type', 'σ', 'variance', 'racine', 'moyenne', 'écarts', 'carré', 'effectif', 'formule de l\'écart-type', '2ème secondaire'],
+    thumbnail: '📊',
+    translations: {
+        ar: {
+            name: 'الانحراف المعياري',
+            description: 'تمرين تفاعلي مبسط جداً لحساب الانحراف المعياري من جدول التكرارات خطوة بخطوة. يغطي حساب المعدل، الانحرافات، التربيع، الضرب في التكرارات، التباين، ثم الجذر التربيعي للوصول إلى σ. أربعة أنماط متنوعة، مع إرشادات مفصلة، مناسب لتلاميذ الثانية ثانوي. 10 محاولات مع نقاط.'
+        },
+        en: {
+            name: 'Standard Deviation',
+            description: 'Very simplified interactive exercise to calculate the standard deviation from a frequency table step by step. Covers mean, deviations, squaring, multiplying by frequencies, variance, then square root to obtain σ. Four varied modes, suitable for 2nd year secondary students. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-062',
+    section: 'الإحصاء',
+    sectionIcon: '📊',
+    name: 'Écart-type 2 (classes)',
+    description: 'Exercice interactif très simplifié pour calculer l\'écart-type à partir d\'un tableau de classes, étape par étape. Couvre le calcul des centres, la moyenne, les écarts, les carrés, la multiplication par les effectifs, la variance puis la racine carrée. Deux modes : centres donnés ou à trouver, avec questions variées, adapté aux élèves de 2ème année secondaire. 10 essais avec points.',
+    difficulty: 'hard',
+    class: '2ème année secondaire',
+    cardColor: '#c026d3',
+    cardColorDark: '#e879f9',
+    link: 'الاحصاء - الانحراف المعياري 2.html',
+    version: '1.0',
+    tags: ['Statistiques', 'Écart-type', 'classes', 'centre de classe', 'σ', 'sigma', 'racine carrée', 'effectifs', 'tableau', 'étapes', '2ème secondaire'],
+    mainLanguage: 'Français',
+    availableTranslations: ['Français', 'العربية', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-05-12',
+    estimatedTime: '12-18 دقيقة',
+    questionCount: 10,
+    curriculum: 'المرحلة الثانوية',
+    keywords: ['écart-type', 'σ', 'variance', 'classes', 'centre de classe', 'écarts', 'carré', 'effectif', 'racine', 'formule de l\'écart-type', '2ème secondaire'],
+    thumbnail: '📊',
+    translations: {
+        ar: {
+            name: 'الانحراف المعياري 2 (فئات)',
+            description: 'تمرين تفاعلي مبسط جداً لحساب الانحراف المعياري من جدول فئات إحصائية خطوة بخطوة. يغطي حساب مراكز الفئات، المعدل، الانحرافات، التربيع، الضرب في التكرارات، التباين، ثم الجذر التربيعي للوصول إلى σ. نمطان: مراكز معطاة أو استخراج المراكز أولاً، مع تنويع الأسئلة، مناسب لتلاميذ الثانية ثانوي. 10 محاولات مع نقاط.'
+        },
+        en: {
+            name: 'Standard Deviation 2 (Grouped Data)',
+            description: 'Very simplified interactive exercise to calculate the standard deviation from a grouped frequency table step by step. Covers class midpoints, mean, deviations, squaring, multiplying by frequencies, variance, then square root to obtain σ. Two modes: given midpoints or find them first, with varied questions, suitable for 2nd year secondary students. 10 attempts with points.'
+        }
+    }
 }
 ];
 
@@ -1960,19 +2092,22 @@ const classTranslations = {
         'السابعة أساسي': 'السابعة أساسي',
         'الثامنة أساسي': 'الثامنة أساسي',
         'التاسعة أساسي': 'التاسعة أساسي',
-        '1ère année secondaire': 'الأولى ثانوي'
+        '1ère année secondaire': 'الأولى ثانوي',
+        '2ème année secondaire': 'الثانية ثانوي'
     },
     fr: {
         'السابعة أساسي': '7ème année',
         'الثامنة أساسي': '8ème année',
         'التاسعة أساسي': '9ème année',
-        '1ère année secondaire': '1ère année secondaire'
+        '1ère année secondaire': '1ère année secondaire',
+        '2ème année secondaire': '2ème année secondaire'
     },
     en: {
         'السابعة أساسي': '7th Grade',
         'الثامنة أساسي': '8th Grade',
         'التاسعة أساسي': '9th Grade',
-        '1ère année secondaire': '10th Grade / First Year Secondary'
+        '1ère année secondaire': 'First Year Secondary',
+        '2ème année secondaire': 'Second Year Secondary'
     }
 };
 

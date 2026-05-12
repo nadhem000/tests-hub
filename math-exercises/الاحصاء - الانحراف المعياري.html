@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمرين الانحراف المعياري | لوحة التمارين</title>
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --bg2: #d9e2ec;
+            --surface: #ffffff;
+            --surface2: #f4f7fb;
+            --surface3: #e8eef6;
+            --text: #0b2b3b;
+            --text2: #3a5a78;
+            --text3: #5a7a98;
+            --border: #cbdde9;
+            --border2: #dce6ef;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+            --accent: #7c3aed;
+            --accent2: #1f8a4c;
+            --accent3: #d9443a;
+            --tag-bg: #ede9fe;
+            --tag-text: #4c1d95;
+            --input-bg: #fffef7;
+            --input-border: #90a4c3;
+            --section-header-bg: #e9f0f9;
+            --section-header-text: #1f3a4b;
+            --toggle-bg: #dce4f0;
+            --scrollbar-thumb: #c1cddb;
+            --scrollbar-track: transparent;
+            --table-border: #cbdde9;
+            --table-header-bg: #e9f0f9;
+            --table-cell-bg: #f4f7fb;
+            --table-stripe-bg: #eef2f7;
+            --calc-line-bg: #fffef9;
+            --calc-line-border: #bcc9da;
+            --highlight-mean: #7c3aed;
+            --highlight-mean-light: rgba(124, 58, 237, 0.07);
+            --highlight-dev: #d97706;
+            --highlight-dev-light: rgba(217, 119, 6, 0.07);
+            --highlight-sq: #059669;
+            --highlight-sq-light: rgba(5, 150, 105, 0.07);
+            --highlight-wsq: #0891b2;
+            --highlight-wsq-light: rgba(8, 145, 178, 0.07);
+            --highlight-var: #be123c;
+            --highlight-var-light: rgba(190, 18, 60, 0.07);
+            --highlight-sigma: #b45309;
+            --highlight-sigma-light: rgba(180, 83, 9, 0.08);
+            --prefill-bg: #fef9e7;
+            --prefill-border: #e7c45d;
+            --example-bg: #fef9e6;
+            --example-border: #e7c45d;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1a2332;
+            --surface: #1e293b;
+            --surface2: #1a2332;
+            --surface3: #243044;
+            --text: #e2e8f0;
+            --text2: #bcc8d6;
+            --text3: #8f9eb2;
+            --border: #334155;
+            --border2: #2d3a4a;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+            --accent: #a78bfa;
+            --accent2: #4ade80;
+            --accent3: #f87171;
+            --tag-bg: #2d1f5e;
+            --tag-text: #c4b5fd;
+            --input-bg: #1a2332;
+            --input-border: #475569;
+            --section-header-bg: #1e293b;
+            --section-header-text: #e2e8f0;
+            --toggle-bg: #334155;
+            --scrollbar-thumb: #475569;
+            --scrollbar-track: #1e293b;
+            --table-border: #334155;
+            --table-header-bg: #1e293b;
+            --table-cell-bg: #1a2332;
+            --table-stripe-bg: #141e2e;
+            --calc-line-bg: #1a2332;
+            --calc-line-border: #475569;
+            --highlight-mean: #a78bfa;
+            --highlight-mean-light: rgba(167, 139, 250, 0.10);
+            --highlight-dev: #fbbf24;
+            --highlight-dev-light: rgba(251, 191, 36, 0.10);
+            --highlight-sq: #34d399;
+            --highlight-sq-light: rgba(52, 211, 153, 0.10);
+            --highlight-wsq: #22d3ee;
+            --highlight-wsq-light: rgba(34, 211, 238, 0.10);
+            --highlight-var: #fb7185;
+            --highlight-var-light: rgba(251, 113, 133, 0.10);
+            --highlight-sigma: #f59e0b;
+            --highlight-sigma-light: rgba(245, 158, 11, 0.12);
+            --prefill-bg: #2d2a1a;
+            --prefill-border: #9b8130;
+            --example-bg: #2d2a1a;
+            --example-border: #9b8130;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 70%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.4s, color 0.35s;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        .dashboard-header {
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto 16px;
+            background: var(--surface);
+            border-radius: 30px;
+            padding: 14px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.35s;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .logo-area .icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            background: var(--surface3);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon:active {
+            transform: scale(0.93);
+        }
+        .lang-select {
+            padding: 7px 12px;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+            min-width: 100px;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .exercise-wrapper {
+            width: 100%;
+            max-width: 1060px;
+            background: var(--surface);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: background 0.35s;
+        }
+        .exercise-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .exercise-subtitle {
+            text-align: center;
+            color: var(--text2);
+            margin-bottom: 14px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--section-header-bg);
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .example-toggle {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 60px;
+            padding: 8px 22px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 auto 14px;
+            display: block;
+            color: var(--text);
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .example-panel {
+            background: var(--example-bg);
+            border: 2px solid var(--example-border);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            display: none;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+        .example-panel.visible {
+            display: block;
+        }
+        .mode-badge {
+            display: inline-block;
+            background: var(--highlight-sigma-light);
+            color: var(--highlight-sigma);
+            font-weight: 800;
+            padding: 3px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .stats-table-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--table-border);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.35s;
+        }
+        .stats-table .header-cell {
+            background: var(--table-header-bg);
+            color: var(--section-header-text);
+            padding: 11px 14px;
+            border-left: 1px solid var(--table-border);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .stats-table .value-cell {
+            background: var(--table-cell-bg);
+            color: var(--text);
+            padding: 11px 14px;
+            border-left: 1px solid var(--table-border);
+            min-width: 52px;
+            transition: background 0.35s;
+        }
+        .stats-table .value-cell:nth-child(even) {
+            background: var(--table-stripe-bg);
+        }
+        .stats-table .index-cell {
+            background: var(--surface2);
+            color: var(--text3);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 9px 12px;
+            border-left: 1px solid var(--table-border);
+        }
+        .value-cell.given-highlight {
+            background: var(--highlight-mean-light) !important;
+            color: var(--highlight-mean);
+            font-weight: 800;
+            box-shadow: inset 0 0 0 2px var(--highlight-mean);
+        }
+        .question-block {
+            margin-top: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 16px 18px;
+            border-radius: 28px;
+            line-height: 2;
+            border: 1px solid var(--border);
+        }
+        .section-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid var(--border2);
+            box-shadow: var(--shadow-sm);
+            transition: background 0.35s;
+        }
+        .section-card.mean-card {
+            border-right: 4px solid var(--highlight-mean);
+            background: var(--highlight-mean-light);
+        }
+        .section-card.dev-card {
+            border-right: 4px solid var(--highlight-dev);
+            background: var(--highlight-dev-light);
+        }
+        .section-card.sq-card {
+            border-right: 4px solid var(--highlight-sq);
+            background: var(--highlight-sq-light);
+        }
+        .section-card.wsq-card {
+            border-right: 4px solid var(--highlight-wsq);
+            background: var(--highlight-wsq-light);
+        }
+        .section-card.var-card {
+            border-right: 4px solid var(--highlight-var);
+            background: var(--highlight-var-light);
+        }
+        .section-card.sigma-card {
+            border-right: 4px solid var(--highlight-sigma);
+            background: var(--highlight-sigma-light);
+        }
+        .section-label {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+        .section-label.mean-label {
+            color: var(--highlight-mean);
+            background: var(--highlight-mean-light);
+        }
+        .section-label.dev-label {
+            color: var(--highlight-dev);
+            background: var(--highlight-dev-light);
+        }
+        .section-label.sq-label {
+            color: var(--highlight-sq);
+            background: var(--highlight-sq-light);
+        }
+        .section-label.wsq-label {
+            color: var(--highlight-wsq);
+            background: var(--highlight-wsq-light);
+        }
+        .section-label.var-label {
+            color: var(--highlight-var);
+            background: var(--highlight-var-light);
+        }
+        .section-label.sigma-label {
+            color: var(--highlight-sigma);
+            background: var(--highlight-sigma-light);
+        }
+        .note-box {
+            font-size: 0.9rem;
+            background: var(--surface3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 8px 0;
+            color: var(--text2);
+            font-weight: 500;
+        }
+        .calc-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 5px;
+            background: var(--calc-line-bg);
+            border: 2px dashed var(--calc-line-border);
+            border-radius: 40px;
+            padding: 6px 14px;
+            margin: 6px 0;
+            direction: ltr;
+            white-space: nowrap;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .calc-line .operator {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 3px;
+        }
+        .calc-line .num-display {
+            font-weight: 800;
+            background: var(--surface3);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 1.05rem;
+        }
+        .calc-line .num-display.mean-num {
+            color: var(--highlight-mean);
+        }
+        .calc-line .num-display.dev-num {
+            color: var(--highlight-dev);
+        }
+        .calc-line .num-display.sq-num {
+            color: var(--highlight-sq);
+        }
+        .calc-line .num-display.wsq-num {
+            color: var(--highlight-wsq);
+        }
+        .calc-line .num-display.var-num {
+            color: var(--highlight-var);
+        }
+        .calc-line .num-display.sigma-num {
+            color: var(--highlight-sigma);
+        }
+        .inline-input {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 32px;
+            text-align: center;
+            padding: 3px 2px;
+            margin: 0 3px;
+            width: 3.2em;
+            min-width: 54px;
+            max-width: 110px;
+            outline: none;
+            transition: all 0.15s;
+            color: var(--text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+            line-height: 1.4;
+        }
+        .inline-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+        .inline-input.prefilled {
+            background: var(--prefill-bg);
+            border-color: var(--prefill-border);
+            color: var(--text2);
+            font-weight: 700;
+            cursor: default;
+        }
+        .wide-input {
+            width: 4em;
+            min-width: 66px;
+        }
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .btn {
+            border: none;
+            padding: 11px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: inherit;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-generate {
+            background: #2c3e66;
+        }
+        .btn-check {
+            background: var(--accent2);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            background: var(--surface2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+        }
+        .message {
+            margin-top: 16px;
+            font-size: 1.05rem;
+            min-height: 50px;
+            font-weight: 500;
+            text-align: center;
+            background: var(--surface2);
+            border-radius: 60px;
+            padding: 10px 16px;
+            transition: 0.1s;
+            border: 1px solid var(--border);
+            color: var(--text);
+            line-height: 2;
+        }
+        .hint-text {
+            font-size: 0.95rem;
+            color: var(--text2);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .formula-box {
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--highlight-sigma);
+            background: var(--highlight-sigma-light);
+            padding: 10px 18px;
+            border-radius: 30px;
+            margin: 8px 0;
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px dashed var(--highlight-sigma);
+        }
+        .dashboard-footer {
+            width: 100%;
+            max-width: 1060px;
+            margin: 8px auto 8px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: background 0.35s;
+            font-size: 0.9rem;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 3px;
+        }
+        .footer-col a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .footer-col p {
+            color: var(--text2);
+            margin: 0;
+        }
+        .host-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 10px 14px;
+            }
+            .exercise-wrapper {
+                padding: 18px 14px;
+            }
+            .dashboard-footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer-col {
+                align-items: center;
+            }
+            .question-block {
+                font-size: 0.95rem;
+                padding: 12px 8px;
+            }
+            .section-card {
+                padding: 10px 8px;
+            }
+            .inline-input {
+                font-size: 0.95rem;
+                width: 2.8em;
+                min-width: 46px;
+            }
+            .calc-line {
+                font-size: 0.9rem;
+                padding: 4px 8px;
+                border-radius: 30px;
+            }
+            .calc-line .operator {
+                font-size: 1.1rem;
+            }
+            .section-label {
+                font-size: 0.9rem;
+            }
+            .stats-table {
+                font-size: 0.9rem;
+            }
+            .stats-table .header-cell,
+            .stats-table .value-cell {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <span class="icon">🎯</span>
+            <span data-i18n="app_title">لوحة التمارين</span>
+        </div>
+        <div class="header-controls">
+            <button class="btn-icon" id="btnSound" title="الصوت" aria-label="تبديل الصوت">🔊</button>
+            <select class="lang-select" id="langSelect" aria-label="اللغة">
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
+            <button class="btn-icon" id="btnDarkMode" title="الوضع الليلي / النهاري">🌙</button>
+            <button class="btn-icon" id="btnBack" title="العودة إلى لوحة التمارين">←</button>
+        </div>
+    </header>
+
+    <main class="exercise-wrapper">
+        <h1 class="exercise-title">
+            <span>📊</span> <span data-i18n="exercise_heading">الانحراف المعياري</span> <span>📐</span>
+        </h1>
+        <div class="exercise-subtitle" data-i18n="exercise_subtitle">حساب الانحراف المعياري من جدول التكرارات – خطوة بخطوة</div>
+
+        <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
+        <div class="example-panel" id="examplePanel">
+            <strong>📋 مثال – جدول قِيَم وتكرارات:</strong><br>
+            القيم xᵢ: <strong>6</strong> ، <strong>10</strong> ، <strong>14</strong><br>
+            التكرارات fᵢ: <strong>2</strong> ، <strong>4</strong> ، <strong>2</strong><br><br>
+            <strong>🔢 1 – حساب المعدل x̄:</strong><br>
+            &nbsp;&nbsp;جداءات: 6×2=<strong>12</strong> ، 10×4=<strong>40</strong> ، 14×2=<strong>28</strong><br>
+            &nbsp;&nbsp;المجموع: 12+40+28 = <strong>80</strong><br>
+            &nbsp;&nbsp;التكرار الجملي: 2+4+2 = <strong>8</strong><br>
+            &nbsp;&nbsp;المعدل: 80 ÷ 8 = <strong>10</strong><br><br>
+            <strong>📐 2 – حساب الانحرافات (xᵢ − x̄):</strong><br>
+            &nbsp;&nbsp;6 − 10 = <strong>−4</strong> &nbsp;|&nbsp; 10 − 10 = <strong>0</strong> &nbsp;|&nbsp; 14 − 10 = <strong>+4</strong><br><br>
+            <strong>² 3 – تربيع الانحرافات (xᵢ − x̄)²:</strong><br>
+            &nbsp;&nbsp;(−4)² = <strong>16</strong> &nbsp;|&nbsp; (0)² = <strong>0</strong> &nbsp;|&nbsp; (4)² = <strong>16</strong><br><br>
+            <strong>✖️ 4 – ضرب في التكرارات (xᵢ − x̄)² × fᵢ:</strong><br>
+            &nbsp;&nbsp;16×2 = <strong>32</strong> &nbsp;|&nbsp; 0×4 = <strong>0</strong> &nbsp;|&nbsp; 16×2 = <strong>32</strong><br><br>
+            <strong>Σ 5 – جمع ثم قسمة (التباين):</strong><br>
+            &nbsp;&nbsp;المجموع: 32+0+32 = <strong>64</strong><br>
+            &nbsp;&nbsp;التباين V: 64 ÷ 8 = <strong>8</strong><br><br>
+            <strong>√ 6 – الانحراف المعياري σ:</strong><br>
+            &nbsp;&nbsp;σ = √V = √8 ≈ <strong>2.83</strong>
+        </div>
+
+        <div class="stats-table-container" id="statsTableContainer"></div>
+        <div class="question-block" id="questionContainer"></div>
+
+        <div class="action-row">
+            <button class="btn btn-generate" id="btnGenerate" data-i18n="new_question">🔄 سؤال جديد</button>
+            <button class="btn btn-check" id="btnCheck" data-i18n="check">✓ تحقق</button>
+        </div>
+
+        <div class="hint-text" data-i18n="hint">📌 املأ جميع الفراغات خطوة بخطوة. تذكّر: σ = √[Σ[(xᵢ − x̄)² × fᵢ] ÷ Σfᵢ]</div>
+        <div id="messageBox" class="message"></div>
+
+        <div class="stats">
+            <span>📊 <span data-i18n="attempts_label">المحاولات</span>: <span id="attemptsCount">0</span> / 10</span>
+            <span>🏆 <span data-i18n="score_label">النقاط</span>: <span id="scoreCount">0</span></span>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-col">
+            <h4 data-i18n="footer_links">روابط</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+                <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_version">الإصدار</h4>
+            <p>v1.0.0</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-i18n="footer_dev">تطوير</h4>
+            <p>ماجري زياد</p>
+            <p class="host-info" data-i18n="footer_host">مستضاف على Netlify و GitHub</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const questionContainer = document.getElementById('questionContainer');
+            const statsTableContainer = document.getElementById('statsTableContainer');
+            const checkBtn = document.getElementById('btnCheck');
+            const generateBtn = document.getElementById('btnGenerate');
+            const messageEl = document.getElementById('messageBox');
+            const attemptsSpan = document.getElementById('attemptsCount');
+            const scoreSpan = document.getElementById('scoreCount');
+            const btnDarkMode = document.getElementById('btnDarkMode');
+            const btnSound = document.getElementById('btnSound');
+            const langSelect = document.getElementById('langSelect');
+            const btnBack = document.getElementById('btnBack');
+            const btnToggleExample = document.getElementById('btnToggleExample');
+            const examplePanel = document.getElementById('examplePanel');
+
+            const ROW_COUNT = 3;
+            const ALL_FIELD_IDS = [
+                'prod0', 'prod1', 'prod2', 'sumProd', 'total', 'mean',
+                'dev0', 'dev1', 'dev2', 'sq0', 'sq1', 'sq2',
+                'wsq0', 'wsq1', 'wsq2', 'sumWsq', 'variance', 'sigma'
+            ];
+
+            let currentValues = [];
+            let currentFreqs = [];
+            let currentProducts = [];
+            let currentSumProd;
+            let currentTotalFreq;
+            let currentMean;
+            let currentDeviations = [];
+            let currentSqDevs = [];
+            let currentWeightedSq = [];
+            let currentSumWSq;
+            let currentVariance;
+            let currentSigma;
+            let currentPrefilled = new Set();
+            let currentMode = 0;
+            let attempts = 0,
+                score = 0,
+                gameActive = true,
+                isSwitchingRound = false;
+            let inputRefs = {};
+
+            const translations = {
+                ar: {
+                    app_title: 'لوحة التمارين',
+                    exercise_heading: 'الانحراف المعياري',
+                    exercise_subtitle: 'حساب الانحراف المعياري من جدول التكرارات – خطوة بخطوة',
+                    new_question: '🔄 سؤال جديد',
+                    check: '✓ تحقق',
+                    hint: '📌 املأ جميع الفراغات خطوة بخطوة. تذكّر: σ = √[Σ[(xᵢ − x̄)² × fᵢ] ÷ Σfᵢ]',
+                    attempts_label: 'المحاولات',
+                    score_label: 'النقاط',
+                    values_header: 'القيم (xᵢ)',
+                    freqs_header: 'التكرار (fᵢ)',
+                    col_label: 'العمود',
+                    mode_badge_full: '📝 املأ جميع المراحل بنفسك',
+                    mode_badge_prods: '📝 الجداءات معطاة – أكمل الباقي',
+                    mode_badge_mean: '📝 المعدل معطى – أكمل الانحرافات فما فوق',
+                    mode_badge_sigma_only: '🎯 احسب الانحراف المعياري σ فقط',
+                    step1_label: '🔢 أولاً: حساب المعدل x̄ (الوسط الحسابي)',
+                    step1_rule: 'المعدل = (مجموع xᵢ × fᵢ) ÷ (مجموع fᵢ)',
+                    step2_label: '📐 ثانياً: حساب الانحرافات (xᵢ − x̄)',
+                    step2_rule: 'انحراف كل قيمة = القيمة − المعدل. قد يكون الانحراف سالباً.',
+                    step3_label: '² ثالثاً: تربيع الانحرافات (xᵢ − x̄)²',
+                    step3_rule: 'ربّع كل انحراف. المربع دائماً موجب.',
+                    step4_label: '✖️ رابعاً: ضرب المربعات في التكرارات (xᵢ − x̄)² × fᵢ',
+                    step4_rule: 'اضرب كل مربع انحراف في تكراره.',
+                    step5_label: 'Σ خامساً: جمع ثم قسمة (التباين V)',
+                    step5_rule: 'اجمع كل الجداءات السابقة ثم اقسم على التكرار الجملي.',
+                    step6_label: '√ سادساً: الانحراف المعياري σ',
+                    step6_rule: 'الانحراف المعياري هو الجذر التربيعي للتباين: σ = √V',
+                    prod_line: 'جداء',
+                    sum_prod_line: 'مجموع الجداءات =',
+                    total_line: 'التكرار الجملي =',
+                    mean_line: 'المعدل x̄ =',
+                    dev_line: 'انحراف',
+                    sq_line: 'مربع الانحراف',
+                    wsq_line: 'المربع × التكرار',
+                    sum_wsq_line: 'مجموع (المربع × التكرار) =',
+                    variance_line: 'التباين V =',
+                    sigma_line: 'الانحراف المعياري σ = √V =',
+                    variance_formula: 'V = Σ[(xᵢ − x̄)² × fᵢ] ÷ Σfᵢ',
+                    sigma_formula: 'σ = √V',
+                    fill_all: '⚠️ الرجاء إكمال جميع الفراغات المطلوبة',
+                    invalid_numbers: '❌ يجب إدخال أعداد صحيحة أو عشرية صالحة في جميع الفراغات',
+                    correct: '✅ إجابة صحيحة! +1 نقطة',
+                    wrong_title: '❌ خطأ!',
+                    wrong_mean: '📊 المعدل الصحيح: {mean}',
+                    wrong_devs: '📐 الانحرافات: {devs}',
+                    wrong_sqs: '² المربعات: {sqs}',
+                    wrong_wsqs: '✖️ المربعات×التكرار: {wsqs}',
+                    wrong_var: 'Σ التباين V = {sumwsq} ÷ {total} = {variance}',
+                    wrong_sigma: '√ الانحراف المعياري σ = √{variance} = {sigma}',
+                    round_over: '🏁 انتهت الجولة! النتيجة: {score}/10 🏁',
+                    round_restart: '⏳ الجولة انتهت، جولة جديدة قادمة...',
+                    figure_changed: '🔄 تم تغيير الأعداد (لا تحتسب محاولة)',
+                    footer_links: 'روابط',
+                    footer_terms: 'شروط الاستخدام',
+                    footer_privacy: 'سياسة الخصوصية',
+                    footer_version: 'الإصدار',
+                    footer_dev: 'تطوير',
+                    footer_host: 'مستضاف على Netlify و GitHub',
+                    sound_on_title: 'الصوت (مفعل)',
+                    sound_off_title: 'الصوت (معطل)',
+                    back_title: 'العودة إلى لوحة التمارين',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_sqrt: '√',
+                    example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
+                    example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)',
+                    prefilled_note: '🟡 القيم الصفراء معطاة مسبقاً (لا تحتاج لتعديلها)',
+                },
+                fr: {
+                    app_title: 'Tableau d\'exercices',
+                    exercise_heading: 'Écart-type',
+                    exercise_subtitle: 'Calcul de l\'écart-type à partir d\'un tableau d\'effectifs – pas à pas',
+                    new_question: '🔄 Nouvelle question',
+                    check: '✓ Vérifier',
+                    hint: '📌 Remplissez tous les champs pas à pas. Rappel : σ = √[Σ[(xᵢ − x̄)² × fᵢ] ÷ Σfᵢ]',
+                    attempts_label: 'Essais',
+                    score_label: 'Points',
+                    values_header: 'Valeurs (xᵢ)',
+                    freqs_header: 'Effectif (fᵢ)',
+                    col_label: 'Colonne',
+                    mode_badge_full: '📝 Remplissez toutes les étapes',
+                    mode_badge_prods: '📝 Produits donnés – complétez le reste',
+                    mode_badge_mean: '📝 Moyenne donnée – complétez les écarts et plus',
+                    mode_badge_sigma_only: '🎯 Calculez uniquement l\'écart-type σ',
+                    step1_label: '🔢 1. Calcul de la moyenne x̄',
+                    step1_rule: 'Moyenne = (somme xᵢ × fᵢ) ÷ (somme fᵢ)',
+                    step2_label: '📐 2. Calcul des écarts (xᵢ − x̄)',
+                    step2_rule: 'Écart = valeur − moyenne. Peut être négatif.',
+                    step3_label: '² 3. Élever les écarts au carré (xᵢ − x̄)²',
+                    step3_rule: 'Le carré est toujours positif.',
+                    step4_label: '✖️ 4. Multiplier par les effectifs (xᵢ − x̄)² × fᵢ',
+                    step4_rule: 'Multipliez chaque carré par son effectif.',
+                    step5_label: 'Σ 5. Somme puis division (variance V)',
+                    step5_rule: 'Additionnez puis divisez par l\'effectif total.',
+                    step6_label: '√ 6. Écart-type σ',
+                    step6_rule: 'L\'écart-type est la racine carrée de la variance : σ = √V',
+                    prod_line: 'Produit',
+                    sum_prod_line: 'Somme des produits =',
+                    total_line: 'Effectif total =',
+                    mean_line: 'Moyenne x̄ =',
+                    dev_line: 'Écart',
+                    sq_line: 'Carré écart',
+                    wsq_line: 'Carré × eff.',
+                    sum_wsq_line: 'Somme (carré × eff.) =',
+                    variance_line: 'Variance V =',
+                    sigma_line: 'Écart-type σ = √V =',
+                    variance_formula: 'V = Σ[(xᵢ − x̄)² × fᵢ] ÷ Σfᵢ',
+                    sigma_formula: 'σ = √V',
+                    fill_all: '⚠️ Veuillez remplir tous les champs',
+                    invalid_numbers: '❌ Nombres entiers ou décimaux valides uniquement',
+                    correct: '✅ Bonne réponse ! +1 point',
+                    wrong_title: '❌ Faux !',
+                    wrong_mean: '📊 Moyenne correcte : {mean}',
+                    wrong_devs: '📐 Écarts : {devs}',
+                    wrong_sqs: '² Carrés : {sqs}',
+                    wrong_wsqs: '✖️ Carrés×eff. : {wsqs}',
+                    wrong_var: 'Σ Variance V = {sumwsq} ÷ {total} = {variance}',
+                    wrong_sigma: '√ Écart-type σ = √{variance} = {sigma}',
+                    round_over: '🏁 Tour terminé ! Score : {score}/10 🏁',
+                    round_restart: '⏳ Tour terminé, nouveau tour...',
+                    figure_changed: '🔄 Nombres changés',
+                    footer_links: 'Liens',
+                    footer_terms: 'Conditions',
+                    footer_privacy: 'Confidentialité',
+                    footer_version: 'Version',
+                    footer_dev: 'Développement',
+                    footer_host: 'Hébergé sur Netlify & GitHub',
+                    sound_on_title: 'Son (actif)',
+                    sound_off_title: 'Son (inactif)',
+                    back_title: 'Retour',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_sqrt: '√',
+                    example_toggle_show: '📘 Exemple (afficher)',
+                    example_toggle_hide: '📘 Exemple (masquer)',
+                    prefilled_note: '🟡 Les cases jaunes sont pré-remplies',
+                },
+                en: {
+                    app_title: 'Exercise Board',
+                    exercise_heading: 'Standard Deviation',
+                    exercise_subtitle: 'Calculate standard deviation from a frequency table – step by step',
+                    new_question: '🔄 New Question',
+                    check: '✓ Check',
+                    hint: '📌 Fill all fields step by step. Remember: σ = √[Σ[(xᵢ − x̄)² × fᵢ] ÷ Σfᵢ]',
+                    attempts_label: 'Attempts',
+                    score_label: 'Score',
+                    values_header: 'Values (xᵢ)',
+                    freqs_header: 'Frequency (fᵢ)',
+                    col_label: 'Column',
+                    mode_badge_full: '📝 Fill all steps yourself',
+                    mode_badge_prods: '📝 Products given – complete the rest',
+                    mode_badge_mean: '📝 Mean given – complete deviations onward',
+                    mode_badge_sigma_only: '🎯 Calculate only the standard deviation σ',
+                    step1_label: '🔢 1. Calculate the mean x̄',
+                    step1_rule: 'Mean = (sum xᵢ × fᵢ) ÷ (sum fᵢ)',
+                    step2_label: '📐 2. Calculate deviations (xᵢ − x̄)',
+                    step2_rule: 'Deviation = value − mean. Can be negative.',
+                    step3_label: '² 3. Square the deviations (xᵢ − x̄)²',
+                    step3_rule: 'Square each deviation. Always positive.',
+                    step4_label: '✖️ 4. Multiply by frequencies (xᵢ − x̄)² × fᵢ',
+                    step4_rule: 'Multiply each squared deviation by its frequency.',
+                    step5_label: 'Σ 5. Sum then divide (Variance V)',
+                    step5_rule: 'Add all then divide by total frequency.',
+                    step6_label: '√ 6. Standard Deviation σ',
+                    step6_rule: 'Standard deviation is the square root of variance: σ = √V',
+                    prod_line: 'Product',
+                    sum_prod_line: 'Sum of products =',
+                    total_line: 'Total frequency =',
+                    mean_line: 'Mean x̄ =',
+                    dev_line: 'Deviation',
+                    sq_line: 'Squared dev.',
+                    wsq_line: 'Sq. × freq.',
+                    sum_wsq_line: 'Sum (sq. × freq.) =',
+                    variance_line: 'Variance V =',
+                    sigma_line: 'Standard deviation σ = √V =',
+                    variance_formula: 'V = Σ[(xᵢ − x̄)² × fᵢ] ÷ Σfᵢ',
+                    sigma_formula: 'σ = √V',
+                    fill_all: '⚠️ Please fill all required fields',
+                    invalid_numbers: '❌ Valid integers or decimals only',
+                    correct: '✅ Correct! +1 point',
+                    wrong_title: '❌ Wrong!',
+                    wrong_mean: '📊 Correct mean: {mean}',
+                    wrong_devs: '📐 Deviations: {devs}',
+                    wrong_sqs: '² Squared: {sqs}',
+                    wrong_wsqs: '✖️ Sq.×freq: {wsqs}',
+                    wrong_var: 'Σ Variance V = {sumwsq} ÷ {total} = {variance}',
+                    wrong_sigma: '√ Standard deviation σ = √{variance} = {sigma}',
+                    round_over: '🏁 Round over! Score: {score}/10 🏁',
+                    round_restart: '⏳ Round finished, new round...',
+                    figure_changed: '🔄 Numbers changed',
+                    footer_links: 'Links',
+                    footer_terms: 'Terms',
+                    footer_privacy: 'Privacy',
+                    footer_version: 'Version',
+                    footer_dev: 'Development',
+                    footer_host: 'Hosted on Netlify & GitHub',
+                    sound_on_title: 'Sound (on)',
+                    sound_off_title: 'Sound (off)',
+                    back_title: 'Back',
+                    operator_plus: '+',
+                    operator_minus: '−',
+                    operator_equals: '=',
+                    operator_divide: '÷',
+                    operator_multiply: '×',
+                    operator_sqrt: '√',
+                    example_toggle_show: '📘 Example (show)',
+                    example_toggle_hide: '📘 Example (hide)',
+                    prefilled_note: '🟡 Yellow cells are pre-filled',
+                }
+            };
+
+            let currentLang = 'ar';
+
+            function t(key, params = {}) {
+                const dict = translations[currentLang] || translations.ar;
+                let text = dict[key] || key;
+                Object.entries(params).forEach(([k, v]) => text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v));
+                return text;
+            }
+
+            function updateStaticI18n() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    if (el.dataset.i18n) el.textContent = t(el.dataset.i18n);
+                });
+                document.title = t('exercise_heading') + ' | ' + t('app_title');
+                document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                document.getElementById('btnBack').title = t('back_title');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') :
+                    t('example_toggle_show');
+            }
+
+            function applyLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                document.getElementById('langSelect').value = lang;
+                localStorage.setItem('exercise_sigma_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                updateStaticI18n();
+                renderAll();
+                messageEl.innerHTML = '';
+            }
+
+            function loadLanguage() {
+                const saved = localStorage.getItem('exercise_sigma_lang');
+                if (saved && translations[saved]) { applyLanguage(saved);
+                    return; }
+                const nav = navigator.language?.split('-')[0];
+                applyLanguage(nav && translations[nav] ? nav : 'ar');
+            }
+
+            let soundEnabled = true,
+                audioCtx = null;
+
+            function getAudioContext() { if (!audioCtx) audioCtx = new(window.AudioContext || window
+                .webkitAudioContext)();
+                return audioCtx; }
+
+            function playSound(type) {
+                if (!soundEnabled) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, now);
+                        osc.frequency.setValueAtTime(659.25, now + 0.1);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
+                    } else if (type === 'incorrect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(200, now);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                        osc.start(now);
+                        osc.stop(now + 0.3);
+                    }
+                } catch (e) {}
+            }
+
+            function loadSoundPref() {
+                const s = localStorage.getItem('exercise_sigma_sound');
+                soundEnabled = s !== 'off';
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                localStorage.setItem('exercise_sigma_sound', soundEnabled ? 'on' : 'off');
+                btnSound.textContent = soundEnabled ? '🔊' : '🔇';
+                btnSound.title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
+                if (soundEnabled) playSound('correct');
+            }
+
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                btnDarkMode.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('exercise_sigma_theme', theme);
+            }
+
+            function toggleTheme() {
+                applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            }
+
+            function loadTheme() {
+                const s = localStorage.getItem('exercise_sigma_theme');
+                if (s === 'dark' || s === 'light') applyTheme(s);
+                else applyTheme(window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            }
+
+            function goBack() {
+                if (document.referrer && document.referrer.includes('لوحة التمارين التفاعلية.html')) window.history
+                .back();
+                else window.location.href = 'لوحة التمارين التفاعلية.html';
+            }
+
+            function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+            function round2(n) { return Math.round(n * 100) / 100; }
+
+            function fmtNum(n) {
+                const r = round2(n);
+                if (Number.isInteger(r)) return r.toString();
+                return r.toFixed(2).replace(/\.?0+$/, '');
+            }
+
+            function generateData() {
+                for (let attempt = 0; attempt < 300; attempt++) {
+                    const vals = [];
+                    const used = new Set();
+                    for (let i = 0; i < ROW_COUNT; i++) {
+                        let v;
+                        do { v = rnd(4, 22); } while (used.has(v));
+                        used.add(v);
+                        vals.push(v);
+                    }
+                    vals.sort((a, b) => a - b);
+                    const freqs = [];
+                    let totalF = 0;
+                    for (let i = 0; i < ROW_COUNT; i++) {
+                        const f = rnd(1, 5);
+                        freqs.push(f);
+                        totalF += f;
+                    }
+                    if (totalF < 6) { freqs[ROW_COUNT - 1] += (6 - totalF);
+                        totalF = 6; }
+                    if (totalF > 14) {
+                        const excess = totalF - 14;
+                        for (let i = 0; i < ROW_COUNT && excess > 0; i++) {
+                            const reduce = Math.min(excess, freqs[i] - 1);
+                            freqs[i] -= reduce;
+                            totalF -= reduce;
+                        }
+                    }
+                    const products = vals.map((v, i) => v * freqs[i]);
+                    const sumProd = products.reduce((a, b) => a + b, 0);
+                    const mean = sumProd / totalF;
+                    if (Math.abs(mean - Math.round(mean)) > 0.55 && Math.abs(mean - Math.round(mean * 2) / 2) > 0.3)
+                        continue;
+                    const roundedMean = round2(mean);
+                    const deviations = vals.map(v => round2(v - roundedMean));
+                    const sqDevs = deviations.map(d => round2(d * d));
+                    const weightedSq = sqDevs.map((sq, i) => round2(sq * freqs[i]));
+                    const sumWSq = round2(weightedSq.reduce((a, b) => a + b, 0));
+                    const variance = round2(sumWSq / totalF);
+                    if (variance < 0.8 || variance > 180) continue;
+                    const sigma = round2(Math.sqrt(variance));
+                    if (sigma < 0.8 || sigma > 13) continue;
+                    return {
+                        vals,
+                        freqs,
+                        products,
+                        sumProd,
+                        totalFreq: totalF,
+                        mean: roundedMean,
+                        deviations,
+                        sqDevs,
+                        weightedSq,
+                        sumWSq,
+                        variance,
+                        sigma
+                    };
+                }
+                const vals = [6, 10, 14];
+                const freqs = [2, 4, 2];
+                const totalF = 8;
+                const products = [12, 40, 28];
+                const sumProd = 80;
+                const mean = 10;
+                const deviations = [-4, 0, 4];
+                const sqDevs = [16, 0, 16];
+                const weightedSq = [32, 0, 32];
+                const sumWSq = 64;
+                const variance = 8;
+                const sigma = round2(Math.sqrt(8));
+                return {
+                    vals,
+                    freqs,
+                    products,
+                    sumProd,
+                    totalFreq: totalF,
+                    mean,
+                    deviations,
+                    sqDevs,
+                    weightedSq,
+                    sumWSq,
+                    variance,
+                    sigma
+                };
+            }
+
+            function pickMode() {
+                const modes = [0, 1, 2, 3];
+                return modes[Math.floor(Math.random() * modes.length)];
+            }
+
+            function getPrefilledSet(mode) {
+                const s = new Set();
+                if (mode === 0) return s;
+                if (mode === 1) {
+                    s.add('prod0');
+                    s.add('prod1');
+                    s.add('prod2');
+                    return s;
+                }
+                if (mode === 2) {
+                    s.add('prod0');
+                    s.add('prod1');
+                    s.add('prod2');
+                    s.add('sumProd');
+                    s.add('total');
+                    s.add('mean');
+                    return s;
+                }
+                if (mode === 3) {
+                    for (const id of ALL_FIELD_IDS) {
+                        if (id !== 'sigma') s.add(id);
+                    }
+                    return s;
+                }
+                return s;
+            }
+
+            function getModeBadgeText(mode) {
+                if (mode === 0) return t('mode_badge_full');
+                if (mode === 1) return t('mode_badge_prods');
+                if (mode === 2) return t('mode_badge_mean');
+                if (mode === 3) return t('mode_badge_sigma_only');
+                return '';
+            }
+
+            function renderTable() {
+                const dict = translations[currentLang] || translations.ar;
+                const colLabel = dict.col_label || 'العمود';
+                let html = '<table class="stats-table">';
+                html += '<tr><td class="header-cell"></td>';
+                for (let i = 0; i < ROW_COUNT; i++) html +=
+                    `<td class="header-cell">${colLabel} ${i + 1}</td>`;
+                html += '</tr>';
+                html +=
+                    `<tr><td class="header-cell">${dict.values_header}</td>`;
+                currentValues.forEach(v => html +=
+                    `<td class="value-cell given-highlight">${v}</td>`);
+                html += '</tr>';
+                html +=
+                    `<tr><td class="header-cell">${dict.freqs_header}</td>`;
+                currentFreqs.forEach(f => html +=
+                    `<td class="value-cell given-highlight">${f}</td>`);
+                html += '</tr>';
+                html += '</table>';
+                statsTableContainer.innerHTML = html;
+            }
+
+            function buildInputHTML(id, extraClass = '', value = '') {
+                const isPrefilled = currentPrefilled.has(id);
+                const cls = (extraClass + (isPrefilled ? ' prefilled' : '')).trim();
+                const readonly = isPrefilled ? ' readonly' : '';
+                const displayVal = isPrefilled ? value : '';
+                const placeholder = isPrefilled ? '' : '?';
+                return `<input type="text" id="inp${id.charAt(0).toUpperCase()+id.slice(1)}" class="inline-input ${cls}" placeholder="${placeholder}" dir="ltr" autocomplete="off" inputmode="decimal" value="${displayVal}"${readonly}>`;
+            }
+
+            function buildQuestionHTML() {
+                const opMul = t('operator_multiply');
+                const opDiv = t('operator_divide');
+                const opEq = t('operator_equals');
+                const opMinus = t('operator_minus');
+                const opPlus = t('operator_plus');
+                const opSqrt = t('operator_sqrt');
+                const fmt = (n) => fmtNum(n);
+                let html = '';
+
+                html +=
+                    `<div style="text-align:center;margin-bottom:8px;"><span class="mode-badge">${getModeBadgeText(currentMode)}</span></div>`;
+                if (currentPrefilled.size > 0) {
+                    html +=
+                        `<div style="text-align:center;margin-bottom:6px;font-size:0.85rem;color:var(--text2);">${t('prefilled_note')}</div>`;
+                }
+
+                // Step 1: Mean
+                html +=
+                    `<div class="section-card mean-card"><div class="section-label mean-label">${t('step1_label')}</div>`;
+                html += `<div class="note-box">💡 ${t('step1_rule')}</div>`;
+                for (let i = 0; i < ROW_COUNT; i++) {
+                    html += `<div class="calc-line" dir="ltr">`;
+                    html +=
+                        `<span style="font-weight:700;">(${i + 1})</span>`;
+                    html +=
+                        `<span class="num-display mean-num">${currentValues[i]}</span>`;
+                    html += `<span class="operator">${opMul}</span>`;
+                    html +=
+                        `<span class="num-display mean-num">${currentFreqs[i]}</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    html += buildInputHTML('prod' + i, 'wide-input', fmt(currentProducts[i]));
+                    html += `</div>`;
+                }
+                html +=
+                    `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('sum_prod_line')}</span>`;
+                for (let i = 0; i < ROW_COUNT; i++) {
+                    if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                    html +=
+                        `<span style="font-size:0.8rem;">(x<sub>${i + 1}</sub>×f<sub>${i + 1}</sub>)</span>`;
+                }
+                html +=
+                    `<span class="operator">${opEq}</span>${buildInputHTML('sumProd','wide-input',fmt(currentSumProd))}`;
+                html += `</div>`;
+                html +=
+                    `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('total_line')}</span>`;
+                currentFreqs.forEach((f, i) => {
+                    if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                    html +=
+                        `<span class="num-display mean-num">${f}</span>`;
+                });
+                html +=
+                    `<span class="operator">${opEq}</span>${buildInputHTML('total','wide-input',fmt(currentTotalFreq))}`;
+                html += `</div>`;
+                html +=
+                    `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('mean_line')}</span>`;
+                html +=
+                    `<span>Σ(xᵢ×fᵢ)</span><span class="operator">${opDiv}</span><span>Σfᵢ</span><span class="operator">${opEq}</span>`;
+                html += buildInputHTML('mean', 'wide-input', fmt(currentMean));
+                html += `</div></div>`;
+
+                // Step 2: Deviations
+                html +=
+                    `<div class="section-card dev-card"><div class="section-label dev-label">${t('step2_label')}</div>`;
+                html += `<div class="note-box">💡 ${t('step2_rule')}</div>`;
+                for (let i = 0; i < ROW_COUNT; i++) {
+                    html += `<div class="calc-line" dir="ltr">`;
+                    html +=
+                        `<span style="font-weight:700;">(${i + 1})</span>`;
+                    html +=
+                        `<span class="num-display dev-num">${currentValues[i]}</span>`;
+                    html += `<span class="operator">${opMinus}</span>`;
+                    html += `<span style="font-weight:700;">x̄</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    html += buildInputHTML('dev' + i, 'wide-input', fmt(currentDeviations[i]));
+                    html += `</div>`;
+                }
+                html += `</div>`;
+
+                // Step 3: Square deviations
+                html +=
+                    `<div class="section-card sq-card"><div class="section-label sq-label">${t('step3_label')}</div>`;
+                html += `<div class="note-box">💡 ${t('step3_rule')}</div>`;
+                for (let i = 0; i < ROW_COUNT; i++) {
+                    html += `<div class="calc-line" dir="ltr">`;
+                    html +=
+                        `<span style="font-weight:700;">(${i + 1})</span>`;
+                    html += `<span>(</span>`;
+                    html +=
+                        `<span class="num-display dev-num">${currentValues[i]} − x̄</span>`;
+                    html += `<span>)²</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    html += buildInputHTML('sq' + i, 'wide-input', fmt(currentSqDevs[i]));
+                    html += `</div>`;
+                }
+                html += `</div>`;
+
+                // Step 4: Multiply by frequencies
+                html +=
+                    `<div class="section-card wsq-card"><div class="section-label wsq-label">${t('step4_label')}</div>`;
+                html += `<div class="note-box">💡 ${t('step4_rule')}</div>`;
+                for (let i = 0; i < ROW_COUNT; i++) {
+                    html += `<div class="calc-line" dir="ltr">`;
+                    html +=
+                        `<span style="font-weight:700;">(${i + 1})</span>`;
+                    html +=
+                        `<span>(x<sub>${i + 1}</sub>−x̄)²</span>`;
+                    html += `<span class="operator">${opMul}</span>`;
+                    html +=
+                        `<span class="num-display wsq-num">${currentFreqs[i]}</span>`;
+                    html += `<span class="operator">${opEq}</span>`;
+                    html += buildInputHTML('wsq' + i, 'wide-input', fmt(currentWeightedSq[i]));
+                    html += `</div>`;
+                }
+                html += `</div>`;
+
+                // Step 5: Sum and variance
+                html +=
+                    `<div class="section-card var-card"><div class="section-label var-label">${t('step5_label')}</div>`;
+                html += `<div class="note-box">💡 ${t('step5_rule')}</div>`;
+                html +=
+                    `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('sum_wsq_line')}</span>`;
+                for (let i = 0; i < ROW_COUNT; i++) {
+                    if (i > 0) html += `<span class="operator">${opPlus}</span>`;
+                    html +=
+                        `<span style="font-size:0.8rem;">(x<sub>${i + 1}</sub>−x̄)²×f<sub>${i + 1}</sub></span>`;
+                }
+                html +=
+                    `<span class="operator">${opEq}</span>${buildInputHTML('sumWsq','wide-input',fmt(currentSumWSq))}`;
+                html += `</div>`;
+                html +=
+                    `<div style="text-align:center;margin:8px 0;"><span class="formula-box">${t('variance_formula')}</span></div>`;
+                html +=
+                    `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('variance_line')}</span>`;
+                html +=
+                    `<span>Σ[(xᵢ−x̄)²×fᵢ]</span><span class="operator">${opDiv}</span><span>Σfᵢ</span><span class="operator">${opEq}</span>`;
+                html += buildInputHTML('variance', 'wide-input', fmt(currentVariance));
+                html += `</div></div>`;
+
+                // Step 6: Standard deviation
+                html +=
+                    `<div class="section-card sigma-card"><div class="section-label sigma-label">${t('step6_label')}</div>`;
+                html += `<div class="note-box">💡 ${t('step6_rule')}</div>`;
+                html +=
+                    `<div style="text-align:center;margin:8px 0;"><span class="formula-box">${t('sigma_formula')}</span></div>`;
+                html +=
+                    `<div class="calc-line" dir="ltr"><span style="font-weight:700;">${t('sigma_line')}</span>`;
+                html += `<span class="operator">${opSqrt}</span>`;
+                html += `<span>V</span>`;
+                html += `<span class="operator">${opEq}</span>`;
+                html += `<span class="operator">${opSqrt}</span>`;
+                html +=
+                    `<span class="num-display sigma-num">${fmt(currentVariance)}</span>`;
+                html += `<span class="operator">${opEq}</span>`;
+                html += buildInputHTML('sigma', 'wide-input', fmt(currentSigma));
+                html += `</div></div>`;
+
+                return html;
+            }
+
+            function refreshInputRefs() {
+                inputRefs = {};
+                for (let i = 0; i < ROW_COUNT; i++) inputRefs['prod' + i] = document.getElementById('inpProd' + i);
+                inputRefs['sumProd'] = document.getElementById('inpSumProd');
+                inputRefs['total'] = document.getElementById('inpTotal');
+                inputRefs['mean'] = document.getElementById('inpMean');
+                for (let i = 0; i < ROW_COUNT; i++) inputRefs['dev' + i] = document.getElementById('inpDev' + i);
+                for (let i = 0; i < ROW_COUNT; i++) inputRefs['sq' + i] = document.getElementById('inpSq' + i);
+                for (let i = 0; i < ROW_COUNT; i++) inputRefs['wsq' + i] = document.getElementById('inpWsq' + i);
+                inputRefs['sumWsq'] = document.getElementById('inpSumWsq');
+                inputRefs['variance'] = document.getElementById('inpVariance');
+                inputRefs['sigma'] = document.getElementById('inpSigma');
+            }
+
+            function clearNonPrefilledInputs() {
+                for (const id of ALL_FIELD_IDS) {
+                    const el = inputRefs[id];
+                    if (el && !currentPrefilled.has(id)) {
+                        el.value = '';
+                    }
+                }
+            }
+
+            function renderAll() {
+                renderTable();
+                questionContainer.innerHTML = buildQuestionHTML();
+                refreshInputRefs();
+                clearNonPrefilledInputs();
+            }
+
+            function generateNewQuestion() {
+                const data = generateData();
+                currentValues = data.vals;
+                currentFreqs = data.freqs;
+                currentProducts = data.products;
+                currentSumProd = data.sumProd;
+                currentTotalFreq = data.totalFreq;
+                currentMean = data.mean;
+                currentDeviations = data.deviations;
+                currentSqDevs = data.sqDevs;
+                currentWeightedSq = data.weightedSq;
+                currentSumWSq = data.sumWSq;
+                currentVariance = data.variance;
+                currentSigma = data.sigma;
+                currentMode = pickMode();
+                currentPrefilled = getPrefilledSet(currentMode);
+                renderAll();
+            }
+
+            function updateStatsUI() { attemptsSpan.textContent = attempts;
+                scoreSpan.textContent = score; }
+
+            function startNewFullRound() {
+                if (isSwitchingRound) return;
+                isSwitchingRound = true;
+                attempts = 0;
+                score = 0;
+                gameActive = true;
+                updateStatsUI();
+                generateNewQuestion();
+                messageEl.innerHTML = '';
+                messageEl.style.color = 'var(--text)';
+                setInputsDisabled(false);
+                checkBtn.disabled = false;
+                isSwitchingRound = false;
+                setTimeout(() => {
+                    const firstEmpty = ALL_FIELD_IDS.find(id => !currentPrefilled.has(id));
+                    const targetId = firstEmpty || 'prod0';
+                    if (inputRefs[targetId]) inputRefs[targetId].focus();
+                }, 60);
+            }
+
+            function setInputsDisabled(disabled) {
+                for (const id of ALL_FIELD_IDS) {
+                    if (inputRefs[id] && !currentPrefilled.has(id)) {
+                        inputRefs[id].disabled = disabled;
+                    }
+                }
+            }
+
+            function finishCurrentRound() {
+                if (!gameActive) return;
+                gameActive = false;
+                messageEl.innerHTML =
+                    `<span style="background:#e9b35f;color:#2d2b26;padding:8px 22px;border-radius:60px;display:inline-block;">🎯 ${t('round_over',{score})}</span>`;
+                setInputsDisabled(true);
+                checkBtn.disabled = true;
+                setTimeout(startNewFullRound, 2200);
+            }
+
+            function getNum(id) { const el = inputRefs[id]; if (!el) return NaN; return Number(el.value.trim()); }
+
+            function valsClose(a, b) { if (isNaN(a) || isNaN(b)) return false; return Math.abs(a - b) < 0.015; }
+
+            function getExpected(id) {
+                const map = {
+                    prod0: currentProducts[0],
+                    prod1: currentProducts[1],
+                    prod2: currentProducts[2],
+                    sumProd: currentSumProd,
+                    total: currentTotalFreq,
+                    mean: currentMean,
+                    dev0: currentDeviations[0],
+                    dev1: currentDeviations[1],
+                    dev2: currentDeviations[2],
+                    sq0: currentSqDevs[0],
+                    sq1: currentSqDevs[1],
+                    sq2: currentSqDevs[2],
+                    wsq0: currentWeightedSq[0],
+                    wsq1: currentWeightedSq[1],
+                    wsq2: currentWeightedSq[2],
+                    sumWsq: currentSumWSq,
+                    variance: currentVariance,
+                    sigma: currentSigma
+                };
+                return map[id] !== undefined ? map[id] : NaN;
+            }
+
+            function handleCheck() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                if (attempts >= 10) { finishCurrentRound(); return; }
+
+                const checkIds = ALL_FIELD_IDS.filter(id => !currentPrefilled.has(id));
+                let allFilled = true;
+                let allValid = true;
+                for (const id of checkIds) {
+                    const el = inputRefs[id];
+                    if (!el || !el.value.trim()) { allFilled = false; break; }
+                    if (isNaN(Number(el.value.trim()))) { allValid = false; break; }
+                }
+                if (!allFilled) { messageEl.innerHTML = t('fill_all');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+                if (!allValid) { messageEl.innerHTML = t('invalid_numbers');
+                    messageEl.style.color = 'var(--accent3)'; return; }
+
+                let allCorrect = true;
+                for (const id of checkIds) {
+                    if (!valsClose(getNum(id), getExpected(id))) { allCorrect = false; break; }
+                }
+                for (const id of currentPrefilled) {
+                    if (inputRefs[id] && inputRefs[id].value.trim() && !valsClose(getNum(id), getExpected(id))) {
+                        allCorrect = false;
+                        break;
+                    }
+                }
+
+                attempts++;
+                if (allCorrect) {
+                    score++;
+                    messageEl.innerHTML = t('correct');
+                    messageEl.style.color = 'var(--accent2)';
+                    playSound('correct');
+                } else {
+                    const devsStr = currentDeviations.map(d => fmtNum(d)).join(' ، ');
+                    const sqsStr = currentSqDevs.map(s => fmtNum(s)).join(' ، ');
+                    const wsqsStr = currentWeightedSq.map(w => fmtNum(w)).join(' ، ');
+                    messageEl.innerHTML = `
+                        <strong>${t('wrong_title')}</strong><br>
+                        ${t('wrong_mean',{mean:fmtNum(currentMean)})}<br>
+                        ${t('wrong_devs',{devs:devsStr})}<br>
+                        ${t('wrong_sqs',{sqs:sqsStr})}<br>
+                        ${t('wrong_wsqs',{wsqs:wsqsStr})}<br>
+                        ${t('wrong_var',{sumwsq:fmtNum(currentSumWSq),total:currentTotalFreq,variance:fmtNum(currentVariance)})}<br>
+                        ${t('wrong_sigma',{variance:fmtNum(currentVariance),sigma:fmtNum(currentSigma)})}
+                    `;
+                    messageEl.style.color = 'var(--accent3)';
+                    playSound('incorrect');
+                }
+                updateStatsUI();
+                if (attempts >= 10) { finishCurrentRound(); return; }
+                generateNewQuestion();
+                setTimeout(() => {
+                    const firstEmpty = ALL_FIELD_IDS.find(id => !currentPrefilled.has(id));
+                    const targetId = firstEmpty || 'prod0';
+                    if (inputRefs[targetId]) inputRefs[targetId].focus();
+                }, 40);
+            }
+
+            function onManualNewQuestion() {
+                if (!gameActive) { messageEl.innerHTML = t('round_restart'); return; }
+                generateNewQuestion();
+                messageEl.innerHTML = t('figure_changed');
+                messageEl.style.color = 'var(--text)';
+                setTimeout(() => { if (messageEl.innerHTML === t('figure_changed')) messageEl.innerHTML = ''; }, 1500);
+                setTimeout(() => {
+                    const firstEmpty = ALL_FIELD_IDS.find(id => !currentPrefilled.has(id));
+                    const targetId = firstEmpty || 'prod0';
+                    if (inputRefs[targetId]) inputRefs[targetId].focus();
+                }, 40);
+            }
+
+            checkBtn.addEventListener('click', handleCheck);
+            generateBtn.addEventListener('click', onManualNewQuestion);
+            questionContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('inline-input')) { e.preventDefault();
+                    handleCheck(); }
+            });
+            btnDarkMode.addEventListener('click', toggleTheme);
+            btnSound.addEventListener('click', toggleSound);
+            langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            btnBack.addEventListener('click', goBack);
+            btnToggleExample.addEventListener('click', () => {
+                examplePanel.classList.toggle('visible');
+                btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') :
+                    t('example_toggle_show');
+            });
+
+            loadLanguage();
+            document.getElementById('langSelect').value = currentLang;
+            loadTheme();
+            loadSoundPref();
+            attempts = 0;
+            score = 0;
+            gameActive = true;
+            isSwitchingRound = false;
+            generateNewQuestion();
+            updateStatsUI();
+            messageEl.innerHTML = '';
+            checkBtn.disabled = false;
+            setTimeout(() => {
+                const firstEmpty = ALL_FIELD_IDS.find(id => !currentPrefilled.has(id));
+                const targetId = firstEmpty || 'prod0';
+                if (inputRefs[targetId]) inputRefs[targetId].focus();
+            }, 100);
+            updateStaticI18n();
+        })();
+    </script>
+</body>
+</html>

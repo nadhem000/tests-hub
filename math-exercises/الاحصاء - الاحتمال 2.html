@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الاحتمال 2 (فئات عددية) | لوحة التمارين</title>
     <style>
+        /* جميع الـ CSS كما هي في ملفك الأصلي */
         :root {
             --bg: #eef2f7;
             --bg2: #d9e2ec;
@@ -306,13 +307,7 @@
 
         <button class="example-toggle" id="btnToggleExample">📘 مثال توضيحي (اضغط للعرض)</button>
         <div class="example-panel" id="examplePanel">
-            <strong>📌 مثال:</strong> جدول توزيع 50 عاملاً حسب الأجرة اليومية (بالدينار):<br>
-            ]20 , 30] : 12 عاملاً &nbsp;|&nbsp; ]30 , 40] : 18 عاملاً &nbsp;|&nbsp; ]40 , 50] : 14 عاملاً &nbsp;|&nbsp; ]50 , 60] : 6 عمال<br>
-            <strong>المجموع الكلي:</strong> 12 + 18 + 14 + 6 = <strong>50</strong><br>
-            <strong>احتمال أن تكون أجرته في الفئة ]30 , 40]:</strong> P = 18 ÷ 50 × 100 = <strong>36%</strong><br>
-            <strong>احتمال ألا تكون أجرته في الفئة ]40 , 50]:</strong> P = 100% − 28% = <strong>72%</strong><br>
-            <strong>احتمال أن تكون أجرته في ]20 , 30] أو ]50 , 60]:</strong> (12+6) ÷ 50 × 100 = <strong>36%</strong><br>
-            <strong>تذكير:</strong> الاحتمال = (تكرار الفئة ÷ المجموع الكلي) × 100
+            <!-- سيتم تحديثه عبر JavaScript -->
         </div>
 
         <div class="stats-table-container" id="statsTableContainer"></div>
@@ -409,7 +404,24 @@
                     operator_plus: '+', operator_minus: '−', operator_div: '÷', operator_mul: '×', operator_eq: '=',
                     example_toggle_show: '📘 مثال توضيحي (اضغط للعرض)',
                     example_toggle_hide: '📘 مثال توضيحي (اضغط للإخفاء)',
-                    percent_symbol: '%'
+                    percent_symbol: '%',
+                    class_prefix: 'فئة',
+                    prob_union: 'احتمال ({0} أو {1}) =',
+                    prob_simple: 'احتمال الفئة {0} =',
+                    prob_complement_prefix: 'P(ليس {0}) = 100% −',
+                    combine_note: '📝 (التكرار المشترك ÷ المجموع الكلي) × 100 = النسبة المئوية',
+                    basic_note: '📝 (تكرار الفئة ÷ المجموع الكلي) × 100 = النسبة المئوية',
+                    complement_note: '📝 المجموع دائماً 100%. احتمال (ليس A) + احتمال (A) = 100%',
+                    detail_basic: 'تكرار {class} = {freq}، المجموع = {total}، الاحتمال = {pct}%',
+                    detail_complement: 'تكرار {class} = {freq}، المجموع = {total}، الاحتمال = {pct}%، احتمال المتمم = {comp}%',
+                    detail_combine: 'تكرار {class1} = {freq1}، تكرار {class2} = {freq2}، المجموع = {total}، الاحتمال = {pct}%',
+                    example_text: `<strong>📌 مثال:</strong> جدول توزيع 50 عاملاً حسب الأجرة اليومية (بالدينار):<br>
+                    ]20 , 30] : 12 عاملاً &nbsp;|&nbsp; ]30 , 40] : 18 عاملاً &nbsp;|&nbsp; ]40 , 50] : 14 عاملاً &nbsp;|&nbsp; ]50 , 60] : 6 عمال<br>
+                    <strong>المجموع الكلي:</strong> 12 + 18 + 14 + 6 = <strong>50</strong><br>
+                    <strong>احتمال أن تكون أجرته في الفئة ]30 , 40]:</strong> P = 18 ÷ 50 × 100 = <strong>36%</strong><br>
+                    <strong>احتمال ألا تكون أجرته في الفئة ]40 , 50]:</strong> P = 100% − 28% = <strong>72%</strong><br>
+                    <strong>احتمال أن تكون أجرته في ]20 , 30] أو ]50 , 60]:</strong> (12+6) ÷ 50 × 100 = <strong>36%</strong><br>
+                    <strong>تذكير:</strong> الاحتمال = (تكرار الفئة ÷ المجموع الكلي) × 100`
                 },
                 fr: {
                     app_title: 'Tableau d\'exercices',
@@ -439,7 +451,24 @@
                     footer_host: 'Hébergé sur Netlify & GitHub', sound_on_title: 'Son (actif)',
                     sound_off_title: 'Son (inactif)', back_title: 'Retour', operator_plus: '+', operator_minus: '−',
                     operator_div: '÷', operator_mul: '×', operator_eq: '=', example_toggle_show: '📘 Exemple (afficher)',
-                    example_toggle_hide: '📘 Exemple (masquer)', percent_symbol: '%'
+                    example_toggle_hide: '📘 Exemple (masquer)', percent_symbol: '%',
+                    class_prefix: 'Classe',
+                    prob_union: 'Probabilité ({0} ou {1}) =',
+                    prob_simple: 'Probabilité de la classe {0} =',
+                    prob_complement_prefix: 'P(pas {0}) = 100% −',
+                    combine_note: '📝 (effectif combiné ÷ total) × 100 = pourcentage',
+                    basic_note: '📝 (effectif ÷ total) × 100 = pourcentage',
+                    complement_note: '📝 Total toujours 100%. P(pas A) + P(A) = 100%',
+                    detail_basic: 'Effectif de {class} = {freq}, Total = {total}, Probabilité = {pct}%',
+                    detail_complement: 'Effectif de {class} = {freq}, Total = {total}, Probabilité = {pct}%, Complément = {comp}%',
+                    detail_combine: 'Effectif de {class1} = {freq1}, Effectif de {class2} = {freq2}, Total = {total}, Probabilité = {pct}%',
+                    example_text: `<strong>📌 Exemple :</strong> Distribution de 50 ouvriers selon le salaire journalier (en dinar) :<br>
+                    ]20 , 30] : 12 ouvriers &nbsp;|&nbsp; ]30 , 40] : 18 ouvriers &nbsp;|&nbsp; ]40 , 50] : 14 ouvriers &nbsp;|&nbsp; ]50 , 60] : 6 ouvriers<br>
+                    <strong>Effectif total :</strong> 12 + 18 + 14 + 6 = <strong>50</strong><br>
+                    <strong>Probabilité que son salaire soit dans la classe ]30 , 40] :</strong> P = 18 ÷ 50 × 100 = <strong>36%</strong><br>
+                    <strong>Probabilité qu'il ne soit pas dans la classe ]40 , 50] :</strong> P = 100% − 28% = <strong>72%</strong><br>
+                    <strong>Probabilité qu'il soit dans ]20 , 30] ou ]50 , 60] :</strong> (12+6) ÷ 50 × 100 = <strong>36%</strong><br>
+                    <strong>Rappel :</strong> Probabilité = (effectif de la classe ÷ effectif total) × 100`
                 },
                 en: {
                     app_title: 'Exercise Board',
@@ -469,7 +498,24 @@
                     footer_host: 'Hosted on Netlify & GitHub', sound_on_title: 'Sound (on)',
                     sound_off_title: 'Sound (off)', back_title: 'Back', operator_plus: '+', operator_minus: '−',
                     operator_div: '÷', operator_mul: '×', operator_eq: '=', example_toggle_show: '📘 Example (show)',
-                    example_toggle_hide: '📘 Example (hide)', percent_symbol: '%'
+                    example_toggle_hide: '📘 Example (hide)', percent_symbol: '%',
+                    class_prefix: 'Class',
+                    prob_union: 'Probability ({0} or {1}) =',
+                    prob_simple: 'Probability of class {0} =',
+                    prob_complement_prefix: 'P(not {0}) = 100% −',
+                    combine_note: '📝 (combined frequency ÷ total) × 100 = percentage',
+                    basic_note: '📝 (frequency ÷ total) × 100 = percentage',
+                    complement_note: '📝 Total always 100%. P(not A) + P(A) = 100%',
+                    detail_basic: 'Frequency of {class} = {freq}, Total = {total}, Probability = {pct}%',
+                    detail_complement: 'Frequency of {class} = {freq}, Total = {total}, Probability = {pct}%, Complement = {comp}%',
+                    detail_combine: 'Frequency of {class1} = {freq1}, Frequency of {class2} = {freq2}, Total = {total}, Probability = {pct}%',
+                    example_text: `<strong>📌 Example:</strong> Distribution of 50 workers by daily wage (in dinar):<br>
+                    ]20 , 30] : 12 workers &nbsp;|&nbsp; ]30 , 40] : 18 workers &nbsp;|&nbsp; ]40 , 50] : 14 workers &nbsp;|&nbsp; ]50 , 60] : 6 workers<br>
+                    <strong>Total:</strong> 12 + 18 + 14 + 6 = <strong>50</strong><br>
+                    <strong>Probability that his wage is in the class ]30 , 40]:</strong> P = 18 ÷ 50 × 100 = <strong>36%</strong><br>
+                    <strong>Probability that his wage is NOT in ]40 , 50]:</strong> P = 100% − 28% = <strong>72%</strong><br>
+                    <strong>Probability that his wage is in ]20 , 30] or ]50 , 60]:</strong> (12+6) ÷ 50 × 100 = <strong>36%</strong><br>
+                    <strong>Reminder:</strong> Probability = (class frequency ÷ total frequency) × 100`
                 }
             };
 
@@ -486,6 +532,10 @@
                 document.getElementById('btnSound').title = soundEnabled ? t('sound_on_title') : t('sound_off_title');
                 document.getElementById('btnBack').title = t('back_title');
                 btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t('example_toggle_show');
+                // تحديث محتوى المثال
+                if (examplePanel) {
+                    examplePanel.innerHTML = t('example_text');
+                }
             }
             function applyLanguage(lang) {
                 if (!translations[lang]) return;
@@ -634,17 +684,16 @@
                 // Step 1: Extract frequency
                 html += `<div class="section-card card-target">`;
                 html += `<div class="section-label label-target">${t('step_extract')}</div>`;
-                html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_extract')}: فئة ${targetClass.label}</div>`;
+                html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_extract')}: ${t('class_prefix')} ${targetClass.label}</div>`;
                 html += `<div class="formula-line" dir="ltr">`;
                 html += `<input type="text" id="inpFreq" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">`;
                 html += `</div></div>`;
 
-                // Step 1b: Extract second frequency (combine mode)
                 if (currentMode === 'combine' && targetIndex2 >= 0) {
                     const targetClass2 = currentClasses[targetIndex2];
                     html += `<div class="section-card card-comb">`;
                     html += `<div class="section-label label-comb">${t('step_extract2')}</div>`;
-                    html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_extract2')}: فئة ${targetClass2.label}</div>`;
+                    html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_extract2')}: ${t('class_prefix')} ${targetClass2.label}</div>`;
                     html += `<div class="formula-line" dir="ltr">`;
                     html += `<input type="text" id="inpFreq2" class="inline-input" placeholder="?" autocomplete="off" inputmode="numeric">`;
                     html += `</div></div>`;
@@ -676,7 +725,7 @@
                     html += `<span class="operator">${opEq}</span>`;
                     html += `<input type="text" id="inpCombFreq" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
                     html += `</div>`;
-                    html += `<div style="font-weight:700;margin:8px 0 4px;">احتمال (${targetClass.label} أو ${targetClass2.label}) =</div>`;
+                    html += `<div style="font-weight:700;margin:8px 0 4px;">${t('prob_union', {0: targetClass.label, 1: targetClass2.label})}</div>`;
                     html += `<div class="formula-line" dir="ltr">`;
                     html += `<span>(</span>`;
                     html += `<input type="text" id="inpCombFreq2" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
@@ -689,13 +738,13 @@
                     html += `<input type="text" id="inpPercent" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
                     html += `<span class="percent-sign">${pctSym}</span>`;
                     html += `</div>`;
-                    html += `<div class="note-mini">📝 (التكرار المشترك ÷ المجموع الكلي) × 100 = النسبة المئوية</div>`;
+                    html += `<div class="note-mini">${t('combine_note')}</div>`;
                     html += `</div>`;
                 } else {
                     html += `<div class="section-card">`;
                     html += `<div class="section-label">${t('step_prob')}</div>`;
                     html += `<div style="font-weight:700;margin-bottom:4px;">${t('step_prob_formula')}</div>`;
-                    html += `<div style="font-weight:700;margin:4px 0;">احتمال الفئة ${targetClass.label} =</div>`;
+                    html += `<div style="font-weight:700;margin:4px 0;">${t('prob_simple', {0: targetClass.label})}</div>`;
                     html += `<div class="formula-line" dir="ltr">`;
                     html += `<span>(</span>`;
                     html += `<input type="text" id="inpFreqB" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
@@ -708,7 +757,7 @@
                     html += `<input type="text" id="inpPercentB" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
                     html += `<span class="percent-sign">${pctSym}</span>`;
                     html += `</div>`;
-                    html += `<div class="note-mini">📝 (تكرار الفئة ÷ المجموع الكلي) × 100 = النسبة المئوية</div>`;
+                    html += `<div class="note-mini">${t('basic_note')}</div>`;
                     html += `</div>`;
 
                     if (currentMode === 'complement') {
@@ -717,14 +766,14 @@
                         html += `<div class="section-label label-comp">${t('step_complement')}</div>`;
                         html += `<div class="hint-box">💡 ${t('step_complement_rule')}</div>`;
                         html += `<div class="formula-line" dir="ltr">`;
-                        html += `<span style="font-weight:700;">P(ليس ${targetClass.label}) = 100% −</span>`;
+                        html += `<span style="font-weight:700;">${t('prob_complement_prefix', {0: targetClass.label})}</span>`;
                         html += `<input type="text" id="inpPctA" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
                         html += `<span class="percent-sign">${pctSym}</span>`;
                         html += `<span class="operator">${opEq}</span>`;
                         html += `<input type="text" id="inpPctComp" class="inline-input input-sm" placeholder="?" autocomplete="off" inputmode="numeric">`;
                         html += `<span class="percent-sign">${pctSym}</span>`;
                         html += `</div>`;
-                        html += `<div class="note-mini">📝 المجموع دائماً 100%. احتمال (ليس A) + احتمال (A) = 100%</div>`;
+                        html += `<div class="note-mini">${t('complement_note')}</div>`;
                         html += `</div>`;
                     }
                 }
@@ -849,11 +898,29 @@
                 } else {
                     let detailMsg = '';
                     if (currentMode === 'combine') {
-                        detailMsg = `تكرار ${currentClasses[targetIndex].label} = ${expectedValues['freq']}، تكرار ${currentClasses[targetIndex2].label} = ${expectedValues['freq2']}، المجموع = ${expectedValues['total']}، الاحتمال = ${expectedValues['percent']}%`;
+                        detailMsg = t('detail_combine', {
+                            class1: currentClasses[targetIndex].label,
+                            freq1: expectedValues['freq'],
+                            class2: currentClasses[targetIndex2].label,
+                            freq2: expectedValues['freq2'],
+                            total: expectedValues['total'],
+                            pct: expectedValues['percent']
+                        });
                     } else if (currentMode === 'complement') {
-                        detailMsg = `تكرار ${currentClasses[targetIndex].label} = ${expectedValues['freq']}، المجموع = ${expectedValues['total']}، الاحتمال = ${expectedValues['percentB']}%، احتمال المتمم = ${expectedValues['pctComp']}%`;
+                        detailMsg = t('detail_complement', {
+                            class: currentClasses[targetIndex].label,
+                            freq: expectedValues['freq'],
+                            total: expectedValues['total'],
+                            pct: expectedValues['percentB'],
+                            comp: expectedValues['pctComp']
+                        });
                     } else {
-                        detailMsg = `تكرار ${currentClasses[targetIndex].label} = ${expectedValues['freq']}، المجموع = ${expectedValues['total']}، الاحتمال = ${expectedValues['percentB']}%`;
+                        detailMsg = t('detail_basic', {
+                            class: currentClasses[targetIndex].label,
+                            freq: expectedValues['freq'],
+                            total: expectedValues['total'],
+                            pct: expectedValues['percentB']
+                        });
                     }
                     messageEl.innerHTML = t('wrong') + ' (' + detailMsg + ')';
                     messageEl.style.color = 'var(--accent3)';
@@ -890,6 +957,7 @@
                 btnToggleExample.textContent = examplePanel.classList.contains('visible') ? t('example_toggle_hide') : t('example_toggle_show');
             });
 
+            // التهيئة النهائية
             loadLanguage();
             document.getElementById('langSelect').value = currentLang;
             loadTheme();
@@ -901,6 +969,10 @@
             checkBtn.disabled = false;
             const firstKey = Object.keys(inputRefs)[0];
             if (firstKey && inputRefs[firstKey]) inputRefs[firstKey].focus();
+            // تحديث محتوى المثال عند التحميل
+            if (examplePanel) {
+                examplePanel.innerHTML = t('example_text');
+            }
             updateStaticI18n();
         })();
     </script>
