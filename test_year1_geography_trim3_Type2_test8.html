@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - فرض تأليفي عدد 03 في الجغرافيا - الفيضانات والتسونامي</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6D28D9">
+    <meta name="description" content="فرض تأليفي عدد 3 في الجغرافيا - التطرفات المناخية: الفيضانات والتسونامي - السنة الأولى ثانوي (2024-2025)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - جغرافيا الفيضانات">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        /* ===== BASE STYLES - PALETTE VIOLET / POURPRE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #1E1B4B;
+            line-height: 1.6;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #2E1065 0%, #4C1D95 100%);
+            color: #F3E8FF;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .Tests-Hub-title-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: inherit;
+        }
+        .Tests-Hub-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+            color: inherit;
+        }
+        .Tests-Hub-heading-primary {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: inherit;
+        }
+        .Tests-Hub-heading-section {
+            color: #5B21B6;
+            border-bottom: 2px solid #8B5CF6;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-heading-section {
+            color: #C4B5FD;
+            border-bottom-color: #A78BFA;
+        }
+        .Tests-Hub-heading-subsection {
+            color: #7C3AED;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-heading-subsection {
+            color: #DDD6FE;
+        }
+        .Tests-Hub-text-bold {
+            font-weight: 700;
+            color: #5B21B6;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-bold {
+            color: #C4B5FD;
+        }
+        .Tests-Hub-text-highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            border-right: 2px solid #8B5CF6;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-highlight {
+            background: rgba(167, 139, 250, 0.2);
+            border-right-color: #A78BFA;
+        }
+        .Tests-Hub-text-note {
+            font-style: italic;
+            color: #4C1D95;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-note {
+            color: #C4B5FD;
+        }
+        .Tests-Hub-text-explanation {
+            color: #4C1D95;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0.75rem 0;
+            padding-right: 1rem;
+            border-right: 3px solid #8B5CF6;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-explanation {
+            color: #DDD6FE;
+            border-right-color: #A78BFA;
+        }
+        .Tests-Hub-text-correction {
+            color: #7C3AED;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-correction {
+            color: #C4B5FD;
+        }
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: #7C3AED;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #5B21B6;
+        }
+
+        /* ===== LAYOUT ===== */
+        .Tests-Hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .Tests-Hub-content-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        .Tests-Hub-flex-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-grid-cols-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* ===== HEADER ===== */
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #5B21B6, #7C3AED);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #2E1065, #5B21B6, #7C3AED);
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+        .Tests-Hub-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .Tests-Hub-button-primary {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to left, #5B21B6, #7C3AED);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .Tests-Hub-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Language selector */
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #4C1D95;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F3E8FF;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #6D28D9;
+        }
+
+        /* Test sections */
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: linear-gradient(to left, #5B21B6, #7C3AED);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .Tests-Hub-test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease, color 0.3s ease;
+            direction: rtl;
+            text-align: right;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-test-section {
+            background: #2E1065;
+            color: #F3E8FF;
+        }
+        .Tests-Hub-instructions-container {
+            background: #F5F3FF;
+            padding: 1rem;
+            border-right: 4px solid #8B5CF6;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-instructions-container {
+            background: #3B0764;
+            border-right-color: #A78BFA;
+        }
+        .Tests-Hub-organized-list {
+            margin-right: 1.5rem;
+        }
+        .Tests-Hub-organized-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Answer inputs */
+        .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            margin-top: 8px;
+            text-align: right;
+            background: #F8FAFC;
+            transition: all 0.2s;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-textarea {
+            background: #4C1D95;
+            border-color: #8B5CF6;
+            color: #F3E8FF;
+        }
+        .Tests-Hub-question-container {
+            margin: 1.5rem 0;
+        }
+        .Tests-Hub-question-number {
+            font-weight: bold;
+            color: #5B21B6;
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-question-number {
+            color: #C4B5FD;
+        }
+
+        /* Lists for answers */
+        .Tests-Hub-answer-list {
+            list-style: none;
+            padding: 0;
+        }
+        .Tests-Hub-answer-list li {
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-answer-list textarea {
+            width: 100%;
+            min-height: 70px;
+        }
+
+        /* Correction */
+        .Tests-Hub-correction-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .Tests-Hub-correction-section {
+            background: #F5F3FF;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-right: 4px solid #8B5CF6;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: #3B0764;
+            border-right-color: #A78BFA;
+        }
+        .Tests-Hub-correction-answer {
+            background: rgba(139, 92, 246, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-right: 3px solid #8B5CF6;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(167, 139, 250, 0.1);
+        }
+        .Tests-Hub-correction-plan {
+            background: #EDE9FE;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-correction-plan {
+            background: #4C1D95;
+        }
+        .Tests-Hub-essay-model {
+            line-height: 1.9;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        /* Download section */
+        .Tests-Hub-download-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(139, 92, 246, 0.1), rgba(91, 33, 182, 0.1));
+            border-radius: 12px;
+        }
+        .Tests-Hub-button-download {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .Tests-Hub-download-pdf { background: linear-gradient(135deg, #5B21B6, #7C3AED); color: white; }
+        .Tests-Hub-download-odt { background: linear-gradient(135deg, #6D28D9, #8B5CF6); color: white; }
+        .Tests-Hub-download-png { background: linear-gradient(135deg, #4C1D95, #7C3AED); color: white; }
+        .Tests-Hub-button-download:hover { transform: translateY(-5px); }
+
+        /* Footer */
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #5B21B6, #7C3AED);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+        }
+        .Tests-Hub-footer-column { text-align: center; }
+        .Tests-Hub-footer-heading { color: #DDD6FE; margin-bottom: 1rem; }
+        .Tests-Hub-footer-link { color: #DDD6FE; text-decoration: none; }
+        .Tests-Hub-hidden { display: none; }
+        .Tests-Hub-text-warning {
+            color: #B91C1C;
+            background: rgba(185, 28, 28, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-right: 4px solid #DC2626;
+            margin: 1rem 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-warning {
+            color: #FCA5A5;
+            background: rgba(220,38,38,0.2);
+        }
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content { flex-direction: column; text-align: center; }
+            .Tests-Hub-grid-cols-3 { grid-template-columns: 1fr; }
+            .Tests-Hub-download-section { flex-direction: column; align-items: center; }
+            .Tests-Hub-button-download { width: 80%; flex-direction: row; height: auto; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content Tests-Hub-container Tests-Hub-flex-row">
+            <div>
+                <h1 class="Tests-Hub-title-main" data-i18n="TestsHub.geographyTest.title">الجغرافيا - فرض تأليفي عدد 03</h1>
+                <div class="Tests-Hub-subtitle" data-i18n="TestsHub.geographyTest.subtitle">التطرفات المناخية: الفيضانات والتسونامي - أولى ثانوي (2024-2025)</div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button"><span>→</span><span data-i18n="TestsHub.geographyTest.back">العودة للاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button"><span>🌐</span><span data-i18n="TestsHub.language.current">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-content-container">
+        <div class="Tests-Hub-test-header">
+            <h1 class="Tests-Hub-heading-primary">الفرض التأليفي عدد 3 – جغرافيا</h1>
+            <p>المستوى: أولى ثانوي</p>
+            <p>السنة الدراسية: 2024-2025</p>
+            <p>المدة: 60 دقيقة</p>
+            <p>الأستاذ: غير محدد</p>
+            <p>المعهد: غير محدد</p>
+            <p>الموضوع:التطرفات المناخية: الفيضانات والتسونامي</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions-container">
+            <h3 class="Tests-Hub-heading-subsection">تعليمات عامة</h3>
+            <ul class="Tests-Hub-organized-list">
+                <li>أجب عن جميع الأسئلة بدقة ووضوح باستعمال المصطلحات الجغرافية.</li>
+                <li>رتّب أفكارك في المقال بشكل منطقي (مقدمة، عرض، خاتمة).</li>
+                <li>استعن بالأمثلة الواقعية المدروسة.</li>
+                <li>الإنشاء والتنظيم يحسبان ضمن التقييم.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">القسم الأول (8 نقاط)</h2>
+
+            <!-- السؤال 1 : تعريف المصطلحات -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">1.</span> عرّف المصطلحات التالية: <span class="Tests-Hub-points-badge">2 نقطة</span></p>
+                <div class="Tests-Hub-mb-2"><p class="Tests-Hub-text-bold">- الفيضان:</p><textarea class="Tests-Hub-answer-textarea" placeholder="اكتب تعريف الفيضان هنا..."></textarea></div>
+                <div class="Tests-Hub-mb-2"><p class="Tests-Hub-text-bold">- التسونامي:</p><textarea class="Tests-Hub-answer-textarea" placeholder="اكتب تعريف التسونامي هنا..."></textarea></div>
+            </div>
+
+            <!-- السؤال 2 : ثلاثة طرق للحد من الفيضانات -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">2.</span> حدد ثلاثة من طرق الحد من الفيضانات: <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <ul class="Tests-Hub-answer-list">
+                    <li><textarea class="Tests-Hub-answer-textarea" placeholder="الطريقة الأولى للحد من الفيضانات..."></textarea></li>
+                    <li><textarea class="Tests-Hub-answer-textarea" placeholder="الطريقة الثانية..."></textarea></li>
+                    <li><textarea class="Tests-Hub-answer-textarea" placeholder="الطريقة الثالثة..."></textarea></li>
+                </ul>
+            </div>
+
+            <!-- السؤال 3 : سببين من أسباب الفيضانات -->
+            <div class="Tests-Hub-question-container">
+                <p><span class="Tests-Hub-question-number">3.</span> اذكر سببين من أسباب الفيضانات: <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <ul class="Tests-Hub-answer-list">
+                    <li><textarea class="Tests-Hub-answer-textarea" placeholder="السبب الأول..."></textarea></li>
+                    <li><textarea class="Tests-Hub-answer-textarea" placeholder="السبب الثاني..."></textarea></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- القسم الثاني : مقال -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">القسم الثاني (12 نقطة)</h2>
+            <p class="Tests-Hub-paragraph"><strong class="Tests-Hub-text-highlight">الموضوع:</strong> بسبب خطورة الفيضانات، حاول الإنسان دراسة هذه الظاهرة والتعامل مع نتائجها. اشرح أسباب الفيضانات ونتائجها الإيجابية والسلبية ذاكرًا أمثلة معبّرة.</p>
+            <p class="Tests-Hub-text-note">(يُراعى في التقييم: سلامة البناء المنهجي، دقة المعلومات، استعمال الأمثلة، وجودة الصياغة)</p>
+            <textarea class="Tests-Hub-answer-textarea" placeholder="اكتب مقالك هنا (مقدمة - عرض - خاتمة)..." style="min-height: 300px;"></textarea>
+        </div>
+
+        <!-- جدول مقاييس الإسناد -->
+        <div class="Tests-Hub-test-section">
+            <h2 class="Tests-Hub-heading-section">مقاييس إسناد الأعداد</h2>
+            <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+                <thead><tr style="background:#7C3AED; color:white;"><th style="padding:8px;">المعيار</th><th style="padding:8px;">النقاط</th><th style="padding:8px;">الملاحظات</th></tr></thead>
+                <tbody>
+                    <tr><td style="border:1px solid #ddd; padding:8px;">تعريف الفيضان والتسونامي</td><td style="border:1px solid #ddd; padding:8px;">2 ن</td><td style="border:1px solid #ddd; padding:8px;">الدقة والشمول</td></tr>
+                    <tr><td style="border:1px solid #ddd; padding:8px;">طرق الحد من الفيضانات (3 طرق)</td><td style="border:1px solid #ddd; padding:8px;">3 ن</td><td style="border:1px solid #ddd; padding:8px;">واقعية الوسائل</td></tr>
+                    <tr><td style="border:1px solid #ddd; padding:8px;">أسباب الفيضانات (سببان)</td><td style="border:1px solid #ddd; padding:8px;">3 ن</td><td style="border:1px solid #ddd; padding:8px;">طبيعية أو بشرية</td></tr>
+                    <tr><td style="border:1px solid #ddd; padding:8px;">المقال: الأسباب، النتائج الإيجابية والسلبية مع أمثلة</td><td style="border:1px solid #ddd; padding:8px;">10 ن</td><td style="border:1px solid #ddd; padding:8px;">المنهجية (2)، المحتوى (6)، الصياغة والأمثلة (2)</td></tr>
+                    <tr><td style="border:1px solid #ddd; padding:8px;"><strong>المجموع</strong></td><td style="border:1px solid #ddd; padding:8px;"><strong>20 نقطة</strong></td><td style="border:1px solid #ddd; padding:8px;"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Correction toggle -->
+        <div class="Tests-Hub-correction-container">
+            <button class="Tests-Hub-button-primary" id="toggleCorrection">عرض التصحيح المفصل</button>
+        </div>
+
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2 class="Tests-Hub-heading-section">التصحيح المفصل للفرض</h2>
+
+            <!-- السؤال 1 -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">1.</span> <strong>تعريف المصطلحات</strong> <span class="Tests-Hub-points-badge">2 نقطة</span></p>
+                <p><strong class="Tests-Hub-text-success">• الفيضان:</strong> هو ظاهرة طبيعية تتمثل في ارتفاع منسوب المياه بشكل مفاجئ وكبير، مما يؤدي إلى غمر المناطق المجاورة للمجاري المائية (أنهار، أودية) أو المسطحات المائية (بحار، محيطات)، نتيجة أمطار غزيرة، ذوبان الثلوج، أو أعاصير بحرية.</p>
+                <p><strong class="Tests-Hub-text-success">• التسونامي:</strong> موجات بحرية عملاقة تتولد بفعل زلزال قوي تحت الماء أو انهيار أرضي بحري أو ثوران بركاني، وتنتشر بسرعة هائلة (تصل إلى 800 كم/ساعة)، وعند وصولها إلى السواحل ترتفع وتسبب فيضانات مدمرة. (مثال: تسونامي المحيط الهندي 2004).</p>
+                <p class="Tests-Hub-text-explanation">كل تعريف صحيح وكامل يمنح نقطة واحدة.</p>
+            </div>
+
+            <!-- السؤال 2 : طرق الحد -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">2.</span> <strong>طرق الحد من الفيضانات</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p><strong>الطرق التقليدية:</strong></p>
+                <ul style="margin-right:1.5rem;">
+                    <li>تشييد الطوابي (السدود الترابية) والجسور لتنظيم جريان المياه.</li>
+                    <li>إقامة المدرجات على سفوح الجبال لتعطيل سرعة جريان المياه وتقليل الانجراف.</li>
+                    <li>حماية الغطاء النباتي والتشجير، لأن الأشجار تمتص الماء وتثبت التربة.</li>
+                    <li>استصلاح مجاري الأودية وتنظيفها من الفضلات.</li>
+                </ul>
+                <p><strong>الطرق العصرية:</strong></p>
+                <ul style="margin-right:1.5rem;">
+                    <li>بناء السدود الكبيرة لتجميع مياه الأمطار والتحكم في تدفقها.</li>
+                    <li>إنشاء أنظمة الإنذار المبكر وشبكات الرصد الجوي والزلزالي.</li>
+                    <li>إصدار قوانين تمنع البناء في المناطق المعرضة للفيضانات ومجاري السيول.</li>
+                    <li>إنشاء مصدات وجدران ساحلية للحماية من أمواج التسونامي والعواصف.</li>
+                </ul>
+                <p class="Tests-Hub-text-explanation">أي ثلاث طرق صحيحة تمنح 3 نقاط (نقطة لكل طريقة).</p>
+            </div>
+
+            <!-- السؤال 3 : أسباب الفيضانات -->
+            <div class="Tests-Hub-correction-answer">
+                <p><span class="Tests-Hub-question-number">3.</span> <strong>أسباب الفيضانات</strong> <span class="Tests-Hub-points-badge">3 نقاط</span></p>
+                <p><strong>أسباب طبيعية:</strong> نزول كميات هائلة من الأمطار في مدة قصيرة، ذوبان سريع للثلوج، هبوب أعاصير تدفع مياه البحر نحو اليابسة، حدوث تسونامي.</p>
+                <p><strong>أسباب بشرية:</strong> إزالة الغابات والغطاء النباتي، البناء العشوائي في مجاري الأودية، رداءة شبكات تصريف المياه، الاحتباس الحراري الذي يزيد حدة التطرفات المناخية.</p>
+                <p class="Tests-Hub-text-explanation">كل سبب (طبيعي أو بشري) يمنح 1.5 نقطة إذا تم شرحه بإيجاز. يُقبل أي سببين صحيحين.</p>
+            </div>
+
+            <!-- القسم الثاني: المقال -->
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>القسم الثاني: المقال (أسباب الفيضانات ونتائجها الإيجابية والسلبية مع أمثلة)</strong> <span class="Tests-Hub-points-badge">12 نقطة</span></p>
+                <div class="Tests-Hub-correction-plan">
+                    <p style="font-weight:700;">📌 تخطيط المقال النموذجي:</p>
+                    <div style="padding-right:1rem;">
+                        <p><strong>المقدمة:</strong> تقديم ظاهرة الفيضانات كأحد أبرز الكوارث الطبيعية، وبيان أن الإنسان حاول فهمها والتكيف معها، مع طرح الإشكالية: ما أسباب الفيضانات؟ وما نتائجها الإيجابية والسلبية؟</p>
+                        <p><strong>العرض:</strong></p>
+                        <ul>
+                            <li><strong>أسباب الفيضانات:</strong> طبيعية (أمطار غزيرة، ذوبان ثلوج، أعاصير، تسونامي) وبشرية (إزالة الغابات، التوسع العمراني، الاحتباس الحراري).</li>
+                            <li><strong>النتائج السلبية:</strong> خسائر بشرية (قتلى، جرحى، نازحون) كفيضانات بنغلاديش (37 ألف قتيل) وتسـونامي إندونيسيا (300 ألف ضحية)؛ خسائر مادية (انهيار مباني، جسور، طرقات)؛ أضرار بيئية (انجراف التربة، تلوث المياه).</li>
+                            <li><strong>النتائج الإيجابية:</strong> تغذية السدود والموائد الجوفية، تخصيب التربة بالطمي، تحسين المحاصيل الزراعية بعد الفيضانات.</li>
+                        </ul>
+                        <p><strong>الخاتمة:</strong> التأكيد على أن الفيضانات ظاهرة طبيعية لا يمكن منعها لكن يمكن التخفيف من آثارها بفضل التخطيط والوعي، مع الاستفادة من إيجابياتها.</p>
+                    </div>
+                </div>
+                <p class="Tests-Hub-text-correction">✍️ نموذج لتحرير المقال (إجابة مسترسلة):</p>
+                <div class="Tests-Hub-essay-model">
+                    <p>تُعد الفيضانات من أخطر الكوارث الطبيعية التي تواجه البشرية، فهي تتسبب في دمار هائل وخسائر فادحة، لكنها تحمل في طياتها بعض الفوائد. وقد دفع هذا التناقض الإنسان إلى دراسة هذه الظاهرة بعمق لتخفيف أضرارها والاستفادة من إيجابياتها. فما أسباب الفيضانات؟ وما هي نتائجها المختلفة؟</p>
+                    <p>تتنوع أسباب الفيضانات بين عوامل طبيعية وأخرى بشرية. فمن الناحية الطبيعية، يؤدي نزول كميات استثنائية من الأمطار خلال فترة وجيزة إلى طفح الأنهار والأودية، كما يحدث في مناطق جنوب آسيا (الهند وبنغلاديش). كذلك تسبب الأعاصير دفع مياه البحر نحو اليابسة، بينما تؤدي الزلازل تحت البحر إلى أمواج التسونامي المدمرة (تسونامي إندونيسيا 2004). أما العوامل البشرية فتتجلى في إزالة الغابات، البناء في مجاري السيول، وسوء التخطيط العمراني، إضافة إلى الاحتباس الحراري الذي يزيد من حدة الظواهر المناخية المتطرفة.</p>
+                    <p>تترتب على الفيضانات نتائج متنوعة. على المستوى السلبي، تتسبب في خسائر بشرية جسيمة: ففيضانات بنغلاديش (2004) أودت بحياة 37 ألف شخص، وتسونامي إندونيسيا خلف حوالي 300 ألف قتيل، إلى جانب ملايين المشردين. كما تدمر البنية التحتية (الجسور، الطرقات، شبكات الكهرباء) وتتسبب في انجراف التربة السطحية وتسرب المواد السامة. لكن للفيضانات نتائج إيجابية لا يستهان بها، فهي تغذي المخزون المائي للسدود والموائد الجوفية، وتخصب التربة بواسطة الطمي الذي تحمله المياه، مما يحسن غلة المحاصيل الزراعية، كما حدث في وادي النيل قبل بناء السد العالي.</p>
+                    <p>في الختام، يمكن القول إن الفيضانات ظاهرة طبيعية متكررة، ولا يمكن منعها تمامًا، ولكن تطوير أنظمة الإنذار المبكر، والتخطيط العمراني الرشيد، وحماية الغابات، وتوعية السكان، كلها وسائل ناجعة للحد من أضرارها، مع استغلال مياهها لتلبية الاحتياجات البشرية.</p>
+                </div>
+                <p class="Tests-Hub-text-explanation"><strong>توزيع النقاط:</strong> 2 للمنهجية (مقدمة، عرض، خاتمة وتماسك)، 6 للمحتوى (أسباب 2، نتائج سلبية 2، نتائج إيجابية 2)، 2 لاستعمال الأمثلة وجودة الصياغة. المجموع 12 نقطة.</p>
+            </div>
+            <p class="Tests-Hub-text-warning">ملاحظة: هذا التصحيح نموذجي، وتُقبل الإجابات الصحيحة علميًا وإن اختلفت الصياغة.</p>
+        </div>
+
+        <!-- Download buttons -->
+        <div class="Tests-Hub-download-section">
+            <button class="Tests-Hub-button-download Tests-Hub-download-pdf" id="downloadPdf"><span>📄</span><span data-i18n="TestsHub.geographyTest.download.pdf">PDF</span></button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-odt" id="downloadOdt"><span>📝</span><span data-i18n="TestsHub.geographyTest.download.odt">ODT</span></button>
+            <button class="Tests-Hub-button-download Tests-Hub-download-png" id="downloadPng"><span>🖼️</span><span data-i18n="TestsHub.geographyTest.download.png">PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content Tests-Hub-container">
+            <div class="Tests-Hub-grid-cols-3">
+                <div class="Tests-Hub-footer-column"><h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name">زياد الماجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number">v1.5.0</p></div>
+                <div class="Tests-Hub-footer-column"><h3 class="Tests-Hub-footer-heading" data-i18n="TestsHub.footer.links">الروابط</h3><ul><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const translations = {
+            ar: {
+                TestsHub: {
+                    geographyTest: { title: "الجغرافيا - فرض تأليفي عدد 3", subtitle: "التطرفات المناخية: الفيضانات والتسونامي", back: "العودة للاختبارات", showCorrection: "عرض التصحيح المفصل", hideCorrection: "إخفاء التصحيح", download: { pdf: "PDF", odt: "ODT", png: "PNG" }, comingSoon: "قريباً! هذه الميزة قيد التطوير." },
+                    language: { current: "العربية" }, theme: { toggle: "الوضع المظلم" }, footer: { developer: "المطور", version: "الإصدار", links: "الروابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية" }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    geographyTest: { title: "Géographie - Devoir de Synthése N°3", subtitle: "Inondations et Tsunamis", back: "Retour", showCorrection: "Voir correction", hideCorrection: "Masquer", download: { pdf: "PDF", odt: "ODT", png: "PNG" }, comingSoon: "Bientôt disponible" },
+                    language: { current: "Français" }, theme: { toggle: "Mode Sombre" }, footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions", privacy: "Confidentialité" }
+                }
+            },
+            en: {
+                TestsHub: {
+                    geographyTest: { title: "Geography - Final-Trim Test N°3", subtitle: "Floods & Tsunamis", back: "Back", showCorrection: "Show Correction", hideCorrection: "Hide", download: { pdf: "PDF", odt: "ODT", png: "PNG" }, comingSoon: "Coming soon" },
+                    language: { current: "English" }, theme: { toggle: "Dark Mode" }, footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy" }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let val = translations[currentLanguage];
+                key.split('.').forEach(k => val = val?.[k]);
+                if (typeof val === 'string') el.textContent = val;
+            });
+            updateThemeToggleText(); updateCorrectionButtonText();
+        }
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            if(span) span.textContent = isDarkTheme ? (currentLanguage==='ar'?'الوضع الفاتح':(currentLanguage==='fr'?'Mode Clair':'Light Mode')) : translations[currentLanguage].TestsHub.theme.toggle;
+            document.getElementById('themeIcon').textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            if(btn) btn.textContent = corr.classList.contains('Tests-Hub-hidden') ? translations[currentLanguage].TestsHub.geographyTest.showCorrection : translations[currentLanguage].TestsHub.geographyTest.hideCorrection;
+        }
+        function toggleTheme() { isDarkTheme = !isDarkTheme; document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme); updateThemeToggleText(); localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light'); }
+        function changeLanguage(lang) { if(!translations[lang]) return; currentLanguage = lang; updateTextContent(); document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)').textContent = translations[lang].TestsHub.language.current; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; localStorage.setItem('testsHubLanguage', lang); }
+        function comingSoon() { alert(translations[currentLanguage].TestsHub.geographyTest.comingSoon); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if(savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if(savedLang && translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            updateTextContent();
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', () => changeLanguage(opt.dataset.language)));
+            document.getElementById('downloadPdf').addEventListener('click', comingSoon);
+            document.getElementById('downloadOdt').addEventListener('click', comingSoon);
+            document.getElementById('downloadPng').addEventListener('click', comingSoon);
+            const btn = document.getElementById('toggleCorrection');
+            const corr = document.getElementById('correction');
+            btn.addEventListener('click', () => { corr.classList.toggle('Tests-Hub-hidden'); updateCorrectionButtonText(); });
+            if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(e=>console.log);
+        });
+    </script>
+</body>
+</html>
