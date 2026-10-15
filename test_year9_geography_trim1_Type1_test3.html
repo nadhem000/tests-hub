@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Hub - الفرض العادي الأول - جغرافيا - 9 أساسي</title>
+    <meta name="theme-color" content="#1B4332">
+    <meta name="description" content="الفرض العادي الأول في الجغرافيا - السنة التاسعة أساسي">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tests Hub - جغرافيا 9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tests Hub">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        :root {
+            --primary: #1B4332;
+            --secondary: #2D6A4F;
+            --accent: #E07A5F;
+            --accent2: #C1666B;
+            --light-bg: #F8F4E3;
+            --light-section: #FFFFFF;
+            --text-light: #1B1B1B;
+            --text-light-secondary: #3D3D3D;
+            --border-light: #D8D8C8;
+            --shadow-light: rgba(27, 67, 50, 0.07);
+            --header-light: linear-gradient(to left, #081C15, #1B4332, #2D6A4F);
+            --canvas-bg: #F8F4E3;
+            --canvas-stroke: #1B4332;
+            --canvas-text: #1B1B1B;
+            --canvas-grid: #A8B8A0;
+            --canvas-accent: #E07A5F;
+            --canvas-fill: rgba(224, 122, 95, 0.07);
+        }
+
+        body.Tests-Hub-dark-theme {
+            --primary: #95D5B2;
+            --secondary: #74C69D;
+            --accent: #E8A87C;
+            --accent2: #D4A373;
+            --light-bg: #081C15;
+            --light-section: #1B4332;
+            --text-light: #F8F4E3;
+            --text-light-secondary: #D8D8C8;
+            --border-light: #2D6A4F;
+            --shadow-light: rgba(0, 0, 0, 0.35);
+            --header-light: linear-gradient(to left, #040D08, #081C15, #1B4332);
+            --canvas-bg: #081C15;
+            --canvas-stroke: #95D5B2;
+            --canvas-text: #F8F4E3;
+            --canvas-grid: #2D6A4F;
+            --canvas-accent: #E8A87C;
+            --canvas-fill: rgba(232, 168, 124, 0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F8F4E3 0%, #F0EBD8 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #081C15 0%, #040D08 100%);
+            color: var(--text-light);
+        }
+
+        .Tests-Hub-header-container {
+            background: var(--header-light);
+            color: #F8F4E3;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .Tests-Hub-header-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-button {
+            background: rgba(248, 244, 227, 0.10);
+            color: #F8F4E3;
+            border: 1px solid rgba(248, 244, 227, 0.22);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .Tests-Hub-button:hover {
+            background: rgba(248, 244, 227, 0.20);
+            border-color: rgba(248, 244, 227, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F8F4E3;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #1B1B1B;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-language-option:hover {
+            background: #F0EBD8;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #1B4332;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #F8F4E3;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #2D6A4F;
+        }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .Tests-Hub-test-header {
+            text-align: center;
+            background: var(--header-light);
+            color: #F8F4E3;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-test-header {
+            background: linear-gradient(to left, #040D08, #081C15, #1B4332);
+        }
+
+        .Tests-Hub-test-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .Tests-Hub-test-header p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        .Tests-Hub-instructions {
+            background: #F8F4E3;
+            padding: 1.2rem 1.5rem;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-instructions {
+            background: #081C15;
+            border-right-color: var(--accent);
+        }
+
+        .Tests-Hub-test-section {
+            background: var(--light-section);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 14px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .Tests-Hub-test-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-test-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .Tests-Hub-points-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-points-badge {
+            background: #A0522D;
+            color: #F8F4E3;
+        }
+
+        .Tests-Hub-question {
+            margin: 1.2rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .Tests-Hub-question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        .Tests-Hub-answer-input {
+            display: inline-block;
+            min-width: 120px;
+            border: 1px solid #A8B8A0;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: inherit;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            background: #FFF;
+            color: #1B1B1B;
+            margin: 3px 5px;
+        }
+
+        .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input {
+            border-color: #2D6A4F;
+            background: #081C15;
+            color: #F8F4E3;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-answer-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.16);
+        }
+
+        .Tests-Hub-large-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #A8B8A0;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 8px;
+            background: #FFF;
+            color: #1B1B1B;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.12);
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea {
+            border-color: #2D6A4F;
+            background: #081C15;
+            color: #F8F4E3;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-large-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.16);
+        }
+
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-table th,
+        .Tests-Hub-table td {
+            border: 1px solid #D8D8C8;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-table th {
+            background: #1B4332;
+            color: #F8F4E3;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table th {
+            background: #2D6A4F;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table td {
+            border-color: #2D6A4F;
+        }
+        .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(27, 67, 50, 0.03);
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-table tr:nth-child(even) td {
+            background: rgba(248, 244, 227, 0.02);
+        }
+
+        .Tests-Hub-table-input {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid #A8B8A0;
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-family: inherit;
+            font-size: 14px;
+            text-align: center;
+            width: 90%;
+            background: #FFF;
+            color: #1B1B1B;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-table-input {
+            border-color: #2D6A4F;
+            background: #081C15;
+            color: #F8F4E3;
+        }
+
+        .Tests-Hub-correction-toggle-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .Tests-Hub-toggle-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(to left, #1B4332, #2D6A4F, var(--accent));
+            color: #F8F4E3;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            letter-spacing: 0.5px;
+        }
+
+        .Tests-Hub-toggle-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #F8F4E3 0%, #F0EBD8 100%);
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(224, 122, 95, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-section {
+            background: linear-gradient(145deg, #1B4332, #081C15);
+            border-color: rgba(232, 168, 124, 0.28);
+        }
+
+        .Tests-Hub-correction-section h2 {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .Tests-Hub-correction-answer {
+            background: rgba(248, 244, 227, 0.7);
+            border-radius: 14px;
+            padding: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer {
+            background: rgba(8, 28, 21, 0.7);
+            border-right-color: #E8A87C;
+        }
+
+        .Tests-Hub-correction-answer strong {
+            color: #1B4332;
+            background: rgba(224, 122, 95, 0.09);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-correction-answer strong {
+            color: #E8A87C;
+            background: rgba(232, 168, 124, 0.16);
+        }
+
+        .correction-explanation {
+            margin-top: 0.8rem;
+            padding: 0.9rem 1rem;
+            background: rgba(27, 67, 50, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.7;
+            color: #3D3D3D;
+        }
+
+        .Tests-Hub-dark-theme .correction-explanation {
+            background: rgba(232, 168, 124, 0.08);
+            color: #F8F4E3;
+            border-right-color: #D4A373;
+        }
+
+        .Tests-Hub-hidden {
+            display: none;
+        }
+
+        .Tests-Hub-text-success {
+            color: #2D6A4F;
+            font-weight: 600;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-text-success {
+            color: #74C69D;
+        }
+
+        .Tests-Hub-text-model {
+            color: #1B1B1B;
+            background: rgba(224, 122, 95, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--accent2);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-text-model {
+            color: #F8F4E3;
+            background: rgba(232, 168, 124, 0.07);
+        }
+
+        .Tests-Hub-quote-block {
+            background: rgba(27, 67, 50, 0.04);
+            border-right: 4px solid var(--secondary);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #3D3D3D;
+            line-height: 1.9;
+        }
+
+        .Tests-Hub-dark-theme .Tests-Hub-quote-block {
+            background: rgba(45, 106, 79, 0.08);
+            color: #D8D8C8;
+            border-right-color: #74C69D;
+        }
+
+        .Tests-Hub-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+            border: none;
+        }
+
+        .Tests-Hub-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to left, rgba(27, 67, 50, 0.05), rgba(224, 122, 95, 0.06));
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+
+        .Tests-Hub-download-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #FFF;
+        }
+        .Tests-Hub-download-button span:first-child {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .Tests-Hub-download-button.pdf {
+            background: linear-gradient(135deg, #7B1F3D, #A32F4F);
+        }
+        .Tests-Hub-download-button.odt {
+            background: linear-gradient(135deg, #1B4332, #2D6A4F);
+        }
+        .Tests-Hub-download-button.png {
+            background: linear-gradient(135deg, #E07A5F, #E8A87C);
+            color: #1B1B1B;
+        }
+        .Tests-Hub-download-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #081C15, #1B4332, #2D6A4F);
+            color: #F8F4E3;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #040D08, #081C15, #1B4332);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column {
+            text-align: center;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #E8A87C;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .Tests-Hub-developer-name,
+        .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #E8A87C;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: #E8A87C;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .Tests-Hub-footer-link:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .Tests-Hub-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .Tests-Hub-header-title {
+                font-size: 1.4rem;
+            }
+            .Tests-Hub-main-container {
+                padding: 0 1rem;
+            }
+            .Tests-Hub-footer-columns {
+                grid-template-columns: 1fr;
+            }
+            .Tests-Hub-download-buttons {
+                gap: 12px;
+                padding: 1rem;
+            }
+            .Tests-Hub-download-button {
+                height: 80px;
+                min-width: 80px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.geographyTest.title">الفرض العادي الأول - جغرافيا - 9 أساسي</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.geographyTest.subtitle">المغرب العربي - الموارد والضغوطات</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-button">
+                    <span>→</span>
+                    <span data-i18n="TestsHub.geographyTest.back">العودة للاختبارات</span>
+                </a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-button">
+                        <span>🌐</span>
+                        <span data-i18n="TestsHub.language.current">العربية</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-button" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                    <span data-i18n="TestsHub.theme.toggle">الوضع المظلم</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="Tests-Hub-main-container">
+        <div class="Tests-Hub-test-header">
+            <h1>الفرض العادي الأول في الجغرافيا</h1>
+            <p>المستوى: التاسعة أساسي | المادة: جغرافيا</p>
+            <p>المدة: ساعة واحدة</p>
+        </div>
+
+        <div class="Tests-Hub-test-section Tests-Hub-instructions">
+            <h3>📋 تعليمات عامة</h3>
+            <ul>
+                <li>أجب عن الأسئلة بدقة ووضوح معتمداً على مكتسباتك.</li>
+                <li>جودة التحرير وسلامة اللغة تؤخذان بعين الاعتبار.</li>
+                <li>القسم الأول: 6 نقاط | القسم الثاني: 12 نقطة | التنظيم والصياغة: 2 نقطتان | المجموع: 20 نقطة.</li>
+            </ul>
+        </div>
+
+        <!-- القسم الأول: 6 نقاط -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الأول – المعارف والمصطلحات <span class="Tests-Hub-points-badge">6 نقاط</span></h2>
+
+            <h3>1) عرّف المفاهيم التالية: <span class="Tests-Hub-points-badge">4 نقاط</span></h3>
+
+            <div class="Tests-Hub-question">
+                <p><strong>أ) الاحتياطي من النفط والغاز الطبيعي:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:90px;" placeholder="عرّف الاحتياطي من النفط والغاز الطبيعي..."></textarea>
+            </div>
+
+            <div class="Tests-Hub-question">
+                <p><strong>ب) مزايا الموقع الجغرافي:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:90px;" placeholder="اذكر مزايا الموقع الجغرافي للمغرب العربي..."></textarea>
+            </div>
+
+            <h3>2) أكمل الجدول بما يناسب: <span class="Tests-Hub-points-badge">نقطتان</span></h3>
+            <table class="Tests-Hub-table" style="width:70%; margin:1rem auto;">
+                <thead>
+                    <tr>
+                        <th>الدولة</th>
+                        <th>العاصمة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>المغرب الأقصى</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="اكتب العاصمة..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>الجزائر</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="اكتب العاصمة..."></td>
+                    </tr>
+                    <tr>
+                        <td><strong>موريتانيا</strong></td>
+                        <td><input type="text" class="Tests-Hub-table-input" placeholder="اكتب العاصمة..."></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- القسم الثاني: 12 نقطة -->
+        <div class="Tests-Hub-test-section">
+            <h2>القسم الثاني – التحرير <span class="Tests-Hub-points-badge">12 نقطة</span></h2>
+
+            <div class="Tests-Hub-question">
+                <p><span class="Tests-Hub-question-number">3)</span> <strong>حدّد ضغوطات الوسط الطبيعي في المغرب العربي.</strong> <span class="Tests-Hub-points-badge">12 نقطة</span></p>
+                <p style="margin-top:0.5rem;color:var(--secondary);">المطلوب: تحرير منظم يشمل المقدمة والعرض (الضغوطات المناخية + الضغوطات التضاريسية + الضغوطات البشرية) والخاتمة.</p>
+                <textarea class="Tests-Hub-large-textarea" style="min-height:300px;" placeholder="اكتب تحريراً منظمّاً يشمل المقدمة والعرض والخاتمة..."></textarea>
+            </div>
+
+            <p style="font-size:0.85rem;margin-top:1rem;color:var(--secondary);"><em>التنظيم والصياغة: 2 ن – جودة التقديم وحسن التنظيم</em></p>
+        </div>
+
+        <div class="Tests-Hub-correction-toggle-container">
+            <button class="Tests-Hub-toggle-button" id="toggleCorrection">📘 عرض التصحيح المفصّل</button>
+        </div>
+
+        <!-- تصحيح مفصّل -->
+        <div id="correction" class="Tests-Hub-correction-section Tests-Hub-hidden">
+            <h2>📘 التصحيح المفصّل – تحليل جغرافي معمّق</h2>
+
+            <h3 style="color:var(--accent);">القسم الأول – تصحيح المعارف والمصطلحات (6 نقاط)</h3>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ أ) الاحتياطي من النفط والغاز الطبيعي:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <p class="Tests-Hub-text-success">
+                    <strong>الاحتياطي من النفط والغاز الطبيعي</strong> هو <strong>كمية الموارد الطاقية (النفط والغاز) القابلة للاستخراج</strong> من باطن الأرض، والتي تم التأكد من وجودها بشكل مؤكد وقابل للاستغلال اقتصادياً في ظروف تقنية واقتصادية محددة. ويُقاس الاحتياطي بوحدات قياس خاصة: النفط بالبرميل أو الطن، والغاز بالمتر المكعب. ويُقسّم الاحتياطي عادةً إلى: <strong>احتياطي مؤكد</strong> (تم التأكد من وجوده بنسبة عالية) و<strong>احتياطي محتمل</strong> (ترجيح وجوده).
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> يُعتبر الاحتياطي من النفط والغاز الطبيعي من أهم المؤشرات الاقتصادية في دول المغرب العربي. فحسب بيانات <strong>أوبك (2020)</strong>، بلغت الاحتياطيات المؤكدة من النفط في <strong>الجزائر حوالي 12.2 مليار برميل</strong> و<strong>ليبيا 48.4 مليار برميل</strong>، بينما يملك <strong>المغرب وتونس وموريتانيا</strong> احتياطيات محدودة. أما الغاز الطبيعي، فقد بلغ احتياطي <strong>الجزائر 4.5 تريليون متر مكعب</strong> (أكبر احتياطي في إفريقيا)، مقابل <strong>1.5 تريليون متر مكعب</strong> في ليبيا. ويُلاحظ أن هذه الاحتياطيات <strong>غير متجددة</strong> (ناضبة)، مما يطرح إشكالية <strong>الأمن الطاقي</strong> على المدى البعيد، ويستدعي البحث عن بدائل (الطاقات المتجددة).
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>1/ ب) مزايا الموقع الجغرافي:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <p class="Tests-Hub-text-success">
+                    يتمتع المغرب العربي بموقع جغرافي استراتيجي بالغ الأهمية، وتتجلى أبرز مزاياه في:
+                </p>
+                <ul style="margin-right:1.5rem; margin-top:0.5rem;">
+                    <li><strong>الموقع الوسيط بين أوروبا وإفريقيا:</strong> حيث يشكّل جسراً برياً وبحرياً يربط بين القارتين، مما يجعله منطقة عبور للتجارة العالمية.</li>
+                    <li><strong>الإطلال على البحر الأبيض المتوسط:</strong> الذي يُعدّ من أهم الممرات البحرية في العالم، ويربط بين أوروبا وآسيا وإفريقيا.</li>
+                    <li><strong>الواجهة الأطلسية:</strong> حيث يطل المغرب وموريتانيا على المحيط الأطلسي، مما يفتح المجال أمام التجارة مع الأمريكتين وأوروبا الغربية.</li>
+                    <li><strong>القرب من الأسواق الأوروبية:</strong> حيث لا يفصل بين المغرب العربي وأوروبا سوى مضيق جبل طارق (14 كم فقط).</li>
+                    <li><strong>التحكم في مضائق استراتيجية:</strong> مثل مضيق جبل طارق الذي يربط بين المتوسط والأطلسي، وقناة السويس التي تربط بين المتوسط والبحر الأحمر.</li>
+                    <li><strong>الموقع في قلب العالم العربي الإسلامي:</strong> مما يمنحه ثقلاً حضارياً ودينياً وثقافياً.</li>
+                </ul>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل جغرافي معمّق:</strong> يُعزز هذا الموقع الاستراتيجي مكانة المغرب العربي كمنطقة عبور للتجارة الدولية، خاصة في مجال الطاقة (أنابيب الغاز والنفط نحو أوروبا) والنقل البحري. كما يجعله مجالاً جاذباً للاستثمارات الأجنبية، لكنه في المقابل يُعرضه لضغوطات خارجية وتنافسات دولية على النفوذ، خاصة بين القوى الأوروبية والصينية والروسية.
+                </div>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p><strong>2/ إكمال الجدول – الدول وعواصمها:</strong> <span class="Tests-Hub-points-badge">نقطتان</span></p>
+                <table class="Tests-Hub-table" style="width:70%; margin:1rem auto;">
+                    <thead>
+                        <tr><th>الدولة</th><th>العاصمة</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>المغرب الأقصى</strong></td><td><strong>الرباط</strong></td></tr>
+                        <tr><td><strong>الجزائر</strong></td><td><strong>الجزائر العاصمة</strong></td></tr>
+                        <tr><td><strong>موريتانيا</strong></td><td><strong>نواكشوط</strong></td></tr>
+                    </tbody>
+                </table>
+                <div class="correction-explanation">
+                    <strong>🔍 ملاحظة:</strong> يضم المغرب العربي خمس دول كبرى هي: <strong>المغرب (عاصمته الرباط)، الجزائر (عاصمتها الجزائر)، تونس (عاصمتها تونس)، ليبيا (عاصمتها طرابلس)، موريتانيا (عاصمتها نواكشوط)</strong>. وتجمع هذه الدول روابط تاريخية وثقافية ولغوية ودينية مشتركة، إضافة إلى انتمائها إلى اتحاد المغرب العربي (تأسس 1989).
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">القسم الثاني – التحرير النموذجي (12 نقطة + 2 للتنظيم)</h3>
+
+            <div style="background: rgba(27,67,50,0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-right: 4px solid var(--accent);">
+                <strong>✏️ تخطيط التحرير المطلوب:</strong>
+                <ul style="margin-top: 0.5rem; padding-right: 1.5rem;">
+                    <li><strong>مقدمة:</strong> تعريف المغرب العربي وتحديد موقعه، مع الإشارة إلى تنوع وسطه الطبيعي.</li>
+                    <li><strong>الجوهر (مقسّم إلى محاور):</strong>
+                        <ul>
+                            <li><strong>المحور الأول:</strong> الضغوطات المناخية (الجفاف، التبخر، التساقطات غير المنتظمة، التغير المناخي، التصحر...).</li>
+                            <li><strong>المحور الثاني:</strong> الضغوطات التضاريسية (الجبال، الهضاب، السهول، الصحراء، التعرية، الزلازل...).</li>
+                            <li><strong>المحور الثالث:</strong> الضغوطات البشرية (النمو السكاني، التحضر، الاستغلال المفرط للموارد...).</li>
+                        </ul>
+                    </li>
+                    <li><strong>خاتمة:</strong> استنتاج حول انعكاسات هذه الضغوطات على الإنسان والتنمية، وسبل التكيف.</li>
+                </ul>
+            </div>
+
+            <div class="Tests-Hub-correction-answer">
+                <p class="Tests-Hub-text-model" style="font-weight: normal;">
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 مقدمة:</strong><br>
+                    يُقصد بـ<strong>المغرب العربي</strong> المجال الجغرافي الممتد في شمال غرب إفريقيا، ويضم خمس دول أساسية: المغرب، الجزائر، تونس، ليبيا، وموريتانيا. ويتميز هذا المجال بتنوع وسطه الطبيعي بين المناطق الجبلية والسهلية والصحراوية، وبمناخ متباين بين المتوسطي في الشمال والجاف والصحراوي في الجنوب. غير أن هذا الوسط الطبيعي يتعرض لضغوطات متعددة، مناخية وتضاريسية وبشرية، تؤثر على الإنسان وأنشطته الاقتصادية. فما هي أبرز هذه الضغوطات؟ وكيف تنعكس على التنمية في المنطقة؟
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 الجوهر – المحور الأول: الضغوطات المناخية:</strong><br><br>
+                    <strong>1. الجفاف وشح التساقطات:</strong> يُعدّ الجفاف أبرز الضغوطات المناخية في المغرب العربي، حيث تتراجع كمية الأمطار كلما اتجهنا جنوباً. فبينما تتجاوز التساقطات <strong>800 مم سنوياً</strong> في شمال المغرب والجزائر وتونس، تنخفض إلى أقل من <strong>100 مم</strong> في المناطق الصحراوية (المصدر: منظمة الأرصاد الجوية العالمية، 2020). ويعاني المغرب العربي من <strong>تذبذب كبير في التساقطات</strong>، حيث تتوالى سنوات الجفاف وسنوات الفيضانات بشكل غير منتظم، مما يُصعّب التخطيط الزراعي ويُهدد الأمن الغذائي.<br><br>
+                    <strong>2. ارتفاع درجات الحرارة والتبخر:</strong> ترتفع درجات الحرارة في فصل الصيف بشكل كبير، خاصة في المناطق الداخلية والصحراوية، حيث تتجاوز <strong>40 درجة مئوية</strong> في المتوسط. ويؤدي هذا الارتفاع إلى <strong>زيادة معدلات التبخر</strong> (تبخر سنوي يتجاوز 2000 مم في الجنوب)، مما يُقلل من الموارد المائية السطحية والجوفية.<br><br>
+                    <strong>3. التغيرات المناخية:</strong> يشهد المغرب العربي <strong>تغيرات مناخية</strong> متسارعة، تمثلت في ارتفاع متوسط درجات الحرارة بحوالي <strong>1.5 درجة مئوية</strong> خلال القرن الماضي، وتراجع التساقطات بنسبة تتراوح بين 10% و20% في بعض المناطق (المصدر: تقرير البنك الدولي حول المناخ، 2018). كما تزايدت وتيرة <strong>الظواهر المناخية القصوى</strong> (موجات الحر، الفيضانات المفاجئة، العواصف الرملية).<br><br>
+                    <strong>4. زحف الصحراء والتصحر:</strong> يُعاني المغرب العربي من ظاهرة <strong>التصحر</strong> (تحول الأراضي الخصبة إلى صحراء) بفعل الجفاف والرعي الجائر وإزالة الغابات. وتتقدم الصحراء الكبرى شمالاً بمعدل يتراوح بين <strong>5 و10 كيلومترات سنوياً</strong> في بعض المناطق، مما يُهدد الأراضي الزراعية والمراعي.<br><br>
+                    <strong>5. العواصف الرملية والرياح الساخنة:</strong> تهب على المنطقة رياح ساخنة وجافة (مثل رياح <strong>السيروكو</strong> في المغرب العربي)، تُؤدي إلى تلف المحاصيل وارتفاع معدلات التبخر وتلوث الهواء.
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 الجوهر – المحور الثاني: الضغوطات التضاريسية:</strong><br><br>
+                    <strong>1. الجبال والمرتفعات:</strong> يضم المغرب العربي سلاسل جبلية هامة مثل <strong>جبال الأطلس</strong> (المغرب والجزائر وتونس) و<strong>جبال الريف</strong> (شمال المغرب) و<strong>جبال أوراس</strong> (الجزائر). وتُشكّل هذه الجبال <strong>حاجزاً طبيعياً</strong> يمنع مرور السحب الممطرة نحو الداخل، مما يُساهم في جفاف المناطق الداخلية (ظاهرة <strong>الظل المطري</strong>). كما تُعاني هذه الجبال من <strong>التعرية</strong> بفعل الأمطار والانحدارات الشديدة، مما يُؤدي إلى انجراف التربة.<br><br>
+                    <strong>2. الهضاب والسهول:</strong> تنتشر في المغرب العربي هضاب واسعة (مثل هضاب <strong>الشطوط</strong> في الجزائر وتونس) وسهول ساحلية خصبة (سهل <strong>الشلف</strong> في الجزائر، سهل <strong>مجردة</strong> في تونس، سهل <strong>الغرب</strong> في المغرب). غير أن هذه الهضاب والسهول تتعرض لضغوطات متعددة: <strong>الانجراف</strong>، <strong>التملح</strong> (تراكم الأملاح في التربة بسبب الري المفرط والتبخر)، و<strong>الضغط العمراني</strong> الذي يلتهم الأراضي الزراعية.<br><br>
+                    <strong>3. الصحراء:</strong> تُغطي الصحراء الكبرى مساحات شاسعة من المغرب العربي (أكثر من 80% من مساحة ليبيا والجزائر). وتتميز هذه المناطق بـ<strong>التطرف المناخي</strong> (حرارة شديدة نهاراً، برودة ليلاً)، و<strong>ندرة المياه</strong>، و<strong>ضعف الغطاء النباتي</strong>. كما تُعاني من <strong>زحف الرمال</strong> الذي يهدد الواحات والطرق والمنشآت.<br><br>
+                    <strong>4. الزلازل والظواهر التكتونية:</strong> يقع المغرب العربي في منطقة <strong>نشاط زلزالي</strong> (الحدود بين الصفيحتين الإفريقية والأوروبية)، مما يُعرضه لزلازل مدمرة (مثل زلزال بومرداس بالجزائر 2003، وزلزال الحوز بالمغرب 2023). وتُشكّل هذه الظواهر ضغطاً إضافياً على البنية التحتية والمباني.<br><br>
+                    <strong>5. الفيضانات والأودية:</strong> على الرغم من الجفاف السائد، يشهد المغرب العربي <strong>فيضانات مفاجئة</strong> في الأودية (مثل وادي مجردة بتونس، ووادي الشلف بالجزائر) بسبب الأمطار الغزيرة المفاجئة. وتُؤدي هذه الفيضانات إلى خسائر بشرية ومادية كبيرة، خاصة في المناطق الحضرية غير المهيأة.
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 الجوهر – المحور الثالث: الضغوطات البشرية:</strong><br><br>
+                    <strong>1. النمو السكاني:</strong> يشهد المغرب العربي <strong>نمواً سكانياً متسارعاً</strong>، حيث تجاوز عدد سكان المنطقة <strong>100 مليون نسمة</strong> سنة 2020 (المصدر: البنك الدولي). ويُشكّل هذا النمو ضغطاً متزايداً على الموارد الطبيعية (المياه، الغذاء، الطاقة) والخدمات الأساسية (التعليم، الصحة، السكن).<br><br>
+                    <strong>2. التحضر السريع:</strong> ارتفعت نسبة سكان المدن في المغرب العربي من حوالي <strong>40% سنة 1970</strong> إلى أكثر من <strong>65% سنة 2020</strong> (المصدر: الأمم المتحدة). ويُؤدي هذا التحضر السريع إلى <strong>توسع عشوائي للمدن</strong> على حساب الأراضي الزراعية، و<strong>ضغط على البنية التحتية</strong>، و<strong>تلوث بيئي</strong>.<br><br>
+                    <strong>3. الاستغلال المفرط للموارد:</strong> أدى الاستغلال المكثف للمياه الجوفية في الزراعة والصناعة إلى <strong>استنزاف الطبقات الجوفية</strong>، خاصة في المناطق الساحلية حيث يُسبب <strong>تسرب مياه البحر</strong> إلى الفرشات المائية. كما أدى الاستغلال المفرط للتربة إلى <strong>تدهورها وفقدان خصوبتها</strong>.<br><br>
+                    <strong>4. التلوث البيئي:</strong> تُعاني مدن المغرب العربي من <strong>تلوث الهواء</strong> (خاصة في المدن الكبرى مثل القاهرة والجزائر والدار البيضاء)، و<strong>تلوث المياه</strong> (بفعل النفايات الصناعية والصرف الصحي)، و<strong>تلوث التربة</strong> (بفعل المبيدات والأسمدة الكيميائية).
+                    <br><br>
+                    <strong style="color: var(--accent2); font-size: 1.05rem;">📌 خاتمة:</strong><br>
+                    يتضح مما سبق أن المغرب العربي يواجه ضغوطات طبيعية مزدوجة: <strong>مناخية</strong> (جفاف، تصحر، تغير مناخي) و<strong>تضاريسية</strong> (جبال، هضاب، صحراء، زلازل)، إضافة إلى <strong>ضغوطات بشرية</strong> متزايدة (نمو سكاني، تحضر، استغلال مفرط). وتنعكس هذه الضغوطات سلباً على <strong>الموارد المائية</strong> (شح المياه)، و<strong>الأمن الغذائي</strong> (تراجع الإنتاج الزراعي)، و<strong>التوازن البيئي</strong> (التصحر وتدهور التربة). ولمواجهة هذه التحديات، تبنت دول المغرب العربي استراتيجيات متعددة: <strong>بناء السدود</strong> لتخزين المياه، <strong>استخدام تقنيات الري المقتصدة</strong> (الري بالتنقيط)، <strong>مشاريع التشجير</strong> لمكافحة التصحر، و<strong>الاعتماد على الطاقات المتجددة</strong> (الشمسية والريحية) للحد من التغير المناخي. ويبقى الرهان الأكبر هو تحقيق <strong>تنمية مستدامة</strong> تُوازن بين متطلبات الإنسان وحماية الوسط الطبيعي.
+                </p>
+                <div class="correction-explanation">
+                    <strong>🔍 تحليل إضافي وإحصائيات مُوثّقة:</strong><br>
+                    - حسب <strong>تقرير البنك الدولي 2020</strong>: يُعدّ المغرب العربي من أكثر مناطق العالم عرضة للإجهاد المائي، حيث تقل حصة الفرد السنوية من المياه عن <strong>500 متر مكعب</strong> في معظم دوله (دون عتبة الفقر المائي المقدرة بـ1000 متر مكعب).<br>
+                    - <strong>المصدر: منظمة الأغذية والزراعة (FAO)، 2020:</strong> تفقد المنطقة سنوياً حوالي <strong>100,000 هكتار</strong> من الأراضي الزراعية بسبب التصحر والانجراف.<br>
+                    - <strong>المصدر: الوكالة الدولية للطاقة المتجددة (IRENA)، 2020:</strong> تمتلك دول المغرب العربي إمكانات هائلة في الطاقة الشمسية (أكثر من 3000 ساعة سطوع سنوياً)، مما يجعلها مؤهلة لتصبح قطباً عالمياً في الطاقات المتجددة.<br>
+                    - <strong>المصدر: الاتحاد الدولي لحماية الطبيعة (IUCN)، 2020:</strong> يُواجه المغرب العربي فقداناً متسارعاً للتنوع البيولوجي، خاصة في الواحات والمناطق الرطبة (تقلص واحات النخيل بنسبة 30% خلال 50 سنة).<br>
+                    - <strong>المصدر: المندوبية العامة للتنمية الجهوية (تونس):</strong> يستأثر الشريط الساحلي بـ<strong>أكثر من 70%</strong> من الموارد المائية المستغلة، بينما تعاني المناطق الداخلية من عجز مائي مزمن، مما يدفع إلى الهجرة الداخلية نحو الساحل.
+                </div>
+            </div>
+
+            <hr class="Tests-Hub-divider">
+
+            <h3 style="color:var(--accent);">معايير التنقيط (20 نقطة)</h3>
+            <div class="Tests-Hub-correction-answer">
+                <div class="correction-explanation">
+                    • <strong>السؤال 1 – أ) الاحتياطي من النفط والغاز (2ن):</strong> التعريف الدقيق (كمية الموارد القابلة للاستخراج) + أنواع الاحتياطي (مؤكد/محتمل) + وحدة القياس.<br>
+                    • <strong>السؤال 1 – ب) مزايا الموقع الجغرافي (2ن):</strong> ذكر 4 مزايا على الأقل بدقة (الوسيط، المتوسط والأطلسي، القرب من أوروبا، المضائق...).<br>
+                    • <strong>السؤال 2 – الجدول (2ن):</strong> ذكر العواصم الصحيحة (الرباط، الجزائر، نواكشوط).<br>
+                    • <strong>السؤال 3 – التحرير (12ن):</strong><br>
+                    &nbsp;&nbsp;- المنهجية (2ن): مقدمة + جوهر (محاور) + خاتمة.<br>
+                    &nbsp;&nbsp;- المحتوى المعرفي (8ن): الضغوطات المناخية (3ن) + الضغوطات التضاريسية (3ن) + الضغوطات البشرية (2ن).<br>
+                    &nbsp;&nbsp;- سلامة اللغة والصياغة (2ن): خلو النص من الأخطاء الإملائية والنحوية، ودقة المصطلحات الجغرافية.<br>
+                    • <strong>التنظيم والصياغة (2ن):</strong> جودة التقديم، وضوح الخط، احترام الفقرات، حسن التنظيم.
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحميل -->
+        <div class="Tests-Hub-download-buttons">
+            <button class="Tests-Hub-download-button pdf" id="downloadPdf"><span>📄</span><span>PDF</span></button>
+            <button class="Tests-Hub-download-button odt" id="downloadOdt"><span>📝</span><span>ODT</span></button>
+            <button class="Tests-Hub-download-button png" id="downloadPng"><span>🖼️</span><span>PNG</span></button>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.developer">المطور</h3>
+                    <p class="Tests-Hub-developer-name">زياد الماجري</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.version">الإصدار</h3>
+                    <p class="Tests-Hub-version-number">v1.0.0</p>
+                </div>
+                <div class="Tests-Hub-footer-column">
+                    <h3 data-i18n="TestsHub.footer.links">الروابط</h3>
+                    <ul class="Tests-Hub-footer-links-list">
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'ar';
+        let isDarkTheme = false;
+
+        const TestsHub_translations = {
+            ar: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "الفرض العادي الأول - جغرافيا - 9 أساسي",
+                        subtitle: "المغرب العربي - الموارد والضغوطات",
+                        back: "العودة للاختبارات",
+                        showCorrection: "📘 عرض التصحيح المفصّل",
+                        hideCorrection: "📘 إخفاء التصحيح",
+                        comingSoon: "قريبًا! هذه الميزة قيد التطوير."
+                    },
+                    language: { current: "العربية" },
+                    theme: { toggle: "الوضع المظلم" },
+                    footer: {
+                        developer: "المطور",
+                        version: "الإصدار",
+                        links: "الروابط",
+                        terms: "شروط الاستخدام",
+                        privacy: "سياسة الخصوصية"
+                    }
+                }
+            },
+            fr: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "Devoir Normal N°1 - Géographie - 9ème",
+                        subtitle: "Le Maghreb - Ressources et Pressions",
+                        back: "Retour aux Tests",
+                        showCorrection: "📘 Afficher la correction détaillée",
+                        hideCorrection: "📘 Masquer la correction",
+                        comingSoon: "Bientôt disponible !"
+                    },
+                    language: { current: "Français" },
+                    theme: { toggle: "Mode Sombre" },
+                    footer: {
+                        developer: "Développeur",
+                        version: "Version",
+                        links: "Liens",
+                        terms: "Conditions d'utilisation",
+                        privacy: "Politique de confidentialité"
+                    }
+                }
+            },
+            en: {
+                TestsHub: {
+                    geographyTest: {
+                        title: "First Normal Test - Geography - 9th Grade",
+                        subtitle: "The Maghreb - Resources and Pressures",
+                        back: "Back to Tests",
+                        showCorrection: "📘 Show Detailed Correction",
+                        hideCorrection: "📘 Hide Correction",
+                        comingSoon: "Coming soon!"
+                    },
+                    language: { current: "English" },
+                    theme: { toggle: "Dark Mode" },
+                    footer: {
+                        developer: "Developer",
+                        version: "Version",
+                        links: "Links",
+                        terms: "Terms of Use",
+                        privacy: "Privacy Policy"
+                    }
+                }
+            }
+        };
+
+        function updateTextContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let cur = TestsHub_translations[currentLanguage];
+                key.split('.').forEach(k => { if (cur) cur = cur[k]; });
+                if (typeof cur === 'string') el.textContent = cur;
+            });
+            updateThemeToggleText();
+            updateCorrectionButtonText();
+        }
+
+        function updateThemeToggleText() {
+            const span = document.querySelector('#themeToggle span:nth-child(2)');
+            const icon = document.getElementById('themeIcon');
+            if (span) {
+                span.textContent = isDarkTheme ?
+                    (currentLanguage === 'ar' ? 'الوضع الفاتح' : (currentLanguage === 'fr' ? 'Mode Clair' : 'Light Mode')) :
+                    TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+            }
+            if (icon) icon.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        function updateCorrectionButtonText() {
+            const btn = document.getElementById('toggleCorrection');
+            const sec = document.getElementById('correction');
+            if (btn) {
+                btn.textContent = sec.classList.contains('Tests-Hub-hidden') ?
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest.showCorrection :
+                    TestsHub_translations[currentLanguage].TestsHub.geographyTest.hideCorrection;
+            }
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme);
+            updateThemeToggleText();
+            localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light');
+        }
+
+        function changeLanguage(lang) {
+            if (!TestsHub_translations[lang]) return;
+            currentLanguage = lang;
+            updateTextContent();
+            const btnLang = document.querySelector('.Tests-Hub-language-selector .Tests-Hub-button span:nth-child(2)');
+            if (btnLang) btnLang.textContent = TestsHub_translations[lang].TestsHub.language.current;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            localStorage.setItem('testsHubLanguage', lang);
+        }
+
+        function downloadAlert() {
+            alert(TestsHub_translations[currentLanguage]?.TestsHub?.geographyTest?.comingSoon || "Coming soon!");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('testsHubTheme');
+            if (savedTheme === 'dark') {
+                isDarkTheme = true;
+                document.body.classList.add('Tests-Hub-dark-theme');
+            }
+            const savedLang = localStorage.getItem('testsHubLanguage');
+            if (savedLang && TestsHub_translations[savedLang]) currentLanguage = savedLang;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
+
+            updateTextContent();
+
+            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+            document.querySelectorAll('.Tests-Hub-language-option').forEach(opt =>
+                opt.addEventListener('click', () => changeLanguage(opt.getAttribute('data-language')))
+            );
+            document.getElementById('downloadPdf')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadOdt')?.addEventListener('click', downloadAlert);
+            document.getElementById('downloadPng')?.addEventListener('click', downloadAlert);
+
+            const toggleBtn = document.getElementById('toggleCorrection');
+            const correction = document.getElementById('correction');
+            toggleBtn?.addEventListener('click', () => {
+                correction.classList.toggle('Tests-Hub-hidden');
+                updateCorrectionButtonText();
+            });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

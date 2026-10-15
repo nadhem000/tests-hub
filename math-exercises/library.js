@@ -1751,7 +1751,8 @@ const exercises = [
 			"description": "Very simplified interactive exercise to calculate ascending and descending cumulative relative frequencies in class interval tables step by step. 10 attempts with points, suitable for struggling 8th grade students."
 		}
 	}
-},{
+},
+{
     id: 'ex-054',
     section: 'الإحصاء',
     sectionIcon: '📊',
@@ -2045,6 +2046,39 @@ const exercises = [
         en: {
             name: 'Standard Deviation 2 (Grouped Data)',
             description: 'Very simplified interactive exercise to calculate the standard deviation from a grouped frequency table step by step. Covers class midpoints, mean, deviations, squaring, multiplying by frequencies, variance, then square root to obtain σ. Two modes: given midpoints or find them first, with varied questions, suitable for 2nd year secondary students. 10 attempts with points.'
+        }
+    }
+},
+{
+    id: 'ex-063',
+    section: 'الجبر',
+    sectionIcon: '🔢',
+    name: 'رتبة رقم في كتابة عشرية دورية',
+    description: 'تمرين تفاعلي خطوة بخطوة لتحديد الرقم في رتبة معينة بعد الفاصل في كتابة عشرية دورية. 6 خطوات موجهة، 10 محاولات مع نقاط. مناسب للتاسعة أساسي.',
+    difficulty: 'hard',
+    class: 'التاسعة أساسي',
+    cardColor: '#8e44ad',
+    cardColorDark: '#a569bd',
+    link: 'رتبة رقم في الكتابة العشرية الدورية.html',
+    version: '1.0',
+    tags: ['أعداد عشرية', 'دورية', 'رتبة', 'حساب', 'جبر', 'تاسعة أساسي'],
+    mainLanguage: 'العربية',
+    availableTranslations: ['العربية', 'Français', 'English'],
+    author: 'فريق الرياضيات',
+    dateAdded: '2026-04-25',
+    estimatedTime: '6-10 دقائق',
+    questionCount: 10,
+    curriculum: 'المرحلة الإعدادية',
+    keywords: ['كتابة عشرية دورية', 'رتبة', 'بعد الفاصل', 'دورة', 'قسمة', 'باقي', 'التاسعة أساسي'],
+    thumbnail: '🔢',
+    translations: {
+        fr: {
+            name: 'Rang d\'un chiffre dans une écriture décimale périodique',
+            description: 'Exercice interactif étape par étape pour déterminer le chiffre à un rang donné après la virgule dans une écriture décimale périodique. 6 étapes guidées, 10 essais avec points. Adapté à la 9ème année de base.'
+        },
+        en: {
+            name: 'Digit Rank in a Repeating Decimal',
+            description: 'Step-by-step interactive exercise to find the digit at a given rank after the decimal point in a repeating decimal expansion. 6 guided steps, 10 attempts with points. Suitable for 9th grade.'
         }
     }
 }
