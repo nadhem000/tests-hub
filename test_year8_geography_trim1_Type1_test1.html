@@ -364,7 +364,7 @@
             box-shadow: 0 6px 14px rgba(0,0,0,0.1);
             text-align: center;
         }
-        .Tests-Hub-svg-container svg {
+        .Tests-Hub-svg-container img {
             width: 100%;
             height: auto;
             max-width: 700px;
@@ -453,7 +453,7 @@
             .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column, .Tests-Hub-image-column, .Tests-Hub-svg-container {
                 backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
             }
-            .Tests-Hub-svg-container svg {
+            .Tests-Hub-svg-container img {
                 display: block !important;
                 width: 100% !important;
                 height: auto !important;
@@ -519,7 +519,10 @@
                     <h3 style="font-size:1.5rem;">1) أتمم الخريطة التالية (03 نقاط)</h3>
                     <p style="margin: 0.5rem 0;">أتمم خريطة أقطار العالم بالتعرف إلى موقع العالم النامي وتلويته بالأصفر.</p>
                     
-                    <div class="Tests-Hub-svg-container" id="world-map-test"></div>
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets8/geography/trim1/المجال-العالمي-خريطة-صمّاء.png"
+                             alt="خريطة العالم الصمّاء - أتمم تلوين العالم النامي بالأصفر والعالم المتقدم بالأحمر">
+                    </div>
                     
                     <div class="Tests-Hub-legend-note">
                         <span class="legend-item"><span class="legend-swatch" style="background:#cfcfcf;"></span> غير ملون (أتمم)</span>
@@ -598,7 +601,10 @@
                     <h3>📌 إصلاح التمرين 1: الخريطة</h3>
                     <p><strong>الخريطة المكتملة:</strong> يُلوّن العالم النامي بالأصفر (إفريقيا، أمريكا اللاتينية، معظم آسيا) والعالم المتقدم بالأحمر (أمريكا الشمالية، أوروبا الغربية، اليابان، أستراليا، نيوزيلندا).</p>
                     
-                    <div class="Tests-Hub-svg-container" id="world-map-correction"></div>
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets8/geography/trim1/المجال-العالمي-الخريطة-الكاملة.png"
+                             alt="خريطة العالم الكاملة - العالم النامي بالأصفر والعالم المتقدم بالأحمر">
+                    </div>
                     
                     <div class="Tests-Hub-legend-note">
                         <span class="legend-item"><span class="legend-swatch" style="background:#f1c40f;"></span> العالم النامي</span>
@@ -752,64 +758,6 @@
             function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
             function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
             
-            // ========== رسم خريطة العالم ==========
-            function drawWorldMap(containerId, colored) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                
-                const fillDev = colored ? '#f1c40f' : '#cfcfcf';   // العالم النامي
-                const fillAdv = colored ? '#e74c3c' : '#cfcfcf';   // العالم المتقدم
-                const stroke = '#555';
-                
-                container.innerHTML = `
-                <svg viewBox="0 0 620 340" xmlns="http://www.w3.org/2000/svg" style="direction:ltr;">
-                    <!-- المحيط -->
-                    <rect width="620" height="340" fill="#d4e9f7" rx="10"/>
-                    
-                    <!-- أمريكا الشمالية (متقدم) -->
-                    <path d="M55 60 Q80 42 115 45 L155 50 L180 65 L185 90 L170 118 L150 140 L125 152 L95 148 L70 132 L55 108 L48 82 Z" 
-                          fill="${fillAdv}" stroke="${stroke}" stroke-width="1.3"/>
-                    
-                    <!-- أمريكا الوسطى (نامي) -->
-                    <path d="M125 152 L145 158 L155 172 L140 180 L125 172 Z" 
-                          fill="${fillDev}" stroke="${stroke}" stroke-width="1"/>
-                    
-                    <!-- أمريكا الجنوبية (نامي) -->
-                    <path d="M150 180 L178 172 L198 188 L205 215 L195 250 L175 275 L155 282 L140 262 L132 232 L128 205 Z" 
-                          fill="${fillDev}" stroke="${stroke}" stroke-width="1.3"/>
-                    
-                    <!-- أوروبا (متقدم) -->
-                    <path d="M275 50 L320 44 L345 58 L350 78 L340 98 L318 110 L292 105 L278 88 L270 70 Z" 
-                          fill="${fillAdv}" stroke="${stroke}" stroke-width="1.3"/>
-                    
-                    <!-- إفريقيا (نامي) -->
-                    <path d="M280 120 L338 112 L368 130 L378 162 L370 195 L350 222 L318 232 L292 222 L278 195 L270 162 Z" 
-                          fill="${fillDev}" stroke="${stroke}" stroke-width="1.3"/>
-                    
-                    <!-- آسيا (معظمها نامي) -->
-                    <path d="M355 40 L485 28 L530 55 L545 85 L528 110 L500 132 L462 142 L425 138 L392 125 L365 105 L352 78 Z" 
-                          fill="${fillDev}" stroke="${stroke}" stroke-width="1.3"/>
-                    
-                    <!-- اليابان (متقدم) -->
-                    <ellipse cx="505" cy="95" rx="8" ry="17" fill="${fillAdv}" stroke="${stroke}" stroke-width="1.1"/>
-                    
-                    <!-- أستراليا (متقدم) -->
-                    <path d="M478 215 L532 208 L555 230 L548 255 L525 272 L492 268 L475 248 L468 230 Z" 
-                          fill="${fillAdv}" stroke="${stroke}" stroke-width="1.3"/>
-                    
-                    <!-- نيوزيلندا (متقدم) -->
-                    <path d="M568 258 L580 252 L584 275 L572 282 Z" 
-                          fill="${fillAdv}" stroke="${stroke}" stroke-width="1"/>
-                    
-                    <!-- القارة القطبية الجنوبية (شريط رمادي) -->
-                    <rect x="50" y="315" width="520" height="14" fill="#e8e8e8" stroke="#aaa" stroke-width="0.6" rx="5"/>
-                    
-                    <!-- خط الاستواء -->
-                    <line x1="30" y1="170" x2="590" y2="170" stroke="#a0b8d0" stroke-width="0.8" stroke-dasharray="6 4"/>
-                    <text x="35" y="166" font-size="8" fill="#7a90a8" font-family="sans-serif">خط الاستواء</text>
-                </svg>`;
-            }
-            
             function getCleanCloneForCapture(element) {
                 const clone = element.cloneNode(true);
                 clone.querySelectorAll('.Tests-Hub-header-controls, .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle, .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button').forEach(el => el.remove());
@@ -835,10 +783,6 @@
                 if (currentLanguage === 'ar') document.documentElement.dir = 'rtl'; else document.documentElement.dir = 'ltr';
                 updateTextContent();
                 if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
-                
-                // رسم الخرائط
-                drawWorldMap('world-map-test', false);
-                drawWorldMap('world-map-correction', true);
                 
                 document.getElementById('themeToggle').addEventListener('click', toggleTheme);
                 document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); }));
