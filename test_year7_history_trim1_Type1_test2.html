@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التاريخ - فرض مراقبة عدد 1 (7 أساسي) - الثلاثي الأول</title>
+    
+    <!-- PWA Meta (بني / ذهبي) -->
+    <meta name="theme-color" content="#b45309">
+    <meta name="description" content="فرض مراقبة عدد 1 في التاريخ - السنة السابعة أساسي - الثلاثي الأول - مع الإصلاح">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - تاريخ 7 (مراقبة 1)">
+    
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    
+    <script src="html2canvas.min.js"></script>
+    <script src="jspdf.umd.min.js"></script>
+    
+    <style>
+        /* ========== لوحة الألوان الترابية/التاريخية ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #5a3e1b;
+        }
+        
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #3b2a1f 0%, #5a3e2b 100%);
+            color: #fef3c7;
+        }
+        
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #b45309, #92400e);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #2c1a0c, #5a3e2b, #b45309);
+        }
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-back-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .Tests-Hub-language-selector {
+            position: relative;
+        }
+        .Tests-Hub-language-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown {
+            display: block;
+        }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #5a3e1b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover {
+            background: #fde68a;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown {
+            background: #2c1a0c;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option {
+            color: #fef3c7;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover {
+            background: #b45309;
+        }
+        .Tests-Hub-theme-toggle, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #b45309, #92400e);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #2c1a0c, #5a3e2b, #b45309);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 {
+            color: #fed7aa;
+            margin-bottom: 1rem;
+        }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number {
+            font-weight: 600;
+            color: #fed7aa;
+        }
+        .Tests-Hub-footer-links-list {
+            list-style: none;
+        }
+        .Tests-Hub-footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        :root {
+            --Tests-Hub-bg-start: #fef3c7;
+            --Tests-Hub-bg-end: #fde68a;
+            --Tests-Hub-card-bg: rgba(255, 245, 225, 0.9);
+            --Tests-Hub-card-shadow-1: rgba(90, 62, 27, 0.2);
+            --Tests-Hub-card-shadow-2: rgba(255, 250, 240, 0.9);
+            --Tests-Hub-card-shadow-3: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-card-border: rgba(255, 245, 225, 0.9);
+            --Tests-Hub-h1-color: #b45309;
+            --Tests-Hub-h1-shadow-1: rgba(255, 248, 225, 0.9);
+            --Tests-Hub-h1-shadow-2: rgba(0, 0, 0, 0.1);
+            --Tests-Hub-section-title-border: #d97706;
+            --Tests-Hub-section-title-color: #b45309;
+            --Tests-Hub-section-title-shadow: #fffbeb;
+            --Tests-Hub-question-list-bg: #fffbeb;
+            --Tests-Hub-question-list-border: #d97706;
+            --Tests-Hub-question-list-color: #784a1a;
+            --Tests-Hub-answers-bg: #fffbeb;
+            --Tests-Hub-answers-border: #fbbf24;
+            --Tests-Hub-answers-inset: #ffffff;
+            --Tests-Hub-answers-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-answers-h3-color: #b45309;
+            --Tests-Hub-answers-h3-border: #d97706;
+            --Tests-Hub-answers-li-color: #5a3e1b;
+            --Tests-Hub-answers-strong-color: #b45309;
+            --Tests-Hub-inter-note-bg: #fff0db;
+            --Tests-Hub-inter-note-border: #f59e0b;
+            --Tests-Hub-inter-note-inset: #fff3e6;
+            --Tests-Hub-inter-note-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-inter-note-color: #2c3e50;
+            --Tests-Hub-input-bg: rgba(255, 251, 235, 0.9);
+            --Tests-Hub-input-border: #fed7aa;
+            --Tests-Hub-note-bg: #fff0db;
+            --Tests-Hub-note-border: #d97706;
+            --Tests-Hub-table-bg: #fffaef;
+        }
+        
+        .Tests-Hub-dark-theme {
+            --Tests-Hub-card-bg: rgba(44, 26, 12, 0.85);
+            --Tests-Hub-h1-color: #fbbf24;
+            --Tests-Hub-section-title-color: #fdba74;
+            --Tests-Hub-question-list-bg: #3b2a1f;
+            --Tests-Hub-question-list-color: #ffedd5;
+            --Tests-Hub-answers-bg: #3b2a1f;
+            --Tests-Hub-answers-border: #b45309;
+            --Tests-Hub-answers-li-color: #ffedd5;
+            --Tests-Hub-answers-h3-color: #fed7aa;
+            --Tests-Hub-answers-strong-color: #fbbf24;
+            --Tests-Hub-inter-note-bg: #5a3e2b;
+            --Tests-Hub-inter-note-color: #fff0db;
+            --Tests-Hub-input-bg: #5a3e2b;
+            --Tests-Hub-input-border: #b45309;
+            --Tests-Hub-note-bg: #5a3e2b;
+            --Tests-Hub-note-border: #d97706;
+            --Tests-Hub-table-bg: #4b2f18;
+        }
+        
+        .Tests-Hub-card {
+            max-width: 1400px;
+            width: 100%;
+            background: var(--Tests-Hub-card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 28px;
+            box-shadow: 0 30px 50px var(--Tests-Hub-card-shadow-1),
+            inset 0 2px 4px var(--Tests-Hub-card-shadow-2),
+            inset 0 -2px 4px var(--Tests-Hub-card-shadow-3);
+            border: 1px solid var(--Tests-Hub-card-border);
+        }
+        .Tests-Hub-h1 {
+            text-align: center;
+            color: var(--Tests-Hub-h1-color);
+            margin: 0 0 8px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--Tests-Hub-h1-shadow-1), -1px -1px 2px var(--Tests-Hub-h1-shadow-2);
+        }
+        .Tests-Hub-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding-right: 20px;
+            border-right: 8px solid var(--Tests-Hub-section-title-border);
+            color: var(--Tests-Hub-section-title-color);
+            text-shadow: 1px 1px 2px var(--Tests-Hub-section-title-shadow);
+        }
+        .Tests-Hub-question-list {
+            background: var(--Tests-Hub-question-list-bg);
+            padding: 1rem 1.8rem;
+            border-radius: 28px;
+            margin: 10px 0;
+            border-right: 6px solid var(--Tests-Hub-question-list-border);
+        }
+        .Tests-Hub-question-list ol, .Tests-Hub-question-list ul {
+            margin-right: 1.2rem;
+            line-height: 1.9;
+        }
+        .Tests-Hub-question-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-answers {
+            background: var(--Tests-Hub-answers-bg);
+            border-radius: 30px;
+            padding: 20px 30px;
+            border: 1px solid var(--Tests-Hub-answers-border);
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-answers-inset), 0 6px 12px var(--Tests-Hub-answers-shadow);
+            font-size: 1.05rem;
+        }
+        .Tests-Hub-answers h3 {
+            color: var(--Tests-Hub-answers-h3-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-right: 6px solid var(--Tests-Hub-answers-h3-border);
+            padding-right: 15px;
+        }
+        .Tests-Hub-answer-input {
+            margin: 10px 0 15px 5px;
+        }
+        .Tests-Hub-answer-input textarea, .Tests-Hub-answer-input input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .Tests-Hub-detail-note {
+            background: var(--Tests-Hub-note-bg);
+            border-right: 4px solid var(--Tests-Hub-note-border);
+            padding: 12px 18px;
+            margin: 12px 0 15px 20px;
+            border-radius: 18px;
+            font-size: 1rem;
+        }
+        .Tests-Hub-doc-text {
+            background: var(--Tests-Hub-input-bg);
+            padding: 18px 22px;
+            border-radius: 20px;
+            border-right: 4px solid #b45309;
+            font-style: italic;
+            line-height: 1.95;
+            color: var(--Tests-Hub-question-list-color);
+            margin-bottom: 15px;
+        }
+        .Tests-Hub-svg-container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-svg-container {
+            background: #1e3a4a;
+            border-color: #4a6070;
+        }
+        .Tests-Hub-svg-container svg {
+            width: 100%;
+            max-width: 620px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .Tests-Hub-legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--Tests-Hub-input-bg);
+            border-radius: 16px;
+            border: 1px dashed var(--Tests-Hub-input-border);
+        }
+        .Tests-Hub-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: var(--Tests-Hub-question-list-color);
+            font-weight: 600;
+        }
+        .Tests-Hub-legend-swatch {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+            border-radius: 4px;
+            border: 2px solid #78350f;
+        }
+        .Tests-Hub-wordbank {
+            background: var(--Tests-Hub-input-bg);
+            padding: 12px 18px;
+            border-radius: 16px;
+            margin: 12px 0;
+            border: 1px dashed var(--Tests-Hub-input-border);
+            text-align: center;
+            line-height: 2.2;
+        }
+        .Tests-Hub-wordbank span {
+            display: inline-block;
+            padding: 4px 12px;
+            margin: 3px 5px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #d97706;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #78350f;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-wordbank span {
+            background: #5a3e2b;
+            color: #fef3c7;
+            border-color: #d97706;
+        }
+        .Tests-Hub-fill-blanks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 30px;
+            margin: 15px 0;
+        }
+        .Tests-Hub-fill-blanks div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+        }
+        .Tests-Hub-fill-blanks .num {
+            color: #b45309;
+            font-weight: 700;
+            min-width: 25px;
+        }
+        .Tests-Hub-fill-blanks .line {
+            flex: 1;
+            border-bottom: 1.5px dotted #78350f;
+            height: 1.4em;
+        }
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--Tests-Hub-input-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .Tests-Hub-table th, .Tests-Hub-table td {
+            border: 1px solid var(--Tests-Hub-input-border);
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .Tests-Hub-table th {
+            background: var(--Tests-Hub-section-title-border);
+            color: white;
+            font-size: 1.05rem;
+        }
+        .Tests-Hub-table td {
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #d97706, #b45309);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.5);
+            transition: transform 0.2s;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #b45309, #92400e);
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.8rem;
+        }
+        #loading-overlay .Tests-Hub-spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid #d97706;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media print {
+            .Tests-Hub-header-container, .Tests-Hub-footer-container, .Tests-Hub-header-controls,
+            .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle,
+            .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button,
+            .Tests-Hub-answer-input, .Tests-Hub-inter-note { display: none !important; }
+            .Tests-Hub-presentation-card { display: block !important; }
+            #correction-section { display: block !important; page-break-before: always; }
+            body { background: white !important; color: black !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column {
+                backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
+            }
+            .Tests-Hub-svg-container svg { max-width: 100% !important; }
+            .Tests-Hub-doc-text { background: #fafafa !important; }
+        }
+        .Tests-Hub-print-mode { background: white !important; }
+        .Tests-Hub-print-mode .Tests-Hub-card, .Tests-Hub-print-mode .Tests-Hub-split-row {
+            background: white !important; box-shadow: none !important; border: 1px solid #ddd !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== الرأس ========== -->
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">التاريخ - فرض مراقبة عدد 1 (7 أساسي) - الثلاثي الأول</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">الأستاذ: غير مذكور | السنة الدراسية: غير مذكور</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back"><span>←</span> <span>العودة إلى الاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.header.language">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span></button>
+                <button class="Tests-Hub-print-button" id="printDownloadBtn"><span>🖨️</span><span data-i18n="TestsHub.header.print">طباعة</span></button>
+                <button class="Tests-Hub-pdf-button" id="pdfDownloadBtn"><span>📄</span><span data-i18n="TestsHub.header.pdf">PDF</span></button>
+                <button class="Tests-Hub-image-save-button" id="imageSaveBtn" data-i18n-title="TestsHub.imageSaveButton" title="صورة"><span>🖼️</span><span data-i18n="TestsHub.imageSaveButton">صورة</span></button>
+            </div>
+        </div>
+    </header>
+    
+    <div id="loading-overlay"><div class="Tests-Hub-spinner"></div><div data-i18n="TestsHub.loading.message">جاري التحميل...</div></div>
+    
+    <main class="Tests-Hub-main-container">
+        <!-- بطاقة العرض التقديمي -->
+        <div class="Tests-Hub-card Tests-Hub-presentation-card">
+            <div data-i18n="TestsHub.presentation.line1" style="font-size: 1.8rem; font-weight: 700;">📜 فرض مراقبة عدد 1 - تاريخ - سابعة أساسي</div>
+            <div data-i18n="TestsHub.presentation.line2" style="font-size: 1.2rem;">👨‍🏫 الأستاذ: غير مذكور</div>
+            <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: غير مذكور</div>
+            <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 7 أساسي</div>
+            <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: غير مذكور</div>
+            <div style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 30 دقيقة</div>
+            <div style="font-size: 1.2rem;">📝 الثلاثي الأول</div>
+        </div>
+        
+        <!-- بطاقة التمرين الرئيسية -->
+        <div class="Tests-Hub-card">
+            <h1 class="Tests-Hub-h1">📖 التاريخ (20 نقطة)</h1>
+            
+            <!-- بيانات التلميذ -->
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 600; color: var(--Tests-Hub-question-list-color); background: var(--Tests-Hub-input-bg); padding: 10px 20px; border-radius: 15px; border: 1px solid var(--Tests-Hub-input-border); flex-wrap: wrap; gap: 10px;">
+                <span>الإسم و اللقب: ........................................</span>
+                <span>7 أساسي....... العدد الرتبي (  )</span>
+            </div>
+
+            <!-- ========== القسم الأول ========== -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📌 القسم الأول: (6 نقاط)</h2>
+                
+                <!-- التمرين الأول: السلم الزمني -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">1) سجّل هذه الأحداث في المكان المناسب على السلم الزمني: (3 ن)</h3>
+                    <div style="background:var(--Tests-Hub-input-bg); padding:12px 18px; border-radius:16px; margin:12px 0; font-weight:600; text-align:center; line-height:2;">
+                        <span style="color:#b45309;">ظهور الزراعة</span> &nbsp;—&nbsp;
+                        <span style="color:#b45309;">ظهور الكتابة الهيروغليفية</span> &nbsp;—&nbsp;
+                        <span style="color:#b45309;">اختراع الأبجدية</span> &nbsp;—&nbsp;
+                        <span style="color:#b45309;">إعجام الكتابة المسمارية</span>
+                    </div>
+                    
+                    <div class="Tests-Hub-svg-container" id="timeline-test"></div>
+                    
+                    <div class="Tests-Hub-detail-note">🔍 ضع كل حدث أسفل التاريخ المناسب له على السلم الزمني (التواريخ معطاة على السلم).</div>
+                </div>
+                
+                <!-- التمرين الثاني: خريطة مصر -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">2) أكمل الفراغات بما يناسب على الخريطة: (3 ن)</h3>
+                    <p style="font-weight:600; margin:0.5rem 0; text-align:center; color:var(--Tests-Hub-answers-strong-color);">خريطة حضارة مصر الفرعونية</p>
+                    
+                    <div class="Tests-Hub-svg-container" id="map-test"></div>
+                    
+                    <div class="Tests-Hub-wordbank">
+                        <span>طيبة</span>
+                        <span>الوجه القبلي</span>
+                        <span>البحر المتوسط</span>
+                        <span>منف</span>
+                        <span>دلتا النيل</span>
+                        <span>أبوسمبل</span>
+                        <span>البحر الأحمر</span>
+                        <span>الوجه البحري</span>
+                    </div>
+                    
+                    <div class="Tests-Hub-fill-blanks">
+                        <div><span class="num">1-</span><span class="line"></span></div>
+                        <div><span class="num">2-</span><span class="line"></span></div>
+                        <div><span class="num">3-</span><span class="line"></span></div>
+                        <div><span class="num">4-</span><span class="line"></span></div>
+                        <div><span class="num">5-</span><span class="line"></span></div>
+                        <div><span class="num">6-</span><span class="line"></span></div>
+                        <div><span class="num">7-</span><span class="line"></span></div>
+                        <div><span class="num">8-</span><span class="line"></span></div>
+                    </div>
+                    <div class="Tests-Hub-detail-note">🗺️ استعن بالمكتسبات القبلية ومفتاح الكلمات أعلاه لكتابة اسم كل معلم من معالم خريطة مصر الفرعونية.</div>
+                </div>
+            </section>
+            
+            <!-- ========== القسم الثاني ========== -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📜 القسم الثاني: (12 نقطة) استغلال وثيقة</h2>
+                
+                <div class="Tests-Hub-question-list">
+                    <div class="Tests-Hub-doc-text">
+                        <p style="font-weight:700; margin-bottom:10px; font-style:normal;">📄 الوثيقة:</p>
+                        <p>إن سكان ما بين النهرين كتبوا على الطين الطري ونقشوا عليه ما يريدون نقشه بسنّ آلة حادة. وكانوا في ذلك جدّ مهرة، فاستطاع كتّابهم بفضل هذه المادة اللينة أن يحتفظوا بالسجلات، ويدونوا العقود، ويكتبوا الوثائق الرسمية، ويسجلوا الممتلكات والأحكام القضائية والبيوع. وكان الكاتب إذا أتمّ ما يريد كتابته جفف اللوح الطيني في الدار أو عرضه لحرارة الشمس فجعله بذلك محفوظاً أبقى على الدهر من الورق.</p>
+                        <p style="margin-top:12px; font-weight:600; text-align:left; font-style:normal;">— وِل ديورانت: قصة الحضارة، ج 1، ص 34 (وارد في الكتاب المدرسي ص 14)</p>
+                    </div>
+                    
+                    <p style="font-weight:700; margin:1rem 0; color:var(--Tests-Hub-answers-strong-color);">أجب على الأسئلة بالاعتماد على الوثيقة ومستعيناً بما درسته:</p>
+                    
+                    <!-- التمرين 1 -->
+                    <div style="margin-top:1.2rem;">
+                        <p style="font-weight:600;">1) قدّم نوع الوثيقة وموضوعها واختر العنوان المناسب: (3 ن)</p>
+                        <ul style="list-style:none; padding-right:0; margin-right:1rem;">
+                            <li style="margin-bottom:0.5rem;"><strong>نوع الوثيقة:</strong><div class="Tests-Hub-answer-input"><input type="text" placeholder="اكتب نوع الوثيقة..."></div></li>
+                            <li style="margin-bottom:0.5rem;"><strong>موضوعها:</strong><div class="Tests-Hub-answer-input"><input type="text" placeholder="اكتب موضوع الوثيقة..."></div></li>
+                            <li style="margin-bottom:0.5rem;"><strong>العنوان المناسب:</strong>
+                                <div style="padding:8px 15px; background:var(--Tests-Hub-input-bg); border-radius:14px; border:1px dashed var(--Tests-Hub-input-border); margin-top:6px;">
+                                    ☐ ظهور الكتابة &nbsp;&nbsp; ☐ الأبجدية الإغريقية &nbsp;&nbsp; ☐ الكتابة المسمارية
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- التمرين 2 -->
+                    <div style="margin-top:1.5rem;">
+                        <p style="font-weight:600;">2) أكمل الفراغات بما يناسب حول ظهور الكتابات في العالم القديم: (3 ن)</p>
+                        <ul style="list-style:none; padding-right:0; margin-right:1rem; line-height:2.6;">
+                            <li>• ظهرت الكتابة المسمارية في بلاد الرافدين حوالي <span style="display:inline-block; min-width:140px; border-bottom:1.5px dotted #78350f;"></span> ق.م.</li>
+                            <li>• ظهرت الكتابة الهيروغليفية في مصر حوالي <span style="display:inline-block; min-width:140px; border-bottom:1.5px dotted #78350f;"></span> ق.م.</li>
+                            <li>• ظهرت الأبجدية في فينيقيا حوالي <span style="display:inline-block; min-width:140px; border-bottom:1.5px dotted #78350f;"></span> ق.م.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- التمرين 3 -->
+                    <div style="margin-top:1.5rem;">
+                        <p style="font-weight:600;">3) أكمل الجدول والاستنتاج: (6 ن)</p>
+                        <p style="font-weight:600; margin:8px 0;">جدول أغراض استخدام الكتابة قديماً وأدلة من الوثيقة:</p>
+                        
+                        <table class="Tests-Hub-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:22%;">الغرض</th>
+                                    <th style="width:78%;">الدليل من الوثيقة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>إداري</strong></td>
+                                    <td><div class="Tests-Hub-answer-input" style="margin:0;"><input type="text" placeholder='الدليل من الوثيقة...'></div></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>اقتصادي</strong></td>
+                                    <td><div class="Tests-Hub-answer-input" style="margin:0;"><input type="text" placeholder='الدليل من الوثيقة...'></div></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>...............</strong></td>
+                                    <td style="font-style:italic;">"ويسجلوا الممتلكات"</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>...............</strong></td>
+                                    <td style="font-style:italic;">"ويسجلوا ... الأحكام القضائية"</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p style="font-weight:600; margin-top:1.2rem; line-height:2.4;">
+                            <strong>الاستنتاج:</strong> استنتج تعدد <span style="display:inline-block; min-width:230px; border-bottom:1.5px dotted #78350f;"></span>
+                            وأن مؤلف الوثيقة مكّنه من معرفة ذلك بفضل فك رموز الكتابة المسمارية من قبل <span style="display:inline-block; min-width:150px; border-bottom:1.5px dotted #78350f;"></span> سنة <span style="display:inline-block; min-width:100px; border-bottom:1.5px dotted #78350f;"></span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- زر إظهار/إخفاء الإصلاح -->
+            <div style="text-align: center;">
+                <button class="Tests-Hub-toggle-correction-btn" id="toggleCorrectionBtn">
+                    <span id="toggleCorrectionIcon">👁️</span>
+                    <span id="toggleCorrectionText" data-i18n="TestsHub.showCorrection">إظهار الإصلاح</span>
+                </button>
+            </div>
+            
+            <!-- ========== قسم الإصلاح ========== -->
+            <section id="correction-section" style="display: none;">
+                <h2 class="Tests-Hub-section-title">✅ الإصلاح المفصّل</h2>
+                
+                <!-- إصلاح القسم الأول: التمرين 1 -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الأول: السلم الزمني (3 ن)</h3>
+                    
+                    <div class="Tests-Hub-svg-container" id="timeline-correction"></div>
+                    
+                    <ul style="margin-right:1.5rem;">
+                        <li><strong>8000 ق.م:</strong> ظهور الزراعة</li>
+                        <li><strong>3200 ق.م:</strong> ظهور الكتابة الهيروغليفية</li>
+                        <li><strong>1100 ق.م:</strong> اختراع الأبجدية</li>
+                        <li><strong>1851 م:</strong> إعجام الكتابة المسمارية</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">📅 يمثل هذا السلم محطات أساسية في تاريخ الإنسانية: الانتقال إلى الزراعة والاستقرار، ثم اختراع الكتابة وتطويرها، وصولاً إلى فك رموز الكتابات القديمة في العصر الحديث.</div>
+                </div>
+                
+                <!-- إصلاح القسم الأول: التمرين 2 -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الثاني: خريطة مصر الفرعونية (3 ن)</h3>
+                    
+                    <div class="Tests-Hub-svg-container" id="map-correction"></div>
+                    
+                    <ul style="margin-right:1.5rem;">
+                        <li><strong>1-</strong> البحر المتوسط</li>
+                        <li><strong>2-</strong> البحر الأحمر</li>
+                        <li><strong>3-</strong> دلتا النيل</li>
+                        <li><strong>4-</strong> الوجه البحري</li>
+                        <li><strong>5-</strong> منف</li>
+                        <li><strong>6-</strong> طيبة</li>
+                        <li><strong>7-</strong> أبوسمبل</li>
+                        <li><strong>8-</strong> الوجه القبلي</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">🗺️ <strong>ملاحظة:</strong> تقع مصر في شمال شرق إفريقيا، ويخترقها نهر النيل من الجنوب إلى الشمال ليصب في البحر المتوسط عبر الدلتا. يقسم النيل البلاد إلى وجهين: بحري (في الشمال) وقبلي (في الجنوب). أما البحر الأحمر فيحدها من الشرق، وكانت مدن منف وطيبة من أهم المراكز السياسية والدينية في مصر القديمة.</div>
+                </div>
+                
+                <!-- إصلاح التمرين 1 من القسم الثاني -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الأول: تقديم الوثيقة (3 ن)</h3>
+                    <ul style="margin-right:1.5rem;">
+                        <li><strong>نوع الوثيقة:</strong> نصّ قصير (وثيقة تاريخية مكتوبة).</li>
+                        <li><strong>موضوعها:</strong> الكتابة في بلاد الرافدين قديماً (الكتابة على الألواح الطينية وأغراض استخدامها).</li>
+                        <li><strong>العنوان المناسب:</strong> <strong>الكتابة المسمارية</strong>.</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">📖 الوثيقة مأخوذة من كتاب "قصة الحضارة" للمؤرخ وِل ديورانت، وهي تتناول الكيفية التي كان بها سكان بلاد الرافدين يكتبون على الطين الطري وينقشونه بآلة حادة، وهو ما يُعرف بالكتابة المسمارية.</div>
+                </div>
+                
+                <!-- إصلاح التمرين 2 من القسم الثاني -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الثاني: ظهور الكتابات في العالم القديم (3 ن)</h3>
+                    <ul style="margin-right:1.5rem;">
+                        <li>• ظهرت الكتابة المسمارية في بلاد الرافدين حوالي <strong>3500 ق.م</strong>.</li>
+                        <li>• ظهرت الكتابة الهيروغليفية في مصر حوالي <strong>3200 ق.م</strong>.</li>
+                        <li>• ظهرت الأبجدية في فينيقيا حوالي <strong>1100 ق.م</strong>.</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">📚 لم تكن الكتابة المسمارية الوحيدة في العالم القديم، بل ظهرت الهيروغليفية بعدها بفترة وجيزة، ثم ظهرت الأبجدية الفينيقية التي اعتُبرت ثورة في تاريخ الكتابة لأنها اختزلت الرموز إلى عدد محدود من الحروف.</div>
+                </div>
+                
+                <!-- إصلاح التمرين 3 من القسم الثاني -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الثالث: الجدول والاستنتاج (6 ن)</h3>
+                    
+                    <p style="font-weight:600; margin-bottom:10px;">جدول أغراض استخدام الكتابة قديماً وأدلة من الوثيقة:</p>
+                    <table class="Tests-Hub-table">
+                        <thead>
+                            <tr>
+                                <th style="width:22%;">الغرض</th>
+                                <th style="width:78%;">الدليل من الوثيقة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>إداري</strong></td>
+                                <td>"يكتبوا الوثائق الرسمية"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>اقتصادي</strong></td>
+                                <td>"ويدونوا العقود" — "والبيوع"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>اجتماعي</strong></td>
+                                <td>"ويسجلوا الممتلكات"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>قضائي</strong></td>
+                                <td>"ويسجلوا ... الأحكام القضائية"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p style="font-weight:600; margin-top:1.2rem; line-height:2.2;">
+                        <strong>الاستنتاج:</strong> استنتج تعدد <strong>أغراض استخدام الكتابة قديماً</strong> وأن مؤلف الوثيقة مكّنه من معرفة ذلك بفضل فك رموز الكتابة المسمارية من قبل <strong>رولنسن</strong> سنة <strong>1851</strong>.
+                    </p>
+                    <div class="Tests-Hub-detail-note">✍️ <strong>توجيه:</strong> تُظهر الوثيقة أن الكتابة لم تكن وسيلة للتعبير الأدبي فحسب، بل كانت أداة أساسية لتسيير شؤون الدولة والمجتمع، وهذا يدل على تطور الحضارات القديمة ووعيها بأهمية التوثيق. أما الإعجام فقد مكّن المؤرخين المعاصرين من قراءة تلك الوثائق وفهم مضامينها.</div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- ========== القدم ========== -->
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v1.0.0 (تاريخ 7 - مراقبة 1)</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul class="Tests-Hub-footer-links-list"><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        (function() {
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            let correctionVisible = false;
+            
+            const TestsHub_translations = {
+                ar: { 
+                    TestsHub: { 
+                        header: { 
+                            title: "التاريخ - فرض مراقبة عدد 1 (7 أساسي) - الثلاثي الأول", 
+                            subtitle: "الأستاذ: غير مذكور | السنة الدراسية: غير مذكور", 
+                            back: "العودة إلى الاختبارات", 
+                            language: "العربية", 
+                            print: "طباعة", 
+                            pdf: "PDF", 
+                            defaultPdfFileName: "test_year7_history_trim1_Type1_test2.pdf", 
+                            errorPdfCapture: "حدث خطأ أثناء إنشاء ملف PDF." 
+                        },
+                        loading: { message: "جاري التحميل..." },
+                        theme: { toggle: "الوضع الليلي" },
+                        footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v1.0.0" },
+                        presentation: { 
+                            line1: "📜 فرض مراقبة عدد 1 - تاريخ - سابعة أساسي", 
+                            line2: "👨‍🏫 الأستاذ: غير مذكور", 
+                            line3: "📅 السنة الدراسية: غير مذكور", 
+                            line4: "📚 المستوى: 7 أساسي", 
+                            line5: "🏫 المؤسسة: غير مذكور" 
+                        },
+                        showCorrection: "إظهار الإصلاح", 
+                        hideCorrection: "إخفاء الإصلاح", 
+                        imageSaveButton: "صورة", 
+                        errorImageCapture: "حدث خطأ أثناء إنشاء الصورة.", 
+                        defaultImageFileName: "test_year7_history_trim1_Type1_test2"
+                    } 
+                },
+                fr: { 
+                    TestsHub: { 
+                        header: { 
+                            title: "Histoire - Devoir de Contrôle N°1 (7ème) - 1er Trimestre", 
+                            subtitle: "Prof.: non spécifié | Année: non spécifiée", 
+                            back: "Retour aux examens", 
+                            language: "Français", 
+                            print: "Imprimer", 
+                            pdf: "PDF", 
+                            defaultPdfFileName: "test_year7_history_trim1_Type1_test2.pdf", 
+                            errorPdfCapture: "Erreur lors de la création du PDF." 
+                        },
+                        loading: { message: "Chargement..." },
+                        theme: { toggle: "Mode sombre" },
+                        footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions", privacy: "Confidentialité", developerName: "Ziad Mejri", versionNumber: "v1.0.0" },
+                        presentation: { 
+                            line1: "📜 Devoir N°1 - Histoire - 7ème (1er Trimestre)", 
+                            line2: "👨‍🏫 Professeur: non spécifié", 
+                            line3: "📅 Année: non spécifiée", 
+                            line4: "📚 Classe: 7ème", 
+                            line5: "🏫 Établissement: non spécifié" 
+                        },
+                        showCorrection: "Afficher la correction", 
+                        hideCorrection: "Cacher la correction", 
+                        imageSaveButton: "Image", 
+                        errorImageCapture: "Erreur lors de la création de l'image.", 
+                        defaultImageFileName: "test_year7_history_trim1_Type1_test2"
+                    } 
+                },
+                en: { 
+                    TestsHub: { 
+                        header: { 
+                            title: "History - Test N°1 (Grade 7) - First Trimester", 
+                            subtitle: "Teacher: not specified | Year: not specified", 
+                            back: "Back to tests", 
+                            language: "English", 
+                            print: "Print", 
+                            pdf: "PDF", 
+                            defaultPdfFileName: "test_year7_history_trim1_Type1_test2.pdf", 
+                            errorPdfCapture: "Error creating PDF." 
+                        },
+                        loading: { message: "Loading..." },
+                        theme: { toggle: "Dark Mode" },
+                        footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy", developerName: "Ziad Mejri", versionNumber: "v1.0.0" },
+                        presentation: { 
+                            line1: "📜 Test N°1 - History - 7th Grade (1st Trimester)", 
+                            line2: "👨‍🏫 Teacher: not specified", 
+                            line3: "📅 Year: not specified", 
+                            line4: "📚 Class: 7th Grade", 
+                            line5: "🏫 School: not specified" 
+                        },
+                        showCorrection: "Show correction", 
+                        hideCorrection: "Hide correction", 
+                        imageSaveButton: "Image", 
+                        errorImageCapture: "Error creating image.", 
+                        defaultImageFileName: "test_year7_history_trim1_Type1_test2"
+                    } 
+                }
+            };
+            
+            function updateTextContent() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.textContent = current;
+                });
+                document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-title');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.setAttribute('title', current);
+                });
+                updateThemeToggleText();
+                updateToggleButtonText();
+            }
+            function updateThemeToggleText() {
+                const themeSpan = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeSpan) themeSpan.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            function updateToggleButtonText() {
+                const toggleText = document.getElementById('toggleCorrectionText');
+                if (toggleText) toggleText.textContent = correctionVisible ? TestsHub_translations[currentLanguage].TestsHub.hideCorrection : TestsHub_translations[currentLanguage].TestsHub.showCorrection;
+            }
+            function toggleTheme() { isDarkTheme = !isDarkTheme; document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme); updateThemeToggleText(); localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light'); }
+            function changeLanguage(lang) {
+                if (!TestsHub_translations[lang]) return;
+                currentLanguage = lang;
+                updateTextContent();
+                const langBtn = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+                if (langBtn) langBtn.textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+                localStorage.setItem('testsHubLanguage', lang);
+                const imageBtn = document.getElementById('imageSaveBtn');
+                if (imageBtn) imageBtn.setAttribute('title', TestsHub_translations[currentLanguage].TestsHub.imageSaveButton);
+            }
+            function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
+            function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
+            
+            function getCleanCloneForCapture(element) {
+                const clone = element.cloneNode(true);
+                clone.querySelectorAll('.Tests-Hub-header-controls, .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle, .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button').forEach(el => el.remove());
+                clone.querySelectorAll('.Tests-Hub-answer-input input, .Tests-Hub-answer-input textarea').forEach(input => {
+                    const placeholderDiv = document.createElement('div');
+                    placeholderDiv.style.borderBottom = '1px dashed #aaa';
+                    placeholderDiv.style.minHeight = '2em';
+                    placeholderDiv.style.margin = '5px 0';
+                    placeholderDiv.style.backgroundColor = '#f5f5dc';
+                    placeholderDiv.style.borderRadius = '12px';
+                    placeholderDiv.style.padding = '6px';
+                    placeholderDiv.textContent = '_________________________';
+                    input.parentNode.replaceChild(placeholderDiv, input);
+                });
+                return clone;
+            }
+            
+            // ========== رسم السلم الزمني (4 أحداث) ==========
+            function drawTimeline(containerId, isCorrection) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                const dates = ['8000 ق.م', '3200 ق.م', '1100 ق.م', '1851 م'];
+                const events = ['ظهور الزراعة', 'ظهور الكتابة الهيروغليفية', 'اختراع الأبجدية', 'إعجام الكتابة المسمارية'];
+                const positions = [95, 245, 395, 545];
+                
+                let markersHTML = '';
+                for (let i = 0; i < 4; i++) {
+                    const x = positions[i];
+                    const evText = isCorrection ? events[i] : '........................';
+                    markersHTML += `
+                        <line x1="${x}" y1="110" x2="${x}" y2="160" stroke="#b45309" stroke-width="2"/>
+                        <circle cx="${x}" cy="110" r="9" fill="#f59e0b" stroke="#b45309" stroke-width="2.5"/>
+                        <text x="${x}" y="60" font-size="14" fill="#b45309" text-anchor="middle" font-weight="bold">${dates[i]}</text>
+                        <text x="${x}" y="192" font-size="12" fill="#78350f" text-anchor="middle" font-weight="${isCorrection ? 'bold' : 'normal'}">${evText}</text>
+                    `;
+                }
+                
+                container.innerHTML = `
+                <svg viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg" style="direction:rtl; font-family:sans-serif;">
+                    <line x1="30" y1="110" x2="590" y2="110" stroke="#b45309" stroke-width="4"/>
+                    <polygon points="590,110 580,100 580,120" fill="#b45309"/>
+                    <text x="605" y="115" font-size="12" fill="#b45309" text-anchor="start" font-weight="bold">الزمن ←</text>
+                    ${markersHTML}
+                </svg>
+                `;
+            }
+            
+            // ========== رسم خريطة مصر ==========
+            function drawEgyptMap(containerId, isCorrection) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                const labels = {
+                    1: 'البحر المتوسط',
+                    2: 'البحر الأحمر',
+                    3: 'دلتا النيل',
+                    4: 'الوجه البحري',
+                    5: 'منف',
+                    6: 'طيبة',
+                    7: 'أبوسمبل',
+                    8: 'الوجه القبلي'
+                };
+                
+                const markers = [
+                    { id: 1, x: 300, y: 38, side: 'right', offset: 24 },
+                    { id: 2, x: 545, y: 320, side: 'left', offset: -22 },
+                    { id: 3, x: 240, y: 130, side: 'left', offset: -22 },
+                    { id: 4, x: 370, y: 105, side: 'right', offset: 24 },
+                    { id: 5, x: 265, y: 215, side: 'right', offset: 24 },
+                    { id: 6, x: 245, y: 375, side: 'right', offset: 24 },
+                    { id: 7, x: 245, y: 500, side: 'right', offset: 24 },
+                    { id: 8, x: 420, y: 340, side: 'right', offset: 24 }
+                ];
+                
+                let markersSVG = '';
+                markers.forEach(m => {
+                    markersSVG += `
+                        <circle cx="${m.x}" cy="${m.y}" r="16" fill="#dc2626" stroke="white" stroke-width="2.5"/>
+                        <text x="${m.x}" y="${m.y+6}" text-anchor="middle" fill="white" font-weight="bold" font-size="15">${m.id}</text>
+                    `;
+                    if (isCorrection) {
+                        const lx = m.x + m.offset;
+                        markersSVG += `<text x="${lx}" y="${m.y+5}" text-anchor="start" fill="#7c2d12" font-weight="bold" font-size="13">${labels[m.id]}</text>`;
+                    }
+                });
+                
+                container.innerHTML = `
+                <svg viewBox="0 0 640 570" xmlns="http://www.w3.org/2000/svg" style="direction:ltr; font-family:sans-serif;">
+                    <!-- Mediterranean Sea (top) -->
+                    <rect x="0" y="0" width="640" height="70" fill="#93c5fd" stroke="#1e40af" stroke-width="1.2"/>
+                    <text x="320" y="42" text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="bold">البحر المتوسط</text>
+                    
+                    <!-- Red Sea (right) -->
+                    <path d="M 500 130 L 625 200 L 605 570 L 515 570 L 485 340 Z" fill="#93c5fd" stroke="#1e40af" stroke-width="1.2"/>
+                    <text x="560" y="420" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="bold" transform="rotate(78 560 420)">البحر الأحمر</text>
+                    
+                    <!-- Egypt land -->
+                    <path d="M 80 70 L 500 70 L 500 130 L 485 340 L 515 570 L 80 570 Z" fill="#fef3c7" stroke="#a16207" stroke-width="2.5"/>
+                    
+                    <!-- Delta (green triangle) -->
+                    <path d="M 155 70 L 425 70 L 320 205 L 220 205 Z" fill="#bbf7d0" stroke="#166534" stroke-width="2"/>
+                    
+                    <!-- Nile -->
+                    <path d="M 270 205 Q 265 310 258 420 L 252 565" stroke="#2563eb" stroke-width="10" fill="none" stroke-linecap="round"/>
+                    <text x="235" y="440" text-anchor="end" fill="#1e3a8a" font-size="11" font-weight="bold" transform="rotate(-85 235 440)">نهر النيل</text>
+                    
+                    ${markersSVG}
+                </svg>
+                `;
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLanguage = localStorage.getItem('testsHubLanguage');
+                if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+                if (currentLanguage === 'ar') document.documentElement.dir = 'rtl'; else document.documentElement.dir = 'ltr';
+                updateTextContent();
+                
+                // Draw timeline and maps
+                drawTimeline('timeline-test', false);
+                drawTimeline('timeline-correction', true);
+                drawEgyptMap('map-test', false);
+                drawEgyptMap('map-correction', true);
+                
+                if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
+                
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); }));
+                document.getElementById('printDownloadBtn').addEventListener('click', () => setTimeout(() => window.print(), 50));
+                
+                document.getElementById('pdfDownloadBtn').addEventListener('click', async function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const body = document.body;
+                    const originalDisplay = correctionSection.style.display;
+                    correctionSection.style.display = 'none';
+                    body.classList.add('Tests-Hub-print-mode');
+                    showLoading();
+                    try {
+                        const testClone = getCleanCloneForCapture(mainContainer);
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                        tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                        tempDiv.appendChild(testClone);
+                        document.body.appendChild(tempDiv);
+                        const testCanvas = await html2canvas(tempDiv, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                        document.body.removeChild(tempDiv);
+                        let correctionCanvas = null;
+                        if (correctionSection) {
+                            correctionSection.style.display = 'block';
+                            await new Promise(r => setTimeout(r, 50));
+                            const corrClone = getCleanCloneForCapture(correctionSection);
+                            const tempCorr = document.createElement('div');
+                            tempCorr.style.position = 'absolute'; tempCorr.style.left = '-9999px'; tempCorr.style.width = mainContainer.offsetWidth + 'px';
+                            tempCorr.style.backgroundColor = '#ffffff'; tempCorr.style.padding = '20px';
+                            tempCorr.appendChild(corrClone);
+                            document.body.appendChild(tempCorr);
+                            correctionCanvas = await html2canvas(tempCorr, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                            document.body.removeChild(tempCorr);
+                        }
+                        correctionSection.style.display = originalDisplay;
+                        body.classList.remove('Tests-Hub-print-mode');
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+                        const pageWidth = pdf.internal.pageSize.getWidth();
+                        const pageHeight = pdf.internal.pageSize.getHeight();
+                        const topMargin = 30, bottomMargin = 30;
+                        const contentHeight = pageHeight - topMargin - bottomMargin;
+                        const fileName = TestsHub_translations[currentLanguage].TestsHub.header.defaultPdfFileName || 'exam.pdf';
+                        const headerFileName = fileName.replace(/\.pdf$/i, '');
+                        const getSlices = (canvas) => {
+                            const scale = pageWidth / canvas.width;
+                            const sliceCanvasHeight = contentHeight / scale;
+                            const slices = []; let y = 0;
+                            while (y < canvas.height) { const h = Math.min(sliceCanvasHeight, canvas.height - y); slices.push({ y, height: h }); y += h; }
+                            return slices;
+                        };
+                        const addHeaderFooter = (pageNum, total) => { pdf.setFontSize(12); pdf.setTextColor(40,40,40); pdf.text(headerFileName, pageWidth/2, topMargin/2, { align: 'center' }); pdf.setFontSize(10); pdf.text(`صفحة ${pageNum} / ${total}`, pageWidth/2, pageHeight - bottomMargin/2, { align: 'center' }); pdf.line(40, topMargin-2, pageWidth-40, topMargin-2); pdf.line(40, pageHeight-bottomMargin+2, pageWidth-40, pageHeight-bottomMargin+2); };
+                        const testSlices = getSlices(testCanvas);
+                        const corrSlices = correctionCanvas ? getSlices(correctionCanvas) : [];
+                        let pageCounter = 1, total = testSlices.length + corrSlices.length;
+                        testSlices.forEach((slice,i) => { if(i!==0) pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = testCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(testCanvas, 0, slice.y, testCanvas.width, slice.height, 0, 0, testCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/testCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        corrSlices.forEach((slice,i) => { pdf.addPage(); const sliceCanvas = document.createElement('canvas'); sliceCanvas.width = correctionCanvas.width; sliceCanvas.height = slice.height; const ctx = sliceCanvas.getContext('2d'); ctx.drawImage(correctionCanvas, 0, slice.y, correctionCanvas.width, slice.height, 0, 0, correctionCanvas.width, slice.height); pdf.addImage(sliceCanvas.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/correctionCanvas.width)); addHeaderFooter(pageCounter++, total); });
+                        pdf.save(fileName);
+                    } catch(e) { console.error(e); alert(TestsHub_translations[currentLanguage].TestsHub.header.errorPdfCapture); correctionSection.style.display = originalDisplay; body.classList.remove('Tests-Hub-print-mode'); } finally { hideLoading(); }
+                });
+                
+                document.getElementById('imageSaveBtn').addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const wasHidden = correctionSection && correctionSection.style.display === 'none';
+                    if (wasHidden) correctionSection.style.display = 'block';
+                    showLoading();
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const clone = getCleanCloneForCapture(mainContainer);
+                    const tempDiv = document.createElement('div');
+                    tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                    tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                    tempDiv.appendChild(clone);
+                    document.body.appendChild(tempDiv);
+                    html2canvas(tempDiv, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                        document.body.removeChild(tempDiv);
+                        const link = document.createElement('a');
+                        link.download = TestsHub_translations[currentLanguage].TestsHub.defaultImageFileName + '.png';
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                        if (wasHidden) correctionSection.style.display = 'none';
+                    }).catch(e => { alert(TestsHub_translations[currentLanguage].TestsHub.errorImageCapture); document.body.removeChild(tempDiv); if (wasHidden) correctionSection.style.display = 'none'; }).finally(() => hideLoading());
+                });
+                
+                const toggleBtn = document.getElementById('toggleCorrectionBtn');
+                const correctionSection = document.getElementById('correction-section');
+                if (toggleBtn && correctionSection) {
+                    toggleBtn.addEventListener('click', function() {
+                        correctionVisible = !correctionVisible;
+                        correctionSection.style.display = correctionVisible ? 'block' : 'none';
+                        updateToggleButtonText();
+                        document.getElementById('toggleCorrectionIcon').textContent = correctionVisible ? '👁️‍🗨️' : '👁️';
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
