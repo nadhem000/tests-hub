@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مجال الدولة الموحدية — الخريطة الكاملة وخريطة التلميذ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      min-height:100vh;padding:26px 16px 60px;
+      background:radial-gradient(circle at 15% 0%, #fbf6ea 0%, #efe3c9 55%, #dfd1af 100%);
+      font-family:'Cairo','Segoe UI',Tahoma,sans-serif;color:#2a1f14;
+      display:flex;flex-direction:column;align-items:center;
+    }
+    .head{text-align:center;max-width:1000px;margin-bottom:20px;}
+    .head h1{font-size:clamp(20px,2.8vw,30px);font-weight:900;margin-bottom:8px;}
+    .head p{font-size:13.5px;font-weight:700;color:#8a7a60;line-height:1.95;}
+    .status{
+      margin-bottom:14px;font-size:12.5px;font-weight:700;color:#8a7a60;
+      padding:6px 16px;border-radius:9px;
+      background:rgba(253,249,238,.7);border:1px solid rgba(201,185,143,.5);
+      transition:.3s;
+    }
+    .status.ok{color:#3f5020;background:#f0f7e0;border-color:#c7dca0;}
+    .status.err{color:#7a2a20;background:#faeae6;border-color:#e0b8ae;}
+    .stage{
+      width:100%;max-width:1000px;border-radius:18px;overflow:hidden;background:#fff;
+      box-shadow:
+        0 34px 70px -34px rgba(60,45,20,.55),
+        0 10px 24px -14px rgba(60,45,20,.3),
+        0 0 0 1px rgba(138,122,85,.28);
+    }
+    #info{display:block;width:100%;height:auto;}
+    .btn-bar{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:24px;}
+    .btn-bar + .btn-bar{margin-top:12px;}
+    .btn{
+      font-family:inherit;font-weight:800;font-size:14.5px;
+      padding:13px 30px;border-radius:12px;border:none;cursor:pointer;
+      color:#fdf9ee;transition:.2s;
+      display:inline-flex;align-items:center;gap:9px;
+      box-shadow:0 12px 26px -14px rgba(80,60,20,.95), inset 0 1px 0 rgba(255,255,255,.16);
+    }
+    .btn.partial{background:linear-gradient(135deg,#a8402a,#6a1a10);}
+    .btn.complete{background:linear-gradient(135deg,#8a6a1f,#5f4519);}
+    .btn.download{background:linear-gradient(135deg,#5a4a35,#2a1f14);}
+    .btn.download.alt{background:linear-gradient(135deg,#8a6a1f,#5f4519);}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 18px 30px -14px rgba(80,60,20,1);}
+    .btn.active{box-shadow:inset 0 0 0 3px rgba(255,255,255,.75), 0 18px 30px -14px rgba(80,60,20,1);}
+    .foot{margin-top:22px;max-width:900px;text-align:center;font-size:11.5px;font-weight:600;color:#a89771;line-height:2;}
+  </style>
+</head>
+<body>
+
+  <div class="head">
+    <h1>مجال الدولة الموحدية</h1>
+    <p>الأولى ثانوي · التاريخ · الدولة الموحدية (1121–1269 م)<br>
+       نسختان: <b>الخريطة الكاملة</b> بحدود الدولة · <b>خريطة التلميذ</b> دون حدود ليرسمها</p>
+  </div>
+
+  <div id="status" class="status">⏳ جارٍ تحميل الحدود الجغرافية…</div>
+
+  <div class="stage"><canvas id="info"></canvas></div>
+
+  <div class="btn-bar">
+    <button id="btn-preview-complete" class="btn complete active" onclick="showPreview(true)">🗺️ عرض الخريطة الكاملة (بحدود)</button>
+    <button id="btn-preview-partial"  class="btn partial"          onclick="showPreview(false)">✎ عرض خريطة التلميذ (دون حدود)</button>
+  </div>
+
+  <div class="btn-bar">
+    <button class="btn download alt" onclick="download(true)">📥 تنزيل الخريطة الكاملة (PNG)</button>
+    <button class="btn download"     onclick="download(false)">📥 تنزيل خريطة التلميذ (PNG)</button>
+  </div>
+
+  <p class="foot">
+    الحدود الجغرافية للسياق: Natural Earth عبر world-atlas.<br>
+    حدود الدولة الموحدية تقديرية تعليمية بناءً على أقصى اتساع في عهد يعقوب المنصور (1184–1199 م).<br>
+    الخريطتان تُظهران مدناً داخل المجال الموحدي ومدناً خارجه (للسياق) — على التلميذ تمييزها بنفسه.
+  </p>
+
+<script>
+/* =========================================================
+   0) الإعدادات العامة
+   ========================================================= */
+const DPR = 2;
+const W = 1600;
+const H = 1900;
+const TAU = Math.PI * 2;
+
+const cvs = document.getElementById('info');
+let ctx = cvs.getContext('2d');
+
+const C = {
+  ink:'#2a1f14', ink2:'#5a4a35', ink3:'#8a7a60',
+  sea:'#c8dae2', seaDeep:'#9ab8c6',
+  land:'#e8dec6', landBorder:'#d4cab0',
+  countryBorder:'rgba(160,140,110,0.45)',
+  almohadFill:'#efd89a', almohadFill2:'#e4c87a',
+  almohadBorder:'#8a6a1f', almohadGlow:'rgba(201,151,31,.35)',
+  gold:'#c9971f', goldDk:'#8a6a1f',
+  olive:'#6a8a3a', wine:'#8b2c1c', wineDk:'#6a1a10',
+  navy:'#1e3a6a', navyDk:'#0d1f4a',
+  brown:'#8b5a2b', terracotta:'#a8402a'
+};
+
+/* =========================================================
+   1) أدوات مساعدة
+   ========================================================= */
+function rr(x, y, w, h, r){
+  r = Math.min(r, w/2, h/2);
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.arcTo(x+w, y,   x+w, y+h, r);
+  ctx.arcTo(x+w, y+h, x,   y+h, r);
+  ctx.arcTo(x,   y+h, x,   y,   r);
+  ctx.arcTo(x,   y,   x+w, y,   r);
+  ctx.closePath();
+}
+
+function text(str, x, y, o){
+  o = o || {};
+  const size   = o.size   || 14;
+  const weight = o.weight || '700';
+  const color  = o.color  || C.ink;
+  const align  = o.align  || 'center';
+  const base   = o.base   || 'middle';
+  const halo   = (o.halo !== undefined) ? o.halo : null;
+  const haloW  = o.haloW  || 5;
+  const italic = o.italic ? 'italic ' : '';
+  const dir    = o.ltr ? 'ltr' : 'rtl';
+
+  ctx.save();
+  ctx.direction = dir;
+  ctx.textAlign = align;
+  ctx.textBaseline = base;
+  ctx.font = `${italic}${weight} ${size}px Cairo, Tahoma, sans-serif`;
+  if (halo){
+    ctx.lineJoin = 'round'; ctx.miterLimit = 2;
+    ctx.lineWidth = haloW; ctx.strokeStyle = halo;
+    ctx.strokeText(str, x, y);
+  }
+  ctx.fillStyle = color;
+  ctx.fillText(str, x, y);
+  ctx.restore();
+}
+
+function hexA(hex, a){
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`;
+}
+
+function drawStar(cx, cy, outer, inner, points, color){
+  ctx.save();
+  ctx.beginPath();
+  for (let i = 0; i < points * 2; i++){
+    const r = i % 2 === 0 ? outer : inner;
+    const a = -Math.PI/2 + (i * Math.PI) / points;
+    const x = cx + r * Math.cos(a);
+    const y = cy + r * Math.sin(a);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.restore();
+}
+
+/* =========================================================
+   2) البيانات
+   ========================================================= */
+
+/* 2.1 — مضلّع حدود الدولة الموحدية */
+const ALMOHAD_FEATURE = {
+  type: 'Feature',
+  geometry: {
+    type: 'MultiPolygon',
+    coordinates: [
+      [[[-8.0, 37.5],[-7.0, 37.0],[-6.0, 36.3],[-5.5, 36.1],
+        [-5.0, 36.7],[-4.0, 37.2],[-3.0, 37.5],[-2.0, 38.0],
+        [-1.0, 38.4],[ 0.0, 38.8],[ 0.5, 39.3],[ 0.5, 39.6],
+        [ 0.0, 39.5],[-1.0, 39.7],[-2.0, 40.0],[-3.0, 40.3],
+        [-4.0, 40.0],[-5.0, 39.7],[-6.0, 39.7],[-7.0, 39.8],
+        [-8.0, 39.8],[-8.9, 39.5],[-9.1, 39.0],[-9.3, 38.4],
+        [-9.0, 38.0],[-8.5, 37.7],[-8.0, 37.5]]],
+      [[[ 2.3, 39.4],[ 2.7, 39.7],[ 3.3, 39.9],[ 4.0, 40.0],
+        [ 4.4, 39.9],[ 4.3, 39.6],[ 3.8, 39.4],[ 3.2, 39.2],
+        [ 2.7, 39.2],[ 2.3, 39.4]]],
+      [[[ 1.2, 38.7],[ 1.4, 39.1],[ 1.7, 39.1],[ 1.9, 38.8],
+        [ 1.6, 38.6],[ 1.2, 38.7]]],
+      [[[-5.85, 35.9],[-6.0, 35.5],[-6.4, 35.0],[-6.85, 34.4],
+        [-6.85, 34.0],[-7.62, 33.57],[-8.5, 33.0],[-9.24, 32.3],
+        [-9.77, 31.5],[-9.60, 30.4],[-10.2, 29.0],[-12.0, 27.5],
+        [-13.5, 25.5],[-9.0, 24.5],[-4.0, 24.5],[ 0.0, 25.0],
+        [ 5.0, 26.0],[10.0, 27.0],[14.0, 28.0],[17.5, 29.5],
+        [19.5, 30.5],[20.0, 31.5],[19.0, 32.5],[17.0, 33.0],
+        [15.0, 33.0],[12.5, 33.5],[11.0, 34.0],[10.5, 35.0],
+        [10.0, 36.0],[ 9.5, 36.8],[ 9.0, 37.2],[ 8.5, 37.0],
+        [ 7.5, 36.8],[ 6.0, 36.8],[ 4.0, 36.7],[ 2.0, 36.5],
+        [ 0.0, 36.0],[-1.5, 35.5],[-3.0, 35.3],[-4.5, 35.5],
+        [-5.85, 35.9]]]
+    ]
+  },
+  properties: {}
+};
+
+/* 2.2 — كل المدن (الموحدية + الخارجية) — نفس التنسيق في الخريطتين */
+const CITIES = [
+  /* --- مدن داخل المجال الموحدي --- */
+  { name:'مراكش',    lat:31.63, lng:-8.00, type:'capital', side:'bottom' },
+  { name:'فاس',      lat:34.03, lng:-5.00, type:'city',    side:'top'    },
+  { name:'الرباط',   lat:34.02, lng:-6.84, type:'city',    side:'left'   },
+  { name:'سبتة',     lat:35.89, lng:-5.32, type:'port',    side:'right'  },
+  { name:'تلمسان',   lat:34.88, lng:-1.32, type:'city',    side:'bottom' },
+  { name:'بجاية',    lat:36.75, lng: 5.08, type:'port',    side:'top'    },
+  { name:'الجزائر',  lat:36.75, lng: 3.06, type:'port',    side:'bottom' },
+  { name:'تونس',     lat:36.80, lng:10.18, type:'city',    side:'top'    },
+  { name:'القيروان', lat:35.68, lng:10.10, type:'city',    side:'left'   },
+  { name:'طرابلس',   lat:32.90, lng:13.19, type:'city',    side:'bottom' },
+  { name:'إشبيلية',  lat:37.39, lng:-5.98, type:'city',    side:'left'   },
+  { name:'قرطبة',    lat:37.88, lng:-4.78, type:'city',    side:'top'    },
+  { name:'غرناطة',   lat:37.18, lng:-3.60, type:'city',    side:'right'  },
+  { name:'بلنسية',   lat:39.47, lng:-0.38, type:'city',    side:'right'  },
+  { name:'ميورقة',   lat:39.57, lng: 2.65, type:'port',    side:'right'  },
+  /* --- مدن خارج المجال (للسياق) --- */
+  { name:'روما',     lat:41.90, lng:12.50, type:'city',    side:'top'    },
+  { name:'باليرمو',  lat:38.12, lng:13.36, type:'city',    side:'right'  },
+  { name:'جنوة',     lat:44.41, lng: 8.93, type:'city',    side:'right'  },
+  { name:'بيزا',     lat:43.72, lng:10.40, type:'city',    side:'top'    },
+  { name:'مرسيليا',  lat:43.30, lng: 5.37, type:'city',    side:'bottom' },
+  { name:'برشلونة',  lat:41.39, lng: 2.16, type:'city',    side:'top'    },
+  { name:'طليطلة',   lat:39.86, lng:-4.03, type:'city',    side:'top'    },
+  { name:'سرقسطة',   lat:41.65, lng:-0.88, type:'city',    side:'top'    },
+  { name:'لشبونة',   lat:38.72, lng:-9.14, type:'city',    side:'right'  }
+];
+
+/* 2.3 — تسميات المناطق (بالعربية) */
+const REGION_LABELS = [
+  { name:'الأندلس',   lng:-4.0, lat:38.3, size:22, color:'rgba(122,90,48,.42)' },
+  { name:'المغرب',    lng:-7.0, lat:31.8, size:20, color:'rgba(122,90,48,.42)' },
+  { name:'إفريقية',   lng: 8.5, lat:34.5, size:18, color:'rgba(122,90,48,.42)' }
+];
+
+/* 2.4 — تسميات البحار (بالعربية) */
+const SEA_LABELS = [
+  { text:'الـبـحـر  الأبـيـض  الـمـتـوسـط',
+    lng: 9.5, lat: 39.3, size:18, angle:-0.03 },
+  { text:'الـمـحـيـط  الأطـلـسـي',
+    lng:-13.8, lat: 34.5, size:15, angle:-Math.PI/2 + 0.12 },
+  { text:'مـضـيـق  جـبـل  طـارق',
+    lng:-5.4, lat: 35.9, size:10, angle:0 }
+];
+
+/* =========================================================
+   3) تحميل الجغرافيا
+   ========================================================= */
+let worldFeatures = null;
+let projection     = null;
+let pathGen        = null;
+
+async function loadGeo(){
+  const topo = await fetch(
+    'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json'
+  ).then(r => r.json());
+  worldFeatures = topojson.feature(topo, topo.objects.countries).features;
+}
+
+/* =========================================================
+   4) الإسقاط
+   ========================================================= */
+const MAP_CARD = { x:50, y:260, w:1500, h:1120 };
+
+function computeProjection(){
+  const frame = {
+    type: 'Polygon',
+    coordinates: [[
+      [-15, 24], [22, 24], [22, 45], [-15, 45], [-15, 24]
+    ]]
+  };
+  const pad = 24;
+  projection = d3.geoMercator().fitExtent(
+    [
+      [MAP_CARD.x + pad,              MAP_CARD.y + pad],
+      [MAP_CARD.x + MAP_CARD.w - pad, MAP_CARD.y + MAP_CARD.h - pad]
+    ],
+    frame
+  );
+  pathGen = d3.geoPath(projection);
+}
+
+/* ---- فلترة الميزات الجغرافية الملائمة للإطار ---- */
+function intersectsFrame(feature, frame){
+  const [[west, south], [east, north]] = d3.geoBounds(feature);
+  return !(east < frame.w || west > frame.e || north < frame.s || south > frame.n);
+}
+const FRAME_BOX = { w:-15, e:22, s:24, n:45 };
+
+/* ---- رسم ميزة جغرافية باستخدام Path2D (طريقة موثوقة) ---- */
+function drawFeature(feature, fillColor, strokeColor, lineWidth){
+  const svgPath = pathGen(feature);
+  if (!svgPath || svgPath.includes('NaN') || svgPath.includes('Infinity')) return;
+  let p;
+  try { p = new Path2D(svgPath); } catch (e) { return; }
+  if (fillColor){ ctx.fillStyle = fillColor; ctx.fill(p); }
+  if (strokeColor){
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = lineWidth || 1;
+    ctx.stroke(p);
+  }
+}
+
+/* =========================================================
+   5) الخلفية والرأس
+   ========================================================= */
+function drawBackground(){
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0,   '#fdfaf3');
+  g.addColorStop(.5,  '#f7f0e0');
+  g.addColorStop(1,   '#e8dcc0');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+
+  for (let i = 0; i < 2400; i++){
+    const x = Math.random()*W, y = Math.random()*H;
+    ctx.fillStyle = `rgba(140,110,70,${Math.random()*.03})`;
+    ctx.fillRect(x, y, 1.4, 1.4);
+  }
+
+  ctx.strokeStyle = 'rgba(90,74,53,.30)';
+  ctx.lineWidth = 2.2;
+  ctx.strokeRect(20, 20, W-40, H-40);
+  ctx.strokeStyle = 'rgba(90,74,53,.14)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(29, 29, W-58, H-58);
+
+  const bg = ctx.createLinearGradient(0, 0, W, 0);
+  bg.addColorStop(0,    '#8a6a1f');
+  bg.addColorStop(.35,  '#c9971f');
+  bg.addColorStop(.68,  '#6a8a3a');
+  bg.addColorStop(1,    '#8b5a2b');
+  ctx.fillStyle = bg;
+  ctx.fillRect(29, 29, W-58, 8);
+}
+
+function drawHeader(showComplete){
+  text('الأولى ثانوي  ·  التاريخ  ·  الدولة الموحدية',
+       W/2, 46, { size: 13, weight:'800', color: C.ink3 });
+
+  text('مجال الدولة الموحدية', W/2, 108, {
+    size: 46, weight:'900', color: C.ink
+  });
+
+  const sub = showComplete
+    ? 'حدود الدولة في أقصى اتساعها (عهد يعقوب المنصور · 1184–1199 م)'
+    : 'خريطة التلميذ — ارسم حدود الدولة الموحدية بناءً على مواقع المدن';
+  text(sub, W/2, 162, {
+    size: 20, weight:'700',
+    color: showComplete ? C.goldDk : C.terracotta
+  });
+
+  text('من المحيط الأطلسي غرباً إلى طرابلس شرقاً  ·  من وسط الأندلس شمالاً إلى أعماق الصحراء جنوباً',
+       W/2, 196, { size: 14, weight:'700', color: C.ink3 });
+}
+
+/* =========================================================
+   6) بطاقة الخريطة (النسخة المُصلحة: اليابسة ظاهرة + بحار عربية)
+   ========================================================= */
+function drawMapCard(showComplete){
+  ctx.save();
+  ctx.shadowColor = 'rgba(60,45,20,.35)';
+  ctx.shadowBlur = 26; ctx.shadowOffsetY = 9;
+  rr(MAP_CARD.x, MAP_CARD.y, MAP_CARD.w, MAP_CARD.h, 16);
+  ctx.fillStyle = '#fff'; ctx.fill();
+  ctx.restore();
+
+  rr(MAP_CARD.x, MAP_CARD.y, MAP_CARD.w, MAP_CARD.h, 16);
+  ctx.strokeStyle = 'rgba(90,74,53,.28)';
+  ctx.lineWidth = 1.4; ctx.stroke();
+
+  ctx.save();
+  rr(MAP_CARD.x, MAP_CARD.y, MAP_CARD.w, MAP_CARD.h, 16);
+  ctx.clip();
+
+  /* ---- 1. البحر ---- */
+  const seaGrad = ctx.createLinearGradient(0, MAP_CARD.y, 0, MAP_CARD.y + MAP_CARD.h);
+  seaGrad.addColorStop(0, C.sea);
+  seaGrad.addColorStop(1, C.seaDeep);
+  ctx.fillStyle = seaGrad;
+  ctx.fillRect(MAP_CARD.x, MAP_CARD.y, MAP_CARD.w, MAP_CARD.h);
+
+  /* نسيج الأمواج */
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,255,255,.18)';
+  ctx.lineWidth = 1;
+  for (let wy = MAP_CARD.y + 30; wy < MAP_CARD.y + MAP_CARD.h; wy += 34){
+    ctx.beginPath();
+    let first = true;
+    for (let wx = MAP_CARD.x + 20; wx < MAP_CARD.x + MAP_CARD.w - 20; wx += 8){
+      const yy = wy + 2.4 * Math.sin((wx - MAP_CARD.x) * 0.015 + wy * 0.05);
+      if (first){ ctx.moveTo(wx, yy); first = false; }
+      else ctx.lineTo(wx, yy);
+    }
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  /* ---- 2. اليابسة (الفلترة: فقط الميزات المتقاطعة مع الإطار) ---- */
+  if (worldFeatures){
+    for (const f of worldFeatures){
+      if (!intersectsFrame(f, FRAME_BOX)) continue;
+      drawFeature(f, C.land, C.landBorder, 0.7);
+    }
+  }
+
+  /* ---- 3. حدود الدول الحديثة (خفيفة جداً للسياق) ---- */
+  if (worldFeatures){
+    ctx.save();
+    ctx.setLineDash([2, 4]);
+    for (const f of worldFeatures){
+      if (!intersectsFrame(f, FRAME_BOX)) continue;
+      drawFeature(f, null, C.countryBorder, 0.7);
+    }
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+
+  /* ---- 4. حدود الدولة الموحدية (النسخة الكاملة فقط) ---- */
+  if (showComplete){
+    /* هالة خارجية */
+    ctx.save();
+    ctx.shadowColor = C.almohadGlow;
+    ctx.shadowBlur = 20;
+    drawFeature(ALMOHAD_FEATURE, C.almohadFill, null, 0);
+    ctx.restore();
+
+    /* تدرّج داخلي */
+    const svgAlmohad = pathGen(ALMOHAD_FEATURE);
+    if (svgAlmohad){
+      ctx.save();
+      try {
+        const pAlm = new Path2D(svgAlmohad);
+        ctx.clip(pAlm);
+        const gGrad = ctx.createLinearGradient(0, MAP_CARD.y, 0, MAP_CARD.y + MAP_CARD.h);
+        gGrad.addColorStop(0, hexA(C.almohadFill, 0.10));
+        gGrad.addColorStop(1, hexA(C.almohadFill2, 0.55));
+        ctx.fillStyle = gGrad;
+        ctx.fillRect(MAP_CARD.x, MAP_CARD.y, MAP_CARD.w, MAP_CARD.h);
+      } catch(e){}
+      ctx.restore();
+    }
+
+    /* الحدود الخارجية */
+    drawFeature(ALMOHAD_FEATURE, null, C.almohadBorder, 2.6);
+    drawFeature(ALMOHAD_FEATURE, null, hexA(C.goldDk, 0.35), 1);
+  }
+
+  /* ---- 5. تسميات المناطق ---- */
+  REGION_LABELS.forEach(L => {
+    const p = projection([L.lng, L.lat]);
+    if (!p) return;
+    text(L.name, p[0], p[1], {
+      size: L.size, weight:'900', italic: true,
+      color: L.color,
+      halo: 'rgba(248,242,224,.85)', haloW: 6
+    });
+  });
+
+  /* ---- 6. تسميات البحار (عربية) ---- */
+  SEA_LABELS.forEach(L => {
+    const p = projection([L.lng, L.lat]);
+    if (!p) return;
+    ctx.save();
+    ctx.translate(p[0], p[1]);
+    ctx.rotate(L.angle);
+    text(L.text, 0, 0, {
+      size: L.size, weight:'900', italic: true,
+      color:'rgba(30,58,106,.45)',
+      halo:'rgba(220,235,242,.75)', haloW: 4
+    });
+    ctx.restore();
+  });
+
+  /* ---- 7. المدن ---- */
+  drawCities();
+
+  /* ---- 8. عناصر الخريطة ---- */
+  drawCompass(MAP_CARD.x + 70, MAP_CARD.y + 70);
+  drawScaleBar(MAP_CARD.x + 70, MAP_CARD.y + MAP_CARD.h - 50);
+  drawMapTitleBar(showComplete);
+
+  /* ---- 9. ملاحظة النسخة الجزئية ---- */
+  if (!showComplete){
+    const bw = 660, bh = 62;
+    const bx = MAP_CARD.x + MAP_CARD.w - bw - 22;
+    const by = MAP_CARD.y + MAP_CARD.h - bh - 22;
+    rr(bx, by, bw, bh, 10);
+    ctx.fillStyle = 'rgba(250,235,225,.95)';
+    ctx.fill();
+    rr(bx, by, bw, bh, 10);
+    ctx.strokeStyle = hexA(C.terracotta, 0.55);
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([7, 5]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    text('✎ ارسم حدود الدولة الموحدية مستعيناً بمواقع المدن',
+         bx + bw/2, by + 22, {
+      size: 14, weight:'900', color: C.terracotta, halo: false
+    });
+    text('المدن المعروضة تشمل مدناً داخل الدولة ومدناً خارجها — ميّزها بنفسك',
+         bx + bw/2, by + 44, {
+      size: 11, weight:'700', color: C.ink3, halo: false
+    });
+  }
+
+  ctx.restore();
+}
+
+/* =========================================================
+   7) المدن
+   ========================================================= */
+function drawCities(){
+  CITIES.forEach(c => {
+    const p = projection([c.lng, c.lat]);
+    if (!p) return;
+    const [px, py] = p;
+
+    const isCapital = c.type === 'capital';
+    const isPort    = c.type === 'port';
+
+    const r    = isCapital ? 12 : isPort ? 8 : 7;
+    const fill = isCapital ? C.wine :
+                 isPort    ? C.navy :
+                             C.wineDk;
+
+    /* هالة بيضاء */
+    ctx.beginPath();
+    ctx.arc(px, py, r + 2.5, 0, TAU);
+    ctx.fillStyle = 'rgba(255,255,255,.94)';
+    ctx.fill();
+
+    /* دائرة */
+    ctx.beginPath();
+    ctx.arc(px, py, r, 0, TAU);
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.9)';
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+
+    if (isCapital){
+      ctx.beginPath();
+      ctx.arc(px, py, r + 6, 0, TAU);
+      ctx.strokeStyle = hexA(C.wine, 0.55);
+      ctx.lineWidth = 1.8;
+      ctx.stroke();
+      drawStar(px, py - 1, 6, 3, 5, '#fff');
+    }
+
+    /* موضع التسمية */
+    const off = r + 10;
+    let lx = px, ly = py, align = 'center', base = 'middle';
+    if (c.side === 'left'){ lx = px - off; align = 'right'; }
+    else if (c.side === 'right'){ lx = px + off; align = 'left'; }
+    else if (c.side === 'top'){ ly = py - off - 2; base = 'bottom'; }
+    else if (c.side === 'bottom'){ ly = py + off + 2; base = 'top'; }
+
+    const fs = isCapital ? 16 : isPort ? 12 : 12;
+    const label = isCapital ? (c.name + ' · العاصمة') : c.name;
+
+    text(label, lx, ly, {
+      size: fs, weight:'800',
+      color: isCapital ? C.wine : C.ink,
+      align, base,
+      halo: 'rgba(248,242,224,.98)', haloW: 6
+    });
+  });
+}
+
+/* =========================================================
+   8) عناصر الخريطة
+   ========================================================= */
+function drawCompass(cx, cy){
+  ctx.save();
+  ctx.beginPath(); ctx.arc(cx, cy, 34, 0, TAU);
+  ctx.fillStyle = 'rgba(253,250,242,.94)'; ctx.fill();
+  ctx.strokeStyle = 'rgba(90,74,53,.35)'; ctx.lineWidth = 1.4; ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 24);
+  ctx.lineTo(cx - 9, cy + 12);
+  ctx.lineTo(cx, cy + 5);
+  ctx.lineTo(cx + 9, cy + 12);
+  ctx.closePath();
+  ctx.fillStyle = C.terracotta;
+  ctx.fill();
+
+  text('ش', cx, cy - 36, {
+    size: 12, weight:'900', color: C.ink,
+    halo: 'rgba(253,250,242,.9)', haloW: 4
+  });
+  ctx.restore();
+}
+
+function drawScaleBar(x, y){
+  const len = 100;
+  ctx.save();
+  const bw = 220, bh = 44;
+  rr(x - 10, y - 34, bw, bh, 8);
+  ctx.fillStyle = 'rgba(253,250,242,.94)'; ctx.fill();
+  rr(x - 10, y - 34, bw, bh, 8);
+  ctx.strokeStyle = 'rgba(90,74,53,.30)'; ctx.lineWidth = 1; ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(x, y); ctx.lineTo(x + len, y);
+  ctx.strokeStyle = C.ink2; ctx.lineWidth = 2.5; ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x, y - 6); ctx.lineTo(x, y + 6);
+  ctx.moveTo(x + len/2, y - 6); ctx.lineTo(x + len/2, y + 6);
+  ctx.moveTo(x + len, y - 6); ctx.lineTo(x + len, y + 6);
+  ctx.strokeStyle = C.ink2; ctx.lineWidth = 2; ctx.stroke();
+
+  text('~500 كم', x + len/2, y - 14, {
+    size: 10, weight:'800', color: C.ink2
+  });
+  ctx.restore();
+}
+
+function drawMapTitleBar(showComplete){
+  const bw = 820, bh = 66;
+  const bx = MAP_CARD.x + (MAP_CARD.w - bw)/2;
+  const by = MAP_CARD.y + 16;
+
+  ctx.save();
+  ctx.shadowColor = 'rgba(60,45,20,.40)';
+  ctx.shadowBlur = 18; ctx.shadowOffsetY = 4;
+  rr(bx, by, bw, bh, 11);
+  ctx.fillStyle = 'rgba(253,250,243,.96)'; ctx.fill();
+  ctx.restore();
+
+  rr(bx, by, bw, bh, 11);
+  ctx.strokeStyle = 'rgba(90,74,53,.35)'; ctx.lineWidth = 1.3; ctx.stroke();
+
+  ctx.save();
+  rr(bx, by, bw, bh, 11); ctx.clip();
+  ctx.fillStyle = showComplete ? C.goldDk : C.terracotta;
+  ctx.fillRect(bx, by, bw, 4);
+  ctx.restore();
+
+  text(
+    showComplete
+      ? 'الدولة الموحدية — أقصى اتساع (1184–1199 م)'
+      : 'خريطة التلميذ — المدن دون حدود الدولة',
+    bx + bw/2, by + 26,
+    { size: 19, weight:'900', color: C.ink, halo: false }
+  );
+  text(
+    showComplete
+      ? 'المغرب · الأندلس · إفريقية · جزر البليار'
+      : '✎ ارسم الحدود مستعيناً بأسماء المدن — ميّز الداخل من الخارج',
+    bx + bw/2, by + 50,
+    { size: 12, weight:'700', color: C.ink3, halo: false }
+  );
+}
+
+/* =========================================================
+   9) شريط المعلومات
+   ========================================================= */
+function drawInfoBar(showComplete){
+  const x = 50, y = 1410, w = 1500, h = 280;
+
+  ctx.save();
+  ctx.shadowColor = 'rgba(60,45,20,.14)';
+  ctx.shadowBlur = 18; ctx.shadowOffsetY = 5;
+  rr(x, y, w, h, 14);
+  ctx.fillStyle = '#fff'; ctx.fill();
+  ctx.restore();
+
+  rr(x, y, w, h, 14);
+  ctx.strokeStyle = showComplete ? 'rgba(138,106,31,.35)' : 'rgba(168,64,42,.35)';
+  ctx.lineWidth = 1.3; ctx.stroke();
+
+  ctx.save();
+  rr(x, y, w, h, 14); ctx.clip();
+  ctx.fillStyle = showComplete ? C.gold : C.terracotta;
+  ctx.fillRect(x, y, w, 5);
+  ctx.restore();
+
+  text(
+    showComplete
+      ? 'مفتاح الخريطة — لمحة عن الدولة الموحدية'
+      : 'مفتاح الخريطة — مساعدة للتلميذ',
+    x + w - 26, y + 32,
+    { size: 18, weight:'900',
+      color: showComplete ? C.goldDk : C.terracotta,
+      align:'right' }
+  );
+
+  ctx.beginPath();
+  ctx.moveTo(x + 24, y + 50);
+  ctx.lineTo(x + w - 24, y + 50);
+  ctx.strokeStyle = 'rgba(90,74,53,.20)';
+  ctx.lineWidth = 1.2; ctx.stroke();
+
+  const colGap = 20;
+  const colW = (w - 48 - colGap*2) / 3;
+  const colY = y + 70;
+  const colH = h - 96;
+
+  const cols = [
+    {
+      title: 'دلالة الرموز',
+      color: C.wine,
+      items: [
+        { icon:'star',   text:'مراكش — العاصمة الموحدية' },
+        { icon:'dot',    text:'مدينة' },
+        { icon:'port',   text:'ميناء رئيسي' }
+      ]
+    },
+    {
+      title: 'المجال الجغرافي',
+      color: C.goldDk,
+      lines: [
+        'المغرب الأقصى والأوسط (مراكش · فاس · الرباط)',
+        'الأندلس وجزر البليار (إشبيلية · قرطبة · بلنسية)',
+        'إفريقية (تونس · القيروان · طرابلس)'
+      ]
+    },
+    {
+      title: 'معطيات أساسية',
+      color: C.navy,
+      facts: [
+        ['المدة',    '1121 – 1269 م'],
+        ['أقصى اتساع', '1184 – 1199 م'],
+        ['المؤسس',   'عبد المؤمن بن علي'],
+        ['العاصمة',  'مراكش']
+      ]
+    }
+  ];
+
+  cols.forEach((col, i) => {
+    const cx = x + w - 26 - colW - i * (colW + colGap);
+    drawInfoColumn(cx, colY, colW, colH, col);
+  });
+}
+
+function drawInfoColumn(x, y, w, h, col){
+  text(col.title, x + w/2, y + 8, {
+    size: 14, weight:'900', color: col.color, halo: false
+  });
+  ctx.beginPath();
+  ctx.moveTo(x + 10, y + 20);
+  ctx.lineTo(x + w - 10, y + 20);
+  ctx.strokeStyle = hexA(col.color, 0.25);
+  ctx.lineWidth = 1; ctx.stroke();
+
+  if (col.items){
+    col.items.forEach((it, j) => {
+      const iy = y + 40 + j * 26;
+      if (it.icon === 'star'){
+        drawStar(x + 20, iy + 3, 7, 3.2, 5, C.wine);
+      } else if (it.icon === 'dot'){
+        ctx.beginPath();
+        ctx.arc(x + 20, iy + 3, 6, 0, TAU);
+        ctx.fillStyle = C.wineDk; ctx.fill();
+      } else if (it.icon === 'port'){
+        ctx.beginPath();
+        ctx.arc(x + 20, iy + 3, 6, 0, TAU);
+        ctx.fillStyle = C.navy; ctx.fill();
+      }
+      text(it.text, x + w - 16, iy + 3, {
+        size: 12.5, weight:'700', color: C.ink2, align:'right', halo: false
+      });
+    });
+  } else if (col.lines){
+    col.lines.forEach((line, j) => {
+      text('• ' + line, x + w - 16, y + 42 + j * 24, {
+        size: 12, weight:'700', color: C.ink2, align:'right', halo: false
+      });
+    });
+  } else if (col.facts){
+    col.facts.forEach((f, j) => {
+      const fy = y + 40 + j * 26;
+      text(f[0] + ':', x + w - 16, fy, {
+        size: 12, weight:'800', color: C.ink3, align:'right', halo: false
+      });
+      text(f[1], x + 16, fy, {
+        size: 12.5, weight:'900', color: col.color, align:'left', halo: false
+      });
+    });
+  }
+}
+
+/* =========================================================
+   10) التذييل
+   ========================================================= */
+function drawFooter(showComplete){
+  const y = H - 90;
+  ctx.beginPath();
+  ctx.moveTo(100, y); ctx.lineTo(W - 100, y);
+  ctx.strokeStyle = 'rgba(90,74,53,.22)'; ctx.lineWidth = 1.2; ctx.stroke();
+
+  text(
+    showComplete
+      ? 'نسخة الإجابات — مجال الدولة الموحدية بحدوده'
+      : 'نسخة التلميذ — المدن دون حدود · على التلميذ رسم الحدود',
+    100, y + 26, {
+      size: 12.5, weight:'800',
+      color: showComplete ? C.goldDk : C.terracotta,
+      align:'left'
+    }
+  );
+  text('مصدر المعطيات: الدرس',
+       W - 100, y + 26, {
+    size: 12, weight:'700', color: C.ink3, align:'right'
+  });
+}
+
+/* =========================================================
+   11) الرسم الكامل
+   ========================================================= */
+function render(showComplete){
+  drawBackground();
+  drawHeader(showComplete);
+  drawMapCard(showComplete);
+  drawInfoBar(showComplete);
+  drawFooter(showComplete);
+}
+
+function renderTo(target, showComplete){
+  target.width  = W * DPR;
+  target.height = H * DPR;
+  const cc = target.getContext('2d');
+  cc.setTransform(DPR, 0, 0, DPR, 0, 0);
+  cc.clearRect(0, 0, W, H);
+
+  const prev = ctx;
+  ctx = cc;
+  render(showComplete);
+  ctx = prev;
+}
+
+function renderCurrent(showComplete){ renderTo(cvs, showComplete); }
+
+/* =========================================================
+   12) التنزيل
+   ========================================================= */
+function download(showComplete){
+  try {
+    const tmp = document.createElement('canvas');
+    renderTo(tmp, showComplete);
+    const a = document.createElement('a');
+    a.download = showComplete
+      ? 'الدولة-الموحدية-الخريطة-الكاملة.png'
+      : 'الدولة-الموحدية-خريطة-التلميذ.png';
+    a.href = tmp.toDataURL('image/png', 1.0);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } catch (err){
+    console.error(err);
+    alert('تعذّر إنشاء الصورة: ' + err.message);
+  }
+}
+
+/* =========================================================
+   13) التبديل بين العرضين
+   ========================================================= */
+function showPreview(complete){
+  renderCurrent(complete);
+  const bp = document.getElementById('btn-preview-partial');
+  const bc = document.getElementById('btn-preview-complete');
+  if (bp) bp.classList.toggle('active', !complete);
+  if (bc) bc.classList.toggle('active', complete);
+}
+
+/* =========================================================
+   14) التشغيل
+   ========================================================= */
+async function boot(){
+  const status = document.getElementById('status');
+  try {
+    await document.fonts.ready;
+    await loadGeo();
+    computeProjection();
+    showPreview(true);
+
+    status.textContent = '✅ تم تحميل الخريطة بنجاح';
+    status.classList.add('ok');
+    setTimeout(() => { status.style.opacity = '0'; }, 1800);
+    setTimeout(() => { status.style.display = 'none'; }, 2500);
+  } catch (err){
+    console.error(err);
+    status.textContent = '⚠ تعذّر تحميل الحدود — تحقّق من الاتصال';
+    status.classList.add('err');
+  }
+}
+
+boot();
+</script>
+</body>
+</html>

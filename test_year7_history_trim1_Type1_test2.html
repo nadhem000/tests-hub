@@ -371,12 +371,16 @@
             background: #1e3a4a;
             border-color: #4a6070;
         }
-        .Tests-Hub-svg-container svg {
+        .Tests-Hub-svg-container svg,
+        .Tests-Hub-svg-container img {
             width: 100%;
             max-width: 620px;
             height: auto;
             display: block;
             margin: 0 auto;
+        }
+        .Tests-Hub-svg-container img {
+            border-radius: 12px;
         }
         .Tests-Hub-legend {
             display: flex;
@@ -533,7 +537,8 @@
             .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column {
                 backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
             }
-            .Tests-Hub-svg-container svg { max-width: 100% !important; }
+            .Tests-Hub-svg-container svg,
+            .Tests-Hub-svg-container img { max-width: 100% !important; }
             .Tests-Hub-doc-text { background: #fafafa !important; }
         }
         .Tests-Hub-print-mode { background: white !important; }
@@ -619,7 +624,10 @@
                     <h3 style="font-size:1.5rem;">2) أكمل الفراغات بما يناسب على الخريطة: (3 ن)</h3>
                     <p style="font-weight:600; margin:0.5rem 0; text-align:center; color:var(--Tests-Hub-answers-strong-color);">خريطة حضارة مصر الفرعونية</p>
                     
-                    <div class="Tests-Hub-svg-container" id="map-test"></div>
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/history/trim1/خريطة-حضارة-مصر-الفرعونية-الأسئلة.png"
+                             alt="خريطة حضارة مصر الفرعونية - نسخة التلميذ (الأسئلة)">
+                    </div>
                     
                     <div class="Tests-Hub-wordbank">
                         <span>طيبة</span>
@@ -754,7 +762,10 @@
                 <div class="Tests-Hub-answers">
                     <h3>📌 إصلاح التمرين الثاني: خريطة مصر الفرعونية (3 ن)</h3>
                     
-                    <div class="Tests-Hub-svg-container" id="map-correction"></div>
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/history/trim1/خريطة-حضارة-مصر-الفرعونية-الإجابات.png"
+                             alt="خريطة حضارة مصر الفرعونية - نسخة الإصلاح (الإجابات)">
+                    </div>
                     
                     <ul style="margin-right:1.5rem;">
                         <li><strong>1-</strong> البحر المتوسط</li>
@@ -1029,70 +1040,6 @@
                 `;
             }
             
-            // ========== رسم خريطة مصر ==========
-            function drawEgyptMap(containerId, isCorrection) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                
-                const labels = {
-                    1: 'البحر المتوسط',
-                    2: 'البحر الأحمر',
-                    3: 'دلتا النيل',
-                    4: 'الوجه البحري',
-                    5: 'منف',
-                    6: 'طيبة',
-                    7: 'أبوسمبل',
-                    8: 'الوجه القبلي'
-                };
-                
-                const markers = [
-                    { id: 1, x: 300, y: 38, side: 'right', offset: 24 },
-                    { id: 2, x: 545, y: 320, side: 'left', offset: -22 },
-                    { id: 3, x: 240, y: 130, side: 'left', offset: -22 },
-                    { id: 4, x: 370, y: 105, side: 'right', offset: 24 },
-                    { id: 5, x: 265, y: 215, side: 'right', offset: 24 },
-                    { id: 6, x: 245, y: 375, side: 'right', offset: 24 },
-                    { id: 7, x: 245, y: 500, side: 'right', offset: 24 },
-                    { id: 8, x: 420, y: 340, side: 'right', offset: 24 }
-                ];
-                
-                let markersSVG = '';
-                markers.forEach(m => {
-                    markersSVG += `
-                        <circle cx="${m.x}" cy="${m.y}" r="16" fill="#dc2626" stroke="white" stroke-width="2.5"/>
-                        <text x="${m.x}" y="${m.y+6}" text-anchor="middle" fill="white" font-weight="bold" font-size="15">${m.id}</text>
-                    `;
-                    if (isCorrection) {
-                        const lx = m.x + m.offset;
-                        markersSVG += `<text x="${lx}" y="${m.y+5}" text-anchor="start" fill="#7c2d12" font-weight="bold" font-size="13">${labels[m.id]}</text>`;
-                    }
-                });
-                
-                container.innerHTML = `
-                <svg viewBox="0 0 640 570" xmlns="http://www.w3.org/2000/svg" style="direction:ltr; font-family:sans-serif;">
-                    <!-- Mediterranean Sea (top) -->
-                    <rect x="0" y="0" width="640" height="70" fill="#93c5fd" stroke="#1e40af" stroke-width="1.2"/>
-                    <text x="320" y="42" text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="bold">البحر المتوسط</text>
-                    
-                    <!-- Red Sea (right) -->
-                    <path d="M 500 130 L 625 200 L 605 570 L 515 570 L 485 340 Z" fill="#93c5fd" stroke="#1e40af" stroke-width="1.2"/>
-                    <text x="560" y="420" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="bold" transform="rotate(78 560 420)">البحر الأحمر</text>
-                    
-                    <!-- Egypt land -->
-                    <path d="M 80 70 L 500 70 L 500 130 L 485 340 L 515 570 L 80 570 Z" fill="#fef3c7" stroke="#a16207" stroke-width="2.5"/>
-                    
-                    <!-- Delta (green triangle) -->
-                    <path d="M 155 70 L 425 70 L 320 205 L 220 205 Z" fill="#bbf7d0" stroke="#166534" stroke-width="2"/>
-                    
-                    <!-- Nile -->
-                    <path d="M 270 205 Q 265 310 258 420 L 252 565" stroke="#2563eb" stroke-width="10" fill="none" stroke-linecap="round"/>
-                    <text x="235" y="440" text-anchor="end" fill="#1e3a8a" font-size="11" font-weight="bold" transform="rotate(-85 235 440)">نهر النيل</text>
-                    
-                    ${markersSVG}
-                </svg>
-                `;
-            }
-            
             document.addEventListener('DOMContentLoaded', function() {
                 const savedTheme = localStorage.getItem('testsHubTheme');
                 if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
@@ -1101,11 +1048,9 @@
                 if (currentLanguage === 'ar') document.documentElement.dir = 'rtl'; else document.documentElement.dir = 'ltr';
                 updateTextContent();
                 
-                // Draw timeline and maps
+                // رسم الأسلمة الزمنية فقط (الخرائط أصبحت صوراً حقيقية)
                 drawTimeline('timeline-test', false);
                 drawTimeline('timeline-correction', true);
-                drawEgyptMap('map-test', false);
-                drawEgyptMap('map-correction', true);
                 
                 if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
                 

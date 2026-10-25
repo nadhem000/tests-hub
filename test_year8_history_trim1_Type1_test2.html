@@ -383,6 +383,14 @@
             display: block;
             margin: 0 auto;
         }
+        .Tests-Hub-svg-container img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
         .Tests-Hub-toggle-correction-btn {
             background: linear-gradient(145deg, #d97706, #b45309);
             color: white;
@@ -441,6 +449,12 @@
             body { background: white !important; color: black !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column {
                 backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
+            }
+            .Tests-Hub-svg-container img {
+                display: block !important;
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
             }
         }
         .Tests-Hub-print-mode { background: white !important; }
@@ -505,8 +519,9 @@
                 <div class="Tests-Hub-question-list">
                     <h3 style="font-size:1.5rem;">1) حدد على الخريطة التالية مجال الدولة الموحدية (4 ن)</h3>
                     
-                    <div class="Tests-Hub-svg-container" id="map-test">
-                        <!-- سيتم رسم الخريطة هنا عبر JS -->
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets8/history/trim1/مجال-الدولة-الموحدية-خريطة-التلميذ.png"
+                             alt="خريطة التلميذ - حدد مجال الدولة الموحدية">
                     </div>
                     
                     <div class="Tests-Hub-detail-note">🔍 ملاحظة: استعن بمكتسباتك القبلية لتحديد حدود الدولة الموحدية (من المحيط الأطلسي غرباً إلى ليبيا شرقاً، ومن الأندلس شمالاً إلى الصحراء جنوباً).</div>
@@ -548,8 +563,9 @@
                 
                 <div class="Tests-Hub-answers">
                     <h3>📌 إصلاح السؤال الأول: مجال الدولة الموحدية</h3>
-                    <div class="Tests-Hub-svg-container" id="map-correction">
-                        <!-- سيتم رسم خريطة الإصلاح هنا -->
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets8/history/trim1/مجال-الدولة-الموحدية-الخريطة-الكاملة.png"
+                             alt="الخريطة الكاملة - مجال الدولة الموحدية">
                     </div>
                     <p>امتدت الدولة الموحدية على مساحة شاسعة شملت:</p>
                     <ul style="margin-right:1.5rem;">
@@ -713,54 +729,6 @@
                 return clone;
             }
             
-            // ========== رسم الخريطة ==========
-            function drawMap(containerId, isCorrection) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                
-                const fillAlmohad = isCorrection ? 'rgba(180, 83, 9, 0.4)' : '#fef3c7';
-                const strokeAlmohad = isCorrection ? '#b45309' : '#9ca3af';
-                
-                container.innerHTML = `
-                <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" style="direction:ltr; font-family:sans-serif;">
-                    <!-- البحر الأبيض المتوسط -->
-                    <rect width="500" height="380" fill="#e0f2fe" rx="10"/>
-                    
-                    <!-- أوروبا (باهتة) -->
-                    <path d="M 80 30 L 300 30 L 320 60 L 280 80 L 200 70 L 120 80 Z" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
-                    
-                    <!-- شبه الجزيرة الإيبيرية (الأندلس) -->
-                    <path d="M 40 90 L 120 85 L 140 120 L 100 160 L 40 140 Z" fill="${fillAlmohad}" stroke="${strokeAlmohad}" stroke-width="1.5"/>
-                    <text x="80" y="125" font-size="10" fill="#374151" font-weight="bold">الأندلس</text>
-                    
-                    <!-- المغرب الأقصى والأوسط (شمال إفريقيا) -->
-                    <path d="M 100 160 L 140 120 L 220 130 L 260 170 L 240 220 L 160 230 L 110 200 Z" fill="${fillAlmohad}" stroke="${strokeAlmohad}" stroke-width="1.5"/>
-                    <text x="160" y="185" font-size="10" fill="#374151" font-weight="bold">المغرب</text>
-                    
-                    <!-- إفريقية (تونس وشرق الجزائر وليبيا) -->
-                    <path d="M 220 130 L 360 140 L 400 180 L 360 230 L 280 240 L 240 220 L 260 170 Z" fill="${fillAlmohad}" stroke="${strokeAlmohad}" stroke-width="1.5"/>
-                    <text x="290" y="190" font-size="10" fill="#374151" font-weight="bold">إفريقية</text>
-                    
-                    <!-- صحراء (باهتة) -->
-                    <path d="M 110 200 L 160 230 L 240 220 L 280 240 L 360 230 L 380 280 L 300 320 L 180 310 L 100 280 Z" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
-                    <text x="230" y="270" font-size="10" fill="#d97706">الصحراء</text>
-                    
-                    <!-- جبال أطلس -->
-                    <path d="M 120 180 Q 180 160 220 180" stroke="#9a3412" stroke-width="2" fill="none" stroke-dasharray="4 2"/>
-                    <text x="150" y="165" font-size="8" fill="#9a3412">جبال أطلس</text>
-                    
-                    <!-- المحيط الأطلسي -->
-                    <text x="20" y="200" font-size="10" fill="#0369a1" transform="rotate(-90 20 200)">المحيط الأطلسي</text>
-                    
-                    <!-- البحر المتوسط -->
-                    <text x="200" y="80" font-size="10" fill="#0369a1">البحر الأبيض المتوسط</text>
-                    
-                    <!-- تسمية الدولة -->
-                    ${isCorrection ? '<text x="250" y="360" font-size="14" fill="#b45309" font-weight="bold" text-anchor="middle">مجال الدولة الموحدية (1121 - 1269م)</text>' : '<text x="250" y="360" font-size="12" fill="#6b7280" text-anchor="middle">حدد مجال الدولة الموحدية بتظليل المناطق المناسبة</text>'}
-                </svg>
-                `;
-            }
-            
             // ========== رسم السلم الزمني ==========
             function drawTimeline(containerId, isCorrection) {
                 const container = document.getElementById(containerId);
@@ -809,9 +777,7 @@
                 if (currentLanguage === 'ar') document.documentElement.dir = 'rtl'; else document.documentElement.dir = 'ltr';
                 updateTextContent();
                 
-                // رسم الخرائط والأسلمة الزمنية
-                drawMap('map-test', false);
-                drawMap('map-correction', true);
+                // رسم الأسلمة الزمنية (الخرائط أصبحت صوراً حقيقية)
                 drawTimeline('timeline-test', false);
                 drawTimeline('timeline-correction', true);
                 
