@@ -371,12 +371,16 @@
             background: #1e3a4a;
             border-color: #4a6070;
         }
-        .Tests-Hub-svg-container svg {
+        .Tests-Hub-svg-container svg,
+        .Tests-Hub-svg-container img {
             width: 100%;
             max-width: 780px;
             height: auto;
             display: block;
             margin: 0 auto;
+        }
+        .Tests-Hub-svg-container img {
+            border-radius: 12px;
         }
         .Tests-Hub-legend {
             display: flex;
@@ -489,7 +493,8 @@
             .Tests-Hub-card, .Tests-Hub-split-row, .Tests-Hub-text-column {
                 backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
             }
-            .Tests-Hub-svg-container svg { max-width: 100% !important; }
+            .Tests-Hub-svg-container svg,
+            .Tests-Hub-svg-container img { max-width: 100% !important; }
         }
         .Tests-Hub-print-mode { background: white !important; }
         .Tests-Hub-print-mode .Tests-Hub-card, .Tests-Hub-print-mode .Tests-Hub-split-row {
@@ -536,8 +541,8 @@
             <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: غير مذكور</div>
             <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: السنة السابعة (سنة 7)</div>
             <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: غير مذكور</div>
-            <div style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 30 دقيقة</div>
-            <div style="font-size: 1.2rem;">📝 الثلاثي الأول</div>
+            <div data-i18n="TestsHub.presentation.line6" style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 30 دقيقة</div>
+            <div data-i18n="TestsHub.presentation.line7" style="font-size: 1.2rem;">📝 الثلاثي الأول</div>
         </div>
         
         <!-- بطاقة التمرين الرئيسية -->
@@ -578,7 +583,10 @@
                         العنوان: الحضارات القديمة حول حوض المتوسط
                     </p>
                     
-                    <div class="Tests-Hub-svg-container" id="map-test"></div>
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/history/trim1/الحضارات-القديمة-حول-المتوسط-ورقة-التلميذ.png"
+                             alt="خريطة الحضارات القديمة حول حوض المتوسط - ورقة التلميذ">
+                    </div>
                     
                     <div class="Tests-Hub-legend">
                         <div class="Tests-Hub-legend-item">
@@ -646,7 +654,10 @@
                 <div class="Tests-Hub-answers">
                     <h3>📌 إصلاح القسم الثاني: خريطة الحضارات القديمة (4 ن)</h3>
                     
-                    <div class="Tests-Hub-svg-container" id="map-correction"></div>
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/history/trim1/الحضارات-القديمة-حول-المتوسط-الإجابات.png"
+                             alt="خريطة الحضارات القديمة حول حوض المتوسط - الإجابات">
+                    </div>
                     
                     <div class="Tests-Hub-legend">
                         <div class="Tests-Hub-legend-item">
@@ -743,7 +754,9 @@
                             line2: "👨‍🏫 الأستاذ: غير مذكور", 
                             line3: "📅 السنة الدراسية: غير مذكور", 
                             line4: "📚 المستوى: السنة السابعة (سنة 7)", 
-                            line5: "🏫 المؤسسة: غير مذكور" 
+                            line5: "🏫 المؤسسة: غير مذكور",
+                            line6: "⏱️ التوقيت: 30 دقيقة",
+                            line7: "📝 الثلاثي الأول"
                         },
                         showCorrection: "إظهار الإصلاح", 
                         hideCorrection: "إخفاء الإصلاح", 
@@ -772,7 +785,9 @@
                             line2: "👨‍🏫 Professeur: non spécifié", 
                             line3: "📅 Année: non spécifiée", 
                             line4: "📚 Classe: 7ème", 
-                            line5: "🏫 Établissement: non spécifié" 
+                            line5: "🏫 Établissement: non spécifié",
+                            line6: "⏱️ Durée: 30 minutes",
+                            line7: "📝 1er Trimestre"
                         },
                         showCorrection: "Afficher la correction", 
                         hideCorrection: "Cacher la correction", 
@@ -801,7 +816,9 @@
                             line2: "👨‍🏫 Teacher: not specified", 
                             line3: "📅 Year: not specified", 
                             line4: "📚 Class: 7th Grade", 
-                            line5: "🏫 School: not specified" 
+                            line5: "🏫 School: not specified",
+                            line6: "⏱️ Duration: 30 minutes",
+                            line7: "📝 First Trimester"
                         },
                         showCorrection: "Show correction", 
                         hideCorrection: "Hide correction", 
@@ -905,93 +922,6 @@
                 `;
             }
             
-            // ========== رسم خريطة الحضارات القديمة حول حوض المتوسط ==========
-            function drawMediterraneanMap(containerId, isCorrection) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                
-                // Colors for civilization regions
-                const romeFill = isCorrection ? '#fca5a5' : 'none';
-                const carthageFill = isCorrection ? '#93c5fd' : 'none';
-                const mesoFill = isCorrection ? '#fde68a' : 'none';
-                const regionDash = isCorrection ? '' : 'stroke-dasharray="6 4"';
-                
-                container.innerHTML = `
-                <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" style="direction:rtl; font-family:sans-serif;">
-                    <!-- Background: Mediterranean sea -->
-                    <rect width="800" height="560" fill="#dbeafe"/>
-                    
-                    <!-- Atlantic Ocean (left) -->
-                    <rect x="0" y="40" width="80" height="520" fill="#93c5fd" stroke="#1e40af" stroke-width="1"/>
-                    <text x="30" y="290" font-size="11" fill="#1e3a8a" text-anchor="middle" font-weight="bold" transform="rotate(-90 30 290)">المحيط الأطلسي</text>
-                    
-                    <!-- Europe landmass -->
-                    <path d="M 80,40 L 500,40 L 500,140 L 480,160 L 450,150 L 430,165 L 400,155 L 380,175 L 340,185 L 300,180 L 250,175 L 200,185 L 140,175 L 90,155 L 80,130 Z" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
-                    
-                    <!-- Black Sea -->
-                    <path d="M 420,55 L 545,55 L 560,90 L 535,125 L 480,135 L 430,120 L 410,90 Z" fill="#93c5fd" stroke="#1e40af" stroke-width="1.2"/>
-                    <text x="485" y="95" font-size="10" fill="#1e3a8a" text-anchor="middle" font-weight="bold">البحر الأسود</text>
-                    
-                    <!-- Anatolia -->
-                    <path d="M 510,140 L 620,130 L 690,145 L 700,175 L 660,200 L 610,210 L 550,195 L 510,175 Z" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
-                    <text x="600" y="175" font-size="10" fill="#5a3e1b" text-anchor="middle" font-weight="bold">آسيا الصغرى</text>
-                    
-                    <!-- Caspian Sea -->
-                    <path d="M 700,120 L 755,110 L 775,160 L 765,225 L 730,240 L 705,200 L 695,155 Z" fill="#93c5fd" stroke="#1e40af" stroke-width="1.2"/>
-                    <text x="735" y="180" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold" transform="rotate(-90 735 180)">بحر قزوين</text>
-                    
-                    <!-- Greece peninsula -->
-                    <path d="M 430,160 L 490,150 L 510,175 L 490,205 L 450,215 L 425,195 L 425,175 Z" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
-                    <text x="467" y="192" font-size="9" fill="#5a3e1b" text-anchor="middle" font-weight="bold">اليونان</text>
-                    
-                    <!-- Italy (boot) -->
-                    <path d="M 290,175 L 340,165 L 370,175 L 385,205 L 370,250 L 350,285 L 330,290 L 315,270 L 320,240 L 305,215 L 290,200 Z" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
-                    <text x="335" y="230" font-size="9" fill="#5a3e1b" text-anchor="middle" font-weight="bold">إيطاليا</text>
-                    
-                    <!-- Bottom landmass (North Africa + Egypt + Arabia) -->
-                    <path d="M 80,340 L 500,320 L 540,310 L 620,310 L 680,290 L 740,290 L 780,340 L 780,520 L 80,520 Z" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
-                    
-                    <!-- Red Sea -->
-                    <path d="M 615,320 L 650,320 L 675,380 L 685,460 L 665,490 L 640,450 L 625,380 Z" fill="#93c5fd" stroke="#1e40af" stroke-width="1.2"/>
-                    <text x="650" y="410" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold" transform="rotate(-78 650 410)">البحر الأحمر</text>
-                    
-                    <!-- Civilization regions -->
-                    <!-- Rome (Italy) -->
-                    <path d="M 295,180 L 340,170 L 365,180 L 380,210 L 365,250 L 345,280 L 328,285 L 318,268 L 322,240 L 308,215 L 295,200 Z" fill="${romeFill}" stroke="#78350f" stroke-width="2.5" ${regionDash}/>
-                    
-                    <!-- Carthage (North Africa) -->
-                    <path d="M 130,350 L 240,340 L 280,355 L 300,385 L 285,420 L 220,435 L 150,425 L 120,395 Z" fill="${carthageFill}" stroke="#78350f" stroke-width="2.5" ${regionDash}/>
-                    
-                    <!-- Mesopotamia (Iraq) -->
-                    <path d="M 640,200 L 720,195 L 750,225 L 755,265 L 720,285 L 660,280 L 635,255 L 630,225 Z" fill="${mesoFill}" stroke="#78350f" stroke-width="2.5" ${regionDash}/>
-                    
-                    <!-- Correction labels for civilizations -->
-                    ${isCorrection ? `
-                        <text x="337" y="315" font-size="11" fill="#b91c1c" text-anchor="middle" font-weight="bold">الحضارة الرومانية</text>
-                        <text x="210" y="470" font-size="11" fill="#1e40af" text-anchor="middle" font-weight="bold">الحضارة القرطاجية</text>
-                        <text x="695" y="315" font-size="11" fill="#a16207" text-anchor="middle" font-weight="bold">الحضارة الرافدية</text>
-                    ` : ''}
-                    
-                    <!-- Geographic labels -->
-                    <text x="350" y="270" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="bold">البحر المتوسط</text>
-                    <text x="250" y="75" font-size="11" fill="#5a3e1b" text-anchor="middle" font-weight="bold">أوروبا</text>
-                    
-                    <!-- Egypt label -->
-                    <text x="545" y="375" font-size="10" fill="#5a3e1b" text-anchor="middle" font-weight="bold">مصر</text>
-                    
-                    <!-- Arabia label -->
-                    <text x="690" y="420" font-size="10" fill="#5a3e1b" text-anchor="middle" font-weight="bold">شبه الجزيرة</text>
-                    <text x="690" y="435" font-size="10" fill="#5a3e1b" text-anchor="middle" font-weight="bold">العربية</text>
-                    
-                    <!-- Mesopotamia label (test mode only — in correction it's the civilization name) -->
-                    ${!isCorrection ? '<text x="695" y="245" font-size="10" fill="#5a3e1b" text-anchor="middle" font-weight="bold">بلاد الرافدين</text>' : ''}
-                    
-                    <!-- Carthage region geographic hint (test mode) -->
-                    ${!isCorrection ? '<text x="210" y="390" font-size="10" fill="#5a3e1b" text-anchor="middle" font-weight="bold">قرطاج</text>' : ''}
-                </svg>
-                `;
-            }
-            
             document.addEventListener('DOMContentLoaded', function() {
                 const savedTheme = localStorage.getItem('testsHubTheme');
                 if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
@@ -1000,11 +930,9 @@
                 if (currentLanguage === 'ar') document.documentElement.dir = 'rtl'; else document.documentElement.dir = 'ltr';
                 updateTextContent();
                 
-                // Draw timeline and maps
+                // رسم الأسلمة الزمنية فقط (الخرائط أصبحت صوراً حقيقية)
                 drawTimeline('timeline-test', false);
                 drawTimeline('timeline-correction', true);
-                drawMediterraneanMap('map-test', false);
-                drawMediterraneanMap('map-correction', true);
                 
                 if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
                 

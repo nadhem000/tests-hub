@@ -356,6 +356,20 @@
             margin: 0 6px;
             vertical-align: middle;
         }
+        .Tests-Hub-date-input {
+            flex: 1;
+            min-width: 150px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: #fff;
+            color: inherit;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-date-input {
+            background: var(--Tests-Hub-input-bg);
+        }
         .Tests-Hub-order-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -523,8 +537,8 @@
             <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: 2010/2011</div>
             <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 7 أساسي</div>
             <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: المدرسة الإعدادية بجومين</div>
-            <div style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 30 دقيقة</div>
-            <div style="font-size: 1.2rem;">📝 الثلاثي الأول</div>
+            <div data-i18n="TestsHub.presentation.line6" style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 30 دقيقة</div>
+            <div data-i18n="TestsHub.presentation.line7" style="font-size: 1.2rem;">📝 الثلاثي الأول</div>
         </div>
         
         <!-- بطاقة التمرين الرئيسية -->
@@ -544,11 +558,11 @@
                 <div class="Tests-Hub-question-list">
                     <p style="font-size:1.15rem; line-height:2.6; margin-top:6px; color:var(--Tests-Hub-answers-strong-color);">
                         مثّل ظهور الزراعة واختراع الكتابة أبرز حدثين في تاريخ البشريّة، فالأوّل غيّر نمط عيش الإنسان
-                                <input type="text" placeholder=".....">
+                                <input type="text" class="Tests-Hub-date-input" placeholder=".....">
                         إلى
-                                <input type="text" placeholder=".....">
+                                <input type="text" class="Tests-Hub-date-input" placeholder=".....">
                         أمّا الثّاني ففصل بين
-                                <input type="text" placeholder=".....">
+                                <input type="text" class="Tests-Hub-date-input" placeholder=".....">
                         والفترة التّاريخيّة.
                     </p>
                 </div>
@@ -732,7 +746,9 @@
                             line2: "👨‍🏫 الأستاذ: مختار العقربي", 
                             line3: "📅 السنة الدراسية: 2010/2011", 
                             line4: "📚 المستوى: 7 أساسي", 
-                            line5: "🏫 المؤسسة: المدرسة الإعدادية بجومين" 
+                            line5: "🏫 المؤسسة: المدرسة الإعدادية بجومين",
+                            line6: "⏱️ التوقيت: 30 دقيقة",
+                            line7: "📝 الثلاثي الأول"
                         },
                         showCorrection: "إظهار الإصلاح", 
                         hideCorrection: "إخفاء الإصلاح", 
@@ -761,7 +777,9 @@
                             line2: "👨‍🏫 Professeur: Mokhtar Al-Akrabi", 
                             line3: "📅 Année: 2010/2011", 
                             line4: "📚 Classe: 7ème", 
-                            line5: "🏫 Établissement: Collège Joumine" 
+                            line5: "🏫 Établissement: Collège Joumine",
+                            line6: "⏱️ Durée: 30 minutes",
+                            line7: "📝 1er Trimestre"
                         },
                         showCorrection: "Afficher la correction", 
                         hideCorrection: "Cacher la correction", 
@@ -790,7 +808,9 @@
                             line2: "👨‍🏫 Teacher: Mokhtar Al-Akrabi", 
                             line3: "📅 Year: 2010/2011", 
                             line4: "📚 Class: 7th Grade", 
-                            line5: "🏫 School: Joumine Prep School" 
+                            line5: "🏫 School: Joumine Prep School",
+                            line6: "⏱️ Duration: 30 minutes",
+                            line7: "📝 First Trimester"
                         },
                         showCorrection: "Show correction", 
                         hideCorrection: "Hide correction", 
@@ -862,6 +882,15 @@
                     span.style.borderBottom = '1.5px dotted #78350f';
                     span.style.display = 'inline-block';
                     span.style.minWidth = '60px';
+                    span.style.height = '1.3em';
+                    span.style.flex = '1';
+                    input.parentNode.replaceChild(span, input);
+                });
+                clone.querySelectorAll('.Tests-Hub-date-input').forEach(input => {
+                    const span = document.createElement('span');
+                    span.style.borderBottom = '1.5px dotted #78350f';
+                    span.style.display = 'inline-block';
+                    span.style.minWidth = '150px';
                     span.style.height = '1.3em';
                     span.style.flex = '1';
                     input.parentNode.replaceChild(span, input);
