@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجغرافيا - فرض مراقبة عدد 1 (7 أساسي) - المثال 3</title>
+
+    <!-- PWA Meta (أزرق / جغرافي) -->
+    <meta name="theme-color" content="#0369a1">
+    <meta name="description" content="فرض مراقبة عدد 1 في الجغرافيا - السنة السابعة أساسي - المثال 3 - مع الإصلاح">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="اختبارات - جغرافيا 7 (مراقبة 1 - مثال 3)">
+
+    <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script defer src="katex/katex.min.js"></script>
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+
+    <script src="html2canvas.min.js"></script>
+    <script src="jspdf.umd.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: #0c4a6e;
+        }
+
+        body.Tests-Hub-dark-theme {
+            background: linear-gradient(135deg, #0c2d48 0%, #164e63 100%);
+            color: #e0f2fe;
+        }
+
+        .Tests-Hub-header-container {
+            background: linear-gradient(to left, #0369a1, #0ea5e9);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-header-container {
+            background: linear-gradient(to left, #082f49, #0e7490, #0369a1);
+        }
+        .Tests-Hub-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .Tests-Hub-header-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .Tests-Hub-header-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .Tests-Hub-header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .Tests-Hub-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .Tests-Hub-back-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .Tests-Hub-language-selector { position: relative; }
+        .Tests-Hub-language-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+        .Tests-Hub-language-selector:hover .Tests-Hub-language-dropdown { display: block; }
+        .Tests-Hub-language-option {
+            padding: 0.8rem 1rem;
+            color: #0c4a6e;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-language-option:hover { background: #bae6fd; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-dropdown { background: #0c2d48; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option { color: #e0f2fe; }
+        .Tests-Hub-dark-theme .Tests-Hub-language-option:hover { background: #0369a1; }
+        .Tests-Hub-theme-toggle, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #0369a1, #0ea5e9);
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+            transition: background 0.3s ease;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-footer-container {
+            background: linear-gradient(to left, #082f49, #0e7490, #0369a1);
+        }
+        .Tests-Hub-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Tests-Hub-footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .Tests-Hub-footer-column h3 { color: #bae6fd; margin-bottom: 1rem; }
+        .Tests-Hub-developer-name, .Tests-Hub-version-number { font-weight: 600; color: #bae6fd; }
+        .Tests-Hub-footer-links-list { list-style: none; }
+        .Tests-Hub-footer-link { color: white; text-decoration: none; opacity: 0.8; }
+
+        .Tests-Hub-main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        :root {
+            --Tests-Hub-card-bg: rgba(240, 249, 255, 0.92);
+            --Tests-Hub-card-shadow-1: rgba(3, 105, 161, 0.2);
+            --Tests-Hub-card-shadow-2: rgba(255, 255, 255, 0.9);
+            --Tests-Hub-card-shadow-3: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-card-border: rgba(186, 230, 253, 0.9);
+            --Tests-Hub-h1-color: #0369a1;
+            --Tests-Hub-h1-shadow-1: rgba(224, 242, 254, 0.9);
+            --Tests-Hub-h1-shadow-2: rgba(0, 0, 0, 0.1);
+            --Tests-Hub-section-title-border: #0ea5e9;
+            --Tests-Hub-section-title-color: #0369a1;
+            --Tests-Hub-section-title-shadow: #f0f9ff;
+            --Tests-Hub-question-list-bg: #f0f9ff;
+            --Tests-Hub-question-list-border: #0284c7;
+            --Tests-Hub-question-list-color: #0c4a6e;
+            --Tests-Hub-answers-bg: #f0f9ff;
+            --Tests-Hub-answers-border: #38bdf8;
+            --Tests-Hub-answers-inset: #ffffff;
+            --Tests-Hub-answers-shadow: rgba(0, 0, 0, 0.05);
+            --Tests-Hub-answers-h3-color: #0369a1;
+            --Tests-Hub-answers-h3-border: #0ea5e9;
+            --Tests-Hub-answers-li-color: #0c4a6e;
+            --Tests-Hub-answers-strong-color: #0369a1;
+            --Tests-Hub-input-bg: rgba(240, 249, 255, 0.9);
+            --Tests-Hub-input-border: #7dd3fc;
+            --Tests-Hub-note-bg: #ecfeff;
+            --Tests-Hub-note-border: #06b6d4;
+        }
+
+        .Tests-Hub-dark-theme {
+            --Tests-Hub-card-bg: rgba(12, 45, 72, 0.85);
+            --Tests-Hub-h1-color: #38bdf8;
+            --Tests-Hub-section-title-color: #7dd3fc;
+            --Tests-Hub-question-list-bg: #0c2d48;
+            --Tests-Hub-question-list-color: #e0f2fe;
+            --Tests-Hub-answers-bg: #0c2d48;
+            --Tests-Hub-answers-border: #0284c7;
+            --Tests-Hub-answers-li-color: #e0f2fe;
+            --Tests-Hub-answers-h3-color: #7dd3fc;
+            --Tests-Hub-answers-strong-color: #38bdf8;
+            --Tests-Hub-input-bg: #164e63;
+            --Tests-Hub-input-border: #0369a1;
+            --Tests-Hub-note-bg: #164e63;
+            --Tests-Hub-note-border: #06b6d4;
+        }
+
+        .Tests-Hub-card {
+            max-width: 1400px;
+            width: 100%;
+            background: var(--Tests-Hub-card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 28px;
+            box-shadow: 0 30px 50px var(--Tests-Hub-card-shadow-1),
+            inset 0 2px 4px var(--Tests-Hub-card-shadow-2),
+            inset 0 -2px 4px var(--Tests-Hub-card-shadow-3);
+            border: 1px solid var(--Tests-Hub-card-border);
+            margin-bottom: 1.5rem;
+        }
+        .Tests-Hub-h1 {
+            text-align: center;
+            color: var(--Tests-Hub-h1-color);
+            margin: 0 0 8px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--Tests-Hub-h1-shadow-1), -1px -1px 2px var(--Tests-Hub-h1-shadow-2);
+        }
+        .Tests-Hub-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding-right: 20px;
+            border-right: 8px solid var(--Tests-Hub-section-title-border);
+            color: var(--Tests-Hub-section-title-color);
+            text-shadow: 1px 1px 2px var(--Tests-Hub-section-title-shadow);
+        }
+        .Tests-Hub-question-list {
+            background: var(--Tests-Hub-question-list-bg);
+            padding: 1rem 1.8rem;
+            border-radius: 28px;
+            margin: 10px 0;
+            border-right: 6px solid var(--Tests-Hub-question-list-border);
+        }
+        .Tests-Hub-question-list ol, .Tests-Hub-question-list ul {
+            margin-right: 1.2rem;
+            line-height: 1.9;
+        }
+        .Tests-Hub-question-list li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--Tests-Hub-question-list-color);
+        }
+        .Tests-Hub-answers {
+            background: var(--Tests-Hub-answers-bg);
+            border-radius: 30px;
+            padding: 20px 30px;
+            border: 1px solid var(--Tests-Hub-answers-border);
+            box-shadow: inset 0 2px 6px var(--Tests-Hub-answers-inset), 0 6px 12px var(--Tests-Hub-answers-shadow);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+        .Tests-Hub-answers h3 {
+            color: var(--Tests-Hub-answers-h3-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-right: 6px solid var(--Tests-Hub-answers-h3-border);
+            padding-right: 15px;
+        }
+        .Tests-Hub-answer-input {
+            margin: 10px 0 15px 5px;
+        }
+        .Tests-Hub-answer-input textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .Tests-Hub-answer-textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px 15px;
+            border-radius: 18px;
+            border: 2px solid var(--Tests-Hub-input-border);
+            background: var(--Tests-Hub-input-bg);
+            color: inherit;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+        }
+        .Tests-Hub-inline-input {
+            display: inline-block;
+            border: none;
+            border-bottom: 1.5px dotted #0284c7;
+            background: transparent;
+            font-family: inherit;
+            font-size: 1rem;
+            color: inherit;
+            padding: 2px 6px;
+            outline: none;
+            min-width: 130px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .Tests-Hub-inline-input:focus {
+            border-bottom-color: #0ea5e9;
+            background: rgba(14, 165, 233, 0.06);
+            border-radius: 4px 4px 0 0;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-inline-input { border-bottom-color: #38bdf8; }
+        .Tests-Hub-detail-note {
+            background: var(--Tests-Hub-note-bg);
+            border-right: 4px solid var(--Tests-Hub-note-border);
+            padding: 12px 18px;
+            margin: 12px 0 15px 20px;
+            border-radius: 18px;
+            font-size: 1rem;
+        }
+        .Tests-Hub-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--Tests-Hub-input-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 15px 0;
+            direction: rtl;
+        }
+        .Tests-Hub-table th, .Tests-Hub-table td {
+            border: 1px solid var(--Tests-Hub-input-border);
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .Tests-Hub-table th {
+            background: var(--Tests-Hub-section-title-border);
+            color: white;
+            font-size: 1.05rem;
+        }
+        .Tests-Hub-table td { color: var(--Tests-Hub-question-list-color); }
+        .Tests-Hub-table input.Tests-Hub-inline-input {
+            width: 100%;
+            min-width: 0;
+            text-align: center;
+            border-bottom-color: #94a3b8;
+        }
+        .Tests-Hub-svg-container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-svg-container {
+            background: #0c2d48;
+            border-color: #0369a1;
+        }
+        .Tests-Hub-svg-container svg,
+        .Tests-Hub-svg-container img {
+            width: 100%;
+            max-width: 780px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .Tests-Hub-svg-container img {
+            border-radius: 12px;
+        }
+        .Tests-Hub-legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--Tests-Hub-input-bg);
+            border-radius: 16px;
+            border: 1px dashed var(--Tests-Hub-input-border);
+        }
+        .Tests-Hub-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: var(--Tests-Hub-question-list-color);
+            font-weight: 600;
+        }
+        .Tests-Hub-legend-swatch {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+            border-radius: 4px;
+            border: 2px solid #0369a1;
+        }
+        .Tests-Hub-wordbank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            padding: 12px;
+            background: var(--Tests-Hub-input-bg);
+            border-radius: 16px;
+            border: 1px dashed var(--Tests-Hub-input-border);
+            margin: 12px 0;
+        }
+        .Tests-Hub-wordbank span {
+            padding: 4px 12px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #0ea5e9;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-wordbank span {
+            background: #164e63;
+            color: #e0f2fe;
+            border-color: #0ea5e9;
+        }
+        .Tests-Hub-blank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 10px 20px;
+            margin: 12px 0;
+        }
+        .Tests-Hub-blank-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--Tests-Hub-input-bg);
+            padding: 8px 12px;
+            border-radius: 14px;
+            border: 1px solid var(--Tests-Hub-input-border);
+        }
+        .Tests-Hub-blank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            background: #dc2626;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .Tests-Hub-blank-item input.Tests-Hub-inline-input {
+            flex: 1;
+            min-width: 0;
+        }
+        .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #0284c7, #0369a1);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.5);
+            transition: transform 0.2s;
+        }
+        .Tests-Hub-dark-theme .Tests-Hub-toggle-correction-btn {
+            background: linear-gradient(145deg, #0369a1, #075985);
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.8rem;
+        }
+        #loading-overlay .Tests-Hub-spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid rgba(255,255,255,0.3);
+            border-top: 8px solid #0ea5e9;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media print {
+            .Tests-Hub-header-container, .Tests-Hub-footer-container, .Tests-Hub-header-controls,
+            .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle,
+            .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button,
+            .Tests-Hub-answer-input, .Tests-Hub-inter-note { display: none !important; }
+            .Tests-Hub-presentation-card { display: block !important; }
+            #correction-section { display: block !important; page-break-before: always; }
+            body { background: white !important; color: black !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .Tests-Hub-card {
+                backdrop-filter: none !important; background: white !important; box-shadow: none !important; border: 1px solid #ccc !important;
+            }
+            .Tests-Hub-svg-container svg,
+            .Tests-Hub-svg-container img { max-width: 100% !important; }
+        }
+        .Tests-Hub-print-mode { background: white !important; }
+        .Tests-Hub-print-mode .Tests-Hub-card {
+            background: white !important; box-shadow: none !important; border: 1px solid #ddd !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="Tests-Hub-header-container">
+        <div class="Tests-Hub-header-content">
+            <div class="Tests-Hub-header-left">
+                <img src="assets/icons/icon-96x96.png" alt="Tests Hub Logo" class="Tests-Hub-header-icon" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="Tests-Hub-header-title" data-i18n="TestsHub.header.title">الجغرافيا - فرض مراقبة عدد 1 (7 أساسي) - المثال 3</h1>
+                    <div class="Tests-Hub-header-subtitle" data-i18n="TestsHub.header.subtitle">الأستاذ: غير مذكور | السنة الدراسية: غير مذكور</div>
+                </div>
+            </div>
+            <div class="Tests-Hub-header-controls">
+                <a href="index.html" class="Tests-Hub-back-button" data-i18n="TestsHub.header.back"><span>←</span> <span>العودة إلى الاختبارات</span></a>
+                <div class="Tests-Hub-language-selector">
+                    <button class="Tests-Hub-language-button"><span>🌐</span><span data-i18n="TestsHub.header.language">العربية</span><span>▼</span></button>
+                    <div class="Tests-Hub-language-dropdown">
+                        <div class="Tests-Hub-language-option" data-language="ar">🌐 العربية</div>
+                        <div class="Tests-Hub-language-option" data-language="fr">🌐 Français</div>
+                        <div class="Tests-Hub-language-option" data-language="en">🌐 English</div>
+                    </div>
+                </div>
+                <button class="Tests-Hub-theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span><span data-i18n="TestsHub.theme.toggle">الوضع الليلي</span></button>
+                <button class="Tests-Hub-print-button" id="printDownloadBtn"><span>🖨️</span><span data-i18n="TestsHub.header.print">طباعة</span></button>
+                <button class="Tests-Hub-pdf-button" id="pdfDownloadBtn"><span>📄</span><span data-i18n="TestsHub.header.pdf">PDF</span></button>
+                <button class="Tests-Hub-image-save-button" id="imageSaveBtn" data-i18n-title="TestsHub.imageSaveButton" title="صورة"><span>🖼️</span><span data-i18n="TestsHub.imageSaveButton">صورة</span></button>
+            </div>
+        </div>
+    </header>
+
+    <div id="loading-overlay"><div class="Tests-Hub-spinner"></div><div data-i18n="TestsHub.loading.message">جاري التحميل...</div></div>
+
+    <main class="Tests-Hub-main-container">
+        <!-- بطاقة العرض التقديمي -->
+        <div class="Tests-Hub-card Tests-Hub-presentation-card">
+            <div data-i18n="TestsHub.presentation.line1" style="font-size: 1.8rem; font-weight: 700;">📜 فرض مراقبة عدد 1 - جغرافيا - سابعة أساسي (المثال 3)</div>
+            <div data-i18n="TestsHub.presentation.line2" style="font-size: 1.2rem;">👨‍🏫 الأستاذ: غير مذكور</div>
+            <div data-i18n="TestsHub.presentation.line3" style="font-size: 1.2rem;">📅 السنة الدراسية: غير مذكور</div>
+            <div data-i18n="TestsHub.presentation.line4" style="font-size: 1.2rem;">📚 المستوى: 7 أساسي</div>
+            <div data-i18n="TestsHub.presentation.line5" style="font-size: 1.2rem;">🏫 المؤسسة: غير مذكور</div>
+            <div data-i18n="TestsHub.presentation.line6" style="font-size: 1.2rem; margin-top:0.5rem;">⏱️ التوقيت: 30 دقيقة</div>
+            <div data-i18n="TestsHub.presentation.line7" style="font-size: 1.2rem;">📝 الثلاثي الأول</div>
+        </div>
+
+        <!-- بطاقة التمرين الرئيسية -->
+        <div class="Tests-Hub-card">
+            <h1 class="Tests-Hub-h1">🌍 الجغرافيا (20 نقطة)</h1>
+
+            <!-- بيانات التلميذ -->
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 600; color: var(--Tests-Hub-question-list-color); background: var(--Tests-Hub-input-bg); padding: 10px 20px; border-radius: 15px; border: 1px solid var(--Tests-Hub-input-border); flex-wrap: wrap; gap: 10px;">
+                <span>الإسم و اللقب: <input type="text" class="Tests-Hub-inline-input" style="min-width:200px;" placeholder="..."></span>
+                <span>7 أساسي <input type="text" class="Tests-Hub-inline-input" style="min-width:60px;" placeholder="..."> العدد الرتبي (<input type="text" class="Tests-Hub-inline-input" style="min-width:40px;" placeholder="...">)</span>
+            </div>
+
+            <!-- ========== القسم الأول ========== -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📌 القسم الأول: (6 نقاط)</h2>
+
+                <!-- Q1: خريطة الكثافات السكانية -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">1) لوّن المناطق ذات الكثافات السكانية العالية: (3 ن)</h3>
+
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/geography/trim1/الكثافات-السكانية-خريطة-التلميذ.png"
+                             alt="خريطة توزع الكثافات السكانية - نسخة التلميذ">
+                    </div>
+
+                    <div class="Tests-Hub-legend">
+                        <div class="Tests-Hub-legend-item">
+                            <span class="Tests-Hub-legend-swatch" style="background:#ef4444;"></span>
+                            <span>مناطق ذات كثافات سكانية عالية (أكثر من 100 نسمة/كم²)</span>
+                        </div>
+                    </div>
+
+                    <div class="Tests-Hub-detail-note">
+                        🌍 <strong>السلم:</strong> 1/100.000.000 — على النسخة الورقية، لوّن بالأحمر المناطق ذات الكثافات السكانية العالية في العالم.
+                    </div>
+                </div>
+
+                <!-- Q2: تعريف الإحداثيات الجغرافية -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">2) عرّف الإحداثيات الجغرافية: (3 ن)</h3>
+                    <textarea class="Tests-Hub-answer-textarea" rows="4" placeholder="اكتب تعريفك هنا..."></textarea>
+                </div>
+            </section>
+
+            <!-- ========== القسم الثاني ========== -->
+            <section>
+                <h2 class="Tests-Hub-section-title">📝 القسم الثاني: (12 نقاط) — تحليل وثيقة</h2>
+
+                <!-- Q1: تعريف خطوط العرض -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">1) عرّف خطوط العرض، ومنطلقها، والغاية منها: (3 ن)</h3>
+
+                    <p style="font-weight:700; margin:0.8rem 0 0.3rem;">🔹 خطوط العرض:</p>
+                    <textarea class="Tests-Hub-answer-textarea" rows="2" placeholder="اكتب التعريف..."></textarea>
+
+                    <p style="font-weight:700; margin:0.9rem 0 0.3rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        🔹 منطلقها:
+                        <input type="text" class="Tests-Hub-inline-input" style="min-width:220px;" placeholder="...">
+                    </p>
+
+                    <p style="font-weight:700; margin:0.9rem 0 0.3rem;">🔹 الغاية منها:</p>
+                    <textarea class="Tests-Hub-answer-textarea" rows="2" placeholder="اكتب الغاية..."></textarea>
+                </div>
+
+                <!-- Q2: تسمية أهم خطوط العرض -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">2) سجّل على الرسم أسماء أهم خطوط العرض: (5 ن)</h3>
+
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/geography/trim1/خطوط-العرض-خريطة-التلميذ.png"
+                             alt="أهم خطوط العرض - نسخة التلميذ">
+                    </div>
+
+                    <div class="Tests-Hub-detail-note">📌 <strong>توجيه:</strong> ضع كل اسم من الكلمات التالية أمام الرقم الموافق له على الرسم.</div>
+
+                    <div class="Tests-Hub-wordbank">
+                        <span>الدائرة القطبية الشمالية</span>
+                        <span>مدار السرطان</span>
+                        <span>خط الاستواء</span>
+                        <span>مدار الجدي</span>
+                        <span>الدائرة القطبية الجنوبية</span>
+                    </div>
+
+                    <div class="Tests-Hub-blank-grid">
+                        <div class="Tests-Hub-blank-item"><span class="Tests-Hub-blank-badge">1</span><input type="text" class="Tests-Hub-inline-input" placeholder="..."></div>
+                        <div class="Tests-Hub-blank-item"><span class="Tests-Hub-blank-badge">2</span><input type="text" class="Tests-Hub-inline-input" placeholder="..."></div>
+                        <div class="Tests-Hub-blank-item"><span class="Tests-Hub-blank-badge">3</span><input type="text" class="Tests-Hub-inline-input" placeholder="..."></div>
+                        <div class="Tests-Hub-blank-item"><span class="Tests-Hub-blank-badge">4</span><input type="text" class="Tests-Hub-inline-input" placeholder="..."></div>
+                        <div class="Tests-Hub-blank-item"><span class="Tests-Hub-blank-badge">5</span><input type="text" class="Tests-Hub-inline-input" placeholder="..."></div>
+                    </div>
+                </div>
+
+                <!-- Q3: هل يمكن الاكتفاء؟ -->
+                <div class="Tests-Hub-question-list">
+                    <h3 style="font-size:1.5rem;">3) هل يمكن الاكتفاء بهذه الخطوط لتحديد المواقع بدقة؟ (4 ن)</h3>
+
+                    <p style="font-weight:600; margin:0.8rem 0;">الجواب:
+                        <input type="text" class="Tests-Hub-inline-input" style="min-width:130px;" placeholder="نعم / لا">
+                    </p>
+
+                    <p style="font-weight:600; margin:0.4rem 0 0.4rem;">علّل إجابتك:</p>
+                    <textarea class="Tests-Hub-answer-textarea" rows="3" placeholder="اكتب التعليل..."></textarea>
+                </div>
+            </section>
+
+            <!-- الصياغة والتنظيم -->
+            <div class="Tests-Hub-detail-note" style="font-size:1.05rem; margin-top:1.5rem;">
+                ✨ <strong>الصياغة والتنظيم:</strong> 2 نقاط (سلامة اللغة، وضوح الخط، حسن تنظيم الورقة).
+            </div>
+
+            <!-- زر إظهار/إخفاء الإصلاح -->
+            <div style="text-align: center;">
+                <button class="Tests-Hub-toggle-correction-btn" id="toggleCorrectionBtn">
+                    <span id="toggleCorrectionIcon">👁️</span>
+                    <span id="toggleCorrectionText" data-i18n="TestsHub.showCorrection">إظهار الإصلاح</span>
+                </button>
+            </div>
+
+            <!-- ========== قسم الإصلاح ========== -->
+            <section id="correction-section" style="display: none;">
+                <h2 class="Tests-Hub-section-title">✅ الإصلاح المفصّل</h2>
+
+                <!-- إصلاح Q1 (ق1): خريطة الكثافات -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الأول: خريطة الكثافات السكانية العالية (3 ن)</h3>
+
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/geography/trim1/الكثافات-السكانية-الخريطة-الكاملة.png"
+                             alt="خريطة توزع الكثافات السكانية - الخريطة الكاملة">
+                    </div>
+
+                    <div class="Tests-Hub-legend">
+                        <div class="Tests-Hub-legend-item">
+                            <span class="Tests-Hub-legend-swatch" style="background:#ef4444;"></span>
+                            <span>مناطق ذات كثافات عالية (أكثر من 100 نسمة/كم²)</span>
+                        </div>
+                    </div>
+
+                    <p style="font-weight:700; margin-top:1rem;">أهم المناطق ذات الكثافات السكانية العالية:</p>
+                    <ul style="margin-right:1.5rem; line-height:2;">
+                        <li><strong>شرق آسيا:</strong> الصين، اليابان، كوريا الجنوبية.</li>
+                        <li><strong>جنوب آسيا:</strong> الهند، بنغلاديش، باكستان.</li>
+                        <li><strong>جنوب شرق آسيا:</strong> إندونيسيا، الفلبين، فيتنام.</li>
+                        <li><strong>أوروبا:</strong> أوروبا الغربية والوسطى.</li>
+                        <li><strong>شرق أمريكا الشمالية:</strong> الولايات المتحدة (خاصة الشرق) وكندا الجنوبية.</li>
+                        <li><strong>وادي النيل:</strong> مصر.</li>
+                        <li><strong>غرب إفريقيا:</strong> نيجيريا والمناطق المجاورة.</li>
+                        <li><strong>جنوب شرق البرازيل:</strong> ساو باولو وريو دي جانيرو.</li>
+                    </ul>
+                    <div class="Tests-Hub-detail-note">🌍 <strong>ملاحظة:</strong> تتوزع الكثافات السكانية العالية في العالم على مناطق محددة، بينما تبقى مناطق شاسعة (كالصحاري والغابات الاستوائية والمناطق القطبية) ذات كثافات منخفضة جداً بسبب الظروف الطبيعية القاسية.</div>
+                </div>
+
+                <!-- إصلاح Q2 (ق1): تعريف الإحداثيات -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الثاني: تعريف الإحداثيات الجغرافية (3 ن)</h3>
+                    <p style="line-height:2.2;">
+                        <strong style="color:#0369a1;">الإحداثيات الجغرافية</strong> هي شبكة وهمية تتكوّن من <strong>خطوط الطول</strong> و<strong>خطوط العرض</strong>،
+                        تغطّي سطح الأرض، وتُستخدم <strong>لتحديد المواقع بدقّة</strong> على سطح الكرة الأرضية عبر تقاطع خط طول مع خط عرض.
+                    </p>
+                    <div class="Tests-Hub-detail-note">📍 كل نقطة على سطح الأرض تُحدَّد بزوج من الإحداثيات: (خط العرض، خط الطول). خط العرض يحدد الموقع شمالاً أو جنوباً، وخط الطول يحدد الموقع شرقاً أو غرباً.</div>
+                </div>
+
+                <!-- إصلاح Q1 (ق2): تعريف خطوط العرض -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الأول: تعريف خطوط العرض (3 ن)</h3>
+
+                    <p><strong style="color:#0369a1;">🔹 خطوط العرض:</strong>
+                        هي دوائر وهمية موازية لخط الاستواء، ترسم على سطح الكرة الأرضية من الشرق إلى الغرب، ويبلغ عددها 180 خطاً (90 شمالاً و90 جنوباً).
+                    </p>
+
+                    <p style="margin-top:0.8rem;"><strong style="color:#0369a1;">🔹 منطلقها:</strong>
+                        خط <strong>الاستواء (0°)</strong>، الذي يقسم الكرة الأرضية إلى نصفين: شمالي وجنوبي.
+                    </p>
+
+                    <p style="margin-top:0.8rem;"><strong style="color:#0369a1;">🔹 الغاية منها:</strong>
+                        تحديد <strong>الموقع شمالاً أو جنوباً</strong> بالنسبة لخط الاستواء، والتمييز بين <strong>المناطق الحرارية</strong> على سطح الأرض (المنطقة الحارة، المعتدلة، الباردة).
+                    </p>
+
+                    <div class="Tests-Hub-detail-note">📐 خطوط العرض أنصاف دوائر متوازية لا تلتقي، وتفيد في تحديد الموقع شمالاً أو جنوباً وتقسيم الأرض إلى مناطق حرارية. على عكس خطوط الطول التي تربط بين القطبين وتفيد في تحديد التوقيت والموقع شرقاً أو غرباً.</div>
+                </div>
+
+                <!-- إصلاح Q2 (ق2): تسمية خطوط العرض -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الثاني: أسماء أهم خطوط العرض (5 ن)</h3>
+
+                    <div class="Tests-Hub-svg-container">
+                        <img src="assets7/geography/trim1/خطوط-العرض-الخريطة-الكاملة.png"
+                             alt="أهم خطوط العرض - الخريطة الكاملة">
+                    </div>
+
+                    <ol style="margin-right:1.5rem; line-height:2.2;">
+                        <li><strong>الدائرة القطبية الشمالية</strong> — 66.5° شمالاً.</li>
+                        <li><strong>مدار السرطان</strong> — 23.5° شمالاً.</li>
+                        <li><strong>خط الاستواء</strong> — 0°.</li>
+                        <li><strong>مدار الجدي</strong> — 23.5° جنوباً.</li>
+                        <li><strong>الدائرة القطبية الجنوبية</strong> — 66.5° جنوباً.</li>
+                    </ol>
+
+                    <div class="Tests-Hub-detail-note">📖 تُقسّم هذه الخطوط الخمسة سطح الأرض إلى <strong>مناطق حرارية</strong>:
+                        <ul style="margin-right:1.5rem; margin-top:0.5rem;">
+                            <li><strong>المنطقة الحارة:</strong> بين مداري السرطان والجدي.</li>
+                            <li><strong>المنطقتان المعتدلتان:</strong> بين كل مدار ودائرته القطبية.</li>
+                            <li><strong>المنطقتان الباردتان:</strong> بين كل دائرة قطبية والقطب الموافق لها.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- إصلاح Q3 (ق2) -->
+                <div class="Tests-Hub-answers">
+                    <h3>📌 إصلاح التمرين الثالث: هل يمكن الاكتفاء؟ (4 ن)</h3>
+
+                    <p><strong style="color:#0369a1;">الجواب:</strong> <strong>لا</strong>، لا يمكن الاكتفاء بخطوط العرض لتحديد المواقع بدقّة.</p>
+
+                    <p style="margin-top:0.8rem;"><strong style="color:#0369a1;">التعليل:</strong>
+                        لأنّ خطوط العرض وحدها تحدّد الموقع <strong>شمالاً أو جنوباً</strong> فقط،
+                        ولا تحدّد الموقع <strong>شرقاً أو غرباً</strong>.
+                        لذلك لا بدّ من الاستعانة بـ<strong>خطوط الطول</strong> لتحديد الموقع بدقّة كاملة،
+                        إذ تتقاطع خطوط الطول مع خطوط العرض لتكوّن شبكة إحداثية تسمح بتحديد أي نقطة على سطح الأرض.
+                    </p>
+
+                    <div class="Tests-Hub-detail-note">🧭 مثال: إذا قلنا إنّ مدينة تقع على خط عرض 30° شمالاً فقط، فهي تقع على دائرة كاملة حول الأرض. لكن إذا أضفنا أنها تقع على خط طول 10° شرقاً، صار موقعها محدّداً بدقّة. لهذا لا يمكن الاستغناء عن أحد الصنفين.</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="Tests-Hub-footer-container">
+        <div class="Tests-Hub-footer-content">
+            <div class="Tests-Hub-footer-columns">
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.developer">المطور</h3><p class="Tests-Hub-developer-name" data-i18n="TestsHub.footer.developerName">زياد المجري</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.version">الإصدار</h3><p class="Tests-Hub-version-number" data-i18n="TestsHub.footer.versionNumber">v1.0.0 (جغرافيا 7 - مراقبة 1 - مثال 3)</p></div>
+                <div class="Tests-Hub-footer-column"><h3 data-i18n="TestsHub.footer.links">روابط</h3><ul class="Tests-Hub-footer-links-list"><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.terms">شروط الاستخدام</a></li><li><a href="#" class="Tests-Hub-footer-link" data-i18n="TestsHub.footer.privacy">سياسة الخصوصية</a></li></ul></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            let currentLanguage = 'ar';
+            let isDarkTheme = false;
+            let correctionVisible = false;
+
+            const TestsHub_translations = {
+                ar: {
+                    TestsHub: {
+                        header: {
+                            title: "الجغرافيا - فرض مراقبة عدد 1 (7 أساسي) - المثال 3",
+                            subtitle: "الأستاذ: غير مذكور | السنة الدراسية: غير مذكور",
+                            back: "العودة إلى الاختبارات",
+                            language: "العربية",
+                            print: "طباعة",
+                            pdf: "PDF",
+                            defaultPdfFileName: "فرض_مراقبة_السابعة_الجغرافيا_الثلاثي_الأول_مثال3.pdf",
+                            errorPdfCapture: "حدث خطأ أثناء إنشاء ملف PDF."
+                        },
+                        loading: { message: "جاري التحميل..." },
+                        theme: { toggle: "الوضع الليلي" },
+                        footer: { developer: "المطور", version: "الإصدار", links: "روابط", terms: "شروط الاستخدام", privacy: "سياسة الخصوصية", developerName: "زياد المجري", versionNumber: "v1.0.0" },
+                        presentation: {
+                            line1: "📜 فرض مراقبة عدد 1 - جغرافيا - سابعة أساسي (المثال 3)",
+                            line2: "👨‍🏫 الأستاذ: غير مذكور",
+                            line3: "📅 السنة الدراسية: غير مذكور",
+                            line4: "📚 المستوى: 7 أساسي",
+                            line5: "🏫 المؤسسة: غير مذكور",
+                            line6: "⏱️ التوقيت: 30 دقيقة",
+                            line7: "📝 الثلاثي الأول"
+                        },
+                        showCorrection: "إظهار الإصلاح",
+                        hideCorrection: "إخفاء الإصلاح",
+                        imageSaveButton: "صورة",
+                        errorImageCapture: "حدث خطأ أثناء إنشاء الصورة.",
+                        defaultImageFileName: "فرض_مراقبة_السابعة_الجغرافيا_الثلاثي_الأول_مثال3"
+                    }
+                },
+                fr: {
+                    TestsHub: {
+                        header: {
+                            title: "Géographie - Devoir de Contrôle N°1 (7ème) - Exemple 3",
+                            subtitle: "Prof.: non spécifié | Année: non spécifiée",
+                            back: "Retour aux examens",
+                            language: "Français",
+                            print: "Imprimer",
+                            pdf: "PDF",
+                            defaultPdfFileName: "Geographie_7_controle1_exemple3.pdf",
+                            errorPdfCapture: "Erreur lors de la création du PDF."
+                        },
+                        loading: { message: "Chargement..." },
+                        theme: { toggle: "Mode sombre" },
+                        footer: { developer: "Développeur", version: "Version", links: "Liens", terms: "Conditions", privacy: "Confidentialité", developerName: "Ziad Mejri", versionNumber: "v1.0.0" },
+                        presentation: {
+                            line1: "📜 Devoir de Contrôle N°1 - Géographie - 7ème (Exemple 3)",
+                            line2: "👨‍🏫 Professeur: non spécifié",
+                            line3: "📅 Année: non spécifiée",
+                            line4: "📚 Classe: 7ème",
+                            line5: "🏫 Établissement: non spécifié",
+                            line6: "⏱️ Durée: 30 minutes",
+                            line7: "📝 1er Trimestre"
+                        },
+                        showCorrection: "Afficher la correction",
+                        hideCorrection: "Cacher la correction",
+                        imageSaveButton: "Image",
+                        errorImageCapture: "Erreur lors de la création de l'image.",
+                        defaultImageFileName: "Geographie_7_controle1_exemple3"
+                    }
+                },
+                en: {
+                    TestsHub: {
+                        header: {
+                            title: "Geography - Mid-Term Test N°1 (Grade 7) - Example 3",
+                            subtitle: "Teacher: not specified | Year: not specified",
+                            back: "Back to tests",
+                            language: "English",
+                            print: "Print",
+                            pdf: "PDF",
+                            defaultPdfFileName: "Geography_Grade7_Test1_Example3.pdf",
+                            errorPdfCapture: "Error creating PDF."
+                        },
+                        loading: { message: "Loading..." },
+                        theme: { toggle: "Dark Mode" },
+                        footer: { developer: "Developer", version: "Version", links: "Links", terms: "Terms", privacy: "Privacy", developerName: "Ziad Mejri", versionNumber: "v1.0.0" },
+                        presentation: {
+                            line1: "📜 Mid-Term Test N°1 - Geography - 7th Grade (Example 3)",
+                            line2: "👨‍🏫 Teacher: not specified",
+                            line3: "📅 Year: not specified",
+                            line4: "📚 Class: 7th Grade",
+                            line5: "🏫 School: not specified",
+                            line6: "⏱️ Duration: 30 minutes",
+                            line7: "📝 First Trimester"
+                        },
+                        showCorrection: "Show correction",
+                        hideCorrection: "Hide correction",
+                        imageSaveButton: "Image",
+                        errorImageCapture: "Error creating image.",
+                        defaultImageFileName: "Geography_Grade7_Test1_Example3"
+                    }
+                }
+            };
+
+            function updateTextContent() {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.textContent = current;
+                });
+                document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-title');
+                    let current = TestsHub_translations[currentLanguage];
+                    key.split('.').forEach(k => { if (current) current = current[k]; });
+                    if (typeof current === 'string') el.setAttribute('title', current);
+                });
+                updateThemeToggleText();
+                updateToggleButtonText();
+            }
+            function updateThemeToggleText() {
+                const themeSpan = document.querySelector('.Tests-Hub-theme-toggle span:nth-child(2)');
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeSpan) themeSpan.textContent = isDarkTheme ? (currentLanguage === 'ar' ? 'الوضع العادي' : currentLanguage === 'fr' ? 'Mode clair' : 'Light Mode') : TestsHub_translations[currentLanguage].TestsHub.theme.toggle;
+                if (themeIcon) themeIcon.textContent = isDarkTheme ? '☀️' : '🌙';
+            }
+            function updateToggleButtonText() {
+                const toggleText = document.getElementById('toggleCorrectionText');
+                if (toggleText) toggleText.textContent = correctionVisible ? TestsHub_translations[currentLanguage].TestsHub.hideCorrection : TestsHub_translations[currentLanguage].TestsHub.showCorrection;
+            }
+            function toggleTheme() { isDarkTheme = !isDarkTheme; document.body.classList.toggle('Tests-Hub-dark-theme', isDarkTheme); updateThemeToggleText(); localStorage.setItem('testsHubTheme', isDarkTheme ? 'dark' : 'light'); }
+            function changeLanguage(lang) {
+                if (!TestsHub_translations[lang]) return;
+                currentLanguage = lang;
+                updateTextContent();
+                const langBtn = document.querySelector('.Tests-Hub-language-button span:nth-child(2)');
+                if (langBtn) langBtn.textContent = lang === 'ar' ? 'العربية' : lang === 'fr' ? 'Français' : 'English';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+                localStorage.setItem('testsHubLanguage', lang);
+                const imageBtn = document.getElementById('imageSaveBtn');
+                if (imageBtn) imageBtn.setAttribute('title', TestsHub_translations[currentLanguage].TestsHub.imageSaveButton);
+            }
+            function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
+            function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
+
+            function getCleanCloneForCapture(element) {
+                const clone = element.cloneNode(true);
+                clone.querySelectorAll('.Tests-Hub-header-controls, .Tests-Hub-toggle-correction-btn, .Tests-Hub-language-selector, .Tests-Hub-theme-toggle, .Tests-Hub-back-button, .Tests-Hub-print-button, .Tests-Hub-pdf-button, .Tests-Hub-image-save-button').forEach(el => el.remove());
+                clone.querySelectorAll('.Tests-Hub-answer-input input, .Tests-Hub-answer-input textarea, .Tests-Hub-inline-input').forEach(input => {
+                    const placeholderDiv = document.createElement('div');
+                    placeholderDiv.style.borderBottom = '1px dashed #aaa';
+                    placeholderDiv.style.minHeight = '2em';
+                    placeholderDiv.style.margin = '5px 0';
+                    placeholderDiv.style.backgroundColor = '#f5f5dc';
+                    placeholderDiv.style.borderRadius = '12px';
+                    placeholderDiv.style.padding = '6px';
+                    placeholderDiv.textContent = '_________________________';
+                    input.parentNode.replaceChild(placeholderDiv, input);
+                });
+                return clone;
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const savedTheme = localStorage.getItem('testsHubTheme');
+                if (savedTheme === 'dark') { isDarkTheme = true; document.body.classList.add('Tests-Hub-dark-theme'); }
+                const savedLanguage = localStorage.getItem('testsHubLanguage');
+                if (savedLanguage && TestsHub_translations[savedLanguage]) currentLanguage = savedLanguage;
+                document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = currentLanguage;
+                updateTextContent();
+
+                if (typeof renderMathInElement === 'function') renderMathInElement(document.body, { delimiters: [{left: "$", right: "$", display: false}], throwOnError: false });
+
+                document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+                document.querySelectorAll('.Tests-Hub-language-option').forEach(opt => opt.addEventListener('click', function() { changeLanguage(this.getAttribute('data-language')); }));
+                document.getElementById('printDownloadBtn').addEventListener('click', () => setTimeout(() => window.print(), 50));
+
+                document.getElementById('pdfDownloadBtn').addEventListener('click', async function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const body = document.body;
+                    const originalDisplay = correctionSection.style.display;
+                    correctionSection.style.display = 'none';
+                    body.classList.add('Tests-Hub-print-mode');
+                    showLoading();
+                    try {
+                        const testClone = getCleanCloneForCapture(mainContainer);
+                        const tempDiv = document.createElement('div');
+                        tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                        tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                        tempDiv.appendChild(testClone);
+                        document.body.appendChild(tempDiv);
+                        const testCanvas = await html2canvas(tempDiv, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                        document.body.removeChild(tempDiv);
+
+                        let correctionCanvas = null;
+                        if (correctionSection) {
+                            correctionSection.style.display = 'block';
+                            await new Promise(r => setTimeout(r, 60));
+                            const corrClone = getCleanCloneForCapture(correctionSection);
+                            const tempCorr = document.createElement('div');
+                            tempCorr.style.position = 'absolute'; tempCorr.style.left = '-9999px'; tempCorr.style.width = mainContainer.offsetWidth + 'px';
+                            tempCorr.style.backgroundColor = '#ffffff'; tempCorr.style.padding = '20px';
+                            tempCorr.appendChild(corrClone);
+                            document.body.appendChild(tempCorr);
+                            correctionCanvas = await html2canvas(tempCorr, { scale: 1.5, backgroundColor: '#ffffff', logging: false });
+                            document.body.removeChild(tempCorr);
+                        }
+                        correctionSection.style.display = originalDisplay;
+                        body.classList.remove('Tests-Hub-print-mode');
+
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+                        const pageWidth = pdf.internal.pageSize.getWidth();
+                        const pageHeight = pdf.internal.pageSize.getHeight();
+                        const topMargin = 30, bottomMargin = 30;
+                        const contentHeight = pageHeight - topMargin - bottomMargin;
+                        const fileName = TestsHub_translations[currentLanguage].TestsHub.header.defaultPdfFileName || 'exam.pdf';
+                        const headerFileName = fileName.replace(/\.pdf$/i, '');
+
+                        const getSlices = (canvas) => {
+                            const scale = pageWidth / canvas.width;
+                            const sliceCanvasHeight = contentHeight / scale;
+                            const slices = []; let y = 0;
+                            while (y < canvas.height) { const h = Math.min(sliceCanvasHeight, canvas.height - y); slices.push({ y, height: h }); y += h; }
+                            return slices;
+                        };
+                        const addHeaderFooter = (pageNum, total) => {
+                            pdf.setFontSize(12); pdf.setTextColor(40,40,40);
+                            pdf.text(headerFileName, pageWidth/2, topMargin/2, { align: 'center' });
+                            pdf.setFontSize(10);
+                            pdf.text(`صفحة ${pageNum} / ${total}`, pageWidth/2, pageHeight - bottomMargin/2, { align: 'center' });
+                            pdf.line(40, topMargin-2, pageWidth-40, topMargin-2);
+                            pdf.line(40, pageHeight-bottomMargin+2, pageWidth-40, pageHeight-bottomMargin+2);
+                        };
+                        const testSlices = getSlices(testCanvas);
+                        const corrSlices = correctionCanvas ? getSlices(correctionCanvas) : [];
+                        let pageCounter = 1, total = testSlices.length + corrSlices.length;
+
+                        testSlices.forEach((slice,i) => {
+                            if(i!==0) pdf.addPage();
+                            const sc = document.createElement('canvas'); sc.width = testCanvas.width; sc.height = slice.height;
+                            const ctx = sc.getContext('2d');
+                            ctx.drawImage(testCanvas, 0, slice.y, testCanvas.width, slice.height, 0, 0, testCanvas.width, slice.height);
+                            pdf.addImage(sc.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/testCanvas.width));
+                            addHeaderFooter(pageCounter++, total);
+                        });
+                        corrSlices.forEach((slice,i) => {
+                            pdf.addPage();
+                            const sc = document.createElement('canvas'); sc.width = correctionCanvas.width; sc.height = slice.height;
+                            const ctx = sc.getContext('2d');
+                            ctx.drawImage(correctionCanvas, 0, slice.y, correctionCanvas.width, slice.height, 0, 0, correctionCanvas.width, slice.height);
+                            pdf.addImage(sc.toDataURL('image/jpeg',0.9), 'JPEG', 0, topMargin, pageWidth, slice.height*(pageWidth/correctionCanvas.width));
+                            addHeaderFooter(pageCounter++, total);
+                        });
+                        pdf.save(fileName);
+                    } catch(e) {
+                        console.error(e);
+                        alert(TestsHub_translations[currentLanguage].TestsHub.header.errorPdfCapture);
+                        correctionSection.style.display = originalDisplay;
+                        body.classList.remove('Tests-Hub-print-mode');
+                    } finally {
+                        hideLoading();
+                    }
+                });
+
+                document.getElementById('imageSaveBtn').addEventListener('click', function() {
+                    const correctionSection = document.getElementById('correction-section');
+                    const wasHidden = correctionSection && correctionSection.style.display === 'none';
+                    if (wasHidden) correctionSection.style.display = 'block';
+                    showLoading();
+                    const mainContainer = document.querySelector('.Tests-Hub-main-container');
+                    const clone = getCleanCloneForCapture(mainContainer);
+                    const tempDiv = document.createElement('div');
+                    tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px'; tempDiv.style.width = mainContainer.offsetWidth + 'px';
+                    tempDiv.style.backgroundColor = '#ffffff'; tempDiv.style.padding = '20px';
+                    tempDiv.appendChild(clone);
+                    document.body.appendChild(tempDiv);
+                    html2canvas(tempDiv, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                        document.body.removeChild(tempDiv);
+                        const link = document.createElement('a');
+                        link.download = TestsHub_translations[currentLanguage].TestsHub.defaultImageFileName + '.png';
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                        if (wasHidden) correctionSection.style.display = 'none';
+                    }).catch(e => {
+                        alert(TestsHub_translations[currentLanguage].TestsHub.errorImageCapture);
+                        document.body.removeChild(tempDiv);
+                        if (wasHidden) correctionSection.style.display = 'none';
+                    }).finally(() => hideLoading());
+                });
+
+                const toggleBtn = document.getElementById('toggleCorrectionBtn');
+                const correctionSection = document.getElementById('correction-section');
+                if (toggleBtn && correctionSection) {
+                    toggleBtn.addEventListener('click', function() {
+                        correctionVisible = !correctionVisible;
+                        correctionSection.style.display = correctionVisible ? 'block' : 'none';
+                        updateToggleButtonText();
+                        document.getElementById('toggleCorrectionIcon').textContent = correctionVisible ? '👁️‍🗨️' : '👁️';
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
